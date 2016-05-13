@@ -2465,10 +2465,20 @@ for (String path : paths) {
 									</then>
 								</if>
 
+								<if>
+									<isset property="nodejs.system.version" />
+									<then>
+										<var name="node.target.version" value="${nodejs.system.version}" />
+									</then>
+									<else>
+										<var name="node.target.version" value="v${nodejs.version}" />
+									</else>
+								</if>
+
 								<node-execute
 									node.args="deploy"
 									node.command="node"
-									node.command.args="${sdk.tools.dir}/node-v${nodejs.version}/node_modules/gulp-cli/bin/gulp"
+									node.command.args="${sdk.tools.dir}/node-${node.target.version}/node_modules/gulp-cli/bin/gulp"
 									node.working.dir="@{module.dir}"
 								/>
 							</then>

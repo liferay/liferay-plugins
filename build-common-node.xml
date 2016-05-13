@@ -21,6 +21,35 @@
 		</sequential>
 	</macrodef>
 
+	<macrodef name="check-system-node">
+		<sequential>
+			<if>
+				<and>
+					<not>
+						<isset property="nodejs.system.version" />
+					</not>
+					<not>
+						<isset property="nodejs.system.version.checked" />
+					</not>
+				</and>
+				<then>
+					<exec dir="${user.dir}" executable="node" failifexecutionfails="false" outputproperty="nodejs.system.version">
+						<arg value="--version" />
+					</exec>
+
+					<property name="nodejs.system.version.checked" value="true" />
+
+					<if>
+						<isset property="nodejs.system.version" />
+						<then>
+							<mkdir dir="${sdk.tools.dir}/node-${nodejs.system.version}" />
+						</then>
+					</if>
+				</then>
+			</if>
+		</sequential>
+	</macrodef>
+
 	<macrodef name="download-node">
 		<sequential>
 			<if>
@@ -184,7 +213,19 @@ ${nodejs.url[osx64]}.
 		<attribute name="node.module.version" />
 
 		<sequential>
-			<loadfile failonerror="false" property="package.json.content" srcFile="${sdk.tools.dir}/node-v${nodejs.version}/node_modules/@{node.module.name}/package.json" />
+			<check-system-node />
+
+			<if>
+				<isset property="nodejs.system.version" />
+				<then>
+					<var name="node.target.version" value="${nodejs.system.version}" />
+				</then>
+				<else>
+					<var name="node.target.version" value="v${nodejs.version}" />
+				</else>
+			</if>
+
+			<loadfile failonerror="false" property="package.json.content" srcFile="${sdk.tools.dir}/node-${node.target.version}/node_modules/@{node.module.name}/package.json" />
 
 			<if>
 				<not>
@@ -194,7 +235,7 @@ ${nodejs.url[osx64]}.
 					<node-execute
 						node.args="install @{node.module.name}@&quot;@{node.module.version}&quot;"
 						node.command="npm"
-						node.working.dir="${sdk.tools.dir}/node-v${nodejs.version}"
+						node.working.dir="${sdk.tools.dir}/node-${node.target.version}"
 					/>
 				</then>
 			</if>
@@ -210,7 +251,21 @@ ${nodejs.url[osx64]}.
 		<attribute default="${user.dir}" name="node.working.dir" />
 
 		<sequential>
-			<download-node />
+			<check-system-node />
+
+			<if>
+				<isset property="nodejs.system.version" />
+				<then>
+					<var name="node.executable" value="" />
+					<var name="nodejs.path" value="${env.PATH}" />
+				</then>
+				<else>
+					<download-node />
+
+					<var name="node.executable" value="${nodejs.location}/bin/" />
+					<var name="nodejs.path" value="${env.PATH};${nodejs.location}/bin" />
+				</else>
+			</if>
 
 			<if>
 				<not>
@@ -224,9 +279,7 @@ ${nodejs.url[osx64]}.
 			<if>
 				<os family="unix" />
 				<then>
-					<exec dir="@{node.working.dir}" executable="${sdk.tools.dir}/node-v${nodejs.version}/bin/@{node.command}">
-						<arg line="@{node.command.args} @{node.args}" />
-					</exec>
+					<var name="node.executable" value="${node.executable}@{node.command}" />
 				</then>
 				<else>
 					<var name="node.command.extension" value="cmd" />
@@ -238,11 +291,14 @@ ${nodejs.url[osx64]}.
 						</then>
 					</if>
 
-					<exec dir="@{node.working.dir}" executable="${sdk.tools.dir}/node-v${nodejs.version}/@{node.command}.${node.command.extension}">
-						<arg line="@{node.command.args} @{node.args}" />
-					</exec>
+					<var name="node.executable" value="${node.executable}@{node.command}.${node.command.extension}"/>
 				</else>
 			</if>
+
+			<exec dir="@{node.working.dir}" executable="${node.executable}">
+				<env key="PATH" path="${nodejs.path}"/>
+				<arg line="@{node.command.args} @{node.args}" />
+			</exec>
 		</sequential>
 	</macrodef>
 
