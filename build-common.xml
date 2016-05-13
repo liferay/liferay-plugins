@@ -1406,7 +1406,19 @@ Please find a solution that does not require portal-impl.jar.
 						target.name="war"
 					/>
 
-					<copy file="${plugin.file}" todir="${auto.deploy.dir}" />
+					<if>
+						<or>
+							<not>
+								<antelope:endswith string="${plugin.name}" with="-theme" />
+							</not>
+							<not>
+								<available file="@{module.dir}/gulpfile.js" />
+							</not>
+						</or>
+						<then>
+							<copy file="${plugin.file}" todir="${auto.deploy.dir}" />
+						</then>
+					</if>
 				</then>
 				<else>
 					<loop-macrodef-or-target
@@ -2419,57 +2431,101 @@ for (String path : paths) {
 				<elseif>
 					<antelope:endswith string="${plugin.name}" with="-theme" />
 					<then>
-						<loop-macrodef-or-target
-							module.dirs="@{module.dir}"
-							target.name="compile"
-						/>
-
-						<build-css
-							module.dir="@{module.dir}"
-						/>
-
 						<if>
-							<not>
-								<available file="@{module.dir}/docroot/images/screenshot.png" />
-							</not>
+							<available file="@{module.dir}/gulpfile.js" />
 							<then>
-								<echo>screenshot.png does not exist.</echo>
-							</then>
-						</if>
-
-						<if>
-							<not>
-								<available file="@{module.dir}/docroot/images/thumbnail.png" />
-							</not>
-							<then>
-								<echo>thumbnail.png does not exist.</echo>
-							</then>
-						</if>
-
-						<mkdir dir="${sdk.dir}/dist" />
-
-						<delete file="${plugin.file}" />
-
-						<zip
-							basedir="@{module.dir}/docroot"
-							destfile="${plugin.file}"
-							excludes="**/.sass-cache/**,**/*.scss,WEB-INF/liferay-hook.xml*,_diffs.*,_diffs/**,${plugins.war.excludes}"
-						>
-							<zipfileset
-								dir="@{module.dir}/docroot"
-								fullpath="WEB-INF/liferay-hook.xml"
-								includes="WEB-INF/liferay-hook.xml.processed"
-							/>
-							<mappedresources>
-								<fileset
-									dir="@{module.dir}/docroot"
-									includes="**/.sass-cache/*.css"
+								<download-node-module
+									node.module.name="gulp-cli"
+									node.module.version="latest"
 								/>
-								<filtermapper>
-									<replacestring from=".sass-cache" to="" />
-								</filtermapper>
-							</mappedresources>
-						</zip>
+
+								<node-execute
+									node.args="install"
+									node.command="npm"
+									node.working.dir="@{module.dir}"
+								/>
+
+								<if>
+									<not>
+										<available file="@{module.dir}/liferay-theme.json" />
+									</not>
+									<then>
+										<echo file="@{module.dir}/liferay-theme.json">
+											{
+												"LiferayTheme": {
+													"appServerPath": "${app.server.dir}",
+													"deployPath": "${auto.deploy.dir}",
+													"url": "http://localhost:8080",
+													"appServerPathPlugin": "${app.server.dir}/webapps/@{plugin.name}",
+													"deployed": false,
+													"pluginName": "@{plugin.name}"
+												}
+											}
+										</echo>
+									</then>
+								</if>
+
+								<node-execute
+									node.args="deploy"
+									node.command="node"
+									node.command.args="${sdk.tools.dir}/node-v${nodejs.version}/node_modules/gulp-cli/bin/gulp"
+									node.working.dir="@{module.dir}"
+								/>
+							</then>
+							<else>
+								<loop-macrodef-or-target
+									module.dirs="@{module.dir}"
+									target.name="compile"
+								/>
+
+								<build-css
+									module.dir="@{module.dir}"
+								/>
+
+								<if>
+									<not>
+										<available file="@{module.dir}/docroot/images/screenshot.png" />
+									</not>
+									<then>
+										<echo>screenshot.png does not exist.</echo>
+									</then>
+								</if>
+
+								<if>
+									<not>
+										<available file="@{module.dir}/docroot/images/thumbnail.png" />
+									</not>
+									<then>
+										<echo>thumbnail.png does not exist.</echo>
+									</then>
+								</if>
+
+								<mkdir dir="${sdk.dir}/dist" />
+
+								<delete file="${plugin.file}" />
+
+								<zip
+									basedir="@{module.dir}/docroot"
+									destfile="${plugin.file}"
+									excludes="**/.sass-cache/**,**/*.scss,WEB-INF/liferay-hook.xml*,_diffs.*,_diffs/**,${plugins.war.excludes}"
+								>
+									<zipfileset
+										dir="@{module.dir}/docroot"
+										fullpath="WEB-INF/liferay-hook.xml"
+										includes="WEB-INF/liferay-hook.xml.processed"
+									/>
+									<mappedresources>
+										<fileset
+											dir="@{module.dir}/docroot"
+											includes="**/.sass-cache/*.css"
+										/>
+										<filtermapper>
+											<replacestring from=".sass-cache" to="" />
+										</filtermapper>
+									</mappedresources>
+								</zip>
+							</else>
+						</if>
 					</then>
 				</elseif>
 				<else>
