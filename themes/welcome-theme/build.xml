@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<!DOCTYPE project>
-
-<project name="welcome-theme" basedir="." default="deploy">
-	<property name="theme.parent" value="classic" />
-
-	<import file="../build-common-theme.xml" />
-</project>
