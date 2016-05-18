@@ -35,7 +35,7 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 		<aui:nav-item
 			href="<%= addBasicKBArticleURL %>"
 			iconCssClass="icon-file"
-			label="add-article"
+			label="basic-article"
 		/>
 	</c:when>
 	<c:otherwise>
