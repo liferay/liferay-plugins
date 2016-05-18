@@ -19,6 +19,7 @@ import com.liferay.notifications.util.NotificationsUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.ObjectValuePair;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.service.ServiceContext;
@@ -74,7 +75,7 @@ public class JournalArticleLocalServiceImpl
 
 		if (Validator.isNull(entryURL)) {
 			entryURL = NotificationsUtil.getEntryURL(
-				assetRenderer, PortletKeys.JOURNAL, serviceContext);
+				assetRenderer, StringPool.BLANK, serviceContext);
 		}
 
 		if ((status == WorkflowConstants.STATUS_APPROVED) &&

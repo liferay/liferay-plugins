@@ -29,6 +29,7 @@ import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.process.ProcessCallable;
 import com.liferay.portal.kernel.process.ProcessException;
 import com.liferay.portal.kernel.util.ObjectValuePair;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.Subscription;
 import com.liferay.portal.model.UserNotificationDeliveryConstants;
@@ -140,7 +141,9 @@ public class NotificationsUtil {
 			long controlPanelPlid = PortalUtil.getControlPanelPlid(
 				serviceContext.getCompanyId());
 
-			if (serviceContext.getPlid() == controlPanelPlid) {
+			if (Validator.isNotNull(portletKey) &&
+				(serviceContext.getPlid() == controlPanelPlid)) {
+
 				LiferayPortletRequest liferayPortletRequest =
 					serviceContext.getLiferayPortletRequest();
 
