@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 7.0.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_7_0_0.dtd">
+
+<service-builder package-path="com.liferay.samplealloymvc">
+	<namespace>SAM</namespace>
+	<entity name="SAMTodoItem" local-service="true" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="samTodoItemId" type="long" primary="true" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="samTodoListId" type="long" />
+		<column name="description" type="String" />
+		<column name="priority" type="int" />
+		<column name="status" type="int" />
+	</entity>
+	<entity name="SAMTodoList" local-service="true" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="samTodoListId" type="long" primary="true" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="name" type="String" />
+	</entity>
+</service-builder>
