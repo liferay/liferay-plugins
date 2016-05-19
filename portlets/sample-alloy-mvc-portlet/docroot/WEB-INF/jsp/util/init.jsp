@@ -28,20 +28,9 @@ page import="com.liferay.portal.kernel.search.SearchContext" %><%@
 page import="com.liferay.portal.kernel.search.Summary" %><%@
 page import="com.liferay.portal.kernel.search.filter.BooleanFilter" %><%@
 page import="com.liferay.portal.kernel.util.ParamUtil" %><%@
-page import="com.liferay.samplealloymvc.model.Asset" %><%@
-page import="com.liferay.samplealloymvc.model.Definition" %><%@
-page import="com.liferay.samplealloymvc.model.Type" %><%@
-page import="com.liferay.samplealloymvc.service.AssetLocalServiceUtil" %><%@
-page import="com.liferay.samplealloymvc.service.DefinitionLocalServiceUtil" %><%@
-page import="com.liferay.samplealloymvc.service.TypeLocalServiceUtil" %>
-
-<%@ page import="java.util.Locale" %><%@
-page import="java.util.regex.Matcher" %><%@
-page import="java.util.regex.Pattern" %>
 
 <%@ page import="javax.portlet.PortletRequest" %><%@
 page import="javax.portlet.PortletResponse" %><%@
 page import="javax.portlet.PortletURL" %>
 
-<%@ include file="/WEB-INF/jsp/util/asset_util.jspf" %>
 <%@ include file="/WEB-INF/jsp/util/portlet_keys.jspf" %>
