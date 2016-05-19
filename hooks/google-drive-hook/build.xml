@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<!DOCTYPE project>
-
-<project name="google-drive-hook" basedir="." default="deploy">
-	<property name="import.shared" value="dl-repository-shared" />
-
-	<import file="../build-common-hook.xml" />
-</project>
