@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-destroy-method="destroy" default-init-method="afterPropertiesSet" xsi:schemaLocation=" http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<bean class="com.liferay.samplealloymvc.service.impl.SAMTodoItemLocalServiceImpl" id="com.liferay.samplealloymvc.service.SAMTodoItemLocalService" />
+	<bean class="com.liferay.samplealloymvc.service.persistence.impl.SAMTodoItemPersistenceImpl" id="com.liferay.samplealloymvc.service.persistence.SAMTodoItemPersistence" parent="basePersistence" />
+	<bean class="com.liferay.samplealloymvc.service.impl.SAMTodoListLocalServiceImpl" id="com.liferay.samplealloymvc.service.SAMTodoListLocalService" />
+	<bean class="com.liferay.samplealloymvc.service.persistence.impl.SAMTodoListPersistenceImpl" id="com.liferay.samplealloymvc.service.persistence.SAMTodoListPersistence" parent="basePersistence" />
+</beans>

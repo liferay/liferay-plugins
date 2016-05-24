@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+
+<model-hints>
+	<model name="com.liferay.samplealloymvc.model.SAMTodoItem">
+		<field name="samTodoItemId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="samTodoListId" type="long" />
+		<field name="description" type="String" />
+		<field name="priority" type="int" />
+		<field name="status" type="int" />
+	</model>
+	<model name="com.liferay.samplealloymvc.model.SAMTodoList">
+		<field name="samTodoListId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="name" type="String" />
+	</model>
+</model-hints>
