@@ -3,11 +3,11 @@
 
 <service-builder package-path="com.liferay.samplealloymvc">
 	<namespace>SAM</namespace>
-	<entity name="SAMTodoItem" local-service="true" remote-service="false">
+	<entity local-service="true" name="SAMTodoItem" remote-service="false">
 
 		<!-- PK fields -->
 
-		<column name="samTodoItemId" type="long" primary="true" />
+		<column name="samTodoItemId" primary="true" type="long" />
 
 		<!-- Audit fields -->
 
@@ -24,11 +24,11 @@
 		<column name="priority" type="int" />
 		<column name="status" type="int" />
 	</entity>
-	<entity name="SAMTodoList" local-service="true" remote-service="false">
+	<entity local-service="true" name="SAMTodoList" remote-service="false">
 
 		<!-- PK fields -->
 
-		<column name="samTodoListId" type="long" primary="true" />
+		<column name="samTodoListId" primary="true" type="long" />
 
 		<!-- Audit fields -->
 
