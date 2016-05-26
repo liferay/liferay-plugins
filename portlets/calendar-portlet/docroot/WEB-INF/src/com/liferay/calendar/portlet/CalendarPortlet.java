@@ -196,16 +196,16 @@ public class CalendarPortlet extends MVCPortlet {
 					"an-unexpected-error-occurred-while-importing-your-" +
 						"file");
 
-				jsonObject.put("success", false);
 				jsonObject.put("error", message);
+				jsonObject.put("success", false);
 			}
 		}
 		else {
 			String message = themeDisplay.translate(
 				"failed-to-import-empty-file");
 
-			jsonObject.put("success", false);
 			jsonObject.put("error", message);
+			jsonObject.put("success", false);
 		}
 
 		writeJSON(actionRequest, actionResponse, jsonObject);
@@ -1278,8 +1278,8 @@ public class CalendarPortlet extends MVCPortlet {
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-		jsonObject.put("success", false);
 		jsonObject.put("error", message);
+		jsonObject.put("success", false);
 
 		writeJSON(resourceRequest, resourceResponse, jsonObject);
 	}
