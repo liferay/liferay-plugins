@@ -161,9 +161,6 @@ public class CalendarResourceStagedModelDataHandler
 			}
 
 			if (existingCalendarResource == null) {
-				calendarResource = getUniqueCalendarResource(
-					portletDataContext, calendarResource);
-
 				serviceContext.setUuid(calendarResource.getUuid());
 
 				importedCalendarResource =
@@ -171,7 +168,9 @@ public class CalendarResourceStagedModelDataHandler
 						userId, portletDataContext.getScopeGroupId(),
 						calendarResource.getClassNameId(), classPK,
 						calendarResource.getClassUuid(),
-						calendarResource.getCode(), calendarResourceNameMap,
+						getUniqueCalendarResourceCode(
+							portletDataContext, calendarResource),
+						calendarResourceNameMap,
 						calendarResource.getDescriptionMap(),
 						calendarResource.isActive(), serviceContext);
 			}
@@ -186,15 +185,14 @@ public class CalendarResourceStagedModelDataHandler
 		}
 		else {
 			try {
-				calendarResource = getUniqueCalendarResource(
-					portletDataContext, calendarResource);
-
 				importedCalendarResource =
 					CalendarResourceLocalServiceUtil.addCalendarResource(
 						userId, portletDataContext.getScopeGroupId(),
 						calendarResource.getClassNameId(), classPK,
 						calendarResource.getClassUuid(),
-						calendarResource.getCode(), calendarResourceNameMap,
+						getUniqueCalendarResourceCode(
+							portletDataContext, calendarResource),
+						calendarResourceNameMap,
 						calendarResource.getDescriptionMap(),
 						calendarResource.isActive(), serviceContext);
 			}
@@ -265,7 +263,7 @@ public class CalendarResourceStagedModelDataHandler
 		return classPK;
 	}
 
-	protected CalendarResource getUniqueCalendarResource(
+	protected String getUniqueCalendarResourceCode(
 			PortletDataContext portletDataContext,
 			CalendarResource calendarResource)
 		throws Exception {
@@ -273,19 +271,18 @@ public class CalendarResourceStagedModelDataHandler
 		String code = calendarResource.getCode();
 
 		for (int i = 1;; i++) {
-			CalendarResource duplicateCalendarResource =
+			CalendarResource existingCalendarResource =
 				CalendarResourceUtil.fetchByG_C_First(
-					portletDataContext.getScopeGroupId(),
-					calendarResource.getCode(), null);
+					portletDataContext.getScopeGroupId(), code, null);
 
-			if (duplicateCalendarResource == null) {
+			if (existingCalendarResource == null) {
 				break;
 			}
 
-			calendarResource.setCode(code + i);
+			code = code.concat(String.valueOf(i));
 		}
 
-		return calendarResource;
+		return code;
 	}
 
 	protected void prepareLanguagesForImport(CalendarResource calendarResource)
