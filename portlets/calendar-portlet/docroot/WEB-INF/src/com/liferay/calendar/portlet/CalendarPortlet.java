@@ -245,9 +245,6 @@ public class CalendarPortlet extends MVCPortlet {
 			else if (resourceID.equals("exportCalendar")) {
 				serveExportCalendar(resourceRequest, resourceResponse);
 			}
-			else if (resourceID.equals("importCalendar")) {
-				serveImportCalendar(resourceRequest, resourceResponse);
-			}
 			else if (resourceID.equals("resourceCalendars")) {
 				serveResourceCalendars(resourceRequest, resourceResponse);
 			}
@@ -1194,14 +1191,14 @@ public class CalendarPortlet extends MVCPortlet {
 			contentType);
 	}
 
-	protected void serveImportCalendar(
-			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
+	public void importCalendar(
+			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
 		UploadPortletRequest uploadPortletRequest =
-			PortalUtil.getUploadPortletRequest(resourceRequest);
+			PortalUtil.getUploadPortletRequest(actionRequest);
 
-		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
 		long calendarId = ParamUtil.getLong(uploadPortletRequest, "calendarId");
@@ -1237,7 +1234,7 @@ public class CalendarPortlet extends MVCPortlet {
 			jsonObject.put("error", message);
 		}
 
-		writeJSON(resourceRequest, resourceResponse, jsonObject);
+		writeJSON(actionRequest, actionResponse, jsonObject);
 	}
 
 	protected void serveResourceCalendars(

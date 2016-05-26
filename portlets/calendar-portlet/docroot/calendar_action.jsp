@@ -49,9 +49,9 @@ Calendar calendar = (Calendar)row.getObject();
 	</c:if>
 
 	<c:if test="<%= CalendarPermission.contains(permissionChecker, calendar, ActionKeys.UPDATE) %>">
-		<liferay-portlet:resourceURL id="importCalendar" var="importURL">
+		<liferay-portlet:actionURL name="importCalendar" var="importURL">
 			<portlet:param name="calendarId" value="<%= String.valueOf(calendar.getCalendarId()) %>" />
-		</liferay-portlet:resourceURL>
+		</liferay-portlet:actionURL>
 
 		<%
 		StringBundler sb = new StringBundler(6);
