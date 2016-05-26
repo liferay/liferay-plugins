@@ -1269,7 +1269,7 @@ public class CalendarPortlet extends MVCPortlet {
 			WebKeys.THEME_DISPLAY);
 
 		String message = themeDisplay.translate(
-			"calendar-does-not-serve-resource-x",
+			"calendar-does-not-serve-unknown-resource-x",
 			resourceRequest.getResourceID());
 
 		if (_log.isWarnEnabled()) {
