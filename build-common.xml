@@ -2455,7 +2455,6 @@ for (String path : paths) {
 												"LiferayTheme": {
 													"appServerPath": "${app.server.dir}",
 													"deployPath": "${auto.deploy.dir}",
-													"url": "http://localhost:8080",
 													"appServerPathPlugin": "${app.server.dir}/webapps/@{plugin.name}",
 													"deployed": false,
 													"pluginName": "@{plugin.name}"
