@@ -257,13 +257,13 @@ ${nodejs.url[osx64]}.
 				<isset property="nodejs.system.version" />
 				<then>
 					<var name="node.executable" value="" />
-					<var name="nodejs.path" value="${env.PATH}" />
+					<var name="node.path" value="${env.PATH}" />
 				</then>
 				<else>
 					<download-node />
 
 					<var name="node.executable" value="${nodejs.location}/bin/" />
-					<var name="nodejs.path" value="${env.PATH};${nodejs.location}/bin" />
+					<var name="node.path" value="${env.PATH};${nodejs.location}/bin" />
 				</else>
 			</if>
 
@@ -296,7 +296,7 @@ ${nodejs.url[osx64]}.
 			</if>
 
 			<exec dir="@{node.working.dir}" executable="${node.executable}">
-				<env key="PATH" path="${nodejs.path}"/>
+				<env key="PATH" path="${node.path}"/>
 				<arg line="@{node.command.args} @{node.args}" />
 			</exec>
 		</sequential>
