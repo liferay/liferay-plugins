@@ -1514,7 +1514,6 @@ public class CalendarPortlet extends MVCPortlet {
 		return message;
 	}
 
-	private static final Log _log = LogFactoryUtil.getLog(
-		CalendarPortlet.class);
+	private static Log _log = LogFactoryUtil.getLog(CalendarPortlet.class);
 
 }
