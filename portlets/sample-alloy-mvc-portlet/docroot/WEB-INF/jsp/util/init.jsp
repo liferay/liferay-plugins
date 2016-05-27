@@ -19,14 +19,6 @@ page import="com.liferay.alloy.mvc.AlloyException" %><%@
 page import="com.liferay.alloy.mvc.AlloySearchResult" %><%@
 page import="com.liferay.alloy.mvc.BaseAlloyIndexer" %><%@
 page import="com.liferay.alloy.mvc.jsonwebservice.JSONWebServiceMethod" %><%@
-page import="com.liferay.portal.kernel.model.BaseModel" %><%@
-page import="com.liferay.portal.kernel.search.BooleanQuery" %><%@
-page import="com.liferay.portal.kernel.search.Document" %><%@
-page import="com.liferay.portal.kernel.search.Field" %><%@
-page import="com.liferay.portal.kernel.search.Indexer" %><%@
-page import="com.liferay.portal.kernel.search.SearchContext" %><%@
-page import="com.liferay.portal.kernel.search.Summary" %><%@
-page import="com.liferay.portal.kernel.search.filter.BooleanFilter" %><%@
 page import="com.liferay.portal.kernel.util.ParamUtil" %>
 
 <%@ page import="javax.portlet.PortletRequest" %><%@
