@@ -311,7 +311,7 @@ public class ScreensAssetEntryServiceImpl
 			DDMStructure ddmStructure = ddmStructureLocalService.getStructure(
 				journalArticle.getGroupId(),
 				journalArticleClassName.getClassNameId(),
-				journalArticle.getStructureId());
+				journalArticle.getStructureId(), true);
 
 			journalArticleJSONObject.put(
 				"DDMStructure",
