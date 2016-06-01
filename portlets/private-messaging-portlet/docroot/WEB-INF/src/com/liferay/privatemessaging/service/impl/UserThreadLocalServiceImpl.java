@@ -92,7 +92,7 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 		if (mbThreadId != 0) {
 			if (Validator.isNull(fetchUserThread(userId, mbThreadId))) {
 				if (_log.isWarnEnabled()) {
-					StringBundler sb = new StringBundler(6);
+					StringBundler sb = new StringBundler(5);
 
 					sb.append("User ");
 					sb.append(userId);
