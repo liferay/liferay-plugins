@@ -96,16 +96,16 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 
 					sb.append("User ");
 					sb.append(userId);
-					sb.append(" attempted to add a message to MBThread ");
+					sb.append(" attempted to add a message to thread ");
 					sb.append(mbThreadId);
-					sb.append(" through the private messaging portlet");
+					sb.append(" through the Private Messaging portlet");
 
 					_log.warn(sb.toString());
 				}
 
 				throw new PrincipalException(
-					"User " + userId + " cannot access MBThread " + mbThreadId +
-						" through the private messaging portlet");
+					"User " + userId + " cannot access thread " + mbThreadId +
+						" through the Private Messaging portlet");
 			}
 
 			List<MBMessage> mbMessages =
