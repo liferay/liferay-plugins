@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<!DOCTYPE project>
+
+<project name="geonames-web" basedir="." default="deploy">
+	<import file="../build-common-web.xml" />
+</project>
