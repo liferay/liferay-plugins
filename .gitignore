@@ -13,6 +13,7 @@
 .gh.json
 .sass-cache
 .sass_cache_*.css
+/*/*/.web_bundle_build
 /*/*/bin
 /*/*/build
 /*/*/classes
