@@ -86,6 +86,20 @@ public class TasksEntryServiceSoap {
 		}
 	}
 
+	public static com.liferay.tasks.model.TasksEntrySoap deleteTasksEntry(
+		long tasksEntryId) throws RemoteException {
+		try {
+			com.liferay.tasks.model.TasksEntry returnValue = TasksEntryServiceUtil.deleteTasksEntry(tasksEntryId);
+
+			return com.liferay.tasks.model.TasksEntrySoap.toSoapModel(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
 	public static com.liferay.tasks.model.TasksEntrySoap getTasksEntry(
 		long tasksEntryId) throws RemoteException {
 		try {
@@ -112,6 +126,23 @@ public class TasksEntryServiceSoap {
 					title, priority, assigneeUserId, resolverUserId,
 					dueDateMonth, dueDateDay, dueDateYear, dueDateHour,
 					dueDateMinute, neverDue, status, serviceContext);
+
+			return com.liferay.tasks.model.TasksEntrySoap.toSoapModel(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static com.liferay.tasks.model.TasksEntrySoap updateTasksEntryStatus(
+		long tasksEntryId, long resolverUserId, int status,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws RemoteException {
+		try {
+			com.liferay.tasks.model.TasksEntry returnValue = TasksEntryServiceUtil.updateTasksEntryStatus(tasksEntryId,
+					resolverUserId, status, serviceContext);
 
 			return com.liferay.tasks.model.TasksEntrySoap.toSoapModel(returnValue);
 		}

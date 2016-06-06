@@ -56,6 +56,9 @@ public interface TasksEntryService extends BaseService, InvokableService {
 		int dueDateHour, int dueDateMinute, boolean neverDue,
 		ServiceContext serviceContext) throws PortalException;
 
+	public TasksEntry deleteTasksEntry(long tasksEntryId)
+		throws PortalException;
+
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public TasksEntry getTasksEntry(long tasksEntryId)
 		throws PortalException;
@@ -65,6 +68,10 @@ public interface TasksEntryService extends BaseService, InvokableService {
 		long resolverUserId, int dueDateMonth, int dueDateDay, int dueDateYear,
 		int dueDateHour, int dueDateMinute, boolean neverDue, int status,
 		ServiceContext serviceContext) throws PortalException;
+
+	public TasksEntry updateTasksEntryStatus(long tasksEntryId,
+		long resolverUserId, int status, ServiceContext serviceContext)
+		throws PortalException;
 
 	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,

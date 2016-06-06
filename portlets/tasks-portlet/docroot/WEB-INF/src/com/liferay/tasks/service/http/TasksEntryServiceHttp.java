@@ -92,12 +92,44 @@ public class TasksEntryServiceHttp {
 		}
 	}
 
+	public static com.liferay.tasks.model.TasksEntry deleteTasksEntry(
+		HttpPrincipal httpPrincipal, long tasksEntryId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		try {
+			MethodKey methodKey = new MethodKey(TasksEntryServiceUtil.class,
+					"deleteTasksEntry", _deleteTasksEntryParameterTypes1);
+
+			MethodHandler methodHandler = new MethodHandler(methodKey,
+					tasksEntryId);
+
+			Object returnObj = null;
+
+			try {
+				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
+			}
+			catch (Exception e) {
+				if (e instanceof com.liferay.portal.kernel.exception.PortalException) {
+					throw (com.liferay.portal.kernel.exception.PortalException)e;
+				}
+
+				throw new com.liferay.portal.kernel.exception.SystemException(e);
+			}
+
+			return (com.liferay.tasks.model.TasksEntry)returnObj;
+		}
+		catch (com.liferay.portal.kernel.exception.SystemException se) {
+			_log.error(se, se);
+
+			throw se;
+		}
+	}
+
 	public static com.liferay.tasks.model.TasksEntry getTasksEntry(
 		HttpPrincipal httpPrincipal, long tasksEntryId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			MethodKey methodKey = new MethodKey(TasksEntryServiceUtil.class,
-					"getTasksEntry", _getTasksEntryParameterTypes1);
+					"getTasksEntry", _getTasksEntryParameterTypes2);
 
 			MethodHandler methodHandler = new MethodHandler(methodKey,
 					tasksEntryId);
@@ -133,12 +165,47 @@ public class TasksEntryServiceHttp {
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			MethodKey methodKey = new MethodKey(TasksEntryServiceUtil.class,
-					"updateTasksEntry", _updateTasksEntryParameterTypes2);
+					"updateTasksEntry", _updateTasksEntryParameterTypes3);
 
 			MethodHandler methodHandler = new MethodHandler(methodKey,
 					tasksEntryId, title, priority, assigneeUserId,
 					resolverUserId, dueDateMonth, dueDateDay, dueDateYear,
 					dueDateHour, dueDateMinute, neverDue, status, serviceContext);
+
+			Object returnObj = null;
+
+			try {
+				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
+			}
+			catch (Exception e) {
+				if (e instanceof com.liferay.portal.kernel.exception.PortalException) {
+					throw (com.liferay.portal.kernel.exception.PortalException)e;
+				}
+
+				throw new com.liferay.portal.kernel.exception.SystemException(e);
+			}
+
+			return (com.liferay.tasks.model.TasksEntry)returnObj;
+		}
+		catch (com.liferay.portal.kernel.exception.SystemException se) {
+			_log.error(se, se);
+
+			throw se;
+		}
+	}
+
+	public static com.liferay.tasks.model.TasksEntry updateTasksEntryStatus(
+		HttpPrincipal httpPrincipal, long tasksEntryId, long resolverUserId,
+		int status,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		try {
+			MethodKey methodKey = new MethodKey(TasksEntryServiceUtil.class,
+					"updateTasksEntryStatus",
+					_updateTasksEntryStatusParameterTypes4);
+
+			MethodHandler methodHandler = new MethodHandler(methodKey,
+					tasksEntryId, resolverUserId, status, serviceContext);
 
 			Object returnObj = null;
 
@@ -168,13 +235,20 @@ public class TasksEntryServiceHttp {
 			int.class, int.class, int.class, boolean.class,
 			com.liferay.portal.kernel.service.ServiceContext.class
 		};
-	private static final Class<?>[] _getTasksEntryParameterTypes1 = new Class[] {
+	private static final Class<?>[] _deleteTasksEntryParameterTypes1 = new Class[] {
 			long.class
 		};
-	private static final Class<?>[] _updateTasksEntryParameterTypes2 = new Class[] {
+	private static final Class<?>[] _getTasksEntryParameterTypes2 = new Class[] {
+			long.class
+		};
+	private static final Class<?>[] _updateTasksEntryParameterTypes3 = new Class[] {
 			long.class, java.lang.String.class, int.class, long.class,
 			long.class, int.class, int.class, int.class, int.class, int.class,
 			boolean.class, int.class,
+			com.liferay.portal.kernel.service.ServiceContext.class
+		};
+	private static final Class<?>[] _updateTasksEntryStatusParameterTypes4 = new Class[] {
+			long.class, long.class, int.class,
 			com.liferay.portal.kernel.service.ServiceContext.class
 		};
 }
