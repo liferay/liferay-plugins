@@ -64,7 +64,7 @@ public class TasksPortlet extends MVCPortlet {
 
 		long tasksEntryId = ParamUtil.getLong(actionRequest, "tasksEntryId");
 
-		TasksEntryLocalServiceUtil.deleteTasksEntry(tasksEntryId);
+		TasksEntryServiceUtil.deleteTasksEntry(tasksEntryId);
 
 		String redirect = ParamUtil.getString(actionRequest, "redirect");
 
@@ -234,7 +234,7 @@ public class TasksPortlet extends MVCPortlet {
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			TasksEntry.class.getName(), actionRequest);
 
-		TasksEntryLocalServiceUtil.updateTasksEntryStatus(
+		TasksEntryServiceUtil.updateTasksEntryStatus(
 			tasksEntryId, resolverUserId, status, serviceContext);
 
 		Layout layout = themeDisplay.getLayout();
