@@ -47,6 +47,15 @@ public class TasksEntryServiceImpl extends TasksEntryServiceBaseImpl {
 			serviceContext);
 	}
 
+	public TasksEntry deleteTasksEntry(long tasksEntryId)
+		throws PortalException, SystemException {
+
+		TasksEntryPermission.check(
+			getPermissionChecker(), tasksEntryId, ActionKeys.UPDATE);
+
+		return tasksEntryLocalService.deleteTasksEntry(tasksEntryId);
+	}
+
 	public TasksEntry getTasksEntry(long tasksEntryId)
 		throws PortalException, SystemException {
 
@@ -70,6 +79,18 @@ public class TasksEntryServiceImpl extends TasksEntryServiceBaseImpl {
 			tasksEntryId, title, priority, assigneeUserId, resolverUserId,
 			dueDateMonth, dueDateDay, dueDateYear, dueDateHour, dueDateMinute,
 			neverDue, status, serviceContext);
+	}
+
+	public TasksEntry updateTasksEntryStatus(
+			long tasksEntryId, long resolverUserId, int status,
+			ServiceContext serviceContext)
+		throws PortalException, SystemException {
+
+		TasksEntryPermission.check(
+			getPermissionChecker(), tasksEntryId, ActionKeys.UPDATE);
+
+		return tasksEntryLocalService.updateTasksEntryStatus(
+			tasksEntryId, resolverUserId, status, serviceContext);
 	}
 
 }
