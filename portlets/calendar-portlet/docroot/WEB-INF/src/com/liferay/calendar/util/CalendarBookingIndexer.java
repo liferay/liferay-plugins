@@ -14,6 +14,7 @@
 
 package com.liferay.calendar.util;
 
+import com.liferay.calendar.model.Calendar;
 import com.liferay.calendar.model.CalendarBooking;
 import com.liferay.calendar.service.CalendarBookingLocalServiceUtil;
 import com.liferay.calendar.service.persistence.CalendarBookingActionableDynamicQuery;
@@ -36,6 +37,7 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.LocalizationUtil;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.trash.util.TrashUtil;
 
 import java.util.ArrayList;
@@ -55,6 +57,10 @@ public class CalendarBookingIndexer extends BaseIndexer {
 	};
 
 	public static final String PORTLET_ID = PortletKeys.CALENDAR;
+
+	public CalendarBookingIndexer() {
+		setPermissionAware(true);
+	}
 
 	@Override
 	public String[] getClassNames() {
@@ -124,6 +130,13 @@ public class CalendarBookingIndexer extends BaseIndexer {
 					titleLanguageId),
 				title);
 		}
+
+		document.addKeyword(Field.RELATED_ENTRY, true);
+		document.addKeyword(
+			Field.CLASS_NAME_ID, PortalUtil.getClassNameId(Calendar.class));
+		document.addKeyword(Field.CLASS_PK, calendarBooking.getCalendarId());
+		document.addKeyword(
+			Field.VIEW_ACTION_ID, ActionKeys.VIEW_BOOKING_DETAILS);
 
 		String calendarBookingId = String.valueOf(
 			calendarBooking.getCalendarBookingId());
