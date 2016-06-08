@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+
+<web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+	<servlet>
+		<servlet-name>Geonames</servlet-name>
+		<servlet-class>com.liferay.geonames.servlet.GeonamesServlet</servlet-class>
+		<init-param>
+			<param-name>geonamesDataFile</param-name>
+			<param-value></param-value>
+		</init-param>
+		<init-param>
+			<param-name>geonamesDataURL</param-name>
+			<param-value>http://download.geonames.org/export/dump/cities1000.zip</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Geonames</servlet-name>
+		<url-pattern>/*</url-pattern>
+	</servlet-mapping>
+</web-app>
