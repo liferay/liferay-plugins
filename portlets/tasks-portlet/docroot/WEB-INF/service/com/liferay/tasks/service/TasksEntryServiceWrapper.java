@@ -70,6 +70,14 @@ public class TasksEntryServiceWrapper implements TasksEntryService,
 	}
 
 	@Override
+	public com.liferay.tasks.model.TasksEntry deleteTasksEntry(
+		long tasksEntryId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _tasksEntryService.deleteTasksEntry(tasksEntryId);
+	}
+
+	@Override
 	public com.liferay.tasks.model.TasksEntry getTasksEntry(long tasksEntryId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -89,6 +97,16 @@ public class TasksEntryServiceWrapper implements TasksEntryService,
 			priority, assigneeUserId, resolverUserId, dueDateMonth, dueDateDay,
 			dueDateYear, dueDateHour, dueDateMinute, neverDue, status,
 			serviceContext);
+	}
+
+	@Override
+	public com.liferay.tasks.model.TasksEntry updateTasksEntryStatus(
+		long tasksEntryId, long resolverUserId, int status,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _tasksEntryService.updateTasksEntryStatus(tasksEntryId,
+			resolverUserId, status, serviceContext);
 	}
 
 	/**

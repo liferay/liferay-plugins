@@ -39,15 +39,26 @@ public class TasksEntryServiceClp implements TasksEntryService {
 				"int", "boolean", "com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName4 = "getTasksEntry";
+		_methodName4 = "deleteTasksEntry";
 
 		_methodParameterTypes4 = new String[] { "long" };
 
-		_methodName5 = "updateTasksEntry";
+		_methodName5 = "getTasksEntry";
 
-		_methodParameterTypes5 = new String[] {
+		_methodParameterTypes5 = new String[] { "long" };
+
+		_methodName6 = "updateTasksEntry";
+
+		_methodParameterTypes6 = new String[] {
 				"long", "java.lang.String", "int", "long", "long", "int", "int",
 				"int", "int", "int", "boolean", "int",
+				"com.liferay.portal.service.ServiceContext"
+			};
+
+		_methodName7 = "updateTasksEntryStatus";
+
+		_methodParameterTypes7 = new String[] {
+				"long", "long", "int",
 				"com.liferay.portal.service.ServiceContext"
 			};
 	}
@@ -161,7 +172,8 @@ public class TasksEntryServiceClp implements TasksEntryService {
 	}
 
 	@Override
-	public com.liferay.tasks.model.TasksEntry getTasksEntry(long tasksEntryId)
+	public com.liferay.tasks.model.TasksEntry deleteTasksEntry(
+		long tasksEntryId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -169,6 +181,39 @@ public class TasksEntryServiceClp implements TasksEntryService {
 		try {
 			returnObj = _invokableService.invokeMethod(_methodName4,
 					_methodParameterTypes4, new Object[] { tasksEntryId });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.tasks.model.TasksEntry)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
+	public com.liferay.tasks.model.TasksEntry getTasksEntry(long tasksEntryId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableService.invokeMethod(_methodName5,
+					_methodParameterTypes5, new Object[] { tasksEntryId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -205,8 +250,8 @@ public class TasksEntryServiceClp implements TasksEntryService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableService.invokeMethod(_methodName5,
-					_methodParameterTypes5,
+			returnObj = _invokableService.invokeMethod(_methodName6,
+					_methodParameterTypes6,
 					new Object[] {
 						tasksEntryId,
 						
@@ -258,6 +303,50 @@ public class TasksEntryServiceClp implements TasksEntryService {
 		return (com.liferay.tasks.model.TasksEntry)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
+	public com.liferay.tasks.model.TasksEntry updateTasksEntryStatus(
+		long tasksEntryId, long resolverUserId, int status,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableService.invokeMethod(_methodName7,
+					_methodParameterTypes7,
+					new Object[] {
+						tasksEntryId,
+						
+					resolverUserId,
+						
+					status,
+						
+					ClpSerializer.translateInput(serviceContext)
+					});
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.tasks.model.TasksEntry)ClpSerializer.translateOutput(returnObj);
+	}
+
 	private InvokableService _invokableService;
 	private String _methodName0;
 	private String[] _methodParameterTypes0;
@@ -269,4 +358,8 @@ public class TasksEntryServiceClp implements TasksEntryService {
 	private String[] _methodParameterTypes4;
 	private String _methodName5;
 	private String[] _methodParameterTypes5;
+	private String _methodName6;
+	private String[] _methodParameterTypes6;
+	private String _methodName7;
+	private String[] _methodParameterTypes7;
 }

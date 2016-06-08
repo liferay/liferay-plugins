@@ -76,6 +76,13 @@ public class TasksEntryServiceUtil {
 			neverDue, serviceContext);
 	}
 
+	public static com.liferay.tasks.model.TasksEntry deleteTasksEntry(
+		long tasksEntryId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().deleteTasksEntry(tasksEntryId);
+	}
+
 	public static com.liferay.tasks.model.TasksEntry getTasksEntry(
 		long tasksEntryId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -96,6 +103,16 @@ public class TasksEntryServiceUtil {
 			assigneeUserId, resolverUserId, dueDateMonth, dueDateDay,
 			dueDateYear, dueDateHour, dueDateMinute, neverDue, status,
 			serviceContext);
+	}
+
+	public static com.liferay.tasks.model.TasksEntry updateTasksEntryStatus(
+		long tasksEntryId, long resolverUserId, int status,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .updateTasksEntryStatus(tasksEntryId, resolverUserId,
+			status, serviceContext);
 	}
 
 	public static void clearService() {
