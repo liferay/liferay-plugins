@@ -355,7 +355,7 @@ public class CalendarPortlet extends MVCPortlet {
 		actionRequest.setAttribute(WebKeys.REDIRECT, redirect);
 	}
 
-	public void updateCalendarBooking(
+	public void updateFormCalendarBooking(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
@@ -410,7 +410,7 @@ public class CalendarPortlet extends MVCPortlet {
 		actionRequest.setAttribute(WebKeys.REDIRECT, redirect);
 	}
 
-	public void updateCalendarBookingAsync(
+	public void updateSchedulerCalendarBooking(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws IOException, PortalException, SystemException {
 

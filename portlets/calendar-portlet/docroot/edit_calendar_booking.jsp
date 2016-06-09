@@ -159,9 +159,9 @@ for (long otherCalendarId : otherCalendarIds) {
 }
 %>
 
-<liferay-portlet:actionURL name="updateCalendarBooking" var="updateCalendarBookingURL" />
+<liferay-portlet:actionURL name="updateFormCalendarBooking" var="updateFormCalendarBookingURL" />
 
-<aui:form action="<%= updateCalendarBookingURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "updateCalendarBooking();" %>'>
+<aui:form action="<%= updateFormCalendarBookingURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "updateCalendarBooking();" %>'>
 	<aui:input name="mvcPath" type="hidden" value="/edit_calendar_booking.jsp" />
 
 	<liferay-portlet:renderURL var="redirectURL">
