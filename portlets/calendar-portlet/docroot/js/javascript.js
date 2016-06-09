@@ -393,6 +393,35 @@ AUI.add(
 				);
 			},
 
+			invokeActionURL: function(params) {
+				var instance = this;
+
+				var url = Liferay.PortletURL.createActionURL();
+
+				url.setParameters(params.queryParameters);
+				url.setPortletId('com_liferay_calendar_web_portlet_CalendarPortlet');
+				url.setName(params.actionName);
+
+				var payload;
+
+				if (params.payload) {
+					payload = Liferay.Util.ns(instance.PORTLET_NAMESPACE, params.payload);
+				}
+
+				A.io.request(
+					url.toString(),
+					{
+						data: payload,
+						dataType: 'JSON',
+						on: {
+							success: function() {
+								params.callback(this.get('responseData'));
+							}
+						}
+					}
+				);
+			},
+
 			invokeResourceURL: function(params) {
 				var instance = this;
 
@@ -602,8 +631,9 @@ AUI.add(
 				var startDate = schedulerEvent.get('startDate');
 				var endDate = schedulerEvent.get('endDate');
 
-				instance.invokeResourceURL(
+				instance.invokeActionURL(
 					{
+						actionName: 'updateCalendarBookingAsync',
 						callback: function(data) {
 							schedulerEvent.set(
 									'loading',
@@ -648,8 +678,7 @@ AUI.add(
 							startTimeYear: startDate.getFullYear(),
 							title: LString.unescapeHTML(schedulerEvent.get('content')),
 							updateInstance: updateInstance
-						},
-						resourceId: 'updateCalendarBooking'
+						}
 					}
 				);
 			}
