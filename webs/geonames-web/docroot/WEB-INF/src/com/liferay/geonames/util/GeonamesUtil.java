@@ -33,22 +33,22 @@ import org.json.JSONObject;
 /**
  * @author Matthew Kong
  */
-public class GeonamesUtil {
+public class GeoNamesUtil {
 
-	public static void buildRootGeonameNode() throws Exception {
-		URL url = new URL(_geonamesDataURL);
+	public static void buildRootGeoNameNode() throws Exception {
+		URL url = new URL(_geoNamesDataURL);
 
 		ZipInputStream zipInputStream = new ZipInputStream(url.openStream());
 
 		zipInputStream.getNextEntry();
 
-		buildRootGeonameNode(zipInputStream);
+		buildRootGeoNameNode(zipInputStream);
 	}
 
-	public static void buildRootGeonameNode(InputStream inputStream)
+	public static void buildRootGeoNameNode(InputStream inputStream)
 		throws Exception {
 
-		List<Geoname> geonames = new ArrayList<Geoname>();
+		List<GeoName> geoNames = new ArrayList<GeoName>();
 
 		BufferedReader bufferedReader = null;
 
@@ -61,7 +61,7 @@ public class GeonamesUtil {
 			while (line != null) {
 				String[] data = line.split("\t");
 
-				geonames.add(new Geoname(data));
+				geoNames.add(new GeoName(data));
 
 				line = bufferedReader.readLine();
 			}
@@ -76,10 +76,10 @@ public class GeonamesUtil {
 			}
 		}
 
-		_rootGeonameNode = getGeonameNode(geonames, 0);
+		_rootGeoNameNode = getGeoNameNode(geoNames, 0);
 	}
 
-	public static void buildRootGeonameNode(String filePathName)
+	public static void buildRootGeoNameNode(String filePathName)
 		throws Exception {
 
 		File file = new File(filePathName);
@@ -88,165 +88,165 @@ public class GeonamesUtil {
 			return;
 		}
 
-		buildRootGeonameNode(new FileInputStream(file));
+		buildRootGeoNameNode(new FileInputStream(file));
 	}
 
-	public static String getGeonameJSON(double latitude, double longitude)
+	public static String getGeoNameJSON(double latitude, double longitude)
 		throws Exception {
 
 		JSONObject jsonObject = new JSONObject();
 
-		if (_rootGeonameNode == null) {
-			buildRootGeonameNode();
+		if (_rootGeoNameNode == null) {
+			buildRootGeoNameNode();
 		}
 
-		GeonameNode geonameNode = searchGeonames(
-			_rootGeonameNode, new Geoname(latitude, longitude), 0);
+		GeoNameNode geoNameNode = searchGeoNames(
+			_rootGeoNameNode, new GeoName(latitude, longitude), 0);
 
-		Geoname geoname = geonameNode.getGeoname();
+		GeoName geoName = geoNameNode.getGeoName();
 
-		jsonObject.put("countryCode", geoname.getCountryCode());
-		jsonObject.put("name", geoname.getName());
+		jsonObject.put("countryCode", geoName.getCountryCode());
+		jsonObject.put("name", geoName.getName());
 
 		return jsonObject.toString();
 	}
 
-	public static void setGeonamesDataURL(String geonamesDataURL)
+	public static void setGeoNamesDataURL(String geoNamesDataURL)
 		throws Exception {
 
-		_geonamesDataURL = geonamesDataURL;
+		_geoNamesDataURL = geoNamesDataURL;
 	}
 
-	protected static Comparator<Geoname> getComparator(int cuttingDimension) {
+	protected static Comparator<GeoName> getComparator(int cuttingDimension) {
 		int axis = cuttingDimension % _NUMBER_OF_DIMENSIONS;
 
 		if (axis == 0) {
-			return _geonameXComparator;
+			return _geoNameXComparator;
 		}
 
 		if (axis == 1) {
-			return _geonameYComparator;
+			return _geoNameYComparator;
 		}
 
-		return _geonameZComparator;
+		return _geoNameZComparator;
 	}
 
-	protected static double getDistance(Geoname geoname1, Geoname geoname2) {
-		double dx = geoname1.getX() - geoname2.getX();
-		double dy = geoname1.getY() - geoname2.getY();
-		double dz = geoname1.getZ() - geoname2.getZ();
+	protected static double getDistance(GeoName geoName1, GeoName geoName2) {
+		double dx = geoName1.getX() - geoName2.getX();
+		double dy = geoName1.getY() - geoName2.getY();
+		double dz = geoName1.getZ() - geoName2.getZ();
 
 		return (dx * dx) + (dy * dy) + (dz * dz);
 	}
 
 	protected static double getDistance(
-		Geoname geoname1, Geoname geoname2, int cuttingDimension) {
+		GeoName geoName1, GeoName geoName2, int cuttingDimension) {
 
 		int axis = cuttingDimension % _NUMBER_OF_DIMENSIONS;
 
 		double delta = 0;
 
 		if (axis == 0) {
-			delta = geoname1.getX() - geoname2.getX();
+			delta = geoName1.getX() - geoName2.getX();
 		}
 		else if (axis == 1) {
-			delta = geoname1.getY() - geoname2.getY();
+			delta = geoName1.getY() - geoName2.getY();
 		}
 		else {
-			delta = geoname1.getZ() - geoname2.getZ();
+			delta = geoName1.getZ() - geoName2.getZ();
 		}
 
 		return delta * delta;
 	}
 
-	protected static GeonameNode getGeonameNode(
-		List<Geoname> geonames, int cuttingDimension) {
+	protected static GeoNameNode getGeoNameNode(
+		List<GeoName> geoNames, int cuttingDimension) {
 
-		if (geonames.isEmpty()) {
+		if (geoNames.isEmpty()) {
 			return null;
 		}
 
-		Collections.sort(geonames, getComparator(cuttingDimension));
+		Collections.sort(geoNames, getComparator(cuttingDimension));
 
-		int index = geonames.size() / 2;
+		int index = geoNames.size() / 2;
 
-		Geoname geoname = geonames.get(index);
-		GeonameNode leftGeonameNode = getGeonameNode(
-			new ArrayList<Geoname>(geonames.subList(0, index)),
+		GeoName geoName = geoNames.get(index);
+		GeoNameNode leftGeoNameNode = getGeoNameNode(
+			new ArrayList<GeoName>(geoNames.subList(0, index)),
 			cuttingDimension + 1);
-		GeonameNode rightGeonameNode = getGeonameNode(
-			new ArrayList<Geoname>(
-				geonames.subList(index + 1, geonames.size())),
+		GeoNameNode rightGeoNameNode = getGeoNameNode(
+			new ArrayList<GeoName>(
+				geoNames.subList(index + 1, geoNames.size())),
 			cuttingDimension + 1);
 
-		return new GeonameNode(geoname, leftGeonameNode, rightGeonameNode);
+		return new GeoNameNode(geoName, leftGeoNameNode, rightGeoNameNode);
 	}
 
-	protected static GeonameNode searchGeonames(
-		GeonameNode geonameNode, Geoname targetGeoname, int cuttingDimension) {
+	protected static GeoNameNode searchGeoNames(
+		GeoNameNode geoNameNode, GeoName targetGeoName, int cuttingDimension) {
 
-		GeonameNode closestGeonameNode = null;
-		GeonameNode nextGeonameNode = null;
-		GeonameNode previousGeonameNode = null;
+		GeoNameNode closestGeoNameNode = null;
+		GeoNameNode nextGeoNameNode = null;
+		GeoNameNode previousGeoNameNode = null;
 
-		Comparator<Geoname> comparator = getComparator(cuttingDimension);
+		Comparator<GeoName> comparator = getComparator(cuttingDimension);
 
-		if (comparator.compare(targetGeoname, geonameNode.getGeoname()) < 0) {
-			nextGeonameNode = geonameNode.getLeftGeonameNode();
-			previousGeonameNode = geonameNode.getRightGeonameNode();
+		if (comparator.compare(targetGeoName, geoNameNode.getGeoName()) < 0) {
+			nextGeoNameNode = geoNameNode.getLeftGeoNameNode();
+			previousGeoNameNode = geoNameNode.getRightGeoNameNode();
 		}
 		else {
-			nextGeonameNode = geonameNode.getRightGeonameNode();
-			previousGeonameNode = geonameNode.getLeftGeonameNode();
+			nextGeoNameNode = geoNameNode.getRightGeoNameNode();
+			previousGeoNameNode = geoNameNode.getLeftGeoNameNode();
 		}
 
-		if (nextGeonameNode == null) {
-			closestGeonameNode = geonameNode;
+		if (nextGeoNameNode == null) {
+			closestGeoNameNode = geoNameNode;
 		}
 		else {
-			closestGeonameNode = searchGeonames(
-				nextGeonameNode, targetGeoname, cuttingDimension + 1);
+			closestGeoNameNode = searchGeoNames(
+				nextGeoNameNode, targetGeoName, cuttingDimension + 1);
 		}
 
 		double currentDistance = getDistance(
-			geonameNode.getGeoname(), targetGeoname);
+			geoNameNode.getGeoName(), targetGeoName);
 		double closestDistance = getDistance(
-			closestGeonameNode.getGeoname(), targetGeoname);
+			closestGeoNameNode.getGeoName(), targetGeoName);
 
 		if (currentDistance < closestDistance) {
-			closestGeonameNode = geonameNode;
+			closestGeoNameNode = geoNameNode;
 			closestDistance = currentDistance;
 		}
 
-		if (previousGeonameNode != null) {
+		if (previousGeoNameNode != null) {
 			double oneDimensionalDistance = getDistance(
-				geonameNode.getGeoname(), targetGeoname, cuttingDimension);
+				geoNameNode.getGeoName(), targetGeoName, cuttingDimension);
 
 			if (oneDimensionalDistance < closestDistance) {
-				geonameNode = searchGeonames(
-					previousGeonameNode, targetGeoname, cuttingDimension + 1);
+				geoNameNode = searchGeoNames(
+					previousGeoNameNode, targetGeoName, cuttingDimension + 1);
 
 				currentDistance = getDistance(
-					geonameNode.getGeoname(), targetGeoname);
+					geoNameNode.getGeoName(), targetGeoName);
 
 				if (currentDistance < closestDistance) {
-					closestGeonameNode = geonameNode;
+					closestGeoNameNode = geoNameNode;
 				}
 			}
 		}
 
-		return closestGeonameNode;
+		return closestGeoNameNode;
 	}
 
 	private static final int _NUMBER_OF_DIMENSIONS = 3;
 
-	private static String _geonamesDataURL;
-	private static Comparator<Geoname> _geonameXComparator =
-		new GeonameXComparator();
-	private static Comparator<Geoname> _geonameYComparator =
-		new GeonameYComparator();
-	private static Comparator<Geoname> _geonameZComparator =
-		new GeonameZComparator();
-	private static GeonameNode _rootGeonameNode;
+	private static String _geoNamesDataURL;
+	private static Comparator<GeoName> _geoNameXComparator =
+		new GeoNameXComparator();
+	private static Comparator<GeoName> _geoNameYComparator =
+		new GeoNameYComparator();
+	private static Comparator<GeoName> _geoNameZComparator =
+		new GeoNameZComparator();
+	private static GeoNameNode _rootGeoNameNode;
 
 }

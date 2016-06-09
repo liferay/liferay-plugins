@@ -17,13 +17,13 @@ package com.liferay.geonames.util;
 /**
  * @author Matthew Kong
  */
-public class Geoname {
+public class GeoName {
 
-	public Geoname(double latitude, double longitude) {
+	public GeoName(double latitude, double longitude) {
 		setCoordinates(latitude, longitude);
 	}
 
-	public Geoname(String[] data) {
+	public GeoName(String[] data) {
 		_countryCode = data[8];
 		_name = data[1];
 

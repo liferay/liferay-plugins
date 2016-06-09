@@ -19,11 +19,11 @@ import java.util.Comparator;
 /**
  * @author Matthew Kong
  */
-public class GeonameYComparator implements Comparator<Geoname> {
+public class GeoNameYComparator implements Comparator<GeoName> {
 
 	@Override
-	public int compare(Geoname geoname1, Geoname geoname2) {
-		return Double.compare(geoname1.getY(), geoname2.getY());
+	public int compare(GeoName geoName1, GeoName geoName2) {
+		return Double.compare(geoName1.getY(), geoName2.getY());
 	}
 
 }

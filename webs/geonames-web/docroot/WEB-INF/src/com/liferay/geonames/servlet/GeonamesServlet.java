@@ -14,7 +14,7 @@
 
 package com.liferay.geonames.servlet;
 
-import com.liferay.geonames.util.GeonamesUtil;
+import com.liferay.geonames.util.GeoNamesUtil;
 
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayInputStream;
@@ -34,24 +34,24 @@ import org.apache.commons.logging.LogFactory;
 /**
  * @author Matthew Kong
  */
-public class GeonamesServlet extends HttpServlet {
+public class GeoNamesServlet extends HttpServlet {
 
 	@Override
 	public void init(ServletConfig servletConfig) throws ServletException {
 		try {
-			String geonamesDataFile = servletConfig.getInitParameter(
-				"geonamesDataFile");
+			String geoNamesDataFile = servletConfig.getInitParameter(
+				"geoNamesDataFile");
 
-			if (!geonamesDataFile.equals("")) {
-				GeonamesUtil.buildRootGeonameNode(geonamesDataFile);
+			if (!geoNamesDataFile.equals("")) {
+				GeoNamesUtil.buildRootGeoNameNode(geoNamesDataFile);
 			}
 			else {
-				String geonamesDataURL = servletConfig.getInitParameter(
-					"geonamesDataURL");
+				String geoNamesDataURL = servletConfig.getInitParameter(
+					"geoNamesDataURL");
 
-				GeonamesUtil.setGeonamesDataURL(geonamesDataURL);
+				GeoNamesUtil.setGeoNamesDataURL(geoNamesDataURL);
 
-				GeonamesUtil.buildRootGeonameNode();
+				GeoNamesUtil.buildRootGeoNameNode();
 			}
 		}
 		catch (Exception e) {
@@ -69,7 +69,7 @@ public class GeonamesServlet extends HttpServlet {
 			request.getParameter("longitude"));
 
 		try {
-			String json = GeonamesUtil.getGeonameJSON(latitude, longitude);
+			String json = GeoNamesUtil.getGeoNameJSON(latitude, longitude);
 
 			write(response, new ByteArrayInputStream(json.getBytes()));
 		}
@@ -143,6 +143,6 @@ public class GeonamesServlet extends HttpServlet {
 		}
 	}
 
-	private static Log _log = LogFactory.getLog(GeonamesServlet.class);
+	private static Log _log = LogFactory.getLog(GeoNamesServlet.class);
 
 }

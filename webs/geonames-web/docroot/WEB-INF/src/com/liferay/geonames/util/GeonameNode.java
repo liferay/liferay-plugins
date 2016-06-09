@@ -17,31 +17,31 @@ package com.liferay.geonames.util;
 /**
  * @author Matthew Kong
  */
-public class GeonameNode {
+public class GeoNameNode {
 
-	public GeonameNode(
-		Geoname geoname, GeonameNode leftGeonameNode,
-		GeonameNode rightGeonameNode) {
+	public GeoNameNode(
+		GeoName geoName, GeoNameNode leftGeoNameNode,
+		GeoNameNode rightGeoNameNode) {
 
-		_geoname = geoname;
-		_leftGeonameNode = leftGeonameNode;
-		_rightGeonameNode = rightGeonameNode;
+		_geoName = geoName;
+		_leftGeoNameNode = leftGeoNameNode;
+		_rightGeoNameNode = rightGeoNameNode;
 	}
 
-	public Geoname getGeoname() {
-		return _geoname;
+	public GeoName getGeoName() {
+		return _geoName;
 	}
 
-	public GeonameNode getLeftGeonameNode() {
-		return _leftGeonameNode;
+	public GeoNameNode getLeftGeoNameNode() {
+		return _leftGeoNameNode;
 	}
 
-	public GeonameNode getRightGeonameNode() {
-		return _rightGeonameNode;
+	public GeoNameNode getRightGeoNameNode() {
+		return _rightGeoNameNode;
 	}
 
-	private Geoname _geoname;
-	private GeonameNode _leftGeonameNode;
-	private GeonameNode _rightGeonameNode;
+	private GeoName _geoName;
+	private GeoNameNode _leftGeoNameNode;
+	private GeoNameNode _rightGeoNameNode;
 
 }
