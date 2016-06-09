@@ -23,6 +23,7 @@ import java.io.InputStreamReader;
 import java.net.URL;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.zip.ZipInputStream;
@@ -93,6 +94,8 @@ public class GeonamesUtil {
 	public static String getGeonameJSON(double latitude, double longitude)
 		throws Exception {
 
+		JSONObject jsonObject = new JSONObject();
+
 		if (_rootGeonameNode == null) {
 			buildRootGeonameNode();
 		}
@@ -101,8 +104,6 @@ public class GeonamesUtil {
 			_rootGeonameNode, new Geoname(latitude, longitude), 0);
 
 		Geoname geoname = geonameNode.getGeoname();
-
-		JSONObject jsonObject = new JSONObject();
 
 		jsonObject.put("countryCode", geoname.getCountryCode());
 		jsonObject.put("name", geoname.getName());
@@ -165,7 +166,7 @@ public class GeonamesUtil {
 			return null;
 		}
 
-		geonames.sort(getComparator(cuttingDimension));
+		Collections.sort(geonames, getComparator(cuttingDimension));
 
 		int index = geonames.size() / 2;
 
