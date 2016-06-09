@@ -400,7 +400,7 @@ AUI.add(
 
 				url.setName(params.actionName);
 				url.setParameters(params.queryParameters);
-				url.setPortletId('com_liferay_calendar_web_portlet_CalendarPortlet');
+				url.setPortletId('1_WAR_calendarportlet');
 
 				var payload;
 
