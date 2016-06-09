@@ -21,6 +21,8 @@ import java.lang.reflect.Method;
  */
 public class Field extends com.liferay.portal.kernel.search.Field {
 
+	public static final String VIEW_ACTION_ID = "viewActionId";
+
 	public static boolean isSortable(
 		com.liferay.portal.kernel.search.Field field) {
 
