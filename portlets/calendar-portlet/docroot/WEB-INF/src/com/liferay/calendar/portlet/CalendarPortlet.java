@@ -298,9 +298,6 @@ public class CalendarPortlet extends MVCPortlet {
 			else if (resourceID.equals("resourceCalendars")) {
 				serveResourceCalendars(resourceRequest, resourceResponse);
 			}
-			else if (resourceID.equals("updateCalendarBooking")) {
-				serveUpdateCalendarBooking(resourceRequest, resourceResponse);
-			}
 			else {
 				serveUnknownResource(resourceRequest, resourceResponse);
 			}
@@ -1284,20 +1281,20 @@ public class CalendarPortlet extends MVCPortlet {
 		writeJSON(resourceRequest, resourceResponse, jsonObject);
 	}
 
-	protected void serveUpdateCalendarBooking(
-			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
+	public void updateCalendarBookingAsync(
+			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws IOException, PortalException, SystemException {
 
-		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
 		long calendarBookingId = ParamUtil.getLong(
-			resourceRequest, "calendarBookingId");
+			actionRequest, "calendarBookingId");
 
 		CalendarBooking calendarBooking =
 			CalendarBookingServiceUtil.fetchCalendarBooking(calendarBookingId);
 
-		long calendarId = ParamUtil.getLong(resourceRequest, "calendarId");
+		long calendarId = ParamUtil.getLong(actionRequest, "calendarId");
 
 		Calendar calendar = CalendarServiceUtil.getCalendar(calendarId);
 
@@ -1306,25 +1303,25 @@ public class CalendarPortlet extends MVCPortlet {
 		Map<Locale, String> descriptionMap = new HashMap<Locale, String>();
 		String location = null;
 		java.util.Calendar startTimeJCalendar = getJCalendar(
-			resourceRequest, "startTime");
+			actionRequest, "startTime");
 		java.util.Calendar endTimeJCalendar = getJCalendar(
-			resourceRequest, "endTime");
-		boolean allDay = ParamUtil.getBoolean(resourceRequest, "allDay");
+			actionRequest, "endTime");
+		boolean allDay = ParamUtil.getBoolean(actionRequest, "allDay");
 
-		TimeZone timeZone = getTimeZone(resourceRequest);
+		TimeZone timeZone = getTimeZone(actionRequest);
 
 		Recurrence recurrence = RecurrenceSerializer.deserialize(
-			ParamUtil.getString(resourceRequest, "recurrence"), timeZone);
+			ParamUtil.getString(actionRequest, "recurrence"), timeZone);
 
 		long[] reminders = {0, 0};
 		String[] remindersType = {"email", "email"};
 		int instanceIndex = ParamUtil.getInteger(
-			resourceRequest, "instanceIndex");
+			actionRequest, "instanceIndex");
 		boolean updateInstance = ParamUtil.getBoolean(
-			resourceRequest, "updateInstance");
+			actionRequest, "updateInstance");
 		boolean allFollowing = ParamUtil.getBoolean(
-			resourceRequest, "allFollowing");
-		int status = ParamUtil.getInteger(resourceRequest, "status");
+			actionRequest, "allFollowing");
+		int status = ParamUtil.getInteger(actionRequest, "status");
 
 		if (calendarBooking != null) {
 			childCalendarIds =
@@ -1344,12 +1341,12 @@ public class CalendarPortlet extends MVCPortlet {
 			status = calendarBooking.getStatus();
 		}
 
-		String title = ParamUtil.getString(resourceRequest, "title");
+		String title = ParamUtil.getString(actionRequest, "title");
 
 		titleMap.put(themeDisplay.getLocale(), title);
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
-			CalendarBooking.class.getName(), resourceRequest);
+			CalendarBooking.class.getName(), actionRequest);
 
 		calendarBooking = updateCalendarBooking(
 			calendarBookingId, calendar, childCalendarIds, titleMap,
@@ -1361,7 +1358,7 @@ public class CalendarPortlet extends MVCPortlet {
 		JSONObject jsonObject = CalendarUtil.toCalendarBookingJSONObject(
 			themeDisplay, calendarBooking, timeZone);
 
-		writeJSON(resourceRequest, resourceResponse, jsonObject);
+		writeJSON(actionRequest, actionResponse, jsonObject);
 	}
 
 	protected void subscribeToComments(
