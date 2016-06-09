@@ -85,10 +85,11 @@ public class GeoNamesUtil {
 		File file = new File(filePathName);
 
 		if (!file.exists() || !file.canRead()) {
-			return;
+			buildRootGeoNameNode();
 		}
-
-		buildRootGeoNameNode(new FileInputStream(file));
+		else {
+			buildRootGeoNameNode(new FileInputStream(file));
+		}
 	}
 
 	public static String getGeoNameJSON(double latitude, double longitude)

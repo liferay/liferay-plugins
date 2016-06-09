@@ -39,6 +39,11 @@ public class GeoNamesServlet extends HttpServlet {
 	@Override
 	public void init(ServletConfig servletConfig) throws ServletException {
 		try {
+			String geoNamesDataURL = servletConfig.getInitParameter(
+				"geoNamesDataURL");
+
+			GeoNamesUtil.setGeoNamesDataURL(geoNamesDataURL);
+
 			String geoNamesDataFile = servletConfig.getInitParameter(
 				"geoNamesDataFile");
 
@@ -46,11 +51,6 @@ public class GeoNamesServlet extends HttpServlet {
 				GeoNamesUtil.buildRootGeoNameNode(geoNamesDataFile);
 			}
 			else {
-				String geoNamesDataURL = servletConfig.getInitParameter(
-					"geoNamesDataURL");
-
-				GeoNamesUtil.setGeoNamesDataURL(geoNamesDataURL);
-
 				GeoNamesUtil.buildRootGeoNameNode();
 			}
 		}
