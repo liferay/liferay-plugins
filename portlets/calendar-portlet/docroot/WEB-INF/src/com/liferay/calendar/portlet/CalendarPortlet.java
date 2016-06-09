@@ -355,6 +355,101 @@ public class CalendarPortlet extends MVCPortlet {
 		actionRequest.setAttribute(WebKeys.REDIRECT, redirect);
 	}
 
+	public void updateCalendarNotificationTemplate(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		long calendarNotificationTemplateId = ParamUtil.getLong(
+			actionRequest, "calendarNotificationTemplateId");
+
+		long calendarId = ParamUtil.getLong(actionRequest, "calendarId");
+		NotificationType notificationType = NotificationType.parse(
+			ParamUtil.getString(actionRequest, "notificationType"));
+		NotificationTemplateType notificationTemplateType =
+			NotificationTemplateType.parse(
+				ParamUtil.getString(actionRequest, "notificationTemplateType"));
+		String subject = ParamUtil.getString(actionRequest, "subject");
+		String body = ParamUtil.getString(actionRequest, "body");
+
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(
+			CalendarNotificationTemplate.class.getName(), actionRequest);
+
+		if (calendarNotificationTemplateId <= 0) {
+			CalendarNotificationTemplateServiceUtil.
+				addCalendarNotificationTemplate(
+					calendarId, notificationType,
+					getNotificationTypeSettings(
+						actionRequest, notificationType),
+					notificationTemplateType, subject, body, serviceContext);
+		}
+		else {
+			CalendarNotificationTemplateServiceUtil.
+				updateCalendarNotificationTemplate(
+					calendarNotificationTemplateId,
+					getNotificationTypeSettings(
+						actionRequest, notificationType),
+					subject, body, serviceContext);
+		}
+	}
+
+	public void updateCalendarResource(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		long calendarResourceId = ParamUtil.getLong(
+			actionRequest, "calendarResourceId");
+
+		long defaultCalendarId = ParamUtil.getLong(
+			actionRequest, "defaultCalendarId");
+		String code = ParamUtil.getString(actionRequest, "code");
+		Map<Locale, String> nameMap = LocalizationUtil.getLocalizationMap(
+			actionRequest, "name");
+		Map<Locale, String> descriptionMap =
+			LocalizationUtil.getLocalizationMap(actionRequest, "description");
+		boolean active = ParamUtil.getBoolean(actionRequest, "active");
+
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(
+			CalendarResource.class.getName(), actionRequest);
+
+		if (calendarResourceId <= 0) {
+			CalendarResourceServiceUtil.addCalendarResource(
+				serviceContext.getScopeGroupId(),
+				PortalUtil.getClassNameId(CalendarResource.class), 0,
+				PortalUUIDUtil.generate(), code, nameMap, descriptionMap,
+				active, serviceContext);
+		}
+		else {
+			CalendarResourceServiceUtil.updateCalendarResource(
+				calendarResourceId, nameMap, descriptionMap, active,
+				serviceContext);
+
+			if (defaultCalendarId > 0) {
+				CalendarLocalServiceUtil.updateCalendar(
+					defaultCalendarId, true);
+			}
+		}
+	}
+
+	public void updateDiscussion(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
+
+		if (cmd.equals(Constants.ADD) || cmd.equals(Constants.UPDATE)) {
+			updateMessage(actionRequest);
+		}
+		else if (cmd.equals(Constants.DELETE)) {
+			deleteMessage(actionRequest);
+		}
+		else if (cmd.equals(Constants.SUBSCRIBE_TO_COMMENTS)) {
+			subscribeToComments(actionRequest, true);
+		}
+		else if (cmd.equals(Constants.UNSUBSCRIBE_FROM_COMMENTS)) {
+			subscribeToComments(actionRequest, false);
+		}
+	}
+
 	public void updateFormCalendarBooking(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
@@ -488,101 +583,6 @@ public class CalendarPortlet extends MVCPortlet {
 			themeDisplay, calendarBooking, timeZone);
 
 		writeJSON(actionRequest, actionResponse, jsonObject);
-	}
-
-	public void updateCalendarNotificationTemplate(
-			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws Exception {
-
-		long calendarNotificationTemplateId = ParamUtil.getLong(
-			actionRequest, "calendarNotificationTemplateId");
-
-		long calendarId = ParamUtil.getLong(actionRequest, "calendarId");
-		NotificationType notificationType = NotificationType.parse(
-			ParamUtil.getString(actionRequest, "notificationType"));
-		NotificationTemplateType notificationTemplateType =
-			NotificationTemplateType.parse(
-				ParamUtil.getString(actionRequest, "notificationTemplateType"));
-		String subject = ParamUtil.getString(actionRequest, "subject");
-		String body = ParamUtil.getString(actionRequest, "body");
-
-		ServiceContext serviceContext = ServiceContextFactory.getInstance(
-			CalendarNotificationTemplate.class.getName(), actionRequest);
-
-		if (calendarNotificationTemplateId <= 0) {
-			CalendarNotificationTemplateServiceUtil.
-				addCalendarNotificationTemplate(
-					calendarId, notificationType,
-					getNotificationTypeSettings(
-						actionRequest, notificationType),
-					notificationTemplateType, subject, body, serviceContext);
-		}
-		else {
-			CalendarNotificationTemplateServiceUtil.
-				updateCalendarNotificationTemplate(
-					calendarNotificationTemplateId,
-					getNotificationTypeSettings(
-						actionRequest, notificationType),
-					subject, body, serviceContext);
-		}
-	}
-
-	public void updateCalendarResource(
-			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws Exception {
-
-		long calendarResourceId = ParamUtil.getLong(
-			actionRequest, "calendarResourceId");
-
-		long defaultCalendarId = ParamUtil.getLong(
-			actionRequest, "defaultCalendarId");
-		String code = ParamUtil.getString(actionRequest, "code");
-		Map<Locale, String> nameMap = LocalizationUtil.getLocalizationMap(
-			actionRequest, "name");
-		Map<Locale, String> descriptionMap =
-			LocalizationUtil.getLocalizationMap(actionRequest, "description");
-		boolean active = ParamUtil.getBoolean(actionRequest, "active");
-
-		ServiceContext serviceContext = ServiceContextFactory.getInstance(
-			CalendarResource.class.getName(), actionRequest);
-
-		if (calendarResourceId <= 0) {
-			CalendarResourceServiceUtil.addCalendarResource(
-				serviceContext.getScopeGroupId(),
-				PortalUtil.getClassNameId(CalendarResource.class), 0,
-				PortalUUIDUtil.generate(), code, nameMap, descriptionMap,
-				active, serviceContext);
-		}
-		else {
-			CalendarResourceServiceUtil.updateCalendarResource(
-				calendarResourceId, nameMap, descriptionMap, active,
-				serviceContext);
-
-			if (defaultCalendarId > 0) {
-				CalendarLocalServiceUtil.updateCalendar(
-					defaultCalendarId, true);
-			}
-		}
-	}
-
-	public void updateDiscussion(
-			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws Exception {
-
-		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
-
-		if (cmd.equals(Constants.ADD) || cmd.equals(Constants.UPDATE)) {
-			updateMessage(actionRequest);
-		}
-		else if (cmd.equals(Constants.DELETE)) {
-			deleteMessage(actionRequest);
-		}
-		else if (cmd.equals(Constants.SUBSCRIBE_TO_COMMENTS)) {
-			subscribeToComments(actionRequest, true);
-		}
-		else if (cmd.equals(Constants.UNSUBSCRIBE_FROM_COMMENTS)) {
-			subscribeToComments(actionRequest, false);
-		}
 	}
 
 	protected void addCalendar(
