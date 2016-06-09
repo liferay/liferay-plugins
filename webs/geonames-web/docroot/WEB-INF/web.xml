@@ -10,7 +10,7 @@
 		</init-param>
 		<init-param>
 			<param-name>geonamesDataURL</param-name>
-			<param-value>http://download.geonames.org/export/dump/cities1000.zip</param-value>
+			<param-value>http://mirrors.lax.liferay.com/download.geonames.org/export/dump/cities1000.zip</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
