@@ -18,16 +18,20 @@ import com.liferay.asset.entry.set.model.AssetEntrySet;
 import com.liferay.asset.entry.set.service.AssetEntrySetLocalServiceUtil;
 import com.liferay.asset.entry.set.util.AssetEntrySetConstants;
 import com.liferay.asset.entry.set.util.AssetEntrySetParticipantInfoUtil;
-import com.liferay.asset.entry.set.util.GeoNamesUtil;
 import com.liferay.asset.entry.set.util.PortletPropsValues;
+import com.liferay.compat.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.ListUtil;
+import com.liferay.portal.kernel.util.LocaleUtil;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.model.Country;
+import com.liferay.portal.service.CountryServiceUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -189,29 +193,55 @@ public class BaseAssetEntrySetHandler implements AssetEntrySetHandler {
 	protected JSONObject getGeolocationJSONObject(
 		JSONObject payloadJSONObject) {
 
+		if (Validator.isNull(PortletPropsValues.GEONAMES_URL)) {
+			return JSONFactoryUtil.createJSONObject();
+		}
+
 		JSONObject geolocationJSONObject = payloadJSONObject.getJSONObject(
 			"geolocation");
 
-		if (Validator.isNull(PortletPropsValues.GEONAMES_USERNAME)) {
-			return geolocationJSONObject;
-		}
-
 		if (geolocationJSONObject == null) {
-			geolocationJSONObject = JSONFactoryUtil.createJSONObject();
+			return JSONFactoryUtil.createJSONObject();
 		}
-		else {
-			double latitude = geolocationJSONObject.getDouble("latitude");
-			double longitude = geolocationJSONObject.getDouble("longitude");
 
-			geolocationJSONObject.put(
-				"locationName",
-				GeoNamesUtil.getLocationName(latitude, longitude));
+		double latitude = geolocationJSONObject.getDouble("latitude");
+		double longitude = geolocationJSONObject.getDouble("longitude");
 
-			geolocationJSONObject.remove("latitude");
-			geolocationJSONObject.remove("longitude");
-		}
+		geolocationJSONObject.put(
+			"locationName", getLocationName(latitude, longitude));
+
+		geolocationJSONObject.remove("latitude");
+		geolocationJSONObject.remove("longitude");
 
 		return geolocationJSONObject;
+	}
+
+	protected String getLocationName(double latitude, double longitude) {
+		try {
+			String url = HttpUtil.addParameter(
+				PortletPropsValues.GEONAMES_URL, "latitude", latitude);
+
+			url = HttpUtil.addParameter(url, "longitude", longitude);
+
+			JSONObject geoNamesJSONObject = JSONFactoryUtil.createJSONObject(
+				HttpUtil.URLtoString(url));
+
+			String name = geoNamesJSONObject.getString("name");
+
+			String countryCode = geoNamesJSONObject.getString("countryCode");
+
+			Country country = CountryServiceUtil.fetchCountryByA2(countryCode);
+
+			if (country == null) {
+				return name;
+			}
+
+			return name + StringPool.COMMA_AND_SPACE +
+				country.getName(LocaleUtil.getDefault());
+		}
+		catch (Exception e) {
+			return StringPool.BLANK;
+		}
 	}
 
 	protected boolean isContentModified(
