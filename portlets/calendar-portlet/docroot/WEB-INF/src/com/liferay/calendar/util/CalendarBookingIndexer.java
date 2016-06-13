@@ -29,6 +29,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.search.BaseIndexer;
+import com.liferay.portal.kernel.search.BooleanQuery;
 import com.liferay.portal.kernel.search.Document;
 import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.SearchEngineUtil;
@@ -65,6 +66,20 @@ public class CalendarBookingIndexer extends BaseIndexer {
 	@Override
 	public String[] getClassNames() {
 		return CLASS_NAMES;
+	}
+
+	@Override
+	public BooleanQuery getFacetQuery(
+			String className, SearchContext searchContext)
+		throws Exception {
+
+		BooleanQuery booleanQuery = super.getFacetQuery(
+			Calendar.class.getName(), searchContext);
+
+		booleanQuery.addExactTerm(
+			Field.ENTRY_CLASS_NAME, CalendarBooking.class.getName());
+
+		return booleanQuery;
 	}
 
 	@Override
