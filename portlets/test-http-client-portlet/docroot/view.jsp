@@ -41,7 +41,7 @@ private static String _testPostFileAndStringParts() throws Exception {
 	Http.Options options = new Http.Options();
 
 	options.addPart("string1", "string1");
-	options.setLocation("http://localhost:8080/test-http-client-portlet/test_http_client/testPostFileAndStringParts");
+	options.setLocation("http://localhost:8080/o/test-http-client-portlet/test_http_client/testPostFileAndStringParts");
 	options.setPost(true);
 
 	return HttpUtil.URLtoString(options);
@@ -51,7 +51,7 @@ private static String _testPostFilePart() throws Exception {
 	Http.Options options = new Http.Options();
 
 	options.addPart("string1", "string1");
-	options.setLocation("http://localhost:8080/test-http-client-portlet/test_http_client/testPostFilePart");
+	options.setLocation("http://localhost:8080/o/test-http-client-portlet/test_http_client/testPostFilePart");
 	options.setPost(true);
 
 	return HttpUtil.URLtoString(options);
@@ -61,7 +61,7 @@ private static String _testPostFileParts() throws Exception {
 	Http.Options options = new Http.Options();
 
 	options.addPart("string1", "string1");
-	options.setLocation("http://localhost:8080/test-http-client-portlet/test_http_client/testPostFileParts");
+	options.setLocation("http://localhost:8080/o/test-http-client-portlet/test_http_client/testPostFileParts");
 	options.setPost(true);
 
 	return HttpUtil.URLtoString(options);
@@ -71,7 +71,7 @@ private static String _testPostStringPart() throws Exception {
 	Http.Options options = new Http.Options();
 
 	options.addPart("string1", "string1");
-	options.setLocation("http://localhost:8080/test-http-client-portlet/test_http_client/testPostStringPart");
+	options.setLocation("http://localhost:8080/o/test-http-client-portlet/test_http_client/testPostStringPart");
 	options.setPost(true);
 
 	return HttpUtil.URLtoString(options);
@@ -81,7 +81,7 @@ private static String _testPostStringParts() throws Exception {
 	Http.Options options = new Http.Options();
 
 	options.addPart("string1", "string1");
-	options.setLocation("http://localhost:8080/test-http-client-portlet/test_http_client/testPostStringParts");
+	options.setLocation("http://localhost:8080/o/test-http-client-portlet/test_http_client/testPostStringParts");
 	options.setPost(true);
 
 	return HttpUtil.URLtoString(options);
