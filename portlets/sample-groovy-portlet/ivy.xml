@@ -11,6 +11,6 @@
 	</info>
 
 	<dependencies defaultconf="default">
-		<dependency name="groovy-all" org="org.codehaus.groovy" rev="1.5.7" />
+		<dependency name="groovy-all" org="org.codehaus.groovy" transitive="false" rev="1.5.7" />
 	</dependencies>
 </ivy-module>

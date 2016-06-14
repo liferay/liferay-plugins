@@ -11,13 +11,13 @@
 	</info>
 
 	<dependencies defaultconf="default">
-		<dependency name="hivemind" org="hivemind" rev="1.1" />
-		<dependency name="hivemind-lib" org="hivemind" rev="1.1" />
-		<dependency name="javassist" org="javassist" rev="3.0" />
-		<dependency name="ognl" org="ognl" rev="2.6.7" />
-		<dependency name="tapestry-annotations" org="org.apache.tapestry" rev="4.1" />
-		<dependency name="tapestry-contrib" org="org.apache.tapestry" rev="4.1" />
-		<dependency name="tapestry-framework" org="org.apache.tapestry" rev="4.1" />
-		<dependency name="tapestry-portlet" org="org.apache.tapestry" rev="4.1" />
+		<dependency name="hivemind" org="hivemind" transitive="false" rev="1.1" />
+		<dependency name="hivemind-lib" org="hivemind" transitive="false" rev="1.1" />
+		<dependency name="javassist" org="javassist" transitive="false" rev="3.0" />
+		<dependency name="ognl" org="ognl" transitive="false" rev="2.6.7" />
+		<dependency name="tapestry-annotations" transitive="false" org="org.apache.tapestry" rev="4.1" />
+		<dependency name="tapestry-contrib" transitive="false" org="org.apache.tapestry" rev="4.1" />
+		<dependency name="tapestry-framework" transitive="false" org="org.apache.tapestry" rev="4.1" />
+		<dependency name="tapestry-portlet" transitive="false" org="org.apache.tapestry" rev="4.1" />
 	</dependencies>
 </ivy-module>
