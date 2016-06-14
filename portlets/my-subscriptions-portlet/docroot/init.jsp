@@ -44,9 +44,9 @@ page import="com.liferay.taglib.search.ResultRow" %>
 
 <%@ page import="java.util.List" %>
 
-<portlet:defineObjects />
-
 <liferay-theme:defineObjects />
+
+<portlet:defineObjects />
 
 <%
 String currentURL = PortalUtil.getCurrentURL(request);
