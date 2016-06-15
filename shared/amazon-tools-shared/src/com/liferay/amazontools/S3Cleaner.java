@@ -123,8 +123,7 @@ public class S3Cleaner extends BaseAMITool {
 			String name = bucket.getName();
 
 			if (name.startsWith("frw-cluster") ||
-				name.startsWith("lcs-cluster") ||
-				name.startsWith("lcs-sqs")) {
+				name.startsWith("lcs-cluster") || name.startsWith("lcs-sqs")) {
 
 				String timestamp = getTimestamp(name);
 
