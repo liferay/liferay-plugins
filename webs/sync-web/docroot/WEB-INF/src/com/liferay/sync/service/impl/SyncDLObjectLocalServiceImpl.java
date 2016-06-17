@@ -137,6 +137,11 @@ public class SyncDLObjectLocalServiceImpl
 		syncDLObject.setSize(size);
 		syncDLObject.setChecksum(checksum);
 		syncDLObject.setEvent(event);
+
+		if (event.equals(SyncDLObjectConstants.EVENT_MOVE)) {
+			syncDLObject.setLastPermissionChangeDate(new Date());
+		}
+
 		syncDLObject.setLockExpirationDate(lockExpirationDate);
 		syncDLObject.setLockUserId(lockUserId);
 		syncDLObject.setLockUserName(lockUserName);
@@ -268,6 +273,8 @@ public class SyncDLObjectLocalServiceImpl
 
 					syncDLObject.setUserId(parentSyncDLObject.getUserId());
 					syncDLObject.setUserName(parentSyncDLObject.getUserName());
+					syncDLObject.setModifiedTime(
+						parentSyncDLObject.getModifiedTime());
 
 					String treePath = syncDLObject.getTreePath();
 
@@ -281,6 +288,9 @@ public class SyncDLObjectLocalServiceImpl
 						parentSyncDLObject.getTreePath());
 
 					syncDLObject.setTreePath(treePath);
+
+					syncDLObject.setLastPermissionChangeDate(
+						parentSyncDLObject.getLastPermissionChangeDate());
 
 					syncDLObjectPersistence.update(syncDLObject);
 				}
