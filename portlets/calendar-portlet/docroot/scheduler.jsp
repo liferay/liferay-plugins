@@ -30,7 +30,6 @@ boolean preventPersistence = ParamUtil.getBoolean(request, "preventPersistence")
 boolean readOnly = ParamUtil.getBoolean(request, "readOnly");
 boolean showAddEventBtn = ParamUtil.getBoolean(request, "showAddEventBtn");
 String viewCalendarBookingURL = ParamUtil.getString(request, "viewCalendarBookingURL");
-boolean isoTime = timeFormat.equals("24-hour") || (timeFormat.equals("locale") && !DateUtil.isFormatAmPm(locale));
 %>
 
 <div class="calendar-portlet-wrapper" id="<portlet:namespace />scheduler"></div>
@@ -54,7 +53,7 @@ boolean isoTime = timeFormat.equals("24-hour") || (timeFormat.equals("locale") &
 					strings: showMoreStrings
 				},
 				height: 700,
-				isoTime: <%= isoTime %>,
+				isoTime: <%= useIsoTimeFormat %>,
 				readOnly: <%= readOnly %>,
 				strings: {
 					allDay: '<liferay-ui:message key="all-day" />'
@@ -71,7 +70,7 @@ boolean isoTime = timeFormat.equals("24-hour") || (timeFormat.equals("locale") &
 					strings: showMoreStrings
 				},
 				height: 700,
-				isoTime: <%= isoTime %>,
+				isoTime: <%= useIsoTimeFormat %>,
 				readOnly: <%= readOnly %>,
 				strings: {
 					allDay: '<liferay-ui:message key="all-day" />'
@@ -84,7 +83,7 @@ boolean isoTime = timeFormat.equals("24-hour") || (timeFormat.equals("locale") &
 		window.<portlet:namespace />monthView = new A.SchedulerMonthView(
 			{
 				height: 700,
-				isoTime: <%= isoTime %>,
+				isoTime: <%= useIsoTimeFormat %>,
 				readOnly: <%= readOnly %>,
 				strings: showMoreStrings
 			}
@@ -95,7 +94,7 @@ boolean isoTime = timeFormat.equals("24-hour") || (timeFormat.equals("locale") &
 		window.<portlet:namespace />agendaView = new A.SchedulerAgendaView(
 			{
 				height: 700,
-				isoTime: <%= isoTime %>,
+				isoTime: <%= useIsoTimeFormat %>,
 				readOnly: <%= readOnly %>,
 				strings: {
 					noEvents: '<liferay-ui:message key="no-events" />'
