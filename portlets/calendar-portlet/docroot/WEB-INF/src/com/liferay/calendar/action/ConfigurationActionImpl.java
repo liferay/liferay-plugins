@@ -56,8 +56,7 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 		int defaultDuration = ParamUtil.getInteger(
 			actionRequest, "defaultDuration");
 		String defaultView = ParamUtil.getString(actionRequest, "defaultView");
-		boolean isoTimeFormat = ParamUtil.getBoolean(
-			actionRequest, "isoTimeFormat");
+		String timeFormat = ParamUtil.getString(actionRequest, "timeFormat");
 		String timeZoneId = ParamUtil.getString(actionRequest, "timeZoneId");
 		boolean usePortalTimeZone = ParamUtil.getBoolean(
 			actionRequest, "usePortalTimeZone");
@@ -66,8 +65,7 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 		portletPreferences.setValue(
 			"defaultDuration", String.valueOf(defaultDuration));
 		portletPreferences.setValue("defaultView", defaultView);
-		portletPreferences.setValue(
-			"isoTimeFormat", String.valueOf(isoTimeFormat));
+		portletPreferences.setValue("timeFormat", timeFormat);
 		portletPreferences.setValue("timeZoneId", timeZoneId);
 		portletPreferences.setValue(
 			"usePortalTimeZone", String.valueOf(usePortalTimeZone));

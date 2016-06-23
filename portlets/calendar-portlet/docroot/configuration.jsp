@@ -49,9 +49,10 @@ String tabs2 = ParamUtil.getString(request, "tabs2", "user-settings");
 	<c:choose>
 		<c:when test='<%= tabs2.equals("user-settings") %>'>
 			<aui:fieldset>
-				<aui:select label="time-format" name="isoTimeFormat">
-					<aui:option label="am-pm" selected="<%= !isoTimeFormat %>" value="<%= false %>" />
-					<aui:option label="24-hour" selected="<%= isoTimeFormat %>" value="<%= true %>" />
+				<aui:select label="time-format" name="timeFormat">
+					<aui:option label="am-pm" selected='<%= timeFormat.equals("am-pm") %>' value="am-pm" />
+					<aui:option label="24-hour" selected='<%= timeFormat.equals("24-hour") %>' value="24-hour" />
+					<aui:option label="locale" selected='<%= timeFormat.equals("locale") %>' value="locale" />
 				</aui:select>
 
 				<aui:select label="default-duration" name="defaultDuration">
