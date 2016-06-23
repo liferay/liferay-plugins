@@ -143,7 +143,7 @@ if (userCalendarResource != null) {
 
 int defaultDuration = GetterUtil.getInteger(portletPreferences.getValue("defaultDuration", null), 60);
 String defaultView = portletPreferences.getValue("defaultView", "week");
-boolean isoTimeFormat = GetterUtil.getBoolean(portletPreferences.getValue("isoTimeFormat", null), !DateUtil.isFormatAmPm(locale));
+String timeFormat = GetterUtil.getString(portletPreferences.getValue("timeFormat", "locale"));
 String timeZoneId = portletPreferences.getValue("timeZoneId", user.getTimeZoneId());
 boolean usePortalTimeZone = GetterUtil.getBoolean(portletPreferences.getValue("usePortalTimeZone", Boolean.TRUE.toString()));
 int weekStartsOn = GetterUtil.getInteger(portletPreferences.getValue("weekStartsOn", null), 0);
@@ -168,7 +168,7 @@ Format dateFormatLongDate = FastDateFormatFactoryUtil.getDate(FastDateFormatCons
 
 Format dateFormatTime = null;
 
-if (isoTimeFormat) {
+if (timeFormat.equals("24-hour") || (timeFormat.equals("locale") && !DateUtil.isFormatAmPm(locale))) {
 	dateFormatTime = FastDateFormatFactoryUtil.getSimpleDateFormat("HH:mm", locale, userTimeZone);
 }
 else {
