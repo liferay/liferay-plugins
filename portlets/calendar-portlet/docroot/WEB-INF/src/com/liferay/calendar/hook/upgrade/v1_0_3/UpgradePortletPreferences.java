@@ -48,10 +48,10 @@ public class UpgradePortletPreferences extends BaseUpgradePortletPreferences {
 			PortletPreferencesFactoryUtil.fromXML(
 				companyId, ownerId, ownerType, plid, portletId, xml);
 
-		String value = portletPreferences.getValue(
+		String isoTimeFormat = portletPreferences.getValue(
 			"isoTimeFormat", Boolean.FALSE.toString());
 
-		if (value.equals(Boolean.TRUE.toString())) {
+		if (isoTimeFormat.equals(Boolean.TRUE.toString())) {
 			portletPreferences.setValue("timeFormat", "24-hour");
 		}
 		else {
