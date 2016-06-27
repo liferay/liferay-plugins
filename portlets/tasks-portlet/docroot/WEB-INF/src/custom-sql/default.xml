@@ -13,8 +13,6 @@
 			[$PRIORITY$]
 			[$ASSIGNEE_USER_ID$]
 			[$STATUS$]
-		ORDER BY
-			TMS_TasksEntry.priority ASC, TMS_TasksEntry.dueDate ASC, TMS_TasksEntry.createDate ASC
 	</sql>
 	<sql id="com.liferay.tasks.service.persistence.TasksEntryFinder.findByG_U_P_A_S_T_N">
 		SELECT
