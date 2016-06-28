@@ -28,6 +28,7 @@ import com.liferay.portal.service.UserNotificationEventLocalServiceUtil;
 import com.liferay.portlet.asset.AssetRendererFactoryRegistryUtil;
 import com.liferay.portlet.asset.model.AssetRenderer;
 import com.liferay.portlet.asset.model.AssetRendererFactory;
+import com.liferay.portal.kernel.language.LanguageUtil;
 
 /**
  * @author Brian Wing Shun Chan
@@ -136,9 +137,13 @@ public abstract class BaseModelUserNotificationHandler
 			userName = user.getFullName();
 		}
 
-		return serviceContext.translate(
-			message, HtmlUtil.escape(userName),
-			StringUtil.toLowerCase(HtmlUtil.escape(typeName)));
+		return LanguageUtil.format(
+				serviceContext.getLocale(), message,
+				new String[] {
+					HtmlUtil.escape(assetRenderer.getUserName()),
+					StringUtil.toLowerCase(HtmlUtil.escape(typeName))
+				},
+				false);
 	}
 
 }
