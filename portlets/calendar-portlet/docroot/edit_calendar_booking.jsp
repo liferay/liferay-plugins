@@ -218,9 +218,18 @@ for (long otherCalendarId : otherCalendarIds) {
 						if ((calendarBooking != null) && (curCalendar.getCalendarId() != calendarId) && (CalendarBookingLocalServiceUtil.getCalendarBookingsCount(curCalendar.getCalendarId(), calendarBooking.getParentCalendarBookingId()) > 0)) {
 							continue;
 						}
+
+						CalendarResource curCalendarResource = curCalendar.getCalendarResource();
+
+						String calendarName = curCalendar.getName(locale);
+						String calendarResourceName = curCalendarResource.getName(locale);
+
+						if (!calendarName.equals(calendarResourceName)) {
+							calendarName = calendarResourceName + StringPool.SPACE + StringPool.DASH + StringPool.SPACE + calendarName;
+						}
 					%>
 
-						<aui:option selected="<%= curCalendar.getCalendarId() == calendarId %>" value="<%= curCalendar.getCalendarId() %>"><%= HtmlUtil.escape(curCalendar.getName(locale)) %></aui:option>
+						<aui:option selected="<%= curCalendar.getCalendarId() == calendarId %>" value="<%= curCalendar.getCalendarId() %>"><%= HtmlUtil.escape(calendarName) %></aui:option>
 
 					<%
 					}
