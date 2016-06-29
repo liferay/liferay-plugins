@@ -59,9 +59,9 @@ public interface JSONWebServiceClient {
 		throws JSONWebServiceTransportException;
 
 	public String doPut(
-		String url, Map<String, String> parameters,
-		Map<String, String> headers)
-	throws JSONWebServiceTransportException;
+			String url, Map<String, String> parameters,
+			Map<String, String> headers)
+		throws JSONWebServiceTransportException;
 
 	public String getHostName();
 

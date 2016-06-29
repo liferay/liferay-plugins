@@ -20,10 +20,11 @@ package com.liferay.jsonwebserviceclient;
 public class JSONWebServiceTransportException extends RuntimeException {
 
 	public JSONWebServiceTransportException() {
+		_status = _DEFAULT_STATUS;
 	}
 
 	public JSONWebServiceTransportException(String message) {
-		super(message);
+		this(message, _DEFAULT_STATUS);
 	}
 
 	public JSONWebServiceTransportException(String message, int status) {
@@ -34,10 +35,14 @@ public class JSONWebServiceTransportException extends RuntimeException {
 
 	public JSONWebServiceTransportException(String message, Throwable cause) {
 		super(message, cause);
+
+		_status = _DEFAULT_STATUS;
 	}
 
 	public JSONWebServiceTransportException(Throwable cause) {
 		super(cause);
+
+		_status = _DEFAULT_STATUS;
 	}
 
 	public int getStatus() {
@@ -78,6 +83,8 @@ public class JSONWebServiceTransportException extends RuntimeException {
 
 	}
 
-	private int _status;
+	private static final int _DEFAULT_STATUS = 0;
+
+	private final int _status;
 
 }
