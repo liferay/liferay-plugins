@@ -35,7 +35,7 @@ public class BuddyComparator implements Comparator<Object[]> {
 	public int compare(Object[] buddy1, Object[] buddy2) {
 		long userId1 = 0;
 
-		if(buddy1[0] instanceof Long) {
+		if (buddy1[0] instanceof Long) {
 			userId1 = (Long)buddy1[0];
 		}
 
@@ -46,7 +46,7 @@ public class BuddyComparator implements Comparator<Object[]> {
 
 		long userId2 = 0;
 
-		if(buddy2[0] instanceof Long) {
+		if (buddy2[0] instanceof Long) {
 			userId2 = (Long)buddy2[0];
 		}
 
