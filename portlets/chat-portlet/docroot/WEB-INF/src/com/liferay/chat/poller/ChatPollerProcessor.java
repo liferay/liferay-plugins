@@ -115,8 +115,8 @@ public class ChatPollerProcessor extends BasePollerProcessor {
 					groupId, false);
 
 				if (layoutSet.getPageCount() > 0) {
-					displayURL = PortalUtil.getLayoutSetDisplayURL(layoutSet,
-						false);
+					displayURL = PortalUtil.getLayoutSetDisplayURL(
+						layoutSet, false);
 
 					displayURL = HttpUtil.removeDomain(displayURL);
 				}
