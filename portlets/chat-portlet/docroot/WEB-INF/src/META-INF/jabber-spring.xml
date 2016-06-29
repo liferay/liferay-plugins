@@ -7,7 +7,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"
 >
-	<bean id="com.liferay.chat.jabber.JabberUtil" class="com.liferay.chat.jabber.JabberUtil">
+	<bean class="com.liferay.chat.jabber.JabberUtil" id="com.liferay.chat.jabber.JabberUtil">
 		<property name="jabber">
 			<bean class="com.liferay.chat.jabber.JabberImpl" />
 		</property>

@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <!DOCTYPE project>
 
-<project name="chat-portlet" basedir="." default="deploy">
+<project basedir="." default="deploy" name="chat-portlet">
 	<import file="../build-common-portlet.xml" />
 </project>

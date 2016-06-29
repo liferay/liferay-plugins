@@ -10,11 +10,11 @@
 
 	<!-- Listeners -->
 
-	<bean id="messageListener.hot_deploy" class="com.liferay.chat.messaging.ChatHotDeployMessageListener" />
+	<bean class="com.liferay.chat.messaging.ChatHotDeployMessageListener" id="messageListener.hot_deploy" />
 
 	<!-- Configurator -->
 
-	<bean id="messagingConfigurator" class="com.liferay.portal.kernel.messaging.config.PluginMessagingConfigurator">
+	<bean class="com.liferay.portal.kernel.messaging.config.PluginMessagingConfigurator" id="messagingConfigurator">
 		<property name="messageListeners">
 			<map key-type="java.lang.String" value-type="java.util.List">
 				<entry key="liferay/hot_deploy">

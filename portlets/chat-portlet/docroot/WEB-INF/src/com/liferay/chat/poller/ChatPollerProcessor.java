@@ -177,8 +177,8 @@ public class ChatPollerProcessor extends BasePollerProcessor {
 		for (Entry entry : entries) {
 			JSONObject entryJSONObject = JSONFactoryUtil.createJSONObject();
 
-			entryJSONObject.put("entryId", entry.getEntryId());
 			entryJSONObject.put("createDate", entry.getCreateDate());
+			entryJSONObject.put("entryId", entry.getEntryId());
 			entryJSONObject.put("fromUserId", entry.getFromUserId());
 
 			if (entry.getFromUserId() != pollerRequest.getUserId()) {
@@ -195,9 +195,9 @@ public class ChatPollerProcessor extends BasePollerProcessor {
 				}
 			}
 
-			entryJSONObject.put("toUserId", entry.getToUserId());
 			entryJSONObject.put("content", HtmlUtil.escape(entry.getContent()));
 			entryJSONObject.put("flag", entry.getFlag());
+			entryJSONObject.put("toUserId", entry.getToUserId());
 
 			entriesJSONArray.put(entryJSONObject);
 		}

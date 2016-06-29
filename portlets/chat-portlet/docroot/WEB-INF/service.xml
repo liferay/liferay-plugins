@@ -3,11 +3,11 @@
 
 <service-builder package-path="com.liferay.chat">
 	<namespace>Chat</namespace>
-	<entity name="Entry" local-service="true" remote-service="false">
+	<entity local-service="true" name="Entry" remote-service="false">
 
 		<!-- PK fields -->
 
-		<column name="entryId" type="long" primary="true" />
+		<column name="entryId" primary="true" type="long" />
 
 		<!-- Audit fields -->
 
@@ -60,11 +60,11 @@
 			<finder-column name="content" />
 		</finder>
 	</entity>
-	<entity name="Status" local-service="true" remote-service="false">
+	<entity local-service="true" name="Status" remote-service="false">
 
 		<!-- PK fields -->
 
-		<column name="statusId" type="long" primary="true" />
+		<column name="statusId" primary="true" type="long" />
 
 		<!-- Audit fields -->
 

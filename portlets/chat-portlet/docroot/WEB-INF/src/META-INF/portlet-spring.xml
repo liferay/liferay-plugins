@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-init-method="afterPropertiesSet" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
-	<bean id="com.liferay.chat.service.EntryLocalService" class="com.liferay.chat.service.impl.EntryLocalServiceImpl" />
-	<bean id="com.liferay.chat.service.persistence.EntryPersistence" class="com.liferay.chat.service.persistence.impl.EntryPersistenceImpl" parent="basePersistence" />
-	<bean id="com.liferay.chat.service.persistence.EntryFinder" class="com.liferay.chat.service.persistence.impl.EntryFinderImpl" parent="basePersistence" />
-	<bean id="com.liferay.chat.service.StatusLocalService" class="com.liferay.chat.service.impl.StatusLocalServiceImpl" />
-	<bean id="com.liferay.chat.service.persistence.StatusPersistence" class="com.liferay.chat.service.persistence.impl.StatusPersistenceImpl" parent="basePersistence" />
-	<bean id="com.liferay.chat.service.persistence.StatusFinder" class="com.liferay.chat.service.persistence.impl.StatusFinderImpl" parent="basePersistence" />
+	<bean class="com.liferay.chat.service.impl.EntryLocalServiceImpl" id="com.liferay.chat.service.EntryLocalService" />
+	<bean class="com.liferay.chat.service.persistence.impl.EntryPersistenceImpl" id="com.liferay.chat.service.persistence.EntryPersistence" parent="basePersistence" />
+	<bean class="com.liferay.chat.service.persistence.impl.EntryFinderImpl" id="com.liferay.chat.service.persistence.EntryFinder" parent="basePersistence" />
+	<bean class="com.liferay.chat.service.impl.StatusLocalServiceImpl" id="com.liferay.chat.service.StatusLocalService" />
+	<bean class="com.liferay.chat.service.persistence.impl.StatusPersistenceImpl" id="com.liferay.chat.service.persistence.StatusPersistence" parent="basePersistence" />
+	<bean class="com.liferay.chat.service.persistence.impl.StatusFinderImpl" id="com.liferay.chat.service.persistence.StatusFinder" parent="basePersistence" />
 </beans>
