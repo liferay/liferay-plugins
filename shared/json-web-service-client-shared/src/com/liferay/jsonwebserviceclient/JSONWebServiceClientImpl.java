@@ -43,6 +43,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpEntityEnclosingRequest;
 import org.apache.http.HttpHost;
+import org.apache.http.HttpMessage;
 import org.apache.http.HttpRequest;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -195,17 +196,15 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 		if (_logger.isDebugEnabled()) {
 			_logger.debug(
 				"Sending DELETE request to " + _login + "@" + _hostName + url);
+
+			log("HTTP parameters", parameters);
+
+			log("HTTP headers", headers);
 		}
 
 		HttpDelete httpDelete = new HttpDelete(url);
 
-		for (String key : headers.keySet()) {
-			httpDelete.addHeader(key, headers.get(key));
-		}
-
-		for (String key : _headers.keySet()) {
-			httpDelete.addHeader(key, _headers.get(key));
-		}
+		addHeaders(httpDelete, headers);
 
 		return execute(httpDelete);
 	}
@@ -235,17 +234,15 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 		if (_logger.isDebugEnabled()) {
 			_logger.debug(
 				"Sending GET request to " + _login + "@" + _hostName + url);
+
+			log("HTTP parameters", parameters);
+
+			log("HTTP headers", headers);
 		}
 
 		HttpGet httpGet = new HttpGet(url);
 
-		for (String key : headers.keySet()) {
-			httpGet.addHeader(key, headers.get(key));
-		}
-
-		for (String key : _headers.keySet()) {
-			httpGet.addHeader(key, _headers.get(key));
-		}
+		addHeaders(httpGet, headers);
 
 		return execute(httpGet);
 	}
@@ -266,6 +263,10 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 		if (_logger.isDebugEnabled()) {
 			_logger.debug(
 				"Sending POST request to " + _login + "@" + _hostName + url);
+
+			log("HTTP parameters", parameters);
+
+			log("HTTP headers", headers);
 		}
 
 		HttpPost httpPost = new HttpPost(url);
@@ -275,13 +276,7 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 		HttpEntity httpEntity = new UrlEncodedFormEntity(
 			nameValuePairs, StandardCharsets.UTF_8);
 
-		for (String key : headers.keySet()) {
-			httpPost.addHeader(key, headers.get(key));
-		}
-
-		for (String key : _headers.keySet()) {
-			httpPost.addHeader(key, _headers.get(key));
-		}
+		addHeaders(httpPost, headers);
 
 		httpPost.setEntity(httpEntity);
 
@@ -302,13 +297,7 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 
 		HttpPost httpPost = new HttpPost(url);
 
-		for (String key : headers.keySet()) {
-			httpPost.addHeader(key, headers.get(key));
-		}
-
-		for (String key : _headers.keySet()) {
-			httpPost.addHeader(key, _headers.get(key));
-		}
+		addHeaders(httpPost, headers);
 
 		StringEntity stringEntity = new StringEntity(
 			json.toString(), StandardCharsets.UTF_8);
@@ -340,6 +329,10 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 		if (_logger.isDebugEnabled()) {
 			_logger.debug(
 				"Sending PUT request to " + _login + "@" + _hostName + url);
+
+			log("HTTP parameters", parameters);
+
+			log("HTTP headers", headers);
 		}
 
 		HttpPut httpPut = new HttpPut(url);
@@ -349,13 +342,7 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 		HttpEntity httpEntity = new UrlEncodedFormEntity(
 			nameValuePairs, StandardCharsets.UTF_8);
 
-		for (String key : headers.keySet()) {
-			httpPut.addHeader(key, headers.get(key));
-		}
-
-		for (String key : _headers.keySet()) {
-			httpPut.addHeader(key, _headers.get(key));
-		}
+		addHeaders(httpPut, headers);
 
 		httpPut.setEntity(httpEntity);
 
@@ -430,6 +417,18 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 
 	public void setProxyPassword(String proxyPassword) {
 		_proxyPassword = proxyPassword;
+	}
+
+	protected void addHeaders(
+		HttpMessage httpMessage, Map<String, String> headers) {
+
+		for (Map.Entry<String, String> entry : headers.entrySet()) {
+			httpMessage.addHeader(entry.getKey(), entry.getValue());
+		}
+
+		for (Map.Entry<String, String> entry : _headers.entrySet()) {
+			httpMessage.addHeader(entry.getKey(), entry.getValue());
+		}
 	}
 
 	protected String execute(HttpRequestBase httpRequestBase)
@@ -568,6 +567,34 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 		}
 
 		return false;
+	}
+
+	protected void log(String message, Map<String, String> map) {
+		if (!_logger.isDebugEnabled() || map.isEmpty()) {
+			return;
+		}
+
+		StringBuilder sb = new StringBuilder((map.size() * 4) + 2);
+
+		sb.append(message);
+		sb.append(":");
+
+		for (Map.Entry<String, String> entry : map.entrySet()) {
+			String key = entry.getKey();
+			String value = entry.getValue();
+
+			if (value == null) {
+				key = "-" + key;
+				value = "";
+			}
+
+			sb.append("\n");
+			sb.append(key);
+			sb.append("=");
+			sb.append(value);
+		}
+
+		_logger.debug(sb.toString());
 	}
 
 	protected void setProxyHost(HttpClientBuilder httpClientBuilder) {
