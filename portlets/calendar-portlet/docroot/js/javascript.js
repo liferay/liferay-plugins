@@ -633,7 +633,7 @@ AUI.add(
 
 				instance.invokeActionURL(
 					{
-						actionName: 'updateSchedulerCalendarBooking',
+						actionName: 'updateCalendarBookingAsync',
 						callback: function(data) {
 							schedulerEvent.set(
 									'loading',
