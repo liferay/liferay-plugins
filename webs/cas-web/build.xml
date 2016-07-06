@@ -7,6 +7,14 @@
 
 	<import file="../build-common-web.xml" />
 
+	<target name="deploy">
+		<war-web
+			module.dir="${basedir}"
+		/>
+
+		<copy file="${plugin.file}" todir="${app.server.deploy.dir}" />
+	</target>
+
 	<target name="merge">
 
 		<!-- Merge -->
