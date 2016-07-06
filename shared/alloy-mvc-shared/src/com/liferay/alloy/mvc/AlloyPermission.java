@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.security.permission.PermissionThreadLocal;
 
 /**
  * @author Ethan Bustad
@@ -99,7 +100,8 @@ public class AlloyPermission {
 		ThemeDisplay themeDisplay, BaseModel<?> baseModel, String action) {
 
 		return contains(
-			themeDisplay.getPermissionChecker(), themeDisplay.getScopeGroupId(),
+			PermissionThreadLocal.getPermissionChecker(),
+			themeDisplay.getScopeGroupId(),
 			BeanPropertiesUtil.getString(baseModel, "modelClassName"),
 			(Long)baseModel.getPrimaryKeyObj(), StringUtil.toUpperCase(action));
 	}
@@ -112,9 +114,21 @@ public class AlloyPermission {
 		String actionId = formatActionId(controller, action);
 
 		return contains(
-			themeDisplay.getPermissionChecker(), themeDisplay.getScopeGroupId(),
-			portletDisplay.getRootPortletId(), themeDisplay.getScopeGroupId(),
-			actionId);
+			PermissionThreadLocal.getPermissionChecker(),
+			themeDisplay.getScopeGroupId(), portletDisplay.getRootPortletId(),
+			themeDisplay.getScopeGroupId(), actionId);
+	}
+
+	public static boolean contains(
+		ThemeDisplay themeDisplay, String rootPortletId, String controller,
+		String action) {
+
+		String actionId = formatActionId(controller, action);
+
+		return contains(
+			PermissionThreadLocal.getPermissionChecker(),
+			themeDisplay.getScopeGroupId(), rootPortletId,
+			themeDisplay.getScopeGroupId(), actionId);
 	}
 
 	protected static String formatActionId(String controller, String action) {

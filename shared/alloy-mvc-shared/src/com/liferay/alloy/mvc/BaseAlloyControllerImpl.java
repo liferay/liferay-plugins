@@ -706,7 +706,8 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 	protected boolean hasPermission() {
 		if (permissioned &&
 			!AlloyPermission.contains(
-				themeDisplay, controllerPath, actionPath)) {
+				themeDisplay, portlet.getRootPortletId(), controllerPath,
+				actionPath)) {
 
 			return false;
 		}
