@@ -17,6 +17,7 @@ package com.liferay.compat.portal.kernel.bean;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.User;
 import com.liferay.portal.theme.ThemeDisplay;
@@ -29,8 +30,6 @@ import java.util.Date;
 import java.util.Enumeration;
 
 import javax.servlet.http.HttpServletRequest;
-
-import jodd.bean.BeanUtil;
 
 /**
  * @author Danny Situ
@@ -47,7 +46,13 @@ public class BeanPropertiesUtil
 
 			String value = request.getParameter(name);
 
-			BeanUtil.setPropertyForcedSilent(bean, name, value);
+			if (Validator.isNull(value) &&
+				(getObjectSilent(bean, name) instanceof Number)) {
+
+				value = String.valueOf(0);
+			}
+
+			setPropertySilent(bean, name, value);
 
 			if (name.endsWith("Month")) {
 				String dateParam = name.substring(0, name.lastIndexOf("Month"));
@@ -56,8 +61,7 @@ public class BeanPropertiesUtil
 					continue;
 				}
 
-				Class<?> propertyTypeClass = BeanUtil.getPropertyType(
-					bean, dateParam);
+				Class<?> propertyTypeClass = getObjectType(bean, dateParam);
 
 				if ((propertyTypeClass == null) ||
 					!propertyTypeClass.equals(Date.class)) {
@@ -68,7 +72,7 @@ public class BeanPropertiesUtil
 				Date date = getDate(dateParam, request);
 
 				if (date != null) {
-					BeanUtil.setPropertyForcedSilent(bean, dateParam, date);
+					setPropertySilent(bean, dateParam, date);
 				}
 			}
 		}
