@@ -46,10 +46,20 @@ public class AssetEntrySetParticipantInfoUtil {
 			userId);
 	}
 
+	public static String[] getMembershipSearchTerms(long userId) {
+		return getAssetEntrySetParticipantInfo().getMembershipSearchTerms(
+			userId);
+	}
+
 	public static String getParticipantName(long classNameId, long classPK)
 		throws PortalException, SystemException {
 
 		return getAssetEntrySetParticipantInfo().getParticipantName(
+			classNameId, classPK);
+	}
+
+	public static String getSearchTerm(long classNameId, long classPK) {
+		return getAssetEntrySetParticipantInfo().getSearchTerm(
 			classNameId, classPK);
 	}
 

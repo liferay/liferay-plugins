@@ -74,6 +74,10 @@ public class AssetEntrySetParticipantInfoImpl
 		return new ObjectValuePair<Long, Long>(_USER_CLASS_NAME_ID, userId);
 	}
 
+	public String[] getMembershipSearchTerms(long userId) {
+		return new String[0];
+	}
+
 	public String getParticipantName(long classNameId, long classPK)
 		throws PortalException, SystemException {
 
@@ -84,6 +88,10 @@ public class AssetEntrySetParticipantInfoImpl
 		User user = UserLocalServiceUtil.getUser(classPK);
 
 		return user.getFullName();
+	}
+
+	public String getSearchTerm(long classNameId, long classPK) {
+		return StringPool.BLANK;
 	}
 
 	public boolean isMember(
