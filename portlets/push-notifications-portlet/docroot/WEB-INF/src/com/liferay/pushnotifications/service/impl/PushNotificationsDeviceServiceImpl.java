@@ -55,15 +55,10 @@ public class PushNotificationsDeviceServiceImpl
 		else {
 			long userId = getGuestOrUserId();
 
-			if (pushNotificationsDevice.getUserId() != userId) {
-				pushNotificationsDevice = null;
+			pushNotificationsDevice.setUserId(userId);
 
-				if (_log.isInfoEnabled()) {
-					_log.info(
-						"Device found with token " + token +
-							" does not belong to user " + userId);
-				}
-			}
+			pushNotificationsDeviceLocalService.updatePushNotificationsDevice(
+				pushNotificationsDevice);
 		}
 
 		return pushNotificationsDevice;
