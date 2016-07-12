@@ -30,6 +30,34 @@ public class SyncDeviceConstants {
 
 	public static final int STATUS_INACTIVE = 1;
 
-	public static final int STATUS_WIPED = 2;
+	public static final String STATUS_LABEL_ACTIVE = "active";
+
+	public static final String STATUS_LABEL_INACTIVE = "inactive";
+
+	public static final String STATUS_LABEL_PENDING_WIPE = "pending-wipe";
+
+	public static final String STATUS_LABEL_WIPED = "wiped";
+
+	public static final int STATUS_PENDING_WIPE = 2;
+
+	public static final int STATUS_WIPED = 3;
+
+	public static String getStatusLabel(int status) {
+		if (status == STATUS_ACTIVE) {
+			return STATUS_LABEL_ACTIVE;
+		}
+		else if (status == STATUS_INACTIVE) {
+			return STATUS_LABEL_INACTIVE;
+		}
+		else if (status == STATUS_PENDING_WIPE) {
+			return STATUS_LABEL_PENDING_WIPE;
+		}
+		else if (status == STATUS_WIPED) {
+			return STATUS_LABEL_WIPED;
+		}
+		else {
+			return null;
+		}
+	}
 
 }

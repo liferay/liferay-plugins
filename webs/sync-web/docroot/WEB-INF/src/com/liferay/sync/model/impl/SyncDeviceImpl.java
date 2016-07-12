@@ -23,6 +23,7 @@ import com.liferay.sync.SyncClientMinBuildException;
 import com.liferay.sync.SyncDeviceActiveException;
 import com.liferay.sync.SyncDeviceWipeException;
 import com.liferay.sync.SyncServicesUnavailableException;
+import com.liferay.sync.service.SyncDeviceLocalServiceUtil;
 import com.liferay.sync.shared.util.SyncDeviceConstants;
 import com.liferay.sync.util.PortletPropsKeys;
 import com.liferay.sync.util.PortletPropsValues;
@@ -38,7 +39,10 @@ public class SyncDeviceImpl extends SyncDeviceBaseImpl {
 		if (getStatus() == SyncDeviceConstants.STATUS_INACTIVE) {
 			throw new SyncDeviceActiveException();
 		}
-		else if (getStatus() == SyncDeviceConstants.STATUS_WIPED) {
+		else if (getStatus() == SyncDeviceConstants.STATUS_PENDING_WIPE) {
+			SyncDeviceLocalServiceUtil.updateSyncDevice(
+				getSyncDeviceId(), getType(), getBuildNumber(), getFeatureSet(),
+				SyncDeviceConstants.STATUS_WIPED);
 			throw new SyncDeviceWipeException();
 		}
 
