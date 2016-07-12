@@ -68,8 +68,7 @@ public class SyncJSONFilter implements Filter {
 			FilterChain filterChain)
 		throws IOException, ServletException {
 
-		String uri = (String)servletRequest.getAttribute(
-			WebKeys.INVOKER_FILTER_URI);
+		SyncDevice syncDevice = null;
 
 		HttpServletRequest httpServletRequest =
 			(HttpServletRequest)servletRequest;
@@ -78,20 +77,31 @@ public class SyncJSONFilter implements Filter {
 
 		if (uuid != null) {
 			try {
-				SyncDevice syncDevice =
+				syncDevice =
 					SyncDeviceLocalServiceUtil.
 						fetchSyncDeviceByUuidAndCompanyId(
 							uuid, PortalUtil.getCompanyId(httpServletRequest));
-
-				SyncDeviceThreadLocal.setSyncDevice(syncDevice);
-
-				filterChain.doFilter(servletRequest, servletResponse);
-
-				return;
 			}
 			catch (SystemException se) {
 			}
 		}
+
+		if (syncDevice == null) {
+			syncDevice = SyncDeviceLocalServiceUtil.createSyncDevice(0);
+		}
+
+		syncDevice.setHostName(servletRequest.getRemoteAddr());
+
+		SyncDeviceThreadLocal.setSyncDevice(syncDevice);
+
+		if (uuid != null) {
+			filterChain.doFilter(servletRequest, servletResponse);
+
+			return;
+		}
+
+		String uri = (String)servletRequest.getAttribute(
+			WebKeys.INVOKER_FILTER_URI);
 
 		if (uri.equals("/api/jsonws/invoke")) {
 			String contentType = httpServletRequest.getHeader(
@@ -139,12 +149,13 @@ public class SyncJSONFilter implements Filter {
 				int absoluteSyncClientMinBuild = 0;
 				int syncClientMinBuild = 0;
 
-				String syncDevice = httpServletRequest.getHeader("Sync-Device");
+				String syncDeviceType = httpServletRequest.getHeader(
+					"Sync-Device");
 
-				if (syncDevice == null) {
+				if (syncDeviceType == null) {
 					throwable = new SyncDeviceHeaderException();
 				}
-				else if (syncDevice.startsWith("desktop")) {
+				else if (syncDeviceType.startsWith("desktop")) {
 					absoluteSyncClientMinBuild =
 						_ABSOLUTE_SYNC_CLIENT_MIN_BUILD_DESKTOP;
 
@@ -153,7 +164,7 @@ public class SyncJSONFilter implements Filter {
 						PortletPropsKeys.SYNC_CLIENT_MIN_BUILD_DESKTOP,
 						PortletPropsValues.SYNC_CLIENT_MIN_BUILD_DESKTOP);
 				}
-				else if (syncDevice.equals("mobile-android")) {
+				else if (syncDeviceType.equals("mobile-android")) {
 					absoluteSyncClientMinBuild =
 						_ABSOLUTE_SYNC_CLIENT_MIN_BUILD_ANDROID;
 
@@ -162,7 +173,7 @@ public class SyncJSONFilter implements Filter {
 						PortletPropsKeys.SYNC_CLIENT_MIN_BUILD_ANDROID,
 						PortletPropsValues.SYNC_CLIENT_MIN_BUILD_ANDROID);
 				}
-				else if (syncDevice.equals("mobile-ios")) {
+				else if (syncDeviceType.equals("mobile-ios")) {
 					absoluteSyncClientMinBuild =
 						_ABSOLUTE_SYNC_CLIENT_MIN_BUILD_IOS;
 
