@@ -8,6 +8,13 @@
 		<control-panel-entry-category>configuration</control-panel-entry-category>
 		<css-class-wrapper>sync-admin-portlet</css-class-wrapper>
 	</portlet>
+	<portlet>
+		<portlet-name>2</portlet-name>
+		<control-panel-entry-category>my</control-panel-entry-category>
+		<show-portlet-access-denied>false</show-portlet-access-denied>
+		<css-class-wrapper>sync-admin-portlet</css-class-wrapper>
+		<add-default-resource>true</add-default-resource>
+	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>
 		<role-link>Administrator</role-link>

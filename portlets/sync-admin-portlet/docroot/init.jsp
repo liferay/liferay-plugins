@@ -53,7 +53,8 @@ page import="com.liferay.sync.service.SyncDeviceLocalServiceUtil" %><%@
 page import="com.liferay.sync.service.SyncPreferencesLocalServiceUtil" %><%@
 page import="com.liferay.sync.shared.util.PortletPropsKeys" %><%@
 page import="com.liferay.sync.shared.util.SyncDeviceConstants" %><%@
-page import="com.liferay.sync.shared.util.SyncPermissionsConstants" %>
+page import="com.liferay.sync.shared.util.SyncPermissionsConstants" %><%@
+page import="com.liferay.sync.util.PortletKeys" %>
 
 <%@ page import="java.util.ArrayList" %><%@
 page import="java.util.LinkedHashMap" %><%@
