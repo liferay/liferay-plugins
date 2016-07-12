@@ -19,10 +19,10 @@
 
 		<!-- Other fields -->
 
-		<column name="hostName" type="String" />
 		<column name="type" type="String" />
 		<column name="buildNumber" type="long" />
 		<column name="featureSet" type="int" />
+		<column name="loginIP" type="String" />
 		<column name="status" type="int" />
 
 		<!-- Finder methods -->

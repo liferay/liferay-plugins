@@ -37,7 +37,7 @@ public class SyncDeviceLocalServiceImpl extends SyncDeviceLocalServiceBaseImpl {
 
 	@Override
 	public SyncDevice addSyncDevice(
-			long userId, String hostName, String type, long buildNumber,
+			long userId, String type, long buildNumber, String loginIP,
 			int featureSet)
 		throws PortalException, SystemException {
 
@@ -53,10 +53,10 @@ public class SyncDeviceLocalServiceImpl extends SyncDeviceLocalServiceBaseImpl {
 		syncDevice.setUserName(user.getFullName());
 		syncDevice.setCreateDate(now);
 		syncDevice.setModifiedDate(now);
-		syncDevice.setHostName(hostName);
 		syncDevice.setType(type);
 		syncDevice.setBuildNumber(buildNumber);
 		syncDevice.setFeatureSet(featureSet);
+		syncDevice.setLoginIP(loginIP);
 		syncDevice.setStatus(SyncDeviceConstants.STATUS_ACTIVE);
 
 		syncDevicePersistence.update(syncDevice);
@@ -99,18 +99,18 @@ public class SyncDeviceLocalServiceImpl extends SyncDeviceLocalServiceBaseImpl {
 
 	@Override
 	public SyncDevice updateSyncDevice(
-			long syncDeviceId, String hostName, String type, long buildNumber,
-			int featureSet, int status)
+			long syncDeviceId, String type, long buildNumber, int featureSet,
+			String loginIP, int status)
 		throws PortalException, SystemException {
 
 		SyncDevice syncDevice = syncDevicePersistence.findByPrimaryKey(
 			syncDeviceId);
 
 		syncDevice.setModifiedDate(new Date());
-		syncDevice.setHostName(hostName);
 		syncDevice.setType(type);
 		syncDevice.setBuildNumber(buildNumber);
 		syncDevice.setFeatureSet(featureSet);
+		syncDevice.setLoginIP(loginIP);
 		syncDevice.setStatus(status);
 
 		syncDevicePersistence.update(syncDevice);

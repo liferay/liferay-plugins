@@ -46,7 +46,7 @@ public class SyncDeviceServiceImpl extends SyncDeviceServiceBaseImpl {
 			syncDevice = SyncDeviceThreadLocal.getSyncDevice();
 
 			return syncDeviceLocalService.addSyncDevice(
-				user.getUserId(), syncDevice.getHostName(), type, buildNumber,
+				user.getUserId(), type, buildNumber, syncDevice.getLoginIP(),
 				featureSet);
 		}
 
@@ -55,8 +55,8 @@ public class SyncDeviceServiceImpl extends SyncDeviceServiceBaseImpl {
 		}
 
 		return syncDeviceLocalService.updateSyncDevice(
-			syncDevice.getSyncDeviceId(), syncDevice.getHostName(), type,
-			buildNumber, featureSet, syncDevice.getStatus());
+			syncDevice.getSyncDeviceId(), type, buildNumber, featureSet,
+			syncDevice.getLoginIP(), syncDevice.getStatus());
 	}
 
 	@Override
