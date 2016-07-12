@@ -89,6 +89,13 @@ portletURL.setParameter("delta", String.valueOf(delta));
 			/>
 
 			<liferay-ui:search-container-column-text
+				name="host-name"
+				orderable="<%= true %>"
+				orderableProperty="hostName"
+				property="hostName"
+			/>
+
+			<liferay-ui:search-container-column-text
 				name="type"
 				orderable="<%= true %>"
 			/>
