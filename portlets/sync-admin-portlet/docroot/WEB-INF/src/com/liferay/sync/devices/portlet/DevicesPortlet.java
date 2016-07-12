@@ -18,9 +18,9 @@ import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.sync.admin.portlet.AdminPortlet;
 import com.liferay.sync.model.SyncDevice;
 import com.liferay.sync.service.SyncDeviceLocalServiceUtil;
-import com.liferay.util.bridges.mvc.MVCPortlet;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -28,7 +28,7 @@ import javax.portlet.ActionResponse;
 /**
  * @author Jonathan McCann
  */
-public class DevicesPortlet extends MVCPortlet {
+public class DevicesPortlet extends AdminPortlet {
 
 	public void deleteDevice(
 			ActionRequest actionRequest, ActionResponse actionResponse)
@@ -39,9 +39,9 @@ public class DevicesPortlet extends MVCPortlet {
 
 		long syncDeviceId = ParamUtil.getLong(actionRequest, "syncDeviceId");
 
-		_checkSyncDeviceUserId(syncDeviceId, themeDisplay.getUserId());
+		checkSyncDeviceUserId(syncDeviceId, themeDisplay.getUserId());
 
-		SyncDeviceLocalServiceUtil.deleteSyncDevice(syncDeviceId);
+		super.deleteDevice(actionRequest, actionResponse);
 	}
 
 	public void updateDevice(
@@ -53,14 +53,12 @@ public class DevicesPortlet extends MVCPortlet {
 
 		long syncDeviceId = ParamUtil.getLong(actionRequest, "syncDeviceId");
 
-		_checkSyncDeviceUserId(syncDeviceId, themeDisplay.getUserId());
+		checkSyncDeviceUserId(syncDeviceId, themeDisplay.getUserId());
 
-		int status = ParamUtil.getInteger(actionRequest, "status");
-
-		SyncDeviceLocalServiceUtil.updateStatus(syncDeviceId, status);
+		super.updateDevice(actionRequest, actionResponse);
 	}
 
-	private void _checkSyncDeviceUserId(long syncDeviceId, long userId)
+	protected void checkSyncDeviceUserId(long syncDeviceId, long userId)
 		throws Exception {
 
 		SyncDevice syncDevice = SyncDeviceLocalServiceUtil.getSyncDevice(
