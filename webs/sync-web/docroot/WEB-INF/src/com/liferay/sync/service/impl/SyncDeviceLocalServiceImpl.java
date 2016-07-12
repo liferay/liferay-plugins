@@ -63,6 +63,16 @@ public class SyncDeviceLocalServiceImpl extends SyncDeviceLocalServiceBaseImpl {
 	}
 
 	@Override
+	public List<SyncDevice> getSyncDevices(
+			long userId, int start, int end,
+			OrderByComparator orderByComparator)
+		throws SystemException {
+
+		return syncDevicePersistence.findByUserId(
+			userId, start, end, orderByComparator);
+	}
+
+	@Override
 	public List<SyncDevice> search(
 			long companyId, String keywords, int start, int end,
 			OrderByComparator orderByComparator)
