@@ -126,24 +126,32 @@ public class SyncDeviceLocalServiceClp implements SyncDeviceLocalService {
 		_methodName21 = "addSyncDevice";
 
 		_methodParameterTypes21 = new String[] {
-				"long", "java.lang.String", "int", "int"
+				"long", "java.lang.String", "long", "java.lang.String", "int"
 			};
 
-		_methodName22 = "search";
+		_methodName22 = "getSyncDevices";
 
 		_methodParameterTypes22 = new String[] {
+				"long", "int", "int",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			};
+
+		_methodName23 = "search";
+
+		_methodParameterTypes23 = new String[] {
 				"long", "java.lang.String", "int", "int",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
-		_methodName23 = "updateStatus";
+		_methodName24 = "updateStatus";
 
-		_methodParameterTypes23 = new String[] { "long", "int" };
+		_methodParameterTypes24 = new String[] { "long", "int" };
 
-		_methodName24 = "updateSyncDevice";
+		_methodName25 = "updateSyncDevice";
 
-		_methodParameterTypes24 = new String[] {
-				"long", "java.lang.String", "int", "int", "int"
+		_methodParameterTypes25 = new String[] {
+				"long", "java.lang.String", "long", "int", "java.lang.String",
+				"int"
 			};
 	}
 
@@ -760,7 +768,8 @@ public class SyncDeviceLocalServiceClp implements SyncDeviceLocalService {
 
 	@Override
 	public com.liferay.sync.model.SyncDevice addSyncDevice(long userId,
-		java.lang.String type, int buildNumber, int featureSet)
+		java.lang.String type, long buildNumber, java.lang.String hostname,
+		int featureSet)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -774,6 +783,8 @@ public class SyncDeviceLocalServiceClp implements SyncDeviceLocalService {
 					ClpSerializer.translateInput(type),
 						
 					buildNumber,
+						
+					ClpSerializer.translateInput(hostname),
 						
 					featureSet
 					});
@@ -802,8 +813,8 @@ public class SyncDeviceLocalServiceClp implements SyncDeviceLocalService {
 	}
 
 	@Override
-	public java.util.List<com.liferay.sync.model.SyncDevice> search(
-		long companyId, java.lang.String keywords, int start, int end,
+	public java.util.List<com.liferay.sync.model.SyncDevice> getSyncDevices(
+		long userId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -811,6 +822,45 @@ public class SyncDeviceLocalServiceClp implements SyncDeviceLocalService {
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName22,
 					_methodParameterTypes22,
+					new Object[] {
+						userId,
+						
+					start,
+						
+					end,
+						
+					ClpSerializer.translateInput(orderByComparator)
+					});
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<com.liferay.sync.model.SyncDevice>)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
+	public java.util.List<com.liferay.sync.model.SyncDevice> search(
+		long companyId, java.lang.String keywords, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName23,
+					_methodParameterTypes23,
 					new Object[] {
 						companyId,
 						
@@ -847,8 +897,8 @@ public class SyncDeviceLocalServiceClp implements SyncDeviceLocalService {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		try {
-			_invokableLocalService.invokeMethod(_methodName23,
-				_methodParameterTypes23, new Object[] { syncDeviceId, status });
+			_invokableLocalService.invokeMethod(_methodName24,
+				_methodParameterTypes24, new Object[] { syncDeviceId, status });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -873,15 +923,15 @@ public class SyncDeviceLocalServiceClp implements SyncDeviceLocalService {
 
 	@Override
 	public com.liferay.sync.model.SyncDevice updateSyncDevice(
-		long syncDeviceId, java.lang.String type, int buildNumber,
-		int featureSet, int status)
+		long syncDeviceId, java.lang.String type, long buildNumber,
+		int featureSet, java.lang.String hostname, int status)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName24,
-					_methodParameterTypes24,
+			returnObj = _invokableLocalService.invokeMethod(_methodName25,
+					_methodParameterTypes25,
 					new Object[] {
 						syncDeviceId,
 						
@@ -890,6 +940,8 @@ public class SyncDeviceLocalServiceClp implements SyncDeviceLocalService {
 					buildNumber,
 						
 					featureSet,
+						
+					ClpSerializer.translateInput(hostname),
 						
 					status
 					});
@@ -966,4 +1018,6 @@ public class SyncDeviceLocalServiceClp implements SyncDeviceLocalService {
 	private String[] _methodParameterTypes23;
 	private String _methodName24;
 	private String[] _methodParameterTypes24;
+	private String _methodName25;
+	private String[] _methodParameterTypes25;
 }

@@ -279,9 +279,16 @@ public interface SyncDeviceLocalService extends BaseLocalService,
 		throws java.lang.Throwable;
 
 	public com.liferay.sync.model.SyncDevice addSyncDevice(long userId,
-		java.lang.String type, int buildNumber, int featureSet)
+		java.lang.String type, long buildNumber, java.lang.String hostname,
+		int featureSet)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.sync.model.SyncDevice> getSyncDevices(
+		long userId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.sync.model.SyncDevice> search(
@@ -294,8 +301,8 @@ public interface SyncDeviceLocalService extends BaseLocalService,
 			com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.sync.model.SyncDevice updateSyncDevice(
-		long syncDeviceId, java.lang.String type, int buildNumber,
-		int featureSet, int status)
+		long syncDeviceId, java.lang.String type, long buildNumber,
+		int featureSet, java.lang.String hostname, int status)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 }

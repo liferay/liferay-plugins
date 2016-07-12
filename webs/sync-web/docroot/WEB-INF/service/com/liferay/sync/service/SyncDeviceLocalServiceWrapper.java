@@ -319,11 +319,21 @@ public class SyncDeviceLocalServiceWrapper implements SyncDeviceLocalService,
 
 	@Override
 	public com.liferay.sync.model.SyncDevice addSyncDevice(long userId,
-		java.lang.String type, int buildNumber, int featureSet)
+		java.lang.String type, long buildNumber, java.lang.String hostname,
+		int featureSet)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _syncDeviceLocalService.addSyncDevice(userId, type, buildNumber,
-			featureSet);
+			hostname, featureSet);
+	}
+
+	@Override
+	public java.util.List<com.liferay.sync.model.SyncDevice> getSyncDevices(
+		long userId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _syncDeviceLocalService.getSyncDevices(userId, start, end,
+			orderByComparator);
 	}
 
 	@Override
@@ -344,12 +354,12 @@ public class SyncDeviceLocalServiceWrapper implements SyncDeviceLocalService,
 
 	@Override
 	public com.liferay.sync.model.SyncDevice updateSyncDevice(
-		long syncDeviceId, java.lang.String type, int buildNumber,
-		int featureSet, int status)
+		long syncDeviceId, java.lang.String type, long buildNumber,
+		int featureSet, java.lang.String hostname, int status)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _syncDeviceLocalService.updateSyncDevice(syncDeviceId, type,
-			buildNumber, featureSet, status);
+			buildNumber, featureSet, hostname, status);
 	}
 
 	/**

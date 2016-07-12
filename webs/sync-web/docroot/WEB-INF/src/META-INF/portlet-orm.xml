@@ -27,6 +27,7 @@
 			</basic>
 			<basic name="buildNumber" />
 			<basic name="featureSet" />
+			<basic name="hostname" />
 			<basic name="status" />
 			<transient name="modelAttributes" />
 			<transient name="primaryKey" />

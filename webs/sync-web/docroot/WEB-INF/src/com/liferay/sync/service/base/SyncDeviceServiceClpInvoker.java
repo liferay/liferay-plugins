@@ -35,7 +35,7 @@ public class SyncDeviceServiceClpInvoker {
 		_methodName44 = "registerSyncDevice";
 
 		_methodParameterTypes44 = new String[] {
-				"java.lang.String", "int", "int", "java.lang.String"
+				"java.lang.String", "long", "int", "java.lang.String"
 			};
 
 		_methodName45 = "unregisterSyncDevice";
@@ -60,7 +60,7 @@ public class SyncDeviceServiceClpInvoker {
 		if (_methodName44.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes44, parameterTypes)) {
 			return SyncDeviceServiceUtil.registerSyncDevice((java.lang.String)arguments[0],
-				((Integer)arguments[1]).intValue(),
+				((Long)arguments[1]).longValue(),
 				((Integer)arguments[2]).intValue(),
 				(java.lang.String)arguments[3]);
 		}

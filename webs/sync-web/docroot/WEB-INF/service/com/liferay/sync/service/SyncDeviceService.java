@@ -65,7 +65,7 @@ public interface SyncDeviceService extends BaseService, InvokableService {
 		throws java.lang.Throwable;
 
 	public com.liferay.sync.model.SyncDevice registerSyncDevice(
-		java.lang.String type, int buildNumber, int featureSet,
+		java.lang.String type, long buildNumber, int featureSet,
 		java.lang.String uuid)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;

@@ -86,6 +86,7 @@ public class SyncDeviceClp extends BaseModelImpl<SyncDevice>
 		attributes.put("type", getType());
 		attributes.put("buildNumber", getBuildNumber());
 		attributes.put("featureSet", getFeatureSet());
+		attributes.put("hostname", getHostname());
 		attributes.put("status", getStatus());
 
 		return attributes;
@@ -151,6 +152,12 @@ public class SyncDeviceClp extends BaseModelImpl<SyncDevice>
 
 		if (featureSet != null) {
 			setFeatureSet(featureSet);
+		}
+
+		String hostname = (String)attributes.get("hostname");
+
+		if (hostname != null) {
+			setHostname(hostname);
 		}
 
 		Integer status = (Integer)attributes.get("status");
@@ -401,6 +408,29 @@ public class SyncDeviceClp extends BaseModelImpl<SyncDevice>
 	}
 
 	@Override
+	public String getHostname() {
+		return _hostname;
+	}
+
+	@Override
+	public void setHostname(String hostname) {
+		_hostname = hostname;
+
+		if (_syncDeviceRemoteModel != null) {
+			try {
+				Class<?> clazz = _syncDeviceRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setHostname", String.class);
+
+				method.invoke(_syncDeviceRemoteModel, hostname);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
 	public int getStatus() {
 		return _status;
 	}
@@ -562,6 +592,7 @@ public class SyncDeviceClp extends BaseModelImpl<SyncDevice>
 		clone.setType(getType());
 		clone.setBuildNumber(getBuildNumber());
 		clone.setFeatureSet(getFeatureSet());
+		clone.setHostname(getHostname());
 		clone.setStatus(getStatus());
 
 		return clone;
@@ -615,7 +646,7 @@ public class SyncDeviceClp extends BaseModelImpl<SyncDevice>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(23);
+		StringBundler sb = new StringBundler(25);
 
 		sb.append("{uuid=");
 		sb.append(getUuid());
@@ -637,6 +668,8 @@ public class SyncDeviceClp extends BaseModelImpl<SyncDevice>
 		sb.append(getBuildNumber());
 		sb.append(", featureSet=");
 		sb.append(getFeatureSet());
+		sb.append(", hostname=");
+		sb.append(getHostname());
 		sb.append(", status=");
 		sb.append(getStatus());
 		sb.append("}");
@@ -646,7 +679,7 @@ public class SyncDeviceClp extends BaseModelImpl<SyncDevice>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(37);
+		StringBundler sb = new StringBundler(40);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.sync.model.SyncDevice");
@@ -693,6 +726,10 @@ public class SyncDeviceClp extends BaseModelImpl<SyncDevice>
 		sb.append(getFeatureSet());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>hostname</column-name><column-value><![CDATA[");
+		sb.append(getHostname());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>status</column-name><column-value><![CDATA[");
 		sb.append(getStatus());
 		sb.append("]]></column-value></column>");
@@ -713,6 +750,7 @@ public class SyncDeviceClp extends BaseModelImpl<SyncDevice>
 	private String _type;
 	private long _buildNumber;
 	private int _featureSet;
+	private String _hostname;
 	private int _status;
 	private BaseModel<?> _syncDeviceRemoteModel;
 	private Class<?> _clpSerializerClass = com.liferay.sync.service.ClpSerializer.class;

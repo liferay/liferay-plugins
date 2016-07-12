@@ -235,6 +235,21 @@ public interface SyncDeviceModel extends BaseModel<SyncDevice>,
 	public void setFeatureSet(int featureSet);
 
 	/**
+	 * Returns the hostname of this sync device.
+	 *
+	 * @return the hostname of this sync device
+	 */
+	@AutoEscape
+	public String getHostname();
+
+	/**
+	 * Sets the hostname of this sync device.
+	 *
+	 * @param hostname the hostname of this sync device
+	 */
+	public void setHostname(String hostname);
+
+	/**
 	 * Returns the status of this sync device.
 	 *
 	 * @return the status of this sync device

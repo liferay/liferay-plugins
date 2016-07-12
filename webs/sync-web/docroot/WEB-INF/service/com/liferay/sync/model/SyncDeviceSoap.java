@@ -41,6 +41,7 @@ public class SyncDeviceSoap implements Serializable {
 		soapModel.setType(model.getType());
 		soapModel.setBuildNumber(model.getBuildNumber());
 		soapModel.setFeatureSet(model.getFeatureSet());
+		soapModel.setHostname(model.getHostname());
 		soapModel.setStatus(model.getStatus());
 
 		return soapModel;
@@ -174,6 +175,14 @@ public class SyncDeviceSoap implements Serializable {
 		_featureSet = featureSet;
 	}
 
+	public String getHostname() {
+		return _hostname;
+	}
+
+	public void setHostname(String hostname) {
+		_hostname = hostname;
+	}
+
 	public int getStatus() {
 		return _status;
 	}
@@ -192,5 +201,6 @@ public class SyncDeviceSoap implements Serializable {
 	private String _type;
 	private long _buildNumber;
 	private int _featureSet;
+	private String _hostname;
 	private int _status;
 }

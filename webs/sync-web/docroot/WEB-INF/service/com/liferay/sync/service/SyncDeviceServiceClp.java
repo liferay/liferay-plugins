@@ -35,7 +35,7 @@ public class SyncDeviceServiceClp implements SyncDeviceService {
 		_methodName3 = "registerSyncDevice";
 
 		_methodParameterTypes3 = new String[] {
-				"java.lang.String", "int", "int", "java.lang.String"
+				"java.lang.String", "long", "int", "java.lang.String"
 			};
 
 		_methodName4 = "unregisterSyncDevice";
@@ -95,7 +95,7 @@ public class SyncDeviceServiceClp implements SyncDeviceService {
 
 	@Override
 	public com.liferay.sync.model.SyncDevice registerSyncDevice(
-		java.lang.String type, int buildNumber, int featureSet,
+		java.lang.String type, long buildNumber, int featureSet,
 		java.lang.String uuid)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {

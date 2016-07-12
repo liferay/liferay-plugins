@@ -63,7 +63,7 @@ import java.rmi.RemoteException;
  */
 public class SyncDeviceServiceSoap {
 	public static com.liferay.sync.model.SyncDeviceSoap registerSyncDevice(
-		java.lang.String type, int buildNumber, int featureSet,
+		java.lang.String type, long buildNumber, int featureSet,
 		java.lang.String uuid) throws RemoteException {
 		try {
 			com.liferay.sync.model.SyncDevice returnValue = SyncDeviceServiceUtil.registerSyncDevice(type,

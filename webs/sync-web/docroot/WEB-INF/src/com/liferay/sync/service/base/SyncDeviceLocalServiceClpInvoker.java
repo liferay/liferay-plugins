@@ -125,24 +125,32 @@ public class SyncDeviceLocalServiceClpInvoker {
 		_methodName62 = "addSyncDevice";
 
 		_methodParameterTypes62 = new String[] {
-				"long", "java.lang.String", "int", "int"
+				"long", "java.lang.String", "long", "java.lang.String", "int"
 			};
 
-		_methodName63 = "search";
+		_methodName63 = "getSyncDevices";
 
 		_methodParameterTypes63 = new String[] {
+				"long", "int", "int",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			};
+
+		_methodName64 = "search";
+
+		_methodParameterTypes64 = new String[] {
 				"long", "java.lang.String", "int", "int",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
-		_methodName64 = "updateStatus";
+		_methodName65 = "updateStatus";
 
-		_methodParameterTypes64 = new String[] { "long", "int" };
+		_methodParameterTypes65 = new String[] { "long", "int" };
 
-		_methodName65 = "updateSyncDevice";
+		_methodName66 = "updateSyncDevice";
 
-		_methodParameterTypes65 = new String[] {
-				"long", "java.lang.String", "int", "int", "int"
+		_methodParameterTypes66 = new String[] {
+				"long", "java.lang.String", "long", "int", "java.lang.String",
+				"int"
 			};
 	}
 
@@ -263,12 +271,21 @@ public class SyncDeviceLocalServiceClpInvoker {
 				Arrays.deepEquals(_methodParameterTypes62, parameterTypes)) {
 			return SyncDeviceLocalServiceUtil.addSyncDevice(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1],
-				((Integer)arguments[2]).intValue(),
-				((Integer)arguments[3]).intValue());
+				((Long)arguments[2]).longValue(),
+				(java.lang.String)arguments[3],
+				((Integer)arguments[4]).intValue());
 		}
 
 		if (_methodName63.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes63, parameterTypes)) {
+			return SyncDeviceLocalServiceUtil.getSyncDevices(((Long)arguments[0]).longValue(),
+				((Integer)arguments[1]).intValue(),
+				((Integer)arguments[2]).intValue(),
+				(com.liferay.portal.kernel.util.OrderByComparator)arguments[3]);
+		}
+
+		if (_methodName64.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes64, parameterTypes)) {
 			return SyncDeviceLocalServiceUtil.search(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1],
 				((Integer)arguments[2]).intValue(),
@@ -276,21 +293,22 @@ public class SyncDeviceLocalServiceClpInvoker {
 				(com.liferay.portal.kernel.util.OrderByComparator)arguments[4]);
 		}
 
-		if (_methodName64.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes64, parameterTypes)) {
+		if (_methodName65.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes65, parameterTypes)) {
 			SyncDeviceLocalServiceUtil.updateStatus(((Long)arguments[0]).longValue(),
 				((Integer)arguments[1]).intValue());
 
 			return null;
 		}
 
-		if (_methodName65.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes65, parameterTypes)) {
+		if (_methodName66.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes66, parameterTypes)) {
 			return SyncDeviceLocalServiceUtil.updateSyncDevice(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1],
-				((Integer)arguments[2]).intValue(),
+				((Long)arguments[2]).longValue(),
 				((Integer)arguments[3]).intValue(),
-				((Integer)arguments[4]).intValue());
+				(java.lang.String)arguments[4],
+				((Integer)arguments[5]).intValue());
 		}
 
 		throw new UnsupportedOperationException();
@@ -344,4 +362,6 @@ public class SyncDeviceLocalServiceClpInvoker {
 	private String[] _methodParameterTypes64;
 	private String _methodName65;
 	private String[] _methodParameterTypes65;
+	private String _methodName66;
+	private String[] _methodParameterTypes66;
 }
