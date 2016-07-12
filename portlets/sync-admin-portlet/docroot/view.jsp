@@ -25,7 +25,7 @@ portletURL.setParameter("tabs1", tabs1);
 %>
 
 <liferay-ui:tabs
-	names="settings,sites"
+	names="settings,sites,devices"
 	param="tabs1"
 	url="<%= portletURL.toString() %>"
 />
@@ -34,7 +34,10 @@ portletURL.setParameter("tabs1", tabs1);
 	<c:when test='<%= tabs1.equals("settings") %>'>
 		<liferay-util:include page="/settings.jsp" servletContext="<%= application %>" />
 	</c:when>
-	<c:otherwise>
+	<c:when test='<%= tabs1.equals("sites") %>'>
 		<liferay-util:include page="/sites.jsp" servletContext="<%= application %>" />
+	</c:when>
+	<c:otherwise>
+		<liferay-util:include page="/devices.jsp" servletContext="<%= application %>" />
 	</c:otherwise>
 </c:choose>

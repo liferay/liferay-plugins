@@ -27,6 +27,7 @@ import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.sync.admin.exception.OAuthPortletUndeployedException;
+import com.liferay.sync.service.SyncDeviceLocalServiceUtil;
 import com.liferay.sync.service.SyncPreferencesLocalServiceUtil;
 import com.liferay.sync.shared.util.PortletPropsKeys;
 import com.liferay.util.bridges.mvc.MVCPortlet;
@@ -43,6 +44,26 @@ import javax.portlet.PortletPreferences;
  * @author Jonathan McCann
  */
 public class AdminPortlet extends MVCPortlet {
+
+	public void deleteDevice(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		long syncDeviceId = ParamUtil.getLong(actionRequest, "syncDeviceId");
+
+		SyncDeviceLocalServiceUtil.deleteSyncDevice(syncDeviceId);
+	}
+
+	public void updateDevice(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		long syncDeviceId = ParamUtil.getLong(actionRequest, "syncDeviceId");
+
+		int status = ParamUtil.getInteger(actionRequest, "status");
+
+		SyncDeviceLocalServiceUtil.updateStatus(syncDeviceId, status);
+	}
 
 	public void updatePreferences(
 			ActionRequest actionRequest, ActionResponse actionResponse)
