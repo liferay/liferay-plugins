@@ -50,15 +50,15 @@ public class UserModelListener extends BaseModelListener<User> {
 	}
 
 	@Override
-	public void onBeforeUpdate(User newUser) throws ModelListenerException {
+	public void onBeforeUpdate(User user) throws ModelListenerException {
 		try {
-			User oldUser = UserLocalServiceUtil.getUser(newUser.getUserId());
+			User originalUser = UserLocalServiceUtil.getUser(user.getUserId());
 
-			if (oldUser.isActive() && !newUser.isActive()) {
+			if (originalUser.isActive() && !user.isActive()) {
 				List<SyncDevice> syncDevices =
 					SyncDeviceLocalServiceUtil.getSyncDevices(
-						newUser.getUserId(), QueryUtil.ALL_POS,
-						QueryUtil.ALL_POS, null);
+						user.getUserId(), QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+						null);
 
 				for (SyncDevice syncDevice : syncDevices) {
 					SyncDeviceLocalServiceUtil.updateStatus(
@@ -66,11 +66,11 @@ public class UserModelListener extends BaseModelListener<User> {
 						SyncDeviceConstants.STATUS_INACTIVE);
 				}
 			}
-			else if (!oldUser.isActive() && newUser.isActive()) {
+			else if (!originalUser.isActive() && user.isActive()) {
 				List<SyncDevice> syncDevices =
 					SyncDeviceLocalServiceUtil.getSyncDevices(
-						newUser.getUserId(), QueryUtil.ALL_POS,
-						QueryUtil.ALL_POS, null);
+						user.getUserId(), QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+						null);
 
 				for (SyncDevice syncDevice : syncDevices) {
 					SyncDeviceLocalServiceUtil.updateStatus(
