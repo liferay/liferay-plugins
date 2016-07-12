@@ -90,7 +90,7 @@ public class SyncJSONFilter implements Filter {
 			syncDevice = SyncDeviceLocalServiceUtil.createSyncDevice(0);
 		}
 
-		syncDevice.setLoginIP(servletRequest.getRemoteAddr());
+		syncDevice.setHost(servletRequest.getRemoteHost());
 
 		SyncDeviceThreadLocal.setSyncDevice(syncDevice);
 
