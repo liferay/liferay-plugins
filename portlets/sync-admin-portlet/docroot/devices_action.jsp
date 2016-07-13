@@ -68,6 +68,7 @@ String currentURL = currentURLObj.toString();
 				</portlet:actionURL>
 
 				<liferay-ui:icon-delete
+					confirmation="wiping-a-sync-device-will-delete-all-associated-files-from-the-client"
 					image="trash"
 					label="<%= true %>"
 					message="wipe-sync-device"
