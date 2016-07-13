@@ -88,11 +88,23 @@ portletURL.setParameter("delta", String.valueOf(delta));
 				property="userName"
 			/>
 
+			<%
+			String location = syncDevice.getHostname();
+
+			IPInfo ipInfo = IPGeocoderUtil.getIPInfo(location);
+
+			if (ipInfo != null) {
+				String city = ipInfo.getCity();
+
+				if (city != null) {
+					location = city + " " + location;
+				}
+			}
+			%>
+
 			<liferay-ui:search-container-column-text
-				name="hostname"
-				orderable="<%= true %>"
-				orderableProperty="hostname"
-				property="hostname"
+				name="location"
+				value="<%= location %>"
 			/>
 
 			<liferay-ui:search-container-column-text
