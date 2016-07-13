@@ -23,6 +23,7 @@ import com.liferay.marketplace.oauth.util.OAuthUtil;
 import com.liferay.marketplace.service.AppLocalServiceUtil;
 import com.liferay.marketplace.service.AppServiceUtil;
 import com.liferay.marketplace.util.MarketplaceLicenseUtil;
+import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.FileUtil;
@@ -36,6 +37,7 @@ import com.liferay.portal.theme.ThemeDisplay;
 import java.io.File;
 import java.io.IOException;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -98,6 +100,19 @@ public class StorePortlet extends RemoteMVCPortlet {
 		JSONObject jsonObject = getAppJSONObject(remoteAppId);
 
 		jsonObject.put("cmd", "getApp");
+		jsonObject.put("message", "success");
+
+		writeJSON(actionRequest, actionResponse, jsonObject);
+	}
+
+	public void getInstalledApps(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
+		jsonObject.put("apps", getInstalledAppsJSONArray());
+		jsonObject.put("cmd", "getInstalledApps");
 		jsonObject.put("message", "success");
 
 		writeJSON(actionRequest, actionResponse, jsonObject);
@@ -303,23 +318,30 @@ public class StorePortlet extends RemoteMVCPortlet {
 		FileUtil.write(file, response.getStream());
 	}
 
-	protected JSONObject getAppJSONObject(long remoteAppId) throws Exception {
+	protected JSONObject getAppJSONObject(App app) throws Exception {
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
+		jsonObject.put("appId", app.getRemoteAppId());
+		jsonObject.put("downloaded", app.isDownloaded());
+		jsonObject.put("installed", app.isInstalled());
+		jsonObject.put("version", app.getVersion());
+
+		return jsonObject;
+	}
+
+	protected JSONObject getAppJSONObject(long remoteAppId) throws Exception {
 		App app = AppLocalServiceUtil.fetchRemoteApp(remoteAppId);
 
 		if (app != null) {
-			jsonObject.put("appId", app.getRemoteAppId());
-			jsonObject.put("downloaded", app.isDownloaded());
-			jsonObject.put("installed", app.isInstalled());
-			jsonObject.put("version", app.getVersion());
+			return getAppJSONObject(app);
 		}
-		else {
-			jsonObject.put("appId", remoteAppId);
-			jsonObject.put("downloaded", false);
-			jsonObject.put("installed", false);
-			jsonObject.put("version", StringPool.BLANK);
-		}
+
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
+		jsonObject.put("appId", remoteAppId);
+		jsonObject.put("downloaded", false);
+		jsonObject.put("installed", false);
+		jsonObject.put("version", StringPool.BLANK);
 
 		return jsonObject;
 	}
@@ -327,6 +349,20 @@ public class StorePortlet extends RemoteMVCPortlet {
 	@Override
 	protected String getClientPortletId() {
 		return PortletKeys.STORE;
+	}
+
+	protected JSONArray getInstalledAppsJSONArray() throws Exception {
+		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
+
+		List<App> apps = AppLocalServiceUtil.getInstalledApps();
+
+		for (App app : apps) {
+			if (app.getRemoteAppId() > 0) {
+				jsonArray.put(getAppJSONObject(app));
+			}
+		}
+
+		return jsonArray;
 	}
 
 	@Override
