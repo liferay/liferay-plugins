@@ -21,13 +21,11 @@ String tabs1 = ParamUtil.getString(request, "tabs1", "devices");
 
 String keywords = ParamUtil.getString(request, "keywords");
 
+int delta = ParamUtil.getInteger(request, "delta", SearchContainer.DEFAULT_DELTA);
 String orderByCol = ParamUtil.getString(request, "orderByCol", "userName");
-
 String orderByType = ParamUtil.getString(request, "orderByType", "asc");
 
 OrderByComparator obc = OrderByComparatorFactoryUtil.create("SyncDevice", orderByCol, orderByType.equals("asc"));
-
-int delta = ParamUtil.getInteger(request, "delta", SearchContainer.DEFAULT_DELTA);
 
 PortletURL currentURLObj = PortletURLUtil.getCurrent(liferayPortletRequest, liferayPortletResponse);
 
