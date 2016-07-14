@@ -105,8 +105,8 @@ public class MentionsNotifier {
 				mentionedUser.getEmailAddress(), mentionedUser.getFullName());
 
 			sendWebsiteNotification(
-				mentionedUser.getUserId(), title, className, classPK,
-				contentURL, userId);
+				userId, mentionedUser.getUserId(), title, className, classPK,
+				contentURL);
 		}
 
 		subscriptionSender.flushNotificationsAsync();
@@ -156,8 +156,8 @@ public class MentionsNotifier {
 	}
 
 	protected void sendWebsiteNotification(
-			long mentionedUserId, String title, String className, long classPK,
-			String contentURL, long userId)
+			long userId, long mentionedUserId, String title, String className,
+			long classPK, String contentURL)
 		throws PortalException, SystemException {
 
 		if (UserNotificationManagerUtil.isDeliver(
