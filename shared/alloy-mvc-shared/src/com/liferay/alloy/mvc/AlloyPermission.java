@@ -131,7 +131,7 @@ public class AlloyPermission {
 			themeDisplay.getScopeGroupId(), actionId);
 	}
 
-	protected static String formatActionId(String controller, String action) {
+	protected static String formatAction(String action) {
 		StringBuilder sb = new StringBuilder(StringUtil.toUpperCase(action));
 
 		for (int i = 0; i < action.length(); i++) {
@@ -141,8 +141,34 @@ public class AlloyPermission {
 				int delta = sb.length() - action.length();
 
 				sb.insert(i + delta, CharPool.UNDERLINE);
+
+				if (((i + 1) >= action.length()) || Character.isLowerCase(action.charAt(i + 1))) {
+					continue;
+				}
+
+				while (i < action.length()) {
+					c = action.charAt(i);
+
+					if (Character.isLowerCase(c)) {
+						break;
+					}
+
+					i++;
+				}
+
+				if (i == action.length()) {
+					continue;
+				}
+
+				sb.insert(i + delta, CharPool.UNDERLINE);
 			}
 		}
+
+		return sb.toString();
+	}
+
+	protected static String formatActionId(String controller, String action) {
+		StringBuilder sb = new StringBuilder(formatAction(action));
 
 		sb.append(StringPool.POUND);
 		sb.append(StringUtil.toUpperCase(controller));
