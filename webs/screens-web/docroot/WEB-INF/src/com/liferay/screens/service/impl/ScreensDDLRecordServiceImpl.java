@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ClassResolverUtil;
 import com.liferay.portal.kernel.util.MethodKey;
+import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.PortalClassInvoker;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -70,7 +71,7 @@ public class ScreensDDLRecordServiceImpl
 
 	@Override
 	public JSONArray getDDLRecords(
-			long ddlRecordSetId, Locale locale, int start, int end)
+			long ddlRecordSetId, Locale locale, int start, int end, OrderByComparator obc)
 		throws PortalException, SystemException {
 
 		checkPermission(
@@ -84,7 +85,7 @@ public class ScreensDDLRecordServiceImpl
 
 	@Override
 	public JSONArray getDDLRecords(
-			long ddlRecordSetId, long userId, Locale locale, int start, int end)
+			long ddlRecordSetId, long userId, Locale locale, int start, int end, OrderByComparator obc)
 		throws PortalException, SystemException {
 
 		checkPermission(
