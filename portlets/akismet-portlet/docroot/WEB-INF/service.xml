@@ -33,5 +33,6 @@
 			<finder-column name="classNameId" />
 			<finder-column name="classPK" />
 		</finder>
+		<reference package-path="com.liferay.portal" entity="ClassName" />
 	</entity>
 </service-builder>
