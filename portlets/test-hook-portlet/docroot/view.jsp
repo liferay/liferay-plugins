@@ -40,12 +40,12 @@
 
 <h3>custom-jsp-dir</h3>
 
-<liferay-util:buffer var="blogsViewJsp">
-	<liferay-util:include page="/html/portlet/blogs/view.jsp" />
+<liferay-util:buffer var="setupWizardJsp">
+	<liferay-util:include page="/html/portal/setup_wizard.jsp" />
 </liferay-util:buffer>
 
 <p>
-	/META-INF/custom_jsps=<%= _assertTrue(blogsViewJsp.contains("Custom Blogs Header")) %>
+	/META-INF/custom_jsps=<%= _assertTrue(setupWizardJsp.contains("Custom Setup Wizard Header")) %>
 </p>
 
 <h3>service</h3>
