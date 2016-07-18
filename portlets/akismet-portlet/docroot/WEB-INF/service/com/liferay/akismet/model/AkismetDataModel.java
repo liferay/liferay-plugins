@@ -257,19 +257,19 @@ public interface AkismetDataModel extends AttachedModel, BaseModel<AkismetData> 
 	public Object clone();
 
 	@Override
-	public int compareTo(AkismetData akismetData);
+	public int compareTo(com.liferay.akismet.model.AkismetData akismetData);
 
 	@Override
 	public int hashCode();
 
 	@Override
-	public CacheModel<AkismetData> toCacheModel();
+	public CacheModel<com.liferay.akismet.model.AkismetData> toCacheModel();
 
 	@Override
-	public AkismetData toEscapedModel();
+	public com.liferay.akismet.model.AkismetData toEscapedModel();
 
 	@Override
-	public AkismetData toUnescapedModel();
+	public com.liferay.akismet.model.AkismetData toUnescapedModel();
 
 	@Override
 	public String toString();
