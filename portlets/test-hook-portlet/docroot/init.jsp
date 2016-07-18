@@ -28,6 +28,6 @@ page import="com.liferay.portal.kernel.util.Validator" %><%@
 page import="com.liferay.testhook.hook.model.impl.TestHookUserImpl" %><%@
 page import="com.liferay.testhook.util.TestHookUtil" %>
 
-<portlet:defineObjects />
-
 <liferay-theme:defineObjects />
+
+<portlet:defineObjects />
