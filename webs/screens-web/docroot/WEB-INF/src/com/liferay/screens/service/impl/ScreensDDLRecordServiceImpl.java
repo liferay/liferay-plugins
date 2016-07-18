@@ -71,7 +71,8 @@ public class ScreensDDLRecordServiceImpl
 
 	@Override
 	public JSONArray getDDLRecords(
-			long ddlRecordSetId, Locale locale, int start, int end, OrderByComparator obc)
+			long ddlRecordSetId, Locale locale, int start, int end,
+			OrderByComparator obc)
 		throws PortalException, SystemException {
 
 		checkPermission(
@@ -85,7 +86,8 @@ public class ScreensDDLRecordServiceImpl
 
 	@Override
 	public JSONArray getDDLRecords(
-			long ddlRecordSetId, long userId, Locale locale, int start, int end, OrderByComparator obc)
+			long ddlRecordSetId, long userId, Locale locale, int start, int end,
+			OrderByComparator obc)
 		throws PortalException, SystemException {
 
 		checkPermission(
