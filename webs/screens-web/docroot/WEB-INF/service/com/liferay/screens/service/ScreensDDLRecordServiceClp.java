@@ -39,13 +39,15 @@ public class ScreensDDLRecordServiceClp implements ScreensDDLRecordService {
 		_methodName4 = "getDDLRecords";
 
 		_methodParameterTypes4 = new String[] {
-				"long", "java.util.Locale", "int", "int"
+				"long", "java.util.Locale", "int", "int",
+				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
 		_methodName5 = "getDDLRecords";
 
 		_methodParameterTypes5 = new String[] {
-				"long", "long", "java.util.Locale", "int", "int"
+				"long", "long", "java.util.Locale", "int", "int",
+				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
 		_methodName6 = "getDDLRecordsCount";
@@ -148,7 +150,8 @@ public class ScreensDDLRecordServiceClp implements ScreensDDLRecordService {
 
 	@Override
 	public com.liferay.portal.kernel.json.JSONArray getDDLRecords(
-		long ddlRecordSetId, java.util.Locale locale, int start, int end)
+		long ddlRecordSetId, java.util.Locale locale, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -163,7 +166,9 @@ public class ScreensDDLRecordServiceClp implements ScreensDDLRecordService {
 						
 					start,
 						
-					end
+					end,
+						
+					ClpSerializer.translateInput(obc)
 					});
 		}
 		catch (Throwable t) {
@@ -192,7 +197,7 @@ public class ScreensDDLRecordServiceClp implements ScreensDDLRecordService {
 	@Override
 	public com.liferay.portal.kernel.json.JSONArray getDDLRecords(
 		long ddlRecordSetId, long userId, java.util.Locale locale, int start,
-		int end)
+		int end, com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -209,7 +214,9 @@ public class ScreensDDLRecordServiceClp implements ScreensDDLRecordService {
 						
 					start,
 						
-					end
+					end,
+						
+					ClpSerializer.translateInput(obc)
 					});
 		}
 		catch (Throwable t) {

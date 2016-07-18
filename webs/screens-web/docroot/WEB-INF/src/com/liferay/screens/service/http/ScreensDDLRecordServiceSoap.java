@@ -68,10 +68,12 @@ public class ScreensDDLRecordServiceSoap {
 	}
 
 	public static java.lang.String getDDLRecords(long ddlRecordSetId,
-		String locale, int start, int end) throws RemoteException {
+		String locale, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws RemoteException {
 		try {
 			com.liferay.portal.kernel.json.JSONArray returnValue = ScreensDDLRecordServiceUtil.getDDLRecords(ddlRecordSetId,
-					LocaleUtil.fromLanguageId(locale), start, end);
+					LocaleUtil.fromLanguageId(locale), start, end, obc);
 
 			return returnValue.toString();
 		}
@@ -83,11 +85,12 @@ public class ScreensDDLRecordServiceSoap {
 	}
 
 	public static java.lang.String getDDLRecords(long ddlRecordSetId,
-		long userId, String locale, int start, int end)
+		long userId, String locale, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws RemoteException {
 		try {
 			com.liferay.portal.kernel.json.JSONArray returnValue = ScreensDDLRecordServiceUtil.getDDLRecords(ddlRecordSetId,
-					userId, LocaleUtil.fromLanguageId(locale), start, end);
+					userId, LocaleUtil.fromLanguageId(locale), start, end, obc);
 
 			return returnValue.toString();
 		}

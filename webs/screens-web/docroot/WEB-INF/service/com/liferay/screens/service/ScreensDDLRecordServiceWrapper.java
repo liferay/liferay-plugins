@@ -68,21 +68,22 @@ public class ScreensDDLRecordServiceWrapper implements ScreensDDLRecordService,
 
 	@Override
 	public com.liferay.portal.kernel.json.JSONArray getDDLRecords(
-		long ddlRecordSetId, java.util.Locale locale, int start, int end)
+		long ddlRecordSetId, java.util.Locale locale, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _screensDDLRecordService.getDDLRecords(ddlRecordSetId, locale,
-			start, end);
+			start, end, obc);
 	}
 
 	@Override
 	public com.liferay.portal.kernel.json.JSONArray getDDLRecords(
 		long ddlRecordSetId, long userId, java.util.Locale locale, int start,
-		int end)
+		int end, com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _screensDDLRecordService.getDDLRecords(ddlRecordSetId, userId,
-			locale, start, end);
+			locale, start, end, obc);
 	}
 
 	@Override
