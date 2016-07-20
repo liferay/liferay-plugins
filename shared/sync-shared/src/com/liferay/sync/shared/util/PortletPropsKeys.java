@@ -25,6 +25,12 @@ public class PortletPropsKeys {
 	public static final String SYNC_CLIENT_MAX_CONNECTIONS =
 		"sync.client.max.connections";
 
+	public static final String SYNC_CLIENT_MAX_DOWNLOAD_RATE =
+		"sync.client.max.download.rate";
+
+	public static final String SYNC_CLIENT_MAX_UPLOAD_RATE =
+		"sync.client.max.upload.rate";
+
 	public static final String SYNC_CLIENT_MIN_BUILD_ANDROID =
 		"sync.client.min.build.android";
 

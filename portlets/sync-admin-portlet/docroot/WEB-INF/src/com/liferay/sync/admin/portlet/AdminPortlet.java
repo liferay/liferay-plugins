@@ -133,6 +133,20 @@ public class AdminPortlet extends MVCPortlet {
 			PortletPropsKeys.SYNC_CLIENT_MAX_CONNECTIONS,
 			String.valueOf(maxConnections));
 
+		int maxDownloadRate = ParamUtil.getInteger(
+			actionRequest, "maxDownloadRate");
+
+		portletPreferences.setValue(
+			PortletPropsKeys.SYNC_CLIENT_MAX_DOWNLOAD_RATE,
+			String.valueOf(maxDownloadRate));
+
+		int maxUploadRate = ParamUtil.getInteger(
+			actionRequest, "maxUploadRate");
+
+		portletPreferences.setValue(
+			PortletPropsKeys.SYNC_CLIENT_MAX_UPLOAD_RATE,
+			String.valueOf(maxUploadRate));
+
 		boolean oAuthEnabled = ParamUtil.getBoolean(
 			actionRequest, "oAuthEnabled");
 

@@ -1277,6 +1277,22 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			PortletPropsKeys.SYNC_CLIENT_MAX_CONNECTIONS,
 			String.valueOf(maxConnections));
 
+		int maxDownloadRate = PrefsPropsUtil.getInteger(
+			user.getCompanyId(), PortletPropsKeys.SYNC_CLIENT_MAX_DOWNLOAD_RATE,
+			PortletPropsValues.SYNC_CLIENT_MAX_DOWNLOAD_RATE);
+
+		portletPreferencesMap.put(
+			PortletPropsKeys.SYNC_CLIENT_MAX_DOWNLOAD_RATE,
+			String.valueOf(maxDownloadRate));
+
+		int maxUploadRate = PrefsPropsUtil.getInteger(
+			user.getCompanyId(), PortletPropsKeys.SYNC_CLIENT_MAX_UPLOAD_RATE,
+			PortletPropsValues.SYNC_CLIENT_MAX_UPLOAD_RATE);
+
+		portletPreferencesMap.put(
+			PortletPropsKeys.SYNC_CLIENT_MAX_UPLOAD_RATE,
+			String.valueOf(maxUploadRate));
+
 		int pollInterval = PrefsPropsUtil.getInteger(
 			user.getCompanyId(), PortletPropsKeys.SYNC_CLIENT_POLL_INTERVAL,
 			PortletPropsValues.SYNC_CLIENT_POLL_INTERVAL);

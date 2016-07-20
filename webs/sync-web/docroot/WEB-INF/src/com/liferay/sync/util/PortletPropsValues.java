@@ -38,6 +38,13 @@ public class PortletPropsValues {
 	public static final int SYNC_CLIENT_MAX_CONNECTIONS = GetterUtil.getInteger(
 		PortletProps.get(PortletPropsKeys.SYNC_CLIENT_MAX_CONNECTIONS));
 
+	public static final int SYNC_CLIENT_MAX_DOWNLOAD_RATE =
+		GetterUtil.getInteger(
+			PortletProps.get(PortletPropsKeys.SYNC_CLIENT_MAX_DOWNLOAD_RATE));
+
+	public static final int SYNC_CLIENT_MAX_UPLOAD_RATE = GetterUtil.getInteger(
+		PortletProps.get(PortletPropsKeys.SYNC_CLIENT_MAX_UPLOAD_RATE));
+
 	public static final int SYNC_CLIENT_MIN_BUILD_ANDROID =
 		GetterUtil.getInteger(
 			PortletProps.get(PortletPropsKeys.SYNC_CLIENT_MIN_BUILD_ANDROID));

@@ -24,6 +24,8 @@ portletPreferences = SyncPreferencesLocalServiceUtil.getPortletPreferences(theme
 boolean allowUserPersonalSites = PrefsPropsUtil.getBoolean(portletPreferences, themeDisplay.getCompanyId(), PortletPropsKeys.SYNC_ALLOW_USER_PERSONAL_SITES);
 boolean enabled = PrefsPropsUtil.getBoolean(portletPreferences, themeDisplay.getCompanyId(), PortletPropsKeys.SYNC_SERVICES_ENABLED);
 int maxConnections = PrefsPropsUtil.getInteger(portletPreferences, themeDisplay.getCompanyId(), PortletPropsKeys.SYNC_CLIENT_MAX_CONNECTIONS);
+int maxDownloadRate = PrefsPropsUtil.getInteger(themeDisplay.getCompanyId(), PortletPropsKeys.SYNC_CLIENT_MAX_DOWNLOAD_RATE);
+int maxUploadRate = PrefsPropsUtil.getInteger(themeDisplay.getCompanyId(), PortletPropsKeys.SYNC_CLIENT_MAX_UPLOAD_RATE);
 boolean oAuthEnabled = PrefsPropsUtil.getBoolean(portletPreferences, themeDisplay.getCompanyId(), PortletPropsKeys.SYNC_OAUTH_ENABLED);
 int pollInterval = PrefsPropsUtil.getInteger(portletPreferences, themeDisplay.getCompanyId(), PortletPropsKeys.SYNC_CLIENT_POLL_INTERVAL);
 
@@ -80,6 +82,14 @@ if (oAuthEnabled) {
 	<aui:input helpMessage="poll-interval-help" label="poll-interval" name="pollInterval" type="text" value="<%= pollInterval %>" wrapperCssClass="lfr-input-text-container">
 		<aui:validator name="digits" />
 		<aui:validator name="min">1</aui:validator>
+	</aui:input>
+
+	<aui:input helpMessage="max-download-rate-help" label="max-download-rate" name="maxDownloadRate" type="text" value="<%= maxDownloadRate %>" wrapperCssClass="lfr-input-text-container">
+		<aui:validator name="digits" />
+	</aui:input>
+
+	<aui:input helpMessage="max-upload-rate-help" label="max-upload-rate" name="maxUploadRate" type="text" value="<%= maxUploadRate %>" wrapperCssClass="lfr-input-text-container">
+		<aui:validator name="digits" />
 	</aui:input>
 
 	<aui:button-row>
