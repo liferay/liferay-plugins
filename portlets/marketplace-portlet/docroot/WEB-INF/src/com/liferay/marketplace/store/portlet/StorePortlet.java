@@ -23,6 +23,7 @@ import com.liferay.marketplace.oauth.util.OAuthUtil;
 import com.liferay.marketplace.service.AppLocalServiceUtil;
 import com.liferay.marketplace.service.AppServiceUtil;
 import com.liferay.marketplace.util.MarketplaceLicenseUtil;
+import com.liferay.portal.DuplicateLockException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
@@ -32,6 +33,8 @@ import com.liferay.portal.kernel.util.ReleaseInfo;
 import com.liferay.portal.kernel.util.ServerDetector;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.model.Lock;
+import com.liferay.portal.service.LockLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 
 import java.io.File;
@@ -255,6 +258,90 @@ public class StorePortlet extends RemoteMVCPortlet {
 			if (file != null) {
 				file.delete();
 			}
+		}
+	}
+
+	public void updateAppLicense(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		String orderUuid = ParamUtil.getString(actionRequest, "orderUuid");
+		String productEntryName = ParamUtil.getString(
+			actionRequest, "productEntryName");
+
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
+		jsonObject.put("cmd", "updateAppLicense");
+
+		if (Validator.isNull(orderUuid) &&
+			Validator.isNotNull(productEntryName)) {
+
+			orderUuid = MarketplaceLicenseUtil.getOrder(productEntryName);
+		}
+
+		if (Validator.isNotNull(orderUuid)) {
+			MarketplaceLicenseUtil.registerOrder(orderUuid, productEntryName);
+
+			jsonObject.put("message", "success");
+		}
+		else {
+			jsonObject.put("message", "failed");
+		}
+
+		writeJSON(actionRequest, actionResponse, jsonObject);
+	}
+
+	public void updateApps(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		if (LockLocalServiceUtil.isLocked(
+				StorePortlet.class.getName(), StringPool.BLANK)) {
+
+			throw new DuplicateLockException(null);
+		}
+
+		Lock lock = LockLocalServiceUtil.lock(
+			StorePortlet.class.getName(), StringPool.BLANK, StringPool.BLANK);
+
+		try {
+			long[] appPackageIds = ParamUtil.getLongValues(
+				actionRequest, "appPackageIds");
+
+			JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
+			jsonObject.put("cmd", "updatedApps");
+			jsonObject.put("message", "success");
+
+			JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
+
+			for (long appPackageId : appPackageIds) {
+				File file = null;
+
+				try {
+					file = FileUtil.createTempFile();
+
+					downloadApp(
+						actionRequest, actionResponse, appPackageId, false,
+						file);
+
+					App app = AppServiceUtil.updateApp(file);
+
+					AppServiceUtil.installApp(app.getRemoteAppId());
+
+					jsonArray.put(getAppJSONObject(app));
+				}
+				finally {
+					if (file != null) {
+						file.delete();
+					}
+				}
+			}
+
+			writeJSON(actionRequest, actionResponse, jsonObject);
+		}
+		finally {
+			LockLocalServiceUtil.unlock(lock.getClassName(), lock.getKey());
 		}
 	}
 
