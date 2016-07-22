@@ -159,6 +159,10 @@ public class AdminPortlet extends MVCPortlet {
 			PortletPropsKeys.SYNC_CLIENT_POLL_INTERVAL,
 			String.valueOf(pollInterval));
 
+		portletPreferences.setValue(
+			PortletPropsKeys.SYNC_CONTEXT_MODIFIED_TIME,
+			String.valueOf(System.currentTimeMillis()));
+
 		portletPreferences.store();
 
 		if (oAuthEnabled) {

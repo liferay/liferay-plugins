@@ -608,8 +608,9 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 				lastAccessTime, repositoryId, events);
 
 			if (count == 0) {
-				SyncDLObjectUpdate syncDLObjectUpdate = new SyncDLObjectUpdate(
-					Collections.<SyncDLObject>emptyList(), 0, lastAccessTime);
+				SyncDLObjectUpdate syncDLObjectUpdate = getSyncDLObjectUpdate(
+					Collections.<SyncDLObject>emptyList(), 0, lastAccessTime,
+					lastAccessTime);
 
 				return syncDLObjectUpdate.toString();
 			}
@@ -643,9 +644,9 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			SyncDLObject syncDLObject = syncDLObjects.get(
 				syncDLObjects.size() - 1);
 
-			SyncDLObjectUpdate syncDLObjectUpdate = new SyncDLObjectUpdate(
+			SyncDLObjectUpdate syncDLObjectUpdate = getSyncDLObjectUpdate(
 				checkSyncDLObjects(syncDLObjects, repositoryId, lastAccessTime),
-				count, syncDLObject.getModifiedTime());
+				count, syncDLObject.getModifiedTime(), lastAccessTime);
 
 			return syncDLObjectUpdate.toString();
 		}
@@ -672,9 +673,10 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			SyncDLObject syncDLObject = syncDLObjects.get(
 				syncDLObjects.size() - 1);
 
-			SyncDLObjectUpdate syncDLObjectUpdate = new SyncDLObjectUpdate(
+			SyncDLObjectUpdate syncDLObjectUpdate = getSyncDLObjectUpdate(
 				checkSyncDLObjects(syncDLObjects, repositoryId, lastAccessTime),
-				syncDLObjects.size(), syncDLObject.getModifiedTime());
+				syncDLObjects.size(), syncDLObject.getModifiedTime(),
+				lastAccessTime);
 
 			return syncDLObjectUpdate.toString();
 		}
@@ -1074,6 +1076,29 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		catch (PortalException pe) {
 			throw new PortalException(SyncUtil.buildExceptionMessage(pe), pe);
 		}
+	}
+
+	protected static SyncDLObjectUpdate getSyncDLObjectUpdate(
+			List<SyncDLObject> syncDLObjects, int resultsTotal,
+			long lastAccessTime, long previousLastAccessTime)
+		throws SystemException {
+
+		Map<String, Long> settingsModifiedTimes = new HashMap<String, Long>();
+
+		long syncContextModifiedTime = PrefsPropsUtil.getLong(
+			CompanyThreadLocal.getCompanyId(),
+			PortletPropsKeys.SYNC_CONTEXT_MODIFIED_TIME);
+
+		if ((syncContextModifiedTime != 0) &&
+			(syncContextModifiedTime > previousLastAccessTime)) {
+
+			settingsModifiedTimes.put(
+				PortletPropsKeys.SYNC_CONTEXT_MODIFIED_TIME,
+				syncContextModifiedTime);
+		}
+
+		return new SyncDLObjectUpdate(
+			syncDLObjects, resultsTotal, lastAccessTime, settingsModifiedTimes);
 	}
 
 	protected static boolean syncDeviceSupports(int featureSet) {
