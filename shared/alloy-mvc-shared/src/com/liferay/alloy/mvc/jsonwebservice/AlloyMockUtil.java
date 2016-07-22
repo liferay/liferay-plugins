@@ -721,7 +721,7 @@ public class AlloyMockUtil {
 		}
 
 		@Override
-		public java.util.Enumeration<String> getAttributeNames() {
+		public Enumeration<String> getAttributeNames() {
 			throw new UnsupportedOperationException();
 		}
 
@@ -1361,7 +1361,7 @@ public class AlloyMockUtil {
 		}
 
 		@Override
-		public java.util.Locale getLocale() {
+		public Locale getLocale() {
 			throw new UnsupportedOperationException();
 		}
 

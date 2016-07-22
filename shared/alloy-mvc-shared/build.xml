@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE project>
 
-<project name="alloy-mvc-shared" basedir="." default="deploy">
+<project basedir="." default="deploy" name="alloy-mvc-shared">
 	<property name="plugin.version" value="1" />
 
 	<import file="../build-common-shared.xml" />

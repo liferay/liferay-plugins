@@ -84,8 +84,8 @@ public class AlloyControllerInvokerManager {
 				alloyControllerInvoker);
 		}
 
-		Class<? extends AlloyControllerInvoker>
-			alloyControllerInvokerClass = null;
+		Class<? extends AlloyControllerInvoker> alloyControllerInvokerClass =
+			null;
 
 		AlloyControllerInvoker alloyControllerInvoker = null;
 
