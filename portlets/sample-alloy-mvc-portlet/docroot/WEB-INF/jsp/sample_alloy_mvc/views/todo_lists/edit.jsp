@@ -27,11 +27,11 @@
 	<portlet:renderURL var="viewSAMTodoListURL">
 		<portlet:param name="controller" value="todo_lists" />
 		<portlet:param name="action" value="view" />
-		<portlet:param name="id" value="${samTodoList.samTodoListId}" />
+		<portlet:param name="samTodoListId" value="${samTodoList.samTodoListId}" />
 	</portlet:renderURL>
 
 	<aui:input name="redirect" type="hidden" value="${viewSAMTodoListURL}" />
-	<aui:input name="id" type="hidden" value="${samTodoList.samTodoListId}" />
+	<aui:input name="samTodoListId" type="hidden" value="${samTodoList.samTodoListId}" />
 
 	<aui:input name="name" />
 
@@ -44,7 +44,7 @@
 		<portlet:actionURL var="deleteSAMTodoListURL">
 			<portlet:param name="controller" value="todo_lists" />
 			<portlet:param name="action" value="delete" />
-			<portlet:param name="id" value="${samTodoList.samTodoListId}" />
+			<portlet:param name="samTodoListId" value="${samTodoList.samTodoListId}" />
 			<portlet:param name="redirect" value="${SAMTodoListsURL}" />
 		</portlet:actionURL>
 

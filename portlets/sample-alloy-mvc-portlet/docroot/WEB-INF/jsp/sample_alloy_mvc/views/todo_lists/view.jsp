@@ -33,7 +33,7 @@
 	<portlet:renderURL var="editSAMTodoListURL">
 		<portlet:param name="controller" value="todo_lists" />
 		<portlet:param name="action" value="edit" />
-		<portlet:param name="id" value="${samTodoList.samTodoListId}" />
+		<portlet:param name="samTodoListId" value="${samTodoList.samTodoListId}" />
 	</portlet:renderURL>
 
 	<aui:button href="${editSAMTodoListURL}" icon="icon-pencil" value="edit" />
