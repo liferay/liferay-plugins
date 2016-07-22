@@ -15,8 +15,8 @@
 package com.liferay.alloy.mvc;
 
 import com.liferay.alloy.mvc.jsonwebservice.AlloyMockUtil;
-import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.compat.portal.kernel.bean.BeanPropertiesUtil;
+import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.kernel.bean.ConstantsBeanFactoryUtil;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.json.JSONArray;
