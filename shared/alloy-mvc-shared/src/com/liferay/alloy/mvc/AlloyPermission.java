@@ -142,7 +142,9 @@ public class AlloyPermission {
 
 				sb.insert(i + delta, CharPool.UNDERLINE);
 
-				if (((i + 1) >= action.length()) || Character.isLowerCase(action.charAt(i + 1))) {
+				if (((i + 1) >= action.length()) ||
+					Character.isLowerCase(action.charAt(i + 1))) {
+
 					continue;
 				}
 
