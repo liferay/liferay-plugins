@@ -2725,7 +2725,13 @@ Please find a solution that does not require portal-impl.jar.
 @generated
 --%>
 
-<%@ include file="init.jsp" %>
+<%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
+
+<%@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %>
+
+<portlet:defineObjects />
+
+<liferay-theme:defineObjects />
 
 <%@ page import="com.liferay.portal.model.Portlet" %>
 <%@ page import="com.liferay.portal.service.PortletLocalServiceUtil" %>
