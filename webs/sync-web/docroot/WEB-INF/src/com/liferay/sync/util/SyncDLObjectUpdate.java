@@ -193,9 +193,9 @@ public class SyncDLObjectUpdate {
 		sb.append(StringPool.QUOTE);
 	}
 
-	private long _lastAccessTime;
-	private int _resultsTotal;
+	private final long _lastAccessTime;
+	private final int _resultsTotal;
 	private final Map<String, Long> _settingsModifiedTimes;
-	private List<SyncDLObject> _syncDLObjects;
+	private final List<SyncDLObject> _syncDLObjects;
 
 }
