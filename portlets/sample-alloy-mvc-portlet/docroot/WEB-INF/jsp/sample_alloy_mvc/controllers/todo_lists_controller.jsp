@@ -25,9 +25,9 @@ public static class AlloyControllerImpl extends BaseAlloyControllerImpl {
 	}
 
 	public void add() throws Exception {
-		SAMTodoList samTodoList = SAMTodoListLocalServiceUtil.createSAMTodoList(0);
-
 		_validateAdd();
+
+		SAMTodoList samTodoList = SAMTodoListLocalServiceUtil.createSAMTodoList(0);
 
 		updateModel(samTodoList);
 
