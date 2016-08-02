@@ -77,13 +77,7 @@ public class KBArticleMarkdownConverter {
 				"Missing title heading ID in file: " + fileEntryName);
 		}
 
-		_title = HtmlUtil.unescape(heading);
-
-		int x = _title.indexOf("[](id=");
-
-		if (x != -1) {
-			_title = _title.substring(0, x);
-		}
+		_title = HtmlUtil.unescape(stripIds(heading));
 
 		html = stripIds(html);
 
@@ -321,15 +315,7 @@ public class KBArticleMarkdownConverter {
 			int y = content.indexOf(StringPool.CLOSE_PARENTHESIS, x);
 
 			if (y != -1) {
-				int z = content.indexOf("</h", y);
-
-				if (z != (y + 1)) {
-					sb.append(content.substring(0, y + 1));
-				}
-				else {
-					sb.append(
-						StringUtil.trimTrailing(content.substring(0, index)));
-				}
+				sb.append(StringUtil.trimTrailing(content.substring(0, index)));
 
 				content = content.substring(y + 1);
 			}
