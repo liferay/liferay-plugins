@@ -44,6 +44,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.List;
@@ -96,6 +97,21 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 
 	public App fetchRemoteApp(long remoteAppId) throws SystemException {
 		return appPersistence.fetchByRemoteAppId(remoteAppId);
+	}
+
+	@Override
+	public List<App> getInstalledApps() throws SystemException {
+		List<App> installedApps = new ArrayList<App>();
+
+		List<App> apps = appPersistence.findAll();
+
+		for (App app : apps) {
+			if (app.isInstalled()) {
+				installedApps.add(app);
+			}
+		}
+
+		return installedApps;
 	}
 
 	public void installApp(long remoteAppId)

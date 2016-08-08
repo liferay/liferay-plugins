@@ -24,6 +24,7 @@ import com.liferay.marketplace.oauth.util.OAuthUtil;
 import com.liferay.marketplace.service.AppLocalServiceUtil;
 import com.liferay.marketplace.service.AppServiceUtil;
 import com.liferay.marketplace.util.MarketplaceLicenseUtil;
+import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.FileUtil;
@@ -36,7 +37,9 @@ import com.liferay.portal.theme.ThemeDisplay;
 import java.io.File;
 import java.io.IOException;
 
+import java.util.List;
 import java.util.Map;
+import java.util.concurrent.locks.ReentrantLock;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -96,6 +99,19 @@ public class StorePortlet extends RemoteMVCPortlet {
 		JSONObject jsonObject = getAppJSONObject(remoteAppId);
 
 		jsonObject.put("cmd", "getApp");
+		jsonObject.put("message", "success");
+
+		writeJSON(actionRequest, actionResponse, jsonObject);
+	}
+
+	public void getInstalledApps(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
+		jsonObject.put("apps", getInstalledAppsJSONArray());
+		jsonObject.put("cmd", "getInstalledApps");
 		jsonObject.put("message", "success");
 
 		writeJSON(actionRequest, actionResponse, jsonObject);
@@ -193,6 +209,92 @@ public class StorePortlet extends RemoteMVCPortlet {
 		}
 	}
 
+	public void updateAppLicense(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		String orderUuid = ParamUtil.getString(actionRequest, "orderUuid");
+		String productEntryName = ParamUtil.getString(
+			actionRequest, "productEntryName");
+
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
+		jsonObject.put("cmd", "updateAppLicense");
+
+		if (Validator.isNull(orderUuid) &&
+			Validator.isNotNull(productEntryName)) {
+
+			orderUuid = MarketplaceLicenseUtil.getOrder(productEntryName);
+		}
+
+		if (Validator.isNotNull(orderUuid)) {
+			MarketplaceLicenseUtil.registerOrder(orderUuid, productEntryName);
+
+			jsonObject.put("message", "success");
+		}
+		else {
+			jsonObject.put("message", "failed");
+		}
+
+		writeJSON(actionRequest, actionResponse, jsonObject);
+	}
+
+	public void updateApps(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
+		jsonObject.put("cmd", "updateApps");
+		jsonObject.put("message", "success");
+
+		if (_reentrantLock.tryLock()) {
+			try {
+				long[] appPackageIds = ParamUtil.getLongValues(
+					actionRequest, "appPackageIds");
+
+				JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
+
+				for (long appPackageId : appPackageIds) {
+					File file = null;
+
+					try {
+						file = FileUtil.createTempFile();
+
+						downloadApp(
+							actionRequest, actionResponse, appPackageId, false,
+							file);
+
+						App app = AppServiceUtil.updateApp(file);
+
+						AppServiceUtil.installApp(app.getRemoteAppId());
+
+						jsonArray.put(getAppJSONObject(app));
+					}
+					catch (Exception e) {
+						jsonObject.put("message", "failed");
+					}
+					finally {
+						if (file != null) {
+							file.delete();
+						}
+					}
+				}
+
+				jsonObject.put("updatedApps", jsonArray);
+			}
+			finally {
+				_reentrantLock.unlock();
+			}
+		}
+		else {
+			jsonObject.put("message", "failed");
+		}
+
+		writeJSON(actionRequest, actionResponse, jsonObject);
+	}
+
+	@Override
 	protected void doDispatch(
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws IOException, PortletException {
@@ -252,23 +354,30 @@ public class StorePortlet extends RemoteMVCPortlet {
 		FileUtil.write(file, response.getStream());
 	}
 
-	protected JSONObject getAppJSONObject(long remoteAppId) throws Exception {
+	protected JSONObject getAppJSONObject(App app) throws Exception {
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
+		jsonObject.put("appId", app.getRemoteAppId());
+		jsonObject.put("downloaded", app.isDownloaded());
+		jsonObject.put("installed", app.isInstalled());
+		jsonObject.put("version", app.getVersion());
+
+		return jsonObject;
+	}
+
+	protected JSONObject getAppJSONObject(long remoteAppId) throws Exception {
 		App app = AppLocalServiceUtil.fetchRemoteApp(remoteAppId);
 
 		if (app != null) {
-			jsonObject.put("appId", app.getRemoteAppId());
-			jsonObject.put("downloaded", app.isDownloaded());
-			jsonObject.put("installed", app.isInstalled());
-			jsonObject.put("version", app.getVersion());
+			return getAppJSONObject(app);
 		}
-		else {
-			jsonObject.put("appId", remoteAppId);
-			jsonObject.put("downloaded", false);
-			jsonObject.put("installed", false);
-			jsonObject.put("version", StringPool.BLANK);
-		}
+
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
+		jsonObject.put("appId", remoteAppId);
+		jsonObject.put("downloaded", false);
+		jsonObject.put("installed", false);
+		jsonObject.put("version", StringPool.BLANK);
 
 		return jsonObject;
 	}
@@ -276,6 +385,20 @@ public class StorePortlet extends RemoteMVCPortlet {
 	@Override
 	protected String getClientPortletId() {
 		return PortletKeys.STORE;
+	}
+
+	protected JSONArray getInstalledAppsJSONArray() throws Exception {
+		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
+
+		List<App> apps = AppLocalServiceUtil.getInstalledApps();
+
+		for (App app : apps) {
+			if (app.getRemoteAppId() > 0) {
+				jsonArray.put(getAppJSONObject(app));
+			}
+		}
+
+		return jsonArray;
 	}
 
 	@Override
@@ -309,5 +432,7 @@ public class StorePortlet extends RemoteMVCPortlet {
 				String.valueOf(ServerDetector.isSupportsHotDeploy())
 			});
 	}
+
+	private final ReentrantLock _reentrantLock = new ReentrantLock();
 
 }

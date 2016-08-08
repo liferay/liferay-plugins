@@ -37,6 +37,8 @@ import com.liferay.portal.theme.ThemeDisplay;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import java.lang.reflect.Method;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -202,6 +204,20 @@ public class RemoteMVCPortlet extends MVCPortlet {
 		}
 		else if (oAuthRequest.getVerb() == Verb.POST) {
 			oAuthRequest.addBodyParameter(key, value);
+		}
+	}
+
+	protected Method getActionMethod(String actionName)
+		throws NoSuchMethodException {
+
+		try {
+			return super.getActionMethod(actionName);
+		}
+		catch (NoSuchMethodError nsme) {
+			Class<?> clazz = getClass();
+
+			return clazz.getMethod(
+				actionName, ActionRequest.class, ActionResponse.class);
 		}
 	}
 

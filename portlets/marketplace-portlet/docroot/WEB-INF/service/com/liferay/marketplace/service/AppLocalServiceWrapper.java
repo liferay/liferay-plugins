@@ -267,6 +267,11 @@ public class AppLocalServiceWrapper implements AppLocalService,
 		return _appLocalService.fetchRemoteApp(remoteAppId);
 	}
 
+	public java.util.List<com.liferay.marketplace.model.App> getInstalledApps()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _appLocalService.getInstalledApps();
+	}
+
 	public void installApp(long remoteAppId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {

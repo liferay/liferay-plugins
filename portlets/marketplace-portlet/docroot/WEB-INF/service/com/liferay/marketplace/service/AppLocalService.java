@@ -247,6 +247,10 @@ public interface AppLocalService extends BaseLocalService, InvokableLocalService
 	public com.liferay.marketplace.model.App fetchRemoteApp(long remoteAppId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.marketplace.model.App> getInstalledApps()
+		throws com.liferay.portal.kernel.exception.SystemException;
+
 	public void installApp(long remoteAppId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
