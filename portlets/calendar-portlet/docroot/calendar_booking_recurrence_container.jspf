@@ -77,7 +77,7 @@ if (recurrence != null) {
 		<tbody>
 			<tr>
 				<th class="calendar-portlet-recurrence-title">
-					<liferay-ui:message key="repeats" />:
+					<liferay-ui:message key="repeat" />:
 				</th>
 				<td class="calendar-portlet-recurrence-content">
 					<aui:select label="" name="frequency">
