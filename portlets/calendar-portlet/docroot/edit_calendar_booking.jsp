@@ -190,11 +190,11 @@ for (long otherCalendarId : otherCalendarIds) {
 		<aui:input defaultLanguageId="<%= themeDisplay.getLanguageId() %>" name="title" />
 
 		<div class="<%= allDay ? "allday-class-active" : "" %>" id="<portlet:namespace />startDateContainer">
-			<aui:input ignoreRequestValue="<%= true %>" label="start-date" name="startTime" timeFormat="<%= timeFormat %>" value="<%= startTimeJCalendar %>" />
+			<aui:input ignoreRequestValue="<%= true %>" label="from" name="startTime" timeFormat="<%= timeFormat %>" value="<%= startTimeJCalendar %>" />
 		</div>
 
 		<div class="<%= allDay ? "allday-class-active" : "" %>" id="<portlet:namespace />endDateContainer">
-			<aui:input ignoreRequestValue="<%= true %>" label="end-date" name="endTime" timeFormat="<%= timeFormat %>" value="<%= endTimeJCalendar %>" />
+			<aui:input ignoreRequestValue="<%= true %>" label="to" name="endTime" timeFormat="<%= timeFormat %>" value="<%= endTimeJCalendar %>" />
 		</div>
 
 		<aui:input checked="<%= allDay %>" name="allDay" />
