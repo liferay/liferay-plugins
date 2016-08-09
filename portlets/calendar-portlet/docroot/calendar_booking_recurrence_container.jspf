@@ -178,7 +178,7 @@ if (recurrence != null) {
 		<tbody class="calendar-portlet-interval-view">
 			<tr>
 				<th class="calendar-portlet-recurrence-title">
-					<liferay-ui:message key="ends" />:
+					<liferay-ui:message key="stop-repeating" />:
 				</th>
 				<td class="calendar-portlet-recurrence-content">
 					<aui:field-wrapper cssClass="calendar-portlet-recurrence-limit" label="">
