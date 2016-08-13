@@ -111,7 +111,9 @@ public class URLMetadataScraperProcessor {
 			Elements elements = document.select(selector);
 
 			if (selector.equals("title")) {
-				content = elements.html();
+				Element firstElement = elements.first();
+
+				content = firstElement.html();
 			}
 			else {
 				content = elements.attr("content");
