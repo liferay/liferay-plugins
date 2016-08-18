@@ -336,8 +336,11 @@ AUI().use(
 				instance._statusMessage.text(options.statusMessage);
 			}
 
+			instance._chatInput.on('click', instance._click, instance);
 			instance._chatInput.on('keyup', instance._keystroke, instance);
 			instance._chatInput.on('focus', instance._keystroke, instance);
+
+			instance._chatOutput.on('click', instance._click, instance);
 		};
 
 		A.extend(
@@ -532,6 +535,10 @@ AUI().use(
 
 						chatInputEl.parentNode.style.height = (height + 5) + 'px';
 					}
+				},
+
+				_click: function () {
+					Liferay.Chat.Manager.savePanelSettings();
 				},
 
 				_keystroke: function(event) {
@@ -804,6 +811,12 @@ AUI().use(
 						backgroundImage: 'url("' + icon + '")'
 					}
 				);
+			},
+
+			savePanelSettings: function() {
+				var instance = this;
+
+				instance._saveSettings();
 			},
 
 			send: function(options, id) {
