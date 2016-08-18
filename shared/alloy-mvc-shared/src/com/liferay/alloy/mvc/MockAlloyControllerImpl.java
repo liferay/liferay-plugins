@@ -17,6 +17,7 @@ package com.liferay.alloy.mvc;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.Portlet;
 import com.liferay.portal.service.UserLocalServiceUtil;
+import com.liferay.portal.theme.ThemeDisplay;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.PageContext;
@@ -31,13 +32,16 @@ public class MockAlloyControllerImpl
 		BaseAlloyControllerImpl baseAlloyControllerImpl) {
 
 		company = baseAlloyControllerImpl.company;
-		themeDisplay = baseAlloyControllerImpl.themeDisplay;
 
 		try {
 			user = UserLocalServiceUtil.getDefaultUser(company.getCompanyId());
+
+			themeDisplay = baseAlloyControllerImpl.themeDisplay;
+
+			themeDisplay = (ThemeDisplay)themeDisplay.clone();
 		}
 		catch (Exception e) {
-			user = baseAlloyControllerImpl.user;
+			throw new RuntimeException(e);
 		}
 	}
 
