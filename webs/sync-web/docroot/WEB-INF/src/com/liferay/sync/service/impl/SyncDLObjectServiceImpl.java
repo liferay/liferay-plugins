@@ -1294,15 +1294,6 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			PortletPropsKeys.SYNC_CLIENT_BATCH_FILE_MAX_SIZE,
 			String.valueOf(batchFileMaxSize));
 
-		boolean forceSecurityMode = PrefsPropsUtil.getBoolean(
-			user.getCompanyId(),
-			PortletPropsKeys.SYNC_CLIENT_FORCE_SECURITY_MODE,
-			PortletPropsValues.SYNC_CLIENT_FORCE_SECURITY_MODE);
-
-		portletPreferencesMap.put(
-			PortletPropsKeys.SYNC_CLIENT_FORCE_SECURITY_MODE,
-			String.valueOf(forceSecurityMode));
-
 		int maxConnections = PrefsPropsUtil.getInteger(
 			user.getCompanyId(), PortletPropsKeys.SYNC_CLIENT_MAX_CONNECTIONS,
 			PortletPropsValues.SYNC_CLIENT_MAX_CONNECTIONS);

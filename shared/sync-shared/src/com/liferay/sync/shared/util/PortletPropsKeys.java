@@ -22,9 +22,6 @@ public class PortletPropsKeys {
 	public static final String SYNC_ALLOW_USER_PERSONAL_SITES =
 		"sync.allow.user.personal.sites";
 
-	public static final String SYNC_CLIENT_FORCE_SECURITY_MODE =
-		"sync.client.force.security.mode";
-
 	public static final String SYNC_CLIENT_MAX_CONNECTIONS =
 		"sync.client.max.connections";
 
