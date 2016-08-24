@@ -19,6 +19,58 @@
 		replace="\."
 	/>
 
+	<macrodef name="md5check">
+		<attribute name="file" />
+		<attribute name="md5.url" />
+
+		<sequential>
+			<local name="curl" />
+			<local name="valid.checksum" />
+
+			<exec executable="curl" outputproperty="curl">
+				<arg line="-s -o @{file}.md5 --write-out %{http_code} @{md5.url}" />
+			</exec>
+
+			<if>
+				<not>
+					<contains string="${curl}" substring="200" />
+				</not>
+				<then>
+					<delete file="@{file}.md5" />
+				</then>
+			</if>
+
+			<if>
+				<available file="@{file}.md5" />
+				<then>
+					<local name="md5.checksum" />
+
+					<loadfile property="md5.checksum" srcFile="@{file}.md5" />
+
+					<propertyregex
+						input="${md5.checksum}"
+						property="md5.checksum"
+						override="true"
+						regexp="^(\w+)"
+						select="\1"
+					/>
+
+					<checksum file="@{file}" property="${md5.checksum}" verifyproperty="valid.checksum" />
+				</then>
+				<else>
+					<property name="valid.checksum" value="true" />
+				</else>
+			</if>
+
+			<if>
+				<isfalse value="${valid.checksum}" />
+				<then>
+					<fail message="@{file} failed checksum." />
+				</then>
+			</if>
+		</sequential>
+	</macrodef>
+
 	<macrodef name="mirrors-get">
 		<attribute name="dest" />
 		<attribute default="false" name="ignoreerrors" />
