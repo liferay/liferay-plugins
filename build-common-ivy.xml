@@ -137,6 +137,8 @@
 										src="${mirrors.src}"
 										verbose="@{verbose}"
 									/>
+
+									<md5check file="${mirrors.cache.artifact.dir}/${mirrors.cache.artifact.file.name}" md5.url="${mirrors.src}.md5" />
 								</try>
 								<catch>
 									<get
@@ -145,6 +147,8 @@
 										src="${src}"
 										verbose="@{verbose}"
 									/>
+
+									<md5check file="${mirrors.cache.artifact.dir}/${mirrors.cache.artifact.file.name}" md5.url="${src}.md5" />
 								</catch>
 							</trycatch>
 						</then>
@@ -155,6 +159,8 @@
 								src="${src}"
 								verbose="@{verbose}"
 							/>
+
+							<md5check file="${mirrors.cache.artifact.dir}/${mirrors.cache.artifact.file.name}" md5.url="${src}.md5" />
 						</else>
 					</if>
 				</then>
