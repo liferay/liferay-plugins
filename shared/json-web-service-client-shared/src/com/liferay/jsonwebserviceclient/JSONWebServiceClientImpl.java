@@ -17,6 +17,7 @@ package com.liferay.jsonwebserviceclient;
 import java.io.IOException;
 import java.io.InterruptedIOException;
 
+import java.net.ProxySelector;
 import java.net.SocketException;
 import java.net.UnknownHostException;
 
@@ -82,6 +83,7 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.client.ProxyAuthenticationStrategy;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
+import org.apache.http.impl.conn.SystemDefaultRoutePlanner;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HttpContext;
 import org.apache.http.util.EntityUtils;
@@ -97,6 +99,8 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 
 	public void afterPropertiesSet() {
 		HttpClientBuilder httpClientBuilder = HttpClients.custom();
+
+		httpClientBuilder = httpClientBuilder.useSystemProperties();
 
 		HttpClientConnectionManager httpClientConnectionManager =
 			getPoolingHttpClientConnectionManager();
@@ -134,7 +138,15 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 		}
 
 		try {
-			setProxyHost(httpClientBuilder);
+			if (_proxySelector != null) {
+				httpClientBuilder.setRoutePlanner(
+					new SystemDefaultRoutePlanner(_proxySelector));
+
+				ProxySelector.setDefault(_proxySelector);
+			}
+			else {
+				setProxyHost(httpClientBuilder);
+			}
 
 			_closeableHttpClient = httpClientBuilder.build();
 
@@ -222,6 +234,10 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 			Map<String, String> headers)
 		throws JSONWebServiceTransportException {
 
+		if (!isNull(_contextPath)) {
+			url = _contextPath + url;
+		}
+
 		List<NameValuePair> nameValuePairs = toNameValuePairs(parameters);
 
 		if (!nameValuePairs.isEmpty()) {
@@ -259,6 +275,10 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 			String url, Map<String, String> parameters,
 			Map<String, String> headers)
 		throws JSONWebServiceTransportException {
+
+		if (!isNull(_contextPath)) {
+			url = _contextPath + url;
+		}
 
 		if (_logger.isDebugEnabled()) {
 			_logger.debug(
@@ -372,6 +392,10 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 		afterPropertiesSet();
 	}
 
+	public void setContextPath(String contextPath) {
+		_contextPath = contextPath;
+	}
+
 	public void setHeaders(Map<String, String> headers) {
 		_headers = headers;
 	}
@@ -417,6 +441,10 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 
 	public void setProxyPassword(String proxyPassword) {
 		_proxyPassword = proxyPassword;
+	}
+
+	public void setProxySelector(ProxySelector proxySelector) {
+		_proxySelector = proxySelector;
 	}
 
 	protected void addHeaders(
@@ -636,6 +664,7 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 		JSONWebServiceClientImpl.class);
 
 	private CloseableHttpClient _closeableHttpClient;
+	private String _contextPath;
 	private Map<String, String> _headers = Collections.emptyMap();
 	private String _hostName;
 	private int _hostPort = 80;
@@ -648,6 +677,7 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 	private int _proxyHostPort;
 	private String _proxyLogin;
 	private String _proxyPassword;
+	private ProxySelector _proxySelector;
 
 	private class HttpRequestRetryHandlerImpl
 		implements HttpRequestRetryHandler {
