@@ -19,8 +19,6 @@ import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONObject;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.pushnotifications.messaging.DestinationNames;
@@ -186,9 +184,6 @@ public class PushNotificationsDeviceLocalServiceImpl
 				oldPushNotificationsDevice.getPlatform(), newToken);
 		}
 	}
-
-	private static Log _log = LogFactoryUtil.getLog(
-		PushNotificationsDeviceLocalServiceImpl.class);
 
 	@BeanReference(name = "pushNotificationsSenders")
 	private Map<String, PushNotificationsSender> _pushNotificationsSenders;

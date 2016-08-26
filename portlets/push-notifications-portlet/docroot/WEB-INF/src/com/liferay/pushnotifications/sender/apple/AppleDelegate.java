@@ -32,7 +32,6 @@ public class AppleDelegate implements ApnsDelegate {
 
 	@Override
 	public void connectionClosed(DeliveryError deliveryError, int identifier) {
-		sendResponse(new AppleResponse(identifier, deliveryError));
 	}
 
 	@Override

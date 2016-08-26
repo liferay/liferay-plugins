@@ -19,6 +19,7 @@
 
 	<!-- Listeners -->
 
+	<bean id="messageListener.apple_push_notification_response" class="com.liferay.pushnotifications.messaging.ApplePushNotificationsResponseMessageListener" />
 	<bean id="messageListener.push_notification" class="com.liferay.pushnotifications.messaging.PushNotificationsMessageListener" />
 	<bean id="messageListener.push_notification_response" class="com.liferay.pushnotifications.messaging.PushNotificationsResponseMessageListener" />
 
@@ -40,6 +41,7 @@
 				</entry>
 				<entry key="liferay/push_notification_response">
 					<list value-type="com.liferay.portal.kernel.messaging.MessageListener">
+						<ref bean="messageListener.apple_push_notification_response" />
 						<ref bean="messageListener.push_notification_response" />
 					</list>
 				</entry>
