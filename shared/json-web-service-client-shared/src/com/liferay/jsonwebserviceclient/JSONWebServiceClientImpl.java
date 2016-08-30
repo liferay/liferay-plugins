@@ -141,8 +141,6 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 			if (_proxySelector != null) {
 				httpClientBuilder.setRoutePlanner(
 					new SystemDefaultRoutePlanner(_proxySelector));
-
-				ProxySelector.setDefault(_proxySelector);
 			}
 			else {
 				setProxyHost(httpClientBuilder);
