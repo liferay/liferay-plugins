@@ -126,6 +126,13 @@ public class AdminPortlet extends MVCPortlet {
 		portletPreferences.setValue(
 			PortletPropsKeys.SYNC_SERVICES_ENABLED, String.valueOf(enabled));
 
+		boolean forceSecurityMode = ParamUtil.getBoolean(
+			actionRequest, "forceSecurityMode");
+
+		portletPreferences.setValue(
+			PortletPropsKeys.SYNC_CLIENT_FORCE_SECURITY_MODE,
+			String.valueOf(forceSecurityMode));
+
 		int maxConnections = ParamUtil.getInteger(
 			actionRequest, "maxConnections");
 

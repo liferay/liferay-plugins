@@ -35,6 +35,10 @@ public class PortletPropsValues {
 		GetterUtil.getInteger(
 			PortletProps.get(PortletPropsKeys.SYNC_CLIENT_BATCH_FILE_MAX_SIZE));
 
+	public static final boolean SYNC_CLIENT_FORCE_SECURITY_MODE =
+		GetterUtil.getBoolean(
+			PortletProps.get(PortletPropsKeys.SYNC_CLIENT_FORCE_SECURITY_MODE));
+
 	public static final int SYNC_CLIENT_MAX_CONNECTIONS = GetterUtil.getInteger(
 		PortletProps.get(PortletPropsKeys.SYNC_CLIENT_MAX_CONNECTIONS));
 
