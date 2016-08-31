@@ -417,7 +417,12 @@ AUI.add(
 				A.io.request(
 					url.toString(),
 					{
-						data: payload,
+						data: A.merge(
+								payload,
+								{
+									p_auth: Liferay.authToken
+								}
+							),
 						dataType: 'JSON',
 						on: {
 							success: function() {
