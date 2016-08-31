@@ -400,6 +400,7 @@ AUI.add(
 
 				url.setName(params.actionName);
 				url.setPortletId('1_WAR_calendarportlet');
+				url.setWindowState('NORMAL');
 
 				A.each(
 					params.queryParameters,
