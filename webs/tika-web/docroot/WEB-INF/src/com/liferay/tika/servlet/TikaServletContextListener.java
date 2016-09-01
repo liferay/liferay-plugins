@@ -19,7 +19,6 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.metadata.RawMetadataProcessor;
 import com.liferay.portal.kernel.metadata.RawMetadataProcessorUtil;
-import com.liferay.portal.kernel.portlet.PortletClassLoaderUtil;
 import com.liferay.portal.kernel.util.BasePortalLifecycle;
 import com.liferay.portal.kernel.util.File;
 import com.liferay.portal.kernel.util.FileUtil;
@@ -76,8 +75,7 @@ public class TikaServletContextListener
 	@Override
 	protected void doPortalInit() {
 		ClassLoader portalClassLoader = PortalClassLoaderUtil.getClassLoader();
-		ClassLoader portletClassLoader =
-			PortletClassLoaderUtil.getClassLoader();
+		ClassLoader portletClassLoader = getClass().getClassLoader();
 
 		try {
 			_originalFile = FileUtil.getFile();
