@@ -14,6 +14,7 @@
 
 package com.liferay.tika.util;
 
+import com.liferay.compat.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.File;
@@ -66,14 +67,22 @@ public class TikaFileInvocationHandler implements InvocationHandler {
 	protected String extractText(
 		InputStream is, String fileName, int maxStringLength) {
 
+		if (maxStringLength == 0) {
+			return StringPool.BLANK;
+		}
+
 		String text = null;
 
 		try {
 			Tika tika = new Tika();
 
-			tika.setMaxStringLength(maxStringLength);
+			tika.setMaxStringLength(-1);
 
 			text = tika.parseToString(is);
+
+			if (maxStringLength != -1) {
+				text = StringUtil.shorten(text, maxStringLength);
+			}
 		}
 		catch (Exception e) {
 			Throwable throwable = ExceptionUtils.getRootCause(e);
