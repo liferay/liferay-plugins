@@ -19,11 +19,10 @@
 <%@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %><%@
 taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 
-<%@ page import="com.liferay.portal.kernel.util.Http" %><%@
-page import="com.liferay.portal.kernel.util.HttpUtil" %><%@
-page import="com.liferay.portal.kernel.util.PortalUtil"%><%@
-page import="com.liferay.portal.kernel.util.StringBundler"%>
-
-<portlet:defineObjects />
+<%@ page import="com.liferay.portal.kernel.util.HttpUtil" %><%@
+page import="com.liferay.portal.kernel.util.PortalUtil" %><%@
+page import="com.liferay.portal.kernel.util.StringBundler" %>
 
 <liferay-theme:defineObjects />
+
+<portlet:defineObjects />
