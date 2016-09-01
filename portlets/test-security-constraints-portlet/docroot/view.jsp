@@ -17,48 +17,53 @@
 <%@ include file="/init.jsp" %>
 
 <%
-StringBundler sb = new StringBundler();
+StringBundler sb = new StringBundler(3);
 
 sb.append(themeDisplay.getPortalURL());
 sb.append(PortalUtil.getPathContext());
 sb.append(pageContext.getServletContext().getContextPath());
 %>
+
 <p>
-	testForbiddenPath=<%=_testContainsText(sb.toString() + "/public/restricted/icon.png", "403", "PASSED", "FAILED") %>
+	testForbiddenPath = <%=_testContainsText(sb.toString() + "/public/restricted/icon.png", "403") %>
 </p>
+
 <p>
-	testForbiddenExtension=<%=_testContainsText(sb.toString() + "/public/web.xml", "403", "PASSED", "FAILED") %>
+	testForbiddenExtension = <%=_testContainsText(sb.toString() + "/public/web.xml", "403") %>
 </p>
+
 <p>
-	testAllowed=<%=_testContainsText(sb.toString() + "/public/view.jsp", "PASSED", "PASSED", "FAILED") %>
+	testAllowed = <%=_testContainsText(sb.toString() + "/public/view.jsp", "PASSED") %>
 </p>
+
 <p>
-	testFileAllowed=<%=_testBinarySize(sb.toString() + "/public/icon2.png", 467, "PASSED", "FAILED") %>
+	testFileAllowed = <%=_testBinarySize(sb.toString() + "/public/icon2.png", 467) %>
 </p>
+
 <p>
-	testFileForbidden=<%=_testContainsText(sb.toString() + "/public/icon.png", "403", "PASSED", "FAILED") %>
+	testFileForbidden = <%=_testContainsText(sb.toString() + "/public/icon.png", "403") %>
 </p>
+
 <%!
+private static String _testBinarySize(String location, long expected) throws Exception {
+	byte[] byteArray = HttpUtil.URLtoByteArray(location);
 
-private static String _testContainsText(String location, String expected, String textPassed, String textFailed) throws Exception {
-	String text = HttpUtil.URLtoString(location);
-
-	if (text.contains(expected)) {
-		return textPassed;
+	if ((byteArray != null) && (byteArray.length == expected)) {
+		return "PASSED";
 	}
 	else {
-		return textFailed;
+		return "FAILED";
 	}
 }
 
-private static String _testBinarySize(String location, long expected, String textPassed, String textFailed) throws Exception {
-	byte[] file = HttpUtil.URLtoByteArray(location);
+private static String _testContainsText(String location, String expected) throws Exception {
+	String text = HttpUtil.URLtoString(location);
 
-	if (file != null && file.length == expected) {
-		return textPassed;
+	if (text.contains(expected)) {
+		return "PASSED";
 	}
 	else {
-		return textFailed;
+		return "FAILED";
 	}
 }
 %>
