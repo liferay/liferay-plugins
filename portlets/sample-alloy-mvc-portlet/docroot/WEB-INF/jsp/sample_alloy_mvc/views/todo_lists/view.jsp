@@ -37,4 +37,59 @@
 	</portlet:renderURL>
 
 	<aui:button href="${editSAMTodoListURL}" icon="icon-pencil" value="edit" />
+
+	<portlet:renderURL var="createSAMTodoItemURL">
+		<portlet:param name="controller" value="todo_items" />
+		<portlet:param name="action" value="create" />
+		<portlet:param name="samTodoListId" value="${samTodoList.samTodoListId}" />
+	</portlet:renderURL>
+
+	<aui:button href="${createSAMTodoItemURL}" icon="icon-plus" value="create-todo-item" />
 </aui:button-row>
+
+<liferay-ui:search-container emptyResultsMessage="there-are-no-items-for-this-list" iteratorURL="${portletURL}" orderByCol="${samTodoItemsOrderByCol}" orderByColParam="samTodoItemsOrderByCol" orderByType="${samTodoItemsOrderByType}" orderByTypeParam="samTodoItemsOrderByType">
+	<liferay-ui:search-container-results
+		results="${samTodoItems}"
+	/>
+
+	<liferay-ui:search-container-row
+		className="com.liferay.samplealloymvc.model.SAMTodoItem"
+		escapedModel="${true}"
+		keyProperty="samTodoItemId"
+		modelVar="samTodoItem"
+	>
+		<portlet:renderURL var="viewSAMTodoItemURL">
+			<portlet:param name="controller" value="todo_items" />
+			<portlet:param name="action" value="view" />
+			<portlet:param name="samTodoItemId" value="${samTodoItem.samTodoItemId}" />
+		</portlet:renderURL>
+
+		<liferay-ui:search-container-column-text
+			href="${viewSAMTodoItemURL}"
+			name="priority"
+			orderable="${true}"
+			orderableProperty="priority"
+			translate="${true}"
+			value="${SAMTodoItemConstantsMethods.getPriorityLabel(samTodoItem.priority)}"
+		/>
+
+		<liferay-ui:search-container-column-text
+			href="${viewSAMTodoItemURL}"
+			name="description"
+			orderable="${true}"
+			orderableProperty="priority"
+			value="${samTodoItem.description}"
+		/>
+
+		<liferay-ui:search-container-column-text
+			href="${viewSAMTodoItemURL}"
+			name="status"
+			orderable="${true}"
+			orderableProperty="status"
+			translate="${true}"
+			value="${SAMTodoItemConstantsMethods.getStatusLabel(samTodoItem.status)}"
+		/>
+	</liferay-ui:search-container-row>
+
+	<liferay-ui:search-iterator />
+</liferay-ui:search-container>

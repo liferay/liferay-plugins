@@ -106,6 +106,30 @@ public static class AlloyControllerImpl extends BaseAlloyControllerImpl {
 		_validateView(samTodoList);
 
 		renderRequest.setAttribute("samTodoList", samTodoList);
+
+		portletURL.setParameter("samTodoListId", String.valueOf(samTodoList.getSamTodoListId()));
+
+		renderRequest.setAttribute("portletURL", portletURL);
+
+		renderRequest.setAttribute("SAMTodoItemConstantsMethods", new SAMTodoItemConstants());
+
+		SearchContainer<SAMTodoItem> samTodoItemSearchContainer = new SearchContainer<SAMTodoItem>(portletRequest, portletURL, null, null);
+
+		String samTodoItemsOrderByCol = ParamUtil.getString(request, "samTodoItemsOrderByCol", "priority");
+
+		renderRequest.setAttribute("samTodoItemsOrderByCol", samTodoItemsOrderByCol);
+
+		String samTodoItemsOrderByType = ParamUtil.getString(request, "samTodoItemsOrderByType", "asc");
+
+		renderRequest.setAttribute("samTodoItemsOrderByType", samTodoItemsOrderByType);
+
+		OrderByComparator samTodoItemsOBC = OrderByComparatorFactoryUtil.create(SAMTodoListModelImpl.TABLE_NAME, samTodoItemsOrderByCol, samTodoItemsOrderByType.equals("asc"));
+
+		AlloyServiceInvoker samTodoItemAlloyServiceInvoker = new AlloyServiceInvoker(SAMTodoItem.class.getName());
+
+		List<SAMTodoItem> samTodoItems = samTodoItemAlloyServiceInvoker.executeDynamicQuery(new Object[] {"samTodoListId", samTodoList.getSamTodoListId()}, samTodoItemSearchContainer.getStart(), samTodoItemSearchContainer.getEnd(), samTodoItemsOBC);
+
+		renderRequest.setAttribute("samTodoItems", samTodoItems);
 	}
 
 	private SAMTodoList _fetchSAMTodoList() throws Exception {
