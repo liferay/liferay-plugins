@@ -25,23 +25,23 @@ sb.append(pageContext.getServletContext().getContextPath());
 %>
 
 <p>
-	testForbiddenPath = <%= _testContainsText(sb.toString() + "/public/restricted/icon.png", "403") %>
+	testForbiddenPath=<%= _testContainsText(sb.toString() + "/public/restricted/icon_3.png", "403") %>
 </p>
 
 <p>
-	testForbiddenExtension = <%= _testContainsText(sb.toString() + "/public/web.xml", "403") %>
+	testForbiddenExtension=<%= _testContainsText(sb.toString() + "/public/web.xml", "403") %>
 </p>
 
 <p>
-	testAllowed = <%= _testContainsText(sb.toString() + "/public/view.jsp", "PASSED") %>
+	testAllowed=<%= _testContainsText(sb.toString() + "/public/view.jsp", "PASSED") %>
 </p>
 
 <p>
-	testFileAllowed = <%= _testBinarySize(sb.toString() + "/public/icon2.png", 467) %>
+	testFileAllowed=<%= _testBinarySize(sb.toString() + "/public/icon_2.png", 467) %>
 </p>
 
 <p>
-	testFileForbidden = <%= _testContainsText(sb.toString() + "/public/icon.png", "403") %>
+	testFileForbidden=<%= _testContainsText(sb.toString() + "/public/icon_1.png", "403") %>
 </p>
 
 <%!
