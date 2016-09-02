@@ -25,30 +25,30 @@ sb.append(pageContext.getServletContext().getContextPath());
 %>
 
 <p>
-	testForbiddenPath=<%= _testContainsText(sb.toString() + "/public/restricted/icon_3.png", "403") %>
+	Allowed File=<%= _testBinarySize(sb.toString() + "/public/icon_2.png", 467) %>
 </p>
 
 <p>
-	testForbiddenExtension=<%= _testContainsText(sb.toString() + "/public/web.xml", "403") %>
+	Allowed Path=<%= _testContainsText(sb.toString() + "/public/view.jsp", "PASSED") %>
 </p>
 
 <p>
-	testAllowed=<%= _testContainsText(sb.toString() + "/public/view.jsp", "PASSED") %>
+	Forbidden Extension=<%= _testContainsText(sb.toString() + "/public/web.xml", "403") %>
 </p>
 
 <p>
-	testFileAllowed=<%= _testBinarySize(sb.toString() + "/public/icon_2.png", 467) %>
+	Forbidden File =<%= _testContainsText(sb.toString() + "/public/icon_1.png", "403") %>
 </p>
 
 <p>
-	testFileForbidden=<%= _testContainsText(sb.toString() + "/public/icon_1.png", "403") %>
+	Forbidden Path=<%= _testContainsText(sb.toString() + "/public/restricted/icon_3.png", "403") %>
 </p>
 
 <%!
 private static String _testBinarySize(String location, long expected) throws Exception {
-	byte[] byteArray = HttpUtil.URLtoByteArray(location);
+	byte[] bytes = HttpUtil.URLtoByteArray(location);
 
-	if ((byteArray != null) && (byteArray.length == expected)) {
+	if ((bytes != null) && (bytes.length == expected)) {
 		return "PASSED";
 	}
 	else {
