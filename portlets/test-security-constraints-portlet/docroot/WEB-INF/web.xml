@@ -3,17 +3,17 @@
 <web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
 	<security-constraint>
 		<web-resource-collection>
-			<web-resource-name>icon.png</web-resource-name>
-			<url-pattern>/public/icon.png</url-pattern>
-		</web-resource-collection>
-		<web-resource-collection>
-			<web-resource-name>all XML</web-resource-name>
+			<web-resource-name>All XML</web-resource-name>
 			<url-pattern>*.xml</url-pattern>
 		</web-resource-collection>
 		<web-resource-collection>
-			<web-resource-name>restricted folder</web-resource-name>
+			<web-resource-name>Icon 1</web-resource-name>
+			<url-pattern>/public/icon_1.png</url-pattern>
+		</web-resource-collection>
+		<web-resource-collection>
+			<web-resource-name>Restricted Folder</web-resource-name>
 			<url-pattern>/public/restricted/*</url-pattern>
 		</web-resource-collection>
-		<auth-constraint/>
+		<auth-constraint />
 	</security-constraint>
 </web-app>
