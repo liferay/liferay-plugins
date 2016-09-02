@@ -1,0 +1,44 @@
+<definition component-name="social-office-communication">
+	<property name="hook.plugins.includes" value="deploy-listener-hook,portal-compat-hook,so-activities-hook,so-hook" />
+	<property name="portlet.plugins.includes" value="calendar-portlet,chat-portlet,contacts-portlet,events-display-portlet,marketplace-portlet,microblogs-portlet,notifications-portlet,private-messaging-portlet,so-announcements-portlet,so-configurations-portlet,so-portlet,tasks-portlet,wysiwyg-portlet" />
+	<property name="testray.main.component.name" value="Social Office EE" />
+	<property name="theme.plugins.includes" value="so-theme" />
+	<property name="web.plugins.includes" value="resources-importer-web" />
+	<property name="setup.wizard.enabled" value="true" />
+
+	<var name="adminEmailAddress" value="test@liferay.com" />
+	<var name="adminFirstName" value="Joe" />
+	<var name="adminListName" value="Bloggs, Joe" />
+	<var name="adminName" value="Joe Bloggs" />
+	<var name="adminScreenName" value="joebloggs" />
+	<var name="fullDatabase" value="true" />
+	<var name="soPage" value="true" />
+
+	<set-up>
+		<execute macro="SOUser#firstLoginPG" />
+	</set-up>
+
+	<tear-down>
+		<execute macro="SOUserBar#tearDownNotifications" />
+
+		<execute macro="SOUser#tearDownCP" />
+
+		<execute macro="SOContactsCenter#tearDownContacts" />
+
+		<execute macro="SOSite#tearDownCP" />
+	</tear-down>
+
+	<command name="ViewMoreContacts" priority="3">
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="Contacts Center" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute function="AssertTextNotPresent" value1="SFO 9, Test" />
+		<execute function="AssertTextNotPresent" value1="test.sfo.9@liferay.com" />
+		<execute function="AssertClick#assertPartialTextClickAt" locator1="SOContactscenter#CONTACTS_LIST_VIEW_MORE" value1="View More" />
+		<execute function="AssertTextPresent" value1="SFO 9, Test" />
+		<execute function="AssertTextPresent" value1="test.sfo.9@liferay.com" />
+	</command>
+</definition>

@@ -1,0 +1,759 @@
+<definition component-name="social-office-user-information">
+	<property name="hook.plugins.includes" value="deploy-listener-hook,portal-compat-hook,so-activities-hook,so-hook" />
+	<property name="portlet.plugins.includes" value="calendar-portlet,chat-portlet,contacts-portlet,events-display-portlet,marketplace-portlet,microblogs-portlet,notifications-portlet,private-messaging-portlet,so-announcements-portlet,so-configurations-portlet,so-portlet,tasks-portlet,wysiwyg-portlet" />
+	<property name="testray.main.component.name" value="Social Office EE" />
+	<property name="theme.plugins.includes" value="so-theme" />
+	<property name="web.plugins.includes" value="resources-importer-web" />
+
+	<var name="adminEmailAddress" value="test@liferay.com" />
+	<var name="adminListName" value="Test, Test" />
+	<var name="adminName" value="Test Test" />
+	<var name="adminScreenName" value="test" />
+	<var name="password" value="test" />
+	<var name="userEmailAddress" value="socialoffice01@liferay.com" />
+	<var name="userFirstName" value="Social01" />
+	<var name="userLastName" value="User01" />
+	<var name="userListName" value="User01, Social01" />
+	<var name="userMiddleName" value="Office01" />
+	<var name="userName" value="Social01 Office01 User01" />
+	<var name="userScreenName" value="socialoffice01" />
+
+	<set-up>
+		<execute macro="SOUser#firstLoginPG" />
+
+		<execute macro="SOUser#addUserWithSORole">
+			<var name="adminEmailAddress" value="test@liferay.com" />
+			<var name="password" value="test" />
+			<var name="userEmailAddress" value="${userEmailAddress}" />
+			<var name="userFirstName" value="${userFirstName}" />
+			<var name="userLastName" value="${userLastName}" />
+			<var name="userMiddleName" value="${userMiddleName}" />
+			<var name="userScreenName" value="${userScreenName}" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress}" />
+			<var name="userLoginFullName" value="${userName}" />
+		</execute>
+	</set-up>
+
+	<tear-down>
+		<execute macro="SOUserBar#tearDownNotifications" />
+
+		<execute macro="SOUser#tearDownCP" />
+	</tear-down>
+
+	<command name="AddMultipleAdditionalEmailAddresses" priority="4">
+		<var name="userAdditionalEmailAddress1" value="socialoffice02@liferay.com" />
+		<var name="userAdditionalEmailAddress2" value="socialoffice03@liferay.com" />
+		<var name="userAdditionalEmailAddress3" value="socialoffice04@liferay.com" />
+		<var name="userAdditionalEmailType1" value="Email Address" />
+		<var name="userAdditionalEmailType2" value="Email Address 2" />
+		<var name="userAdditionalEmailType3" value="Email Address 3" />
+
+		<execute macro="SOProfile#addAdditionalEmailAddresses">
+			<var name="userAdditionalEmailAddressList" value="${userAdditionalEmailAddress1},${userAdditionalEmailAddress2},${userAdditionalEmailAddress3}" />
+			<var name="userAdditionalEmailTypeList" value="${userAdditionalEmailType1},${userAdditionalEmailType2},${userAdditionalEmailType3}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#viewAdditionalEmailAddress">
+			<var name="userAdditionalEmailAddress" value="${userAdditionalEmailAddress1}" />
+			<var name="userAdditionalEmailType" value="${userAdditionalEmailType1}" />
+		</execute>
+
+		<execute macro="SOProfile#viewAdditionalEmailAddress">
+			<var name="userAdditionalEmailAddress" value="${userAdditionalEmailAddress2}" />
+			<var name="userAdditionalEmailType" value="${userAdditionalEmailType2}" />
+		</execute>
+
+		<execute macro="SOProfile#viewAdditionalEmailAddress">
+			<var name="userAdditionalEmailAddress" value="${userAdditionalEmailAddress3}" />
+			<var name="userAdditionalEmailType" value="${userAdditionalEmailType3}" />
+		</execute>
+	</command>
+
+	<command name="AddMultipleAddresses" priority="4">
+		<var name="userAddress1City" value="Ray of Light" />
+		<var name="userAddress1Country" value="United States" />
+		<var name="userAddress1PostalCode" value="91234" />
+		<var name="userAddress1Region" value="California" />
+		<var name="userAddress1Street1" value="123 Liferay Ln." />
+		<var name="userAddress1Type" value="Personal" />
+		<var name="userAddress2City" value="New Ray of Light" />
+		<var name="userAddress2Country" value="Canada" />
+		<var name="userAddress2PostalCode" value="95678" />
+		<var name="userAddress2Region" value="Ontario" />
+		<var name="userAddress2Street1" value="456 Liferay Ln." />
+		<var name="userAddress2Type" value="Business" />
+		<var name="userAddress3City" value="Brand New Ray of Light" />
+		<var name="userAddress3Country" value="Mexico" />
+		<var name="userAddress3PostalCode" value="99012" />
+		<var name="userAddress3Region" value="Baja California" />
+		<var name="userAddress3Street1" value="789 Liferay Ln." />
+		<var name="userAddress3Type" value="Other" />
+
+		<execute macro="SOProfile#addAddresses">
+			<var name="userAddressCityList" value="${userAddress1City},${userAddress2City},${userAddress3City}" />
+			<var name="userAddressCountryList" value="${userAddress1Country},${userAddress2Country},${userAddress3Country}" />
+			<var name="userAddressPostalCodeList" value="${userAddress1PostalCode},${userAddress2PostalCode},${userAddress3PostalCode}" />
+			<var name="userAddressRegionList" value="${userAddress1Region},${userAddress2Region},${userAddress3Region}" />
+			<var name="userAddressStreet1List" value="${userAddress1Street1},${userAddress2Street1},${userAddress3Street1}" />
+			<var name="userAddressTypeList" value="${userAddress1Type},${userAddress2Type},${userAddress3Type}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#viewAddress">
+			<var name="userAddressCity" value="${userAddress1City}" />
+			<var name="userAddressCountry" value="${userAddress1Country}" />
+			<var name="userAddressPostalCode" value="${userAddress1PostalCode}" />
+			<var name="userAddressRegion" value="${userAddress1Region}" />
+			<var name="userAddressStreet1" value="${userAddress1Street1}" />
+			<var name="userAddressType" value="${userAddress1Type}" />
+		</execute>
+
+		<execute macro="SOProfile#viewAddress">
+			<var name="mailingAddress" value="false" />
+			<var name="userAddressCity" value="${userAddress2City}" />
+			<var name="userAddressCountry" value="${userAddress2Country}" />
+			<var name="userAddressPostalCode" value="${userAddress2PostalCode}" />
+			<var name="userAddressRegion" value="${userAddress2Region}" />
+			<var name="userAddressStreet1" value="${userAddress2Street1}" />
+			<var name="userAddressType" value="${userAddress2Type}" />
+		</execute>
+
+		<execute macro="SOProfile#viewAddress">
+			<var name="mailingAddress" value="false" />
+			<var name="userAddressCity" value="${userAddress3City}" />
+			<var name="userAddressCountry" value="${userAddress3Country}" />
+			<var name="userAddressPostalCode" value="${userAddress3PostalCode}" />
+			<var name="userAddressRegion" value="${userAddress3Region}" />
+			<var name="userAddressStreet1" value="${userAddress3Street1}" />
+			<var name="userAddressType" value="${userAddress3Type}" />
+		</execute>
+	</command>
+
+	<command name="AddMultiplePhoneNumbers" priority="4">
+		<var name="userPhoneNumberExtension1" value="123" />
+		<var name="userPhoneNumberExtension2" value="456" />
+		<var name="userPhoneNumberExtension3" value="789" />
+		<var name="userPhoneNumberNumber1" value="123-123-1234" />
+		<var name="userPhoneNumberNumber2" value="456-456-4567" />
+		<var name="userPhoneNumberNumber3" value="789-789-7890" />
+		<var name="userPhoneNumberType1" value="Business" />
+		<var name="userPhoneNumberType2" value="Personal" />
+		<var name="userPhoneNumberType3" value="Mobile Phone" />
+
+		<execute macro="SOProfile#addPhoneNumbers">
+			<var name="userPhoneNumberExtensionList" value="${userPhoneNumberExtension1},${userPhoneNumberExtension2},${userPhoneNumberExtension3}" />
+			<var name="userPhoneNumberNumberList" value="${userPhoneNumberNumber1},${userPhoneNumberNumber2},${userPhoneNumberNumber3}" />
+			<var name="userPhoneNumberTypeList" value="${userPhoneNumberType1},${userPhoneNumberType2},${userPhoneNumberType3}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#viewPhoneNumbers">
+			<var name="userPhoneNumberExtension" value="${userPhoneNumberExtension1}" />
+			<var name="userPhoneNumberNumber" value="${userPhoneNumberNumber1}" />
+			<var name="userPhoneNumberType" value="${userPhoneNumberType1}" />
+		</execute>
+
+		<execute macro="SOProfile#viewPhoneNumbers">
+			<var name="userPhoneNumberExtension" value="${userPhoneNumberExtension2}" />
+			<var name="userPhoneNumberNumber" value="${userPhoneNumberNumber2}" />
+			<var name="userPhoneNumberType" value="${userPhoneNumberType2}" />
+		</execute>
+
+		<execute macro="SOProfile#viewPhoneNumbers">
+			<var name="userPhoneNumberExtension" value="${userPhoneNumberExtension3}" />
+			<var name="userPhoneNumberNumber" value="${userPhoneNumberNumber3}" />
+			<var name="userPhoneNumberType" value="${userPhoneNumberType3}" />
+		</execute>
+	</command>
+
+	<command name="AddMultipleWebsites" priority="4">
+		<var name="userWebsiteType1" value="Personal" />
+		<var name="userWebsiteType2" value="Business" />
+		<var name="userWebsiteType3" value="Blog" />
+		<var name="userWebsiteURL1" value="http://www.socialoffice01.com" />
+		<var name="userWebsiteURL2" value="http://www.socialoffice02.com" />
+		<var name="userWebsiteURL3" value="http://www.socialoffice03.com" />
+
+		<execute macro="SOProfile#addWebsites">
+			<var name="userWebsiteTypeList" value="${userWebsiteType1},${userWebsiteType2},${userWebsiteType3}" />
+			<var name="userWebsiteURLList" value="${userWebsiteURL1},${userWebsiteURL2},${userWebsiteURL3}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#viewWebsite">
+			<var name="userWebsiteType" value="${userWebsiteType1}" />
+			<var name="userWebsiteURL" value="${userWebsiteURL1}" />
+		</execute>
+
+		<execute macro="SOProfile#viewWebsite">
+			<var name="userWebsiteType" value="${userWebsiteType2}" />
+			<var name="userWebsiteURL" value="${userWebsiteURL2}" />
+		</execute>
+
+		<execute macro="SOProfile#viewWebsite">
+			<var name="userWebsiteType" value="${userWebsiteType3}" />
+			<var name="userWebsiteURL" value="${userWebsiteURL3}" />
+		</execute>
+	</command>
+
+	<command name="EditAdditionalEmailAddress" priority="5">
+		<var name="userAdditionalEmailAddress" value="socialoffice02@liferay.com" />
+		<var name="userAdditionalEmailAddressEdit" value="socialoffice02edit@liferay.com" />
+
+		<execute macro="SOProfile#addAdditionalEmailAddress">
+			<var name="userAdditionalEmailAddress" value="${userAdditionalEmailAddress}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#viewAdditionalEmailAddress">
+			<var name="userAdditionalEmailAddress" value="${userAdditionalEmailAddress}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#editAdditionalEmailAddress">
+			<var name="userAdditionalEmailAddress" value="${userAdditionalEmailAddressEdit}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#viewAdditionalEmailAddress">
+			<var name="userAdditionalEmailAddress" value="${userAdditionalEmailAddressEdit}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#editAdditionalEmailAddressNull" />
+	</command>
+
+	<command name="EditAddress" priority="5">
+		<var name="userAddressCity" value="Ray of Light" />
+		<var name="userAddressCityEdit" value="New Ray of Light" />
+		<var name="userAddressCountry" value="United States" />
+		<var name="userAddressCountryEdit" value="Canada" />
+		<var name="userAddressPostalCode" value="91234" />
+		<var name="userAddressPostalCodeEdit" value="95678" />
+		<var name="userAddressRegion" value="California" />
+		<var name="userAddressRegionEdit" value="Ontario" />
+		<var name="userAddressStreet1" value="123 Liferay Ln." />
+		<var name="userAddressStreet1Edit" value="456 Liferay Ln." />
+		<var name="userAddressType" value="Personal" />
+		<var name="userAddressTypeEdit" value="Business" />
+
+		<execute macro="SOProfile#addAddress">
+			<var name="userAddressCity" value="${userAddressCity}" />
+			<var name="userAddressCountry" value="${userAddressCountry}" />
+			<var name="userAddressPostalCode" value="${userAddressPostalCode}" />
+			<var name="userAddressRegion" value="${userAddressRegion}" />
+			<var name="userAddressStreet1" value="${userAddressStreet1}" />
+			<var name="userAddressType" value="${userAddressType}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#viewAddress">
+			<var name="userAddressCity" value="${userAddressCity}" />
+			<var name="userAddressCountry" value="${userAddressCountry}" />
+			<var name="userAddressPostalCode" value="${userAddressPostalCode}" />
+			<var name="userAddressRegion" value="${userAddressRegion}" />
+			<var name="userAddressStreet1" value="${userAddressStreet1}" />
+			<var name="userAddressType" value="${userAddressType}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#editAddress">
+			<var name="userAddressCity" value="${userAddressCityEdit}" />
+			<var name="userAddressCountry" value="${userAddressCountryEdit}" />
+			<var name="userAddressPostalCode" value="${userAddressPostalCodeEdit}" />
+			<var name="userAddressRegion" value="${userAddressRegionEdit}" />
+			<var name="userAddressStreet1" value="${userAddressStreet1Edit}" />
+			<var name="userAddressType" value="${userAddressTypeEdit}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#viewAddress">
+			<var name="userAddressCity" value="${userAddressCityEdit}" />
+			<var name="userAddressCountry" value="${userAddressCountryEdit}" />
+			<var name="userAddressPostalCode" value="${userAddressPostalCodeEdit}" />
+			<var name="userAddressRegion" value="${userAddressRegionEdit}" />
+			<var name="userAddressStreet1" value="${userAddressStreet1Edit}" />
+			<var name="userAddressType" value="${userAddressTypeEdit}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#editAddressNull" />
+	</command>
+
+	<command name="EditInstantMessenger" priority="5">
+		<var name="userInstantMessengerAIM" value="socialofficesn" />
+		<var name="userInstantMessengerAIMEdit" value="socialofficesnedit" />
+		<var name="userInstantMessengerICQ" value="socialofficesn" />
+		<var name="userInstantMessengerICQEdit" value="socialofficesnedit" />
+		<var name="userInstantMessengerJabber" value="socialofficesn" />
+		<var name="userInstantMessengerJabberEdit" value="socialofficesnedit" />
+		<var name="userInstantMessengerSkype" value="socialofficesn" />
+		<var name="userInstantMessengerSkypeEdit" value="socialofficesnedit" />
+		<var name="userInstantMessengerWindowsLiveMessenger" value="socialofficesn" />
+		<var name="userInstantMessengerWindowsLiveMessengerEdit" value="socialofficesnedit" />
+		<var name="userInstantMessengerYM" value="socialofficesn" />
+		<var name="userInstantMessengerYMEdit" value="socialofficesnedit" />
+
+		<execute macro="SOProfile#addInstantMessenger">
+			<var name="userInstantMessengerAIM" value="${userInstantMessengerAIM}" />
+			<var name="userInstantMessengerICQ" value="${userInstantMessengerICQ}" />
+			<var name="userInstantMessengerJabber" value="${userInstantMessengerJabber}" />
+			<var name="userInstantMessengerSkype" value="${userInstantMessengerSkype}" />
+			<var name="userInstantMessengerWindowsLiveMessenger" value="${userInstantMessengerWindowsLiveMessenger}" />
+			<var name="userInstantMessengerYM" value="${userInstantMessengerYM}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#viewInstantMessenger">
+			<var name="userInstantMessengerAIM" value="${userInstantMessengerAIM}" />
+			<var name="userInstantMessengerICQ" value="${userInstantMessengerICQ}" />
+			<var name="userInstantMessengerJabber" value="${userInstantMessengerJabber}" />
+			<var name="userInstantMessengerSkype" value="${userInstantMessengerSkype}" />
+			<var name="userInstantMessengerWindowsLiveMessenger" value="${userInstantMessengerWindowsLiveMessenger}" />
+			<var name="userInstantMessengerYM" value="${userInstantMessengerYM}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#editInstantMessenger">
+			<var name="userInstantMessengerAIM" value="${userInstantMessengerAIMEdit}" />
+			<var name="userInstantMessengerICQ" value="${userInstantMessengerICQEdit}" />
+			<var name="userInstantMessengerJabber" value="${userInstantMessengerJabberEdit}" />
+			<var name="userInstantMessengerSkype" value="${userInstantMessengerSkypeEdit}" />
+			<var name="userInstantMessengerWindowsLiveMessenger" value="${userInstantMessengerWindowsLiveMessengerEdit}" />
+			<var name="userInstantMessengerYM" value="${userInstantMessengerYMEdit}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#viewInstantMessenger">
+			<var name="userInstantMessengerAIM" value="${userInstantMessengerAIMEdit}" />
+			<var name="userInstantMessengerICQ" value="${userInstantMessengerICQEdit}" />
+			<var name="userInstantMessengerJabber" value="${userInstantMessengerJabberEdit}" />
+			<var name="userInstantMessengerSkype" value="${userInstantMessengerSkypeEdit}" />
+			<var name="userInstantMessengerWindowsLiveMessenger" value="${userInstantMessengerWindowsLiveMessengerEdit}" />
+			<var name="userInstantMessengerYM" value="${userInstantMessengerYMEdit}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#editInstantMessengerNull" />
+	</command>
+
+	<command name="EditIntroduction" priority="5">
+		<var name="userAdditionalEmailAddress" value="socialoffice02@liferay.com" />
+		<var name="userIntroduction" value="Introduction Content" />
+		<var name="userIntroductionEdit" value="Introduction Content Edit" />
+
+		<execute macro="SOProfile#addAdditionalEmailAddress">
+			<var name="userAdditionalEmailAddress" value="${userAdditionalEmailAddress}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#addIntroduction">
+			<var name="userIntroduction" value="${userIntroduction}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#viewIntroduction">
+			<var name="userIntroduction" value="${userIntroduction}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#editIntroduction">
+			<var name="userIntroduction" value="${userIntroductionEdit}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#viewIntroduction">
+			<var name="userIntroduction" value="${userIntroductionEdit}" />
+		</execute>
+
+		<execute macro="SOProfile#viewAdditionalEmailAddress">
+			<var name="userAdditionalEmailAddress" value="${userAdditionalEmailAddress}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#editIntroductionNull" />
+	</command>
+
+	<command name="EditPersonalDetails" priority="4">
+		<var name="userEmailAddressEdit" value="socialoffice02@liferay.com" />
+		<var name="userFirstNameEdit" value="Social02" />
+		<var name="userJobTitle" value="QA Engineer" />
+		<var name="userLastNameEdit" value="User02" />
+		<var name="userMiddleNameEdit" value="Office02" />
+		<var name="userNameEdit" value="Social02 Office02 User02" />
+		<var name="userScreenNameEdit" value="socialoffice02" />
+
+		<execute macro="SOProfile#editPersonalDetails">
+			<var name="userEmailAddressEdit" value="${userEmailAddressEdit}" />
+			<var name="userFirstNameEdit" value="${userFirstNameEdit}" />
+			<var name="userJobTitle" value="${userJobTitle}" />
+			<var name="userLastNameEdit" value="${userLastNameEdit}" />
+			<var name="userMiddleNameEdit" value="${userMiddleNameEdit}" />
+			<var name="userScreenNameEdit" value="${userScreenNameEdit}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#viewPersonalDetails">
+			<var name="userEmailAddress" value="${userEmailAddressEdit}" />
+			<var name="userJobTitle" value="${userJobTitle}" />
+			<var name="userName" value="${userNameEdit}" />
+		</execute>
+	</command>
+
+	<command name="EditPhoneNumbers" priority="5">
+		<var name="userPhoneNumberExtension" value="123" />
+		<var name="userPhoneNumberExtensionEdit" value="456" />
+		<var name="userPhoneNumberNumber" value="123-123-1234" />
+		<var name="userPhoneNumberNumberEdit" value="456-456-4567" />
+		<var name="userPhoneNumberType" value="Business" />
+		<var name="userPhoneNumberTypeEdit" value="Personal" />
+
+		<execute macro="SOProfile#addPhoneNumber">
+			<var name="userPhoneNumberExtension" value="${userPhoneNumberExtension}" />
+			<var name="userPhoneNumberNumber" value="${userPhoneNumberNumber}" />
+			<var name="userPhoneNumberType" value="${userPhoneNumberType}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#viewPhoneNumbers">
+			<var name="userPhoneNumberExtension" value="${userPhoneNumberExtension}" />
+			<var name="userPhoneNumberNumber" value="${userPhoneNumberNumber}" />
+			<var name="userPhoneNumberType" value="${userPhoneNumberType}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#editPhoneNumber">
+			<var name="userPhoneNumberExtension" value="${userPhoneNumberExtensionEdit}" />
+			<var name="userPhoneNumberNumber" value="${userPhoneNumberNumberEdit}" />
+			<var name="userPhoneNumberType" value="${userPhoneNumberTypeEdit}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#viewPhoneNumbers">
+			<var name="userPhoneNumberExtension" value="${userPhoneNumberExtensionEdit}" />
+			<var name="userPhoneNumberNumber" value="${userPhoneNumberNumberEdit}" />
+			<var name="userPhoneNumberType" value="${userPhoneNumberTypeEdit}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#editPhoneNumberNull" />
+	</command>
+
+	<command name="EditProfilePicture" priority="5">
+		<var name="imageFileName" value="Document_4.jpg" />
+		<var name="imageFileNameEdit" value="Document_3.jpg" />
+		<var name="userName" value="${userName}" />
+
+		<execute macro="SOProfile#addProfilePicture">
+			<var name="imageFileName" value="${imageFileName}" />
+			<var name="userName" value="${userName}" />
+		</execute>
+
+		<execute function="SikuliAssertElementPresent" locator1="SOProfile#SCREENSHOTS_PROFILE_PICTURE_PNG" />
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#viewProfilePicture">
+			<var name="userName" value="${userName}" />
+		</execute>
+
+		<execute function="SikuliAssertElementPresent" locator1="SOProfile#SCREENSHOTS_PROFILE_PICTURE_PNG" />
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#addProfilePicture">
+			<var name="imageFileName" value="${imageFileNameEdit}" />
+			<var name="userName" value="${userName}" />
+		</execute>
+
+		<execute function="SikuliAssertElementPresent" locator1="SOProfile#SCREENSHOTS_PROFILE_PICTURE_EDIT_PNG" />
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#viewProfilePicture">
+			<var name="userName" value="${userName}" />
+		</execute>
+
+		<execute function="SikuliAssertElementPresent" locator1="SOProfile#SCREENSHOTS_PROFILE_PICTURE_EDIT_PNG" />
+	</command>
+
+	<command name="EditProjects" priority="5">
+		<var name="userProjectDescription" value="Expertise Description" />
+		<var name="userProjectDescriptionEdit" value="Expertise Description Edit" />
+		<var name="userProjectTitle" value="Expertise Title" />
+		<var name="userProjectTitleEdit" value="Expertise Title Edit" />
+
+		<execute macro="SOProfile#addProjects">
+			<var name="userProjectDescription" value="${userProjectDescription}" />
+			<var name="userProjectTitle" value="${userProjectTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#viewProjects">
+			<var name="userProjectDescription" value="${userProjectDescription}" />
+			<var name="userProjectTitle" value="${userProjectTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#editProjects">
+			<var name="userProjectDescription" value="${userProjectDescriptionEdit}" />
+			<var name="userProjectTitle" value="${userProjectTitleEdit}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#viewProjectsEdit">
+			<var name="userProjectDescription" value="${userProjectDescriptionEdit}" />
+			<var name="userProjectTitle" value="${userProjectTitleEdit}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#editProjectsNull" />
+	</command>
+
+	<command name="EditSMS" priority="5">
+		<var name="userSMS" value="socialoffice01@liferay.com" />
+		<var name="userSMSEdit" value="socialoffice01edit@liferay.com" />
+
+		<execute macro="SOProfile#addSMS">
+			<var name="userSMS" value="${userSMS}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#viewSMS">
+			<var name="userSMS" value="${userSMS}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#editSMS">
+			<var name="userSMS" value="${userSMSEdit}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#viewSMS">
+			<var name="userSMS" value="${userSMSEdit}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#editSMSNull" />
+	</command>
+
+	<command name="EditSocialNetwork" priority="5">
+		<var name="userSocialNetworkFacebook" value="socialoffice01" />
+		<var name="userSocialNetworkFacebookEdit" value="socialoffice01edit" />
+		<var name="userSocialNetworkTwitter" value="socialoffice01" />
+		<var name="userSocialNetworkTwitterEdit" value="socialoffice01edit" />
+
+		<execute macro="SOProfile#addSocialNetwork">
+			<var name="userSocialNetworkFacebook" value="${userSocialNetworkFacebook}" />
+			<var name="userSocialNetworkTwitter" value="${userSocialNetworkTwitter}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#viewSocialNetwork">
+			<var name="userSocialNetworkFacebook" value="${userSocialNetworkFacebook}" />
+			<var name="userSocialNetworkTwitter" value="${userSocialNetworkTwitter}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#editSocialNetwork">
+			<var name="userSocialNetworkFacebook" value="${userSocialNetworkFacebookEdit}" />
+			<var name="userSocialNetworkTwitter" value="${userSocialNetworkTwitterEdit}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#viewSocialNetwork">
+			<var name="userSocialNetworkFacebook" value="${userSocialNetworkFacebookEdit}" />
+			<var name="userSocialNetworkTwitter" value="${userSocialNetworkTwitterEdit}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#editSocialNetworkNull" />
+	</command>
+
+	<command known-issues="SOS-2420" name="EditTag" priority="5">
+		<var name="userTag" value="tag1" />
+		<var name="userTagEdit" value="tag2" />
+
+		<execute macro="SOProfile#addTag">
+			<var name="userTag" value="${userTag}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#viewTag">
+			<var name="userName" value="${userName}" />
+			<var name="userTag" value="${userTag}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#editTag">
+			<var name="userTag" value="${userTagEdit}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#viewTag">
+			<var name="userName" value="${userName}" />
+			<var name="userTag" value="${userTag}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#viewTag">
+			<var name="userName" value="${userName}" />
+			<var name="userTag" value="${userTagEdit}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#editTagNull" />
+	</command>
+
+	<command name="EditWebsite" priority="5">
+		<var name="userWebsiteType" value="Personal" />
+		<var name="userWebsiteTypeEdit" value="Business" />
+		<var name="userWebsiteURL" value="http://www.socialoffice01.com" />
+		<var name="userWebsiteURLEdit" value="http://www.socialoffice01edit.com" />
+
+		<execute macro="SOProfile#addWebsite">
+			<var name="userWebsiteType" value="${userWebsiteType}" />
+			<var name="userWebsiteURL" value="${userWebsiteURL}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#viewWebsite">
+			<var name="userWebsiteType" value="${userWebsiteType}" />
+			<var name="userWebsiteURL" value="${userWebsiteURL}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#editWebsite">
+			<var name="userWebsiteType" value="${userWebsiteTypeEdit}" />
+			<var name="userWebsiteURL" value="${userWebsiteURLEdit}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#viewWebsite">
+			<var name="userWebsiteType" value="${userWebsiteTypeEdit}" />
+			<var name="userWebsiteURL" value="${userWebsiteURLEdit}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#editWebsiteNull" />
+	</command>
+
+	<command name="ViewCompletedProfile" priority="3">
+		<var name="adminEmailAddress" value="test@liferay.com" />
+		<var name="adminName" value="Test Test" />
+		<var name="userEmailAddress" value="socialoffice01@liferay.com" />
+		<var name="userFirstName" value="Social01" />
+		<var name="userLastName" value="User01" />
+		<var name="userMiddleName" value="Office01" />
+		<var name="userName" value="Social01 Office01 User01" />
+		<var name="userScreenName" value="socialoffice01" />
+
+		<execute macro="SOProfile#addAdditionalEmailAddress">
+			<var name="userAdditionalEmailAddress" value="socialoffice02@liferay.com" />
+		</execute>
+
+		<execute macro="SOProfile#addAddress">
+			<var name="userAddressCity" value="Ray of Light" />
+			<var name="userAddressCountry" value="United States" />
+			<var name="userAddressPostalCode" value="91234" />
+			<var name="userAddressRegion" value="California" />
+			<var name="userAddressStreet1" value="123 Liferay Ln." />
+			<var name="userAddressType" value="Personal" />
+		</execute>
+
+		<execute macro="SOProfile#addInstantMessenger">
+			<var name="userInstantMessengerAIM" value="socialofficesn" />
+			<var name="userInstantMessengerICQ" value="socialofficesn" />
+			<var name="userInstantMessengerJabber" value="socialofficesn" />
+			<var name="userInstantMessengerSkype" value="socialofficesn" />
+			<var name="userInstantMessengerWindowsLiveMessenger" value="socialofficesn" />
+			<var name="userInstantMessengerYM" value="socialofficesn" />
+		</execute>
+
+		<execute macro="SOProfile#addIntroduction">
+			<var name="userIntroduction" value="Introduction Content" />
+		</execute>
+
+		<execute macro="SOProfile#addPhoneNumber">
+			<var name="userPhoneNumberExtension" value="123" />
+			<var name="userPhoneNumberNumber" value="123-123-1234" />
+			<var name="userPhoneNumberType" value="Business" />
+		</execute>
+
+		<execute macro="SOProfile#addProjects">
+			<var name="userProjectDescription" value="Expertise Description" />
+			<var name="userProjectTitle" value="Expertise Title" />
+		</execute>
+
+		<execute macro="SOProfile#addSMS">
+			<var name="userSMS" value="socialoffice01@liferay.com" />
+		</execute>
+
+		<execute macro="SOProfile#addSocialNetwork">
+			<var name="userSocialNetworkFacebook" value="socialoffice01" />
+			<var name="userSocialNetworkTwitter" value="socialoffice01" />
+		</execute>
+
+		<execute macro="SOProfile#addTag">
+			<var name="userTag" value="tag1" />
+		</execute>
+
+		<execute macro="SOProfile#addWebsite">
+			<var name="userWebsiteType" value="Personal" />
+			<var name="userWebsiteURL" value="http://www.socialoffice01.com" />
+		</execute>
+
+		<execute macro="SOProfile#viewNoInfoMessages" />
+	</command>
+</definition>

@@ -1,0 +1,755 @@
+<definition component-name="social-office-activities">
+	<property name="hook.plugins.includes" value="deploy-listener-hook,portal-compat-hook,so-activities-hook,so-hook" />
+	<property name="portlet.plugins.includes" value="calendar-portlet,chat-portlet,contacts-portlet,events-display-portlet,marketplace-portlet,microblogs-portlet,notifications-portlet,private-messaging-portlet,so-announcements-portlet,so-configurations-portlet,so-portlet,tasks-portlet,wysiwyg-portlet" />
+	<property name="testray.main.component.name" value="Social Office EE" />
+	<property name="theme.plugins.includes" value="so-theme" />
+	<property name="web.plugins.includes" value="resources-importer-web" />
+
+	<var name="adminEmailAddress" value="test@liferay.com" />
+	<var name="adminFirstName" value="Test" />
+	<var name="adminListName" value="Test, Test" />
+	<var name="adminName" value="Test Test" />
+	<var name="adminScreenName" value="test" />
+
+	<set-up>
+		<execute macro="SOUser#firstLoginPG" />
+	</set-up>
+
+	<tear-down>
+		<execute macro="SOSite#tearDownCP" />
+
+		<execute macro="SOUser#tearDownCP" />
+	</tear-down>
+
+	<command name="ViewAnonymousMBCategoryThreadReply" priority="5">
+		<var name="categoryName" value="MB Category Name" />
+		<var name="siteDescription" value="Open Site Description" />
+		<var name="siteName" value="Open Site Name" />
+		<var name="siteType" value="Open" />
+		<var name="soPage" value="true" />
+		<var name="threadBody" value="MB Category Thread Message Body" />
+		<var name="threadReplyBody1" value="MB Category Thread Message Reply1 Body" />
+		<var name="threadReplyBody2" value="MB Category Thread Message Reply2 Body" />
+		<var name="threadSubject" value="MB Category Thread Message Subject" />
+		<var name="userEmailAddress" value="socialoffice01@liferay.com" />
+		<var name="userFirstName" value="Social01" />
+		<var name="userLastName" value="User01" />
+		<var name="userMiddleName" value="Office01" />
+		<var name="userScreenName" value="socialoffice01" />
+
+		<execute macro="SOUser#addUserWithSORole">
+			<var name="userEmailAddress" value="${userEmailAddress}" />
+			<var name="userFirstName" value="${userFirstName}" />
+			<var name="userLastName" value="${userLastName}" />
+			<var name="userMiddleName" value="${userMiddleName}" />
+			<var name="userScreenName" value="${userScreenName}" />
+		</execute>
+
+		<execute macro="SOUserBar#addSOSite">
+			<var name="siteDescription" value="${siteDescription}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteType" value="${siteType}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="Forums" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="MessageboardsCategory#addPG">
+			<var name="categoryName" value="${categoryName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="Forums" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="MessageboardsCategory#gotoPG">
+			<var name="categoryName" value="${categoryName}" />
+		</execute>
+
+		<execute macro="MessageboardsThread#addPG">
+			<var name="threadBody" value="${threadBody}" />
+			<var name="threadSubject" value="${threadSubject}" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress}" />
+			<var name="userLoginFullName" value="${userName}" />
+		</execute>
+
+		<execute macro="SOUserBar#joinSOSite">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteType" value="${siteType}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="Forums" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="MessageboardsCategory#gotoPG">
+			<var name="categoryName" value="${categoryName}" />
+		</execute>
+
+		<execute macro="MessageboardsThread#replyPG">
+			<var name="anonymous" value="true" />
+			<var name="threadBody" value="${threadBody}" />
+			<var name="threadReplyBody" value="${threadReplyBody1}" />
+			<var name="threadSubject" value="${threadSubject}" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${adminEmailAddress}" />
+			<var name="userLoginFullName" value="${adminName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="Forums" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="MessageboardsCategory#gotoPG">
+			<var name="categoryName" value="${categoryName}" />
+		</execute>
+
+		<execute macro="MessageboardsThread#replyPG">
+			<var name="threadBody" value="${threadReplyBody1}" />
+			<var name="threadReplyBody" value="${threadReplyBody2}" />
+			<var name="threadReplySpecific" value="true" />
+			<var name="threadSubject" value="${threadSubject}" />
+		</execute>
+
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute macro="SOActivities#viewForumsActivityEntry">
+			<var name="action" value="Replied to Anonymous's forum post in ${categoryName}." />
+			<var name="dashboardView" value="true" />
+			<var name="siteName" value="${siteName}" />
+			<var name="threadBody" value="${threadReplyBody2}" />
+			<var name="threadSubject" value="RE: ${threadSubject}" />
+			<var name="userName" value="${adminFirstName}" />
+		</execute>
+
+		<execute macro="SOActivities#viewForumsActivityEntry">
+			<var name="action" value="Wrote a new forum post in ${categoryName}." />
+			<var name="dashboardView" value="true" />
+			<var name="row" value="02" />
+			<var name="siteName" value="${siteName}" />
+			<var name="threadBody" value="${threadBody}" />
+			<var name="threadSubject" value="${threadSubject}" />
+			<var name="userName" value="${adminFirstName}" />
+		</execute>
+
+		<execute function="AssertTextNotPresent" value1="${userName}" />
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOActivities#viewForumsActivityEntry">
+			<var name="action" value="Replied to Anonymous's forum post in ${categoryName}." />
+			<var name="siteName" value="${siteName}" />
+			<var name="threadBody" value="${threadReplyBody2}" />
+			<var name="threadSubject" value="RE: ${threadSubject}" />
+			<var name="userName" value="${adminFirstName}" />
+		</execute>
+
+		<execute macro="SOActivities#viewForumsActivityEntry">
+			<var name="action" value="Wrote a new forum post in ${categoryName}." />
+			<var name="row" value="02" />
+			<var name="siteName" value="${siteName}" />
+			<var name="threadBody" value="${threadBody}" />
+			<var name="threadSubject" value="${threadSubject}" />
+			<var name="userName" value="${adminFirstName}" />
+		</execute>
+
+		<execute function="AssertTextNotPresent" value1="${userName}" />
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOActivities#viewForumsActivityEntry">
+			<var name="action" value="Replied to Anonymous's forum post in ${categoryName}." />
+			<var name="profileView" value="true" />
+			<var name="siteName" value="${siteName}" />
+			<var name="threadBody" value="${threadReplyBody2}" />
+			<var name="threadSubject" value="RE: ${threadSubject}" />
+			<var name="userName" value="${adminFirstName}" />
+		</execute>
+
+		<execute macro="SOActivities#viewForumsActivityEntry">
+			<var name="action" value="Wrote a new forum post in ${categoryName}." />
+			<var name="profileView" value="true" />
+			<var name="row" value="02" />
+			<var name="siteName" value="${siteName}" />
+			<var name="threadBody" value="${threadBody}" />
+			<var name="threadSubject" value="${threadSubject}" />
+			<var name="userName" value="${adminFirstName}" />
+		</execute>
+
+		<execute function="AssertTextNotPresent" value1="${userName}" />
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress}" />
+			<var name="userLoginFullName" value="${userName}" />
+		</execute>
+
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute macro="SOActivities#viewForumsActivityEntry">
+			<var name="action" value="Replied to Anonymous's forum post in ${categoryName}." />
+			<var name="dashboardView" value="true" />
+			<var name="siteName" value="${siteName}" />
+			<var name="threadBody" value="${threadReplyBody2}" />
+			<var name="threadSubject" value="RE: ${threadSubject}" />
+			<var name="userName" value="${adminName}" />
+		</execute>
+
+		<execute macro="SOActivities#viewForumsActivityEntry">
+			<var name="action" value="Wrote a new forum post in ${categoryName}." />
+			<var name="dashboardView" value="true" />
+			<var name="row" value="02" />
+			<var name="siteName" value="${siteName}" />
+			<var name="threadBody" value="${threadBody}" />
+			<var name="threadSubject" value="${threadSubject}" />
+			<var name="userName" value="${adminName}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOActivities#viewForumsActivityEntry">
+			<var name="action" value="Replied to Anonymous's forum post in ${categoryName}." />
+			<var name="siteName" value="${siteName}" />
+			<var name="threadBody" value="${threadReplyBody2}" />
+			<var name="threadSubject" value="RE: ${threadSubject}" />
+			<var name="userName" value="${adminName}" />
+		</execute>
+
+		<execute macro="SOActivities#viewForumsActivityEntry">
+			<var name="action" value="Wrote a new forum post in ${categoryName}." />
+			<var name="row" value="02" />
+			<var name="siteName" value="${siteName}" />
+			<var name="threadBody" value="${threadBody}" />
+			<var name="threadSubject" value="${threadSubject}" />
+			<var name="userName" value="${adminName}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute function="AssertTextEquals" locator1="SOActivities#NO_ACTIVITIES" value1="There are no activities." />
+	</command>
+
+	<command name="ViewMBCategoryThreadMessageActivities" priority="5">
+		<var name="categoryName1" value="MB Category1 Name" />
+		<var name="categoryName2" value="MB Category2 Name" />
+		<var name="forumsAction" value="Wrote a new forum post in" />
+		<var name="pageName" value="Forums" />
+		<var name="password" value="test" />
+		<var name="roleName" value="Social Office" />
+		<var name="siteDescription" value="Open Site Description" />
+		<var name="siteName" value="Open Site Name" />
+		<var name="siteType" value="Open" />
+		<var name="soPage" value="true" />
+		<var name="threadBody1" value="MB Category1 Thread Message Body" />
+		<var name="threadBody2" value="MB Category2 Thread Message Body" />
+		<var name="threadSubject1" value="MB Category1 Thread Message Subject" />
+		<var name="threadSubject2" value="MB Category2 Thread Message Subject" />
+
+		<execute macro="SOUserBar#addSOSite">
+			<var name="siteDescription" value="${siteDescription}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteType" value="${siteType}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="Forums" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="MessageboardsCategory#addPG">
+			<var name="categoryName" value="${categoryName1}" />
+			<var name="number" value="${number}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="Forums" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="MessageboardsCategory#gotoPG">
+			<var name="categoryName" value="${categoryName1}" />
+		</execute>
+
+		<execute macro="MessageboardsThread#addPG" >
+			<var name="threadBody" value="${threadBody1}" />
+			<var name="threadSubject" value="${threadSubject1}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="Forums" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="MessageboardsCategory#addPG">
+			<var name="categoryName" value="${categoryName2}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="Forums" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="MessageboardsCategory#gotoPG">
+			<var name="categoryName" value="${categoryName2}" />
+		</execute>
+
+		<execute macro="MessageboardsThread#addPG" >
+			<var name="threadBody" value="${threadBody2}" />
+			<var name="threadSubject" value="${threadSubject2}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOActivities#viewForumsActivityEntry">
+			<var name="action" value="${forumsAction} ${categoryName2}." />
+			<var name="row" value="01" />
+			<var name="siteName" value="${siteName}" />
+			<var name="threadBody" value="${threadBody2}" />
+			<var name="threadSubject" value="${threadSubject2}" />
+			<var name="userName" value="${adminFirstName}" />
+		</execute>
+
+		<var name="key_row" value="01" />
+
+		<execute function="AssertClick" locator1="SOActivities#ACTIVITIES_ACTION_LINK" value1="${categoryName2}" />
+
+		<execute macro="SOForumsCategoryThread#viewDetailsPG">
+			<var name="adminName" value="${adminName}" />
+			<var name="categoryName" value="${categoryName2}" />
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="threadBody" value="${threadBody2}" />
+			<var name="threadSubject" value="${threadSubject2}" />
+			<var name="userName" value="${adminName}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOActivities#viewForumsActivityEntry">
+			<var name="action" value="${forumsAction} ${categoryName1}." />
+			<var name="row" value="02" />
+			<var name="siteName" value="${siteName}" />
+			<var name="threadBody" value="${threadBody1}" />
+			<var name="threadSubject" value="${threadSubject1}" />
+			<var name="userName" value="${adminFirstName}" />
+		</execute>
+
+		<var name="key_row" value="02" />
+
+		<execute function="AssertClick" locator1="SOActivities#ACTIVITIES_ACTION_LINK" value1="${categoryName1}" />
+
+		<execute macro="SOForumsCategoryThread#viewDetailsPG">
+			<var name="adminName" value="${adminName}" />
+			<var name="categoryName" value="${categoryName1}" />
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="threadBody" value="${threadBody1}" />
+			<var name="threadSubject" value="${threadSubject1}" />
+			<var name="userName" value="${adminName}" />
+		</execute>
+	</command>
+
+	<command name="ViewMoveCategoryThreadToCategoryActivities" priority="4">
+		<var name="categoryName1" value="MB Category 1 Name" />
+		<var name="categoryName2" value="MB Category 2 Name" />
+		<var name="pageName" value="Forums" />
+		<var name="siteDescription" value="Open Site Description" />
+		<var name="siteName" value="Open Site Name" />
+		<var name="siteType" value="Open" />
+		<var name="soPage" value="true" />
+		<var name="threadBody1" value="MB Category 1 Thread 1 Message Body" />
+		<var name="threadCount" value="1" />
+		<var name="threadSubject1" value="MB Category 1 Thread 1 Message Subject" />
+
+		<execute macro="SOUserBar#addSOSite">
+			<var name="siteDescription" value="${siteDescription}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteType" value="${siteType}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="MessageboardsCategory#addPG">
+			<var name="categoryName" value="${categoryName1}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="MessageboardsCategory#gotoPG">
+			<var name="categoryName" value="${categoryName1}" />
+		</execute>
+
+		<execute macro="MessageboardsThread#addPG">
+			<var name="threadBody" value="${threadBody1}" />
+			<var name="threadSubject" value="${threadSubject1}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="MessageboardsCategory#addPG">
+			<var name="categoryName" value="${categoryName2}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="MessageboardsThread#movePG">
+			<var name="categoryName1" value="${categoryName1}" />
+			<var name="categoryName2" value="${categoryName2}" />
+			<var name="roleName" value="Guest" />
+			<var name="threadSubject" value="${threadSubject1}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOActivities#viewForumsActivityEntry">
+			<var name="action" value="Wrote a new forum post in ${categoryName2}." />
+			<var name="siteName" value="${siteName}" />
+			<var name="threadBody" value="${threadBody1}" />
+			<var name="threadSubject" value="${threadSubject1}" />
+			<var name="userName" value="${adminFirstName}" />
+		</execute>
+	</command>
+
+	<command name="ViewMoveCategoryThreadToHomeActivities" priority="4">
+		<var name="categoryName" value="MB Category Name" />
+		<var name="pageName" value="Forums" />
+		<var name="siteDescription" value="Open Site Description" />
+		<var name="siteName" value="Open Site Name" />
+		<var name="siteType" value="Open" />
+		<var name="soPage" value="true" />
+		<var name="threadBody" value="MB Category Thread Message Body" />
+		<var name="threadCount" value="1" />
+		<var name="threadSubject" value="MB Category Thread Message Subject" />
+
+		<execute macro="SOUserBar#addSOSite">
+			<var name="siteDescription" value="${siteDescription}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteType" value="${siteType}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="MessageboardsCategory#addPG">
+			<var name="categoryName" value="${categoryName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="MessageboardsCategory#gotoPG">
+			<var name="categoryName" value="${categoryName}" />
+		</execute>
+
+		<execute macro="MessageboardsThread#addPG">
+			<var name="threadBody" value="${threadBody}" />
+			<var name="threadSubject" value="${threadSubject}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="MessageboardsThread#moveToHomePG">
+			<var name="categoryName" value="${categoryName}" />
+			<var name="categoryName1" value="${categoryName}" />
+			<var name="roleName" value="Guest" />
+			<var name="threadSubject" value="${threadSubject}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOActivities#viewForumsActivityEntry">
+			<var name="action" value="Wrote a new forum post." />
+			<var name="siteName" value="${siteName}" />
+			<var name="threadBody" value="${threadBody}" />
+			<var name="threadSubject" value="${threadSubject}" />
+			<var name="userName" value="${adminFirstName}" />
+		</execute>
+	</command>
+
+	<command name="ViewRemoveMBCategoryViewPermissionActivities" priority="4">
+		<var name="categoryName1" value="MB Category 1 Name" />
+		<var name="categoryName2" value="MB Category 2 Name" />
+		<var name="pageName" value="Forums" />
+		<var name="siteDescription" value="Open Site Description" />
+		<var name="siteName" value="Open Site Name" />
+		<var name="siteType" value="Open" />
+		<var name="soPage" value="true" />
+		<var name="threadBody1" value="MB Category 1 Thread 1 Message Body" />
+		<var name="threadBody2" value="MB Category 2 Thread 2 Message Body" />
+		<var name="threadCount" value="1" />
+		<var name="threadSubject1" value="MB Category 1 Thread 1 Message Subject" />
+		<var name="threadSubject2" value="MB Category 2 Thread 2 Message Subject" />
+		<var name="userEmailAddress" value="socialoffice01@liferay.com" />
+		<var name="userFirstName" value="Social01" />
+		<var name="userLastName" value="User01" />
+		<var name="userMiddleName" value="Office01" />
+		<var name="userScreenName" value="socialoffice01" />
+
+		<execute macro="SOUser#addUserWithSORole">
+			<var name="userEmailAddress" value="${userEmailAddress}" />
+			<var name="userFirstName" value="${userFirstName}" />
+			<var name="userLastName" value="${userLastName}" />
+			<var name="userMiddleName" value="${userMiddleName}" />
+			<var name="userScreenName" value="${userScreenName}" />
+		</execute>
+
+		<execute macro="SOUserBar#addSOSite">
+			<var name="siteDescription" value="${siteDescription}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteType" value="${siteType}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="MessageboardsCategory#addPG">
+			<var name="categoryName" value="${categoryName1}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="MessageboardsCategory#gotoPG">
+			<var name="categoryName" value="${categoryName1}" />
+		</execute>
+
+		<execute macro="MessageboardsThread#addPG">
+			<var name="threadBody" value="${threadBody1}" />
+			<var name="threadSubject" value="${threadSubject1}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="MessageboardsCategory#addPG">
+			<var name="categoryName" value="${categoryName2}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="MessageboardsCategory#gotoPG">
+			<var name="categoryName" value="${categoryName2}" />
+		</execute>
+
+		<execute macro="MessageboardsThread#addPG">
+			<var name="threadBody" value="${threadBody2}" />
+			<var name="threadSubject" value="${threadSubject2}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="MessageboardsCategory#removeViewPermissionsPG">
+			<var name="categoryName" value="${categoryName2}" />
+			<var name="roleName" value="Guest" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress}" />
+			<var name="userLoginFullName" value="${userName}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOActivities#viewForumsActivityEntry">
+			<var name="action" value="Wrote a new forum post in ${categoryName1}." />
+			<var name="siteName" value="${siteName}" />
+			<var name="threadBody" value="${threadBody1}" />
+			<var name="threadSubject" value="${threadSubject1}" />
+			<var name="userName" value="${adminName}" />
+		</execute>
+
+		<execute function="AssertTextNotPresent" value1="${categoryName2}" />
+		<execute function="AssertTextNotPresent" value1="${threadSubject2}" />
+		<execute function="AssertTextNotPresent" value1="${threadBody2}" />
+	</command>
+
+	<command name="ViewRemoveMBThreadViewPermissionActivities" priority="4">
+		<var name="categoryName" value="MB Category 1 Name" />
+		<var name="pageName" value="Forums" />
+		<var name="siteDescription" value="Open Site Description" />
+		<var name="siteName" value="Open Site Name" />
+		<var name="siteType" value="Open" />
+		<var name="soPage" value="true" />
+		<var name="threadBody1" value="MB Category 1 Thread 1 Message Body" />
+		<var name="threadBody2" value="MB Category 2 Thread 2 Message Body" />
+		<var name="threadCount" value="1" />
+		<var name="threadSubject1" value="MB Category 1 Thread 1 Message Subject" />
+		<var name="threadSubject2" value="MB Category 2 Thread 2 Message Subject" />
+		<var name="userEmailAddress" value="socialoffice01@liferay.com" />
+		<var name="userFirstName" value="Social01" />
+		<var name="userLastName" value="User01" />
+		<var name="userMiddleName" value="Office01" />
+		<var name="userScreenName" value="socialoffice01" />
+
+		<execute macro="SOUser#addUserWithSORole">
+			<var name="userEmailAddress" value="${userEmailAddress}" />
+			<var name="userFirstName" value="${userFirstName}" />
+			<var name="userLastName" value="${userLastName}" />
+			<var name="userMiddleName" value="${userMiddleName}" />
+			<var name="userScreenName" value="${userScreenName}" />
+		</execute>
+
+		<execute macro="SOUserBar#addSOSite">
+			<var name="siteDescription" value="${siteDescription}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteType" value="${siteType}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="MessageboardsCategory#addPG">
+			<var name="categoryName" value="${categoryName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="MessageboardsCategory#gotoPG">
+			<var name="categoryName" value="${categoryName}" />
+		</execute>
+
+		<execute macro="MessageboardsThread#addPG">
+			<var name="threadBody" value="${threadBody1}" />
+			<var name="threadSubject" value="${threadSubject1}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="MessageboardsCategory#gotoPG">
+			<var name="categoryName" value="${categoryName}" />
+		</execute>
+
+		<execute macro="MessageboardsThread#addPG">
+			<var name="threadBody" value="${threadBody2}" />
+			<var name="threadSubject" value="${threadSubject2}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="MessageboardsCategory#gotoPG">
+			<var name="categoryName" value="${categoryName}" />
+		</execute>
+
+		<execute macro="MessageboardsThread#removeViewPermissionsPG">
+			<var name="roleName" value="Guest" />
+			<var name="threadSubject" value="${threadSubject2}" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress}" />
+			<var name="userLoginFullName" value="${userName}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOActivities#viewForumsActivityEntry">
+			<var name="action" value="Wrote a new forum post in ${categoryName}." />
+			<var name="siteName" value="${siteName}" />
+			<var name="threadBody" value="${threadBody1}" />
+			<var name="threadSubject" value="${threadSubject1}" />
+			<var name="userName" value="${adminName}" />
+		</execute>
+
+		<execute function="AssertTextNotPresent" value1="${threadSubject2}" />
+		<execute function="AssertTextNotPresent" value1="${threadBody2}" />
+	</command>
+</definition>

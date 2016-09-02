@@ -1,0 +1,624 @@
+<definition component-name="social-office-document-management">
+	<property name="hook.plugins.includes" value="deploy-listener-hook,portal-compat-hook,so-activities-hook,so-hook" />
+	<property name="portlet.plugins.includes" value="calendar-portlet,chat-portlet,contacts-portlet,events-display-portlet,marketplace-portlet,microblogs-portlet,notifications-portlet,private-messaging-portlet,so-announcements-portlet,so-configurations-portlet,so-portlet,tasks-portlet,wysiwyg-portlet" />
+	<property name="testray.main.component.name" value="Social Office EE" />
+	<property name="theme.plugins.includes" value="so-theme" />
+	<property name="web.plugins.includes" value="resources-importer-web" />
+
+	<var name="adminEmailAddress" value="test@liferay.com" />
+
+	<set-up>
+		<execute macro="SOUser#firstLoginPG" />
+	</set-up>
+
+	<tear-down>
+		<execute macro="SOUserBar#tearDownNotifications" />
+
+		<execute macro="SODocuments#tearDownPG" />
+
+		<execute macro="SOUser#tearDownCP" />
+
+		<execute macro="SOSite#tearDownCP" />
+	</tear-down>
+
+	<command name="DashboardDocumentsDemo" priority="5">
+		<var name="dmDocumentDescription1" value="DM Folder Image1 Description" />
+		<var name="dmDocumentDescription2" value="DM Folder Image2 Description" />
+		<var name="dmDocumentDescription3" value="DM Folder Image3 Description" />
+		<var name="dmDocumentDescription4" value="DM Folder Image4 Description" />
+		<var name="dmDocumentFile1" value="Document_1.jpeg" />
+		<var name="dmDocumentFile2" value="Document_2.jpeg" />
+		<var name="dmDocumentFile3" value="Document_3.jpeg" />
+		<var name="dmDocumentFile4" value="Document_4.jpeg" />
+		<var name="dmDocumentTitle1" value="DM Folder1 Image1 Title" />
+		<var name="dmDocumentTitle2" value="DM Folder2 Image2 Title" />
+		<var name="dmDocumentTitle3" value="DM Folder3 Image3 Title" />
+		<var name="dmDocumentTitle4" value="DM Folder4 Image4 Title" />
+		<var name="dmFolderDescription1" value="DM Folder1 Description" />
+		<var name="dmFolderDescription2" value="DM Folder2 Description" />
+		<var name="dmFolderDescription3" value="DM Folder3 Description" />
+		<var name="dmFolderDescription4" value="DM Folder4 Description" />
+		<var name="dmFolderName1" value="DM Folder1 Name" />
+		<var name="dmFolderName2" value="DM Folder2 Name" />
+		<var name="dmFolderName3" value="DM Folder3 Name" />
+		<var name="dmFolderName4" value="DM Folder4 Name" />
+		<var name="siteDescription1" value="Open Site1 Description" />
+		<var name="siteDescription2" value="Public Restricted Site2 Description" />
+		<var name="siteDescription3" value="Private Site3 Description" />
+		<var name="siteDescription4" value="Private Restricted Site4 Description" />
+		<var name="siteName1" value="Open Site1 Name" />
+		<var name="siteName2" value="Public Restricted Site2 Name" />
+		<var name="siteName3" value="Private Site3 Name" />
+		<var name="siteName4" value="Private Restricted Site4 Name" />
+		<var name="siteType1" value="Open" />
+		<var name="siteType2" value="Public Restricted" />
+		<var name="siteType3" value="Private" />
+		<var name="siteType4" value="Private Restricted" />
+		<var name="soPage" value="true" />
+		<var name="userEmailAddress1" value="socialoffice01@liferay.com" />
+		<var name="userEmailAddress2" value="socialoffice02@liferay.com" />
+		<var name="userEmailAddress3" value="socialoffice03@liferay.com" />
+		<var name="userEmailAddress4" value="socialoffice04@liferay.com" />
+		<var name="userFirstName1" value="Social01" />
+		<var name="userFirstName2" value="Social02" />
+		<var name="userFirstName3" value="Social03" />
+		<var name="userFirstName4" value="Social04" />
+		<var name="userLastName1" value="User01" />
+		<var name="userLastName2" value="User02" />
+		<var name="userLastName3" value="User03" />
+		<var name="userLastName4" value="User04" />
+		<var name="userListName1" value="User01, Social01" />
+		<var name="userListName2" value="User02, Social02" />
+		<var name="userListName3" value="User03, Social03" />
+		<var name="userListName4" value="User04, Social04" />
+		<var name="userMiddleName1" value="Office01" />
+		<var name="userMiddleName2" value="Office02" />
+		<var name="userMiddleName3" value="Office03" />
+		<var name="userMiddleName4" value="Office04" />
+		<var name="userName1" value="Social01 Office01 User01" />
+		<var name="userName2" value="Social02 Office02 User02" />
+		<var name="userName3" value="Social03 Office03 User03" />
+		<var name="userName4" value="Social04 Office04 User04" />
+		<var name="userScreenName1" value="socialoffice01" />
+		<var name="userScreenName2" value="socialoffice02" />
+		<var name="userScreenName3" value="socialoffice03" />
+		<var name="userScreenName4" value="socialoffice04" />
+
+		<execute macro="SOUser#addUserWithSORole">
+			<var name="userEmailAddress" value="${userEmailAddress1}" />
+			<var name="userFirstName" value="${userFirstName1}" />
+			<var name="userLastName" value="${userLastName1}" />
+			<var name="userMiddleName" value="${userMiddleName1}" />
+			<var name="userScreenName" value="${userScreenName1}" />
+		</execute>
+
+		<execute macro="SOUser#addUserWithSORole">
+			<var name="userEmailAddress" value="${userEmailAddress2}" />
+			<var name="userFirstName" value="${userFirstName2}" />
+			<var name="userLastName" value="${userLastName2}" />
+			<var name="userMiddleName" value="${userMiddleName2}" />
+			<var name="userScreenName" value="${userScreenName2}" />
+		</execute>
+
+		<execute macro="SOUser#addUserWithSORole">
+			<var name="userEmailAddress" value="${userEmailAddress3}" />
+			<var name="userFirstName" value="${userFirstName3}" />
+			<var name="userLastName" value="${userLastName3}" />
+			<var name="userMiddleName" value="${userMiddleName3}" />
+			<var name="userScreenName" value="${userScreenName3}" />
+		</execute>
+
+		<execute macro="SOUser#addUserWithSORole">
+			<var name="userEmailAddress" value="${userEmailAddress4}" />
+			<var name="userFirstName" value="${userFirstName4}" />
+			<var name="userLastName" value="${userLastName4}" />
+			<var name="userMiddleName" value="${userMiddleName4}" />
+			<var name="userScreenName" value="${userScreenName4}" />
+		</execute>
+
+		<execute macro="SOUserBar#addSOSite">
+			<var name="siteDescription" value="${siteDescription1}" />
+			<var name="siteName" value="${siteName1}" />
+			<var name="siteType" value="${siteType1}" />
+		</execute>
+
+		<execute macro="SOUserBar#addSOSite">
+			<var name="siteDescription" value="${siteDescription2}" />
+			<var name="siteName" value="${siteName2}" />
+			<var name="siteType" value="${siteType2}" />
+		</execute>
+
+		<execute macro="SOUserBar#addSOSite">
+			<var name="siteDescription" value="${siteDescription3}" />
+			<var name="siteName" value="${siteName3}" />
+			<var name="siteType" value="${siteType3}" />
+		</execute>
+
+		<execute macro="SOUserBar#addSOSite">
+			<var name="siteDescription" value="${siteDescription4}" />
+			<var name="siteName" value="${siteName4}" />
+			<var name="siteType" value="${siteType4}" />
+		</execute>
+
+		<execute macro="Page#gotoUsersCP">
+			<var name="portletName" value="Site Memberships" />
+			<var name="siteScopeName" value="${siteName1}" />
+		</execute>
+
+		<execute macro="Site#addMemberCP">
+			<var name="siteName" value="${siteName1}" />
+			<var name="siteScopeName" value="${siteName1}" />
+			<var name="userFirstName" value="${userFirstName1}" />
+			<var name="userLastName" value="${userLastName1}" />
+			<var name="userMiddleName" value="${userMiddleName1}" />
+			<var name="userScreenName" value="${userScreenName1}" />
+		</execute>
+
+		<execute macro="Page#gotoUsersCP">
+			<var name="portletName" value="Site Memberships" />
+			<var name="siteScopeName" value="${siteName2}" />
+		</execute>
+
+		<execute macro="Site#addMemberCP">
+			<var name="siteName" value="${siteName2}" />
+			<var name="siteScopeName" value="${siteName2}" />
+			<var name="userFirstName" value="${userFirstName2}" />
+			<var name="userLastName" value="${userLastName2}" />
+			<var name="userMiddleName" value="${userMiddleName2}" />
+			<var name="userScreenName" value="${userScreenName2}" />
+		</execute>
+
+		<execute macro="Page#gotoUsersCP">
+			<var name="portletName" value="Site Memberships" />
+			<var name="siteScopeName" value="${siteName3}" />
+		</execute>
+
+		<execute macro="Site#addMemberCP">
+			<var name="siteName" value="${siteName3}" />
+			<var name="siteScopeName" value="${siteName3}" />
+			<var name="userFirstName" value="${userFirstName3}" />
+			<var name="userLastName" value="${userLastName3}" />
+			<var name="userMiddleName" value="${userMiddleName3}" />
+			<var name="userScreenName" value="${userScreenName3}" />
+		</execute>
+
+		<execute macro="Page#gotoUsersCP">
+			<var name="portletName" value="Site Memberships" />
+			<var name="siteScopeName" value="${siteName4}" />
+		</execute>
+
+		<execute macro="Site#addMemberCP">
+			<var name="siteName" value="${siteName4}" />
+			<var name="siteScopeName" value="${siteName4}" />
+			<var name="userFirstName" value="${userFirstName4}" />
+			<var name="userLastName" value="${userLastName4}" />
+			<var name="userMiddleName" value="${userMiddleName4}" />
+			<var name="userScreenName" value="${userScreenName4}" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress1}" />
+			<var name="userLoginFullName" value="${userName1}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="My Documents" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#addPG">
+			<var name="dmFolderDescription" value="${dmFolderDescription1}" />
+			<var name="dmFolderName" value="${dmFolderName1}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="My Documents" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName1}" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription1}" />
+			<var name="dmDocumentFile" value="${dmDocumentFile1}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle1}" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress2}" />
+			<var name="userLoginFullName" value="${userName2}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="My Documents" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#addPG">
+			<var name="dmFolderDescription" value="${dmFolderDescription2}" />
+			<var name="dmFolderName" value="${dmFolderName2}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="My Documents" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName2}" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription2}" />
+			<var name="dmDocumentFile" value="${dmDocumentFile2}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle2}" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress3}" />
+			<var name="userLoginFullName" value="${userName3}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="My Documents" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#addPG">
+			<var name="dmFolderDescription" value="${dmFolderDescription3}" />
+			<var name="dmFolderName" value="${dmFolderName3}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="My Documents" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName3}" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription3}" />
+			<var name="dmDocumentFile" value="${dmDocumentFile3}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle3}" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress4}" />
+			<var name="userLoginFullName" value="${userName4}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="My Documents" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#addPG">
+			<var name="dmFolderDescription" value="${dmFolderDescription4}" />
+			<var name="dmFolderName" value="${dmFolderName4}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="My Documents" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName4}" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription4}" />
+			<var name="dmDocumentFile" value="${dmDocumentFile4}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle4}" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress1}" />
+			<var name="userLoginFullName" value="${userName1}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="My Documents" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute function="AssertTextNotPresent" value1="${dmFolderName2}" />
+		<execute function="AssertTextNotPresent" value1="${dmFolderName3}" />
+		<execute function="AssertTextNotPresent" value1="${dmFolderName4}" />
+		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle2}" />
+		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle3}" />
+		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle4}" />
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName1}" />
+		</execute>
+
+		<execute function="AssertTextNotPresent" value1="${dmFolderName2}" />
+		<execute function="AssertTextNotPresent" value1="${dmFolderName3}" />
+		<execute function="AssertTextNotPresent" value1="${dmFolderName4}" />
+		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle2}" />
+		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle3}" />
+		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle4}" />
+
+		<execute macro="DMDocument#viewAllPG">
+			<var name="dmDocumentAuthor" value="${userName1}" />
+			<var name="dmDocumentDescription" value="${dmDocumentDescription1}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle1}" />
+			<var name="dmDocumentVersionNumber" value="${dmDocumentVersionNumber}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="Documents" />
+			<var name="siteName" value="${siteName1}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute function="AssertTextEquals" locator1="PGDocumentsandmedia#INFO_MESSAGE" value1="There are no documents or media files in this folder." />
+		<execute function="AssertTextNotPresent" value1="${dmFolderName1}" />
+		<execute function="AssertTextNotPresent" value1="${dmFolderName2}" />
+		<execute function="AssertTextNotPresent" value1="${dmFolderName3}" />
+		<execute function="AssertTextNotPresent" value1="${dmFolderName4}" />
+		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle1}" />
+		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle2}" />
+		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle3}" />
+		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle4}" />
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress2}" />
+			<var name="userLoginFullName" value="${userName2}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="My Documents" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute function="AssertTextNotPresent" value1="${dmFolderName1}" />
+		<execute function="AssertTextNotPresent" value1="${dmFolderName3}" />
+		<execute function="AssertTextNotPresent" value1="${dmFolderName4}" />
+		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle1}" />
+		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle3}" />
+		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle4}" />
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName2}" />
+		</execute>
+
+		<execute function="AssertTextNotPresent" value1="${dmFolderName1}" />
+		<execute function="AssertTextNotPresent" value1="${dmFolderName3}" />
+		<execute function="AssertTextNotPresent" value1="${dmFolderName4}" />
+		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle1}" />
+		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle3}" />
+		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle4}" />
+
+		<execute macro="DMDocument#viewAllPG">
+			<var name="dmDocumentAuthor" value="${userName2}" />
+			<var name="dmDocumentDescription" value="${dmDocumentDescription2}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle2}" />
+			<var name="dmDocumentVersionNumber" value="${dmDocumentVersionNumber}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="Documents" />
+			<var name="siteName" value="${siteName2}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute function="AssertTextEquals" locator1="PGDocumentsandmedia#INFO_MESSAGE" value1="There are no documents or media files in this folder." />
+		<execute function="AssertTextNotPresent" value1="${dmFolderName1}" />
+		<execute function="AssertTextNotPresent" value1="${dmFolderName2}" />
+		<execute function="AssertTextNotPresent" value1="${dmFolderName3}" />
+		<execute function="AssertTextNotPresent" value1="${dmFolderName4}" />
+		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle1}" />
+		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle2}" />
+		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle3}" />
+		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle4}" />
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress3}" />
+			<var name="userLoginFullName" value="${userName3}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="My Documents" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute function="AssertTextNotPresent" value1="${dmFolderName1}" />
+		<execute function="AssertTextNotPresent" value1="${dmFolderName2}" />
+		<execute function="AssertTextNotPresent" value1="${dmFolderName4}" />
+		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle1}" />
+		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle2}" />
+		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle4}" />
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName3}" />
+		</execute>
+
+		<execute function="AssertTextNotPresent" value1="${dmFolderName1}" />
+		<execute function="AssertTextNotPresent" value1="${dmFolderName2}" />
+		<execute function="AssertTextNotPresent" value1="${dmFolderName4}" />
+		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle1}" />
+		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle2}" />
+		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle4}" />
+
+		<execute macro="DMDocument#viewAllPG">
+			<var name="dmDocumentAuthor" value="${userName3}" />
+			<var name="dmDocumentDescription" value="${dmDocumentDescription3}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle3}" />
+			<var name="dmDocumentVersionNumber" value="${dmDocumentVersionNumber}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageAccess" value="Private" />
+			<var name="pageName" value="Documents" />
+			<var name="siteName" value="${siteName3}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute function="AssertTextEquals" locator1="PGDocumentsandmedia#INFO_MESSAGE" value1="There are no documents or media files in this folder." />
+		<execute function="AssertTextNotPresent" value1="${dmFolderName1}" />
+		<execute function="AssertTextNotPresent" value1="${dmFolderName2}" />
+		<execute function="AssertTextNotPresent" value1="${dmFolderName3}" />
+		<execute function="AssertTextNotPresent" value1="${dmFolderName4}" />
+		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle1}" />
+		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle2}" />
+		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle3}" />
+		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle4}" />
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress4}" />
+			<var name="userLoginFullName" value="${userName4}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="My Documents" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute function="AssertTextNotPresent" value1="${dmFolderName1}" />
+		<execute function="AssertTextNotPresent" value1="${dmFolderName2}" />
+		<execute function="AssertTextNotPresent" value1="${dmFolderName3}" />
+		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle1}" />
+		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle2}" />
+		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle3}" />
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName4}" />
+		</execute>
+
+		<execute function="AssertTextNotPresent" value1="${dmFolderName1}" />
+		<execute function="AssertTextNotPresent" value1="${dmFolderName2}" />
+		<execute function="AssertTextNotPresent" value1="${dmFolderName3}" />
+		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle1}" />
+		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle2}" />
+		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle3}" />
+
+		<execute macro="DMDocument#viewAllPG">
+			<var name="dmDocumentAuthor" value="${userName4}" />
+			<var name="dmDocumentDescription" value="${dmDocumentDescription4}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle4}" />
+			<var name="dmDocumentVersionNumber" value="${dmDocumentVersionNumber}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageAccess" value="Private" />
+			<var name="pageName" value="Documents" />
+			<var name="siteName" value="${siteName4}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute function="AssertTextEquals" locator1="PGDocumentsandmedia#INFO_MESSAGE" value1="There are no documents or media files in this folder." />
+		<execute function="AssertTextNotPresent" value1="${dmFolderName1}" />
+		<execute function="AssertTextNotPresent" value1="${dmFolderName2}" />
+		<execute function="AssertTextNotPresent" value1="${dmFolderName3}" />
+		<execute function="AssertTextNotPresent" value1="${dmFolderName4}" />
+		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle1}" />
+		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle2}" />
+		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle3}" />
+		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle4}" />
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${adminEmailAddress}" />
+			<var name="userLoginFullName" value="${adminName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="My Documents" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute function="AssertTextEquals" locator1="PGDocumentsandmedia#INFO_MESSAGE" value1="There are no documents or media files in this folder." />
+		<execute function="AssertTextNotPresent" value1="${dmFolderName1}" />
+		<execute function="AssertTextNotPresent" value1="${dmFolderName2}" />
+		<execute function="AssertTextNotPresent" value1="${dmFolderName3}" />
+		<execute function="AssertTextNotPresent" value1="${dmFolderName4}" />
+		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle1}" />
+		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle2}" />
+		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle3}" />
+		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle4}" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="Documents" />
+			<var name="siteName" value="${siteName1}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute function="AssertTextEquals" locator1="PGDocumentsandmedia#INFO_MESSAGE" value1="There are no documents or media files in this folder." />
+		<execute function="AssertTextNotPresent" value1="${dmFolderName1}" />
+		<execute function="AssertTextNotPresent" value1="${dmFolderName2}" />
+		<execute function="AssertTextNotPresent" value1="${dmFolderName3}" />
+		<execute function="AssertTextNotPresent" value1="${dmFolderName4}" />
+		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle1}" />
+		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle2}" />
+		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle3}" />
+		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle4}" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="Documents" />
+			<var name="siteName" value="${siteName2}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute function="AssertTextEquals" locator1="PGDocumentsandmedia#INFO_MESSAGE" value1="There are no documents or media files in this folder." />
+		<execute function="AssertTextNotPresent" value1="${dmFolderName1}" />
+		<execute function="AssertTextNotPresent" value1="${dmFolderName2}" />
+		<execute function="AssertTextNotPresent" value1="${dmFolderName3}" />
+		<execute function="AssertTextNotPresent" value1="${dmFolderName4}" />
+		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle1}" />
+		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle2}" />
+		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle3}" />
+		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle4}" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageAccess" value="Private" />
+			<var name="pageName" value="Documents" />
+			<var name="siteName" value="${siteName3}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute function="AssertTextEquals" locator1="PGDocumentsandmedia#INFO_MESSAGE" value1="There are no documents or media files in this folder." />
+		<execute function="AssertTextNotPresent" value1="${dmFolderName1}" />
+		<execute function="AssertTextNotPresent" value1="${dmFolderName2}" />
+		<execute function="AssertTextNotPresent" value1="${dmFolderName3}" />
+		<execute function="AssertTextNotPresent" value1="${dmFolderName4}" />
+		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle1}" />
+		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle2}" />
+		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle3}" />
+		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle4}" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageAccess" value="Private" />
+			<var name="pageName" value="Documents" />
+			<var name="siteName" value="${siteName4}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute function="AssertTextEquals" locator1="PGDocumentsandmedia#INFO_MESSAGE" value1="There are no documents or media files in this folder." />
+		<execute function="AssertTextNotPresent" value1="${dmFolderName1}" />
+		<execute function="AssertTextNotPresent" value1="${dmFolderName2}" />
+		<execute function="AssertTextNotPresent" value1="${dmFolderName3}" />
+		<execute function="AssertTextNotPresent" value1="${dmFolderName4}" />
+		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle1}" />
+		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle2}" />
+		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle3}" />
+		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle4}" />
+	</command>
+</definition>

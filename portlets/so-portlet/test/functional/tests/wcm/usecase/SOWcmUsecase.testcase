@@ -1,0 +1,257 @@
+<definition component-name="social-office-wcm">
+	<property name="hook.plugins.includes" value="deploy-listener-hook,portal-compat-hook,so-activities-hook,so-hook" />
+	<property name="portlet.plugins.includes" value="calendar-portlet,chat-portlet,contacts-portlet,events-display-portlet,marketplace-portlet,microblogs-portlet,notifications-portlet,private-messaging-portlet,so-announcements-portlet,so-configurations-portlet,so-portlet,tasks-portlet,wysiwyg-portlet" />
+	<property name="testray.main.component.name" value="Social Office EE" />
+	<property name="theme.plugins.includes" value="so-theme" />
+	<property name="web.plugins.includes" value="resources-importer-web" />
+
+	<var name="adminEmailAddress" value="test@liferay.com" />
+	<var name="adminFirstName" value="Test" />
+	<var name="adminLastName" value="Test" />
+	<var name="adminListName" value="Test, Test" />
+	<var name="adminName" value="Test Test" />
+	<var name="adminScreenName" value="test" />
+	<var name="soPage" value="true" />
+
+	<set-up>
+		<execute macro="SOUser#firstLoginPG" />
+	</set-up>
+
+	<tear-down>
+		<execute macro="SOUser#tearDownCP" />
+
+		<execute macro="SODashboard#tearDownCP" />
+
+		<execute macro="SOSite#tearDownCP" />
+	</tear-down>
+
+	<command name="ResetChangesViaDashboard" priority="4">
+		<var name="portletName" value="Hello World" />
+
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute macro="SOUserBar#addPortlet">
+			<var name="pageName" value="Dashboard" />
+			<var name="portletName" value="${portletName}" />
+		</execute>
+
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute macro="SOUserBar#resetChanges" />
+
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<var name="key_portletName" value="${portletName}" />
+
+		<execute function="AssertElementNotPresent" locator1="SODashboard#PORTLET_TITLE" />
+		<execute function="AssertTextNotPresent" value1="${portletName}" />
+	</command>
+
+	<command name="ResetChangesViaDashboardSOUser" priority="4">
+		<var name="portletName" value="Hello World" />
+		<var name="userEmailAddress" value="socialoffice01@liferay.com" />
+		<var name="userFirstName" value="Social01" />
+		<var name="userLastName" value="User01" />
+		<var name="userListName" value="User01, Social01" />
+		<var name="userMiddleName" value="Office01" />
+		<var name="userName" value="Social01 Office01 User01" />
+		<var name="userScreenName" value="socialoffice01" />
+
+		<execute macro="SOUser#addUserWithSORole">
+			<var name="userEmailAddress" value="${userEmailAddress}" />
+			<var name="userFirstName" value="${userFirstName}" />
+			<var name="userLastName" value="${userLastName}" />
+			<var name="userMiddleName" value="${userMiddleName}" />
+			<var name="userScreenName" value="${userScreenName}" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress}" />
+			<var name="userLoginFullName" value="${userName}" />
+		</execute>
+
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute macro="SOUserBar#addPortlet">
+			<var name="pageName" value="Dashboard" />
+			<var name="portletName" value="${portletName}" />
+		</execute>
+
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute macro="SOUserBar#resetChanges" />
+
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<var name="key_portletName" value="${portletName}" />
+
+		<execute function="AssertElementNotPresent" locator1="SODashboard#PORTLET_TITLE" />
+		<execute function="AssertTextNotPresent" value1="${portletName}" />
+	</command>
+
+	<command name="ResetChangesViaProfile" priority="4">
+		<var name="portletName" value="Hello World" />
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOUserBar#addPortlet">
+			<var name="pageName" value="Profile" />
+			<var name="portletName" value="${portletName}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOUserBar#resetChanges" />
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<var name="key_portletName" value="${portletName}" />
+
+		<execute function="AssertElementNotPresent" locator1="SODashboard#PORTLET_TITLE" />
+		<execute function="AssertTextNotPresent" value1="${portletName}" />
+	</command>
+
+	<command name="ResetChangesViaProfileSOUser" priority="4">
+		<var name="portletName" value="Hello World" />
+		<var name="userEmailAddress" value="socialoffice01@liferay.com" />
+		<var name="userFirstName" value="Social01" />
+		<var name="userLastName" value="User01" />
+		<var name="userListName" value="User01, Social01" />
+		<var name="userMiddleName" value="Office01" />
+		<var name="userName" value="Social01 Office01 User01" />
+		<var name="userScreenName" value="socialoffice01" />
+
+		<execute macro="SOUser#addUserWithSORole">
+			<var name="userEmailAddress" value="${userEmailAddress}" />
+			<var name="userFirstName" value="${userFirstName}" />
+			<var name="userLastName" value="${userLastName}" />
+			<var name="userMiddleName" value="${userMiddleName}" />
+			<var name="userScreenName" value="${userScreenName}" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress}" />
+			<var name="userLoginFullName" value="${userName}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOUserBar#addPortlet">
+			<var name="pageName" value="Profile" />
+			<var name="portletName" value="${portletName}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOUserBar#resetChanges" />
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<var name="key_portletName" value="${portletName}" />
+
+		<execute function="AssertElementNotPresent" locator1="SODashboard#PORTLET_TITLE" />
+		<execute function="AssertTextNotPresent" value1="${portletName}" />
+	</command>
+
+	<command name="ResetChangesViaSite" priority="4">
+		<var name="portletName" value="Hello World" />
+		<var name="siteDescription" value="Open Site Description" />
+		<var name="siteName" value="Open Site Name" />
+		<var name="siteType" value="Open" />
+		<var name="soPage" value="true" />
+
+		<execute macro="SOUserBar#addSOSite">
+			<var name="siteDescription" value="${siteDescription}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteType" value="${siteType}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOUserBar#addPortlet">
+			<var name="pageName" value="Home" />
+			<var name="portletName" value="${portletName}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOUserBar#resetChanges" />
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<var name="key_portletName" value="${portletName}" />
+
+		<execute function="AssertElementNotPresent" locator1="SOSite#PORTLET_TITLE" />
+		<execute function="AssertTextNotPresent" value1="${portletName}" />
+	</command>
+
+	<command name="ResetChangesViaSiteSOUser" priority="4">
+		<var name="portletName" value="Hello World" />
+		<var name="siteDescription" value="Open Site Description" />
+		<var name="siteName" value="Open Site Name" />
+		<var name="siteType" value="Open" />
+		<var name="soPage" value="true" />
+		<var name="userEmailAddress" value="socialoffice01@liferay.com" />
+		<var name="userFirstName" value="Social01" />
+		<var name="userLastName" value="User01" />
+		<var name="userListName" value="User01, Social01" />
+		<var name="userMiddleName" value="Office01" />
+		<var name="userName" value="Social01 Office01 User01" />
+		<var name="userScreenName" value="socialoffice01" />
+
+		<execute macro="SOUser#addUserWithSORole">
+			<var name="userEmailAddress" value="${userEmailAddress}" />
+			<var name="userFirstName" value="${userFirstName}" />
+			<var name="userLastName" value="${userLastName}" />
+			<var name="userMiddleName" value="${userMiddleName}" />
+			<var name="userScreenName" value="${userScreenName}" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress}" />
+			<var name="userLoginFullName" value="${userName}" />
+		</execute>
+
+		<execute macro="SOUserBar#addSOSite">
+			<var name="siteDescription" value="${siteDescription}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteType" value="${siteType}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOUserBar#addPortlet">
+			<var name="pageName" value="Home" />
+			<var name="portletName" value="${portletName}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOUserBar#resetChanges" />
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<var name="key_portletName" value="${portletName}" />
+
+		<execute function="AssertElementNotPresent" locator1="SOSite#PORTLET_TITLE" />
+		<execute function="AssertTextNotPresent" value1="${portletName}" />
+	</command>
+</definition>

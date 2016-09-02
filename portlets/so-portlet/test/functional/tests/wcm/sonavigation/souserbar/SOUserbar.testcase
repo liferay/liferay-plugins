@@ -1,0 +1,256 @@
+<definition component-name="social-office-wcm">
+	<property name="hook.plugins.includes" value="deploy-listener-hook,portal-compat-hook,so-activities-hook,so-hook" />
+	<property name="portlet.plugins.includes" value="calendar-portlet,chat-portlet,contacts-portlet,events-display-portlet,marketplace-portlet,microblogs-portlet,notifications-portlet,private-messaging-portlet,so-announcements-portlet,so-configurations-portlet,so-portlet,tasks-portlet,wysiwyg-portlet" />
+	<property name="testray.main.component.name" value="Social Office EE" />
+	<property name="theme.plugins.includes" value="so-theme" />
+	<property name="web.plugins.includes" value="resources-importer-web" />
+
+	<var name="adminEmailAddress" value="test@liferay.com" />
+	<var name="adminListName" value="Test, Test" />
+	<var name="adminName" value="Test Test" />
+	<var name="adminScreenName" value="test" />
+	<var name="password" value="test" />
+
+	<set-up>
+		<execute macro="SOUser#firstLoginPG" />
+	</set-up>
+
+	<tear-down>
+		<execute macro="SOUser#tearDownCP" />
+	</tear-down>
+
+	<command name="ViewAndAssertMenusDoNotOverlap" priority="4" >
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute function="Click" locator1="Dockbar#USER_NAME" />
+		<execute function="AssertVisible" locator1="Dockbar#USER_MY_PROFILE" />
+
+		<execute function="Click" locator1="SOUserBar#NOTIFICATION_MENU_COUNT" />
+		<execute function="AssertVisible" locator1="SOUserBar#NOTIFICATION_MENU_NOTIFICATION_NONE_MESSAGE" />
+		<execute function="AssertNotVisible" locator1="Dockbar#USER_MY_PROFILE" />
+
+		<execute function="Click" locator1="Dockbar#USER_NAME" />
+		<execute function="AssertVisible" locator1="Dockbar#USER_MY_PROFILE" />
+		<execute function="AssertNotVisible" locator1="SOUserBar#NOTIFICATION_MENU_NOTIFICATION_NONE_MESSAGE" />
+
+		<execute function="Click#textClickAtClickDockbar" locator1="Dockbar#ADMIN" value1="Admin" />
+		<execute function="AssertVisible" locator1="Dockbar#ADMIN_SITE_ADMINISTRATION" />
+		<execute function="AssertNotVisible" locator1="Dockbar#USER_MY_PROFILE" />
+
+		<execute function="Click" locator1="Dockbar#USER_NAME" />
+		<execute function="AssertVisible" locator1="Dockbar#USER_MY_PROFILE" />
+		<execute function="AssertNotVisible" locator1="Dockbar#ADMIN_SITE_ADMINISTRATION" />
+
+		<execute function="Click#pauseClickAt" locator1="SOUserBar#GO_TO" />
+		<execute function="AssertVisible" locator1="SOUserBar#GO_TO_ADD_SITE_BUTTON" />
+		<execute function="AssertNotVisible" locator1="Dockbar#USER_MY_PROFILE" />
+
+		<execute function="Click" locator1="SOUserBar#NOTIFICATION_MENU_COUNT" />
+		<execute function="AssertVisible" locator1="SOUserBar#NOTIFICATION_MENU_NOTIFICATION_NONE_MESSAGE" />
+		<execute function="AssertNotVisible" locator1="SOUserBar#GO_TO_ADD_SITE_BUTTON" />
+
+		<execute function="Click" locator1="Dockbar#USER_NAME" />
+		<execute function="AssertVisible" locator1="Dockbar#USER_MY_PROFILE" />
+		<execute function="AssertNotVisible" locator1="SOUserBar#NOTIFICATION_MENU_NOTIFICATION_NONE_MESSAGE" />
+
+		<execute function="Click" locator1="SOUserBar#NOTIFICATION_MENU_COUNT" />
+		<execute function="AssertVisible" locator1="SOUserBar#NOTIFICATION_MENU_NOTIFICATION_NONE_MESSAGE" />
+		<execute function="AssertNotVisible" locator1="Dockbar#USER_MY_PROFILE" />
+
+		<execute function="Click#textClickAtClickDockbar" locator1="Dockbar#ADMIN" value1="Admin" />
+		<execute function="AssertVisible" locator1="Dockbar#ADMIN_SITE_ADMINISTRATION" />
+		<execute function="AssertNotVisible" locator1="SOUserBar#NOTIFICATION_MENU_NOTIFICATION_NONE_MESSAGE" />
+
+		<execute function="Click" locator1="SOUserBar#NOTIFICATION_MENU_COUNT" />
+		<execute function="AssertVisible" locator1="SOUserBar#NOTIFICATION_MENU_NOTIFICATION_NONE_MESSAGE" />
+		<execute function="AssertNotVisible" locator1="Dockbar#ADMIN_SITE_ADMINISTRATION" />
+
+		<execute function="Click#pauseClickAt" locator1="SOUserBar#GO_TO" />
+		<execute function="AssertVisible" locator1="SOUserBar#GO_TO_ADD_SITE_BUTTON" />
+		<execute function="AssertNotVisible" locator1="SOUserBar#NOTIFICATION_MENU_NOTIFICATION_NONE_MESSAGE" />
+
+		<execute function="Click#textClickAtClickDockbar" locator1="Dockbar#ADMIN" value1="Admin" />
+		<execute function="AssertVisible" locator1="Dockbar#ADMIN_SITE_ADMINISTRATION" />
+		<execute function="AssertNotVisible" locator1="SOUserBar#GO_TO_ADD_SITE_BUTTON" />
+
+		<execute function="Click" locator1="Dockbar#USER_NAME" />
+		<execute function="AssertVisible" locator1="Dockbar#USER_MY_PROFILE" />
+		<execute function="AssertNotVisible" locator1="Dockbar#ADMIN_SITE_ADMINISTRATION" />
+
+		<execute function="Click#textClickAtClickDockbar" locator1="Dockbar#ADMIN" value1="Admin" />
+		<execute function="AssertVisible" locator1="Dockbar#ADMIN_SITE_ADMINISTRATION" />
+		<execute function="AssertNotVisible" locator1="Dockbar#USER_MY_PROFILE" />
+
+		<execute function="Click" locator1="SOUserBar#NOTIFICATION_MENU_COUNT" />
+		<execute function="AssertVisible" locator1="SOUserBar#NOTIFICATION_MENU_NOTIFICATION_NONE_MESSAGE" />
+		<execute function="AssertNotVisible" locator1="Dockbar#ADMIN_SITE_ADMINISTRATION" />
+
+		<execute function="Click#textClickAtClickDockbar" locator1="Dockbar#ADMIN" value1="Admin" />
+		<execute function="AssertVisible" locator1="Dockbar#ADMIN_SITE_ADMINISTRATION" />
+		<execute function="AssertNotVisible" locator1="SOUserBar#NOTIFICATION_MENU_NOTIFICATION_NONE_MESSAGE" />
+
+		<execute function="Click#pauseClickAt" locator1="SOUserBar#GO_TO" />
+		<execute function="AssertVisible" locator1="SOUserBar#GO_TO_ADD_SITE_BUTTON" />
+		<execute function="AssertNotVisible" locator1="Dockbar#ADMIN_SITE_ADMINISTRATION" />
+
+		<execute function="Click" locator1="Dockbar#USER_NAME" />
+		<execute function="AssertVisible" locator1="Dockbar#USER_MY_PROFILE" />
+		<execute function="AssertNotVisible" locator1="SOUserBar#GO_TO_ADD_SITE_BUTTON" />
+
+		<execute function="Click#pauseClickAt" locator1="SOUserBar#GO_TO" />
+		<execute function="AssertVisible" locator1="SOUserBar#GO_TO_ADD_SITE_BUTTON" />
+		<execute function="AssertNotVisible" locator1="Dockbar#USER_MY_PROFILE" />
+
+		<execute function="Click" locator1="SOUserBar#NOTIFICATION_MENU_COUNT" />
+		<execute function="AssertVisible" locator1="SOUserBar#NOTIFICATION_MENU_NOTIFICATION_NONE_MESSAGE" />
+		<execute function="AssertNotVisible" locator1="SOUserBar#GO_TO_ADD_SITE_BUTTON" />
+
+		<execute function="Click#pauseClickAt" locator1="SOUserBar#GO_TO" />
+		<execute function="AssertVisible" locator1="SOUserBar#GO_TO_ADD_SITE_BUTTON" />
+		<execute function="AssertNotVisible" locator1="SOUserBar#NOTIFICATION_MENU_NOTIFICATION_NONE_MESSAGE" />
+
+		<execute function="Click#textClickAtClickDockbar" locator1="Dockbar#ADMIN" value1="Admin" />
+		<execute function="AssertVisible" locator1="Dockbar#ADMIN_SITE_ADMINISTRATION" />
+		<execute function="AssertNotVisible" locator1="SOUserBar#GO_TO_ADD_SITE_BUTTON" />
+	</command>
+
+	<command name="ViewLinkContactscenter" priority="5">
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute function="Click" locator1="SOUserBar#CONTACT_CENTER" value1="Contacts Center" />
+
+		<execute macro="SODashboard#viewLinkContactscenter" />
+	</command>
+
+	<command name="ViewLinkHome" priority="5">
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute macro="SODashboard#viewLinkHome" />
+	</command>
+
+	<command name="ViewLinkMicroblogs" priority="5">
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute function="Click" locator1="SOUserBar#MICROBLOGS" value1="Microblogs" />
+
+		<execute macro="SODashboard#viewLinkMicroblogs" />
+	</command>
+
+	<command name="ViewLinkMyDocuments" priority="5">
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute function="Click" locator1="SOUserBar#MY_DOCUMENTS" value1="My Documents" />
+
+		<execute macro="SODashboard#viewLinkMydocuments" />
+	</command>
+
+	<command name="ViewLinkPrivateMessaging" priority="5">
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute function="Click" locator1="SOUserBar#MESSAGES" value1="Messages" />
+
+		<execute macro="SODashboard#viewLinkPrivateMessaging" />
+	</command>
+
+	<command name="ViewLinkSocialOfficeLogo" priority="4">
+		<execute function="Click" locator1="SOUserBar#SOCIAL_OFFICE_LOGO" />
+
+		<execute macro="SODashboard#viewLinkHome" />
+	</command>
+
+	<command name="ViewLinkTasks" priority="5">
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute function="Click" locator1="SOUserBar#TASKS" value1="Tasks" />
+
+		<execute macro="SODashboard#viewLinkTasks" />
+	</command>
+
+	<command name="ViewProfilePicture" priority="4" >
+		<var name="imageFileName1" value="Document_4.jpg" />
+		<var name="imageFileName2" value="Document_3.jpg" />
+		<var name="imageFileName3" value="Document_1.jpg" />
+		<var name="userEmailAddress" value="socialoffice01@liferay.com" />
+		<var name="userFirstName" value="Social01" />
+		<var name="userLastName" value="User01" />
+		<var name="userListName" value="User01, Social01" />
+		<var name="userMiddleName" value="Office01" />
+		<var name="userName" value="Social01 Office01 User01" />
+		<var name="userScreenName" value="socialoffice01" />
+
+		<execute macro="SOUser#addUserWithSORole">
+			<var name="adminEmailAddress" value="test@liferay.com" />
+			<var name="password" value="test" />
+			<var name="userEmailAddress" value="${userEmailAddress}" />
+			<var name="userFirstName" value="${userFirstName}" />
+			<var name="userLastName" value="${userLastName}" />
+			<var name="userMiddleName" value="${userMiddleName}" />
+			<var name="userScreenName" value="${userScreenName}" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress}" />
+			<var name="userLoginFullName" value="${userName}" />
+		</execute>
+
+		<execute macro="SOProfile#addProfilePicture">
+			<var name="imageFileName" value="${imageFileName1}" />
+			<var name="userName" value="${userName}" />
+		</execute>
+
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute function="SikuliAssertElementPresent" locator1="SOUserBar#SCREENSHOTS_USERBAR_USER_PROFILE_PICTURE_IMAGE_1_PNG" />
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#addProfilePicture">
+			<var name="imageFileName" value="${imageFileName2}" />
+			<var name="userName" value="${userName}" />
+		</execute>
+
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute function="SikuliAssertElementPresent" locator1="SOUserBar#SCREENSHOTS_USERBAR_USER_PROFILE_PICTURE_IMAGE_2_PNG" />
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#addProfilePicture">
+			<var name="imageFileName" value="${imageFileName3}" />
+			<var name="userName" value="${userName}" />
+		</execute>
+
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute function="SikuliAssertElementPresent" locator1="SOUserBar#SCREENSHOTS_USERBAR_USER_PROFILE_PICTURE_IMAGE_3_PNG" />
+	</command>
+
+	<command name="ViewSOUserWithLongName" priority="4" >
+		<var name="userEmailAddress" value="socialoffice01@liferay.com" />
+		<var name="userFirstName" value="SocialABCDEFGHIJKLMNOPQRSTUVWXYZ01" />
+		<var name="userLastName" value="UserABCDEFGHIJKLMNOPQRSTUVWXYZ01" />
+		<var name="userListName" value="UserABCDEFGHIJKLMNOPQRSTUVWXYZ01, SocialABCDEFGHIJKLMNOPQRSTUVWXYZ01" />
+		<var name="userMiddleName" value="OfficeABCDEFGHIJKLMNOPQRSTUVWXYZ01" />
+		<var name="userName" value="SocialABCDEFGHIJKLMNOPQRSTUVWXYZ01 OfficeABCDEFGHIJKLMNOPQRSTUVWXYZ01 UserABCDEFGHIJKLMNOPQRSTUVWXYZ01" />
+		<var name="userScreenName" value="socialoffice01" />
+
+		<execute macro="SOUser#addUserWithSORole">
+			<var name="adminEmailAddress" value="test@liferay.com" />
+			<var name="password" value="test" />
+			<var name="userEmailAddress" value="${userEmailAddress}" />
+			<var name="userFirstName" value="${userFirstName}" />
+			<var name="userLastName" value="${userLastName}" />
+			<var name="userMiddleName" value="${userMiddleName}" />
+			<var name="userScreenName" value="${userScreenName}" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress}" />
+			<var name="userLoginFullName" value="${userName}" />
+		</execute>
+
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute function="SikuliAssertElementPresent" locator1="SOUserBar#SCREENSHOTS_USERBAR_USER_WITH_LONG_NAME_PNG" />
+	</command>
+</definition>

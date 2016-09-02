@@ -1,0 +1,4315 @@
+<definition component-name="social-office-document-management">
+	<property name="hook.plugins.includes" value="deploy-listener-hook,portal-compat-hook,so-activities-hook,so-hook" />
+	<property name="portlet.plugins.includes" value="calendar-portlet,chat-portlet,contacts-portlet,events-display-portlet,marketplace-portlet,microblogs-portlet,notifications-portlet,private-messaging-portlet,so-announcements-portlet,so-configurations-portlet,so-portlet,tasks-portlet,wysiwyg-portlet" />
+	<property name="testray.main.component.name" value="Social Office EE" />
+	<property name="theme.plugins.includes" value="so-theme" />
+	<property name="web.plugins.includes" value="resources-importer-web" />
+
+	<var name="pageName" value="My Documents" />
+
+	<set-up>
+		<execute macro="SOUser#firstLoginPG" />
+	</set-up>
+
+	<tear-down>
+		<execute macro="SODocuments#tearDownDocumentViewPG" />
+
+		<execute macro="SODocuments#tearDownPG" />
+
+		<execute macro="DMDocumentType#tearDownCP">
+			<var name="pageAccess" value="Private" />
+			<var name="siteName" value="test" />
+			<var name="siteURL" value="true" />
+		</execute>
+	</tear-down>
+
+	<command name="AddDefaultDocumentTypes" priority="4">
+		<var name="dmDocumentDescription1" value="DM Document Type Contract Description" />
+		<var name="dmDocumentDescription2" value="DM Document Type Marketing Banner Description" />
+		<var name="dmDocumentDescription3" value="DM Document Type Online Training Description" />
+		<var name="dmDocumentDescription4" value="DM Document Type Sales Presentation Description" />
+		<var name="dmDocumentFile1" value="Document_1.doc" />
+		<var name="dmDocumentFile2" value="Document_1.doc" />
+		<var name="dmDocumentFile3" value="Document_1.doc" />
+		<var name="dmDocumentFile4" value="Document_1.doc" />
+		<var name="dmDocumentTitle1" value="DM Document Type Contract Title" />
+		<var name="dmDocumentTitle2" value="DM Document Type Marketing Banner Title" />
+		<var name="dmDocumentTitle3" value="DM Document Type Online Training Title" />
+		<var name="dmDocumentTitle4" value="DM Document Type Sales Presentation Title" />
+		<var name="dmDocumentTypeName1" value="Contract" />
+		<var name="dmDocumentTypeName2" value="Marketing Banner" />
+		<var name="dmDocumentTypeName3" value="Online Training" />
+		<var name="dmDocumentTypeName4" value="Sales Presentation" />
+		<var name="dmDocumentUploader" value="Test Test" />
+		<var name="dmDocumentVersionNumber" value="1.0" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription1}" />
+			<var name="dmDocumentFile" value="${dmDocumentFile1}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle1}" />
+			<var name="dmDocumentTypeName" value="${dmDocumentTypeName1}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription2}" />
+			<var name="dmDocumentFile" value="${dmDocumentFile2}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle2}" />
+			<var name="dmDocumentTypeName" value="${dmDocumentTypeName2}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription3}" />
+			<var name="dmDocumentFile" value="${dmDocumentFile3}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle3}" />
+			<var name="dmDocumentTypeName" value="${dmDocumentTypeName3}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription4}" />
+			<var name="dmDocumentFile" value="${dmDocumentFile4}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle4}" />
+			<var name="dmDocumentTypeName" value="${dmDocumentTypeName4}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMDocument#viewAllPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription1}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle1}" />
+			<var name="dmDocumentVersionNumber" value="${dmDocumentVersionNumber}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMDocument#viewAllPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription2}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle2}" />
+			<var name="dmDocumentVersionNumber" value="${dmDocumentVersionNumber}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMDocument#viewAllPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription3}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle3}" />
+			<var name="dmDocumentVersionNumber" value="${dmDocumentVersionNumber}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMDocument#viewAllPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription4}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle4}" />
+			<var name="dmDocumentVersionNumber" value="${dmDocumentVersionNumber}" />
+		</execute>
+	</command>
+
+	<command name="AddDefaultDocumentTypesAndBrowseByType" priority="3">
+		<var name="dmDocumentDescription1" value="DM Document Type Contract Description" />
+		<var name="dmDocumentDescription2" value="DM Document Type Marketing Banner Description" />
+		<var name="dmDocumentDescription3" value="DM Document Type Online Training Description" />
+		<var name="dmDocumentDescription4" value="DM Document Type Sales Presentation Description" />
+		<var name="dmDocumentFile1" value="Document_1.doc" />
+		<var name="dmDocumentFile2" value="Document_1.doc" />
+		<var name="dmDocumentFile3" value="Document_1.doc" />
+		<var name="dmDocumentFile4" value="Document_1.doc" />
+		<var name="dmDocumentTitle1" value="DM Document Type Contract Title" />
+		<var name="dmDocumentTitle2" value="DM Document Type Marketing Banner Title" />
+		<var name="dmDocumentTitle3" value="DM Document Type Online Training Title" />
+		<var name="dmDocumentTitle4" value="DM Document Type Sales Presentation Title" />
+		<var name="dmDocumentTypeName1" value="Contract" />
+		<var name="dmDocumentTypeName2" value="Marketing Banner" />
+		<var name="dmDocumentTypeName3" value="Online Training" />
+		<var name="dmDocumentTypeName4" value="Sales Presentation" />
+		<var name="dmDocumentUploader" value="Test Test" />
+		<var name="dmDocumentVersionNumber" value="1.0" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription1}" />
+			<var name="dmDocumentFile" value="${dmDocumentFile1}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle1}" />
+			<var name="dmDocumentTypeName" value="${dmDocumentTypeName1}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription2}" />
+			<var name="dmDocumentFile" value="${dmDocumentFile2}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle2}" />
+			<var name="dmDocumentTypeName" value="${dmDocumentTypeName2}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription3}" />
+			<var name="dmDocumentFile" value="${dmDocumentFile3}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle3}" />
+			<var name="dmDocumentTypeName" value="${dmDocumentTypeName3}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription4}" />
+			<var name="dmDocumentFile" value="${dmDocumentFile4}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle4}" />
+			<var name="dmDocumentTypeName" value="${dmDocumentTypeName4}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute function="AssertClick" locator1="PGDocumentsandmedia#FILTER_BROWSE_BY_TYPE" value1="Browse by Type" />
+		<execute function="AssertClick" locator1="PGDocumentsandmedia#FILTER_BROWSE_BY_TYPE_CONTRACT" value1="Contract" />
+
+		<execute macro="DMDocument#viewAllPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription1}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle1}" />
+			<var name="dmDocumentVersionNumber" value="${dmDocumentVersionNumber}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute function="AssertClick" locator1="PGDocumentsandmedia#FILTER_BROWSE_BY_TYPE" value1="Browse by Type" />
+		<execute function="AssertClick" locator1="PGDocumentsandmedia#FILTER_BROWSE_BY_TYPE_MARKETING_BANNER" value1="Marketing Banner" />
+
+		<execute macro="DMDocument#viewAllPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription2}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle2}" />
+			<var name="dmDocumentVersionNumber" value="${dmDocumentVersionNumber}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute function="AssertClick" locator1="PGDocumentsandmedia#FILTER_BROWSE_BY_TYPE" value1="Browse by Type" />
+		<execute function="AssertClick" locator1="PGDocumentsandmedia#FILTER_BROWSE_BY_TYPE_ONLINE_TRAINING" value1="Online Training" />
+
+		<execute macro="DMDocument#viewAllPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription3}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle3}" />
+			<var name="dmDocumentVersionNumber" value="${dmDocumentVersionNumber}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute function="AssertClick" locator1="PGDocumentsandmedia#FILTER_BROWSE_BY_TYPE" value1="Browse by Type" />
+		<execute function="AssertClick" locator1="PGDocumentsandmedia#FILTER_BROWSE_BY_TYPE_SALES_PRESENTATION" value1="Sales Presentation" />
+
+		<execute macro="DMDocument#viewAllPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription4}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle4}" />
+			<var name="dmDocumentVersionNumber" value="${dmDocumentVersionNumber}" />
+		</execute>
+	</command>
+
+	<command name="AddDMFolderDocumentsViaFlashUploader" priority="5">
+		<var name="dmDocumentFile1" value="Document_1.doc" />
+		<var name="dmDocumentFile2" value="Document_2.doc" />
+		<var name="dmDocumentFile3" value="Document_3.doc" />
+		<var name="dmDocumentUploader" value="Test Test" />
+		<var name="dmDocumentVersionNumber" value="1.0" />
+		<var name="dmFolderDescription" value="DM Folder Description" />
+		<var name="dmFolderName" value="DM Folder Name" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#addPG">
+			<var name="dmFolderDescription" value="${dmFolderDescription}" />
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#addPGViaFlashUploader">
+			<var name="dmDocumentFileList" value="${dmDocumentFile1},${dmDocumentFile2},${dmDocumentFile3}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#viewAllPG">
+			<var name="dmDocumentDescription" value="" />
+			<var name="dmDocumentTitle" value="${dmDocumentFile1}" />
+			<var name="dmDocumentVersionNumber" value="${dmDocumentVersionNumber}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#viewAllPG">
+			<var name="dmDocumentDescription" value="" />
+			<var name="dmDocumentTitle" value="${dmDocumentFile2}" />
+			<var name="dmDocumentVersionNumber" value="${dmDocumentVersionNumber}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#viewAllPG">
+			<var name="dmDocumentDescription" value="" />
+			<var name="dmDocumentTitle" value="${dmDocumentFile3}" />
+			<var name="dmDocumentVersionNumber" value="${dmDocumentVersionNumber}" />
+		</execute>
+	</command>
+
+	<command name="AddDocument" priority="5">
+		<var name="dmDocumentDescription" value="DM Document Description" />
+		<var name="dmDocumentFile" value="Document_1.doc" />
+		<var name="dmDocumentTitle" value="DM Document Title" />
+		<var name="dmDocumentUploader" value="DM Document Description" />
+		<var name="dmDocumentVersionNumber" value="1.0" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentFile" value="${dmDocumentFile}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMDocument#viewAllPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+			<var name="dmDocumentVersionNumber" value="${dmDocumentVersionNumber}" />
+		</execute>
+	</command>
+
+	<command name="AddDocumentAllFileTypes" priority="4">
+		<var name="dmDocumentDescription" value="DM Document Description" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentFile" value="Document_1.doc" />
+			<var name="dmDocumentTitle" value="Document_1.doc" />
+		</execute>
+
+		<execute macro="DMDocument#viewAllPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentFile" value="Document_1.doc" />
+			<var name="dmDocumentTitle" value="Document_1.doc" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentFile" value="Document_1.docx" />
+			<var name="dmDocumentTitle" value="Document_1.docx" />
+		</execute>
+
+		<execute macro="DMDocument#viewAllPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentFile" value="Document_1.docx" />
+			<var name="dmDocumentTitle" value="Document_1.docx" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentFile" value="Document_1.jpeg" />
+			<var name="dmDocumentTitle" value="Document_1.jpeg" />
+		</execute>
+
+		<execute macro="DMDocument#viewAllPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentFile" value="Document_1.jpeg" />
+			<var name="dmDocumentTitle" value="Document_1.jpeg" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentFile" value="Document_1.jpg" />
+			<var name="dmDocumentTitle" value="Document_1.jpg" />
+		</execute>
+
+		<execute macro="DMDocument#viewAllPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentFile" value="Document_1.jpg" />
+			<var name="dmDocumentTitle" value="Document_1.jpg" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentFile" value="Document_2.mp3" />
+			<var name="dmDocumentTitle" value="Document_2.mp3" />
+		</execute>
+
+		<execute macro="DMDocument#viewAllPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentFile" value="Document_2.mp3" />
+			<var name="dmDocumentTitle" value="Document_2.mp3" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentFile" value="Document_1.odt" />
+			<var name="dmDocumentTitle" value="Document_1.odt" />
+		</execute>
+
+		<execute macro="DMDocument#viewAllPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentFile" value="Document_1.odt" />
+			<var name="dmDocumentTitle" value="Document_1.odt" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentFile" value="Document_1.pdf" />
+			<var name="dmDocumentTitle" value="Document_1.pdf" />
+		</execute>
+
+		<execute macro="DMDocument#viewAllPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentFile" value="Document_1.pdf" />
+			<var name="dmDocumentTitle" value="Document_1.pdf" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentFile" value="Document_1.png" />
+			<var name="dmDocumentTitle" value="Document_1.png" />
+		</execute>
+
+		<execute macro="DMDocument#viewAllPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentFile" value="Document_1.png" />
+			<var name="dmDocumentTitle" value="Document_1.png" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentFile" value="Document_1.ppt" />
+			<var name="dmDocumentTitle" value="Document_1.ppt" />
+		</execute>
+
+		<execute macro="DMDocument#viewAllPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentFile" value="Document_1.ppt" />
+			<var name="dmDocumentTitle" value="Document_1.ppt" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentFile" value="Document_1.pptx" />
+			<var name="dmDocumentTitle" value="Document_1.pptx" />
+		</execute>
+
+		<execute macro="DMDocument#viewAllPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentFile" value="Document_1.pptx" />
+			<var name="dmDocumentTitle" value="Document_1.pptx" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentFile" value="Document_1.xls" />
+			<var name="dmDocumentTitle" value="Document_1.xls" />
+		</execute>
+
+		<execute macro="DMDocument#viewAllPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentFile" value="Document_1.xls" />
+			<var name="dmDocumentTitle" value="Document_1.xls" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentFile" value="Document_1.xlsx" />
+			<var name="dmDocumentTitle" value="Document_1.xlsx" />
+		</execute>
+
+		<execute macro="DMDocument#viewAllPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentFile" value="Document_1.xlsx" />
+			<var name="dmDocumentTitle" value="Document_1.xlsx" />
+		</execute>
+	</command>
+
+	<command name="AddDocumentShortcutSiteDocument" priority="4">
+		<var name="dmDocumentDescription" value="DM Document Description" />
+		<var name="dmDocumentFile" value="Document_1.doc" />
+		<var name="dmDocumentTitle" value="DM Document Title" />
+		<var name="dmDocumentUploader" value="DM Document Description" />
+		<var name="dmDocumentVersionNumber" value="1.0" />
+		<var name="siteDescription" value="Open Site Description" />
+		<var name="siteName" value="Open Site Name" />
+		<var name="siteType" value="Open" />
+		<var name="soPage" value="true" />
+
+		<execute macro="SOUserBar#addSOSite">
+			<var name="siteDescription" value="${siteDescription}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteType" value="${siteType}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="Documents" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentFile" value="${dmDocumentFile}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMDocument#addShortcutPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+			<var name="siteName" value="${siteName}" />
+		</execute>
+
+		<execute macro="DMDocument#viewAllPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+			<var name="dmDocumentVersionNumber" value="${dmDocumentVersionNumber}" />
+		</execute>
+	</command>
+
+	<command name="AddDocumentType" priority="4">
+		<var name="dmDocumentDescription" value="DM Folder Document Description" />
+		<var name="dmDocumentFile" value="Document_1.doc" />
+		<var name="dmDocumentTitle" value="DM Folder Document Title" />
+		<var name="dmDocumentTypeDescription" value="DM Document Type Description" />
+		<var name="dmDocumentTypeName" value="DM Document Type Name" />
+		<var name="dmDocumentUploader" value="${adminName}" />
+		<var name="dmDocumentVersionNumber" value="1.0" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMDocumentType#gotoPG" />
+
+		<execute macro="DMDocumentType#addPG">
+			<var name="dmDocumentTypeDescription" value="${dmDocumentTypeDescription}" />
+			<var name="dmDocumentTypeFieldNames" value="Text Box" />
+			<var name="dmDocumentTypeName" value="${dmDocumentTypeName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMDocumentType#viewPGAddMenulist">
+			<var name="dmDocumentTypeName" value="DM Document Type Name" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentFile" value="${dmDocumentFile}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+			<var name="dmDocumentTypeName" value="${dmDocumentTypeName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMDocument#viewAllPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+			<var name="dmDocumentVersionNumber" value="${dmDocumentVersionNumber}" />
+		</execute>
+	</command>
+
+	<command name="AddDocumentTypeAndMetadata" priority="3">
+		<var name="dmDocumentDescription" value="DM Document Type Contract Description" />
+		<var name="dmDocumentFile" value="Document_1.doc" />
+		<var name="dmDocumentTitle" value="DM Document Type Contract Title" />
+		<var name="dmDocumentTypeDescription" value="DM Document Type Description" />
+		<var name="dmDocumentTypeFieldName" value="Boolean" />
+		<var name="dmDocumentTypeName" value="DM Document Type Name" />
+		<var name="dmDocumentUploader" value="Test Test" />
+		<var name="dmDocumentVersionNumber" value="1.0" />
+		<var name="dmMetadataSetFieldName" value="Boolean" />
+		<var name="field" value="Boolean" />
+		<var name="fieldFieldLabel" value="Boolean" />
+		<var name="fieldName" value="Boolean" />
+		<var name="metadataSetName" value="Document Metadata Set Name" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMMetadataSet#gotoPG" />
+
+		<execute macro="DMMetadataSet#addPG">
+			<var name="dmMetadataSetFieldName" value="${dmMetadataSetFieldName}" />
+			<var name="dmMetadataSetFieldNames" value="${dmMetadataSetFieldName}" />
+			<var name="metadataSetName" value="${metadataSetName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMDocumentType#gotoPG" />
+
+		<execute macro="DMDocumentType#addPG">
+			<var name="dmDocumentTypeDescription" value="${dmDocumentTypeDescription}" />
+			<var name="dmDocumentTypeFieldName" value="${dmDocumentTypeFieldName}" />
+			<var name="dmDocumentTypeFieldNames" value="${dmDocumentTypeFieldName}" />
+			<var name="dmDocumentTypeName" value="${dmDocumentTypeName}" />
+			<var name="metadataSetName" value="${metadataSetName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentFile" value="${dmDocumentFile}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+			<var name="dmDocumentTypeName" value="${dmDocumentTypeName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMDocument#viewAllPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+			<var name="dmDocumentVersionNumber" value="${dmDocumentVersionNumber}" />
+		</execute>
+	</command>
+
+	<command name="AddFolderDocument" priority="5">
+		<var name="dmDocumentDescription" value="DM Folder Document Description" />
+		<var name="dmDocumentFile" value="Document_1.doc" />
+		<var name="dmDocumentTitle" value="DM Folder Document Title" />
+		<var name="dmDocumentUploader" value="Test Test" />
+		<var name="dmDocumentVersionNumber" value="1.0" />
+		<var name="dmFolderDescription" value="DM Folder Description" />
+		<var name="dmFolderName" value="DM Folder Name" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#addPG">
+			<var name="dmFolderDescription" value="${dmFolderDescription}" />
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentFile" value="${dmDocumentFile}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#viewAllPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+			<var name="dmDocumentVersionNumber" value="${dmDocumentVersionNumber}" />
+		</execute>
+	</command>
+
+	<command name="AddFolderDocumentComment" priority="4">
+		<var name="commentBody" value="DM Folder Document Comment" />
+		<var name="dmDocumentDescription" value="DM Folder Document Description" />
+		<var name="dmDocumentFile" value="Document_1.doc" />
+		<var name="dmDocumentTitle" value="DM Folder Document Title" />
+		<var name="dmDocumentUploader" value="Test Test" />
+		<var name="dmDocumentVersionNumber" value="1.0" />
+		<var name="dmFolderDescription" value="DM Folder Description" />
+		<var name="dmFolderName" value="DM Folder Name" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#addPG">
+			<var name="dmFolderDescription" value="${dmFolderDescription}" />
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentFile" value="${dmDocumentFile}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocumentComment#addPG">
+			<var name="commentBody" value="${commentBody}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#viewAllPG">
+			<var name="commentBody" value="${commentBody}" />
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+			<var name="dmDocumentVersionNumber" value="${dmDocumentVersionNumber}" />
+		</execute>
+	</command>
+
+	<command name="AddFolderDocumentDuplicate" priority="5">
+		<var name="dmDocumentDescription" value="DM Document Description" />
+		<var name="dmDocumentFile" value="Document_1.doc" />
+		<var name="dmDocumentTitle" value="DM Document Title" />
+		<var name="dmFolderDescription" value="DM Folder Description" />
+		<var name="dmFolderName" value="DM Folder Name" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#addPG">
+			<var name="dmFolderDescription" value="${dmFolderDescription}" />
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentFile" value="${dmDocumentFile}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocument" value="Duplicate" />
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentFile" value="${dmDocumentFile}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+		</execute>
+	</command>
+
+	<command name="AddFolderDocuments" priority="4">
+		<var name="dmDocumentDescription1" value="DM Folder Document1 Description" />
+		<var name="dmDocumentDescription2" value="DM Folder Document2 Description" />
+		<var name="dmDocumentDescription3" value="DM Folder Document3 Description" />
+		<var name="dmDocumentFile1" value="Document_1.doc" />
+		<var name="dmDocumentFile2" value="Document_2.doc" />
+		<var name="dmDocumentFile3" value="Document_3.doc" />
+		<var name="dmDocumentTitle1" value="DM Folder Document1 Title" />
+		<var name="dmDocumentTitle2" value="DM Folder Document2 Title" />
+		<var name="dmDocumentTitle3" value="DM Folder Document3 Title" />
+		<var name="dmDocumentUploader" value="Test Test" />
+		<var name="dmDocumentVersionNumber" value="1.0" />
+		<var name="dmFolderDescription" value="DM Folder Description" />
+		<var name="dmFolderName" value="DM Folder Name" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#addPG">
+			<var name="dmFolderDescription" value="${dmFolderDescription}" />
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription1}" />
+			<var name="dmDocumentFile" value="${dmDocumentFile1}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle1}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription2}" />
+			<var name="dmDocumentFile" value="${dmDocumentFile2}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle2}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription3}" />
+			<var name="dmDocumentFile" value="${dmDocumentFile3}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle3}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#viewAllPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription1}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle1}" />
+			<var name="dmDocumentVersionNumber" value="${dmDocumentVersionNumber}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#viewAllPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription2}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle2}" />
+			<var name="dmDocumentVersionNumber" value="${dmDocumentVersionNumber}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#viewAllPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription3}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle3}" />
+			<var name="dmDocumentVersionNumber" value="${dmDocumentVersionNumber}" />
+		</execute>
+	</command>
+
+	<command name="AddFolderDocumentTags" priority="3">
+		<var name="dmDocumentDescription" value="DM Folder Document Description" />
+		<var name="dmDocumentFile" value="Document_1.doc" />
+		<var name="dmDocumentTitle" value="DM Folder Document Title" />
+		<var name="dmDocumentUploader" value="Test Test" />
+		<var name="dmDocumentVersionNumber" value="1.0" />
+		<var name="dmFolderDescription" value="DM Folder Description" />
+		<var name="dmFolderName" value="DM Folder Name" />
+		<var name="tagName1" value="tag1" />
+		<var name="tagName2" value="tag2" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#addPG">
+			<var name="dmFolderDescription" value="${dmFolderDescription}" />
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentFile" value="${dmDocumentFile}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+			<var name="tagNameList" value="${tagName1},${tagName2}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#viewAllPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+			<var name="dmDocumentVersionNumber" value="${dmDocumentVersionNumber}" />
+			<var name="tagNameList" value="${tagName1},${tagName2}" />
+		</execute>
+	</command>
+
+	<command name="AddFolderDocumentTitleInvalidCharacters" priority="3">
+		<var name="dmDocument" value="Invalid" />
+		<var name="dmDocumentDescription" value="DM Folder Document Description" />
+		<var name="dmDocumentFile" value="Document_1.doc" />
+		<var name="dmDocumentTitle" value="&lt;DM Folder Document Invalid Title&gt;" />
+		<var name="dmDocumentUploader" value="Test Test" />
+		<var name="dmDocumentVersionNumber" value="1.0" />
+		<var name="dmFolderDescription" value="DM Folder Description" />
+		<var name="dmFolderName" value="DM Folder Name" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#addPG">
+			<var name="dmFolderDescription" value="${dmFolderDescription}" />
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocument" value="${dmDocument}" />
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentFile" value="${dmDocumentFile}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<var name="key_dmDocumentTitle" value="${dmDocumentTitle}" />
+
+		<execute function="AssertElementNotPresent" locator1="PGDocumentsandmedia#ENTRY_ICON_DOCUMENT_THUMBNAIL" />
+	</command>
+
+	<command name="AddFolderImage" priority="5">
+		<var name="dmDocumentDescription" value="DM Folder Image Description" />
+		<var name="dmDocumentFile" value="Document_1.jpeg" />
+		<var name="dmDocumentTitle" value="DM Folder Image Title" />
+		<var name="dmDocumentUploader" value="Test Test" />
+		<var name="dmDocumentVersionNumber" value="1.0" />
+		<var name="dmFolderDescription" value="DM Folder Description" />
+		<var name="dmFolderName" value="DM Folder Name" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#addPG">
+			<var name="dmFolderDescription" value="${dmFolderDescription}" />
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentFile" value="${dmDocumentFile}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#viewPG">
+			<var name="versionNumber" value="${dmDocumentVersionNumber}" />
+		</execute>
+	</command>
+
+	<command name="AddFolderImageComment" priority="4">
+		<var name="commentBody" value="DM Folder Image Comment" />
+		<var name="dmDocumentDescription" value="DM Folder Image Description" />
+		<var name="dmDocumentFile" value="Document_1.jpeg" />
+		<var name="dmDocumentTitle" value="DM Folder Image Title" />
+		<var name="dmDocumentUploader" value="Test Test" />
+		<var name="dmDocumentVersionNumber" value="1.0" />
+		<var name="dmFolderDescription" value="DM Folder Description" />
+		<var name="dmFolderName" value="DM Folder Name" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#addPG">
+			<var name="dmFolderDescription" value="${dmFolderDescription}" />
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentFile" value="${dmDocumentFile}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocumentComment#addPG">
+			<var name="commentBody" value="${commentBody}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#viewAllPG">
+			<var name="commentBody" value="${commentBody}" />
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+			<var name="dmDocumentVersionNumber" value="${dmDocumentVersionNumber}" />
+		</execute>
+	</command>
+
+	<command name="AddFolderImageDuplicate" priority="5">
+		<var name="dmDocumentDescription" value="DM Image Description" />
+		<var name="dmDocumentFile" value="Document_1.jpg" />
+		<var name="dmDocumentTitle" value="DM Image Title" />
+		<var name="dmFolderDescription" value="DM Folder Description" />
+		<var name="dmFolderName" value="DM Folder Name" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#addPG">
+			<var name="dmFolderDescription" value="${dmFolderDescription}" />
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentFile" value="${dmDocumentFile}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocument" value="Duplicate" />
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentFile" value="${dmDocumentFile}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+		</execute>
+	</command>
+
+	<command name="AddFolderImages" priority="4">
+		<var name="dmDocumentDescription1" value="DM Folder Image1 Description" />
+		<var name="dmDocumentDescription2" value="DM Folder Image2 Description" />
+		<var name="dmDocumentDescription3" value="DM Folder Image3 Description" />
+		<var name="dmDocumentFile1" value="Document_1.jpeg" />
+		<var name="dmDocumentFile2" value="Document_2.jpeg" />
+		<var name="dmDocumentFile3" value="Document_3.jpeg" />
+		<var name="dmDocumentTitle1" value="DM Folder Image1 Title" />
+		<var name="dmDocumentTitle2" value="DM Folder Image2 Title" />
+		<var name="dmDocumentTitle3" value="DM Folder Image3 Title" />
+		<var name="dmDocumentUploader" value="Test Test" />
+		<var name="dmDocumentVersionNumber" value="1.0" />
+		<var name="dmFolderDescription" value="DM Folder Description" />
+		<var name="dmFolderName" value="DM Folder Name" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#addPG">
+			<var name="dmFolderDescription" value="${dmFolderDescription}" />
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription1}" />
+			<var name="dmDocumentFile" value="${dmDocumentFile1}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle1}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription2}" />
+			<var name="dmDocumentFile" value="${dmDocumentFile2}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle2}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription3}" />
+			<var name="dmDocumentFile" value="${dmDocumentFile3}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle3}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#viewAllPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription1}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle1}" />
+			<var name="dmDocumentVersionNumber" value="${dmDocumentVersionNumber}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#viewAllPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription2}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle2}" />
+			<var name="dmDocumentVersionNumber" value="${dmDocumentVersionNumber}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#viewAllPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription3}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle3}" />
+			<var name="dmDocumentVersionNumber" value="${dmDocumentVersionNumber}" />
+		</execute>
+	</command>
+
+	<command name="AddFolderImageTags" priority="3">
+		<var name="dmDocumentDescription" value="DM Folder Image Description" />
+		<var name="dmDocumentFile" value="Document_1.jpeg" />
+		<var name="dmDocumentTitle" value="DM Folder Image Title" />
+		<var name="dmDocumentUploader" value="Test Test" />
+		<var name="dmDocumentVersionNumber" value="1.0" />
+		<var name="dmFolderDescription" value="DM Folder Description" />
+		<var name="dmFolderName" value="DM Folder Name" />
+		<var name="tagName1" value="tag1" />
+		<var name="tagName2" value="tag2" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#addPG">
+			<var name="dmFolderDescription" value="${dmFolderDescription}" />
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentFile" value="${dmDocumentFile}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+			<var name="tagNameList" value="${tagName1},${tagName2}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#viewPG">
+			<var name="tagNameList" value="${tagName1},${tagName2}" />
+			<var name="versionNumber" value="${dmDocumentVersionNumber}" />
+		</execute>
+	</command>
+
+	<command name="AddFolderTitleInvalidCharacters" priority="3">
+		<var name="dmFolder" value="Invalid" />
+		<var name="dmFolderDescription" value="DM Folder Description" />
+		<var name="dmFolderName" value="&lt;DM Folder Invalid Name&gt;" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#addPG">
+			<var name="dmFolder" value="${dmFolder}" />
+			<var name="dmFolderDescription" value="${dmFolderDescription}" />
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<var name="key_dmFolderName" value="${dmFolderName}" />
+
+		<execute function="AssertElementNotPresent" locator1="PGDocumentsandmedia#ENTRY_ICON_FOLDER_THUMBNAIL" />
+	</command>
+
+	<command name="AddSubFolderDocument" priority="5">
+		<var name="dmDocumentDescription" value="DM Document Description" />
+		<var name="dmDocumentFile" value="Document_1.doc" />
+		<var name="dmDocumentTitle" value="DM Document Title" />
+		<var name="dmFolderDescription" value="DM Folder Description" />
+		<var name="dmFolderName" value="DM Folder Name" />
+		<var name="dmSubFolderDescription" value="DM SubFolder Description" />
+		<var name="dmSubFolderName" value="DM SubFolder Name" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#addPG">
+			<var name="dmFolderDescription" value="${dmFolderDescription}" />
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMFolder#addSubfolderPG">
+			<var name="dmSubFolderDescription" value="${dmSubFolderDescription}" />
+			<var name="dmSubFolderName" value="${dmSubFolderName}" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmSubFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentFile" value="${dmDocumentFile}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+		</execute>
+
+		<execute macro="DMDocument#viewAllPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+		</execute>
+	</command>
+
+	<command name="CancelCheckoutFolderDocument" priority="5">
+		<var name="dmDocumentDescription" value="DM Folder Document Description" />
+		<var name="dmDocumentFile" value="Document_1.doc" />
+		<var name="dmDocumentTitle" value="DM Folder Document Title" />
+		<var name="dmDocumentUploader" value="Test Test" />
+		<var name="dmDocumentVersionNumber" value="1.0" />
+		<var name="dmFolderDescription" value="DM Folder Description" />
+		<var name="dmFolderName" value="DM Folder Name" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#addPG">
+			<var name="dmFolderDescription" value="${dmFolderDescription}" />
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentFile" value="${dmDocumentFile}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#checkoutPG">
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#cancelCheckoutPG">
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#viewAllPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+			<var name="dmDocumentVersionNumber" value="${dmDocumentVersionNumber}" />
+		</execute>
+	</command>
+
+	<command name="CheckinMajorFolderDocument" priority="5">
+		<var name="dmDocumentDescription" value="DM Folder Document Description" />
+		<var name="dmDocumentFile" value="Document_1.doc" />
+		<var name="dmDocumentSize" value="22k" />
+		<var name="dmDocumentSizeSO" value="21.5k" />
+		<var name="dmDocumentTitle" value="DM Folder Document Title" />
+		<var name="dmDocumentUploader" value="Test Test" />
+		<var name="dmDocumentVersionNumber" value="1.0" />
+		<var name="dmFolderDescription" value="DM Folder Description" />
+		<var name="dmFolderName" value="DM Folder Name" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#addPG">
+			<var name="dmFolderDescription" value="${dmFolderDescription}" />
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentFile" value="${dmDocumentFile}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#checkoutPG">
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#checkinPG">
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+			<var name="revision" value="Major" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="SODocuments#viewPGDisplayView">
+			<var name="dmDocumentSize" value="${dmDocumentSize}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+			<var name="dmDocumentUploader" value="${dmDocumentUploader}" />
+			<var name="dmDocumentVersionNumber" value="2.0" />
+			<var name="workflow" value="Approved" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="SODocuments#viewPGDocumentSpecificVersionDetails">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentSize" value="${dmDocumentSize}" />
+			<var name="dmDocumentSizeSO" value="${dmDocumentSizeSO}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+			<var name="dmDocumentUploader" value="Test Test" />
+			<var name="dmDocumentVersionNumber" value="${dmDocumentVersionNumber}" />
+			<var name="workflow" value="Approved" />
+		</execute>
+	</command>
+
+	<command name="CheckinMinorDMFolderDocumentViaDocumentActionMenu" priority="5">
+		<var name="dmDocumentDescription" value="DM Folder Document Description" />
+		<var name="dmDocumentFile" value="Document_1.doc" />
+		<var name="dmDocumentSize" value="22k" />
+		<var name="dmDocumentSizeSO" value="21.5k" />
+		<var name="dmDocumentTitle" value="DM Folder Document Title" />
+		<var name="dmDocumentUploader" value="Test Test" />
+		<var name="dmDocumentVersionNumber" value="1.0" />
+		<var name="dmFolderDescription" value="DM Folder Description" />
+		<var name="dmFolderName" value="DM Folder Name" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#addPG">
+			<var name="dmFolderDescription" value="${dmFolderDescription}" />
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentFile" value="${dmDocumentFile}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#checkoutViaDocumentActionsPG">
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#checkinViaDocumentActionsPG">
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+			<var name="revision" value="Minor" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="SODocuments#viewPGDisplayView">
+			<var name="dmDocumentSize" value="${dmDocumentSize}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+			<var name="dmDocumentUploader" value="${dmDocumentUploader}" />
+			<var name="dmDocumentVersionNumber" value="${dmDocumentVersionNumber}" />
+			<var name="workflow" value="Approved" />
+		</execute>
+	</command>
+
+	<command name="CheckinMinorFolderDocument" priority="5">
+		<var name="dmDocumentDescription" value="DM Folder Document Description" />
+		<var name="dmDocumentFile" value="Document_1.doc" />
+		<var name="dmDocumentSize" value="22k" />
+		<var name="dmDocumentSizeSO" value="21.5k" />
+		<var name="dmDocumentTitle" value="DM Folder Document Title" />
+		<var name="dmDocumentUploader" value="Test Test" />
+		<var name="dmDocumentVersionNumber" value="1.0" />
+		<var name="dmFolderDescription" value="DM Folder Description" />
+		<var name="dmFolderName" value="DM Folder Name" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#addPG">
+			<var name="dmFolderDescription" value="${dmFolderDescription}" />
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentFile" value="${dmDocumentFile}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#checkoutPG">
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#checkinPG">
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+			<var name="revision" value="Minor" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="SODocuments#viewPGDisplayView">
+			<var name="dmDocumentSize" value="${dmDocumentSize}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+			<var name="dmDocumentUploader" value="${dmDocumentUploader}" />
+			<var name="dmDocumentVersionNumber" value="${dmDocumentVersionNumber}" />
+			<var name="workflow" value="Approved" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="SODocuments#viewPGDocumentSpecificVersionDetails">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentSize" value="${dmDocumentSize}" />
+			<var name="dmDocumentSizeSO" value="${dmDocumentSizeSO}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+			<var name="dmDocumentUploader" value="Test Test" />
+			<var name="dmDocumentVersionNumber" value="${dmDocumentVersionNumber}" />
+			<var name="workflow" value="Approved" />
+		</execute>
+	</command>
+
+	<command name="CheckoutFolderDocument" priority="5">
+		<var name="dmDocumentDescription" value="DM Folder Document Description" />
+		<var name="dmDocumentFile" value="Document_1.doc" />
+		<var name="dmDocumentSize" value="22k" />
+		<var name="dmDocumentSizeSO" value="21.5k" />
+		<var name="dmDocumentTitle" value="DM Folder Document Title" />
+		<var name="dmDocumentUploader" value="Test Test" />
+		<var name="dmDocumentVersionNumber" value="1.0" />
+		<var name="dmFolderDescription" value="DM Folder Description" />
+		<var name="dmFolderName" value="DM Folder Name" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#addPG">
+			<var name="dmFolderDescription" value="${dmFolderDescription}" />
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentFile" value="${dmDocumentFile}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#checkoutPG">
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="SODocuments#viewPGDisplayView">
+			<var name="dmDocumentSize" value="${dmDocumentSize}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+			<var name="dmDocumentUploader" value="${dmDocumentUploader}" />
+			<var name="workflow" value="Checkedout" />
+		</execute>
+	</command>
+
+	<command name="DeleteDocumentType" priority="4">
+		<var name="dmDocumentTypeDescription" value="DM Document Type Description" />
+		<var name="dmDocumentTypeName" value="DM Document Type Name" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMDocumentType#gotoPG" />
+
+		<execute macro="DMDocumentType#addPG">
+			<var name="dmDocumentTypeDescription" value="${dmDocumentTypeDescription}" />
+			<var name="dmDocumentTypeFieldNames" value="Text Box" />
+			<var name="dmDocumentTypeName" value="${dmDocumentTypeName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMDocumentType#viewPGAddMenulist">
+			<var name="dmDocumentTypeName" value="${dmDocumentTypeName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMDocumentType#gotoPG" />
+
+		<execute macro="DMDocumentType#deletePG">
+			<var name="dmDocumentTypeName" value="${dmDocumentTypeName}" />
+		</execute>
+	</command>
+
+	<command name="DeleteFolderDocument" priority="5">
+		<var name="dmDocumentDescription" value="DM Folder Document Description" />
+		<var name="dmDocumentFile" value="Document_1.doc" />
+		<var name="dmDocumentTitle" value="DM Folder Document Title" />
+		<var name="dmDocumentUploader" value="Test Test" />
+		<var name="dmFolderDescription" value="DM Folder Description" />
+		<var name="dmFolderName" value="DM Folder Name" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#addPG">
+			<var name="dmFolderDescription" value="${dmFolderDescription}" />
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentFile" value="${dmDocumentFile}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#deletePG">
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+		</execute>
+	</command>
+
+	<command name="DeleteFolderImage" priority="5">
+		<var name="dmDocumentDescription" value="DM Folder Image Description" />
+		<var name="dmDocumentFile" value="Document_1.jpeg" />
+		<var name="dmDocumentTitle" value="DM Folder Image Title" />
+		<var name="dmDocumentUploader" value="Test Test" />
+		<var name="dmFolderDescription" value="DM Folder Description" />
+		<var name="dmFolderName" value="DM Folder Name" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#addPG">
+			<var name="dmFolderDescription" value="${dmFolderDescription}" />
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentFile" value="${dmDocumentFile}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#deletePG">
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+		</execute>
+	</command>
+
+	<command name="DeleteSubFolderDocument" priority="5">
+		<var name="dmDocumentDescription" value="DM Document Description" />
+		<var name="dmDocumentFile" value="Document_1.doc" />
+		<var name="dmDocumentTitle" value="DM Document Title" />
+		<var name="dmFolderDescription" value="DM Folder Description" />
+		<var name="dmFolderName" value="DM Folder Name" />
+		<var name="dmSubFolderDescription" value="DM SubFolder Description" />
+		<var name="dmSubFolderName" value="DM SubFolder Name" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#addPG">
+			<var name="dmFolderDescription" value="${dmFolderDescription}" />
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMFolder#addSubfolderPG">
+			<var name="dmSubFolderDescription" value="${dmSubFolderDescription}" />
+			<var name="dmSubFolderName" value="${dmSubFolderName}" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmSubFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentFile" value="${dmDocumentFile}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+		</execute>
+
+		<execute macro="DMDocument#deletePG">
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+		</execute>
+	</command>
+
+	<command name="DownloadAndAddDMFolderDocument" priority="5">
+		<var name="dmDocumentDescription" value="DM Folder Document Description" />
+		<var name="dmDocumentFile" value="Document_1.doc" />
+		<var name="dmDocumentSize" value="22k" />
+		<var name="dmDocumentTitle" value="DM Folder Document Title" />
+		<var name="dmDocumentUploader" value="Test Test" />
+		<var name="dmFolderDescription" value="DM Folder Description" />
+		<var name="dmFolderName" value="DM Folder Name" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#addPG">
+			<var name="dmFolderDescription" value="${dmFolderDescription}" />
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentFile" value="${dmDocumentFile}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#downloadPG">
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#deletePG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#addPG">
+			<var name="dmFolderDescription" value="${dmFolderDescription}" />
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#addPGViaFlashUploader">
+			<var name="dmDocumentFile" value="${dmDocumentTitle}.doc" />
+			<var name="uploadTempFile" value="true" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#viewAllPG">
+			<var name="dmDocumentDescription" value="" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}.doc" />
+			<var name="dmDocumentVersionNumber" value="${dmDocumentVersionNumber}" />
+		</execute>
+	</command>
+
+	<command name="EditDMFolderDocumentXSSChangeLog" priority="5">
+		<var name="changeLog" value="&lt;script&gt;alert(&quot;This is a Minor Revision&quot;);&lt;/script&gt;" />
+		<var name="dmDocumentDescription" value="DM Folder Document Description" />
+		<var name="dmDocumentDescriptionEdit" value="DM Folder Document Description Edit" />
+		<var name="dmDocumentFile" value="Document_1.doc" />
+		<var name="dmDocumentFileEdit" value="Document_2.doc" />
+		<var name="dmDocumentTitle" value="DM Folder Document Title" />
+		<var name="dmDocumentTitleEdit" value="DM Folder Document Title Edit" />
+		<var name="dmDocumentUploader" value="Test Test" />
+		<var name="dmDocumentVersionNumber" value="1.1" />
+		<var name="dmFolderDescription" value="DM Folder Description" />
+		<var name="dmFolderName" value="DM Folder Name" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#addPG">
+			<var name="dmFolderDescription" value="${dmFolderDescription}" />
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentFile" value="${dmDocumentFile}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#editPG">
+			<var name="changeLog" value="${changeLog}" />
+			<var name="dmDocumentDescriptionEdit" value="${dmDocumentDescriptionEdit}" />
+			<var name="dmDocumentFileEdit" value="${dmDocumentFileEdit}" />
+			<var name="dmDocumentTitleEdit" value="${dmDocumentTitleEdit}" />
+			<var name="revision" value="Minor" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute function="AssertAlertNotPresent" />
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute function="AssertAlertNotPresent" />
+
+		<execute macro="DMDocument#viewAllPG">
+			<var name="changeLog" value="${changeLog}" />
+			<var name="dmDocumentDescription" value="${dmDocumentDescriptionEdit}" />
+			<var name="dmDocumentFile" value="${dmDocumentFileEdit}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitleEdit}" />
+			<var name="dmDocumentVersionNumber" value="${dmDocumentVersionNumber}" />
+		</execute>
+
+		<execute function="AssertAlertNotPresent" />
+	</command>
+
+	<command name="EditDocumentType" priority="4">
+		<var name="dmDocumentDescription" value="DM Folder Document Description" />
+		<var name="dmDocumentFile" value="Document_1.doc" />
+		<var name="dmDocumentTitle" value="DM Folder Document Title" />
+		<var name="dmDocumentTypeDescription" value="DM Document Type Description" />
+		<var name="dmDocumentTypeDescriptionEdit" value="DM Document Type Description Edit" />
+		<var name="dmDocumentTypeName" value="DM Document Type Name" />
+		<var name="dmDocumentTypeNameEdit" value="DM Document Type Name Edit" />
+		<var name="dmDocumentUploader" value="${adminName}" />
+		<var name="dmDocumentVersionNumber" value="1.0" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMDocumentType#gotoPG" />
+
+		<execute macro="DMDocumentType#addPG">
+			<var name="dmDocumentTypeDescription" value="${dmDocumentTypeDescription}" />
+			<var name="dmDocumentTypeFieldNames" value="Text Box" />
+			<var name="dmDocumentTypeName" value="${dmDocumentTypeName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMDocumentType#viewPGAddMenulist">
+			<var name="dmDocumentTypeName" value="DM Document Type Name" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMDocumentType#gotoPG" />
+
+		<execute macro="DMDocumentType#editPG">
+			<var name="dmDocumentTypeDescriptionEdit" value="${dmDocumentTypeDescriptionEdit}" />
+			<var name="dmDocumentTypeName" value="${dmDocumentTypeName}" />
+			<var name="dmDocumentTypeNameEdit" value="${dmDocumentTypeNameEdit}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMDocumentType#viewPGAddMenulist">
+			<var name="dmDocumentTypeName" value="${dmDocumentTypeNameEdit}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentFile" value="${dmDocumentFile}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+			<var name="dmDocumentTypeName" value="${dmDocumentTypeNameEdit}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMDocument#viewAllPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+			<var name="dmDocumentVersionNumber" value="${dmDocumentVersionNumber}" />
+		</execute>
+	</command>
+
+	<command name="EditFolderDocument" priority="5">
+		<var name="dmDocumentDescription" value="DM Folder Document Description" />
+		<var name="dmDocumentDescriptionEdit" value="DM Folder Document Description Edit" />
+		<var name="dmDocumentFile" value="Document_1.doc" />
+		<var name="dmDocumentFileEdit" value="Document_2.doc" />
+		<var name="dmDocumentTitle" value="DM Folder Document Title" />
+		<var name="dmDocumentTitleEdit" value="DM Folder Document Title Edit" />
+		<var name="dmDocumentUploader" value="Test Test" />
+		<var name="dmDocumentVersionNumber" value="1.1" />
+		<var name="dmFolderDescription" value="DM Folder Description" />
+		<var name="dmFolderName" value="DM Folder Name" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#addPG">
+			<var name="dmFolderDescription" value="${dmFolderDescription}" />
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentFile" value="${dmDocumentFile}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#editPG">
+			<var name="dmDocumentDescriptionEdit" value="${dmDocumentDescriptionEdit}" />
+			<var name="dmDocumentFile" value="${dmDocumentFileEdit}" />
+			<var name="dmDocumentTitleEdit" value="${dmDocumentTitleEdit}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#viewAllPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescriptionEdit}" />
+			<var name="dmDocumentFile" value="${dmDocumentFileEdit}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitleEdit}" />
+			<var name="dmDocumentVersionNumber" value="${dmDocumentVersionNumber}" />
+		</execute>
+	</command>
+
+	<command name="EditFolderDocumentChangeLog76Characters" priority="3">
+		<var name="changeLog75Characters" value="|||||||||1|||||||||2|||||||||3|||||||||4|||||||||5|||||||||6|||||||||7|||||" />
+		<var name="changeLog76Characters" value="|||||||||1|||||||||2|||||||||3|||||||||4|||||||||5|||||||||6|||||||||7||||||" />
+		<var name="dmDocumentDescription" value="DM Folder Document Description" />
+		<var name="dmDocumentDescriptionEdit" value="DM Folder Document Description Edit" />
+		<var name="dmDocumentFile" value="Document_1.doc" />
+		<var name="dmDocumentFileEdit" value="Document_2.doc" />
+		<var name="dmDocumentTitle" value="DM Folder Document Title" />
+		<var name="dmDocumentTitleEdit" value="DM Folder Document Title Edit" />
+		<var name="dmDocumentUploader" value="Test Test" />
+		<var name="dmDocumentVersionNumber" value="1.1" />
+		<var name="dmFolderDescription" value="DM Folder Description" />
+		<var name="dmFolderName" value="DM Folder Name" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#addPG">
+			<var name="dmFolderDescription" value="${dmFolderDescription}" />
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentFile" value="${dmDocumentFile}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#editPG">
+			<var name="changeLog" value="${changeLog76Characters}" />
+			<var name="dmDocumentDescriptionEdit" value="${dmDocumentDescriptionEdit}" />
+			<var name="dmDocumentFileEdit" value="${dmDocumentFileEdit}" />
+			<var name="dmDocumentTitleEdit" value="${dmDocumentTitleEdit}" />
+			<var name="revision" value="Minor" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#viewAllPG">
+			<var name="changeLog" value="${changeLog75Characters}" />
+			<var name="dmDocumentDescription" value="${dmDocumentDescriptionEdit}" />
+			<var name="dmDocumentFile" value="${dmDocumentFileEdit}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitleEdit}" />
+			<var name="dmDocumentVersionNumber" value="${dmDocumentVersionNumber}" />
+		</execute>
+	</command>
+
+	<command name="EditFolderImage" priority="4">
+		<var name="dmDocumentDescription" value="DM Folder Image Description" />
+		<var name="dmDocumentDescriptionEdit" value="DM Folder Image Description Edit" />
+		<var name="dmDocumentFile" value="Document_1.jpeg" />
+		<var name="dmDocumentFileEdit" value="Document_2.jpeg" />
+		<var name="dmDocumentTitle" value="DM Folder Image Title" />
+		<var name="dmDocumentTitleEdit" value="DM Folder Image Title Edit" />
+		<var name="dmDocumentUploader" value="Test Test" />
+		<var name="dmDocumentVersionNumber" value="1.1" />
+		<var name="dmFolderDescription" value="DM Folder Description" />
+		<var name="dmFolderName" value="DM Folder Name" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#addPG">
+			<var name="dmFolderDescription" value="${dmFolderDescription}" />
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentFile" value="${dmDocumentFile}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#editPG">
+			<var name="dmDocumentDescriptionEdit" value="${dmDocumentDescriptionEdit}" />
+			<var name="dmDocumentFile" value="${dmDocumentFileEdit}" />
+			<var name="dmDocumentTitleEdit" value="${dmDocumentTitleEdit}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#viewAllPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescriptionEdit}" />
+			<var name="dmDocumentFile" value="${dmDocumentFileEdit}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitleEdit}" />
+			<var name="dmDocumentVersionNumber" value="${dmDocumentVersionNumber}" />
+		</execute>
+	</command>
+
+	<command name="EditSubFolderDocument" priority="5">
+		<var name="dmDocumentDescription" value="DM Folder Image Description" />
+		<var name="dmDocumentDescriptionEdit" value="DM Folder Image Description Edit" />
+		<var name="dmDocumentFile" value="Document_1.jpeg" />
+		<var name="dmDocumentFileEdit" value="Document_2.jpeg" />
+		<var name="dmDocumentTitle" value="DM Folder Image Title" />
+		<var name="dmDocumentTitleEdit" value="DM Folder Image Title Edit" />
+		<var name="dmDocumentUploader" value="Test Test" />
+		<var name="dmDocumentVersionNumber" value="1.1" />
+		<var name="dmFolderDescription" value="DM Folder Description" />
+		<var name="dmFolderName" value="DM Folder Name" />
+		<var name="dmSubFolderDescription" value="DM SubFolder Description" />
+		<var name="dmSubFolderName" value="DM SubFolder Name" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#addPG">
+			<var name="dmFolderDescription" value="${dmFolderDescription}" />
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMFolder#addSubfolderPG">
+			<var name="dmSubFolderDescription" value="${dmSubFolderDescription}" />
+			<var name="dmSubFolderName" value="${dmSubFolderName}" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmSubFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentFile" value="${dmDocumentFile}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+		</execute>
+
+		<execute macro="DMDocument#editPG">
+			<var name="dmDocumentDescriptionEdit" value="${dmDocumentDescriptionEdit}" />
+			<var name="dmDocumentFile" value="${dmDocumentFileEdit}" />
+			<var name="dmDocumentTitleEdit" value="${dmDocumentTitleEdit}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmSubFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#viewAllPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescriptionEdit}" />
+			<var name="dmDocumentFile" value="${dmDocumentFileEdit}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitleEdit}" />
+			<var name="dmDocumentVersionNumber" value="${dmDocumentVersionNumber}" />
+		</execute>
+	</command>
+
+	<command name="MoveFolderDocumentToFolder" priority="3">
+		<var name="dmDocumentDescription" value="DM Document Description" />
+		<var name="dmDocumentFile" value="Document_1.doc" />
+		<var name="dmDocumentTitle" value="DM Document Title" />
+		<var name="dmFolder1Description" value="DM Folder1 Description" />
+		<var name="dmFolder1Name" value="DM Folder1 Name" />
+		<var name="dmFolder2Description" value="DM Folder2 Description" />
+		<var name="dmFolder2Name" value="DM Folder2 Name" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#addPG">
+			<var name="dmFolderDescription" value="${dmFolder1Description}" />
+			<var name="dmFolderName" value="${dmFolder1Name}" />
+		</execute>
+
+		<execute macro="DMFolder#addPG">
+			<var name="dmFolderDescription" value="${dmFolder2Description}" />
+			<var name="dmFolderName" value="${dmFolder2Name}" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolder1Name}" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentFile" value="${dmDocumentFile}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+		</execute>
+
+		<execute macro="DMDocument#moveToFolderPG">
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+			<var name="dmFolderName" value="${dmFolder2Name}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolder2Name}" />
+		</execute>
+
+		<execute macro="DMDocument#viewPG">
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+		</execute>
+	</command>
+
+	<command name="MoveFolderDocumentToHome" priority="4">
+		<var name="dmDocumentDescription" value="DM Document Description" />
+		<var name="dmDocumentFile" value="Document_1.doc" />
+		<var name="dmDocumentTitle" value="DM Document Title" />
+		<var name="dmFolderDescription" value="DM Folder Description" />
+		<var name="dmFolderName" value="DM Folder Name" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#addPG">
+			<var name="dmFolderDescription" value="${dmFolderDescription}" />
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentFile" value="${dmDocumentFile}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+		</execute>
+
+		<execute macro="DMDocument#moveToHomePG">
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMDocument#viewPG">
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+		</execute>
+	</command>
+
+	<command name="PublishDraftFolderDocument" priority="5">
+		<var name="dmDocumentDescription" value="DM Folder Document Description" />
+		<var name="dmDocumentFile" value="Document_1.doc" />
+		<var name="dmDocumentTitle" value="DM Folder Document Title" />
+		<var name="dmDocumentUploader" value="Test Test" />
+		<var name="dmDocumentVersionNumber" value="1.0" />
+		<var name="dmFolderDescription" value="DM Folder Description" />
+		<var name="dmFolderName" value="DM Folder Name" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#addPG">
+			<var name="dmFolderDescription" value="${dmFolderDescription}" />
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#saveAsDraftPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentFile" value="${dmDocumentFile}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#publishDraftPG">
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#viewAllPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+			<var name="dmDocumentVersionNumber" value="${dmDocumentVersionNumber}" />
+		</execute>
+	</command>
+
+	<command name="RateFolderDocument" priority="3">
+		<var name="dmDocumentDescription" value="DM Folder Document Description" />
+		<var name="dmDocumentFile" value="Document_1.doc" />
+		<var name="dmDocumentTitle" value="DM Folder Document Title" />
+		<var name="dmDocumentUploader" value="Test Test" />
+		<var name="dmDocumentVersionNumber" value="1.0" />
+		<var name="dmFolderDescription" value="DM Folder Document Description" />
+		<var name="dmFolderName" value="DM Folder Name" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#addPG">
+			<var name="dmFolderDescription" value="${dmFolderDescription}" />
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentFile" value="${dmDocumentFile}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#ratePG">
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+			<var name="soDocument" value="true" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#viewAllPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+			<var name="dmDocumentVersionNumber" value="${dmDocumentVersionNumber}" />
+		</execute>
+
+		<execute macro="DMDocument#viewPGRating" />
+	</command>
+
+	<command name="RateFolderImage" priority="3">
+		<var name="dmDocumentDescription" value="DM Folder Image Description" />
+		<var name="dmDocumentFile" value="Document_1.jpeg" />
+		<var name="dmDocumentTitle" value="DM Folder Image Title" />
+		<var name="dmDocumentUploader" value="Test Test" />
+		<var name="dmDocumentVersionNumber" value="1.0" />
+		<var name="dmFolderDescription" value="DM Folder Description" />
+		<var name="dmFolderName" value="DM Folder Name" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#addPG">
+			<var name="dmFolderDescription" value="${dmFolderDescription}" />
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentFile" value="${dmDocumentFile}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#ratePG">
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+			<var name="soDocument" value="true" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#viewAllPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+			<var name="dmDocumentVersionNumber" value="${dmDocumentVersionNumber}" />
+		</execute>
+
+		<execute macro="DMDocument#viewPGRating" />
+	</command>
+
+	<command name="SaveandcheckinMajorFolderDocument" priority="5">
+		<var name="changeLog" value="This is a Major Revision" />
+		<var name="dmDocumentDescription" value="DM Folder Document Description" />
+		<var name="dmDocumentDescriptionEdit" value="DM Folder Document Description Edit" />
+		<var name="dmDocumentFile" value="Document_1.doc" />
+		<var name="dmDocumentFileEdit" value="Document_2.doc" />
+		<var name="dmDocumentSize" value="22k" />
+		<var name="dmDocumentSizeSO" value="22.5k" />
+		<var name="dmDocumentTitle" value="DM Folder Document Title" />
+		<var name="dmDocumentTitleEdit" value="DM Folder Document Title Edit" />
+		<var name="dmDocumentUploader" value="Test Test" />
+		<var name="dmDocumentVersionNumber" value="2.0" />
+		<var name="dmFolderDescription" value="DM Folder Description" />
+		<var name="dmFolderName" value="DM Folder Name" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#addPG">
+			<var name="dmFolderDescription" value="${dmFolderDescription}" />
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentFile" value="${dmDocumentFile}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#checkoutPG">
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#editSaveAndCheckinPG">
+			<var name="changeLog" value="${changeLog}" />
+			<var name="dmDocumentDescriptionEdit" value="${dmDocumentDescriptionEdit}" />
+			<var name="dmDocumentFileEdit" value="${dmDocumentFileEdit}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+			<var name="dmDocumentTitleEdit" value="${dmDocumentTitleEdit}" />
+			<var name="revision" value="Major" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="SODocuments#viewPGDisplayView">
+			<var name="dmDocumentSize" value="${dmDocumentSize}" />
+			<var name="dmDocumentSizeSO" value="${dmDocumentSizeSO}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitleEdit}" />
+			<var name="dmDocumentUploader" value="${dmDocumentUploader}" />
+			<var name="dmDocumentVersionNumber" value="${dmDocumentVersionNumber}" />
+			<var name="workflow" value="Approved" />
+		</execute>
+	</command>
+
+	<command name="SaveandcheckinMinorFolderDocument" priority="5">
+		<var name="changeLog" value="This is a Minor Revision" />
+		<var name="dmDocumentDescription" value="DM Folder Document Description" />
+		<var name="dmDocumentDescriptionEdit" value="DM Folder Document Description Edit" />
+		<var name="dmDocumentFile" value="Document_1.doc" />
+		<var name="dmDocumentFileEdit" value="Document_2.doc" />
+		<var name="dmDocumentSize" value="22k" />
+		<var name="dmDocumentSizeSO" value="22.5k" />
+		<var name="dmDocumentTitle" value="DM Folder Document Title" />
+		<var name="dmDocumentTitleEdit" value="DM Folder Document Title Edit" />
+		<var name="dmDocumentUploader" value="Test Test" />
+		<var name="dmDocumentVersionNumber" value="1.1" />
+		<var name="dmFolderDescription" value="DM Folder Description" />
+		<var name="dmFolderName" value="DM Folder Name" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#addPG">
+			<var name="dmFolderDescription" value="${dmFolderDescription}" />
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentFile" value="${dmDocumentFile}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#checkoutPG">
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#editSaveAndCheckinPG">
+			<var name="changeLog" value="${changeLog}" />
+			<var name="dmDocumentDescriptionEdit" value="${dmDocumentDescriptionEdit}" />
+			<var name="dmDocumentFileEdit" value="${dmDocumentFileEdit}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+			<var name="dmDocumentTitleEdit" value="${dmDocumentTitleEdit}" />
+			<var name="revision" value="Minor" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="SODocuments#viewPGDisplayView">
+			<var name="dmDocumentSize" value="${dmDocumentSize}" />
+			<var name="dmDocumentSizeSO" value="${dmDocumentSizeSO}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitleEdit}" />
+			<var name="dmDocumentUploader" value="${dmDocumentUploader}" />
+			<var name="dmDocumentVersionNumber" value="${dmDocumentVersionNumber}" />
+			<var name="workflow" value="Approved" />
+		</execute>
+	</command>
+
+	<command name="SaveAndCheckinNoChangeLogDMFolderDocument" priority="4">
+		<var name="dmDocumentDescription" value="DM Folder Document Description" />
+		<var name="dmDocumentDescriptionEdit1" value="DM Folder Document Description Edit1" />
+		<var name="dmDocumentDescriptionEdit2" value="DM Folder Document Description Edit2" />
+		<var name="dmDocumentFile" value="Document_1.doc" />
+		<var name="dmDocumentFileEdit" value="Document_2.doc" />
+		<var name="dmDocumentSize" value="22k" />
+		<var name="dmDocumentSizeSO" value="22.5k" />
+		<var name="dmDocumentTitle" value="DM Folder Document Title" />
+		<var name="dmDocumentTitleEdit1" value="DM Folder Document Title Edit1" />
+		<var name="dmDocumentTitleEdit2" value="DM Folder Document Title Edit2" />
+		<var name="dmDocumentUploader" value="Test Test" />
+		<var name="dmFolderDescription" value="DM Folder Description" />
+		<var name="dmFolderName" value="DM Folder Name" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#addPG">
+			<var name="dmFolderDescription" value="${dmFolderDescription}" />
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentFile" value="${dmDocumentFile}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#checkoutPG">
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#editSaveAndCheckinPG">
+			<var name="changeLog" value="This is a Major Revision" />
+			<var name="dmDocumentDescriptionEdit" value="${dmDocumentDescriptionEdit1}" />
+			<var name="dmDocumentFileEdit" value="${dmDocumentFileEdit}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+			<var name="dmDocumentTitleEdit" value="${dmDocumentTitleEdit1}" />
+			<var name="revision" value="Major" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#checkoutPG">
+			<var name="dmDocumentTitle" value="${dmDocumentTitleEdit1}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#editSaveAndCheckinPG">
+			<var name="changeLog" value="" />
+			<var name="dmDocumentDescriptionEdit" value="${dmDocumentDescriptionEdit2}" />
+			<var name="dmDocumentFileEdit" value="${dmDocumentFileEdit}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitleEdit1}" />
+			<var name="dmDocumentTitleEdit" value="${dmDocumentTitleEdit2}" />
+			<var name="revision" value="Minor" />
+		</execute>
+
+		<execute macro="SODocuments#viewPGDocumentSpecificVersionLog">
+			<var name="dmDocumentSizeSO" value="${dmDocumentSizeSO}" />
+			<var name="dmDocumentUploader" value="Test Test" />
+			<var name="dmDocumentVersionNumber" value="2.1" />
+		</execute>
+
+		<execute macro="SODocuments#viewPGDocumentSpecificVersionLog">
+			<var name="changeLog" value="This is a Major Revision" />
+			<var name="dmDocumentSizeSO" value="${dmDocumentSizeSO}" />
+			<var name="dmDocumentUploader" value="Test Test" />
+			<var name="dmDocumentVersionNumber" value="2.0" />
+			<var name="previousVersion" value="true" />
+		</execute>
+	</command>
+
+	<command name="SaveAsDraftEditFolderDocument" priority="5">
+		<var name="dmDocumentDescription" value="DM Folder Document Description" />
+		<var name="dmDocumentDescriptionEdit" value="DM Folder Document Description Edit" />
+		<var name="dmDocumentFile" value="Document_1.doc" />
+		<var name="dmDocumentFileEdit" value="Document_2.doc" />
+		<var name="dmDocumentSize" value="22k" />
+		<var name="dmDocumentSize2" value="22k" />
+		<var name="dmDocumentSizeSO" value="21.5k" />
+		<var name="dmDocumentSizeSO2" value="22.5k" />
+		<var name="dmDocumentTitle" value="DM Folder Document Title" />
+		<var name="dmDocumentTitleEdit" value="DM Folder Document Title Edit" />
+		<var name="dmDocumentUploader" value="Test Test" />
+		<var name="dmDocumentVersionNumber" value="1.1" />
+		<var name="dmFolderDescription" value="DM Folder Description" />
+		<var name="dmFolderName" value="DM Folder Name" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#addPG">
+			<var name="dmFolderDescription" value="${dmFolderDescription}" />
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentFile" value="${dmDocumentFile}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#editSaveAsDraftPG">
+			<var name="dmDocumentDescriptionEdit" value="${dmDocumentDescriptionEdit}" />
+			<var name="dmDocumentFileEdit" value="${dmDocumentFileEdit}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+			<var name="dmDocumentTitleEdit" value="${dmDocumentTitleEdit}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#viewEditedDraftPG">
+			<var name="dmDocumentSize" value="${dmDocumentSize2}" />
+			<var name="dmDocumentSize2" value="${dmDocumentSize2}" />
+			<var name="dmDocumentSizeSO" value="${dmDocumentSizeSO2}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+			<var name="dmDocumentTitleEdit" value="${dmDocumentTitleEdit}" />
+			<var name="dmDocumentUploader" value="${dmDocumentUploader}" />
+			<var name="dmDocumentVersionNumberEdit" value="${dmDocumentVersionNumber}" />
+			<var name="versionNumber" value="${dmDocumentVersionNumberEdit}" />
+		</execute>
+	</command>
+
+	<command name="SaveAsDraftFolderDocument" priority="5">
+		<var name="dmDocumentDescription" value="DM Folder Document Description" />
+		<var name="dmDocumentFile" value="Document_1.doc" />
+		<var name="dmDocumentSize" value="22k" />
+		<var name="dmDocumentSizeSO" value="22.5k" />
+		<var name="dmDocumentTitle" value="DM Folder Document Title" />
+		<var name="dmDocumentUploader" value="Test Test" />
+		<var name="dmDocumentVersionNumber" value="1.0" />
+		<var name="dmFolderDescription" value="DM Folder Description" />
+		<var name="dmFolderName" value="DM Folder Name" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#addPG">
+			<var name="dmFolderDescription" value="${dmFolderDescription}" />
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#saveAsDraftPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentFile" value="${dmDocumentFile}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="SODocuments#viewPGDisplayView">
+			<var name="dmDocumentSize" value="${dmDocumentSize}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+			<var name="dmDocumentUploader" value="${dmDocumentUploader}" />
+			<var name="dmDocumentVersionNumber" value="${dmDocumentVersionNumber}" />
+			<var name="workflow" value="Draft" />
+		</execute>
+	</command>
+
+	<command name="SearchContentDocument" priority="5">
+		<var name="dmDocumentContent" value="This is a *.doc file." />
+		<var name="dmDocumentDescription" value="DM Document Description" />
+		<var name="dmDocumentFile" value="Document_1.doc" />
+		<var name="dmDocumentTitle" value="DM Document Title" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentFile" value="${dmDocumentFile}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+		</execute>
+
+		<execute macro="DMDocument#searchPG">
+			<var name="dmDocumentKeyword" value="${dmDocumentContent}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+		</execute>
+	</command>
+
+	<command name="SearchDocument" priority="5">
+		<var name="dmDocumentDescription" value="DM Document Description" />
+		<var name="dmDocumentFile" value="Document_1.doc" />
+		<var name="dmDocumentTitle" value="DM Document Title" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentFile" value="${dmDocumentFile}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+		</execute>
+
+		<execute macro="DMDocument#searchPG">
+			<var name="dmDocumentKeyword" value="${dmDocumentTitle}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+		</execute>
+	</command>
+
+	<command name="SearchFolderDocument" priority="5">
+		<var name="dmDocumentDescription" value="DM Document Description" />
+		<var name="dmDocumentFile" value="Document_1.doc" />
+		<var name="dmDocumentTitle" value="DM Document Title" />
+		<var name="dmFolderDescription" value="DM Folder Description" />
+		<var name="dmFolderName" value="DM Folder Name" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#addPG">
+			<var name="dmFolderDescription" value="${dmFolderDescription}" />
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentFile" value="${dmDocumentFile}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+		</execute>
+
+		<execute macro="DMDocument#searchPG">
+			<var name="dmDocumentKeyword" value="${dmDocumentTitle}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+		</execute>
+	</command>
+
+	<command name="SearchFolderImage" priority="5">
+		<var name="dmDocumentDescription" value="DM Image Description" />
+		<var name="dmDocumentFile" value="Document_1.jpg" />
+		<var name="dmDocumentTitle" value="DM Image Title" />
+		<var name="dmFolderDescription" value="DM Folder Description" />
+		<var name="dmFolderName" value="DM Folder Name" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#addPG">
+			<var name="dmFolderDescription" value="${dmFolderDescription}" />
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentFile" value="${dmDocumentFile}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+		</execute>
+
+		<execute macro="DMDocument#searchPG">
+			<var name="dmDocumentKeyword" value="${dmDocumentTitle}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+		</execute>
+	</command>
+
+	<command name="SearchSubFolderDocument" priority="5">
+		<var name="dmDocumentDescription" value="DM Document Description" />
+		<var name="dmDocumentFile" value="Document_1.doc" />
+		<var name="dmDocumentTitle" value="DM Document Title" />
+		<var name="dmFolderDescription" value="DM Folder Description" />
+		<var name="dmFolderName" value="DM Folder Name" />
+		<var name="dmSubFolderDescription" value="DM SubFolder Description" />
+		<var name="dmSubFolderName" value="DM SubFolder Name" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#addPG">
+			<var name="dmFolderDescription" value="${dmFolderDescription}" />
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMFolder#addSubfolderPG">
+			<var name="dmSubFolderDescription" value="${dmSubFolderDescription}" />
+			<var name="dmSubFolderName" value="${dmSubFolderName}" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmSubFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentFile" value="${dmDocumentFile}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+		</execute>
+
+		<execute macro="DMDocument#searchPG">
+			<var name="dmDocumentKeyword" value="${dmDocumentTitle}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+		</execute>
+	</command>
+
+	<command name="ViewDisplayStyleIcons" priority="3">
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute function="Click" locator1="PGDocumentsandmedia#TOOLBAR_DISPLAY_STYLE" />
+		<execute function="Pause" locator1="1000" />
+
+		<execute function="SikuliAssertElementPresent" locator1="SODocuments#SCREENSHOTS_DOCUMENTS_DISPLAY_STYLES_PNG" />
+	</command>
+
+	<command name="ViewDisplayStyleListAndSelectAll" priority="3">
+		<var name="dmDocumentDescription1" value="DM Document Description 1" />
+		<var name="dmDocumentDescription2" value="DM Document Description 2" />
+		<var name="dmDocumentDescription3" value="DM Document Description 3" />
+		<var name="dmDocumentFile1" value="Document_1.doc" />
+		<var name="dmDocumentFile2" value="Document_2.doc" />
+		<var name="dmDocumentFile3" value="Document_3.doc" />
+		<var name="dmDocumentTitle1" value="DM Document Title 1" />
+		<var name="dmDocumentTitle2" value="DM Document Title 2" />
+		<var name="dmDocumentTitle3" value="DM Document Title 3" />
+		<var name="dmDocumentUploader" value="Test Test" />
+		<var name="dmDocumentVersionNumber" value="1.0" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription1}" />
+			<var name="dmDocumentFile" value="${dmDocumentFile1}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle1}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription2}" />
+			<var name="dmDocumentFile" value="${dmDocumentFile2}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle2}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription3}" />
+			<var name="dmDocumentFile" value="${dmDocumentFile3}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle3}" />
+		</execute>
+
+		<execute function="Click" locator1="PGDocumentsandmedia#TOOLBAR_DISPLAY_STYLE" />
+		<execute function="Click" locator1="PGDocumentsandmedia#DISPLAY_STYLE_MENULIST_LIST" />
+		<execute function="Check" locator1="PGDocumentsandmedia#TOOLBAR_SELECT_ALL_CHECKBOX" />
+
+		<var name="key_dmDocumentTitle" value="${dmDocumentTitle1}" />
+
+		<execute function="AssertTextEquals" locator1="PGDocumentsandmedia#ENTRY_LIST_DOCUMENT_TITLE" value1="${dmDocumentTitle1}" />
+
+		<var name="key_dmDocumentTitle" value="${dmDocumentTitle2}" />
+
+		<execute function="AssertTextEquals" locator1="PGDocumentsandmedia#ENTRY_LIST_DOCUMENT_TITLE" value1="${dmDocumentTitle2}" />
+
+		<var name="key_dmDocumentTitle" value="${dmDocumentTitle3}" />
+
+		<execute function="AssertTextEquals" locator1="PGDocumentsandmedia#ENTRY_LIST_DOCUMENT_TITLE" value1="${dmDocumentTitle3}" />
+
+		<execute function="SikuliAssertElementPresent" locator1="SODocuments#SCREENSHOTS_DOCUMENTS_DISPLAY_STYLE_LIST_ALL_DOCUMENTS_SELECTED_PNG" />
+	</command>
+
+	<command name="ViewDocumentVersioning" priority="5">
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentDescription" value="DM Document Description" />
+			<var name="dmDocumentFile" value="Document_1.doc" />
+			<var name="dmDocumentTitle" value="DM Document Title" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<var name="key_dmDocumentTitle" value="DM Document Title" />
+
+		<execute function="AssertClick" locator1="PGDocumentsandmedia#ENTRY_ICON_DOCUMENT_TITLE" value1="DM Document Title" />
+
+		<execute macro="SODocuments#viewPGDocumentDetailView">
+			<var name="dmDocumentDescription" value="DM Document Description" />
+			<var name="dmDocumentSize" value="22k" />
+			<var name="dmDocumentSizeSO" value="21.5k" />
+			<var name="dmDocumentTitle" value="DM Document Title" />
+			<var name="dmDocumentUploader" value="Test Test" />
+			<var name="dmDocumentVersionNumber" value="1.0" />
+			<var name="workflow" value="Approved" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMDocument#addCommentPG">
+			<var name="commentBody" value="DM Document Comment1" />
+			<var name="dmDocumentTitle" value="DM Document Title" />
+		</execute>
+
+		<execute macro="SODocuments#viewPGDocumentSpecificVersionLog">
+			<var name="commentAuthor" value="Test Test" />
+			<var name="commentBody" value="DM Document Comment1" />
+			<var name="dmDocumentSizeSO" value="21.5k" />
+			<var name="dmDocumentUploader" value="Test Test" />
+			<var name="dmDocumentVersionNumber" value="1.0" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMDocument#editPG">
+			<var name="changeLog" value="Minor Revision" />
+			<var name="dmDocumentDescriptionEdit" value="DM Document Description Edit1" />
+			<var name="dmDocumentFileEdit" value="Document_1.odt" />
+			<var name="dmDocumentTitle" value="DM Document Title" />
+			<var name="dmDocumentTitleEdit" value="DM Document Title Edit1" />
+			<var name="revision" value="Minor" />
+		</execute>
+
+		<execute macro="SODocuments#viewPGDocumentSpecificVersionLog">
+			<var name="changeLog" value="Minor Revision" />
+			<var name="dmDocumentSizeSO" value="9.0k" />
+			<var name="dmDocumentUploader" value="Test Test" />
+			<var name="dmDocumentVersionNumber" value="1.1" />
+		</execute>
+
+		<execute macro="SODocuments#viewPGDocumentSpecificVersionLog">
+			<var name="commentAuthor" value="Test Test" />
+			<var name="commentBody" value="DM Document Comment1" />
+			<var name="commentRow" value="2" />
+			<var name="dmDocumentSizeSO" value="21.5k" />
+			<var name="dmDocumentUploader" value="Test Test" />
+			<var name="dmDocumentVersionNumber" value="1.0" />
+			<var name="previousVersion" value="true" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMDocument#addCommentPG">
+			<var name="commentBody" value="DM Document Comment2" />
+			<var name="dmDocumentTitle" value="DM Document Title Edit1" />
+		</execute>
+
+		<execute macro="SODocuments#viewPGDocumentSpecificVersionLog">
+			<var name="changeLog" value="Minor Revision" />
+			<var name="commentAuthor" value="Test Test" />
+			<var name="commentBody" value="DM Document Comment2" />
+			<var name="dmDocumentSizeSO" value="9.0k" />
+			<var name="dmDocumentUploader" value="Test Test" />
+			<var name="dmDocumentVersionNumber" value="1.1" />
+		</execute>
+
+		<execute macro="SODocuments#viewPGDocumentSpecificVersionLog">
+			<var name="commentAuthor" value="Test Test" />
+			<var name="commentBody" value="DM Document Comment1" />
+			<var name="commentRow" value="2" />
+			<var name="dmDocumentSizeSO" value="21.5k" />
+			<var name="dmDocumentUploader" value="Test Test" />
+			<var name="dmDocumentVersionNumber" value="1.0" />
+			<var name="previousVersion" value="true" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMDocument#editCommentPG">
+			<var name="commentBodyEdit" value="DM Document Comment2 Edit" />
+			<var name="dmDocumentTitle" value="DM Document Title Edit1" />
+		</execute>
+
+		<execute macro="SODocuments#viewPGDocumentSpecificVersionLog">
+			<var name="changeLog" value="Minor Revision" />
+			<var name="commentAuthor" value="Test Test" />
+			<var name="commentBody" value="DM Document Comment2 Edit" />
+			<var name="dmDocumentSizeSO" value="9.0k" />
+			<var name="dmDocumentUploader" value="Test Test" />
+			<var name="dmDocumentVersionNumber" value="1.1" />
+		</execute>
+
+		<execute macro="SODocuments#viewPGDocumentSpecificVersionLog">
+			<var name="commentAuthor" value="Test Test" />
+			<var name="commentBody" value="DM Document Comment1" />
+			<var name="commentRow" value="2" />
+			<var name="dmDocumentSizeSO" value="21.5k" />
+			<var name="dmDocumentUploader" value="Test Test" />
+			<var name="dmDocumentVersionNumber" value="1.0" />
+			<var name="previousVersion" value="true" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMDocument#editPG">
+			<var name="changeLog" value="Major Revision" />
+			<var name="dmDocumentDescriptionEdit" value="DM Document Description Edit2" />
+			<var name="dmDocumentFileEdit" value="Document_1.docx" />
+			<var name="dmDocumentTitle" value="DM Document Title Edit1" />
+			<var name="dmDocumentTitleEdit" value="DM Document Title Edit2" />
+			<var name="revision" value="Major" />
+		</execute>
+
+		<execute macro="SODocuments#viewPGDocumentSpecificVersionLog">
+			<var name="changeLog" value="Major Revision" />
+			<var name="dmDocumentSizeSO" value="12.4k" />
+			<var name="dmDocumentUploader" value="Test Test" />
+			<var name="dmDocumentVersionNumber" value="2.0" />
+		</execute>
+
+		<execute macro="SODocuments#viewPGDocumentSpecificVersionLog">
+			<var name="changeLog" value="Minor Revision" />
+			<var name="commentAuthor" value="Test Test" />
+			<var name="commentBody" value="DM Document Comment2 Edit" />
+			<var name="commentRow" value="2" />
+			<var name="dmDocumentSizeSO" value="9.0k" />
+			<var name="dmDocumentUploader" value="Test Test" />
+			<var name="dmDocumentVersionNumber" value="1.1" />
+			<var name="previousVersion" value="true" />
+		</execute>
+
+		<execute macro="SODocuments#viewPGDocumentSpecificVersionLog">
+			<var name="commentAuthor" value="Test Test" />
+			<var name="commentBody" value="DM Document Comment1" />
+			<var name="commentRow" value="3" />
+			<var name="dmDocumentSizeSO" value="21.5k" />
+			<var name="dmDocumentUploader" value="Test Test" />
+			<var name="dmDocumentVersionNumber" value="1.0" />
+			<var name="previousVersion" value="true" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMDocument#addCommentPG">
+			<var name="commentBody" value="DM Document Comment3" />
+			<var name="dmDocumentTitle" value="DM Document Title Edit2" />
+		</execute>
+
+		<execute macro="SODocuments#viewPGDocumentSpecificVersionLog">
+			<var name="changeLog" value="Major Revision" />
+			<var name="commentAuthor" value="Test Test" />
+			<var name="commentBody" value="DM Document Comment3" />
+			<var name="dmDocumentSizeSO" value="12.4k" />
+			<var name="dmDocumentUploader" value="Test Test" />
+			<var name="dmDocumentVersionNumber" value="2.0" />
+		</execute>
+
+		<execute macro="SODocuments#viewPGDocumentSpecificVersionLog">
+			<var name="changeLog" value="Minor Revision" />
+			<var name="commentAuthor" value="Test Test" />
+			<var name="commentBody" value="DM Document Comment2 Edit" />
+			<var name="commentRow" value="2" />
+			<var name="dmDocumentSizeSO" value="9.0k" />
+			<var name="dmDocumentUploader" value="Test Test" />
+			<var name="dmDocumentVersionNumber" value="1.1" />
+			<var name="previousVersion" value="true" />
+		</execute>
+
+		<execute macro="SODocuments#viewPGDocumentSpecificVersionLog">
+			<var name="commentAuthor" value="Test Test" />
+			<var name="commentBody" value="DM Document Comment1" />
+			<var name="commentRow" value="3" />
+			<var name="dmDocumentSizeSO" value="21.5k" />
+			<var name="dmDocumentUploader" value="Test Test" />
+			<var name="dmDocumentVersionNumber" value="1.0" />
+			<var name="previousVersion" value="true" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMDocument#editCommentPG">
+			<var name="commentBodyEdit" value="DM Document Comment3 Edit" />
+			<var name="dmDocumentTitle" value="DM Document Title Edit2" />
+		</execute>
+
+		<execute macro="SODocuments#viewPGDocumentSpecificVersionLog">
+			<var name="changeLog" value="Major Revision" />
+			<var name="commentAuthor" value="Test Test" />
+			<var name="commentBody" value="DM Document Comment3 Edit" />
+			<var name="dmDocumentSizeSO" value="12.4k" />
+			<var name="dmDocumentUploader" value="Test Test" />
+			<var name="dmDocumentVersionNumber" value="2.0" />
+		</execute>
+
+		<execute macro="SODocuments#viewPGDocumentSpecificVersionLog">
+			<var name="changeLog" value="Minor Revision" />
+			<var name="commentAuthor" value="Test Test" />
+			<var name="commentBody" value="DM Document Comment2 Edit" />
+			<var name="commentRow" value="2" />
+			<var name="dmDocumentSizeSO" value="9.0k" />
+			<var name="dmDocumentUploader" value="Test Test" />
+			<var name="dmDocumentVersionNumber" value="1.1" />
+			<var name="previousVersion" value="true" />
+		</execute>
+
+		<execute macro="SODocuments#viewPGDocumentSpecificVersionLog">
+			<var name="commentAuthor" value="Test Test" />
+			<var name="commentBody" value="DM Document Comment1" />
+			<var name="commentRow" value="3" />
+			<var name="dmDocumentSizeSO" value="21.5k" />
+			<var name="dmDocumentUploader" value="Test Test" />
+			<var name="dmDocumentVersionNumber" value="1.0" />
+			<var name="previousVersion" value="true" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="SODocuments#viewPGDocumentSpecificVersionDetails">
+			<var name="commentAuthor" value="Test Test" />
+			<var name="commentBody" value="DM Document Comment1" />
+			<var name="dmDocumentDescription" value="DM Document Description" />
+			<var name="dmDocumentSize" value="22k" />
+			<var name="dmDocumentSizeSO" value="21.5k" />
+			<var name="dmDocumentTitle" value="DM Document Title" />
+			<var name="dmDocumentUploader" value="Test Test" />
+			<var name="dmDocumentVersionNumber" value="1.0" />
+			<var name="previousVersion" value="true" />
+			<var name="workflow" value="Approved" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="SODocuments#revertPGDocumentVersion">
+			<var name="dmDocumentRevertDescription" value="DM Document Description Edit1" />
+			<var name="dmDocumentRevertSize" value="9k" />
+			<var name="dmDocumentRevertTitle" value="DM Document Title Edit1" />
+			<var name="dmDocumentRevertUploader" value="Test Test" />
+			<var name="dmDocumentRevertVersionNumber" value="1.1" />
+			<var name="dmDocumentTitle" value="DM Document Title Edit2" />
+			<var name="workflow" value="Approved" />
+		</execute>
+
+		<execute macro="SODocuments#viewPGDocumentSpecificVersionLog">
+			<var name="changeLog" value="Reverted to 1.1" />
+			<var name="dmDocumentSizeSO" value="9.0k" />
+			<var name="dmDocumentUploader" value="Test Test" />
+			<var name="dmDocumentVersionNumber" value="3.0" />
+		</execute>
+
+		<execute macro="SODocuments#viewPGDocumentSpecificVersionLog">
+			<var name="changeLog" value="Major Revision" />
+			<var name="commentAuthor" value="Test Test" />
+			<var name="commentBody" value="DM Document Comment3 Edit" />
+			<var name="commentRow" value="2" />
+			<var name="dmDocumentSizeSO" value="12.4k" />
+			<var name="dmDocumentUploader" value="Test Test" />
+			<var name="dmDocumentVersionNumber" value="2.0" />
+			<var name="previousVersion" value="true" />
+		</execute>
+
+		<execute macro="SODocuments#viewPGDocumentSpecificVersionLog">
+			<var name="changeLog" value="Minor Revision" />
+			<var name="commentAuthor" value="Test Test" />
+			<var name="commentBody" value="DM Document Comment2 Edit" />
+			<var name="commentRow" value="3" />
+			<var name="dmDocumentSizeSO" value="9.0k" />
+			<var name="dmDocumentUploader" value="Test Test" />
+			<var name="dmDocumentVersionNumber" value="1.1" />
+			<var name="previousVersion" value="true" />
+		</execute>
+
+		<execute macro="SODocuments#viewPGDocumentSpecificVersionLog">
+			<var name="commentAuthor" value="Test Test" />
+			<var name="commentBody" value="DM Document Comment1" />
+			<var name="commentRow" value="4" />
+			<var name="dmDocumentSizeSO" value="21.5k" />
+			<var name="dmDocumentUploader" value="Test Test" />
+			<var name="dmDocumentVersionNumber" value="1.0" />
+			<var name="previousVersion" value="true" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="SODocuments#deletePGDocumentVersion">
+			<var name="dmDocumentTitle" value="DM Document Title Edit1" />
+			<var name="dmDocumentVersionNumber" value="2.0" />
+		</execute>
+
+		<execute macro="SODocuments#viewPGDocumentSpecificVersionLog">
+			<var name="changeLog" value="Reverted to 1.1" />
+			<var name="dmDocumentSizeSO" value="9.0k" />
+			<var name="dmDocumentUploader" value="Test Test" />
+			<var name="dmDocumentVersionNumber" value="3.0" />
+		</execute>
+
+		<execute function="AssertTextNotPresent" value1="Version 2.0" />
+		<execute function="AssertTextNotPresent" value1="DM Document Comment3 Edit" />
+		<execute function="AssertTextNotPresent" value1="12.4k" />
+		<execute function="AssertTextNotPresent" value1="Major Revision" />
+
+		<execute macro="SODocuments#viewPGDocumentSpecificVersionLog">
+			<var name="changeLog" value="Minor Revision" />
+			<var name="commentAuthor" value="Test Test" />
+			<var name="commentBody" value="DM Document Comment2 Edit" />
+			<var name="commentRow" value="2" />
+			<var name="dmDocumentSizeSO" value="9.0k" />
+			<var name="dmDocumentUploader" value="Test Test" />
+			<var name="dmDocumentVersionNumber" value="1.1" />
+			<var name="previousVersion" value="true" />
+		</execute>
+
+		<execute macro="SODocuments#viewPGDocumentSpecificVersionLog">
+			<var name="commentAuthor" value="Test Test" />
+			<var name="commentBody" value="DM Document Comment1" />
+			<var name="commentRow" value="3" />
+			<var name="dmDocumentSizeSO" value="21.5k" />
+			<var name="dmDocumentUploader" value="Test Test" />
+			<var name="dmDocumentVersionNumber" value="1.0" />
+			<var name="previousVersion" value="true" />
+		</execute>
+	</command>
+
+	<command name="ViewFolderDocumentMine" priority="3">
+		<var name="dmDocumentDescription" value="DM Folder Document Description" />
+		<var name="dmDocumentFile" value="Document_1.doc" />
+		<var name="dmDocumentTitle" value="DM Folder Document Title" />
+		<var name="dmDocumentUploader" value="Test Test" />
+		<var name="dmDocumentVersionNumber" value="1.0" />
+		<var name="dmFolderDescription" value="DM Folder Description" />
+		<var name="dmFolderName" value="DM Folder Name" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#addPG">
+			<var name="dmFolderDescription" value="${dmFolderDescription}" />
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentFile" value="${dmDocumentFile}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute function="AssertClick" locator1="PGDocumentsandmedia#FILTER_MINE" value1="Mine" />
+
+		<execute macro="DMDocument#viewAllPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+			<var name="dmDocumentVersionNumber" value="${dmDocumentVersionNumber}" />
+		</execute>
+	</command>
+
+	<command name="ViewFolderDocumentRecent" priority="3">
+		<var name="dmDocumentDescription" value="DM Folder Document Description" />
+		<var name="dmDocumentFile" value="Document_1.doc" />
+		<var name="dmDocumentTitle" value="DM Folder Document Title" />
+		<var name="dmDocumentUploader" value="Test Test" />
+		<var name="dmDocumentVersionNumber" value="1.0" />
+		<var name="dmFolderDescription" value="DM Folder Description" />
+		<var name="dmFolderName" value="DM Folder Name" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#addPG">
+			<var name="dmFolderDescription" value="${dmFolderDescription}" />
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentFile" value="${dmDocumentFile}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute function="AssertClick" locator1="PGDocumentsandmedia#FILTER_RECENT" value1="Recent" />
+
+		<execute macro="DMDocument#viewAllPG">
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+			<var name="dmDocumentVersionNumber" value="${dmDocumentVersionNumber}" />
+		</execute>
+	</command>
+
+	<command name="ViewMultipleImageThumbnails" priority="4">
+		<var name="dmFolderDescription" value="DM Folder Description" />
+		<var name="dmFolderName" value="DM Folder Name" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#addPG">
+			<var name="dmFolderDescription" value="${dmFolderDescription}" />
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#addPGViaFlashUploader">
+			<var name="dmDocumentFileList" value="Document_1.jpg,Document_1.png,Document_2.jpg,Document_2.png,Document_3.jpg,Document_3.png,Document_4.jpg" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<var name="key_dmDocumentTitle" value="Document_1.jpg" />
+
+		<execute function="AssertTextEquals" locator1="PGDocumentsandmedia#ENTRY_ICON_DOCUMENT_TITLE" value1="Document_1.jpg" />
+
+		<execute function="SikuliAssertElementPresent" locator1="SODocuments#SCREENSHOTS_DOCUMENTS_MULTIPLE_THUMBNAILS_PNG" />
+	</command>
+</definition>

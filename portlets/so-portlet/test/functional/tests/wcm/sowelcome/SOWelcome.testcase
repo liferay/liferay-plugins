@@ -1,0 +1,51 @@
+<definition component-name="social-office-wcm">
+	<property name="hook.plugins.includes" value="deploy-listener-hook,portal-compat-hook,so-activities-hook,so-hook" />
+	<property name="portlet.plugins.includes" value="calendar-portlet,chat-portlet,contacts-portlet,events-display-portlet,marketplace-portlet,microblogs-portlet,notifications-portlet,private-messaging-portlet,so-announcements-portlet,so-configurations-portlet,so-portlet,tasks-portlet,wysiwyg-portlet" />
+	<property name="testray.main.component.name" value="Social Office EE" />
+	<property name="theme.plugins.includes" value="so-theme" />
+	<property name="web.plugins.includes" value="resources-importer-web" />
+
+	<var name="adminEmailAddress" value="test@liferay.com" />
+	<var name="adminName" value="Test Test" />
+	<var name="key_siteName" value="${siteName}" />
+	<var name="password" value="test" />
+	<var name="siteDescription" value="Open Site Description" />
+	<var name="siteName" value="Open Site Name" />
+	<var name="siteType" value="Open" />
+
+	<set-up>
+		<execute macro="SOUser#firstLoginPG" />
+	</set-up>
+
+	<tear-down>
+		<execute macro="SOSite#tearDownCP" />
+
+		<execute macro="SOUser#tearDownCP" />
+	</tear-down>
+
+	<command name="EditWelcomeContent" priority="3">
+		<var name="welcomeContent" value="Welcome Content" />
+
+		<execute macro="SOUserBar#addSOSite">
+			<var name="siteDescription" value="${siteDescription}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteType" value="${siteType}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOWelcome#editContent">
+			<var name="welcomeContent" value="${welcomeContent}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute function="AssertTextEquals" locator1="SOWelcome#WELCOME_PORTLET_CONTENT" value1="${welcomeContent}" />
+	</command>
+</definition>

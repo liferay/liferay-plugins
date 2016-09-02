@@ -1,0 +1,3378 @@
+<definition component-name="social-office-collaboration">
+	<property name="hook.plugins.includes" value="deploy-listener-hook,portal-compat-hook,so-activities-hook,so-hook" />
+	<property name="portlet.plugins.includes" value="calendar-portlet,chat-portlet,contacts-portlet,events-display-portlet,marketplace-portlet,microblogs-portlet,notifications-portlet,private-messaging-portlet,so-announcements-portlet,so-configurations-portlet,so-portlet,tasks-portlet,wysiwyg-portlet" />
+	<property name="testray.main.component.name" value="Social Office EE" />
+	<property name="theme.plugins.includes" value="so-theme" />
+	<property name="web.plugins.includes" value="resources-importer-web" />
+
+	<var name="adminEmailAddress" value="test@liferay.com" />
+	<var name="adminName" value="Test Test" />
+	<var name="key_siteName" value="${siteName}" />
+	<var name="pageName" value="Blogs" />
+	<var name="siteDescription" value="Open Site Description" />
+	<var name="siteName" value="Open Site Name" />
+	<var name="siteType" value="Open" />
+	<var name="soPage" value="true" />
+
+	<set-up>
+		<execute macro="SOUser#firstLoginPG" />
+
+		<execute macro="SOUserBar#addSOSite">
+			<var name="siteDescription" value="${siteDescription}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteType" value="${siteType}" />
+		</execute>
+	</set-up>
+
+	<tear-down>
+		<execute macro="SOSite#tearDownCP" />
+
+		<execute macro="SOUser#tearDownCP" />
+
+		<execute macro="Role#tearDownCP" />
+	</tear-down>
+
+	<command name="AddSOBlogsEntries" priority="4">
+		<var name="entryContent1" value="Blogs Entry1 Content" />
+		<var name="entryContent2" value="Blogs Entry2 Content" />
+		<var name="entryContent3" value="Blogs Entry3 Content" />
+		<var name="entryTitle1" value="Blogs Entry1 Title" />
+		<var name="entryTitle2" value="Blogs Entry2 Title" />
+		<var name="entryTitle3" value="Blogs Entry3 Title" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#addPG">
+			<var name="entryContent" value="${entryContent1}" />
+			<var name="entryTitle" value="${entryTitle1}" />
+		</execute>
+
+		<execute macro="BlogsEntry#viewPG">
+			<var name="entryContent" value="${entryContent1}" />
+			<var name="entryTitle" value="${entryTitle1}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#addPG">
+			<var name="entryContent" value="${entryContent2}" />
+			<var name="entryTitle" value="${entryTitle2}" />
+		</execute>
+
+		<execute macro="BlogsEntry#viewPG">
+			<var name="entryContent" value="${entryContent2}" />
+			<var name="entryTitle" value="${entryTitle2}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#addPG">
+			<var name="entryContent" value="${entryContent3}" />
+			<var name="entryTitle" value="${entryTitle3}" />
+		</execute>
+
+		<execute macro="BlogsEntry#viewPG">
+			<var name="entryContent" value="${entryContent3}" />
+			<var name="entryTitle" value="${entryTitle3}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOBlogs#viewBlogsEntryRecentBlogs">
+			<var name="entryContent" value="${entryContent1}" />
+			<var name="entryTitle" value="${entryTitle1}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOBlogs#viewBlogsEntryRecentBlogs">
+			<var name="entryContent" value="${entryContent2}" />
+			<var name="entryTitle" value="${entryTitle2}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOBlogs#viewBlogsEntryRecentBlogs">
+			<var name="entryContent" value="${entryContent3}" />
+			<var name="entryTitle" value="${entryTitle3}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<var name="key_entryTitle" value="${entryTitle1}" />
+
+		<execute function="AssertClick" locator1="PGBlogs#ENTRY_TITLE" value1="${entryTitle1}" />
+
+		<execute function="AssertTextEquals" locator1="PGBlogsEntry#ENTRY_TITLE" value1="${entryTitle1}" />
+		<execute function="AssertTextEquals" locator1="PGBlogsEntry#ENTRY_CONTENT" value1="${entryContent1}" />
+
+		<execute function="AssertTextEquals" locator1="PGBlogsEntry#PREVIOUS" value1="Previous" />
+		<execute function="AssertElementNotPresent" locator1="PGBlogsEntry#PREVIOUS_LINK" />
+		<execute function="AssertTextEquals" locator1="PGBlogsEntry#NEXT_LINK" value1="Next" />
+		<execute function="AssertElementNotPresent" locator1="PGBlogsEntry#NEXT" />
+		<execute function="AssertClick" locator1="PGBlogsEntry#NEXT_LINK" value1="Next" />
+
+		<var name="key_entryTitle" value="${entryTitle2}" />
+
+		<execute function="AssertTextEquals" locator1="PGBlogsEntry#ENTRY_TITLE" value1="${entryTitle2}" />
+		<execute function="AssertTextEquals" locator1="PGBlogsEntry#ENTRY_CONTENT" value1="${entryContent2}" />
+
+		<execute function="AssertTextEquals" locator1="PGBlogsEntry#PREVIOUS_LINK" value1="Previous" />
+		<execute function="AssertElementNotPresent" locator1="PGBlogsEntry#PREVIOUS" />
+		<execute function="AssertTextEquals" locator1="PGBlogsEntry#NEXT_LINK" value1="Next" />
+		<execute function="AssertElementNotPresent" locator1="PGBlogsEntry#NEXT" />
+		<execute function="AssertClick" locator1="PGBlogsEntry#NEXT_LINK" value1="Next" />
+
+		<var name="key_entryTitle" value="${entryTitle3}" />
+
+		<execute function="AssertTextEquals" locator1="PGBlogsEntry#ENTRY_TITLE" value1="${entryTitle3}" />
+		<execute function="AssertTextEquals" locator1="PGBlogsEntry#ENTRY_CONTENT" value1="${entryContent3}" />
+
+		<execute function="AssertTextEquals" locator1="PGBlogsEntry#PREVIOUS_LINK" value1="Previous" />
+		<execute function="AssertElementNotPresent" locator1="PGBlogsEntry#PREVIOUS" />
+		<execute function="AssertTextEquals" locator1="PGBlogsEntry#NEXT" value1="Next" />
+		<execute function="AssertElementNotPresent" locator1="PGBlogsEntry#NEXT_LINK" />
+	</command>
+
+	<command name="AddSOBlogsEntry" priority="5">
+		<var name="entryContent" value="Blogs Entry Content" />
+		<var name="entryTitle" value="Blogs Entry Title" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#addPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+
+		<var name="key_entryTitle" value="${entryTitle}" />
+
+		<execute function="AssertTextEquals" locator1="PGBlogs#ENTRY_COMMENT_1" value1="0 Comments" />
+		<execute function="AssertTextEquals" locator1="PGBlogs#ENTRY_AVERAGE_RATING" value1="Average (0 Votes)" />
+
+		<execute macro="BlogsEntry#viewPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#viewDetailsPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+
+		<execute function="AssertTextEquals" locator1="PGBlogsEntry#ENTRY_STATS_COMMENTS" value1="0 Comments" />
+		<execute function="AssertTextEquals" locator1="PGBlogsEntry#AVERAGE" value1="Average (0 Votes)" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#viewDetailsPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+
+		<execute function="AssertTextEquals" locator1="PGBlogsEntry#ENTRY_STATS_VIEW_COUNT" value1="2 Views," />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#viewDetailsPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+
+		<execute function="AssertTextEquals" locator1="PGBlogsEntry#ENTRY_STATS_VIEW_COUNT" value1="3 Views," />
+
+		<execute function="Open" locator1="http://localhost:8080/web/open-site-name/blogs/-/blogs/rss" />
+
+		<execute function="AssertTextEquals" locator1="PGBlogsRSS#FEED_TITLE" value1="Open Site Name" />
+		<execute function="AssertTextEquals" locator1="PGBlogsRSS#FEED_SUBTITLE" value1="Open Site Name" />
+		<execute function="AssertTextEquals" locator1="PGBlogsRSS#ENTRY_TITLE" value1="${entryTitle}" />
+		<execute function="AssertTextEquals" locator1="PGBlogsRSS#ENTRY_CONTENT" value1="${entryContent}" />
+		<execute function="Click" locator1="PGBlogsRSS#ENTRY_TITLE" />
+
+		<execute function="AssertTextEquals" locator1="PGBlogsEntry#ENTRY_TITLE" value1="${entryTitle}" />
+		<execute function="AssertTextEquals" locator1="PGBlogsEntry#ENTRY_CONTENT" value1="${entryContent}" />
+	</command>
+
+	<command name="AddSOBlogsEntryCategories" priority="4">
+		<var name="categoryName" value="Category Name" />
+		<var name="entryContent" value="Blogs Entry Content" />
+		<var name="entryTitle" value="Blogs Entry Title" />
+		<var name="vocabularyName" value="Vocabulary Name" />
+
+		<execute macro="Page#gotoContentCP">
+			<var name="portletName" value="Categories" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="Vocabulary#addCP">
+			<var name="vocabularyName" value="${vocabularyName}" />
+		</execute>
+
+		<execute macro="Category#addCP">
+			<var name="categoryName" value="${categoryName}" />
+			<var name="vocabularyName" value="${vocabularyName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#addPG">
+			<var name="categoryName" value="${categoryName}" />
+			<var name="entryAddCategory" value="true" />
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entryTitle" value="${entryTitle}" />
+			<var name="vocabularyName" value="${vocabularyName}" />
+		</execute>
+	</command>
+
+	<command name="AddSOBlogsEntryComment" priority="4">
+		<var name="entryComment" value="Blogs Entry Comment" />
+		<var name="entryContent" value="Blogs Entry Content" />
+		<var name="entryTitle" value="Blogs Entry Title" />
+		<var name="userFullName" value="Test Test" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#addPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+
+		<var name="key_entryTitle" value="${entryTitle}" />
+
+		<execute function="AssertTextEquals" locator1="PGBlogs#ENTRY_COMMENT_1" value1="0 Comments" />
+		<execute function="AssertTextEquals" locator1="PGBlogs#ENTRY_AVERAGE_RATING" value1="Average (0 Votes)" />
+
+		<execute macro="BlogsEntryComment#addPG">
+			<var name="entryComment" value="${entryComment}" />
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntryComment#viewPG">
+			<var name="entryComment" value="${entryComment}" />
+			<var name="entryTitle" value="${entryTitle}" />
+			<var name="userFullName" value="${userFullName}" />
+		</execute>
+	</command>
+
+	<command name="AddSOBlogsEntryCommentSOUser" priority="5">
+		<var name="entryComment" value="Blogs Entry Comment" />
+		<var name="entryContent" value="Blogs Entry Content" />
+		<var name="entryTitle" value="Blogs Entry Title" />
+		<var name="roleName" value="Blogs Site Role Name" />
+		<var name="roleType" value="Site" />
+		<var name="userEmailAddress" value="socialoffice01@liferay.com" />
+		<var name="userFirstName" value="Social01" />
+		<var name="userLastName" value="User01" />
+		<var name="userMiddleName" value="Office01" />
+		<var name="userName" value="Social01 Office01 User01" />
+		<var name="userScreenName" value="socialoffice01" />
+
+		<execute macro="SOUser#addUserWithSORole">
+			<var name="userEmailAddress" value="${userEmailAddress}" />
+			<var name="userFirstName" value="${userFirstName}" />
+			<var name="userLastName" value="${userLastName}" />
+			<var name="userMiddleName" value="${userMiddleName}" />
+			<var name="userScreenName" value="${userScreenName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#addPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress}" />
+			<var name="userLoginFullName" value="${userName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOSite#joinSitePG">
+			<var name="siteName" value="${siteName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntryComment#addPG">
+			<var name="entryComment" value="${entryComment}" />
+			<var name="entryTitle" value="${entryTitle}" />
+			<var name="userEmailAddress" value="${userEmailAddress}" />
+			<var name="userFirstName" value="${userFirstName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntryComment#viewPG">
+			<var name="entryComment" value="${entryComment}" />
+			<var name="entryTitle" value="${entryTitle}" />
+			<var name="userFullName" value="${userName}" />
+		</execute>
+	</command>
+
+	<command name="AddSOBlogsEntryContentNull" priority="3">
+		<var name="entryContent" value="" />
+		<var name="entryTitle" value="Blogs Entry Title" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#addPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entryInvalidContent" value="true" />
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#viewNoPG">
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+	</command>
+
+	<command name="AddSOBlogsEntryScheduled" priority="5">
+		<var name="entryContent" value="Blogs Entry Content" />
+		<var name="entryTitle" value="Blogs Entry Title" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#addScheduledPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#viewScheduledPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+	</command>
+
+	<command name="AddSOBlogsEntrySOUser" priority="5">
+		<var name="entryContent" value="Blogs Entry Content" />
+		<var name="entryTitle" value="Blogs Entry Title" />
+		<var name="permissionDefinitionKey1" value="SITE_ADMIN_CONTENT_BLOGS_BLOGS_ENTRIES_ALL_CHECKBOX" />
+		<var name="permissionDefinitionKey2" value="SITE_ADMIN_CONTENT_BLOGS_BLOGS_ENTRY_ALL_CHECKBOX" />
+		<var name="permissionNavigationKey" value="SITE_ADMIN_CONTENT_BLOGS" />
+		<var name="permissionNavigationValue" value="Blogs" />
+		<var name="roleName" value="Blogs Site Role Name" />
+		<var name="roleType" value="Site" />
+		<var name="userEmailAddress" value="socialoffice01@liferay.com" />
+		<var name="userFirstName" value="Social01" />
+		<var name="userLastName" value="User01" />
+		<var name="userMiddleName" value="Office01" />
+		<var name="userScreenName" value="socialoffice01" />
+
+		<execute macro="SOUser#addUserWithSORole">
+			<var name="adminEmailAddress" value="${adminEmailAddress}" />
+			<var name="password" value="${password}" />
+			<var name="userEmailAddress" value="${userEmailAddress}" />
+			<var name="userFirstName" value="${userFirstName}" />
+			<var name="userLastName" value="${userLastName}" />
+			<var name="userMiddleName" value="${userMiddleName}" />
+			<var name="userScreenName" value="${userScreenName}" />
+		</execute>
+
+		<execute macro="Page#gotoCP">
+			<var name="portletName" value="Roles" />
+		</execute>
+
+		<execute macro="Role#addCP">
+			<var name="roleName" value="${roleName}" />
+			<var name="roleType" value="${roleType}" />
+		</execute>
+
+		<execute macro="Role#definePermissionCmdCP">
+			<var name="permissionDefinitionKey" value="${permissionDefinitionKey1}" />
+			<var name="permissionDefinitionValue" value="${permissionDefinitionValue}" />
+			<var name="permissionNavigationKey" value="${permissionNavigationKey}" />
+			<var name="permissionNavigationValue" value="${permissionNavigationValue}" />
+			<var name="roleName" value="${roleName}" />
+		</execute>
+
+		<execute macro="Role#viewPermissionCP">
+			<var name="permissionDefinitionValue" value="Add Entry" />
+			<var name="permissionNavigationValue" value="Blog Entries" />
+		</execute>
+
+		<execute macro="Role#viewPermissionCP">
+			<var name="permissionDefinitionValue" value="Permissions" />
+			<var name="permissionNavigationValue" value="Blog Entries" />
+		</execute>
+
+		<execute macro="Role#viewPermissionCP">
+			<var name="permissionDefinitionValue" value="Subscribe" />
+			<var name="permissionNavigationValue" value="Blog Entries" />
+		</execute>
+
+		<execute macro="Page#gotoCP">
+			<var name="portletName" value="Roles" />
+		</execute>
+
+		<execute macro="Role#definePermissionCmdCP">
+			<var name="permissionDefinitionKey" value="${permissionDefinitionKey2}" />
+			<var name="permissionDefinitionValue" value="${permissionDefinitionValue}" />
+			<var name="permissionNavigationKey" value="${permissionNavigationKey}" />
+			<var name="permissionNavigationValue" value="${permissionNavigationValue}" />
+			<var name="roleName" value="${roleName}" />
+		</execute>
+
+		<execute macro="Role#viewPermissionCP">
+			<var name="permissionDefinitionValue" value="Add Discussion" />
+			<var name="permissionNavigationValue" value="Blogs Entry" />
+		</execute>
+
+		<execute macro="Role#viewPermissionCP">
+			<var name="permissionDefinitionValue" value="Delete" />
+			<var name="permissionNavigationValue" value="Blogs Entry" />
+		</execute>
+
+		<execute macro="Role#viewPermissionCP">
+			<var name="permissionDefinitionValue" value="Delete Discussion" />
+			<var name="permissionNavigationValue" value="Blogs Entry" />
+		</execute>
+
+		<execute macro="Role#viewPermissionCP">
+			<var name="permissionDefinitionValue" value="Permissions" />
+			<var name="permissionNavigationValue" value="Blogs Entry" />
+		</execute>
+
+		<execute macro="Role#viewPermissionCP">
+			<var name="permissionDefinitionValue" value="Update" />
+			<var name="permissionNavigationValue" value="Blogs Entry" />
+		</execute>
+
+		<execute macro="Role#viewPermissionCP">
+			<var name="permissionDefinitionValue" value="Update Discussion" />
+			<var name="permissionNavigationValue" value="Blogs Entry" />
+		</execute>
+
+		<execute macro="Role#viewPermissionCP">
+			<var name="permissionDefinitionValue" value="View" />
+			<var name="permissionNavigationValue" value="Blogs Entry" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress}" />
+			<var name="userLoginFullName" value="${userName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOSite#joinSitePG">
+			<var name="siteName" value="${siteName}" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${adminEmailAddress}" />
+			<var name="userLoginFullName" value="${adminName}" />
+		</execute>
+
+		<execute macro="Page#gotoUsersCP">
+			<var name="portletName" value="Site Memberships" />
+			<var name="siteScopeName" value="${siteName}" />
+		</execute>
+
+		<execute macro="Site#assignRoleCP">
+			<var name="roleName" value="${roleName}" />
+			<var name="userLoginEmailAddress" value="${adminEmailAddress}" />
+			<var name="userMiddleName" value="${userMiddleName}" />
+			<var name="userScreenName" value="${userScreenName}" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress}" />
+			<var name="userLoginFullName" value="${userName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#addPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+
+		<execute macro="BlogsEntry#viewPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<var name="key_entryTitle" value="${entryTitle}" />
+
+		<execute function="AssertTextEquals" locator1="PGBlogs#ENTRY_COMMENT_1" value1="0 Comments" />
+		<execute function="AssertTextEquals" locator1="PGBlogs#ENTRY_AVERAGE_RATING" value1="Average (0 Votes)" />
+
+		<execute macro="BlogsEntry#viewDetailsPG">
+			<var name="entryAuthorFirstName" value="${userFirstName}" />
+			<var name="entryAuthorLastName" value="${userLastName}" />
+			<var name="entryAuthorMiddleName" value="${userMiddleName}" />
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+
+		<execute function="AssertTextEquals" locator1="PGBlogsEntry#ENTRY_STATS_COMMENTS" value1="0 Comments" />
+		<execute function="AssertTextEquals" locator1="PGBlogsEntry#AVERAGE" value1="Average (0 Votes)" />
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${adminEmailAddress}" />
+			<var name="userLoginFullName" value="${adminName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#viewPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<var name="key_entryTitle" value="${entryTitle}" />
+
+		<execute function="AssertTextEquals" locator1="PGBlogs#ENTRY_COMMENT_1" value1="0 Comments" />
+		<execute function="AssertTextEquals" locator1="PGBlogs#ENTRY_AVERAGE_RATING" value1="Average (0 Votes)" />
+
+		<execute macro="BlogsEntry#viewDetailsPG">
+			<var name="entryAuthorFirstName" value="${userFirstName}" />
+			<var name="entryAuthorLastName" value="${userLastName}" />
+			<var name="entryAuthorMiddleName" value="${userMiddleName}" />
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+
+		<execute function="AssertTextEquals" locator1="PGBlogsEntry#ENTRY_STATS_COMMENTS" value1="0 Comments" />
+		<execute function="AssertTextEquals" locator1="PGBlogsEntry#AVERAGE" value1="Average (0 Votes)" />
+	</command>
+
+	<command name="AddSOBlogsEntryTag" priority="4">
+		<var name="entryContent" value="Blogs Entry Content" />
+		<var name="entryTitle" value="Blogs Entry Title" />
+		<var name="tagName" value="Tag Name" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#addPG">
+			<var name="entryAddTag" value="true" />
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entryTitle" value="${entryTitle}" />
+			<var name="multipleTags" value="false" />
+			<var name="tagName" value="${tagName}" />
+		</execute>
+	</command>
+
+	<command name="AddSOBlogsEntryTitle150Characters" priority="4">
+		<var name="entryContent" value="Blogs Entry Content" />
+		<var name="entryTitle" value="|||||||||1|||||||||2|||||||||3|||||||||4|||||||||5|||||||||6|||||||||7|||||||||8|||||||||9||||||||10||||||||11||||||||12||||||||13||||||||14||||||||15" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#addPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+
+		<execute macro="BlogsEntry#viewPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+	</command>
+
+	<command name="AddSOBlogsEntryTitle151Characters" priority="4">
+		<var name="entryContent" value="Blogs Entry Content" />
+		<var name="entryTitle" value="|||||||||1|||||||||2|||||||||3|||||||||4|||||||||5|||||||||6|||||||||7|||||||||8|||||||||9||||||||10||||||||11||||||||12||||||||13||||||||14||||||||15X" />
+		<var name="entryValidTitleLength" value="|||||||||1|||||||||2|||||||||3|||||||||4|||||||||5|||||||||6|||||||||7|||||||||8|||||||||9||||||||10||||||||11||||||||12||||||||13||||||||14||||||||15" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#addPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entryInvalidTitleLength" value="true" />
+			<var name="entryTitle" value="${entryTitle}" />
+			<var name="entryValidTitleLength" value="${entryValidTitleLength}" />
+		</execute>
+
+		<execute macro="BlogsEntry#viewPG">
+			<var name="entryTitle" value="${entryValidTitleLength}" />
+		</execute>
+	</command>
+
+	<command name="AddSOBlogsEntryTitleEscapeCharacters" priority="4">
+		<var name="entryContent" value="Blogs Entry Content" />
+		<var name="entryTitle" value="&lt;!--Html Escape Character Test--&gt;" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#addPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+
+		<execute macro="BlogsEntry#viewPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+	</command>
+
+	<command name="AddSOBlogsEntryTitleNull" priority="5">
+		<var name="entryContent" value="Blogs Entry Content" />
+		<var name="entryTitle" value="" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#addPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entryInvalidTitle" value="true" />
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#viewNoPG">
+			<var name="entryTitle" value="${entryContent}" />
+		</execute>
+	</command>
+
+	<command name="AddSOBlogsEntryWithSamePageScope" priority="3">
+		<var name="entryContent" value="Blogs Entry1 Content" />
+		<var name="entryContent2" value="Blogs Entry2 Content" />
+		<var name="entryTitle" value="Blogs Entry1 Title" />
+		<var name="entryTitle2" value="Blogs Entry2 Title" />
+		<var name="pageName2" value="Blogs Page2 Name" />
+		<var name="portletName" value="Blogs" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOUserBar#addPage">
+			<var name="pageName" value="${pageName2}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName2}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOUserBar#addPortlet">
+			<var name="pageName" value="${pageName2}" />
+			<var name="portletName" value="${portletName}" />
+		</execute>
+
+		<execute macro="SOUserBar#showEditControls" />
+
+		<execute macro="BlogsPortlet#configureScopePG">
+			<var name="portletName" value="${portletName}" />
+			<var name="scopeSelection" value="${pageName2}" />
+			<var name="soPage" value="false" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName2}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#addPG">
+			<var name="entryContent" value="${entryContent2}" />
+			<var name="entryTitle" value="${entryTitle2}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#addPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#viewNoPG">
+			<var name="entryTitle" value="${entryTitle2}" />
+		</execute>
+
+		<execute macro="BlogsEntry#viewPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName2}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#viewNoPG">
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+
+		<execute macro="BlogsEntry#viewPG">
+			<var name="entryContent" value="${entryContent2}" />
+			<var name="entryTitle" value="${entryTitle2}" />
+		</execute>
+
+		<execute macro="SOUserBar#showEditControls" />
+
+		<execute macro="BlogsPortlet#configureScopePG">
+			<var name="portletName" value="${portletName}" />
+			<var name="scopeSelection" value="${siteName}" />
+			<var name="soPage" value="false" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName2}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#viewNoPG">
+			<var name="entryTitle" value="${entryTitle2}" />
+		</execute>
+
+		<execute macro="BlogsEntry#viewPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+	</command>
+
+	<command name="DeleteSOBlogsEntryCommentSOUser" priority="5">
+		<var name="entryComment" value="Blogs Entry Comment" />
+		<var name="entryContent" value="Blogs Entry Content" />
+		<var name="entryTitle" value="Blogs Entry Title" />
+		<var name="permissionDefinitionKey" value="DELETE_DISCUSSION" />
+		<var name="roleName" value="Site Member" />
+		<var name="userEmailAddress" value="socialoffice01@liferay.com" />
+		<var name="userFirstName" value="Social01" />
+		<var name="userLastName" value="User01" />
+		<var name="userMiddleName" value="Office01" />
+		<var name="userName" value="Social01 Office01 User01" />
+		<var name="userScreenName" value="socialoffice01" />
+
+		<execute macro="SOUser#addUserWithSORole">
+			<var name="userEmailAddress" value="${userEmailAddress}" />
+			<var name="userFirstName" value="${userFirstName}" />
+			<var name="userLastName" value="${userLastName}" />
+			<var name="userMiddleName" value="${userMiddleName}" />
+			<var name="userScreenName" value="${userScreenName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#addPG">
+			<var name="entryAddPermissions" value="true" />
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entryTitle" value="${entryTitle}" />
+			<var name="permissionDefinitionKey" value="${permissionDefinitionKey}" />
+			<var name="roleName" value="${roleName}" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress}" />
+			<var name="userLoginFullName" value="${userName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOSite#joinSitePG">
+			<var name="siteName" value="${siteName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntryComment#addPG">
+			<var name="entryComment" value="${entryComment}" />
+			<var name="entryTitle" value="${entryTitle}" />
+			<var name="userEmailAddress" value="${userEmailAddress}" />
+			<var name="userFirstName" value="${userFirstName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntryComment#deletePG">
+			<var name="entryComment" value="${entryComment}" />
+			<var name="entryTitle" value="${entryTitle}" />
+			<var name="soPage" value="${soPage}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntryComment#viewDefaultPG">
+			<var name="entryComment" value="${entryComment}" />
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+	</command>
+
+	<command name="EditSOBlogsEntry" priority="5">
+		<var name="entryContent" value="Blogs Entry Content" />
+		<var name="entryContentEdit" value="Blogs Entry Content Edit" />
+		<var name="entryTitle" value="Blogs Entry Title" />
+		<var name="entryTitleEdit" value="Blogs Entry Title Edit" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#addPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+
+		<execute macro="BlogsEntry#editPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entryContentEdit" value="${entryContentEdit}" />
+			<var name="entryTitle" value="${entryTitle}" />
+			<var name="entryTitleEdit" value="${entryTitleEdit}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#viewPG">
+			<var name="entryContent" value="${entryContentEdit}" />
+			<var name="entryTitle" value="${entryTitleEdit}" />
+		</execute>
+
+		<execute macro="SOBlogs#viewBlogsEntryRecentBlogs">
+			<var name="entryContent" value="${entryContentEdit}" />
+			<var name="entryTitle" value="${entryTitleEdit}" />
+		</execute>
+	</command>
+
+	<command name="EditSOBlogsEntryCommentSOUser" priority="5">
+		<var name="entryComment" value="Blogs Entry Comment" />
+		<var name="entryCommentEdit" value="Blogs Entry Comment Edit" />
+		<var name="entryContent" value="Blogs Entry Content" />
+		<var name="entryTitle" value="Blogs Entry Title" />
+		<var name="permissionDefinitionKey" value="UPDATE_DISCUSSION" />
+		<var name="roleName" value="Site Member" />
+		<var name="userEmailAddress" value="socialoffice01@liferay.com" />
+		<var name="userFirstName" value="Social01" />
+		<var name="userLastName" value="User01" />
+		<var name="userMiddleName" value="Office01" />
+		<var name="userName" value="Social01 Office01 User01" />
+		<var name="userScreenName" value="socialoffice01" />
+
+		<execute macro="SOUser#addUserWithSORole">
+			<var name="userEmailAddress" value="${userEmailAddress}" />
+			<var name="userFirstName" value="${userFirstName}" />
+			<var name="userLastName" value="${userLastName}" />
+			<var name="userMiddleName" value="${userMiddleName}" />
+			<var name="userScreenName" value="${userScreenName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#addPG">
+			<var name="entryAddPermissions" value="true" />
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entryTitle" value="${entryTitle}" />
+			<var name="permissionDefinitionKey" value="${permissionDefinitionKey}" />
+			<var name="roleName" value="${roleName}" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress}" />
+			<var name="userLoginFullName" value="${userName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOSite#joinSitePG">
+			<var name="siteName" value="${siteName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntryComment#addPG">
+			<var name="entryComment" value="${entryComment}" />
+			<var name="entryTitle" value="${entryTitle}" />
+			<var name="userEmailAddress" value="${userEmailAddress}" />
+			<var name="userFirstName" value="${userFirstName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntryComment#editPG">
+			<var name="entryComment" value="${entryComment}" />
+			<var name="entryCommentEdit" value="${entryCommentEdit}" />
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntryComment#viewPG">
+			<var name="entryComment" value="${entryCommentEdit}" />
+			<var name="entryTitle" value="${entryTitle}" />
+			<var name="userFullName" value="${userName}" />
+		</execute>
+	</command>
+
+	<command name="EditSOBlogsEntryInline" priority="5">
+		<property name="custom.properties" value="editor.inline.editing.enabled=true" />
+
+		<var name="entryContentOriginal">Integer in rhoncus nisl, et tempus dui. Phasellus et hendrerit dolor. Curabitur ornare erat vel purus vestibulum luctus. Donec condimentum placerat lectus in dignissim. Vivamus libero ipsum, sodales vel pellentesque sit amet, posuere a justo. Nulla quis dolor aliquet, hendrerit tellus ac, accumsan dui. Nullam quis mattis mauris. Integer laoreet sit amet lacus nec porttitor. Maecenas vestibulum in tortor in interdum. Vivamus blandit quis purus laoreet dictum. In lacinia magna eget imperdiet interdum. Etiam arcu augue, auctor eget mattis eu, consequat ac tellus. Aenean id neque vitae massa porta sollicitudin vel sed ante.</var>
+		<var name="entryContentEdit">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pharetra tortor nec volutpat convallis. Integer quis dignissim turpis, iaculis tempor diam. Sed tempus pretium tellus, id venenatis nibh consequat a. Sed cursus felis a tempor euismod. Nullam ut rutrum nisi, quis condimentum nulla. Vestibulum imperdiet laoreet dui eu cursus. Praesent ut blandit nulla, eu tincidunt nunc. Etiam ac lorem urna. Duis aliquet, neque sed elementum eleifend, sapien nisl consectetur turpis, vitae sollicitudin mi velit in mi. Praesent facilisis, purus eu ultrices auctor, massa nisl tincidunt mauris, et fermentum urna tortor quis sapien. Morbi iaculis viverra tellus egestas imperdiet. Integer hendrerit feugiat risus a porttitor. Vivamus ornare, dui sed laoreet dictum, mauris tellus eleifend dolor, eu iaculis arcu orci et erat. </var>
+		<var name="entryContentFull">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pharetra tortor nec volutpat convallis. Integer quis dignissim turpis, iaculis tempor diam. Sed tempus pretium tellus, id venenatis nibh consequat a. Sed cursus felis a tempor euismod. Nullam ut rutrum nisi, quis condimentum nulla. Vestibulum imperdiet laoreet dui eu cursus. Praesent ut blandit nulla, eu tincidunt nunc. Etiam ac lorem urna. Duis aliquet, neque sed elementum eleifend, sapien nisl consectetur turpis, vitae sollicitudin mi velit in mi. Praesent facilisis, purus eu ultrices auctor, massa nisl tincidunt mauris, et fermentum urna tortor quis sapien. Morbi iaculis viverra tellus egestas imperdiet. Integer hendrerit feugiat risus a porttitor. Vivamus ornare, dui sed laoreet dictum, mauris tellus eleifend dolor, eu iaculis arcu orci et erat. Integer in rhoncus nisl, et tempus dui. Phasellus et hendrerit dolor. Curabitur ornare erat vel purus vestibulum luctus. Donec condimentum placerat lectus in dignissim. Vivamus libero ipsum, sodales vel pellentesque sit amet, posuere a justo. Nulla quis dolor aliquet, hendrerit tellus ac, accumsan dui. Nullam quis mattis mauris. Integer laoreet sit amet lacus nec porttitor. Maecenas vestibulum in tortor in interdum. Vivamus blandit quis purus laoreet dictum. In lacinia magna eget imperdiet interdum. Etiam arcu augue, auctor eget mattis eu, consequat ac tellus. Aenean id neque vitae massa porta sollicitudin vel sed ante.</var>
+
+		<var name="entryTitle" value="Blogs Entry Title" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#addPG">
+			<var name="entryContent" value="${entryContentOriginal}" />
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+
+		<execute macro="SOUserBar#showEditControls" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#editContentInlinePG">
+			<var name="entryContent" value="${entryContentOriginal}" />
+			<var name="entryContentEdit" value="${entryContentEdit}" />
+			<var name="useSendKeys" value="true" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#viewPG" >
+			<var name="entryContent" value="${entryContentFull}" />
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+
+		<execute function="SikuliAssertElementPresent" locator1="SOBlogs#SCREENSHOTS_BLOG_ENTRY_CONTENT_INLINE_EDIT_PNG" />
+	</command>
+
+	<command name="EditSOBlogsEntrySOUser" priority="5">
+		<var name="entryContent" value="Blogs Entry Content" />
+		<var name="entryContentEdit" value="Blogs Entry Content Edit" />
+		<var name="entryTitle" value="Blogs Entry Title" />
+		<var name="entryTitleEdit" value="Blogs Entry Title Edit" />
+		<var name="permissionDefinitionKey1" value="SITE_ADMIN_CONTENT_BLOGS_BLOGS_ENTRIES_ALL_CHECKBOX" />
+		<var name="permissionDefinitionKey2" value="SITE_ADMIN_CONTENT_BLOGS_BLOGS_ENTRY_ALL_CHECKBOX" />
+		<var name="permissionNavigationKey" value="SITE_ADMIN_CONTENT_BLOGS" />
+		<var name="permissionNavigationValue" value="Blogs" />
+		<var name="roleName" value="Blogs Site Role Name" />
+		<var name="roleType" value="Site" />
+		<var name="userEmailAddress" value="socialoffice01@liferay.com" />
+		<var name="userFirstName" value="Social01" />
+		<var name="userLastName" value="User01" />
+		<var name="userMiddleName" value="Office01" />
+		<var name="userScreenName" value="socialoffice01" />
+
+		<execute macro="SOUser#addUserWithSORole">
+			<var name="adminEmailAddress" value="${adminEmailAddress}" />
+			<var name="password" value="${password}" />
+			<var name="userEmailAddress" value="${userEmailAddress}" />
+			<var name="userFirstName" value="${userFirstName}" />
+			<var name="userLastName" value="${userLastName}" />
+			<var name="userMiddleName" value="${userMiddleName}" />
+			<var name="userScreenName" value="${userScreenName}" />
+		</execute>
+
+		<execute macro="Page#gotoCP">
+			<var name="portletName" value="Roles" />
+		</execute>
+
+		<execute macro="Role#addCP">
+			<var name="roleName" value="${roleName}" />
+			<var name="roleType" value="${roleType}" />
+		</execute>
+
+		<execute macro="Role#definePermissionCmdCP">
+			<var name="permissionDefinitionKey" value="${permissionDefinitionKey1}" />
+			<var name="permissionDefinitionValue" value="${permissionDefinitionValue}" />
+			<var name="permissionNavigationKey" value="${permissionNavigationKey}" />
+			<var name="permissionNavigationValue" value="${permissionNavigationValue}" />
+			<var name="roleName" value="${roleName}" />
+		</execute>
+
+		<execute macro="Role#viewPermissionCP">
+			<var name="permissionDefinitionValue" value="Add Entry" />
+			<var name="permissionNavigationValue" value="Blog Entries" />
+		</execute>
+
+		<execute macro="Role#viewPermissionCP">
+			<var name="permissionDefinitionValue" value="Permissions" />
+			<var name="permissionNavigationValue" value="Blog Entries" />
+		</execute>
+
+		<execute macro="Role#viewPermissionCP">
+			<var name="permissionDefinitionValue" value="Subscribe" />
+			<var name="permissionNavigationValue" value="Blog Entries" />
+		</execute>
+
+		<execute macro="Page#gotoCP">
+			<var name="portletName" value="Roles" />
+		</execute>
+
+		<execute macro="Role#definePermissionCmdCP">
+			<var name="permissionDefinitionKey" value="${permissionDefinitionKey2}" />
+			<var name="permissionDefinitionValue" value="${permissionDefinitionValue}" />
+			<var name="permissionNavigationKey" value="${permissionNavigationKey}" />
+			<var name="permissionNavigationValue" value="${permissionNavigationValue}" />
+			<var name="roleName" value="${roleName}" />
+		</execute>
+
+		<execute macro="Role#viewPermissionCP">
+			<var name="permissionDefinitionValue" value="Add Discussion" />
+			<var name="permissionNavigationValue" value="Blogs Entry" />
+		</execute>
+
+		<execute macro="Role#viewPermissionCP">
+			<var name="permissionDefinitionValue" value="Delete" />
+			<var name="permissionNavigationValue" value="Blogs Entry" />
+		</execute>
+
+		<execute macro="Role#viewPermissionCP">
+			<var name="permissionDefinitionValue" value="Delete Discussion" />
+			<var name="permissionNavigationValue" value="Blogs Entry" />
+		</execute>
+
+		<execute macro="Role#viewPermissionCP">
+			<var name="permissionDefinitionValue" value="Permissions" />
+			<var name="permissionNavigationValue" value="Blogs Entry" />
+		</execute>
+
+		<execute macro="Role#viewPermissionCP">
+			<var name="permissionDefinitionValue" value="Update" />
+			<var name="permissionNavigationValue" value="Blogs Entry" />
+		</execute>
+
+		<execute macro="Role#viewPermissionCP">
+			<var name="permissionDefinitionValue" value="Update Discussion" />
+			<var name="permissionNavigationValue" value="Blogs Entry" />
+		</execute>
+
+		<execute macro="Role#viewPermissionCP">
+			<var name="permissionDefinitionValue" value="View" />
+			<var name="permissionNavigationValue" value="Blogs Entry" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress}" />
+			<var name="userLoginFullName" value="${userName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOSite#joinSitePG">
+			<var name="siteName" value="${siteName}" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${adminEmailAddress}" />
+			<var name="userLoginFullName" value="${adminName}" />
+		</execute>
+
+		<execute macro="Page#gotoUsersCP">
+			<var name="portletName" value="Site Memberships" />
+			<var name="siteScopeName" value="${siteName}" />
+		</execute>
+
+		<execute macro="Site#assignRoleCP">
+			<var name="roleName" value="${roleName}" />
+			<var name="userLoginEmailAddress" value="${adminEmailAddress}" />
+			<var name="userMiddleName" value="${userMiddleName}" />
+			<var name="userScreenName" value="${userScreenName}" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress}" />
+			<var name="userLoginFullName" value="${userName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#addPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+
+		<execute macro="BlogsEntry#editPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entryContentEdit" value="${entryContentEdit}" />
+			<var name="entryTitle" value="${entryTitle}" />
+			<var name="entryTitleEdit" value="${entryTitleEdit}" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${adminEmailAddress}" />
+			<var name="userLoginFullName" value="${adminName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#viewPG">
+			<var name="entryContent" value="${entryContentEdit}" />
+			<var name="entryTitle" value="${entryTitleEdit}" />
+		</execute>
+
+		<execute function="AssertTextEquals" locator1="PGBlogsEntry#ENTRY_STATS_COMMENTS" value1="0 Comments" />
+		<execute function="AssertTextEquals" locator1="PGBlogsEntry#ENTRY_AVERAGE_RATING" value1="Average (0 Votes)" />
+	</command>
+
+	<command name="ImportLarSOBlogsEntry" priority="4">
+		<var name="categoryName" value="Category Name" />
+		<var name="entryComment" value="Blogs Entry Comment" />
+		<var name="entryContent1" value="Blogs Entry1 Content" />
+		<var name="entryContent2" value="Blogs Entry2 Content" />
+		<var name="entryContent2Edit" value="Blogs Entry2 Content Edit" />
+		<var name="entryTitle1" value="Blogs Entry1 Title" />
+		<var name="entryTitle2" value="Blogs Entry2 Title" />
+		<var name="entryTitle2Edit" value="Blogs Entry2 Title Edit" />
+		<var name="larFileName" value="SO_Blogs_LAR.site.lar" />
+		<var name="tagName1" value="tag name 1" />
+		<var name="tagName2" value="tag name 2" />
+		<var name="userFullName" value="Test Test" />
+		<var name="vocabularyName" value="Vocabulary Name" />
+
+		<execute macro="Page#gotoContentCP">
+			<var name="portletName" value="Categories" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="Vocabulary#addCP">
+			<var name="vocabularyName" value="${vocabularyName}" />
+		</execute>
+
+		<execute macro="Page#gotoContentCP">
+			<var name="portletName" value="Categories" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="Category#addCP">
+			<var name="categoryName" value="${categoryName}" />
+			<var name="vocabularyName" value="${vocabularyName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#addPG">
+			<var name="categoryName" value="${categoryName}" />
+			<var name="entryAddTag" value="true" />
+			<var name="entryContent" value="${entryContent1}" />
+			<var name="entryTitle" value="${entryTitle1}" />
+			<var name="multipleTags" value="true" />
+			<var name="tagNameList" value="${tagName1},${tagName2}" />
+			<var name="vocabularyName" value="${vocabularyName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#rate4StarsPG">
+			<var name="entryTitle" value="${entryTitle1}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntryComment#addPG">
+			<var name="entryComment" value="${entryComment}" />
+			<var name="entryTitle" value="${entryTitle1}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#removeViewPermissionsPG">
+			<var name="entryTitle" value="${entryTitle1}" />
+			<var name="roleName" value="Guest" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#addPG">
+			<var name="categoryName" value="${categoryName}" />
+			<var name="entryAddCategory" value="true" />
+			<var name="entryContent" value="${entryContent2}" />
+			<var name="entryTitle" value="${entryTitle2}" />
+			<var name="vocabularyName" value="${vocabularyName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#editPG">
+			<var name="entryContent" value="${entryContent2}" />
+			<var name="entryContentEdit" value="${entryContent2Edit}" />
+			<var name="entryTitle" value="${entryTitle2}" />
+			<var name="entryTitleEdit" value="${entryTitle2Edit}" />
+		</execute>
+
+		<execute macro="Page#gotoPagesCP">
+			<var name="portletName" value="Site Pages" />
+			<var name="siteScopeName" value="${siteName}" />
+		</execute>
+
+		<execute macro="LAR#exportSiteCP">
+			<var name="exportPermissions" value="true" />
+			<var name="larFileName" value="${larFileName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOSite#tearDownCP" />
+
+		<execute macro="SOUserBar#addSOSite">
+			<var name="siteDescription" value="${siteDescription}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteType" value="${siteType}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="LAR#importSiteCP">
+			<var name="importPermissions" value="true" />
+			<var name="larFileName" value="${larFileName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#viewPG">
+			<var name="entryContent" value="${entryContent1}" />
+			<var name="entryTitle" value="${entryTitle1}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#viewRate4StarsSpecificEntryPG">
+			<var name="entryTitle" value="${entryTitle1}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntryComment#viewPG">
+			<var name="entryComment" value="${entryComment}" />
+			<var name="entryTitle" value="${entryTitle1}" />
+			<var name="userFullName" value="${userFullName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#viewTagPG">
+			<var name="entryTitle" value="${entryTitle1}" />
+			<var name="multipleTags" value="true" />
+			<var name="tagNameList" value="${tagName1},${tagName2}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#viewViewPermissionsPG">
+			<var name="entryTitle" value="${entryTitle1}" />
+			<var name="roleName" value="Guest" />
+			<var name="viewPermissionValue" value="unchecked" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#viewPG">
+			<var name="entryContent" value="${entryContent2Edit}" />
+			<var name="entryTitle" value="${entryTitle2Edit}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#viewCategoryPG">
+			<var name="categoryName" value="${categoryName}" />
+			<var name="entryTitle" value="${entryTitle2Edit}" />
+			<var name="vocabularyName" value="${vocabularyName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#viewViewPermissionsPG">
+			<var name="entryTitle" value="${entryTitle2Edit}" />
+			<var name="roleName" value="Guest" />
+			<var name="viewPermissionValue" value="checked" />
+		</execute>
+	</command>
+
+	<command name="MoveToRecycleBinSOBlogsEntry" priority="5">
+		<var name="entryContent" value="Blogs Entry Content" />
+		<var name="entryTitle" value="Blogs Entry Title" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#addPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+
+		<execute macro="BlogsEntry#moveToRecycleBinPG">
+			<var name="assetType" value="Blogs Entry" />
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+
+		<var name="key_entryTitle" value="${entryTitle}" />
+
+		<execute function="AssertElementPresent" locator1="SOBlogs#RECENT_BLOGS_ENTRY_NO_ENTRIES" />
+		<execute function="AssertElementNotPresent" locator1="SOBlogs#RECENT_BLOGS_ENTRY_TITLE" />
+	</command>
+
+	<command name="MoveToRecycleBinSOBlogsEntrySOUser" priority="5">
+		<var name="entryContent" value="Blogs Entry Content" />
+		<var name="entryTitle" value="Blogs Entry Title" />
+		<var name="permissionDefinitionKey1" value="SITE_ADMIN_CONTENT_BLOGS_BLOGS_ENTRIES_ALL_CHECKBOX" />
+		<var name="permissionDefinitionKey2" value="SITE_ADMIN_CONTENT_BLOGS_BLOGS_ENTRY_ALL_CHECKBOX" />
+		<var name="permissionNavigationKey" value="SITE_ADMIN_CONTENT_BLOGS" />
+		<var name="permissionNavigationValue" value="Blogs" />
+		<var name="roleName" value="Blogs Site Role Name" />
+		<var name="roleType" value="Site" />
+		<var name="userEmailAddress" value="socialoffice01@liferay.com" />
+		<var name="userFirstName" value="Social01" />
+		<var name="userLastName" value="User01" />
+		<var name="userMiddleName" value="Office01" />
+		<var name="userScreenName" value="socialoffice01" />
+
+		<execute macro="SOUser#addUserWithSORole">
+			<var name="adminEmailAddress" value="${adminEmailAddress}" />
+			<var name="password" value="${password}" />
+			<var name="userEmailAddress" value="${userEmailAddress}" />
+			<var name="userFirstName" value="${userFirstName}" />
+			<var name="userLastName" value="${userLastName}" />
+			<var name="userMiddleName" value="${userMiddleName}" />
+			<var name="userScreenName" value="${userScreenName}" />
+		</execute>
+
+		<execute macro="Page#gotoCP">
+			<var name="portletName" value="Roles" />
+		</execute>
+
+		<execute macro="Role#addCP">
+			<var name="roleName" value="${roleName}" />
+			<var name="roleType" value="${roleType}" />
+		</execute>
+
+		<execute macro="Role#definePermissionCmdCP">
+			<var name="permissionDefinitionKey" value="${permissionDefinitionKey1}" />
+			<var name="permissionDefinitionValue" value="${permissionDefinitionValue}" />
+			<var name="permissionNavigationKey" value="${permissionNavigationKey}" />
+			<var name="permissionNavigationValue" value="${permissionNavigationValue}" />
+			<var name="roleName" value="${roleName}" />
+		</execute>
+
+		<execute macro="Role#viewPermissionCP">
+			<var name="permissionDefinitionValue" value="Add Entry" />
+			<var name="permissionNavigationValue" value="Blog Entries" />
+		</execute>
+
+		<execute macro="Role#viewPermissionCP">
+			<var name="permissionDefinitionValue" value="Permissions" />
+			<var name="permissionNavigationValue" value="Blog Entries" />
+		</execute>
+
+		<execute macro="Role#viewPermissionCP">
+			<var name="permissionDefinitionValue" value="Subscribe" />
+			<var name="permissionNavigationValue" value="Blog Entries" />
+		</execute>
+
+		<execute macro="Page#gotoCP">
+			<var name="portletName" value="Roles" />
+		</execute>
+
+		<execute macro="Role#definePermissionCmdCP">
+			<var name="permissionDefinitionKey" value="${permissionDefinitionKey2}" />
+			<var name="permissionDefinitionValue" value="${permissionDefinitionValue}" />
+			<var name="permissionNavigationKey" value="${permissionNavigationKey}" />
+			<var name="permissionNavigationValue" value="${permissionNavigationValue}" />
+			<var name="roleName" value="${roleName}" />
+		</execute>
+
+		<execute macro="Role#viewPermissionCP">
+			<var name="permissionDefinitionValue" value="Add Discussion" />
+			<var name="permissionNavigationValue" value="Blogs Entry" />
+		</execute>
+
+		<execute macro="Role#viewPermissionCP">
+			<var name="permissionDefinitionValue" value="Delete" />
+			<var name="permissionNavigationValue" value="Blogs Entry" />
+		</execute>
+
+		<execute macro="Role#viewPermissionCP">
+			<var name="permissionDefinitionValue" value="Delete Discussion" />
+			<var name="permissionNavigationValue" value="Blogs Entry" />
+		</execute>
+
+		<execute macro="Role#viewPermissionCP">
+			<var name="permissionDefinitionValue" value="Permissions" />
+			<var name="permissionNavigationValue" value="Blogs Entry" />
+		</execute>
+
+		<execute macro="Role#viewPermissionCP">
+			<var name="permissionDefinitionValue" value="Update" />
+			<var name="permissionNavigationValue" value="Blogs Entry" />
+		</execute>
+
+		<execute macro="Role#viewPermissionCP">
+			<var name="permissionDefinitionValue" value="Update Discussion" />
+			<var name="permissionNavigationValue" value="Blogs Entry" />
+		</execute>
+
+		<execute macro="Role#viewPermissionCP">
+			<var name="permissionDefinitionValue" value="View" />
+			<var name="permissionNavigationValue" value="Blogs Entry" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress}" />
+			<var name="userLoginFullName" value="${userName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOSite#joinSitePG">
+			<var name="siteName" value="${siteName}" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${adminEmailAddress}" />
+			<var name="userLoginFullName" value="${adminName}" />
+		</execute>
+
+		<execute macro="Page#gotoUsersCP">
+			<var name="portletName" value="Site Memberships" />
+			<var name="siteScopeName" value="${siteName}" />
+		</execute>
+
+		<execute macro="Site#assignRoleCP">
+			<var name="roleName" value="${roleName}" />
+			<var name="userLoginEmailAddress" value="${adminEmailAddress}" />
+			<var name="userMiddleName" value="${userMiddleName}" />
+			<var name="userScreenName" value="${userScreenName}" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress}" />
+			<var name="userLoginFullName" value="${userName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#addPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+
+		<execute macro="BlogsEntry#moveToRecycleBinPG">
+			<var name="assetType" value="Blogs Entry" />
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${adminEmailAddress}" />
+			<var name="userLoginFullName" value="${adminName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute function="AssertElementPresent" locator1="PGBlogs#ADD_ENTRY_BUTTON" value1="Add Blog Entry" />
+		<execute function="AssertElementPresent" locator1="PGBlogs#PERMISSIONS_BUTTON" value1="Permissions" />
+		<execute function="AssertTextEquals" locator1="PGBlogs#RSS_LINK" value1="RSS" />
+		<execute function="AssertTextEquals" locator1="PGBlogs#SUBSCRIBE_LINK" value1="Subscribe" />
+		<execute function="AssertElementNotPresent" locator1="PGBlogs#ENTRY_TITLE_1" />
+		<execute function="AssertElementNotPresent" locator1="PGBlogs#ENTRY_CONTENT_1" />
+	</command>
+
+	<command name="PreviewSOBlogsEntry" priority="5">
+		<var name="entryContent" value="Blogs Entry Content" />
+		<var name="entryTitle" value="Blogs Entry Title" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#previewPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+	</command>
+
+	<command name="RateSOBlogsEntry" priority="4">
+		<var name="entryContent" value="Blogs Entry Content" />
+		<var name="entryTitle" value="Blogs Entry Title" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#addPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+
+		<execute macro="BlogsEntry#rate4StarsPG">
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#viewDetailsPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+
+		<execute macro="BlogsEntry#viewRate4StarsPG" />
+	</command>
+
+	<command name="SaveSOBlogsEntryDraft" priority="5">
+		<var name="entryContent" value="Blogs Entry Content" />
+		<var name="entryTitle" value="Blogs Entry Title" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#addDraftPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#viewDraftPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+	</command>
+
+	<command name="SaveSOBlogsEntryDraftAuto" priority="5">
+		<var name="entryContent" value="Blogs Entry Content" />
+		<var name="entryTitle" value="Blogs Entry Title" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#addDraftAutoPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#viewDraftPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+	</command>
+
+	<command name="SaveSOBlogsEntryEditAsDraft" priority="4">
+		<var name="entryContent" value="Blogs Entry Content" />
+		<var name="entryContentEdit" value="Blogs Entry Content Edit" />
+		<var name="entryTitle" value="Blogs Entry Title" />
+		<var name="entryTitleEdit" value="Blogs Entry Title Edit" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#addPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#editPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entryContentEdit" value="${entryContentEdit}" />
+			<var name="entryTitle" value="${entryTitle}" />
+			<var name="entryTitleEdit" value="${entryTitleEdit}" />
+			<var name="saveAsDraft" value="true" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#viewDraftPG">
+			<var name="entryContent" value="${entryContentEdit}" />
+			<var name="entryTitle" value="${entryTitleEdit}" />
+		</execute>
+	</command>
+
+	<command name="SearchSOBlogsEntryComment" priority="5">
+		<var name="entryComment" value="Blogs Entry Comment" />
+		<var name="entryContent" value="Blogs Entry Content" />
+		<var name="entryTitle" value="Blogs Entry Title" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#addPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+
+		<execute macro="BlogsEntryComment#addPG">
+			<var name="entryComment" value="${entryComment}" />
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntryComment#searchPG">
+			<var name="entryComment" value="${entryComment}" />
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entrySearchTerm" value="Comment" />
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+	</command>
+
+	<command name="SearchSOBlogsEntryContent" priority="5">
+		<var name="entryContent" value="Blogs Entry Content" />
+		<var name="entryTitle" value="Blogs Entry Title" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#addPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#searchPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entrySearchTerm" value="${entryContent}" />
+			<var name="entryTitle" value="${entryTitle}" />
+			<var name="soPage" value="${soPage}" />
+		</execute>
+
+		<execute macro="BlogsEntry#searchPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entrySearchTerm" value="Blogs" />
+			<var name="entryTitle" value="${entryTitle}" />
+			<var name="soPage" value="${soPage}" />
+		</execute>
+
+		<execute macro="BlogsEntry#searchPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entrySearchTerm" value="Entry" />
+			<var name="entryTitle" value="${entryTitle}" />
+			<var name="soPage" value="${soPage}" />
+		</execute>
+
+		<execute macro="BlogsEntry#searchPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entrySearchTerm" value="Content" />
+			<var name="entryTitle" value="${entryTitle}" />
+			<var name="soPage" value="${soPage}" />
+		</execute>
+
+		<execute macro="BlogsEntry#searchNoPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entrySearchTerm" value="Blogs1" />
+			<var name="entryTitle" value="${entryTitle}" />
+			<var name="soPage" value="${soPage}" />
+		</execute>
+
+		<execute macro="BlogsEntry#searchNoPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entrySearchTerm" value="Entry1" />
+			<var name="entryTitle" value="${entryTitle}" />
+			<var name="soPage" value="${soPage}" />
+		</execute>
+
+		<execute macro="BlogsEntry#searchNoPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entrySearchTerm" value="Content1" />
+			<var name="entryTitle" value="${entryTitle}" />
+			<var name="soPage" value="${soPage}" />
+		</execute>
+	</command>
+
+	<command name="SearchSOBlogsEntryContentQuotes" priority="5">
+		<var name="entryContent" value="Blogs Entry Content" />
+		<var name="entryTitle" value="Blogs Entry Title" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#addPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#searchPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entrySearchTerm">"Blogs Entry Content"</var>
+			<var name="entryTitle" value="${entryTitle}" />
+			<var name="soPage" value="${soPage}" />
+		</execute>
+
+		<execute macro="BlogsEntry#searchPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entrySearchTerm">"Blogs"</var>
+			<var name="entryTitle" value="${entryTitle}" />
+			<var name="soPage" value="${soPage}" />
+		</execute>
+
+		<execute macro="BlogsEntry#searchPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entrySearchTerm">"Entry"</var>
+			<var name="entryTitle" value="${entryTitle}" />
+			<var name="soPage" value="${soPage}" />
+		</execute>
+
+		<execute macro="BlogsEntry#searchPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entrySearchTerm">"Content"</var>
+			<var name="entryTitle" value="${entryTitle}" />
+			<var name="soPage" value="${soPage}" />
+		</execute>
+
+		<execute macro="BlogsEntry#searchNoPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entrySearchTerm">"Blogs1"</var>
+			<var name="entryTitle" value="${entryTitle}" />
+			<var name="soPage" value="${soPage}" />
+		</execute>
+
+		<execute macro="BlogsEntry#searchNoPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entrySearchTerm">"Entry1"</var>
+			<var name="entryTitle" value="${entryTitle}" />
+			<var name="soPage" value="${soPage}" />
+		</execute>
+
+		<execute macro="BlogsEntry#searchNoPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entrySearchTerm">"Content1"</var>
+			<var name="entryTitle" value="${entryTitle}" />
+			<var name="soPage" value="${soPage}" />
+		</execute>
+
+		<execute macro="BlogsEntry#searchNoPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entrySearchTerm">"Blogs Entry Content1"</var>
+			<var name="entryTitle" value="${entryTitle}" />
+			<var name="soPage" value="${soPage}" />
+		</execute>
+	</command>
+
+	<command name="SearchSOBlogsEntryTitle" priority="5">
+		<var name="entryContent" value="Blogs Entry Content" />
+		<var name="entryTitle" value="Blogs Entry Title" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#addPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#searchPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entrySearchTerm" value="${entryTitle}" />
+			<var name="entryTitle" value="${entryTitle}" />
+			<var name="soPage" value="${soPage}" />
+		</execute>
+
+		<execute macro="BlogsEntry#searchPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entrySearchTerm" value="Blogs" />
+			<var name="entryTitle" value="${entryTitle}" />
+			<var name="soPage" value="${soPage}" />
+		</execute>
+
+		<execute macro="BlogsEntry#searchPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entrySearchTerm" value="Entry" />
+			<var name="entryTitle" value="${entryTitle}" />
+			<var name="soPage" value="${soPage}" />
+		</execute>
+
+		<execute macro="BlogsEntry#searchPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entrySearchTerm" value="Title" />
+			<var name="entryTitle" value="${entryTitle}" />
+			<var name="soPage" value="${soPage}" />
+		</execute>
+
+		<execute macro="BlogsEntry#searchNoPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entrySearchTerm" value="Blogs1" />
+			<var name="entryTitle" value="${entryTitle}" />
+			<var name="soPage" value="${soPage}" />
+		</execute>
+
+		<execute macro="BlogsEntry#searchNoPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entrySearchTerm" value="Entry1" />
+			<var name="entryTitle" value="${entryTitle}" />
+			<var name="soPage" value="${soPage}" />
+		</execute>
+
+		<execute macro="BlogsEntry#searchNoPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entrySearchTerm" value="Title1" />
+			<var name="entryTitle" value="${entryTitle}" />
+			<var name="soPage" value="${soPage}" />
+		</execute>
+	</command>
+
+	<command name="SearchSOBlogsEntryTitleQuotes" priority="5">
+		<var name="entryContent" value="Blogs Entry Content" />
+		<var name="entryTitle" value="Blogs Entry Title" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#addPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#searchPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entrySearchTerm">"Blogs Entry Title"</var>
+			<var name="entryTitle" value="${entryTitle}" />
+			<var name="soPage" value="${soPage}" />
+		</execute>
+
+		<execute macro="BlogsEntry#searchPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entrySearchTerm">"Blogs"</var>
+			<var name="entryTitle" value="${entryTitle}" />
+			<var name="soPage" value="${soPage}" />
+		</execute>
+
+		<execute macro="BlogsEntry#searchPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entrySearchTerm">"Entry"</var>
+			<var name="entryTitle" value="${entryTitle}" />
+			<var name="soPage" value="${soPage}" />
+		</execute>
+
+		<execute macro="BlogsEntry#searchPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entrySearchTerm">"Title"</var>
+			<var name="entryTitle" value="${entryTitle}" />
+			<var name="soPage" value="${soPage}" />
+		</execute>
+
+		<execute macro="BlogsEntry#searchNoPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entrySearchTerm">"Blogs1"</var>
+			<var name="entryTitle" value="${entryTitle}" />
+			<var name="soPage" value="${soPage}" />
+		</execute>
+
+		<execute macro="BlogsEntry#searchNoPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entrySearchTerm">"Entry1"</var>
+			<var name="entryTitle" value="${entryTitle}" />
+			<var name="soPage" value="${soPage}" />
+		</execute>
+
+		<execute macro="BlogsEntry#searchNoPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entrySearchTerm">"Title1"</var>
+			<var name="entryTitle" value="${entryTitle}" />
+			<var name="soPage" value="${soPage}" />
+		</execute>
+
+		<execute macro="BlogsEntry#searchNoPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entrySearchTerm">"Blogs Entry Title1"</var>
+			<var name="entryTitle" value="${entryTitle}" />
+			<var name="soPage" value="${soPage}" />
+		</execute>
+	</command>
+
+	<command name="SubscribeToSOBlogsEntryAndViewEntryInGmail" priority="5">
+		<var name="entryContent" value="Blogs Entry Content" />
+		<var name="entryTitle" value="Blogs Entry Title" />
+		<var name="userEmailAddress" property-value="email.address.2" />
+		<var name="userFirstName" value="Social01" />
+		<var name="userLastName" value="User01" />
+		<var name="userMiddleName" value="Office01" />
+		<var name="userScreenName" value="socialoffice01" />
+
+		<execute macro="Page#gotoCP">
+			<var name="portletName" value="Server Administration" />
+		</execute>
+
+		<execute macro="ServerAdministration#configureMailServerSettings">
+			<var name="userName" property-value="email.address.1" />
+			<var name="userPassword" property-value="email.password.1" />
+		</execute>
+
+		<execute macro="SOUser#addUserWithSORole">
+			<var name="userEmailAddress" value="${userEmailAddress}" />
+			<var name="userFirstName" value="${userFirstName}" />
+			<var name="userLastName" value="${userLastName}" />
+			<var name="userMiddleName" value="${userMiddleName}" />
+			<var name="userScreenName" value="${userScreenName}" />
+		</execute>
+
+		<execute macro="PermissionsInline#gotoBlogsPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURLTemp" value="true" />
+		</execute>
+
+		<execute macro="Role#definePermissionPG">
+			<var name="permissionDefinitionKey" value="INLINE_PERMISSIONS_SUBSCRIBE_CHECKBOX" />
+			<var name="roleName" value="Site Member" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOBlogs#removeSocialBookmarksPG" />
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress}" />
+			<var name="userLoginFullName" value="${userName}" />
+		</execute>
+
+		<execute macro="SOUserBar#joinSOSite">
+			<var name="siteName" value="${siteName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsPortlet#subscribePG" />
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${adminEmailAddress}" />
+			<var name="userLoginFullName" value="${adminName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#addPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress}" />
+			<var name="userLoginFullName" value="${userName}" />
+		</execute>
+
+		<execute function="Pause" locator1="30000" />
+
+		<execute macro="Gmail#login">
+			<var name="userEmailAddress" property-value="email.address.2" />
+			<var name="userPassword" property-value="email.password.2" />
+		</execute>
+
+		<execute macro="Gmail#gotoHtmlMode" />
+
+		<execute macro="Gmail#viewMail">
+			<var name="emailFromUserName" value="Joe Bloggs" />
+			<var name="gmailAssetType" value="Blogs" />
+			<var name="gmailMailTableMessageTitle" value="New Blogs Post" />
+			<var name="gmailMessageBody" value="${adminName} created a new blog entry." />
+			<var name="gmailMessageBodyClosing" value="Sincerely" />
+			<var name="gmailMessageBodyGreeting" value="Dear ${userName}" />
+			<var name="gmailMessageTitle" value="New Blogs Post by ${adminName}" />
+		</execute>
+
+		<var name="key_gmailAssetType" value="Blogs" />
+
+		<var locator="Gmail#GMAIL_HTML_MODE_MESSAGE_BODY_LINK_1" name="blogEntryURL" />
+
+		<execute macro="Gmail#tearDown">
+			<var name="userEmailAddress" property-value="email.address.2" />
+			<var name="userPassword" property-value="email.address.2" />
+		</execute>
+
+		<execute function="Open" locator1="${blogEntryURL}" />
+
+		<execute function="Pause" locator1="1000" />
+
+		<execute function="AssertTextEquals" locator1="PGBlogsEntry#ENTRY_TITLE" value1="${entryTitle}" />
+		<execute function="AssertTextEquals" locator1="PGBlogsEntry#ENTRY_CONTENT" value1="${entryContent}" />
+	</command>
+
+	<command name="UserFlagsEntryAndAdminViewsNotificationInGmail" priority="4">
+		<var name="entryContent" value="Blogs Entry Content" />
+		<var name="entryTitle" value="Blogs Entry Title" />
+		<var name="flagReason" value="Spam" />
+		<var name="siteDescription" value="Open Site Description 2" />
+		<var name="siteName" value="Open Site Name 2" />
+		<var name="userEmailAddress" property-value="email.address.2" />
+		<var name="userFirstName" value="Social01" />
+		<var name="userLastName" value="User01" />
+		<var name="userMiddleName" value="Office01" />
+		<var name="userName" value="socialoffice01" />
+
+		<execute macro="Page#gotoCP">
+			<var name="portletName" value="Server Administration" />
+		</execute>
+
+		<execute macro="ServerAdministration#configureMailServerSettings">
+			<var name="userName" property-value="email.address.1" />
+			<var name="userPassword" property-value="email.password.1" />
+		</execute>
+
+		<execute macro="Page#gotoCP">
+			<var name="portletName" value="Users and Organizations" />
+		</execute>
+
+		<execute macro="SOUser#addUserWithSORole">
+			<var name="userEmailAddress" value="${userEmailAddress}" />
+			<var name="userFirstName" value="${userFirstName}" />
+			<var name="userLastName" value="${userLastName}" />
+			<var name="userMiddleName" value="${userMiddleName}" />
+			<var name="userScreenName" value="${userName}" />
+		</execute>
+
+		<execute macro="Page#gotoCP">
+			<var name="portletName" value="Users and Organizations" />
+		</execute>
+
+		<execute macro="User#assignRegularRoleCP">
+			<var name="roleName" value="Administrator" />
+			<var name="userScreenName" value="${userName}" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress}" />
+			<var name="userLoginFullName" value="${userName}" />
+		</execute>
+
+		<execute macro="SOUserBar#addSOSite">
+			<var name="siteDescription" value="${siteDescription}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteType" value="${siteType}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOBlogs#removeSocialBookmarksPG" />
+
+		<execute macro="BlogsEntry#addPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="test@liferay.com" />
+			<var name="userLoginFullName" value="Test Test" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#flagPG">
+			<var name="entryTitle" value="${entryTitle}" />
+			<var name="flagReason" value="${flagReason}" />
+		</execute>
+
+		<execute function="Pause" locator1="30000" />
+
+		<execute macro="Gmail#login">
+			<var name="userEmailAddress" property-value="email.address.2" />
+			<var name="userPassword" property-value="email.password.2" />
+		</execute>
+
+		<execute macro="Gmail#gotoHtmlMode" />
+
+		<execute macro="Gmail#viewMail">
+			<var name="emailFromUserName" value="Joe Bloggs" />
+			<var name="gmailAssetType" value="Inappropriate Content Flagged" />
+			<var name="gmailMailTableMessageTitle" value="Inappropriate Content Flagged in ${siteName}" />
+			<var name="gmailMessageBody" value="You are receiving this email because you are administrator of ${siteName}. Please review the content in this site." />
+			<var name="gmailMessageBodyClosing" value="Sincerely" />
+			<var name="gmailMessageBodyGreeting" value="Dear {adminName}," />
+			<var name="gmailMessageTitle" value="Inappropriate Content Flagged in ${siteName}" />
+		</execute>
+
+		<execute macro="Gmail#tearDown">
+			<var name="userEmailAddress" property-value="email.address.2" />
+			<var name="userPassword" value="email.password.2" />
+		</execute>
+
+		<execute function="Open" locator1="http://localhost:8080" />
+	</command>
+
+	<command name="ViewRecentBlogsDisplayStyles" priority="4">
+		<var name="entryAbstractDescription" value="Blogs Entry Abstract" />
+		<var name="entryContent" value="Blogs Entry Content" />
+		<var name="entryQuote" value="&quot;Blogs Entry Content... &quot; Read More" />
+		<var name="entryTitle" value="Blogs Entry Title" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#addPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#gotoEditPG">
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+
+		<execute macro="BlogsEntry#addAbstractDescriptionPG">
+			<var name="entryAbstractDescription" value="${entryAbstractDescription}" />
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOBlogs#configureRecentBlogsPortletDisplayStyle">
+			<var name="displayStyle" value="Body and Image" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOBlogs#viewBlogsEntryTitleAndAuthorViaRecentBlogs">
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+
+		<execute macro="SOBlogs#viewBlogsEntryContentViaRecentBlogs">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+
+		<execute macro="SOBlogs#viewBlogsEntryAuthorImageViaRecentBlogs">
+			<var name="entryContent" value="${entryContent}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOBlogs#configureRecentBlogsPortletDisplayStyle">
+			<var name="displayStyle" value="Body" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOBlogs#viewBlogsEntryTitleAndAuthorViaRecentBlogs">
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+
+		<execute macro="SOBlogs#viewBlogsEntryContentViaRecentBlogs">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOBlogs#configureRecentBlogsPortletDisplayStyle">
+			<var name="displayStyle" value="Abstract" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOBlogs#viewBlogsEntryTitleAndAuthorViaRecentBlogs">
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+
+		<execute macro="SOBlogs#viewBlogsEntryAbstractViaRecentBlogs">
+			<var name="entryAbstractDescription" value="${entryAbstractDescription}" />
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOBlogs#configureRecentBlogsPortletDisplayStyle">
+			<var name="displayStyle" value="Abstract without Title" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOBlogs#viewBlogsEntryAbstractViaRecentBlogs">
+			<var name="entryAbstractDescription" value="${entryAbstractDescription}" />
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOBlogs#configureRecentBlogsPortletDisplayStyle">
+			<var name="displayStyle" value="Quote" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOBlogs#viewBlogsEntryTitleAndAuthorViaRecentBlogs">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+
+		<execute macro="SOBlogs#viewBlogsEntryQuoteViaRecentBlogs">
+			<var name="entryQuote" value="${entryQuote}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOBlogs#configureRecentBlogsPortletDisplayStyle">
+			<var name="displayStyle" value="Quote without Title" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOBlogs#viewBlogsEntryQuoteViaRecentBlogs">
+			<var name="entryQuote" value="${entryQuote}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOBlogs#configureRecentBlogsPortletDisplayStyle">
+			<var name="displayStyle" value="Title" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOBlogs#viewBlogsEntryTitleAndAuthorViaRecentBlogs">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+	</command>
+
+	<command name="ViewSOBlogsEntriesMaxItemsToDisplay5" priority="4">
+		<var name="entryContent1" value="Blogs Entry1 Content" />
+		<var name="entryContent2" value="Blogs Entry2 Content" />
+		<var name="entryContent3" value="Blogs Entry3 Content" />
+		<var name="entryContent4" value="Blogs Entry4 Content" />
+		<var name="entryContent5" value="Blogs Entry5 Content" />
+		<var name="entryContent6" value="Blogs Entry6 Content" />
+		<var name="entryTitle1" value="Blogs Entry1 Title" />
+		<var name="entryTitle2" value="Blogs Entry2 Title" />
+		<var name="entryTitle3" value="Blogs Entry3 Title" />
+		<var name="entryTitle4" value="Blogs Entry4 Title" />
+		<var name="entryTitle5" value="Blogs Entry5 Title" />
+		<var name="entryTitle6" value="Blogs Entry6 Title" />
+		<var name="maximumItemsToDisplay" value="5" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#addPG">
+			<var name="entryContent" value="${entryContent1}" />
+			<var name="entryTitle" value="${entryTitle1}" />
+		</execute>
+
+		<execute macro="BlogsEntry#addPG">
+			<var name="entryContent" value="${entryContent2}" />
+			<var name="entryTitle" value="${entryTitle2}" />
+		</execute>
+
+		<execute macro="BlogsEntry#addPG">
+			<var name="entryContent" value="${entryContent3}" />
+			<var name="entryTitle" value="${entryTitle3}" />
+		</execute>
+
+		<execute macro="BlogsEntry#addPG">
+			<var name="entryContent" value="${entryContent4}" />
+			<var name="entryTitle" value="${entryTitle4}" />
+		</execute>
+
+		<execute macro="BlogsEntry#addPG">
+			<var name="entryContent" value="${entryContent5}" />
+			<var name="entryTitle" value="${entryTitle5}" />
+		</execute>
+
+		<execute macro="BlogsEntry#addPG">
+			<var name="entryContent" value="${entryContent6}" />
+			<var name="entryTitle" value="${entryTitle6}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#viewPG">
+			<var name="entryContent" value="${entryContent6}" />
+			<var name="entryTitle" value="${entryTitle6}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#viewPG">
+			<var name="entryContent" value="${entryContent5}" />
+			<var name="entryTitle" value="${entryTitle5}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#viewPG">
+			<var name="entryContent" value="${entryContent4}" />
+			<var name="entryTitle" value="${entryTitle4}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#viewPG">
+			<var name="entryContent" value="${entryContent3}" />
+			<var name="entryTitle" value="${entryTitle3}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#viewPG">
+			<var name="entryContent" value="${entryContent2}" />
+			<var name="entryTitle" value="${entryTitle2}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#viewPG">
+			<var name="entryContent" value="${entryContent1}" />
+			<var name="entryTitle" value="${entryTitle1}" />
+		</execute>
+
+		<execute macro="BlogsPortlet#configureMaxItemsToDisplayPG">
+			<var name="maximumItemsToDisplay" value="${maximumItemsToDisplay}" />
+			<var name="soPage" value="${soPage}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#viewPG">
+			<var name="entryContent" value="${entryContent6}" />
+			<var name="entryTitle" value="${entryTitle6}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#viewPG">
+			<var name="entryContent" value="${entryContent5}" />
+			<var name="entryTitle" value="${entryTitle5}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#viewPG">
+			<var name="entryContent" value="${entryContent4}" />
+			<var name="entryTitle" value="${entryTitle4}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#viewPG">
+			<var name="entryContent" value="${entryContent3}" />
+			<var name="entryTitle" value="${entryTitle3}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#viewPG">
+			<var name="entryContent" value="${entryContent2}" />
+			<var name="entryTitle" value="${entryTitle2}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<var name="key_entryTitle" value="${entryTitle1}" />
+
+		<execute function="AssertElementNotPresent" locator1="PGBlogs#ENTRY_TITLE" />
+		<execute function="AssertElementNotPresent" locator1="PGBlogs#ENTRY_CONTENT" />
+
+		<execute function="AssertTextEquals" locator1="PGBlogs#PAGINATION_ITEMS_PER_PAGE" value1="— 5 Items per Page" />
+		<execute function="AssertTextEquals" locator1="PGBlogs#PAGINATION_PAGE_SELECTOR" value1="Page 1 of 2" />
+		<execute function="AssertClick" locator1="PGBlogs#PAGINATION_NEXT_BUTTON" value1="Next" />
+		<execute function="AssertTextEquals" locator1="PGBlogs#PAGINATION_PAGE_SELECTOR" value1="Page 2 of 2" />
+
+		<var name="key_entryTitle" value="${entryTitle2}" />
+
+		<execute function="AssertElementNotPresent" locator1="PGBlogs#ENTRY_TITLE" />
+		<execute function="AssertElementNotPresent" locator1="PGBlogs#ENTRY_CONTENT" />
+
+		<var name="key_entryTitle" value="${entryTitle3}" />
+
+		<execute function="AssertElementNotPresent" locator1="PGBlogs#ENTRY_TITLE" />
+		<execute function="AssertElementNotPresent" locator1="PGBlogs#ENTRY_CONTENT" />
+
+		<var name="key_entryTitle" value="${entryTitle4}" />
+
+		<execute function="AssertElementNotPresent" locator1="PGBlogs#ENTRY_TITLE" />
+		<execute function="AssertElementNotPresent" locator1="PGBlogs#ENTRY_CONTENT" />
+
+		<var name="key_entryTitle" value="${entryTitle5}" />
+
+		<execute function="AssertElementNotPresent" locator1="PGBlogs#ENTRY_TITLE" />
+		<execute function="AssertElementNotPresent" locator1="PGBlogs#ENTRY_CONTENT" />
+
+		<var name="key_entryTitle" value="${entryTitle6}" />
+
+		<execute function="AssertElementNotPresent" locator1="PGBlogs#ENTRY_TITLE" />
+		<execute function="AssertElementNotPresent" locator1="PGBlogs#ENTRY_CONTENT" />
+
+		<execute macro="BlogsEntry#viewPG">
+			<var name="entryContent" value="${entryContent1}" />
+			<var name="entryTitle" value="${entryTitle1}" />
+		</execute>
+	</command>
+
+	<command name="ViewSOBlogsEntriesUsersSelectionMethodRecentBlogs" priority="3">
+		<var name="entryContent1" value="Blogs Entry1 Content" />
+		<var name="entryContent2" value="Blogs Entry2 Content" />
+		<var name="entryTitle1" value="Blogs Entry1 Title" />
+		<var name="entryTitle2" value="Blogs Entry2 Title" />
+		<var name="siteDescription2" value="Open Site2 Description" />
+		<var name="siteName2" value="Open Site2 Name" />
+		<var name="userEmailAddress" value="socialoffice01@liferay.com" />
+		<var name="userFirstName" value="Social01" />
+		<var name="userLastName" value="User01" />
+		<var name="userMiddleName" value="Office01" />
+		<var name="userScreenName" value="socialoffice01" />
+
+		<execute macro="SOUser#addUserWithSORole">
+			<var name="adminEmailAddress" value="${adminEmailAddress}" />
+			<var name="password" value="${password}" />
+			<var name="userEmailAddress" value="${userEmailAddress}" />
+			<var name="userFirstName" value="${userFirstName}" />
+			<var name="userLastName" value="${userLastName}" />
+			<var name="userMiddleName" value="${userMiddleName}" />
+			<var name="userScreenName" value="${userScreenName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#addPG">
+			<var name="entryContent" value="${entryContent1}" />
+			<var name="entryTitle" value="${entryTitle1}" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress}" />
+			<var name="userLoginFullName" value="${userName}" />
+		</execute>
+
+		<execute macro="SOUserBar#addSOSite">
+			<var name="siteDescription" value="${siteDescription2}" />
+			<var name="siteName" value="${siteName2}" />
+			<var name="siteType" value="${siteType}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="siteName" value="${siteName2}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#addPG">
+			<var name="entryContent" value="${entryContent2}" />
+			<var name="entryTitle" value="${entryTitle2}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute function="AssertTextNotPresent" value1="${entryTitle2}" />
+		<execute function="AssertTextNotPresent" value1="${entryContent2}" />
+
+		<execute macro="SOBlogs#viewBlogsEntryRecentBlogs">
+			<var name="entryContent" value="${entryContent1}" />
+			<var name="entryTitle" value="${entryTitle1}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="siteName" value="${siteName2}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute function="AssertTextNotPresent" value1="${entryTitle1}" />
+		<execute function="AssertTextNotPresent" value1="${entryContent1}" />
+
+		<execute macro="SOBlogs#viewBlogsEntryRecentBlogs">
+			<var name="entryAuthorFirstName" value="${userFirstName}" />
+			<var name="entryAuthorLastName" value="${userLastName}" />
+			<var name="entryAuthorMiddleName" value="${userMiddleName}" />
+			<var name="entryContent" value="${entryContent2}" />
+			<var name="entryTitle" value="${entryTitle2}" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${adminEmailAddress}" />
+			<var name="userLoginFullName" value="${adminName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute function="AssertTextNotPresent" value1="${entryTitle2}" />
+		<execute function="AssertTextNotPresent" value1="${entryContent2}" />
+
+		<execute macro="SOBlogs#viewBlogsEntryRecentBlogs">
+			<var name="entryContent" value="${entryContent1}" />
+			<var name="entryTitle" value="${entryTitle1}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOBlogs#configureRecentBlogsPortletSelectionMethod">
+			<var name="selectionMethod" value="Users" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOBlogs#viewBlogsEntryRecentBlogs">
+			<var name="entryContent" value="${entryContent1}" />
+			<var name="entryTitle" value="${entryTitle1}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOBlogs#viewBlogsEntryRecentBlogs">
+			<var name="entryAuthorFirstName" value="${userFirstName}" />
+			<var name="entryAuthorLastName" value="${userLastName}" />
+			<var name="entryAuthorMiddleName" value="${userMiddleName}" />
+			<var name="entryContent" value="${entryContent2}" />
+			<var name="entryTitle" value="${entryTitle2}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="siteName" value="${siteName2}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute function="AssertTextNotPresent" value1="${entryTitle1}" />
+		<execute function="AssertTextNotPresent" value1="${entryContent1}" />
+
+		<execute macro="SOBlogs#viewBlogsEntryRecentBlogs">
+			<var name="entryAuthorFirstName" value="${userFirstName}" />
+			<var name="entryAuthorLastName" value="${userLastName}" />
+			<var name="entryAuthorMiddleName" value="${userMiddleName}" />
+			<var name="entryContent" value="${entryContent2}" />
+			<var name="entryTitle" value="${entryTitle2}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="siteName" value="${siteName2}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOBlogs#configureRecentBlogsPortletSelectionMethod">
+			<var name="selectionMethod" value="Users" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="siteName" value="${siteName2}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOBlogs#viewBlogsEntryRecentBlogs">
+			<var name="entryContent" value="${entryContent1}" />
+			<var name="entryTitle" value="${entryTitle1}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="siteName" value="${siteName2}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOBlogs#viewBlogsEntryRecentBlogs">
+			<var name="entryAuthorFirstName" value="${userFirstName}" />
+			<var name="entryAuthorLastName" value="${userLastName}" />
+			<var name="entryAuthorMiddleName" value="${userMiddleName}" />
+			<var name="entryContent" value="${entryContent2}" />
+			<var name="entryTitle" value="${entryTitle2}" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress}" />
+			<var name="userLoginFullName" value="${userName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOBlogs#viewBlogsEntryRecentBlogs">
+			<var name="entryContent" value="${entryContent1}" />
+			<var name="entryTitle" value="${entryTitle1}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOBlogs#viewBlogsEntryRecentBlogs">
+			<var name="entryAuthorFirstName" value="${userFirstName}" />
+			<var name="entryAuthorLastName" value="${userLastName}" />
+			<var name="entryAuthorMiddleName" value="${userMiddleName}" />
+			<var name="entryContent" value="${entryContent2}" />
+			<var name="entryTitle" value="${entryTitle2}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="siteName" value="${siteName2}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOBlogs#viewBlogsEntryRecentBlogs">
+			<var name="entryContent" value="${entryContent1}" />
+			<var name="entryTitle" value="${entryTitle1}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="siteName" value="${siteName2}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOBlogs#viewBlogsEntryRecentBlogs">
+			<var name="entryAuthorFirstName" value="${userFirstName}" />
+			<var name="entryAuthorLastName" value="${userLastName}" />
+			<var name="entryAuthorMiddleName" value="${userMiddleName}" />
+			<var name="entryContent" value="${entryContent2}" />
+			<var name="entryTitle" value="${entryTitle2}" />
+		</execute>
+	</command>
+
+	<command name="ViewSOBlogsEntryAsGuest" priority="4">
+		<var name="entryContent1" value="Blogs Entry1 Content" />
+		<var name="entryContent2" value="Blogs Entry2 Content" />
+		<var name="entryTitle1" value="Blogs Entry1 Title" />
+		<var name="entryTitle2" value="Blogs Entry2 Title" />
+		<var name="permissionDefinitionKey1" value="SITE_ADMIN_CONTENT_BLOGS_BLOGS_ENTRIES_ALL_CHECKBOX" />
+		<var name="permissionDefinitionKey2" value="SITE_ADMIN_CONTENT_BLOGS_BLOGS_ENTRY_ALL_CHECKBOX" />
+		<var name="permissionNavigationKey" value="SITE_ADMIN_CONTENT_BLOGS" />
+		<var name="permissionNavigationValue" value="Blogs" />
+		<var name="userEmailAddress" value="socialoffice01@liferay.com" />
+		<var name="userFirstName" value="Social01" />
+		<var name="userLastName" value="User01" />
+		<var name="userMiddleName" value="Office01" />
+		<var name="userScreenName" value="socialoffice01" />
+
+		<execute macro="SOUser#addUserWithSORole">
+			<var name="adminEmailAddress" value="${adminEmailAddress}" />
+			<var name="password" value="${password}" />
+			<var name="userEmailAddress" value="${userEmailAddress}" />
+			<var name="userFirstName" value="${userFirstName}" />
+			<var name="userLastName" value="${userLastName}" />
+			<var name="userMiddleName" value="${userMiddleName}" />
+			<var name="userScreenName" value="${userScreenName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#addPG">
+			<var name="entryContent" value="${entryContent1}" />
+			<var name="entryTitle" value="${entryTitle1}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#addPG">
+			<var name="entryContent" value="${entryContent2}" />
+			<var name="entryTitle" value="${entryTitle2}" />
+		</execute>
+
+		<execute macro="BlogsEntry#removeViewPermissionsPG">
+			<var name="entryTitle" value="${entryTitle2}" />
+			<var name="roleName" value="Guest" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress}" />
+			<var name="userLoginFullName" value="${userName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#viewPG">
+			<var name="entryContent" value="${entryContent1}" />
+			<var name="entryTitle" value="${entryTitle1}" />
+		</execute>
+
+		<execute macro="SOBlogs#viewBlogsEntryRecentBlogs">
+			<var name="entryContent" value="${entryContent1}" />
+			<var name="entryTitle" value="${entryTitle1}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="Blogs" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#viewNoPG">
+			<var name="entryTitle" value="${entryTitle2}" />
+		</execute>
+	</command>
+
+	<command name="ViewSOBlogsEntryRecentBlogs" priority="5">
+		<var name="entryContent" value="Blogs Entry Content" />
+		<var name="entryTitle" value="Blogs Entry Title" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#addPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOBlogs#viewBlogsEntryRecentBlogs">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+	</command>
+
+	<command name="ViewSOBlogsEntryWithAbstractDisplayTemplate" priority="4">
+		<var name="displaySelection" value="Abstract" />
+		<var name="entryAbstractDescription" value="Blogs Entry Abstract Description" />
+		<var name="entryContent" value="Blogs Entry Content" />
+		<var name="entryTitle" value="Blogs Entry Title" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#addPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#gotoEditPG">
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+
+		<execute macro="BlogsEntry#addAbstractDescriptionPG">
+			<var name="entryAbstractDescription" value="${entryAbstractDescription}" />
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsPortlet#configureDisplayTemplatePG">
+			<var name="displaySelection" value="${displaySelection}" />
+			<var name="soPage" value="${soPage}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#viewWithAbstractDisplayTemplatePG">
+			<var name="entryAbstractDescription" value="${entryAbstractDescription}" />
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+	</command>
+
+	<command name="ViewSOBlogsEntryWithFullContentDisplayTemplate" priority="4">
+		<var name="displaySelection" value="Full Content" />
+		<var name="entryContent" value="Blogs Entry Content" />
+		<var name="entryTitle" value="Blogs Entry Title" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#addPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+
+		<execute macro="BlogsPortlet#configureDisplayTemplatePG">
+			<var name="displaySelection" value="${displaySelection}" />
+			<var name="soPage" value="${soPage}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#viewPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+	</command>
+
+	<command name="ViewSOBlogsEntryWithTitleDisplayTemplate" priority="4">
+		<var name="displaySelection" value="Title" />
+		<var name="entryContent" value="Blogs Entry Content" />
+		<var name="entryTitle" value="Blogs Entry Title" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#addPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+
+		<execute macro="BlogsPortlet#configureDisplayTemplatePG">
+			<var name="displaySelection" value="${displaySelection}" />
+			<var name="soPage" value="${soPage}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntry#viewWithTitleDisplayTemplatePG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+	</command>
+</definition>

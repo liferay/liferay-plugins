@@ -1,0 +1,957 @@
+<definition component-name="social-office-calendar">
+	<property name="hook.plugins.includes" value="deploy-listener-hook,portal-compat-hook,so-activities-hook,so-hook" />
+	<property name="portlet.plugins.includes" value="calendar-portlet,chat-portlet,contacts-portlet,events-display-portlet,marketplace-portlet,microblogs-portlet,notifications-portlet,private-messaging-portlet,so-announcements-portlet,so-configurations-portlet,so-portlet,tasks-portlet,wysiwyg-portlet" />
+	<property name="testray.main.component.name" value="Social Office EE" />
+	<property name="theme.plugins.includes" value="so-theme" />
+	<property name="web.plugins.includes" value="resources-importer-web" />
+
+	<var name="adminEmailAddress" value="test@liferay.com" />
+	<var name="adminFirstName" value="Test" />
+	<var name="adminListName" value="Test, Test" />
+	<var name="adminName" value="Test Test" />
+
+	<set-up>
+		<execute macro="SOUser#firstLoginPG" />
+	</set-up>
+
+	<tear-down>
+		<execute macro="SOUser#tearDownCP" />
+
+		<execute macro="SOSite#tearDownCP" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="Calendar Test Page" />
+		</execute>
+
+		<execute macro="CalendarEvent#tearDown" />
+
+		<execute macro="Page#tearDownPG" />
+	</tear-down>
+
+	<command name="DashboardEventsDemo" priority="5">
+		<var name="eventType" value="Regular" />
+		<var name="siteDescription1" value="Open Site1 Description" />
+		<var name="siteDescription2" value="Public Restricted Site2 Description" />
+		<var name="siteDescription3" value="Private Site3 Description" />
+		<var name="siteDescription4" value="Private Restricted Site4 Description" />
+		<var name="siteEventTitle1" value="Site Calendar Event1 Title" />
+		<var name="siteEventTitle2" value="Site Calendar Event2 Title" />
+		<var name="siteEventTitle3" value="Site Calendar Event3 Title" />
+		<var name="siteEventTitle4" value="Site Calendar Event4 Title" />
+		<var name="siteName1" value="Open Site1 Name" />
+		<var name="siteName2" value="Public Restricted Site2 Name" />
+		<var name="siteName3" value="Private Site3 Name" />
+		<var name="siteName4" value="Private Restricted Site4 Name" />
+		<var name="siteType1" value="Open" />
+		<var name="siteType2" value="Public Restricted" />
+		<var name="siteType3" value="Private" />
+		<var name="siteType4" value="Private Restricted" />
+		<var name="soPage" value="true" />
+		<var name="userEmailAddress1" value="socialoffice01@liferay.com" />
+		<var name="userEmailAddress2" value="socialoffice02@liferay.com" />
+		<var name="userEmailAddress3" value="socialoffice03@liferay.com" />
+		<var name="userEmailAddress4" value="socialoffice04@liferay.com" />
+		<var name="userEventTitle1" value="User Calendar Event1 Title" />
+		<var name="userEventTitle2" value="User Calendar Event2 Title" />
+		<var name="userEventTitle3" value="User Calendar Event3 Title" />
+		<var name="userEventTitle4" value="User Calendar Event4 Title" />
+		<var name="userFirstName1" value="Social01" />
+		<var name="userFirstName2" value="Social02" />
+		<var name="userFirstName3" value="Social03" />
+		<var name="userFirstName4" value="Social04" />
+		<var name="userLastName1" value="User01" />
+		<var name="userLastName2" value="User02" />
+		<var name="userLastName3" value="User03" />
+		<var name="userLastName4" value="User04" />
+		<var name="userListName1" value="User01, Social01" />
+		<var name="userListName2" value="User02, Social02" />
+		<var name="userListName3" value="User03, Social03" />
+		<var name="userListName4" value="User04, Social04" />
+		<var name="userMiddleName1" value="Office01" />
+		<var name="userMiddleName2" value="Office02" />
+		<var name="userMiddleName3" value="Office03" />
+		<var name="userMiddleName4" value="Office04" />
+		<var name="userName1" value="Social01 Office01 User01" />
+		<var name="userName2" value="Social02 Office02 User02" />
+		<var name="userName3" value="Social03 Office03 User03" />
+		<var name="userName4" value="Social04 Office04 User04" />
+		<var name="userScreenName1" value="socialoffice01" />
+		<var name="userScreenName2" value="socialoffice02" />
+		<var name="userScreenName3" value="socialoffice03" />
+		<var name="userScreenName4" value="socialoffice04" />
+
+		<execute macro="SOUser#addUserWithSORole">
+			<var name="userEmailAddress" value="${userEmailAddress1}" />
+			<var name="userFirstName" value="${userFirstName1}" />
+			<var name="userLastName" value="${userLastName1}" />
+			<var name="userMiddleName" value="${userMiddleName1}" />
+			<var name="userScreenName" value="${userScreenName1}" />
+		</execute>
+
+		<execute macro="SOUser#addUserWithSORole">
+			<var name="userEmailAddress" value="${userEmailAddress2}" />
+			<var name="userFirstName" value="${userFirstName2}" />
+			<var name="userLastName" value="${userLastName2}" />
+			<var name="userMiddleName" value="${userMiddleName2}" />
+			<var name="userScreenName" value="${userScreenName2}" />
+		</execute>
+
+		<execute macro="SOUser#addUserWithSORole">
+			<var name="userEmailAddress" value="${userEmailAddress3}" />
+			<var name="userFirstName" value="${userFirstName3}" />
+			<var name="userLastName" value="${userLastName3}" />
+			<var name="userMiddleName" value="${userMiddleName3}" />
+			<var name="userScreenName" value="${userScreenName3}" />
+		</execute>
+
+		<execute macro="SOUser#addUserWithSORole">
+			<var name="userEmailAddress" value="${userEmailAddress4}" />
+			<var name="userFirstName" value="${userFirstName4}" />
+			<var name="userLastName" value="${userLastName4}" />
+			<var name="userMiddleName" value="${userMiddleName4}" />
+			<var name="userScreenName" value="${userScreenName4}" />
+		</execute>
+
+		<execute macro="SOUserBar#addSOSite">
+			<var name="siteDescription" value="${siteDescription1}" />
+			<var name="siteName" value="${siteName1}" />
+			<var name="siteType" value="${siteType1}" />
+		</execute>
+
+		<execute macro="SOUserBar#addSOSite">
+			<var name="siteDescription" value="${siteDescription2}" />
+			<var name="siteName" value="${siteName2}" />
+			<var name="siteType" value="${siteType2}" />
+		</execute>
+
+		<execute macro="SOUserBar#addSOSite">
+			<var name="siteDescription" value="${siteDescription3}" />
+			<var name="siteName" value="${siteName3}" />
+			<var name="siteType" value="${siteType3}" />
+		</execute>
+
+		<execute macro="SOUserBar#addSOSite">
+			<var name="siteDescription" value="${siteDescription4}" />
+			<var name="siteName" value="${siteName4}" />
+			<var name="siteType" value="${siteType4}" />
+		</execute>
+
+		<execute macro="Page#gotoUsersCP">
+			<var name="portletName" value="Site Memberships" />
+			<var name="siteScopeName" value="${siteName1}" />
+		</execute>
+
+		<execute macro="Site#addMemberCP">
+			<var name="siteName" value="${siteName1}" />
+			<var name="siteScopeName" value="${siteName1}" />
+			<var name="userFirstName" value="${userFirstName1}" />
+			<var name="userLastName" value="${userLastName1}" />
+			<var name="userMiddleName" value="${userMiddleName1}" />
+			<var name="userScreenName" value="${userScreenName1}" />
+		</execute>
+
+		<execute macro="Page#gotoUsersCP">
+			<var name="portletName" value="Site Memberships" />
+			<var name="siteScopeName" value="${siteName2}" />
+		</execute>
+
+		<execute macro="Site#addMemberCP">
+			<var name="siteName" value="${siteName2}" />
+			<var name="siteScopeName" value="${siteName2}" />
+			<var name="userFirstName" value="${userFirstName2}" />
+			<var name="userLastName" value="${userLastName2}" />
+			<var name="userMiddleName" value="${userMiddleName2}" />
+			<var name="userScreenName" value="${userScreenName2}" />
+		</execute>
+
+		<execute macro="Page#gotoUsersCP">
+			<var name="portletName" value="Site Memberships" />
+			<var name="siteScopeName" value="${siteName3}" />
+		</execute>
+
+		<execute macro="Site#addMemberCP">
+			<var name="siteName" value="${siteName3}" />
+			<var name="siteScopeName" value="${siteName3}" />
+			<var name="userFirstName" value="${userFirstName3}" />
+			<var name="userLastName" value="${userLastName3}" />
+			<var name="userMiddleName" value="${userMiddleName3}" />
+			<var name="userScreenName" value="${userScreenName3}" />
+		</execute>
+
+		<execute macro="Page#gotoUsersCP">
+			<var name="portletName" value="Site Memberships" />
+			<var name="siteScopeName" value="${siteName4}" />
+		</execute>
+
+		<execute macro="Site#addMemberCP">
+			<var name="siteName" value="${siteName4}" />
+			<var name="siteScopeName" value="${siteName4}" />
+			<var name="userFirstName" value="${userFirstName4}" />
+			<var name="userLastName" value="${userLastName4}" />
+			<var name="userMiddleName" value="${userMiddleName4}" />
+			<var name="userScreenName" value="${userScreenName4}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="Calendar" />
+			<var name="siteName" value="${siteName1}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="Calendar#enableViewEventDetailsPermissions">
+			<var name="calendarName" value="${siteName1}" />
+			<var name="calendarType" value="Current Site Calendars" />
+			<var name="roleName" value="Site Member" />
+			<var name="site" value="${siteName1}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="Calendar" />
+			<var name="siteName" value="${siteName2}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="Calendar#enableViewEventDetailsPermissions">
+			<var name="calendarName" value="${siteName2}" />
+			<var name="calendarType" value="Current Site Calendars" />
+			<var name="roleName" value="Site Member" />
+			<var name="site" value="${siteName2}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageAccess" value="Private" />
+			<var name="pageName" value="Calendar" />
+			<var name="siteName" value="${siteName3}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="Calendar#enableViewEventDetailsPermissions">
+			<var name="calendarName" value="${siteName3}" />
+			<var name="calendarType" value="Current Site Calendars" />
+			<var name="roleName" value="Site Member" />
+			<var name="site" value="${siteName3}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageAccess" value="Private" />
+			<var name="pageName" value="Calendar" />
+			<var name="siteName" value="${siteName4}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="Calendar#enableViewEventDetailsPermissions">
+			<var name="calendarName" value="${siteName4}" />
+			<var name="calendarType" value="Current Site Calendars" />
+			<var name="roleName" value="Site Member" />
+			<var name="site" value="${siteName4}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="Calendar" />
+			<var name="siteName" value="${siteName1}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="CalendarNavigator#gotoAddEvent" />
+
+		<execute macro="CalendarEvent#add">
+			<var name="eventTitle" value="${siteEventTitle1}" />
+			<var name="eventType" value="${eventType}" />
+			<var name="pageName" value="Calendar" />
+			<var name="siteName" value="${siteName1}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="Calendar" />
+			<var name="siteName" value="${siteName2}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="CalendarNavigator#gotoAddEvent" />
+
+		<execute macro="CalendarEvent#add">
+			<var name="eventTitle" value="${siteEventTitle2}" />
+			<var name="eventType" value="${eventType}" />
+			<var name="pageName" value="Calendar" />
+			<var name="siteName" value="${siteName2}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageAccess" value="Private" />
+			<var name="pageName" value="Calendar" />
+			<var name="siteName" value="${siteName3}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="CalendarNavigator#gotoAddEvent" />
+
+		<execute macro="CalendarEvent#add">
+			<var name="eventTitle" value="${siteEventTitle3}" />
+			<var name="eventType" value="${eventType}" />
+			<var name="pageAccess" value="Private" />
+			<var name="pageName" value="Calendar" />
+			<var name="siteName" value="${siteName3}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageAccess" value="Private" />
+			<var name="pageName" value="Calendar" />
+			<var name="siteName" value="${siteName4}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="CalendarNavigator#gotoAddEvent" />
+
+		<execute macro="CalendarEvent#add">
+			<var name="eventTitle" value="${siteEventTitle4}" />
+			<var name="eventType" value="${eventType}" />
+			<var name="pageAccess" value="Private" />
+			<var name="pageName" value="Calendar" />
+			<var name="siteName" value="${siteName4}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress1}" />
+			<var name="userLoginFullName" value="${userName1}" />
+		</execute>
+
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute macro="SOUserBar#addPage">
+			<var name="pageName" value="Calendar Test Page" />
+		</execute>
+
+		<execute macro="SOUserBar#addPortlet">
+			<var name="pageName" value="Calendar Test Page" />
+			<var name="portletName" value="Calendar" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="Calendar Test Page" />
+			<var name="soDashboard" value="true" />
+		</execute>
+
+		<execute macro="CalendarNavigator#gotoAddEvent" />
+
+		<execute macro="CalendarEvent#add">
+			<var name="eventTitle" value="${userEventTitle1}" />
+			<var name="eventType" value="${eventType}" />
+			<var name="pageName" value="Calendar Test Page" />
+			<var name="soDashboard" value="true" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress2}" />
+			<var name="userLoginFullName" value="${userName2}" />
+		</execute>
+
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute macro="SOUserBar#addPage">
+			<var name="pageName" value="Calendar Test Page" />
+		</execute>
+
+		<execute macro="SOUserBar#addPortlet">
+			<var name="pageName" value="Calendar Test Page" />
+			<var name="portletName" value="Calendar" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="Calendar Test Page" />
+			<var name="soDashboard" value="true" />
+		</execute>
+
+		<execute macro="CalendarNavigator#gotoAddEvent" />
+
+		<execute macro="CalendarEvent#add">
+			<var name="eventTitle" value="${userEventTitle2}" />
+			<var name="eventType" value="${eventType}" />
+			<var name="pageName" value="Calendar Test Page" />
+			<var name="soDashboard" value="true" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress3}" />
+			<var name="userLoginFullName" value="${userName3}" />
+		</execute>
+
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute macro="SOUserBar#addPage">
+			<var name="pageName" value="Calendar Test Page" />
+		</execute>
+
+		<execute macro="SOUserBar#addPortlet">
+			<var name="pageName" value="Calendar Test Page" />
+			<var name="portletName" value="Calendar" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="Calendar Test Page" />
+			<var name="soDashboard" value="true" />
+		</execute>
+
+		<execute macro="CalendarNavigator#gotoAddEvent" />
+
+		<execute macro="CalendarEvent#add">
+			<var name="eventTitle" value="${userEventTitle3}" />
+			<var name="eventType" value="${eventType}" />
+			<var name="pageName" value="Calendar Test Page" />
+			<var name="soDashboard" value="true" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress4}" />
+			<var name="userLoginFullName" value="${userName4}" />
+		</execute>
+
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute macro="SOUserBar#addPage">
+			<var name="pageName" value="Calendar Test Page" />
+		</execute>
+
+		<execute macro="SOUserBar#addPortlet">
+			<var name="pageName" value="Calendar Test Page" />
+			<var name="portletName" value="Calendar" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="Calendar Test Page" />
+			<var name="soDashboard" value="true" />
+		</execute>
+
+		<execute macro="CalendarNavigator#gotoAddEvent" />
+
+		<execute macro="CalendarEvent#add">
+			<var name="eventTitle" value="${userEventTitle4}" />
+			<var name="eventType" value="${eventType}" />
+			<var name="pageName" value="Calendar Test Page" />
+			<var name="soDashboard" value="true" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress1}" />
+			<var name="userLoginFullName" value="${userName1}" />
+		</execute>
+
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute macro="SOEvents#viewTodaysEventSiteEvent">
+			<var name="eventTitle" value="${siteEventTitle1}" />
+		</execute>
+
+		<execute macro="SOEvents#viewTodaysEventDashboardEvent">
+			<var name="eventTitle" value="${userEventTitle1}" />
+			<var name="schedulerEventDialogBox" value="true" />
+			<var name="userName" value="${userName1}" />
+		</execute>
+
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute function="AssertTextNotPresent" value1="${siteEventTitle2}" />
+		<execute function="AssertTextNotPresent" value1="${siteEventTitle3}" />
+		<execute function="AssertTextNotPresent" value1="${siteEventTitle4}" />
+		<execute function="AssertTextNotPresent" value1="${userEventTitle2}" />
+		<execute function="AssertTextNotPresent" value1="${userEventTitle3}" />
+		<execute function="AssertTextNotPresent" value1="${userEventTitle4}" />
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress2}" />
+			<var name="userLoginFullName" value="${userName2}" />
+		</execute>
+
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute macro="SOEvents#viewTodaysEventSiteEvent">
+			<var name="eventTitle" value="${siteEventTitle2}" />
+		</execute>
+
+		<execute macro="SOEvents#viewTodaysEventDashboardEvent">
+			<var name="eventTitle" value="${userEventTitle2}" />
+			<var name="schedulerEventDialogBox" value="true" />
+			<var name="userName" value="${userName2}" />
+		</execute>
+
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute function="AssertTextNotPresent" value1="${siteEventTitle1}" />
+		<execute function="AssertTextNotPresent" value1="${siteEventTitle3}" />
+		<execute function="AssertTextNotPresent" value1="${siteEventTitle4}" />
+		<execute function="AssertTextNotPresent" value1="${userEventTitle1}" />
+		<execute function="AssertTextNotPresent" value1="${userEventTitle3}" />
+		<execute function="AssertTextNotPresent" value1="${userEventTitle4}" />
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress3}" />
+			<var name="userLoginFullName" value="${userName3}" />
+		</execute>
+
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute macro="SOEvents#viewTodaysEventSiteEvent">
+			<var name="eventTitle" value="${siteEventTitle3}" />
+		</execute>
+
+		<execute macro="SOEvents#viewTodaysEventDashboardEvent">
+			<var name="eventTitle" value="${userEventTitle3}" />
+			<var name="schedulerEventDialogBox" value="true" />
+			<var name="userName" value="${userName3}" />
+		</execute>
+
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute function="AssertTextNotPresent" value1="${siteEventTitle1}" />
+		<execute function="AssertTextNotPresent" value1="${siteEventTitle2}" />
+		<execute function="AssertTextNotPresent" value1="${siteEventTitle4}" />
+		<execute function="AssertTextNotPresent" value1="${userEventTitle1}" />
+		<execute function="AssertTextNotPresent" value1="${userEventTitle2}" />
+		<execute function="AssertTextNotPresent" value1="${userEventTitle4}" />
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress4}" />
+			<var name="userLoginFullName" value="${userName4}" />
+		</execute>
+
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute macro="SOEvents#viewTodaysEventSiteEvent">
+			<var name="eventTitle" value="${siteEventTitle4}" />
+		</execute>
+
+		<execute macro="SOEvents#viewTodaysEventDashboardEvent">
+			<var name="eventTitle" value="${userEventTitle4}" />
+			<var name="schedulerEventDialogBox" value="true" />
+			<var name="userName" value="${userName4}" />
+		</execute>
+
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute function="AssertTextNotPresent" value1="${siteEventTitle1}" />
+		<execute function="AssertTextNotPresent" value1="${siteEventTitle2}" />
+		<execute function="AssertTextNotPresent" value1="${siteEventTitle3}" />
+		<execute function="AssertTextNotPresent" value1="${userEventTitle1}" />
+		<execute function="AssertTextNotPresent" value1="${userEventTitle2}" />
+		<execute function="AssertTextNotPresent" value1="${userEventTitle3}" />
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${adminEmailAddress}" />
+			<var name="userLoginFullName" value="${adminName}" />
+		</execute>
+
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute macro="SOEvents#viewTodaysEventSiteEvent">
+			<var name="eventTitle" value="${siteEventTitle1}" />
+			<var name="schedulerEventDialogBox" value="true" />
+		</execute>
+
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute macro="SOEvents#viewTodaysEventSiteEvent">
+			<var name="eventTitle" value="${siteEventTitle2}" />
+			<var name="schedulerEventDialogBox" value="true" />
+		</execute>
+
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute macro="SOEvents#viewTodaysEventSiteEvent">
+			<var name="eventTitle" value="${siteEventTitle3}" />
+			<var name="schedulerEventDialogBox" value="true" />
+		</execute>
+
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute macro="SOEvents#viewTodaysEventSiteEvent">
+			<var name="eventTitle" value="${siteEventTitle4}" />
+			<var name="schedulerEventDialogBox" value="true" />
+		</execute>
+	</command>
+
+	<command name="SiteEventsDemo" priority="5">
+		<var name="eventType" value="Regular" />
+		<var name="siteDescription1" value="Open Site1 Description" />
+		<var name="siteDescription2" value="Public Restricted Site2 Description" />
+		<var name="siteDescription3" value="Private Site3 Description" />
+		<var name="siteDescription4" value="Private Restricted Site4 Description" />
+		<var name="siteEventTitle1" value="Site Calendar Event1 Title" />
+		<var name="siteEventTitle2" value="Site Calendar Event2 Title" />
+		<var name="siteEventTitle3" value="Site Calendar Event3 Title" />
+		<var name="siteEventTitle4" value="Site Calendar Event4 Title" />
+		<var name="siteName1" value="Open Site1 Name" />
+		<var name="siteName2" value="Public Restricted Site2 Name" />
+		<var name="siteName3" value="Private Site3 Name" />
+		<var name="siteName4" value="Private Restricted Site4 Name" />
+		<var name="siteType1" value="Open" />
+		<var name="siteType2" value="Public Restricted" />
+		<var name="siteType3" value="Private" />
+		<var name="siteType4" value="Private Restricted" />
+		<var name="soPage" value="true" />
+		<var name="userEmailAddress1" value="socialoffice01@liferay.com" />
+		<var name="userEmailAddress2" value="socialoffice02@liferay.com" />
+		<var name="userEmailAddress3" value="socialoffice03@liferay.com" />
+		<var name="userEmailAddress4" value="socialoffice04@liferay.com" />
+		<var name="userEventTitle1" value="User Calendar Event1 Title" />
+		<var name="userEventTitle2" value="User Calendar Event2 Title" />
+		<var name="userEventTitle3" value="User Calendar Event3 Title" />
+		<var name="userEventTitle4" value="User Calendar Event4 Title" />
+		<var name="userFirstName1" value="Social01" />
+		<var name="userFirstName2" value="Social02" />
+		<var name="userFirstName3" value="Social03" />
+		<var name="userFirstName4" value="Social04" />
+		<var name="userLastName1" value="User01" />
+		<var name="userLastName2" value="User02" />
+		<var name="userLastName3" value="User03" />
+		<var name="userLastName4" value="User04" />
+		<var name="userListName1" value="User01, Social01" />
+		<var name="userListName2" value="User02, Social02" />
+		<var name="userListName3" value="User03, Social03" />
+		<var name="userListName4" value="User04, Social04" />
+		<var name="userMiddleName1" value="Office01" />
+		<var name="userMiddleName2" value="Office02" />
+		<var name="userMiddleName3" value="Office03" />
+		<var name="userMiddleName4" value="Office04" />
+		<var name="userName1" value="Social01 Office01 User01" />
+		<var name="userName2" value="Social02 Office02 User02" />
+		<var name="userName3" value="Social03 Office03 User03" />
+		<var name="userName4" value="Social04 Office04 User04" />
+		<var name="userScreenName1" value="socialoffice01" />
+		<var name="userScreenName2" value="socialoffice02" />
+		<var name="userScreenName3" value="socialoffice03" />
+		<var name="userScreenName4" value="socialoffice04" />
+
+		<execute macro="SOUser#addUserWithSORole">
+			<var name="userEmailAddress" value="${userEmailAddress1}" />
+			<var name="userFirstName" value="${userFirstName1}" />
+			<var name="userLastName" value="${userLastName1}" />
+			<var name="userMiddleName" value="${userMiddleName1}" />
+			<var name="userScreenName" value="${userScreenName1}" />
+		</execute>
+
+		<execute macro="SOUser#addUserWithSORole">
+			<var name="userEmailAddress" value="${userEmailAddress2}" />
+			<var name="userFirstName" value="${userFirstName2}" />
+			<var name="userLastName" value="${userLastName2}" />
+			<var name="userMiddleName" value="${userMiddleName2}" />
+			<var name="userScreenName" value="${userScreenName2}" />
+		</execute>
+
+		<execute macro="SOUser#addUserWithSORole">
+			<var name="userEmailAddress" value="${userEmailAddress3}" />
+			<var name="userFirstName" value="${userFirstName3}" />
+			<var name="userLastName" value="${userLastName3}" />
+			<var name="userMiddleName" value="${userMiddleName3}" />
+			<var name="userScreenName" value="${userScreenName3}" />
+		</execute>
+
+		<execute macro="SOUser#addUserWithSORole">
+			<var name="userEmailAddress" value="${userEmailAddress4}" />
+			<var name="userFirstName" value="${userFirstName4}" />
+			<var name="userLastName" value="${userLastName4}" />
+			<var name="userMiddleName" value="${userMiddleName4}" />
+			<var name="userScreenName" value="${userScreenName4}" />
+		</execute>
+
+		<execute macro="SOUserBar#addSOSite">
+			<var name="siteDescription" value="${siteDescription1}" />
+			<var name="siteName" value="${siteName1}" />
+			<var name="siteType" value="${siteType1}" />
+		</execute>
+
+		<execute macro="SOUserBar#addSOSite">
+			<var name="siteDescription" value="${siteDescription2}" />
+			<var name="siteName" value="${siteName2}" />
+			<var name="siteType" value="${siteType2}" />
+		</execute>
+
+		<execute macro="SOUserBar#addSOSite">
+			<var name="siteDescription" value="${siteDescription3}" />
+			<var name="siteName" value="${siteName3}" />
+			<var name="siteType" value="${siteType3}" />
+		</execute>
+
+		<execute macro="SOUserBar#addSOSite">
+			<var name="siteDescription" value="${siteDescription4}" />
+			<var name="siteName" value="${siteName4}" />
+			<var name="siteType" value="${siteType4}" />
+		</execute>
+
+		<execute macro="Page#gotoUsersCP">
+			<var name="portletName" value="Site Memberships" />
+			<var name="siteScopeName" value="${siteName1}" />
+		</execute>
+
+		<execute macro="Site#addMemberCP">
+			<var name="siteName" value="${siteName1}" />
+			<var name="siteScopeName" value="${siteName1}" />
+			<var name="userFirstName" value="${userFirstName1}" />
+			<var name="userLastName" value="${userLastName1}" />
+			<var name="userMiddleName" value="${userMiddleName1}" />
+			<var name="userScreenName" value="${userScreenName1}" />
+		</execute>
+
+		<execute macro="Page#gotoUsersCP">
+			<var name="portletName" value="Site Memberships" />
+			<var name="siteScopeName" value="${siteName2}" />
+		</execute>
+
+		<execute macro="Site#addMemberCP">
+			<var name="siteName" value="${siteName2}" />
+			<var name="siteScopeName" value="${siteName2}" />
+			<var name="userFirstName" value="${userFirstName2}" />
+			<var name="userLastName" value="${userLastName2}" />
+			<var name="userMiddleName" value="${userMiddleName2}" />
+			<var name="userScreenName" value="${userScreenName2}" />
+		</execute>
+
+		<execute macro="Page#gotoUsersCP">
+			<var name="portletName" value="Site Memberships" />
+			<var name="siteScopeName" value="${siteName3}" />
+		</execute>
+
+		<execute macro="Site#addMemberCP">
+			<var name="siteName" value="${siteName3}" />
+			<var name="siteScopeName" value="${siteName3}" />
+			<var name="userFirstName" value="${userFirstName3}" />
+			<var name="userLastName" value="${userLastName3}" />
+			<var name="userMiddleName" value="${userMiddleName3}" />
+			<var name="userScreenName" value="${userScreenName3}" />
+		</execute>
+
+		<execute macro="Page#gotoUsersCP">
+			<var name="portletName" value="Site Memberships" />
+			<var name="siteScopeName" value="${siteName4}" />
+		</execute>
+
+		<execute macro="Site#addMemberCP">
+			<var name="siteName" value="${siteName4}" />
+			<var name="siteScopeName" value="${siteName4}" />
+			<var name="userFirstName" value="${userFirstName4}" />
+			<var name="userLastName" value="${userLastName4}" />
+			<var name="userMiddleName" value="${userMiddleName4}" />
+			<var name="userScreenName" value="${userScreenName4}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="Calendar" />
+			<var name="siteName" value="${siteName1}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="Calendar#enableViewEventDetailsPermissions">
+			<var name="calendarName" value="${siteName1}" />
+			<var name="calendarType" value="Current Site Calendars" />
+			<var name="roleName" value="Site Member" />
+			<var name="site" value="${siteName1}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="Calendar" />
+			<var name="siteName" value="${siteName2}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="Calendar#enableViewEventDetailsPermissions">
+			<var name="calendarName" value="${siteName2}" />
+			<var name="calendarType" value="Current Site Calendars" />
+			<var name="roleName" value="Site Member" />
+			<var name="site" value="${siteName2}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageAccess" value="Private" />
+			<var name="pageName" value="Calendar" />
+			<var name="siteName" value="${siteName3}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="Calendar#enableViewEventDetailsPermissions">
+			<var name="calendarName" value="${siteName3}" />
+			<var name="calendarType" value="Current Site Calendars" />
+			<var name="roleName" value="Site Member" />
+			<var name="site" value="${siteName3}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageAccess" value="Private" />
+			<var name="pageName" value="Calendar" />
+			<var name="siteName" value="${siteName4}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="Calendar#enableViewEventDetailsPermissions">
+			<var name="calendarName" value="${siteName4}" />
+			<var name="calendarType" value="Current Site Calendars" />
+			<var name="roleName" value="Site Member" />
+			<var name="site" value="${siteName4}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="Calendar" />
+			<var name="siteName" value="${siteName1}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="CalendarNavigator#gotoAddEvent" />
+
+		<execute macro="CalendarEvent#add">
+			<var name="eventTitle" value="${siteEventTitle1}" />
+			<var name="eventType" value="${eventType}" />
+			<var name="pageName" value="Calendar" />
+			<var name="siteName" value="${siteName1}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="Calendar" />
+			<var name="siteName" value="${siteName2}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="CalendarNavigator#gotoAddEvent" />
+
+		<execute macro="CalendarEvent#add">
+			<var name="eventTitle" value="${siteEventTitle2}" />
+			<var name="eventType" value="${eventType}" />
+			<var name="pageName" value="Calendar" />
+			<var name="siteName" value="${siteName2}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageAccess" value="Private" />
+			<var name="pageName" value="Calendar" />
+			<var name="siteName" value="${siteName3}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="CalendarNavigator#gotoAddEvent" />
+
+		<execute macro="CalendarEvent#add">
+			<var name="eventTitle" value="${siteEventTitle3}" />
+			<var name="eventType" value="${eventType}" />
+			<var name="pageAccess" value="Private" />
+			<var name="pageName" value="Calendar" />
+			<var name="siteName" value="${siteName3}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageAccess" value="Private" />
+			<var name="pageName" value="Calendar" />
+			<var name="siteName" value="${siteName4}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="CalendarNavigator#gotoAddEvent" />
+
+		<execute macro="CalendarEvent#add">
+			<var name="eventTitle" value="${siteEventTitle4}" />
+			<var name="eventType" value="${eventType}" />
+			<var name="pageAccess" value="Private" />
+			<var name="pageName" value="Calendar" />
+			<var name="siteName" value="${siteName4}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress1}" />
+			<var name="userLoginFullName" value="${userName1}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName1}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOEvents#viewTodaysEventSiteEvent">
+			<var name="eventTitle" value="${siteEventTitle1}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName1}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute function="AssertTextNotPresent" value1="${siteEventTitle2}" />
+		<execute function="AssertTextNotPresent" value1="${siteEventTitle3}" />
+		<execute function="AssertTextNotPresent" value1="${siteEventTitle4}" />
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress2}" />
+			<var name="userLoginFullName" value="${userName2}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName2}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOEvents#viewTodaysEventSiteEvent">
+			<var name="eventTitle" value="${siteEventTitle2}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName2}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute function="AssertTextNotPresent" value1="${siteEventTitle1}" />
+		<execute function="AssertTextNotPresent" value1="${siteEventTitle3}" />
+		<execute function="AssertTextNotPresent" value1="${siteEventTitle4}" />
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress3}" />
+			<var name="userLoginFullName" value="${userName3}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="pageAccess" value="Private" />
+			<var name="siteName" value="${siteName3}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOEvents#viewTodaysEventSiteEvent">
+			<var name="eventTitle" value="${siteEventTitle3}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="pageAccess" value="Private" />
+			<var name="siteName" value="${siteName3}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute function="AssertTextNotPresent" value1="${siteEventTitle1}" />
+		<execute function="AssertTextNotPresent" value1="${siteEventTitle2}" />
+		<execute function="AssertTextNotPresent" value1="${siteEventTitle4}" />
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress4}" />
+			<var name="userLoginFullName" value="${userName4}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="pageAccess" value="Private" />
+			<var name="siteName" value="${siteName4}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOEvents#viewTodaysEventSiteEvent">
+			<var name="eventTitle" value="${siteEventTitle4}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="pageAccess" value="Private" />
+			<var name="siteName" value="${siteName4}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute function="AssertTextNotPresent" value1="${siteEventTitle1}" />
+		<execute function="AssertTextNotPresent" value1="${siteEventTitle2}" />
+		<execute function="AssertTextNotPresent" value1="${siteEventTitle3}" />
+	</command>
+</definition>

@@ -1,0 +1,250 @@
+<definition component-name="social-office-wcm">
+	<property name="hook.plugins.includes" value="deploy-listener-hook,portal-compat-hook,so-activities-hook,so-hook" />
+	<property name="portlet.plugins.includes" value="calendar-portlet,chat-portlet,contacts-portlet,events-display-portlet,marketplace-portlet,microblogs-portlet,notifications-portlet,private-messaging-portlet,so-announcements-portlet,so-configurations-portlet,so-portlet,tasks-portlet,wysiwyg-portlet" />
+	<property name="testray.main.component.name" value="Social Office EE" />
+	<property name="theme.plugins.includes" value="so-theme" />
+	<property name="web.plugins.includes" value="resources-importer-web" />
+
+	<var name="adminEmailAddress" value="test@liferay.com" />
+	<var name="adminFirstName" value="Test" />
+	<var name="adminLastName" value="Test" />
+	<var name="adminListName" value="Test, Test" />
+	<var name="adminName" value="Test Test" />
+	<var name="adminScreenName" value="test" />
+	<var name="soPage" value="true" />
+
+	<set-up>
+		<execute macro="SOUser#firstLoginPG" />
+	</set-up>
+
+	<tear-down>
+		<execute macro="SOUser#tearDownCP" />
+	</tear-down>
+
+	<command name="GoBackToSODashboardFromControlPanel" priority="5">
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute function="AssertClick#assertTextClickAtClickDockbar" locator1="Dockbar#ADMIN" value1="Admin" />
+		<execute function="AssertClick" locator1="Dockbar#ADMIN_CONTROL_PANEL" value1="Control Panel" />
+		<execute function="Click" locator1="//a[@title='Back']" />
+
+		<execute function="AssertTextEquals" locator1="SODashboard#NAVIGATION_DASHBOARD" value1="Dashboard" />
+		<execute function="AssertTextEquals" locator1="SODashboard#NAVIGATION_CONTACTS_CENTER" value1="Contacts Center" />
+		<execute function="AssertTextEquals" locator1="SODashboard#NAVIGATION_MICROBLOGS" value1="Microblogs" />
+		<execute function="AssertTextEquals" locator1="SODashboard#NAVIGATION_MESSAGES" value1="Messages" />
+		<execute function="AssertTextEquals" locator1="SODashboard#NAVIGATION_MY_DOCUMENTS" value1="My Documents" />
+		<execute function="AssertTextEquals" locator1="SODashboard#NAVIGATION_TASKS" value1="Tasks" />
+	</command>
+
+	<command name="ViewDashboardLocalized" priority="4">
+		<var name="userEmailAddress" value="socialoffice01@liferay.com" />
+		<var name="userFirstName" value="Social01" />
+		<var name="userLastName" value="User01" />
+		<var name="userMiddleName" value="Office01" />
+		<var name="userScreenName" value="socialoffice01" />
+
+		<execute macro="SOUser#addUserWithSORole">
+			<var name="userEmailAddress" value="${userEmailAddress}" />
+			<var name="userFirstName" value="${userFirstName}" />
+			<var name="userLastName" value="${userLastName}" />
+			<var name="userMiddleName" value="${userMiddleName}" />
+			<var name="userScreenName" value="${userScreenName}" />
+		</execute>
+
+		<execute macro="Page#gotoCP">
+			<var name="portletName" value="Users and Organizations" />
+		</execute>
+
+		<execute macro="User#editDisplaySettingsCP">
+			<var name="languageName" value="Spanish (Spain)" />
+			<var name="userScreenName" value="${userScreenName}" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress}" />
+			<var name="userLoginFullName" value="${userName}" />
+		</execute>
+
+		<execute macro="SODashboard#viewLocalizedPG">
+			<var name="activitiesPortletLocalized" value="Actividades" />
+			<var name="announcementsPortletLocalized" value="Avisos" />
+			<var name="contactsCenterPageLocalized" value="Centro de contactos" />
+			<var name="contactsCenterPortletLocalized" value="Centro de contactos" />
+			<var name="dashboardPageLocalized" value="Escritorio" />
+			<var name="documentsAndMediaPortletLocalized" value="Documentos y multimedia" />
+			<var name="eventsPortletLocalized" value="Eventos" />
+			<var name="messagesPageLocalized" value="Mensajes" />
+			<var name="microblogsPageLocalized" value="Microblogs" />
+			<var name="microblogsPortletLocalized" value="Microblogs" />
+			<var name="microblogsStatusUpdatePortletLocalized" value="Actualización del estado de microblogs" />
+			<var name="myDocumentsPageLocalized" value="Mis documentos" />
+			<var name="privateMessagingPortletLocalized" value="Mensajes privados" />
+			<var name="tasksPageLocalized" value="Tareas" />
+			<var name="tasksPortletLocalized" value="Tareas" />
+			<var name="upcomingTasksPortletLocalized" value="Próximas tareas" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${adminEmailAddress}" />
+			<var name="userLoginFullName" value="${adminName}" />
+		</execute>
+
+		<execute macro="Page#gotoCP">
+			<var name="portletName" value="Users and Organizations" />
+		</execute>
+
+		<execute macro="User#editDisplaySettingsCP">
+			<var name="languageName" value="French (France)" />
+			<var name="userScreenName" value="${userScreenName}" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress}" />
+			<var name="userLoginFullName" value="${userName}" />
+		</execute>
+
+		<execute macro="SODashboard#viewLocalizedPG">
+			<var name="activitiesPortletLocalized" value="Activités" />
+			<var name="announcementsPortletLocalized" value="Annonces" />
+			<var name="contactsCenterPageLocalized" value="Centre de Contacts" />
+			<var name="contactsCenterPortletLocalized" value="Centre de contacts" />
+			<var name="dashboardPageLocalized" value="Tableau de bord" />
+			<var name="documentsAndMediaPortletLocalized" value="Documents and Media" />
+			<var name="eventsPortletLocalized" value="Événements" />
+			<var name="messagesPageLocalized" value="Forum" />
+			<var name="microblogsPageLocalized" value="Microblogs" />
+			<var name="microblogsPortletLocalized" value="Microblogs" />
+			<var name="microblogsStatusUpdatePortletLocalized" value="Mise à jour de statut de microblogs" />
+			<var name="myDocumentsPageLocalized" value="Mes Documents" />
+			<var name="privateMessagingPortletLocalized" value="Messagerie privée" />
+			<var name="tasksPageLocalized" value="Tâches" />
+			<var name="tasksPortletLocalized" value="Tâches" />
+			<var name="upcomingTasksPortletLocalized" value="Tâches à venir" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${adminEmailAddress}" />
+			<var name="userLoginFullName" value="${adminName}" />
+		</execute>
+
+		<execute macro="Page#gotoCP">
+			<var name="portletName" value="Users and Organizations" />
+		</execute>
+
+		<execute macro="User#editDisplaySettingsCP">
+			<var name="languageName" value="German (Germany)" />
+			<var name="userScreenName" value="${userScreenName}" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress}" />
+			<var name="userLoginFullName" value="${userName}" />
+		</execute>
+
+		<execute macro="SODashboard#viewLocalizedPG">
+			<var name="activitiesPortletLocalized" value="Aktivitäten" />
+			<var name="announcementsPortletLocalized" value="Ankündigungen" />
+			<var name="contactsCenterPageLocalized" value="Kontaktverwaltung" />
+			<var name="contactsCenterPortletLocalized" value="Contacts Center" />
+			<var name="dashboardPageLocalized" value="Dashboard" />
+			<var name="documentsAndMediaPortletLocalized" value="Dokumente und Medien" />
+			<var name="eventsPortletLocalized" value="Ereignis" />
+			<var name="messagesPageLocalized" value="Nachrichten" />
+			<var name="microblogsPageLocalized" value="Microblogs" />
+			<var name="microblogsPortletLocalized" value="Microblogs" />
+			<var name="microblogsStatusUpdatePortletLocalized" value="Microblogs Status Update" />
+			<var name="myDocumentsPageLocalized" value="Meine Dokumente" />
+			<var name="privateMessagingPortletLocalized" value="Private Messaging" />
+			<var name="tasksPageLocalized" value="Aufgaben" />
+			<var name="tasksPortletLocalized" value="Tasks" />
+			<var name="upcomingTasksPortletLocalized" value="Upcoming Tasks" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${adminEmailAddress}" />
+			<var name="userLoginFullName" value="${adminName}" />
+		</execute>
+
+		<execute macro="Page#gotoCP">
+			<var name="portletName" value="Users and Organizations" />
+		</execute>
+
+		<execute macro="User#editDisplaySettingsCP">
+			<var name="languageName" value="Chinese (China)" />
+			<var name="userScreenName" value="${userScreenName}" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress}" />
+			<var name="userLoginFullName" value="${userName}" />
+		</execute>
+
+		<execute macro="SODashboard#viewLocalizedPG">
+			<var name="activitiesPortletLocalized" value="活动" />
+			<var name="announcementsPortletLocalized" value="公告" />
+			<var name="contactsCenterPageLocalized" value="通讯录" />
+			<var name="contactsCenterPortletLocalized" value="联系中心" />
+			<var name="dashboardPageLocalized" value="Dashboard" />
+			<var name="documentsAndMediaPortletLocalized" value="文档媒体库" />
+			<var name="eventsPortletLocalized" value="事件" />
+			<var name="messagesPageLocalized" value="消息" />
+			<var name="microblogsPageLocalized" value="微博" />
+			<var name="microblogsPortletLocalized" value="微博" />
+			<var name="microblogsStatusUpdatePortletLocalized" value="微博状态更新" />
+			<var name="myDocumentsPageLocalized" value="我的文档" />
+			<var name="privateMessagingPortletLocalized" value="私人消息" />
+			<var name="tasksPageLocalized" value="任务" />
+			<var name="tasksPortletLocalized" value="任务" />
+			<var name="upcomingTasksPortletLocalized" value="即将开始的任务" />
+		</execute>
+	</command>
+
+	<command name="ViewLinkContactscenter" priority="5">
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute function="Click" locator1="SODashboard#NAVIGATION_CONTACTS_CENTER" value1="Contacts Center" />
+
+		<execute macro="SODashboard#viewLinkContactscenter" />
+	</command>
+
+	<command name="ViewLinkHome" priority="5">
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute function="Click" locator1="SODashboard#NAVIGATION_CONTACTS_CENTER" value1="Contacts Center" />
+		<execute function="Click" locator1="SODashboard#NAVIGATION_DASHBOARD" value1="Dashboard" />
+
+		<execute macro="SODashboard#viewLinkHome" />
+	</command>
+
+	<command name="ViewLinkMicroblogs" priority="5">
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute function="Click" locator1="SODashboard#NAVIGATION_MICROBLOGS" value1="Microblogs" />
+
+		<execute macro="SODashboard#viewLinkMicroblogs" />
+	</command>
+
+	<command name="ViewLinkMydocuments" priority="5">
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute function="Click" locator1="SODashboard#NAVIGATION_MY_DOCUMENTS" value1="My Documents" />
+
+		<execute macro="SODashboard#viewLinkMydocuments" />
+	</command>
+
+	<command name="ViewLinkPrivateMessaging" priority="5">
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute function="Click" locator1="SODashboard#NAVIGATION_MESSAGES" value1="Messages" />
+
+		<execute macro="SODashboard#viewLinkPrivateMessaging" />
+	</command>
+
+	<command name="ViewLinkTasks" priority="5">
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute function="Click" locator1="SODashboard#NAVIGATION_TASKS" value1="Tasks" />
+
+		<execute macro="SODashboard#viewLinkTasks" />
+	</command>
+</definition>

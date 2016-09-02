@@ -1,0 +1,666 @@
+<definition component-name="social-office-user-information">
+	<property name="hook.plugins.includes" value="deploy-listener-hook,portal-compat-hook,so-activities-hook,so-hook" />
+	<property name="portlet.plugins.includes" value="calendar-portlet,chat-portlet,contacts-portlet,events-display-portlet,marketplace-portlet,microblogs-portlet,notifications-portlet,private-messaging-portlet,so-announcements-portlet,so-configurations-portlet,so-portlet,tasks-portlet,wysiwyg-portlet" />
+	<property name="testray.main.component.name" value="Social Office EE" />
+	<property name="theme.plugins.includes" value="so-theme" />
+	<property name="web.plugins.includes" value="resources-importer-web" />
+
+	<var name="userEmailAddress" value="socialoffice01@liferay.com" />
+	<var name="userFirstName" value="Social01" />
+	<var name="userLastName" value="User01" />
+	<var name="userMiddleName" value="Office01" />
+	<var name="userName" value="Social01 Office01 User01" />
+	<var name="userScreenName" value="socialoffice01" />
+
+	<set-up>
+		<execute macro="SOUser#firstLoginPG" />
+
+		<execute macro="SOUser#addUserWithSORole">
+			<var name="adminEmailAddress" value="test@liferay.com" />
+			<var name="password" value="test" />
+			<var name="userEmailAddress" value="${userEmailAddress}" />
+			<var name="userFirstName" value="${userFirstName}" />
+			<var name="userLastName" value="${userLastName}" />
+			<var name="userMiddleName" value="${userMiddleName}" />
+			<var name="userScreenName" value="${userScreenName}" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress}" />
+			<var name="userLoginFullName" value="${userName}" />
+		</execute>
+	</set-up>
+
+	<tear-down>
+		<execute macro="SOUser#tearDownCP" />
+	</tear-down>
+
+	<command name="EditAdditionalEmailAddress" priority="5">
+		<var name="userAdditionalEmailAddress" value="socialoffice02@liferay.com" />
+		<var name="userAdditionalEmailAddressEdit" value="socialoffice02edit@liferay.com" />
+
+		<execute macro="Page#gotoMyAccount">
+			<var name="portletName" value="Account Settings" />
+		</execute>
+
+		<execute macro="User#addAdditionalEmailAddressViaMyAccount">
+			<var name="userAdditionalEmailAddress" value="${userAdditionalEmailAddress}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#viewAdditionalEmailAddress">
+			<var name="userAdditionalEmailAddress" value="${userAdditionalEmailAddress}" />
+		</execute>
+
+		<execute macro="Page#gotoMyAccount">
+			<var name="portletName" value="Account Settings" />
+		</execute>
+
+		<execute macro="User#addAdditionalEmailAddressViaMyAccount">
+			<var name="userAdditionalEmailAddress" value="${userAdditionalEmailAddressEdit}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#viewAdditionalEmailAddress">
+			<var name="userAdditionalEmailAddress" value="${userAdditionalEmailAddressEdit}" />
+		</execute>
+
+		<execute macro="Page#gotoMyAccount">
+			<var name="portletName" value="Account Settings" />
+		</execute>
+
+		<execute macro="User#addAdditionalEmailAddressViaMyAccount">
+			<var name="userAdditionalEmailAddress" value="" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute function="AssertElementPresent" locator1="SOProfile#ADD_EMAIL_ADDRESS" />
+	</command>
+
+	<command name="EditAddress" priority="5">
+		<var name="userAddressCity" value="Ray of Light" />
+		<var name="userAddressCityEdit" value="New Ray of Light" />
+		<var name="userAddressCountry" value="United States" />
+		<var name="userAddressCountryEdit" value="Canada" />
+		<var name="userAddressPostalCode" value="91234" />
+		<var name="userAddressPostalCodeEdit" value="95678" />
+		<var name="userAddressRegion" value="California" />
+		<var name="userAddressRegionEdit" value="Ontario" />
+		<var name="userAddressStreet1" value="123 Liferay Ln." />
+		<var name="userAddressStreet1Edit" value="456 Liferay Ln." />
+		<var name="userAddressType" value="Personal" />
+		<var name="userAddressTypeEdit" value="Business" />
+
+		<execute macro="Page#gotoMyAccount">
+			<var name="portletName" value="Account Settings" />
+		</execute>
+
+		<execute macro="User#addAddressViaMyAccount">
+			<var name="userAddressCity" value="${userAddressCity}" />
+			<var name="userAddressCountry" value="${userAddressCountry}" />
+			<var name="userAddressPostalCode" value="${userAddressPostalCode}" />
+			<var name="userAddressRegion" value="${userAddressRegion}" />
+			<var name="userAddressStreet1" value="${userAddressStreet1}" />
+			<var name="userAddressType" value="${userAddressType}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#viewAddress">
+			<var name="userAddressCity" value="${userAddressCity}" />
+			<var name="userAddressCountry" value="${userAddressCountry}" />
+			<var name="userAddressPostalCode" value="${userAddressPostalCode}" />
+			<var name="userAddressRegion" value="${userAddressRegion}" />
+			<var name="userAddressStreet1" value="${userAddressStreet1}" />
+			<var name="userAddressType" value="${userAddressType}" />
+		</execute>
+
+		<execute macro="Page#gotoMyAccount">
+			<var name="portletName" value="Account Settings" />
+		</execute>
+
+		<execute macro="User#addAddressViaMyAccount">
+			<var name="userAddressCity" value="${userAddressCityEdit}" />
+			<var name="userAddressCountry" value="${userAddressCountryEdit}" />
+			<var name="userAddressPostalCode" value="${userAddressPostalCodeEdit}" />
+			<var name="userAddressRegion" value="${userAddressRegionEdit}" />
+			<var name="userAddressStreet1" value="${userAddressStreet1Edit}" />
+			<var name="userAddressType" value="${userAddressTypeEdit}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#viewAddress">
+			<var name="userAddressCity" value="${userAddressCityEdit}" />
+			<var name="userAddressCountry" value="${userAddressCountryEdit}" />
+			<var name="userAddressPostalCode" value="${userAddressPostalCodeEdit}" />
+			<var name="userAddressRegion" value="${userAddressRegionEdit}" />
+			<var name="userAddressStreet1" value="${userAddressStreet1Edit}" />
+			<var name="userAddressType" value="${userAddressTypeEdit}" />
+		</execute>
+
+		<execute macro="Page#gotoMyAccount">
+			<var name="portletName" value="Account Settings" />
+		</execute>
+
+		<execute macro="User#addAddressViaMyAccount">
+			<var name="userAddressCity" value="" />
+			<var name="userAddressCountry" value="" />
+			<var name="userAddressPostalCode" value="" />
+			<var name="userAddressRegion" value="" />
+			<var name="userAddressStreet1" value="" />
+			<var name="userAddressType" value="${userAddressTypeEdit}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute function="AssertElementPresent" locator1="SOProfile#ADD_ADDRESSES" />
+	</command>
+
+	<command name="EditInstantMessenger" priority="5">
+		<var name="userInstantMessengerAIM" value="socialofficesn" />
+		<var name="userInstantMessengerAIMEdit" value="socialofficesnedit" />
+		<var name="userInstantMessengerICQ" value="socialofficesn" />
+		<var name="userInstantMessengerICQEdit" value="socialofficesnedit" />
+		<var name="userInstantMessengerJabber" value="socialofficesn" />
+		<var name="userInstantMessengerJabberEdit" value="socialofficesnedit" />
+		<var name="userInstantMessengerSkype" value="socialofficesn" />
+		<var name="userInstantMessengerSkypeEdit" value="socialofficesnedit" />
+		<var name="userInstantMessengerWindowsLiveMessenger" value="socialofficesn" />
+		<var name="userInstantMessengerWindowsLiveMessengerEdit" value="socialofficesnedit" />
+		<var name="userInstantMessengerYM" value="socialofficesn" />
+		<var name="userInstantMessengerYMEdit" value="socialofficesnedit" />
+
+		<execute macro="Page#gotoMyAccount">
+			<var name="portletName" value="Account Settings" />
+		</execute>
+
+		<execute macro="User#addInstantMessengerViaMyAccount">
+			<var name="userInstantMessengerAIM" value="${userInstantMessengerAIM}" />
+			<var name="userInstantMessengerICQ" value="${userInstantMessengerICQ}" />
+			<var name="userInstantMessengerJabber" value="${userInstantMessengerJabber}" />
+			<var name="userInstantMessengerSkype" value="${userInstantMessengerSkype}" />
+			<var name="userInstantMessengerWindowsLiveMessenger" value="${userInstantMessengerWindowsLiveMessenger}" />
+			<var name="userInstantMessengerYM" value="${userInstantMessengerYM}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#viewInstantMessenger">
+			<var name="userInstantMessengerAIM" value="${userInstantMessengerAIM}" />
+			<var name="userInstantMessengerICQ" value="${userInstantMessengerICQ}" />
+			<var name="userInstantMessengerJabber" value="${userInstantMessengerJabber}" />
+			<var name="userInstantMessengerSkype" value="${userInstantMessengerSkype}" />
+			<var name="userInstantMessengerWindowsLiveMessenger" value="${userInstantMessengerWindowsLiveMessenger}" />
+			<var name="userInstantMessengerYM" value="${userInstantMessengerYM}" />
+		</execute>
+
+		<execute macro="Page#gotoMyAccount">
+			<var name="portletName" value="Account Settings" />
+		</execute>
+
+		<execute macro="User#addInstantMessengerViaMyAccount">
+			<var name="userInstantMessengerAIM" value="${userInstantMessengerAIMEdit}" />
+			<var name="userInstantMessengerICQ" value="${userInstantMessengerICQEdit}" />
+			<var name="userInstantMessengerJabber" value="${userInstantMessengerJabberEdit}" />
+			<var name="userInstantMessengerSkype" value="${userInstantMessengerSkypeEdit}" />
+			<var name="userInstantMessengerWindowsLiveMessenger" value="${userInstantMessengerWindowsLiveMessengerEdit}" />
+			<var name="userInstantMessengerYM" value="${userInstantMessengerYMEdit}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#viewInstantMessenger">
+			<var name="userInstantMessengerAIM" value="${userInstantMessengerAIMEdit}" />
+			<var name="userInstantMessengerICQ" value="${userInstantMessengerICQEdit}" />
+			<var name="userInstantMessengerJabber" value="${userInstantMessengerJabberEdit}" />
+			<var name="userInstantMessengerSkype" value="${userInstantMessengerSkypeEdit}" />
+			<var name="userInstantMessengerWindowsLiveMessenger" value="${userInstantMessengerWindowsLiveMessengerEdit}" />
+			<var name="userInstantMessengerYM" value="${userInstantMessengerYMEdit}" />
+		</execute>
+
+		<execute macro="Page#gotoMyAccount">
+			<var name="portletName" value="Account Settings" />
+		</execute>
+
+		<execute macro="User#addInstantMessengerViaMyAccount">
+			<var name="userInstantMessengerAIM" value="" />
+			<var name="userInstantMessengerICQ" value="" />
+			<var name="userInstantMessengerJabber" value="" />
+			<var name="userInstantMessengerSkype" value="" />
+			<var name="userInstantMessengerWindowsLiveMessenger" value="" />
+			<var name="userInstantMessengerYM" value="" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute function="AssertElementPresent" locator1="SOProfile#ADD_INSTANT_MESSENGER" />
+	</command>
+
+	<command name="EditIntroduction" priority="5">
+		<var name="userIntroduction" value="Introduction Content" />
+		<var name="userIntroductionEdit" value="Introduction Content Edit" />
+
+		<execute macro="Page#gotoMyAccount">
+			<var name="portletName" value="Account Settings" />
+		</execute>
+
+		<execute macro="User#addCommentViaMyAccount">
+			<var name="userIntroduction" value="${userIntroduction}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#viewIntroduction">
+			<var name="userIntroduction" value="${userIntroduction}" />
+		</execute>
+
+		<execute macro="Page#gotoMyAccount">
+			<var name="portletName" value="Account Settings" />
+		</execute>
+
+		<execute macro="User#addCommentViaMyAccount">
+			<var name="userIntroduction" value="${userIntroductionEdit}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#viewIntroduction">
+			<var name="userIntroduction" value="${userIntroductionEdit}" />
+		</execute>
+
+		<execute macro="Page#gotoMyAccount">
+			<var name="portletName" value="Account Settings" />
+		</execute>
+
+		<execute macro="User#addCommentViaMyAccount">
+			<var name="userIntroduction" value="" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute function="AssertElementPresent" locator1="SOProfile#ADD_INTRODUCTION" />
+	</command>
+
+	<command name="EditPhoneNumbers" priority="5">
+		<var name="userPhoneNumberExtension" value="123" />
+		<var name="userPhoneNumberExtensionEdit" value="456" />
+		<var name="userPhoneNumberNumber" value="123-123-1234" />
+		<var name="userPhoneNumberNumberEdit" value="456-456-4567" />
+		<var name="userPhoneNumberType" value="Business" />
+		<var name="userPhoneNumberTypeEdit" value="Personal" />
+
+		<execute macro="Page#gotoMyAccount">
+			<var name="portletName" value="Account Settings" />
+		</execute>
+
+		<execute macro="User#addPhoneNumbersViaMyAccount">
+			<var name="userPhoneNumberExtension" value="${userPhoneNumberExtension}" />
+			<var name="userPhoneNumberNumber" value="${userPhoneNumberNumber}" />
+			<var name="userPhoneNumberType" value="${userPhoneNumberType}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#viewPhoneNumbers">
+			<var name="userPhoneNumberExtension" value="${userPhoneNumberExtension}" />
+			<var name="userPhoneNumberNumber" value="${userPhoneNumberNumber}" />
+			<var name="userPhoneNumberType" value="${userPhoneNumberType}" />
+		</execute>
+
+		<execute macro="Page#gotoMyAccount">
+			<var name="portletName" value="Account Settings" />
+		</execute>
+
+		<execute macro="User#addPhoneNumbersViaMyAccount">
+			<var name="userPhoneNumberExtension" value="${userPhoneNumberExtensionEdit}" />
+			<var name="userPhoneNumberNumber" value="${userPhoneNumberNumberEdit}" />
+			<var name="userPhoneNumberType" value="${userPhoneNumberTypeEdit}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#viewPhoneNumbers">
+			<var name="userPhoneNumberExtension" value="${userPhoneNumberExtensionEdit}" />
+			<var name="userPhoneNumberNumber" value="${userPhoneNumberNumberEdit}" />
+			<var name="userPhoneNumberType" value="${userPhoneNumberTypeEdit}" />
+		</execute>
+
+		<execute macro="Page#gotoMyAccount">
+			<var name="portletName" value="Account Settings" />
+		</execute>
+
+		<execute macro="User#addPhoneNumbersViaMyAccount">
+			<var name="userPhoneNumberExtension" value="" />
+			<var name="userPhoneNumberNumber" value="" />
+			<var name="userPhoneNumberType" value="${userPhoneNumberTypeEdit}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute function="AssertElementPresent" locator1="SOProfile#ADD_PHONES" />
+	</command>
+
+	<command name="EditProfilePicture" priority="5">
+		<var name="imageFileName" value="Document_4.jpg" />
+		<var name="imageFileNameEdit" value="Document_3.jpg" />
+		<var name="userName" value="${userName}" />
+
+		<execute macro="Page#gotoMyAccount">
+			<var name="portletName" value="Account Settings" />
+		</execute>
+
+		<execute macro="User#addProfilePictureViaMyAccount">
+			<var name="imageFileName" value="${imageFileName}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#viewProfilePicture">
+			<var name="userName" value="${userName}" />
+		</execute>
+
+		<execute function="SikuliAssertElementPresent" locator1="SOProfile#SCREENSHOTS_PROFILE_PICTURE_PNG" />
+
+		<execute macro="Page#gotoMyAccount">
+			<var name="portletName" value="Account Settings" />
+			<var name="userName" value="${userName}" />
+		</execute>
+
+		<execute macro="User#addProfilePictureViaMyAccount">
+			<var name="imageFileName" value="${imageFileNameEdit}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#viewProfilePicture">
+			<var name="userName" value="${userName}" />
+		</execute>
+
+		<execute function="SikuliAssertElementPresent" locator1="SOProfile#SCREENSHOTS_PROFILE_PICTURE_EDIT_PNG" />
+
+		<execute macro="Page#gotoMyAccount">
+			<var name="portletName" value="Account Settings" />
+			<var name="userName" value="${userName}" />
+		</execute>
+
+		<execute macro="User#deleteProfilePictureViaMyAccount" />
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute function="AssertElementPresent" locator1="SOProfile#DEFAULT_PROFILE_PICTURE" />
+		<execute function="SikuliAssertElementPresent" locator1="SOProfile#SCREENSHOTS_PROFILE_PICTURE_DEFAULT_PNG" />
+	</command>
+
+	<command name="EditProjects" priority="5">
+		<var name="userProjectDescription" value="Expertise Description" />
+		<var name="userProjectDescriptionEdit" value="Expertise Description Edit" />
+		<var name="userProjectStartDateMonth" value="January" />
+		<var name="userProjectStartDateMonthEdit" value="February" />
+		<var name="userProjectStartDateYear" value="2012" />
+		<var name="userProjectStartDateYearEdit" value="2012" />
+		<var name="userProjectTitle" value="Expertise Title" />
+		<var name="userProjectTitleEdit" value="Expertise Title Edit" />
+
+		<execute macro="Page#gotoMyAccount">
+			<var name="portletName" value="Account Settings" />
+		</execute>
+
+		<execute macro="User#addProjectViaMyAccount">
+			<var name="userProjectDescription" value="${userProjectDescription}" />
+			<var name="userProjectStartDateMonth" value="${userProjectStartDateMonth}" />
+			<var name="userProjectStartDateYear" value="${userProjectStartDateYear}" />
+			<var name="userProjectTitle" value="${userProjectTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#viewProjects">
+			<var name="userProjectDescription" value="${userProjectDescription}" />
+			<var name="userProjectTitle" value="${userProjectTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoMyAccount">
+			<var name="portletName" value="Account Settings" />
+		</execute>
+
+		<execute macro="User#addProjectViaMyAccount">
+			<var name="userProjectDescription" value="${userProjectDescriptionEdit}" />
+			<var name="userProjectStartDateMonth" value="${userProjectStartDateMonthEdit}" />
+			<var name="userProjectStartDateYear" value="${userProjectStartDateYearEdit}" />
+			<var name="userProjectTitle" value="${userProjectTitleEdit}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#viewProjectsEdit">
+			<var name="userProjectDescription" value="${userProjectDescriptionEdit}" />
+			<var name="userProjectTitle" value="${userProjectTitleEdit}" />
+		</execute>
+
+		<execute macro="Page#gotoMyAccount">
+			<var name="portletName" value="Account Settings" />
+		</execute>
+
+		<execute macro="User#addProjectViaMyAccount">
+			<var name="userProjectDescription" value="" />
+			<var name="userProjectStartDateMonth" value="${userProjectStartDateMonthEdit}" />
+			<var name="userProjectStartDateYear" value="${userProjectStartDateYearEdit}" />
+			<var name="userProjectTitle" value="" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute function="AssertElementPresent" locator1="SOProfile#ADD_PROJECTS" />
+	</command>
+
+	<command name="EditSMS" priority="5">
+		<var name="userSMS" value="socialoffice@liferay.com" />
+		<var name="userSMSEdit" value="socialoffice01edit@liferay.com" />
+
+		<execute macro="Page#gotoMyAccount">
+			<var name="portletName" value="Account Settings" />
+		</execute>
+
+		<execute macro="User#addSMSViaMyAccount">
+			<var name="userSMS" value="${userSMS}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#viewSMS">
+			<var name="userSMS" value="${userSMS}" />
+		</execute>
+
+		<execute macro="Page#gotoMyAccount">
+			<var name="portletName" value="Account Settings" />
+		</execute>
+
+		<execute macro="User#addSMSViaMyAccount">
+			<var name="userSMS" value="${userSMSEdit}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#viewSMS">
+			<var name="userSMS" value="${userSMSEdit}" />
+		</execute>
+
+		<execute macro="Page#gotoMyAccount">
+			<var name="portletName" value="Account Settings" />
+		</execute>
+
+		<execute macro="User#addSMSViaMyAccount">
+			<var name="userSMS" value="" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute function="AssertElementPresent" locator1="SOProfile#ADD_SMS" />
+	</command>
+
+	<command name="EditSocialNetwork" priority="5">
+		<var name="userSocialNetworkFacebook" value="socialoffice01" />
+		<var name="userSocialNetworkFacebookEdit" value="socialoffice01edit" />
+		<var name="userSocialNetworkTwitter" value="socialoffice01" />
+		<var name="userSocialNetworkTwitterEdit" value="socialoffice01edit" />
+
+		<execute macro="Page#gotoMyAccount">
+			<var name="portletName" value="Account Settings" />
+		</execute>
+
+		<execute macro="User#addSocialNetworkViaMyAccount">
+			<var name="userSocialNetworkFacebook" value="${userSocialNetworkFacebook}" />
+			<var name="userSocialNetworkTwitter" value="${userSocialNetworkTwitter}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#viewSocialNetwork">
+			<var name="userSocialNetworkFacebook" value="${userSocialNetworkFacebook}" />
+			<var name="userSocialNetworkTwitter" value="${userSocialNetworkTwitter}" />
+		</execute>
+
+		<execute macro="Page#gotoMyAccount">
+			<var name="portletName" value="Account Settings" />
+		</execute>
+
+		<execute macro="User#addSocialNetworkViaMyAccount">
+			<var name="userSocialNetworkFacebook" value="${userSocialNetworkFacebookEdit}" />
+			<var name="userSocialNetworkTwitter" value="${userSocialNetworkTwitterEdit}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#viewSocialNetwork">
+			<var name="userSocialNetworkFacebook" value="${userSocialNetworkFacebookEdit}" />
+			<var name="userSocialNetworkTwitter" value="${userSocialNetworkTwitterEdit}" />
+		</execute>
+
+		<execute macro="Page#gotoMyAccount">
+			<var name="portletName" value="Account Settings" />
+		</execute>
+
+		<execute macro="User#addSocialNetworkViaMyAccount">
+			<var name="userSocialNetworkFacebook" value="" />
+			<var name="userSocialNetworkTwitter" value="" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute function="AssertElementPresent" locator1="SOProfile#ADD_SOCIAL_NETWORK" />
+	</command>
+
+	<command name="EditTag" priority="5">
+		<var name="userTag" value="tag1" />
+		<var name="userTagEdit" value="tag2" />
+
+		<execute macro="Page#gotoMyAccount">
+			<var name="portletName" value="Account Settings" />
+		</execute>
+
+		<execute macro="User#addTagViaMyAccount">
+			<var name="userTag" value="${userTag}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#viewTag">
+			<var name="key_userTag" value="${userTag}" />
+			<var name="userName" value="${userName}" />
+			<var name="userTag" value="${userTag}" />
+		</execute>
+
+		<execute macro="Page#gotoMyAccount">
+			<var name="portletName" value="Account Settings" />
+		</execute>
+
+		<execute macro="User#addTagViaMyAccount">
+			<var name="userTag" value="${userTagEdit}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#viewTag">
+			<var name="key_userTag" value="${userTag}" />
+			<var name="userName" value="${userName}" />
+			<var name="userTag" value="${userTag}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#viewTag">
+			<var name="key_userTag" value="${userTagEdit}" />
+			<var name="userName" value="${userName}" />
+			<var name="userTag" value="${userTagEdit}" />
+		</execute>
+
+		<execute macro="Page#gotoMyAccount">
+			<var name="portletName" value="Account Settings" />
+		</execute>
+
+		<execute macro="User#deleteTagViaMyAccount">
+			<var name="userTag" value="${userTag}" />
+			<var name="userTagList" value="${userTag},${userTagEdit}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute function="AssertElementPresent" locator1="SOProfile#ADD_TAGS" />
+	</command>
+
+	<command name="EditWebsite" priority="5">
+		<var name="userWebsiteType" value="Personal" />
+		<var name="userWebsiteTypeEdit" value="Business" />
+		<var name="userWebsiteURL" value="http://www.socialoffice01.com" />
+		<var name="userWebsiteURLEdit" value="http://www.socialoffice01edit.com" />
+
+		<execute macro="Page#gotoMyAccount">
+			<var name="portletName" value="Account Settings" />
+		</execute>
+
+		<execute macro="User#addWebsiteViaMyAccount">
+			<var name="userWebsiteType" value="${userWebsiteType}" />
+			<var name="userWebsiteURL" value="${userWebsiteURL}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#viewWebsite">
+			<var name="userWebsiteType" value="${userWebsiteType}" />
+			<var name="userWebsiteURL" value="${userWebsiteURL}" />
+		</execute>
+
+		<execute macro="Page#gotoMyAccount">
+			<var name="portletName" value="Account Settings" />
+		</execute>
+
+		<execute macro="User#addWebsiteViaMyAccount">
+			<var name="userWebsiteType" value="${userWebsiteTypeEdit}" />
+			<var name="userWebsiteURL" value="${userWebsiteURLEdit}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#viewWebsite">
+			<var name="userWebsiteType" value="${userWebsiteTypeEdit}" />
+			<var name="userWebsiteURL" value="${userWebsiteURLEdit}" />
+		</execute>
+
+		<execute macro="Page#gotoMyAccount">
+			<var name="portletName" value="Account Settings" />
+		</execute>
+
+		<execute macro="User#addWebsiteViaMyAccount">
+			<var name="userWebsiteType" value="${userWebsiteTypeEdit}" />
+			<var name="userWebsiteURL" value="" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute function="AssertElementPresent" locator1="SOProfile#ADD_WEBSITES" />
+	</command>
+</definition>

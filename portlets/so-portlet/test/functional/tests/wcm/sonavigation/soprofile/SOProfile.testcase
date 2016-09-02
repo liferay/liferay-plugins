@@ -1,0 +1,232 @@
+<definition component-name="social-office-wcm">
+	<property name="hook.plugins.includes" value="deploy-listener-hook,portal-compat-hook,so-activities-hook,so-hook" />
+	<property name="portlet.plugins.includes" value="calendar-portlet,chat-portlet,contacts-portlet,events-display-portlet,marketplace-portlet,microblogs-portlet,notifications-portlet,private-messaging-portlet,so-announcements-portlet,so-configurations-portlet,so-portlet,tasks-portlet,wysiwyg-portlet" />
+	<property name="testray.main.component.name" value="Social Office EE" />
+	<property name="theme.plugins.includes" value="so-theme" />
+	<property name="web.plugins.includes" value="resources-importer-web" />
+
+	<var name="adminEmailAddress" value="test@liferay.com" />
+	<var name="adminListName" value="Test, Test" />
+	<var name="adminName" value="Test Test" />
+	<var name="adminScreenName" value="test" />
+	<var name="password" value="test" />
+
+	<set-up>
+		<execute macro="SOUser#firstLoginPG" />
+	</set-up>
+
+	<tear-down>
+		<execute macro="SOUserBar#tearDownNotifications" />
+
+		<execute macro="SOUser#tearDownCP" />
+	</tear-down>
+
+	<command name="GoBackToSOProfileFromControlPanel" priority="5">
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute function="AssertClick#assertTextClickAtClickDockbar" locator1="Dockbar#ADMIN" value1="Admin" />
+		<execute function="AssertClick" locator1="Dockbar#ADMIN_CONTROL_PANEL" value1="Control Panel" />
+		<execute function="Click" locator1="//a[@title='Back']" />
+
+		<execute function="AssertTextEquals" locator1="SOProfile#USER_NAME" value1="${adminName}" />
+		<execute function="AssertTextEquals" locator1="SOProfile#USER_EMAIL" value1="${adminEmailAddress}" />
+		<execute function="AssertTextEquals" locator1="SOProfile#ADD_INTRODUCTION" value1="Introduction" />
+		<execute function="AssertTextEquals" locator1="SOProfile#ADD_TAGS" value1="Tags" />
+		<execute function="AssertTextEquals" locator1="SOProfile#ADD_PHONES" value1="Phones" />
+		<execute function="AssertTextEquals" locator1="SOProfile#ADD_EMAIL_ADDRESS" value1="Email Address" />
+		<execute function="AssertTextEquals" locator1="SOProfile#ADD_INSTANT_MESSENGER" value1="Instant Messenger" />
+		<execute function="AssertTextEquals" locator1="SOProfile#ADD_ADDRESSES" value1="Addresses" />
+		<execute function="AssertTextEquals" locator1="SOProfile#ADD_WEBSITES" value1="Websites" />
+		<execute function="AssertTextEquals" locator1="SOProfile#ADD_SOCIAL_NETWORK" value1="Social Network" />
+		<execute function="AssertTextEquals" locator1="SOProfile#ADD_SMS" value1="SMS" />
+		<execute function="AssertTextEquals" locator1="SOProfile#ADD_PROJECTS" value1="Add" />
+		<execute function="AssertTextEquals" locator1="SOProfile#NAVIGATION_PROFILE" value1="Profile" />
+		<execute function="AssertTextEquals" locator1="SOProfile#NAVIGATION_CONTACTS" value1="Contacts" />
+		<execute function="AssertTextEquals" locator1="SOProfile#NAVIGATION_MICROBLOGS" value1="Microblogs" />
+	</command>
+
+	<command name="ViewProfileLocalized" priority="4">
+		<var name="userEmailAddress" value="socialoffice01@liferay.com" />
+		<var name="userFirstName" value="Social01" />
+		<var name="userLastName" value="User01" />
+		<var name="userListName" value="User01, Social01" />
+		<var name="userMiddleName" value="Office01" />
+		<var name="userName" value="Social01 Office01 User01" />
+		<var name="userScreenName" value="socialoffice01" />
+
+		<execute macro="SOUser#addUserWithSORole">
+			<var name="adminEmailAddress" value="test@liferay.com" />
+			<var name="password" value="test" />
+			<var name="userEmailAddress" value="${userEmailAddress}" />
+			<var name="userFirstName" value="${userFirstName}" />
+			<var name="userLastName" value="${userLastName}" />
+			<var name="userMiddleName" value="${userMiddleName}" />
+			<var name="userScreenName" value="${userScreenName}" />
+		</execute>
+
+		<execute macro="Page#gotoCP">
+			<var name="portletName" value="Users and Organizations" />
+		</execute>
+
+		<execute macro="User#editDisplaySettingsCP">
+			<var name="languageName" value="Spanish (Spain)" />
+			<var name="userScreenName" value="${userScreenName}" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress}" />
+			<var name="userLoginFullName" value="${userName}" />
+		</execute>
+
+		<execute macro="SOProfile#viewLocalizedPG">
+			<var name="contactsCenterPortletLocalized" value="Centro de contactos" />
+			<var name="contactsPageLocalized" value="Contactos" />
+			<var name="microblogsPageLocalized" value="Microblogs" />
+			<var name="microblogsPortletLocalized" value="Microblogs" />
+			<var name="microblogsStatusUpdatePortletLocalized" value="Actualización del estado de microblogs" />
+			<var name="myProfileLocalized" value="Mi Perfil" />
+			<var name="profilePageLocalized" value="Perfil" />
+			<var name="profilePortletLocalized" value="Perfil" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${adminEmailAddress}" />
+			<var name="userLoginFullName" value="${adminName}" />
+		</execute>
+
+		<execute macro="Page#gotoCP">
+			<var name="portletName" value="Users and Organizations" />
+		</execute>
+
+		<execute macro="User#editDisplaySettingsCP">
+			<var name="languageName" value="French (France)" />
+			<var name="userScreenName" value="${userScreenName}" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress}" />
+			<var name="userLoginFullName" value="${userName}" />
+		</execute>
+
+		<execute macro="SOProfile#viewLocalizedPG">
+			<var name="contactsCenterPortletLocalized" value="Centre de contacts" />
+			<var name="contactsPageLocalized" value="Contient" />
+			<var name="microblogsPageLocalized" value="Microblogs" />
+			<var name="microblogsPortletLocalized" value="Microblogs" />
+			<var name="microblogsStatusUpdatePortletLocalized" value="Mise à jour de statut de microblogs" />
+			<var name="myProfileLocalized" value="Mon Profil" />
+			<var name="profilePageLocalized" value="Profil" />
+			<var name="profilePortletLocalized" value="Profil" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${adminEmailAddress}" />
+			<var name="userLoginFullName" value="${adminName}" />
+		</execute>
+
+		<execute macro="Page#gotoCP">
+			<var name="portletName" value="Users and Organizations" />
+		</execute>
+
+		<execute macro="User#editDisplaySettingsCP">
+			<var name="languageName" value="German (Germany)" />
+			<var name="userScreenName" value="${userScreenName}" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress}" />
+			<var name="userLoginFullName" value="${userName}" />
+		</execute>
+
+		<execute macro="SOProfile#viewLocalizedPG">
+			<var name="contactsCenterPortletLocalized" value="Contacts Center" />
+			<var name="contactsPageLocalized" value="Kontakte" />
+			<var name="microblogsPageLocalized" value="Microblogs" />
+			<var name="microblogsPortletLocalized" value="Microblogs" />
+			<var name="microblogsStatusUpdatePortletLocalized" value="Microblogs Status Update" />
+			<var name="myProfileLocalized" value="Mein Profil" />
+			<var name="profilePageLocalized" value="Profil" />
+			<var name="profilePortletLocalized" value="Profile" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${adminEmailAddress}" />
+			<var name="userLoginFullName" value="${adminName}" />
+		</execute>
+
+		<execute macro="Page#gotoCP">
+			<var name="portletName" value="Users and Organizations" />
+		</execute>
+
+		<execute macro="User#editDisplaySettingsCP">
+			<var name="languageName" value="Chinese (China)" />
+			<var name="userScreenName" value="${userScreenName}" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress}" />
+			<var name="userLoginFullName" value="${userName}" />
+		</execute>
+
+		<execute macro="SOProfile#viewLocalizedPG">
+			<var name="contactsCenterPortletLocalized" value="联系中心" />
+			<var name="contactsPageLocalized" value="联系人" />
+			<var name="microblogsPageLocalized" value="微博" />
+			<var name="microblogsPortletLocalized" value="微博" />
+			<var name="microblogsStatusUpdatePortletLocalized" value="微博状态更新" />
+			<var name="myProfileLocalized" value="我的个人资料" />
+			<var name="profilePageLocalized" value="概况" />
+			<var name="profilePortletLocalized" value="配置文件" />
+		</execute>
+	</command>
+
+	<command name="ViewProfileSOUserDefault" priority="3">
+		<var name="userEmailAddress" value="socialoffice01@liferay.com" />
+		<var name="userFirstName" value="Social01" />
+		<var name="userLastName" value="User01" />
+		<var name="userListName" value="User01, Social01" />
+		<var name="userMiddleName" value="Office01" />
+		<var name="userName" value="Social01 Office01 User01" />
+		<var name="userScreenName" value="socialoffice01" />
+
+		<execute macro="SOUser#addUserWithSORole">
+			<var name="adminEmailAddress" value="test@liferay.com" />
+			<var name="password" value="test" />
+			<var name="userEmailAddress" value="${userEmailAddress}" />
+			<var name="userFirstName" value="${userFirstName}" />
+			<var name="userLastName" value="${userLastName}" />
+			<var name="userMiddleName" value="${userMiddleName}" />
+			<var name="userScreenName" value="${userScreenName}" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress}" />
+			<var name="userLoginFullName" value="${userName}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOProfile#viewDefaultProfile">
+			<var name="userEmailAddress" value="${userEmailAddress}" />
+			<var name="userName" value="${userName}" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${adminEmailAddress}" />
+			<var name="userLoginFullName" value="${adminName}" />
+		</execute>
+
+		<execute macro="SOContactsCenter#gotoProfile">
+			<var name="userListName" value="User01, Social01" />
+			<var name="userName" value="${userName}" />
+			<var name="userScreenName" value="socialoffice01" />
+		</execute>
+
+		<execute function="AssertClick" locator1="SOContactscenter#USER_DETAILS_NAME" value1="${userName}" />
+
+		<execute macro="SOProfile#viewDefaultProfile">
+			<var name="userEmailAddress" value="${userEmailAddress}" />
+			<var name="userName" value="${userName}" />
+		</execute>
+	</command>
+</definition>

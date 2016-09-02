@@ -1,0 +1,520 @@
+<definition component-name="social-office-wcm">
+	<property name="hook.plugins.includes" value="deploy-listener-hook,portal-compat-hook,so-activities-hook,so-hook" />
+	<property name="portlet.plugins.includes" value="calendar-portlet,chat-portlet,contacts-portlet,events-display-portlet,marketplace-portlet,microblogs-portlet,notifications-portlet,private-messaging-portlet,so-announcements-portlet,so-configurations-portlet,so-portlet,tasks-portlet,wysiwyg-portlet" />
+	<property name="testray.main.component.name" value="Social Office EE" />
+	<property name="theme.plugins.includes" value="so-theme" />
+	<property name="web.plugins.includes" value="resources-importer-web" />
+
+	<var name="adminEmailAddress" value="test@liferay.com" />
+	<var name="adminName" value="Test Test" />
+	<var name="key_siteName" value="${siteName}" />
+	<var name="password" value="test" />
+	<var name="siteDescription" value="Open Site Description" />
+	<var name="siteName" value="Open Site Name" />
+	<var name="siteType" value="Open" />
+
+	<set-up>
+		<execute macro="SOUser#firstLoginPG" />
+	</set-up>
+
+	<tear-down>
+		<execute macro="SOUserBar#tearDownNotifications" />
+
+		<execute macro="SOSite#tearDownCP" />
+
+		<execute macro="SOUser#tearDownCP" />
+
+		<execute macro="Role#tearDownCP" />
+	</tear-down>
+
+	<command name="AddBookmarksEntries" priority="4">
+		<var name="bookmarksEntryDescription1" value="Bookmarks Entry1 Description" />
+		<var name="bookmarksEntryDescription2" value="Bookmarks Entry2 Description" />
+		<var name="bookmarksEntryDescription3" value="Bookmarks Entry3 Description" />
+		<var name="bookmarksEntryName1" value="Bookmarks Entry1 Name" />
+		<var name="bookmarksEntryName2" value="Bookmarks Entry2 Name" />
+		<var name="bookmarksEntryName3" value="Bookmarks Entry3 Name" />
+		<var name="bookmarksEntryUrl1" value="http://www.google.com" />
+		<var name="bookmarksEntryUrl2" value="http://www.bing.com" />
+		<var name="bookmarksEntryUrl3" value="http://www.wired.com" />
+
+		<execute macro="SOUserBar#addSOSite">
+			<var name="siteDescription" value="${siteDescription}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteType" value="${siteType}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOBookmarks#addBookmarksEntry">
+			<var name="bookmarksEntryDescription" value="${bookmarksEntryDescription1}" />
+			<var name="bookmarksEntryName" value="${bookmarksEntryName1}" />
+			<var name="bookmarksEntryUrl" value="${bookmarksEntryUrl1}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOBookmarks#addBookmarksEntry">
+			<var name="bookmarksEntryDescription" value="${bookmarksEntryDescription2}" />
+			<var name="bookmarksEntryName" value="${bookmarksEntryName2}" />
+			<var name="bookmarksEntryUrl" value="${bookmarksEntryUrl2}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOBookmarks#addBookmarksEntry">
+			<var name="bookmarksEntryDescription" value="${bookmarksEntryDescription3}" />
+			<var name="bookmarksEntryName" value="${bookmarksEntryName3}" />
+			<var name="bookmarksEntryUrl" value="${bookmarksEntryUrl3}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOBookmarks#viewBookmarksEntry">
+			<var name="bookmarksEntryDescription" value="${bookmarksEntryDescription1}" />
+			<var name="bookmarksEntryName" value="${bookmarksEntryName1}" />
+			<var name="bookmarksEntryUrl" value="${bookmarksEntryUrl1}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOBookmarks#viewBookmarksEntry">
+			<var name="bookmarksEntryDescription" value="${bookmarksEntryDescription2}" />
+			<var name="bookmarksEntryName" value="${bookmarksEntryName2}" />
+			<var name="bookmarksEntryUrl" value="${bookmarksEntryUrl2}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOBookmarks#viewBookmarksEntry">
+			<var name="bookmarksEntryDescription" value="${bookmarksEntryDescription3}" />
+			<var name="bookmarksEntryName" value="${bookmarksEntryName3}" />
+			<var name="bookmarksEntryUrl" value="${bookmarksEntryUrl3}" />
+		</execute>
+	</command>
+
+	<command name="AddBookmarksEntry" priority="5">
+		<var name="bookmarksEntryDescription" value="Bookmarks Entry Description" />
+		<var name="bookmarksEntryName" value="Bookmarks Entry Name" />
+		<var name="bookmarksEntryUrl" value="http://www.google.com" />
+
+		<execute macro="SOUserBar#addSOSite">
+			<var name="siteDescription" value="${siteDescription}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteType" value="${siteType}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOBookmarks#addBookmarksEntry">
+			<var name="bookmarksEntryDescription" value="${bookmarksEntryDescription}" />
+			<var name="bookmarksEntryName" value="${bookmarksEntryName}" />
+			<var name="bookmarksEntryUrl" value="${bookmarksEntryUrl}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOBookmarks#viewBookmarksEntry">
+			<var name="bookmarksEntryDescription" value="${bookmarksEntryDescription}" />
+			<var name="bookmarksEntryName" value="${bookmarksEntryName}" />
+			<var name="bookmarksEntryUrl" value="${bookmarksEntryUrl}" />
+		</execute>
+	</command>
+
+	<command name="AddBookmarksEntryTag" priority="3">
+		<var name="bookmarksEntryDescription" value="Bookmarks Entry Description" />
+		<var name="bookmarksEntryName" value="Bookmarks Entry Name" />
+		<var name="bookmarksEntryUrl" value="http://www.google.com" />
+		<var name="tagName" value="tag" />
+
+		<execute macro="SOUserBar#addSOSite">
+			<var name="siteDescription" value="${siteDescription}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteType" value="${siteType}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOBookmarks#addBookmarksEntry">
+			<var name="addTag" value="true" />
+			<var name="bookmarksEntryDescription" value="${bookmarksEntryDescription}" />
+			<var name="bookmarksEntryName" value="${bookmarksEntryName}" />
+			<var name="bookmarksEntryUrl" value="${bookmarksEntryUrl}" />
+			<var name="tagName" value="${tagName}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOBookmarks#viewBookmarksEntry">
+			<var name="bookmarksEntryDescription" value="${bookmarksEntryDescription}" />
+			<var name="bookmarksEntryName" value="${bookmarksEntryName}" />
+			<var name="bookmarksEntryUrl" value="${bookmarksEntryUrl}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<var name="key_bookmarksEntryName" value="${bookmarksEntryName}" />
+
+		<execute function="AssertClick" locator1="SOBookmarks#BOOKMARKS_ENTRY_ACTIONS" value1="Actions" />
+		<execute function="AssertClick" locator1="SOBookmarks#BOOKMARKS_ACTIONS_MENULIST_EDIT" value1="Edit" />
+
+		<var name="key_tagName" value="${tagName}" />
+
+		<execute function="AssertTextEquals" locator1="SOBookmarksAdd#TAG" value1="${tagName}" />
+	</command>
+
+	<command name="DeleteBookmarksEntryTest" priority="5">
+		<var name="bookmarksEntryDescription" value="Bookmarks Entry Description" />
+		<var name="bookmarksEntryName" value="Bookmarks Entry Name" />
+		<var name="bookmarksEntryUrl" value="http://www.google.com" />
+
+		<execute macro="SOUserBar#addSOSite">
+			<var name="siteDescription" value="${siteDescription}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteType" value="${siteType}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOBookmarks#addBookmarksEntry">
+			<var name="bookmarksEntryDescription" value="${bookmarksEntryDescription}" />
+			<var name="bookmarksEntryName" value="${bookmarksEntryName}" />
+			<var name="bookmarksEntryUrl" value="${bookmarksEntryUrl}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOBookmarks#deleteBookmarksEntry">
+			<var name="bookmarksEntryName" value="${bookmarksEntryName}" />
+		</execute>
+	</command>
+
+	<command name="EditBookmarksEntryTest" priority="5">
+		<var name="bookmarksEntryDescription" value="Bookmarks Entry Description" />
+		<var name="bookmarksEntryDescriptionEdit" value="Bookmarks Entry Description Edit" />
+		<var name="bookmarksEntryName" value="Bookmarks Entry Name" />
+		<var name="bookmarksEntryNameEdit" value="Bookmarks Entry Name Edit" />
+		<var name="bookmarksEntryUrl" value="http://www.google.com" />
+		<var name="bookmarksEntryUrlEdit" value="http://www.bing.com" />
+
+		<execute macro="SOUserBar#addSOSite">
+			<var name="siteDescription" value="${siteDescription}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteType" value="${siteType}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOBookmarks#addBookmarksEntry">
+			<var name="bookmarksEntryDescription" value="${bookmarksEntryDescription}" />
+			<var name="bookmarksEntryName" value="${bookmarksEntryName}" />
+			<var name="bookmarksEntryUrl" value="${bookmarksEntryUrl}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOBookmarks#editBookmarksEntry">
+			<var name="bookmarksEntryDescriptionEdit" value="${bookmarksEntryDescriptionEdit}" />
+			<var name="bookmarksEntryName" value="${bookmarksEntryName}" />
+			<var name="bookmarksEntryNameEdit" value="${bookmarksEntryNameEdit}" />
+			<var name="bookmarksEntryUrlEdit" value="${bookmarksEntryUrlEdit}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOBookmarks#viewBookmarksEntry">
+			<var name="bookmarksEntryDescription" value="${bookmarksEntryDescriptionEdit}" />
+			<var name="bookmarksEntryName" value="${bookmarksEntryNameEdit}" />
+			<var name="bookmarksEntryUrl" value="${bookmarksEntryUrlEdit}" />
+		</execute>
+	</command>
+
+	<command name="ImportLARSOBookmarks" priority="4">
+		<var name="bookmarksEntryDescription1" value="Bookmarks Entry1 Description" />
+		<var name="bookmarksEntryDescription2" value="Bookmarks Entry2 Description" />
+		<var name="bookmarksEntryName1" value="Bookmarks Entry1 Name" />
+		<var name="bookmarksEntryName2" value="Bookmarks Entry2 Name" />
+		<var name="bookmarksEntryUrl1" value="http://www.google.com" />
+		<var name="bookmarksEntryUrl2" value="http://www.bing.com" />
+		<var name="larFileName" value="SO_Bookmarks_LAR.site.lar" />
+		<var name="userEmailAddress" value="socialoffice01@liferay.com" />
+		<var name="userFirstName" value="Social01" />
+		<var name="userLastName" value="User01" />
+		<var name="userListName" value="User01, Social01" />
+		<var name="userMiddleName" value="Office01" />
+		<var name="userName" value="Social01 Office01 User01" />
+		<var name="userScreenName" value="socialoffice01" />
+
+		<execute macro="SOUser#addUserWithSORole">
+			<var name="adminEmailAddress" value="test@liferay.com" />
+			<var name="password" value="test" />
+			<var name="userEmailAddress" value="${userEmailAddress}" />
+			<var name="userFirstName" value="${userFirstName}" />
+			<var name="userLastName" value="${userLastName}" />
+			<var name="userMiddleName" value="${userMiddleName}" />
+			<var name="userScreenName" value="${userScreenName}" />
+		</execute>
+
+		<execute macro="SOUserBar#addSOSite">
+			<var name="siteDescription" value="${siteDescription}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteType" value="${siteType}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOBookmarks#addBookmarksEntry">
+			<var name="bookmarksEntryDescription" value="${bookmarksEntryDescription1}" />
+			<var name="bookmarksEntryName" value="${bookmarksEntryName1}" />
+			<var name="bookmarksEntryUrl" value="${bookmarksEntryUrl1}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOBookmarks#addBookmarksEntry">
+			<var name="bookmarksEntryDescription" value="${bookmarksEntryDescription2}" />
+			<var name="bookmarksEntryName" value="${bookmarksEntryName2}" />
+			<var name="bookmarksEntryUrl" value="${bookmarksEntryUrl2}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOBookmarks#removeViewPermissionsBookmarksEntry">
+			<var name="bookmarksEntryName" value="${bookmarksEntryName2}" />
+			<var name="roleName" value="Guest" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="Page#gotoPagesCP">
+			<var name="portletName" value="Site Pages" />
+			<var name="siteScopeName" value="${siteName}" />
+		</execute>
+
+		<execute macro="LAR#exportSiteCP">
+			<var name="exportPermissions" value="true" />
+			<var name="larFileName" value="${larFileName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOSite#tearDownCP" />
+
+		<execute macro="SOUserBar#addSOSite">
+			<var name="siteDescription" value="${siteDescription}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteType" value="${siteType}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="LAR#importSiteCP">
+			<var name="importPermissions" value="true" />
+			<var name="larFileName" value="${larFileName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOBookmarks#viewBookmarksEntry">
+			<var name="bookmarksEntryDescription" value="${bookmarksEntryDescription1}" />
+			<var name="bookmarksEntryName" value="${bookmarksEntryName1}" />
+			<var name="bookmarksEntryUrl" value="${bookmarksEntryUrl1}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOBookmarks#viewBookmarksEntry">
+			<var name="bookmarksEntryDescription" value="${bookmarksEntryDescription2}" />
+			<var name="bookmarksEntryName" value="${bookmarksEntryName2}" />
+			<var name="bookmarksEntryUrl" value="${bookmarksEntryUrl2}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOBookmarks#viewViewPermissionsPG">
+			<var name="bookmarksEntryName" value="${bookmarksEntryName2}" />
+			<var name="roleName" value="Guest" />
+			<var name="viewPermissionValue" value="unchecked" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress}" />
+			<var name="userLoginFullName" value="${userName}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOBookmarks#viewBookmarksEntryPopUp">
+			<var name="bookmarksEntryDescription" value="${bookmarksEntryDescription1}" />
+			<var name="bookmarksEntryName" value="${bookmarksEntryName1}" />
+			<var name="bookmarksEntryUrl" value="${bookmarksEntryUrl1}" />
+		</execute>
+
+		<var name="key_bookmarksEntryName" value="${bookmarksEntryName2}" />
+
+		<execute function="AssertTextNotPresent" value1="${bookmarksEntryDescription2}" />
+		<execute function="AssertElementNotPresent" locator1="SOBookmarks#BOOKMARKS_ENTRY_ACTIONS" value1="Actions" />
+	</command>
+
+	<command name="ViewBookmarksEntryAsGuest" priority="4">
+		<var name="bookmarksEntryDescription1" value="Bookmarks Entry1 Description" />
+		<var name="bookmarksEntryDescription2" value="Bookmarks Entry2 Description" />
+		<var name="bookmarksEntryName1" value="Bookmarks Entry1 Name" />
+		<var name="bookmarksEntryName2" value="Bookmarks Entry2 Name" />
+		<var name="bookmarksEntryUrl1" value="http://www.google.com" />
+		<var name="bookmarksEntryUrl2" value="http://www.bing.com" />
+		<var name="userEmailAddress" value="socialoffice01@liferay.com" />
+		<var name="userFirstName" value="Social01" />
+		<var name="userLastName" value="User01" />
+		<var name="userListName" value="User01, Social01" />
+		<var name="userMiddleName" value="Office01" />
+		<var name="userName" value="Social01 Office01 User01" />
+		<var name="userScreenName" value="socialoffice01" />
+
+		<execute macro="SOUser#addUserWithSORole">
+			<var name="adminEmailAddress" value="test@liferay.com" />
+			<var name="password" value="test" />
+			<var name="userEmailAddress" value="${userEmailAddress}" />
+			<var name="userFirstName" value="${userFirstName}" />
+			<var name="userLastName" value="${userLastName}" />
+			<var name="userMiddleName" value="${userMiddleName}" />
+			<var name="userScreenName" value="${userScreenName}" />
+		</execute>
+
+		<execute macro="SOUserBar#addSOSite">
+			<var name="siteDescription" value="${siteDescription}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteType" value="${siteType}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOBookmarks#addBookmarksEntry">
+			<var name="bookmarksEntryDescription" value="${bookmarksEntryDescription1}" />
+			<var name="bookmarksEntryName" value="${bookmarksEntryName1}" />
+			<var name="bookmarksEntryUrl" value="${bookmarksEntryUrl1}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOBookmarks#addBookmarksEntry">
+			<var name="bookmarksEntryDescription" value="${bookmarksEntryDescription2}" />
+			<var name="bookmarksEntryName" value="${bookmarksEntryName2}" />
+			<var name="bookmarksEntryUrl" value="${bookmarksEntryUrl2}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOBookmarks#removeViewPermissionsBookmarksEntry">
+			<var name="bookmarksEntryName" value="${bookmarksEntryName2}" />
+			<var name="roleName" value="Guest" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress}" />
+			<var name="userLoginFullName" value="${userName}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOBookmarks#viewBookmarksEntryPopUp">
+			<var name="bookmarksEntryDescription" value="${bookmarksEntryDescription1}" />
+			<var name="bookmarksEntryName" value="${bookmarksEntryName1}" />
+			<var name="bookmarksEntryUrl" value="${bookmarksEntryUrl1}" />
+		</execute>
+
+		<var name="key_bookmarksEntryName" value="${bookmarksEntryName2}" />
+
+		<execute function="AssertTextNotPresent" value1="${bookmarksEntryDescription2}" />
+		<execute function="AssertElementNotPresent" locator1="SOBookmarks#BOOKMARKS_ENTRY_ACTIONS" value1="Actions" />
+	</command>
+</definition>

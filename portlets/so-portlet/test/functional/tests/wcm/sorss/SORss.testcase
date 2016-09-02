@@ -1,0 +1,442 @@
+<definition component-name="social-office-wcm">
+	<property name="hook.plugins.includes" value="deploy-listener-hook,portal-compat-hook,so-activities-hook,so-hook" />
+	<property name="portlet.plugins.includes" value="calendar-portlet,chat-portlet,contacts-portlet,events-display-portlet,marketplace-portlet,microblogs-portlet,notifications-portlet,private-messaging-portlet,so-announcements-portlet,so-configurations-portlet,so-portlet,tasks-portlet,wysiwyg-portlet" />
+	<property name="testray.main.component.name" value="Social Office EE" />
+	<property name="theme.plugins.includes" value="so-theme" />
+	<property name="web.plugins.includes" value="resources-importer-web" />
+
+	<var name="adminEmailAddress" value="test@liferay.com" />
+	<var name="adminName" value="Test Test" />
+	<var name="key_siteName" value="${siteName}" />
+	<var name="password" value="test" />
+	<var name="siteDescription" value="Open Site Description" />
+	<var name="siteName" value="Open Site Name" />
+	<var name="siteType" value="Open" />
+
+	<set-up>
+		<execute macro="SOUser#firstLoginPG" />
+	</set-up>
+
+	<tear-down>
+		<execute macro="SOSite#tearDownCP" />
+
+		<execute macro="SOUser#tearDownCP" />
+	</tear-down>
+
+	<command name="AddRssFeed" priority="5">
+		<var name="entriesPerFeed" value="3" />
+		<var name="expandedEntriesPerFeed" value="1" />
+		<var name="feedTitle" value="CNET" />
+		<var name="feedUrl" value="http://feeds.feedburner.com/cnet/tcoc" />
+		<var name="userEmailAddress" value="socialoffice01@liferay.com" />
+		<var name="userFirstName" value="Social01" />
+		<var name="userLastName" value="User01" />
+		<var name="userListName" value="User01, Social01" />
+		<var name="userMiddleName" value="Office01" />
+		<var name="userName" value="Social01 Office01 User01" />
+		<var name="userScreenName" value="socialoffice01" />
+
+		<execute macro="SOUser#addUserWithSORole">
+			<var name="adminEmailAddress" value="test@liferay.com" />
+			<var name="password" value="test" />
+			<var name="userEmailAddress" value="${userEmailAddress}" />
+			<var name="userFirstName" value="${userFirstName}" />
+			<var name="userLastName" value="${userLastName}" />
+			<var name="userMiddleName" value="${userMiddleName}" />
+			<var name="userScreenName" value="${userScreenName}" />
+		</execute>
+
+		<execute macro="SOUserBar#addSOSite">
+			<var name="siteDescription" value="${siteDescription}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteType" value="${siteType}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SORss#addRssFeed">
+			<var name="entriesPerFeed" value="${entriesPerFeed}" />
+			<var name="expandedEntriesPerFeed" value="${expandedEntriesPerFeed}" />
+			<var name="feedTitle" value="${feedTitle}" />
+			<var name="feedUrl" value="${feedUrl}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SORss#viewRssFeed">
+			<var name="entriesPerFeed" value="${entriesPerFeed}" />
+			<var name="expandedEntriesPerFeed" value="${expandedEntriesPerFeed}" />
+			<var name="feedTitle" value="${feedTitle}" />
+			<var name="feedUrl" value="${feedUrl}" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress}" />
+			<var name="userLoginFullName" value="${userName}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SORss#viewRssFeed">
+			<var name="entriesPerFeed" value="${entriesPerFeed}" />
+			<var name="expandedEntriesPerFeed" value="${expandedEntriesPerFeed}" />
+			<var name="feedTitle" value="${feedTitle}" />
+			<var name="feedUrl" value="${feedUrl}" />
+		</execute>
+	</command>
+
+	<command name="DeleteRssFeed" priority="4">
+		<var name="entriesPerFeed" value="3" />
+		<var name="expandedEntriesPerFeed" value="1" />
+		<var name="feedTitle" value="CNET" />
+		<var name="feedUrl" value="http://feeds.feedburner.com/cnet/tcoc" />
+		<var name="userEmailAddress" value="socialoffice01@liferay.com" />
+		<var name="userFirstName" value="Social01" />
+		<var name="userLastName" value="User01" />
+		<var name="userListName" value="User01, Social01" />
+		<var name="userMiddleName" value="Office01" />
+		<var name="userName" value="Social01 Office01 User01" />
+		<var name="userScreenName" value="socialoffice01" />
+
+		<execute macro="SOUser#addUserWithSORole">
+			<var name="adminEmailAddress" value="test@liferay.com" />
+			<var name="password" value="test" />
+			<var name="userEmailAddress" value="${userEmailAddress}" />
+			<var name="userFirstName" value="${userFirstName}" />
+			<var name="userLastName" value="${userLastName}" />
+			<var name="userMiddleName" value="${userMiddleName}" />
+			<var name="userScreenName" value="${userScreenName}" />
+		</execute>
+
+		<execute macro="SOUserBar#addSOSite">
+			<var name="siteDescription" value="${siteDescription}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteType" value="${siteType}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SORss#addRssFeed">
+			<var name="entriesPerFeed" value="${entriesPerFeed}" />
+			<var name="expandedEntriesPerFeed" value="${expandedEntriesPerFeed}" />
+			<var name="feedTitle" value="${feedTitle}" />
+			<var name="feedUrl" value="${feedUrl}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SORss#deleteRssFeed" />
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute function="AssertTextNotPresent" value1="${feedTitle}" />
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress}" />
+			<var name="userLoginFullName" value="${userName}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute function="AssertTextNotPresent" value1="${feedTitle}" />
+	</command>
+
+	<command name="EditDefaultRssFeed" priority="4">
+		<var name="entriesPerFeedEdit" value="5" />
+		<var name="expandedEntriesPerFeedEdit" value="5" />
+		<var name="feedTitleEdit" value="The Guardian" />
+		<var name="feedUrlEdit" value="http://feeds.theguardian.com/theguardian/technology/rss" />
+		<var name="userEmailAddress" value="socialoffice01@liferay.com" />
+		<var name="userFirstName" value="Social01" />
+		<var name="userLastName" value="User01" />
+		<var name="userListName" value="User01, Social01" />
+		<var name="userMiddleName" value="Office01" />
+		<var name="userName" value="Social01 Office01 User01" />
+		<var name="userScreenName" value="socialoffice01" />
+
+		<execute macro="SOUser#addUserWithSORole">
+			<var name="adminEmailAddress" value="test@liferay.com" />
+			<var name="password" value="test" />
+			<var name="userEmailAddress" value="${userEmailAddress}" />
+			<var name="userFirstName" value="${userFirstName}" />
+			<var name="userLastName" value="${userLastName}" />
+			<var name="userMiddleName" value="${userMiddleName}" />
+			<var name="userScreenName" value="${userScreenName}" />
+		</execute>
+
+		<execute macro="SOUserBar#addSOSite">
+			<var name="siteDescription" value="${siteDescription}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteType" value="${siteType}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SORss#editRssFeed">
+			<var name="entriesPerFeed" value="${entriesPerFeedEdit}" />
+			<var name="expandedEntriesPerFeed" value="${expandedEntriesPerFeedEdit}" />
+			<var name="feedRow" value="1" />
+			<var name="feedTitle" value="${feedTitleEdit}" />
+			<var name="feedUrl" value="${feedUrlEdit}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SORss#viewRssFeed">
+			<var name="entriesPerFeed" value="${entriesPerFeedEdit}" />
+			<var name="expandedEntriesPerFeed" value="${expandedEntriesPerFeedEdit}" />
+			<var name="feedTitle" value="${feedTitleEdit}" />
+			<var name="feedUrl" value="${feedUrlEdit}" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress}" />
+			<var name="userLoginFullName" value="${userName}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SORss#viewRssFeed">
+			<var name="entriesPerFeed" value="${entriesPerFeedEdit}" />
+			<var name="expandedEntriesPerFeed" value="${expandedEntriesPerFeedEdit}" />
+			<var name="feedTitle" value="${feedTitleEdit}" />
+			<var name="feedUrl" value="${feedUrlEdit}" />
+		</execute>
+	</command>
+
+	<command name="EditRssFeed" priority="4">
+		<var name="entriesPerFeed" value="3" />
+		<var name="entriesPerFeedEdit" value="2" />
+		<var name="expandedEntriesPerFeed" value="1" />
+		<var name="expandedEntriesPerFeedEdit" value="2" />
+		<var name="feedTitle" value="CNET" />
+		<var name="feedTitleEdit" value="The Guardian" />
+		<var name="feedUrl" value="http://feeds.feedburner.com/cnet/tcoc" />
+		<var name="feedUrlEdit" value="http://feeds.theguardian.com/theguardian/technology/rss" />
+		<var name="userEmailAddress" value="socialoffice01@liferay.com" />
+		<var name="userFirstName" value="Social01" />
+		<var name="userLastName" value="User01" />
+		<var name="userListName" value="User01, Social01" />
+		<var name="userMiddleName" value="Office01" />
+		<var name="userName" value="Social01 Office01 User01" />
+		<var name="userScreenName" value="socialoffice01" />
+
+		<execute macro="SOUser#addUserWithSORole">
+			<var name="adminEmailAddress" value="test@liferay.com" />
+			<var name="password" value="test" />
+			<var name="userEmailAddress" value="${userEmailAddress}" />
+			<var name="userFirstName" value="${userFirstName}" />
+			<var name="userLastName" value="${userLastName}" />
+			<var name="userMiddleName" value="${userMiddleName}" />
+			<var name="userScreenName" value="${userScreenName}" />
+		</execute>
+
+		<execute macro="SOUserBar#addSOSite">
+			<var name="siteDescription" value="${siteDescription}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteType" value="${siteType}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SORss#addRssFeed">
+			<var name="entriesPerFeed" value="${entriesPerFeed}" />
+			<var name="expandedEntriesPerFeed" value="${expandedEntriesPerFeed}" />
+			<var name="feedTitle" value="${feedTitle}" />
+			<var name="feedUrl" value="${feedUrl}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SORss#editRssFeed">
+			<var name="entriesPerFeed" value="${entriesPerFeedEdit}" />
+			<var name="expandedEntriesPerFeed" value="${expandedEntriesPerFeedEdit}" />
+			<var name="feedTitle" value="${feedTitleEdit}" />
+			<var name="feedUrl" value="${feedUrlEdit}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SORss#viewRssFeed">
+			<var name="entriesPerFeed" value="${entriesPerFeedEdit}" />
+			<var name="expandedEntriesPerFeed" value="${expandedEntriesPerFeedEdit}" />
+			<var name="feedTitle" value="${feedTitleEdit}" />
+			<var name="feedUrl" value="${feedUrlEdit}" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress}" />
+			<var name="userLoginFullName" value="${userName}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SORss#viewRssFeed">
+			<var name="entriesPerFeed" value="${entriesPerFeedEdit}" />
+			<var name="expandedEntriesPerFeed" value="${expandedEntriesPerFeedEdit}" />
+			<var name="feedTitle" value="${feedTitleEdit}" />
+			<var name="feedUrl" value="${feedUrlEdit}" />
+		</execute>
+	</command>
+
+	<command name="ImportLARRssFeed" priority="4">
+		<var name="entriesPerFeed" value="3" />
+		<var name="expandedEntriesPerFeed" value="1" />
+		<var name="feedTitle" value="CNET" />
+		<var name="feedUrl" value="http://feeds.feedburner.com/cnet/tcoc" />
+		<var name="larFileName" value="SO_Rss_LAR.site.lar" />
+		<var name="userEmailAddress" value="socialoffice01@liferay.com" />
+		<var name="userFirstName" value="Social01" />
+		<var name="userLastName" value="User01" />
+		<var name="userListName" value="User01, Social01" />
+		<var name="userMiddleName" value="Office01" />
+		<var name="userName" value="Social01 Office01 User01" />
+		<var name="userScreenName" value="socialoffice01" />
+
+		<execute macro="SOUser#addUserWithSORole">
+			<var name="adminEmailAddress" value="test@liferay.com" />
+			<var name="password" value="test" />
+			<var name="userEmailAddress" value="${userEmailAddress}" />
+			<var name="userFirstName" value="${userFirstName}" />
+			<var name="userLastName" value="${userLastName}" />
+			<var name="userMiddleName" value="${userMiddleName}" />
+			<var name="userScreenName" value="${userScreenName}" />
+		</execute>
+
+		<execute macro="SOUserBar#addSOSite">
+			<var name="siteDescription" value="${siteDescription}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteType" value="${siteType}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SORss#addRssFeed">
+			<var name="entriesPerFeed" value="${entriesPerFeed}" />
+			<var name="expandedEntriesPerFeed" value="${expandedEntriesPerFeed}" />
+			<var name="feedTitle" value="${feedTitle}" />
+			<var name="feedUrl" value="${feedUrl}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="Page#gotoPagesCP">
+			<var name="portletName" value="Site Pages" />
+			<var name="siteScopeName" value="${siteName}" />
+		</execute>
+
+		<execute macro="LAR#exportSiteCP">
+			<var name="exportPermissions" value="true" />
+			<var name="larFileName" value="${larFileName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOSite#tearDownCP" />
+
+		<execute macro="SOUserBar#addSOSite">
+			<var name="siteDescription" value="${siteDescription}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteType" value="${siteType}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="LAR#importSiteCP">
+			<var name="importPermissions" value="true" />
+			<var name="larFileName" value="${larFileName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SORss#viewRssFeedConfiguration">
+			<var name="entriesPerFeed" value="${entriesPerFeed}" />
+			<var name="expandedEntriesPerFeed" value="${expandedEntriesPerFeed}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SORss#viewRssFeed">
+			<var name="entriesPerFeed" value="${entriesPerFeed}" />
+			<var name="expandedEntriesPerFeed" value="${expandedEntriesPerFeed}" />
+			<var name="feedTitle" value="${feedTitle}" />
+			<var name="feedUrl" value="${feedUrl}" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress}" />
+			<var name="userLoginFullName" value="${userName}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SORss#viewRssFeed">
+			<var name="entriesPerFeed" value="${entriesPerFeed}" />
+			<var name="expandedEntriesPerFeed" value="${expandedEntriesPerFeed}" />
+			<var name="feedTitle" value="${feedTitle}" />
+			<var name="feedUrl" value="${feedUrl}" />
+		</execute>
+	</command>
+</definition>

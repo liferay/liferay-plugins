@@ -1,0 +1,890 @@
+<definition component-name="social-office-activities">
+	<property name="hook.plugins.includes" value="deploy-listener-hook,portal-compat-hook,so-activities-hook,so-hook" />
+	<property name="portlet.plugins.includes" value="calendar-portlet,chat-portlet,contacts-portlet,events-display-portlet,marketplace-portlet,microblogs-portlet,notifications-portlet,private-messaging-portlet,so-announcements-portlet,so-configurations-portlet,so-portlet,tasks-portlet,wysiwyg-portlet" />
+	<property name="testray.main.component.name" value="Social Office EE" />
+	<property name="theme.plugins.includes" value="so-theme" />
+	<property name="web.plugins.includes" value="resources-importer-web" />
+
+	<var name="adminEmailAddress" value="test@liferay.com" />
+	<var name="adminFirstName" value="Test" />
+	<var name="adminListName" value="Test, Test" />
+	<var name="adminName" value="Test Test" />
+	<var name="adminScreenName" value="test" />
+
+	<set-up>
+		<execute macro="SOUser#firstLoginPG" />
+	</set-up>
+
+	<tear-down>
+		<execute macro="SOSite#tearDownCP" />
+
+		<execute macro="SOUser#tearDownCP" />
+	</tear-down>
+
+	<command name="AddCalendarEventComment" priority="5">
+		<var name="commentContent" value="Calendar Event Comment" />
+		<var name="eventTitle" value="Calendar Event Title" />
+		<var name="eventType" value="Regular" />
+		<var name="siteDescription" value="Open Site Description" />
+		<var name="siteName" value="Open Site Name" />
+		<var name="siteType" value="Open" />
+		<var name="soPage" value="true" />
+
+		<execute macro="SOUserBar#addSOSite">
+			<var name="siteDescription" value="${siteDescription}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteType" value="${siteType}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="Calendar" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="Calendar#enableComments">
+			<var name="calendarName" value="${siteName}" />
+			<var name="calendarType" value="Current Site Calendars" />
+			<var name="site" value="${siteName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="Calendar" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="CalendarNavigator#gotoAddEvent" />
+
+		<execute macro="CalendarEvent#add">
+			<var name="calendarName" value="${siteName}" />
+			<var name="eventTitle" value="${eventTitle}" />
+			<var name="eventType" value="${eventType}" />
+			<var name="pageName" value="Calendar" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+			<var name="user" value="${adminName}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOActivities#addActivityEntryComment">
+			<var name="commentContent" value="${commentContent}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOActivities#viewCalendarActivityEntry">
+			<var name="action" value="Added a new calendar event." />
+			<var name="commentCount" value="1" />
+			<var name="siteName" value="${siteName}" />
+			<var name="userName" value="${adminFirstName}" />
+		</execute>
+
+		<execute macro="SOActivities#viewActivityEntryComment">
+			<var name="commentContent" value="${commentContent}" />
+			<var name="commentCount" value="1" />
+			<var name="userFirstName" value="${adminFirstName}" />
+			<var name="userName" value="${adminName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="Calendar" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="CalendarNavigator#gotoView">
+			<var name="viewType" value="Week" />
+		</execute>
+
+		<execute macro="CalendarEvent#viewDetails">
+			<var name="calendarName" value="${siteName}" />
+			<var name="eventTitle" value="${eventTitle}" />
+			<var name="eventType" value="${eventType}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="Calendar" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="CalendarEvent#viewComment">
+			<var name="calendarName" value="${siteName}" />
+			<var name="eventComment" value="${commentContent}" />
+			<var name="eventTitle" value="${eventTitle}" />
+			<var name="user" value="${adminName}" />
+		</execute>
+	</command>
+
+	<command name="AddCalendarEventComments" priority="5">
+		<var name="commentContent1" value="Calendar Event Comment1" />
+		<var name="commentContent2" value="Calendar Event Comment2" />
+		<var name="commentContent3" value="Calendar Event Comment3" />
+		<var name="eventTitle" value="Calendar Event Title" />
+		<var name="eventType" value="Regular" />
+		<var name="siteDescription" value="Open Site Description" />
+		<var name="siteName" value="Open Site Name" />
+		<var name="siteType" value="Open" />
+		<var name="soPage" value="true" />
+		<var name="userEmailAddress1" value="socialoffice01@liferay.com" />
+		<var name="userEmailAddress2" value="socialoffice02@liferay.com" />
+		<var name="userEmailAddress3" value="socialoffice03@liferay.com" />
+		<var name="userFirstName1" value="Social01" />
+		<var name="userFirstName2" value="Social02" />
+		<var name="userFirstName3" value="Social03" />
+		<var name="userLastName1" value="User01" />
+		<var name="userLastName2" value="User02" />
+		<var name="userLastName3" value="User03" />
+		<var name="userListName1" value="User01, Social01" />
+		<var name="userListName2" value="User02, Social02" />
+		<var name="userListName3" value="User03, Social03" />
+		<var name="userMiddleName1" value="Office01" />
+		<var name="userMiddleName2" value="Office02" />
+		<var name="userMiddleName3" value="Office03" />
+		<var name="userName1" value="Social01 Office01 User01" />
+		<var name="userName2" value="Social02 Office02 User02" />
+		<var name="userName3" value="Social03 Office03 User03" />
+		<var name="userScreenName1" value="socialoffice01" />
+		<var name="userScreenName2" value="socialoffice02" />
+		<var name="userScreenName3" value="socialoffice03" />
+
+		<execute macro="SOUserBar#addSOSite">
+			<var name="siteDescription" value="${siteDescription}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteType" value="${siteType}" />
+		</execute>
+
+		<execute macro="SOUser#addUserWithSORole">
+			<var name="userEmailAddress" value="${userEmailAddress1}" />
+			<var name="userFirstName" value="${userFirstName1}" />
+			<var name="userLastName" value="${userLastName1}" />
+			<var name="userMiddleName" value="${userMiddleName1}" />
+			<var name="userScreenName" value="${userScreenName1}" />
+		</execute>
+
+		<execute macro="SOUser#addUserWithSORole">
+			<var name="userEmailAddress" value="${userEmailAddress2}" />
+			<var name="userFirstName" value="${userFirstName2}" />
+			<var name="userLastName" value="${userLastName2}" />
+			<var name="userMiddleName" value="${userMiddleName2}" />
+			<var name="userScreenName" value="${userScreenName2}" />
+		</execute>
+
+		<execute macro="SOUser#addUserWithSORole">
+			<var name="userEmailAddress" value="${userEmailAddress3}" />
+			<var name="userFirstName" value="${userFirstName3}" />
+			<var name="userLastName" value="${userLastName3}" />
+			<var name="userMiddleName" value="${userMiddleName3}" />
+			<var name="userScreenName" value="${userScreenName3}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="Calendar" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="Calendar#enableViewEventDetailsPermissions">
+			<var name="calendarName" value="${siteName}" />
+			<var name="calendarType" value="Current Site Calendars" />
+			<var name="roleName" value="Site Member" />
+			<var name="site" value="${siteName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="Calendar" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="Calendar#enableComments">
+			<var name="calendarName" value="${siteName}" />
+			<var name="calendarType" value="Current Site Calendars" />
+			<var name="site" value="${siteName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="Calendar" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="CalendarNavigator#gotoAddEvent" />
+
+		<execute macro="CalendarEvent#add">
+			<var name="calendarName" value="${siteName}" />
+			<var name="eventTitle" value="${eventTitle}" />
+			<var name="eventType" value="${eventType}" />
+			<var name="pageName" value="Calendar" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+			<var name="user" value="${adminName}" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress1}" />
+			<var name="userLoginFullName" value="${userName1}" />
+		</execute>
+
+		<execute macro="SOUserBar#joinSOSite">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteType" value="${siteType}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOActivities#addActivityEntryComment">
+			<var name="commentContent" value="${commentContent1}" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress2}" />
+			<var name="userLoginFullName" value="${userName2}" />
+		</execute>
+
+		<execute macro="SOUserBar#joinSOSite">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteType" value="${siteType}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOActivities#addActivityEntryComment">
+			<var name="commentContent" value="${commentContent2}" />
+			<var name="commentCount" value="1" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress3}" />
+			<var name="userLoginFullName" value="${userName3}" />
+		</execute>
+
+		<execute macro="SOUserBar#joinSOSite">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteType" value="${siteType}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOActivities#addActivityEntryComment">
+			<var name="commentContent" value="${commentContent3}" />
+			<var name="commentCount" value="2" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress1}" />
+			<var name="userLoginFullName" value="${userName1}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOActivities#viewCalendarActivityEntry">
+			<var name="action" value="Added a new calendar event." />
+			<var name="commentCount" value="3" />
+			<var name="siteName" value="${siteName}" />
+			<var name="userName" value="${adminName}" />
+		</execute>
+
+		<execute macro="SOActivities#viewActivityEntryComment">
+			<var name="commentContent" value="${commentContent1}" />
+			<var name="commentCount" value="3" />
+			<var name="userFirstName" value="${userFirstName1}" />
+			<var name="userName" value="${userName1}" />
+		</execute>
+
+		<execute macro="SOActivities#viewActivityEntryComment">
+			<var name="commentContent" value="${commentContent2}" />
+			<var name="commentCount" value="3" />
+			<var name="userFirstName" value="${userFirstName2}" />
+			<var name="userName" value="${userName2}" />
+		</execute>
+
+		<execute macro="SOActivities#viewActivityEntryComment">
+			<var name="commentContent" value="${commentContent3}" />
+			<var name="commentCount" value="3" />
+			<var name="userFirstName" value="${userFirstName3}" />
+			<var name="userName" value="${userName3}" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress2}" />
+			<var name="userLoginFullName" value="${userName2}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOActivities#viewCalendarActivityEntry">
+			<var name="action" value="Added a new calendar event." />
+			<var name="commentCount" value="3" />
+			<var name="siteName" value="${siteName}" />
+			<var name="userName" value="${adminName}" />
+		</execute>
+
+		<execute macro="SOActivities#viewActivityEntryComment">
+			<var name="commentContent" value="${commentContent1}" />
+			<var name="commentCount" value="3" />
+			<var name="userFirstName" value="${userFirstName1}" />
+			<var name="userName" value="${userName1}" />
+		</execute>
+
+		<execute macro="SOActivities#viewActivityEntryComment">
+			<var name="commentContent" value="${commentContent2}" />
+			<var name="commentCount" value="3" />
+			<var name="userFirstName" value="${userFirstName2}" />
+			<var name="userName" value="${userName2}" />
+		</execute>
+
+		<execute macro="SOActivities#viewActivityEntryComment">
+			<var name="commentContent" value="${commentContent3}" />
+			<var name="commentCount" value="3" />
+			<var name="userFirstName" value="${userFirstName3}" />
+			<var name="userName" value="${userName3}" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress3}" />
+			<var name="userLoginFullName" value="${userName3}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOActivities#viewCalendarActivityEntry">
+			<var name="action" value="Added a new calendar event." />
+			<var name="commentCount" value="3" />
+			<var name="siteName" value="${siteName}" />
+			<var name="userName" value="${adminName}" />
+		</execute>
+
+		<execute macro="SOActivities#viewActivityEntryComment">
+			<var name="commentContent" value="${commentContent1}" />
+			<var name="commentCount" value="3" />
+			<var name="userFirstName" value="${userFirstName1}" />
+			<var name="userName" value="${userName1}" />
+		</execute>
+
+		<execute macro="SOActivities#viewActivityEntryComment">
+			<var name="commentContent" value="${commentContent2}" />
+			<var name="commentCount" value="3" />
+			<var name="userFirstName" value="${userFirstName2}" />
+			<var name="userName" value="${userName2}" />
+		</execute>
+
+		<execute macro="SOActivities#viewActivityEntryComment">
+			<var name="commentContent" value="${commentContent3}" />
+			<var name="commentCount" value="3" />
+			<var name="userFirstName" value="${userFirstName3}" />
+			<var name="userName" value="${userName3}" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${adminEmailAddress}" />
+			<var name="userLoginFullName" value="${adminName}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOActivities#viewCalendarActivityEntry">
+			<var name="action" value="Added a new calendar event." />
+			<var name="commentCount" value="3" />
+			<var name="siteName" value="${siteName}" />
+			<var name="userName" value="${adminFirstName}" />
+		</execute>
+
+		<execute macro="SOActivities#viewActivityEntryComment">
+			<var name="commentContent" value="${commentContent1}" />
+			<var name="commentCount" value="3" />
+			<var name="userFirstName" value="${userFirstName1}" />
+			<var name="userName" value="${userName1}" />
+		</execute>
+
+		<execute macro="SOActivities#viewActivityEntryComment">
+			<var name="commentContent" value="${commentContent2}" />
+			<var name="commentCount" value="3" />
+			<var name="userFirstName" value="${userFirstName2}" />
+			<var name="userName" value="${userName2}" />
+		</execute>
+
+		<execute macro="SOActivities#viewActivityEntryComment">
+			<var name="commentContent" value="${commentContent3}" />
+			<var name="commentCount" value="3" />
+			<var name="userFirstName" value="${userFirstName3}" />
+			<var name="userName" value="${userName3}" />
+		</execute>
+	</command>
+
+	<command name="DeleteCalendarEventComment" priority="5">
+		<var name="commentContent" value="Calendar Event Comment" />
+		<var name="commentContentEdit" value="Calendar Event Comment Edit" />
+		<var name="eventTitle" value="Calendar Event Title" />
+		<var name="eventType" value="Regular" />
+		<var name="siteDescription" value="Open Site Description" />
+		<var name="siteName" value="Open Site Name" />
+		<var name="siteType" value="Open" />
+		<var name="soPage" value="true" />
+
+		<execute macro="SOUserBar#addSOSite">
+			<var name="siteDescription" value="${siteDescription}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteType" value="${siteType}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="Calendar" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="Calendar#enableComments">
+			<var name="calendarName" value="${siteName}" />
+			<var name="calendarType" value="Current Site Calendars" />
+			<var name="site" value="${siteName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="Calendar" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="CalendarNavigator#gotoAddEvent" />
+
+		<execute macro="CalendarEvent#add">
+			<var name="calendarName" value="${siteName}" />
+			<var name="eventTitle" value="${eventTitle}" />
+			<var name="eventType" value="${eventType}" />
+			<var name="pageName" value="Calendar" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+			<var name="user" value="${adminName}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOActivities#addActivityEntryComment">
+			<var name="commentContent" value="${commentContent}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOActivities#deleteActivityEntryComment">
+			<var name="commentContent" value="${commentContent}" />
+			<var name="commentCount" value="1" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOActivities#viewCalendarActivityEntry">
+			<var name="action" value="Added a new calendar event." />
+			<var name="siteName" value="${siteName}" />
+			<var name="userName" value="${adminFirstName}" />
+		</execute>
+
+		<execute function="AssertTextNotPresent" value1="1 Comment" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="Calendar" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="CalendarNavigator#gotoView">
+			<var name="viewType" value="Week" />
+		</execute>
+
+		<execute macro="CalendarEvent#viewDetails">
+			<var name="calendarName" value="${siteName}" />
+			<var name="eventTitle" value="${eventTitle}" />
+			<var name="eventType" value="${eventType}" />
+		</execute>
+
+		<execute function="AssertTextNotPresent" value1="${commentContent}" />
+	</command>
+
+	<command name="EditCalendarEventComment" priority="5">
+		<var name="commentContent" value="Calendar Event Comment" />
+		<var name="commentContentEdit" value="Calendar Event Comment Edit" />
+		<var name="eventTitle" value="Calendar Event Title" />
+		<var name="eventType" value="Regular" />
+		<var name="siteDescription" value="Open Site Description" />
+		<var name="siteName" value="Open Site Name" />
+		<var name="siteType" value="Open" />
+		<var name="soPage" value="true" />
+
+		<execute macro="SOUserBar#addSOSite">
+			<var name="siteDescription" value="${siteDescription}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteType" value="${siteType}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="Calendar" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="Calendar#enableComments">
+			<var name="calendarName" value="${siteName}" />
+			<var name="calendarType" value="Current Site Calendars" />
+			<var name="site" value="${siteName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="Calendar" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="CalendarNavigator#gotoAddEvent" />
+
+		<execute macro="CalendarEvent#add">
+			<var name="calendarName" value="${siteName}" />
+			<var name="eventTitle" value="${eventTitle}" />
+			<var name="eventType" value="${eventType}" />
+			<var name="pageName" value="Calendar" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+			<var name="user" value="${adminName}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOActivities#addActivityEntryComment">
+			<var name="commentContent" value="${commentContent}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOActivities#editActivityEntryComment">
+			<var name="commentContent" value="${commentContent}" />
+			<var name="commentContentEdit" value="${commentContentEdit}" />
+			<var name="commentCount" value="1" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOActivities#viewCalendarActivityEntry">
+			<var name="action" value="Added a new calendar event." />
+			<var name="commentCount" value="1" />
+			<var name="siteName" value="${siteName}" />
+			<var name="userName" value="${adminFirstName}" />
+		</execute>
+
+		<execute macro="SOActivities#viewActivityEntryComment">
+			<var name="commentContent" value="${commentContentEdit}" />
+			<var name="commentCount" value="1" />
+			<var name="userFirstName" value="${adminFirstName}" />
+			<var name="userName" value="${adminName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="Calendar" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="CalendarNavigator#gotoView">
+			<var name="viewType" value="Week" />
+		</execute>
+
+		<execute macro="CalendarEvent#viewDetails">
+			<var name="calendarName" value="${siteName}" />
+			<var name="eventTitle" value="${eventTitle}" />
+			<var name="eventType" value="${eventType}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="Calendar" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="CalendarEvent#viewComment">
+			<var name="calendarName" value="${siteName}" />
+			<var name="eventComment" value="${commentContentEdit}" />
+			<var name="eventTitle" value="${eventTitle}" />
+			<var name="user" value="${adminName}" />
+		</execute>
+	</command>
+
+	<command name="ViewCalendarEventsActivities" priority="5">
+		<var name="eventTitle1" value="Calendar Event1 Title" />
+		<var name="eventTitle2" value="Calendar Event2 Title" />
+		<var name="eventTitle3" value="Calendar Event3 Title" />
+		<var name="eventType" value="Regular" />
+		<var name="siteDescription" value="Open Site Description" />
+		<var name="siteName" value="Open Site Name" />
+		<var name="siteType" value="Open" />
+		<var name="soPage" value="true" />
+
+		<execute macro="SOUserBar#addSOSite">
+			<var name="siteDescription" value="${siteDescription}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteType" value="${siteType}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="Calendar" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="CalendarNavigator#gotoAddEvent" />
+
+		<execute macro="CalendarEvent#add">
+			<var name="calendarName" value="${siteName}" />
+			<var name="eventTitle" value="${eventTitle1}" />
+			<var name="eventType" value="${eventType}" />
+			<var name="pageName" value="Calendar" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+			<var name="user" value="${adminName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="Calendar" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="CalendarNavigator#gotoAddEvent" />
+
+		<execute macro="CalendarEvent#add">
+			<var name="calendarName" value="${siteName}" />
+			<var name="eventTitle" value="${eventTitle2}" />
+			<var name="eventType" value="${eventType}" />
+			<var name="pageName" value="Calendar" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+			<var name="user" value="${adminName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="Calendar" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="CalendarNavigator#gotoAddEvent" />
+
+		<execute macro="CalendarEvent#add">
+			<var name="calendarName" value="${siteName}" />
+			<var name="eventTitle" value="${eventTitle3}" />
+			<var name="eventType" value="${eventType}" />
+			<var name="pageName" value="Calendar" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+			<var name="user" value="${adminName}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOActivities#viewCalendarActivityEntry">
+			<var name="action" value="Added a new calendar event." />
+			<var name="eventTitle" value="${eventTitle3}" />
+			<var name="row" value="01" />
+			<var name="siteName" value="${siteName}" />
+			<var name="userName" value="${adminFirstName}" />
+		</execute>
+
+		<execute macro="SOActivities#viewCalendarActivityEntry">
+			<var name="action" value="Added a new calendar event." />
+			<var name="eventTitle" value="${eventTitle2}" />
+			<var name="row" value="02" />
+			<var name="siteName" value="${siteName}" />
+			<var name="userName" value="${adminFirstName}" />
+		</execute>
+
+		<execute macro="SOActivities#viewCalendarActivityEntry">
+			<var name="action" value="Added a new calendar event." />
+			<var name="eventTitle" value="${eventTitle1}" />
+			<var name="row" value="03" />
+			<var name="siteName" value="${siteName}" />
+			<var name="userName" value="${adminFirstName}" />
+		</execute>
+	</command>
+
+	<command name="ViewEditedCalendarEventActivities" priority="4">
+		<var name="eventTitle" value="Calendar Event Title" />
+		<var name="eventTitleEdit" value="Calendar Event Title Edit" />
+		<var name="eventType" value="Regular" />
+		<var name="siteDescription" value="Open Site Description" />
+		<var name="siteName" value="Open Site Name" />
+		<var name="siteType" value="Open" />
+		<var name="soPage" value="true" />
+		<var name="userFullName" value="${adminName}" />
+
+		<execute macro="SOUserBar#addSOSite">
+			<var name="siteDescription" value="${siteDescription}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteType" value="${siteType}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="Calendar" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="CalendarNavigator#gotoAddEvent" />
+
+		<execute macro="CalendarEvent#add">
+			<var name="eventTitle" value="${eventTitle}" />
+			<var name="eventType" value="${eventType}" />
+			<var name="pageName" value="Calendar" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute function="Pause" locator1="60000" />
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="Calendar" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="CalendarEvent#edit">
+			<var name="endDateTimeEdit" value="11:59 PM" />
+			<var name="eventTitle" value="${eventTitle}" />
+			<var name="eventTitleEdit" value="${eventTitleEdit}" />
+			<var name="eventType" value="${eventType}" />
+			<var name="pageName" value="Calendar" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+			<var name="startDateTimeEdit" value="11:00 PM" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOActivities#viewCalendarActivityEntry">
+			<var name="action" value="Updated a calendar event." />
+			<var name="eventTitle" value="${eventTitleEdit}" />
+			<var name="row" value="01" />
+			<var name="siteName" value="${siteName}" />
+			<var name="userName" value="${adminFirstName}" />
+		</execute>
+
+		<execute macro="SOActivities#viewActivityEntryTimeStamp">
+			<var name="row" value="01" />
+			<var name="timeStampValue" value="About a minute ago." />
+		</execute>
+
+		<execute macro="SOActivities#viewCalendarActivityEntry">
+			<var name="action" value="Added a new calendar event." />
+			<var name="eventTitle" value="${eventTitleEdit}" />
+			<var name="row" value="02" />
+			<var name="siteName" value="${siteName}" />
+			<var name="userName" value="${adminFirstName}" />
+		</execute>
+	</command>
+
+	<command known-issues="SOS-2314" name="ViewRemoveCalendarViewPermissionsActivities" priority="4">
+		<var name="eventTitle" value="Calendar Event Title" />
+		<var name="eventType" value="Regular" />
+		<var name="pageName" value="Calendar" />
+		<var name="siteDescription" value="Open Site Description" />
+		<var name="siteName" value="Open Site Name" />
+		<var name="siteType" value="Open" />
+		<var name="soPage" value="true" />
+		<var name="userEmailAddress" value="socialoffice01@liferay.com" />
+		<var name="userFirstName" value="Social01" />
+		<var name="userLastName" value="User01" />
+		<var name="userMiddleName" value="Office01" />
+		<var name="userScreenName" value="socialoffice01" />
+
+		<execute macro="SOUser#addUserWithSORole">
+			<var name="userEmailAddress" value="${userEmailAddress}" />
+			<var name="userFirstName" value="${userFirstName}" />
+			<var name="userLastName" value="${userLastName}" />
+			<var name="userMiddleName" value="${userMiddleName}" />
+			<var name="userScreenName" value="${userScreenName}" />
+		</execute>
+
+		<execute macro="SOUserBar#addSOSite">
+			<var name="siteDescription" value="${siteDescription}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteType" value="${siteType}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="CalendarNavigator#gotoAddEvent" />
+
+		<execute macro="CalendarEvent#add">
+			<var name="eventTitle" value="${eventTitle}" />
+			<var name="eventType" value="${eventType}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress}" />
+			<var name="userLoginFullName" value="${userName}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute function="AssertTextEquals" locator1="SOActivities#NO_ACTIVITIES" value1="There are no activities." />
+		<execute function="AssertTextNotPresent" value1="${eventTitle}" />
+	</command>
+</definition>

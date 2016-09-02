@@ -1,0 +1,174 @@
+<definition component-name="social-office-administration">
+	<property name="hook.plugins.includes" value="deploy-listener-hook,portal-compat-hook,so-activities-hook,so-hook" />
+	<property name="portlet.plugins.includes" value="calendar-portlet,chat-portlet,contacts-portlet,events-display-portlet,marketplace-portlet,microblogs-portlet,notifications-portlet,private-messaging-portlet,so-announcements-portlet,so-configurations-portlet,so-portlet,tasks-portlet,wysiwyg-portlet" />
+	<property name="testray.main.component.name" value="Social Office EE" />
+	<property name="theme.plugins.includes" value="so-theme" />
+	<property name="web.plugins.includes" value="kaleo-web,resources-importer-web" />
+
+	<var name="adminEmailAddress" value="test@liferay.com" />
+	<var name="adminFirstName" value="Test" />
+	<var name="adminListName" value="Test, Test" />
+	<var name="adminName" value="Test Test" />
+	<var name="adminScreenName" value="test" />
+	<var name="key_siteName" value="${siteName}" />
+	<var name="pageName" value="Members" />
+	<var name="password" value="test" />
+	<var name="soPage" value="true" />
+
+	<set-up>
+		<execute macro="SOUser#firstLoginPG" />
+	</set-up>
+
+	<tear-down>
+		<execute macro="SOUserBar#tearDownNotifications" />
+
+		<execute macro="SOUser#tearDownCP" />
+
+		<execute macro="SOSite#tearDownCP" />
+
+		<execute macro="Workflow#tearDownPortalWorkflow" />
+	</tear-down>
+
+	<command name="ConfirmMemberInviteSiteByEmailNonUserViaWorkflow" priority="5">
+		<var name="siteDescription" value="Workflow Site Description" />
+		<var name="siteName" value="Workflow Site Name" />
+		<var name="siteType" value="Open" />
+		<var name="userEmailAddress" property-value="email.address.2" />
+		<var name="userFirstName" value="Social01" />
+		<var name="userLastName" value="User01" />
+		<var name="userListName" value="User01, Social01" />
+		<var name="userMiddleName" value="Office01" />
+		<var name="userName" value="Social01 Office01 User01" />
+		<var name="userPassword" property-value="email.password.2" />
+		<var name="userScreenName" value="socialoffice01" />
+
+		<execute macro="SOUserBar#addSOSite">
+			<var name="siteDescription" value="${siteDescription}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteType" value="${siteType}" />
+		</execute>
+
+		<execute macro="Page#gotoCP">
+			<var name="portletName" value="Server Administration" />
+		</execute>
+
+		<execute macro="ServerAdministration#configureMailServerSettings">
+			<var name="userName" property-value="email.address.1" />
+			<var name="userPassword" property-value="email.password.1" />
+		</execute>
+
+		<execute macro="Page#gotoCP">
+			<var name="portletName" value="Workflow" />
+		</execute>
+
+		<execute macro="Workflow#configurePortalWorkflow">
+			<var name="workflowDefinition" value="Single Approver (Version 1)" />
+			<var name="workflowResourceKey" value="RESOURCE_TABLE_USER_SELECT" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOMembersPortlet#inviteMemberByEmail">
+			<var name="userEmailAddress" value="${userEmailAddress}" />
+			<var name="userName" value="${userName}" />
+		</execute>
+
+		<execute macro="SOMembersAdministration#createAccountViaSiteInviteEmail">
+			<var name="adminEmailAddress" value="${adminEmailAddress}" />
+			<var name="adminName" value="${adminName}" />
+			<var name="nonUserInvite" value="true" />
+			<var name="singleApproverWorkflow" value="true" />
+			<var name="siteName" value="${siteName}" />
+			<var name="userEmailAddress" value="${userEmailAddress}" />
+			<var name="userFirstName" value="${userFirstName}" />
+			<var name="userLastName" value="${userLastName}" />
+			<var name="userMiddleName" value="${userMiddleName}" />
+			<var name="userName" value="${userName}" />
+			<var name="userPassword" value="${userPassword}" />
+			<var name="userScreenName" value="${userScreenName}" />
+		</execute>
+
+		<execute macro="User#loginPG">
+			<var name="password" value="test" />
+			<var name="userEmailAddress" value="${adminEmailAddress}" />
+			<var name="userScreenName" value="${userScreenName}" />
+		</execute>
+
+		<execute macro="Page#gotoMyAccount">
+			<var name="portletName" value="My Workflow Tasks" />
+		</execute>
+
+		<execute macro="Workflow#assignToMeTaskByActions">
+			<var name="workflowAssetTitle" value="${userName}" />
+			<var name="workflowAssetType" value="User" />
+			<var name="workflowTask" value="Review" />
+		</execute>
+
+		<execute macro="Page#gotoMyAccount">
+			<var name="portletName" value="My Workflow Tasks" />
+		</execute>
+
+		<execute macro="Workflow#approveTaskByActions">
+			<var name="workflowAssetTitle" value="${userName}" />
+			<var name="workflowAssetType" value="User" />
+			<var name="workflowTask" value="Review" />
+		</execute>
+
+		<execute macro="Page#gotoCP">
+			<var name="portletName" value="Users and Organizations" />
+		</execute>
+
+		<execute macro="User#editPasswordCP">
+			<var name="userEmailAddress" value="${userEmailAddress}" />
+			<var name="userScreenName" value="${userScreenName}" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress}" />
+			<var name="userLoginFullName" value="${userName}" />
+		</execute>
+
+		<execute macro="SOMembersAdministration#confirmMemberInviteByEmail">
+			<var name="adminEmailAddress" value="${adminEmailAddress}" />
+			<var name="adminName" value="${adminName}" />
+			<var name="nonUserInvite" value="true" />
+			<var name="siteName" value="${siteName}" />
+			<var name="userEmailAddress" value="${userEmailAddress}" />
+			<var name="userName" value="${userName}" />
+			<var name="userPassword" value="${userPassword}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute function="AssertTextEquals" locator1="SOSite#SITE_NAME" value1="${siteName}" />
+		<execute function="AssertElementNotPresent" locator1="SOSite#JOIN_SITE_BUTTON" />
+		<execute function="AssertElementNotPresent" locator1="SOSite#REQUEST_MEMBERSHIP_BUTTON" />
+		<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_HOME" value1="Home" />
+		<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_CALENDAR" value1="Calendar" />
+		<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_DOCUMENTS" value1="Documents" />
+		<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_FORUMS" value1="Forums" />
+		<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_BLOGS" value1="Blogs" />
+		<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_WIKI" value1="Wiki" />
+		<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_MEMBERS" value1="Members" />
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${adminEmailAddress}" />
+			<var name="userLoginFullName" value="${adminName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOMembersPortlet#viewMember" />
+	</command>
+</definition>

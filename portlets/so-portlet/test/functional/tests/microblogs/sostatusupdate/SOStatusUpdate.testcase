@@ -1,0 +1,359 @@
+<definition component-name="social-office-microblogs">
+	<property name="hook.plugins.includes" value="deploy-listener-hook,portal-compat-hook,so-activities-hook,so-hook" />
+	<property name="portlet.plugins.includes" value="calendar-portlet,chat-portlet,contacts-portlet,events-display-portlet,marketplace-portlet,microblogs-portlet,notifications-portlet,private-messaging-portlet,so-announcements-portlet,so-configurations-portlet,so-portlet,tasks-portlet,wysiwyg-portlet" />
+	<property name="testray.main.component.name" value="Social Office EE" />
+	<property name="theme.plugins.includes" value="so-theme" />
+	<property name="web.plugins.includes" value="resources-importer-web" />
+
+	<var name="adminEmailAddress" value="test@liferay.com" />
+	<var name="adminFirstName" value="Test" />
+	<var name="adminLastName" value="Test" />
+	<var name="adminListName" value="Test, Test" />
+	<var name="adminName" value="Test Test" />
+	<var name="adminScreenName" value="test" />
+	<var name="soPage" value="true" />
+
+	<set-up>
+		<execute macro="SOUser#firstLoginPG" />
+	</set-up>
+
+	<tear-down>
+		<execute macro="SOUserBar#tearDownNotifications" />
+
+		<execute macro="SOMicroblogs#tearDownMicroblogsEntry" />
+
+		<execute macro="SOUser#tearDownCP" />
+
+		<execute macro="SOSite#tearDownCP" />
+	</tear-down>
+
+	<command name="AddStatusUpdateEntry150Characters" priority="4">
+		<var name="statusUpdateEntryAuthorName" value="${adminName}" />
+		<var name="statusUpdateEntryAuthorScreenName" value="${adminScreenName}" />
+		<var name="statusUpdateEntryContent" value="|||||||||1|||||||||2|||||||||3|||||||||4|||||||||5|||||||||6|||||||||7|||||||||8|||||||||9||||||||10||||||||11||||||||12||||||||13||||||||14||||||||15" />
+
+		<execute macro="SOStatusUpdate#addStatusUpdateEntry">
+			<var name="statusUpdateEntryContent" value="${statusUpdateEntryContent}" />
+		</execute>
+
+		<execute macro="SOMicroblogs#viewOwnMicroblogsEntry">
+			<var name="microblogsEntryAuthorName" value="${statusUpdateEntryAuthorName}" />
+			<var name="microblogsEntryContent" value="${statusUpdateEntryContent}" />
+			<var name="statusUpdateEntryContent" value="${statusUpdateEntryContent}" />
+		</execute>
+	</command>
+
+	<command name="AddStatusUpdateEntry151Characters" priority="4">
+		<var name="statusUpdateEntryAuthorName" value="${adminName}" />
+		<var name="statusUpdateEntryAuthorScreenName" value="${adminScreenName}" />
+		<var name="statusUpdateEntryContent" value="|||||||||1|||||||||2|||||||||3|||||||||4|||||||||5|||||||||6|||||||||7|||||||||8|||||||||9||||||||10||||||||11||||||||12||||||||13||||||||14||||||||15|" />
+
+		<execute macro="SOStatusUpdate#addStatusUpdateEntryInvalid">
+			<var name="statusUpdateEntryContent" value="${statusUpdateEntryContent}" />
+		</execute>
+
+		<execute macro="SOMicroblogs#viewMicroblogsEntryNone">
+			<var name="statusUpdateEntryContent" value="${statusUpdateEntryContent}" />
+		</execute>
+	</command>
+
+	<command name="AddStatusUpdateEntryViewableByConnections" priority="5">
+		<var name="statusUpdateEntryAuthorName" value="${adminName}" />
+		<var name="statusUpdateEntryAuthorScreenName" value="${adminScreenName}" />
+		<var name="statusUpdateEntryContent" value="Microblogs Post" />
+		<var name="userEmailAddress" value="socialoffice01@liferay.com" />
+		<var name="userFirstName" value="Social01" />
+		<var name="userLastName" value="User01" />
+		<var name="userListName" value="User01, Social01" />
+		<var name="userMiddleName" value="Office01" />
+		<var name="userName" value="Social01 Office01 User01" />
+		<var name="userScreenName" value="socialoffice01" />
+
+		<execute macro="SOUser#addUserWithSORole">
+			<var name="adminEmailAddress" value="test@liferay.com" />
+			<var name="password" value="test" />
+			<var name="userEmailAddress" value="socialoffice01@liferay.com" />
+			<var name="userFirstName" value="Social01" />
+			<var name="userLastName" value="User01" />
+			<var name="userMiddleName" value="Office01" />
+			<var name="userScreenName" value="socialoffice01" />
+		</execute>
+
+		<execute macro="SOStatusUpdate#addStatusUpdateEntry">
+			<var name="statusUpdateEntryContent" value="${statusUpdateEntryContent}" />
+			<var name="statusUpdateEntryViewableBy" value="Connections" />
+		</execute>
+
+		<execute macro="SOMicroblogs#viewOwnMicroblogsEntry">
+			<var name="microblogsEntryAuthorName" value="${statusUpdateEntryAuthorName}" />
+			<var name="microblogsEntryContent" value="${statusUpdateEntryContent}" />
+			<var name="statusUpdateEntryContent" value="${statusUpdateEntryContent}" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress}" />
+			<var name="userLoginFullName" value="${userName}" />
+		</execute>
+
+		<execute macro="SOMicroblogs#viewMicroblogsEntryNone" />
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${adminEmailAddress}" />
+			<var name="userLoginFullName" value="${adminName}" />
+		</execute>
+
+		<execute macro="SOContactsCenter#requestToConnect">
+			<var name="userEmailAddress" value="${userEmailAddress}" />
+			<var name="userListName" value="${userListName}" />
+			<var name="userName" value="${userName}" />
+			<var name="userScreenName" value="${userScreenName}" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress}" />
+			<var name="userLoginFullName" value="${userName}" />
+		</execute>
+
+		<execute macro="SOContactsCenter#confirmRequestToConnect">
+			<var name="senderName" value="${adminName}" />
+			<var name="userName" value="${userName}" />
+		</execute>
+
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute function="AssertClick" locator1="SOActivities#NAVIGATION_CONNECTIONS" value1="Connections" />
+
+		<execute macro="SOActivities#viewMicroblogsNotViewableByEveryoneActivityEntry">
+			<var name="microblogsEntryAuthorFirstName" value="${statusUpdateEntryAuthorFirstName}" />
+			<var name="microblogsEntryAuthorName" value="${statusUpdateEntryAuthorName}" />
+			<var name="microblogsEntryContent" value="${statusUpdateEntryContent}" />
+		</execute>
+
+		<execute macro="SOMicroblogs#viewMicroblogsEntryNotViewableByEveryone">
+			<var name="microblogsEntryAuthorFirstName" value="${adminFirstName}" />
+			<var name="microblogsEntryAuthorLastName" value="${adminLastName}" />
+			<var name="microblogsEntryAuthorName" value="${statusUpdateEntryAuthorName}" />
+			<var name="microblogsEntryContent" value="${statusUpdateEntryContent}" />
+		</execute>
+	</command>
+
+	<command name="AddStatusUpdateEntryViewableByEveryone" priority="5">
+		<var name="statusUpdateEntryAuthorName" value="${adminName}" />
+		<var name="statusUpdateEntryAuthorScreenName" value="${adminScreenName}" />
+		<var name="statusUpdateEntryContent" value="Microblogs Post" />
+		<var name="userEmailAddress" value="socialoffice01@liferay.com" />
+		<var name="userFirstName" value="Social01" />
+		<var name="userLastName" value="User01" />
+		<var name="userListName" value="User01, Social01" />
+		<var name="userMiddleName" value="Office01" />
+		<var name="userName" value="Social01 Office01 User01" />
+		<var name="userScreenName" value="socialoffice01" />
+
+		<execute macro="SOUser#addUserWithSORole">
+			<var name="adminEmailAddress" value="test@liferay.com" />
+			<var name="password" value="test" />
+			<var name="userEmailAddress" value="socialoffice01@liferay.com" />
+			<var name="userFirstName" value="Social01" />
+			<var name="userLastName" value="User01" />
+			<var name="userMiddleName" value="Office01" />
+			<var name="userScreenName" value="socialoffice01" />
+		</execute>
+
+		<execute macro="SOStatusUpdate#addStatusUpdateEntry">
+			<var name="statusUpdateEntryContent" value="${statusUpdateEntryContent}" />
+		</execute>
+
+		<execute macro="SOMicroblogs#viewOwnMicroblogsEntry">
+			<var name="microblogsEntryAuthorName" value="${statusUpdateEntryAuthorName}" />
+			<var name="microblogsEntryContent" value="${statusUpdateEntryContent}" />
+			<var name="statusUpdateEntryContent" value="${statusUpdateEntryContent}" />
+		</execute>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute macro="SOStatusUpdate#configureStatusUpdateDisplayPG" />
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress}" />
+			<var name="userLoginFullName" value="${userName}" />
+		</execute>
+
+		<execute macro="SOMicroblogs#viewMicroblogsEntryViewableByEveryone">
+			<var name="microblogsEntryAuthorFirstName" value="${adminFirstName}" />
+			<var name="microblogsEntryAuthorLastName" value="${adminLastName}" />
+			<var name="microblogsEntryAuthorName" value="${statusUpdateEntryAuthorName}" />
+			<var name="microblogsEntryAuthorScreenName" value="${statusUpdateEntryAuthorScreenName}" />
+			<var name="microblogsEntryContent" value="${statusUpdateEntryContent}" />
+		</execute>
+	</command>
+
+	<command name="AddStatusUpdateEntryViewableByFollowers" priority="5">
+		<var name="statusUpdateEntryAuthorName" value="${adminName}" />
+		<var name="statusUpdateEntryAuthorScreenName" value="${adminScreenName}" />
+		<var name="statusUpdateEntryContent" value="Microblogs Post" />
+		<var name="userEmailAddress" value="socialoffice01@liferay.com" />
+		<var name="userFirstName" value="Social01" />
+		<var name="userLastName" value="User01" />
+		<var name="userListName" value="User01, Social01" />
+		<var name="userMiddleName" value="Office01" />
+		<var name="userName" value="Social01 Office01 User01" />
+		<var name="userScreenName" value="socialoffice01" />
+
+		<execute macro="SOUser#addUserWithSORole">
+			<var name="adminEmailAddress" value="test@liferay.com" />
+			<var name="password" value="test" />
+			<var name="userEmailAddress" value="socialoffice01@liferay.com" />
+			<var name="userFirstName" value="Social01" />
+			<var name="userLastName" value="User01" />
+			<var name="userMiddleName" value="Office01" />
+			<var name="userScreenName" value="socialoffice01" />
+		</execute>
+
+		<execute macro="SOStatusUpdate#addStatusUpdateEntry">
+			<var name="statusUpdateEntryContent" value="${statusUpdateEntryContent}" />
+			<var name="statusUpdateEntryViewableBy" value="Followers" />
+		</execute>
+
+		<execute macro="SOMicroblogs#viewOwnMicroblogsEntry">
+			<var name="microblogsEntryAuthorName" value="${statusUpdateEntryAuthorName}" />
+			<var name="microblogsEntryContent" value="${statusUpdateEntryContent}" />
+			<var name="statusUpdateEntryContent" value="${statusUpdateEntryContent}" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress}" />
+			<var name="userLoginFullName" value="${userName}" />
+		</execute>
+
+		<execute macro="SOMicroblogs#viewMicroblogsEntryNone" />
+
+		<execute macro="SOContactsCenter#followUser">
+			<var name="userEmailAddress" value="${adminEmailAddress}" />
+			<var name="userListName" value="${adminListName}" />
+			<var name="userName" value="${adminName}" />
+		</execute>
+
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute function="AssertClick" locator1="SOActivities#NAVIGATION_FOLLOWING" value1="Following" />
+
+		<execute macro="SOActivities#viewMicroblogsNotViewableByEveryoneActivityEntry">
+			<var name="microblogsEntryAuthorFirstName" value="${statusUpdateEntryAuthorFirstName}" />
+			<var name="microblogsEntryAuthorName" value="${statusUpdateEntryAuthorName}" />
+			<var name="microblogsEntryContent" value="${statusUpdateEntryContent}" />
+		</execute>
+
+		<execute macro="SOMicroblogs#viewMicroblogsEntryNotViewableByEveryone">
+			<var name="microblogsEntryAuthorFirstName" value="${adminFirstName}" />
+			<var name="microblogsEntryAuthorLastName" value="${adminLastName}" />
+			<var name="microblogsEntryAuthorName" value="${statusUpdateEntryAuthorName}" />
+			<var name="microblogsEntryContent" value="${statusUpdateEntryContent}" />
+		</execute>
+	</command>
+
+	<command name="ViewStatusUpdateEntrySOUser" priority="5">
+		<var name="microblogsEntryAuthorName" value="Test Test" />
+		<var name="microblogsEntryAuthorScreenName" value="test" />
+		<var name="microblogsEntryCommentContent" value="Microblogs Post Comment" />
+		<var name="microblogsEntryContent" value="Microblogs Post" />
+		<var name="microblogsEntryTagValue" value="Microblogs" />
+		<var name="userEmailAddress" value="socialoffice01@liferay.com" />
+		<var name="userFirstName" value="Social01" />
+		<var name="userLastName" value="User01" />
+		<var name="userListName" value="User01, Social01" />
+		<var name="userMiddleName" value="Office01" />
+		<var name="userName" value="Social01 Office01 User01" />
+		<var name="userScreenName" value="socialoffice01" />
+
+		<execute macro="SOContactsCenter#addConnection">
+			<var name="adminEmailAddress" value="${adminEmailAddress}" />
+			<var name="adminName" value="${adminName}" />
+			<var name="senderName" value="${adminName}" />
+			<var name="userEmailAddress" value="${userEmailAddress}" />
+			<var name="userFirstName" value="${userFirstName}" />
+			<var name="userLastName" value="${userLastName}" />
+			<var name="userListName" value="${userListName}" />
+			<var name="userMiddleName" value="${userMiddleName}" />
+			<var name="userName" value="${userName}" />
+			<var name="userScreenName" value="${userScreenName}" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${adminEmailAddress}" />
+			<var name="userLoginFullName" value="${adminName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="Microblogs" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="SOMicroblogs#addMicroblogsEntryMention">
+			<var name="mentionUserEmailAddress" value="${userEmailAddress}" />
+			<var name="mentionUserFirstName" value="${userFirstName}" />
+			<var name="mentionUserLastName" value="${userLastName}" />
+			<var name="mentionUserListName" value="${userListName}" />
+			<var name="mentionUserMiddleName" value="${userMiddleName}" />
+			<var name="mentionUserName" value="${userName}" />
+			<var name="mentionUserScreenName" value="${userScreenName}" />
+			<var name="microblogsEntryContent" value="${microblogsEntryContent}" />
+		</execute>
+
+		<execute macro="SOMicroblogs#viewOwnMicroblogsEntryMention">
+			<var name="mentionUserEmailAddress" value="${userEmailAddress}" />
+			<var name="mentionUserName" value="${userName}" />
+			<var name="microblogsEntryAuthorName" value="${microblogsEntryAuthorName}" />
+			<var name="microblogsEntryContent" value="${microblogsEntryContent}" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress}" />
+			<var name="userLoginFullName" value="${userName}" />
+		</execute>
+
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute function="Click" locator1="SODashboard#NAVIGATION_MICROBLOGS" />
+
+		<execute macro="SOMicroblogs#addMicroblogsEntryComment">
+			<var name="microblogsEntryAuthorName" value="${microblogsEntryAuthorName}" />
+			<var name="microblogsEntryCommentContent" value="${microblogsEntryCommentContent}" />
+			<var name="microblogsEntryContent" value="${microblogsEntryContent} ${userName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="Microblogs" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="SOMicroblogs#addMicroblogsEntry">
+			<var name="microblogsEntryContent" value="${microblogsEntryContent}" />
+		</execute>
+
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute macro="SOStatusUpdate#configureStatusUpdateDisplayPG" />
+
+		<execute function="AssertTextEquals" locator1="SOStatusUpdate#STATUS_UPDATE_ENTRY_CONTENT" value1="${microblogsEntryContent}" />
+		<execute function="AssertTextNotPresent" value1="Microblogs Post Comment" />
+		<execute function="Click" locator1="SODashboard#NAVIGATION_MICROBLOGS" />
+
+		<execute macro="SOMicroblogs#viewMicroblogsEntryAuthor">
+			<var name="microblogsEntryAuthorName" value="${userName}" />
+			<var name="microblogsEntryContent" value="${microblogsEntryContent}" />
+		</execute>
+
+		<var name="key_microblogsEntryContent" value="${microblogsEntryContent}" />
+
+		<execute function="AssertTextEquals" locator1="SOMicroblogs#MICROBLOGS_ENTRY_CONTENT" value1="${microblogsEntryContent}" />
+
+		<execute macro="SOMicroblogs#viewMicroblogsEntryCommentLink" />
+
+		<execute function="AssertTextEquals" locator1="xpath=(//div[@class='user-name']/span/a)[2]" value1="${adminName}" />
+		<execute function="AssertTextEquals" locator1="xpath=(//div[@class='content'])[2]" value1="${microblogsEntryContent} ${userName}" />
+		<execute function="AssertTextEquals" locator1="xpath=(//span[@class='action comment']/a)[2]" value1="1 Comment" />
+		<execute function="AssertTextEquals" locator1="//span[@class='action repost']/a" value1="Repost" />
+	</command>
+</definition>
