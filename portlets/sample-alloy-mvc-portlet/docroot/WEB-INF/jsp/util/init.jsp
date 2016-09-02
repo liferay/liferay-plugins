@@ -21,12 +21,15 @@ page import="com.liferay.portal.kernel.dao.search.SearchContainer" %><%@
 page import="com.liferay.portal.kernel.util.OrderByComparator" %><%@
 page import="com.liferay.portal.kernel.util.OrderByComparatorFactoryUtil" %><%@
 page import="com.liferay.portal.kernel.util.ParamUtil" %><%@
+page import="com.liferay.portal.kernel.util.StringUtil" %><%@
 page import="com.liferay.portal.kernel.util.Validator" %><%@
 page import="com.liferay.samplealloymvc.model.SAMTodoItem" %><%@
 page import="com.liferay.samplealloymvc.model.SAMTodoList" %><%@
 page import="com.liferay.samplealloymvc.model.impl.SAMTodoListModelImpl" %><%@
+page import="com.liferay.samplealloymvc.service.SAMTodoItemLocalServiceUtil" %><%@
 page import="com.liferay.samplealloymvc.service.SAMTodoListLocalServiceUtil" %>
 
 <%@ page import="java.util.List" %>
 
+<%@ include file="/WEB-INF/jsp/util/todo_item_constants.jspf" %>
 <%@ include file="/WEB-INF/jsp/util/portlet_keys.jspf" %>
