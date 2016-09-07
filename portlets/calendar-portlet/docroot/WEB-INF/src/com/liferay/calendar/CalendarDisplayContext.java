@@ -45,47 +45,48 @@ public class CalendarDisplayContext {
 		for (long calendarId : calendarIds) {
 			Calendar calendar = CalendarServiceUtil.fetchCalendar(calendarId);
 
-			if (calendar != null) {
-				CalendarResource calendarResource =
-					calendar.getCalendarResource();
+			if (calendar == null) {
+				continue;
+			}
+			CalendarResource calendarResource =	calendar.getCalendarResource();
 
-				if (calendarResource.isActive()) {
-					Group scopeGroup = _themeDisplay.getScopeGroup();
-					Group calendarGroup = GroupLocalServiceUtil.getGroup(
-						calendar.getGroupId());
+			if (!calendarResource.isActive()) {
+				continue;
+			}
 
-					if (calendarGroup.isStagingGroup() &&
-						(!scopeGroup.isStagingGroup() ||
-						 (scopeGroup.getGroupId() !=
-							 calendarGroup.getGroupId()))) {
+			Group scopeGroup = _themeDisplay.getScopeGroup();
+			Group calendarGroup = GroupLocalServiceUtil.getGroup(
+				calendar.getGroupId());
 
-						calendar =
-							CalendarLocalServiceUtil.fetchCalendarByUuidAndGroupId(
-								calendar.getUuid(),
-									calendarGroup.getLiveGroupId());
+			if (calendarGroup.isStagingGroup() &&
+				(!scopeGroup.isStagingGroup() ||
+					(scopeGroup.getGroupId() != calendarGroup.getGroupId()))) {
 
-						if (calendar == null) {
-							continue;
-						}
-					}
-					else if (scopeGroup.isStagingGroup() &&
-							 (scopeGroup.getLiveGroupId() ==
-								 calendarGroup.getGroupId())) {
+				calendar =
+					CalendarLocalServiceUtil.fetchCalendarByUuidAndGroupId(
+						calendar.getUuid(),	calendarGroup.getLiveGroupId());
 
-						Group stagingGroup = calendarGroup.getStagingGroup();
-
-						calendar =
-							CalendarLocalServiceUtil.fetchCalendarByUuidAndGroupId(
-								calendar.getUuid(), stagingGroup.getGroupId());
-					}
-
-					otherCalendars.add(calendar);
+				if (calendar == null) {
+					continue;
 				}
 			}
+			else if (scopeGroup.isStagingGroup() &&
+					 (scopeGroup.getLiveGroupId() == 
+						 calendarGroup.getGroupId())) {
+
+				Group stagingGroup = calendarGroup.getStagingGroup();
+
+				calendar =
+					CalendarLocalServiceUtil.fetchCalendarByUuidAndGroupId(
+						calendar.getUuid(), stagingGroup.getGroupId());
+			}
+
+			otherCalendars.add(calendar);
 		}
 
 		return otherCalendars;
 	}
+
 	private final ThemeDisplay _themeDisplay;
  
  } 
