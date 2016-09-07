@@ -20,8 +20,8 @@
 taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 
 <%@ page import="com.liferay.portal.kernel.util.HttpUtil" %><%@
-page import="com.liferay.portal.kernel.util.PortalUtil" %><%@
-page import="com.liferay.portal.kernel.util.StringBundler" %>
+page import="com.liferay.portal.kernel.util.StringBundler" %><%@
+page import="com.liferay.portal.util.PortalUtil" %>
 
 <liferay-theme:defineObjects />
 
