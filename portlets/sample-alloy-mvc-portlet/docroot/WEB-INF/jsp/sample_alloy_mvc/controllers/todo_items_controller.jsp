@@ -25,9 +25,9 @@ public static class AlloyControllerImpl extends BaseAlloyControllerImpl {
 	}
 
 	public void add() throws Exception {
-		SAMTodoItem samTodoItem = SAMTodoItemLocalServiceUtil.createSAMTodoItem(0);
-
 		_validateAdd();
+
+		SAMTodoItem samTodoItem = SAMTodoItemLocalServiceUtil.createSAMTodoItem(0);
 
 		updateModel(samTodoItem, "status", 0);
 
@@ -136,9 +136,9 @@ public static class AlloyControllerImpl extends BaseAlloyControllerImpl {
 		List<SAMTodoItem> samTodoItems = alloyServiceInvoker.executeDynamicQuery(new Object[] {"userId", themeDisplay.getUserId(), "description", description});
 
 		if (!samTodoItems.isEmpty()) {
-			long samTodoItemId = ParamUtil.getLong(request, "samTodoItemId");
-
 			SAMTodoItem samTodoItem = samTodoItems.get(0);
+
+			long samTodoItemId = ParamUtil.getLong(request, "samTodoItemId");
 
 			if (samTodoItem.getSamTodoItemId() != samTodoItemId) {
 				throw new AlloyException("the-todo-item-already-exists", false);
