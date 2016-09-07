@@ -1063,8 +1063,12 @@ public class CalendarPortlet extends MVCPortlet {
 		return false;
 	}
 
-	protected Hits search(long companyId, long userId, String keywords)
+	protected Hits search(ThemeDisplay themeDisplay, String keywords)
 		throws Exception {
+
+		long companyId = themeDisplay.getCompanyId();
+		Group group = themeDisplay.getScopeGroup();
+		long userId = themeDisplay.getUserId();
 
 		SearchContext searchContext = new SearchContext();
 
@@ -1073,6 +1077,7 @@ public class CalendarPortlet extends MVCPortlet {
 		searchContext.setCompanyId(companyId);
 		searchContext.setEnd(SearchContainer.DEFAULT_DELTA);
 		searchContext.setGroupIds(new long[0]);
+		searchContext.setIncludeStagingGroups(group.isStagingGroup());
 		searchContext.setStart(0);
 		searchContext.setUserId(userId);
 
@@ -1230,8 +1235,7 @@ public class CalendarPortlet extends MVCPortlet {
 
 		Set<Calendar> calendarsSet = new LinkedHashSet<Calendar>();
 
-		Hits hits = search(
-			themeDisplay.getCompanyId(), themeDisplay.getUserId(), keywords);
+		Hits hits = search(themeDisplay, keywords);
 
 		for (Document document : hits.getDocs()) {
 			long calendarId = GetterUtil.getLong(
