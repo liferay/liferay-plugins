@@ -37,6 +37,55 @@ public class CalendarDisplayContext {
 		_themeDisplay = themeDisplay;
 	}
  
+	public List<Calendar> getOtherCalendars(long[] calendarIds)
+		throws PortalException, SystemException {
+
+		List<Calendar> otherCalendars = new ArrayList<Calendar>();
+
+		for (long calendarId : calendarIds) {
+			Calendar calendar = CalendarServiceUtil.fetchCalendar(calendarId);
+
+			if (calendar != null) {
+				CalendarResource calendarResource =
+					calendar.getCalendarResource();
+
+				if (calendarResource.isActive()) {
+					Group scopeGroup = _themeDisplay.getScopeGroup();
+					Group calendarGroup = GroupLocalServiceUtil.getGroup(
+						calendar.getGroupId());
+
+					if (calendarGroup.isStagingGroup() &&
+						(!scopeGroup.isStagingGroup() ||
+						 (scopeGroup.getGroupId() !=
+							 calendarGroup.getGroupId()))) {
+
+						calendar =
+							CalendarLocalServiceUtil.fetchCalendarByUuidAndGroupId(
+								calendar.getUuid(),
+									calendarGroup.getLiveGroupId());
+
+						if (calendar == null) {
+							continue;
+						}
+					}
+					else if (scopeGroup.isStagingGroup() &&
+							 (scopeGroup.getLiveGroupId() ==
+								 calendarGroup.getGroupId())) {
+
+						Group stagingGroup = calendarGroup.getStagingGroup();
+
+						calendar =
+							CalendarLocalServiceUtil.fetchCalendarByUuidAndGroupId(
+								calendar.getUuid(), stagingGroup.getGroupId());
+					}
+
+					otherCalendars.add(calendar);
+				}
+			}
+		}
+
+		return otherCalendars;
+	}
 	private final ThemeDisplay _themeDisplay;
  
  } 

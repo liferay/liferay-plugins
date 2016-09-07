@@ -38,30 +38,10 @@ List<Calendar> otherCalendars = new ArrayList<Calendar>();
 
 long[] calendarIds = StringUtil.split(SessionClicks.get(request, "calendar-portlet-other-calendars", StringPool.BLANK), 0L);
 
-for (long calendarId : calendarIds) {
-	Calendar calendar = CalendarServiceUtil.fetchCalendar(calendarId);
+CalendarDisplayContext calendarDisplayContext = (CalendarDisplayContext)renderRequest.getAttribute(WebKeys.PORTLET_DISPLAY_CONTEXT);
 
-	if (calendar != null) {
-		CalendarResource calendarResource = calendar.getCalendarResource();
-
-		if (calendarResource.isActive()) {
-			Group scopeGroup = themeDisplay.getScopeGroup();
-			Group calendarGroup = GroupLocalServiceUtil.getGroup(calendar.getGroupId());
-
-			if (calendarGroup.isStagingGroup() && (!scopeGroup.isStagingGroup() || (scopeGroup.getGroupId() != calendarGroup.getGroupId()))) {
-				calendar = CalendarLocalServiceUtil.fetchCalendarByUuidAndGroupId(calendar.getUuid(), calendarGroup.getLiveGroupId());
-				if (calendar == null) {
-					continue;
-				}
-			}
-			else if (scopeGroup.isStagingGroup() && (scopeGroup.getLiveGroupId() == calendarGroup.getGroupId())) {
-				Group stagingGroup = calendarGroup.getStagingGroup();
-
-				calendar = CalendarLocalServiceUtil.fetchCalendarByUuidAndGroupId(calendar.getUuid(), stagingGroup.getGroupId());
-			}
-			otherCalendars.add(calendar);
-		}
-	}
+if (calendarDisplayContext != null) {
+	otherCalendars = calendarDisplayContext.getOtherCalendars(calendarIds);
 }
 
 Calendar defaultCalendar = null;
