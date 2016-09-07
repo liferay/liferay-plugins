@@ -39,11 +39,11 @@ public static class AlloyControllerImpl extends BaseAlloyControllerImpl {
 	}
 
 	public void create() throws Exception {
+		renderRequest.setAttribute("SAMTodoItemConstants", getConstantsBean(SAMTodoItemConstants.class));
+
 		SAMTodoItem samTodoItem = SAMTodoItemLocalServiceUtil.createSAMTodoItem(0);
 
 		renderRequest.setAttribute("samTodoItem", samTodoItem);
-
-		renderRequest.setAttribute("SAMTodoItemConstants", getConstantsBean(SAMTodoItemConstants.class));
 
 		long samTodoListId = ParamUtil.getLong(request, "samTodoListId");
 
@@ -69,9 +69,9 @@ public static class AlloyControllerImpl extends BaseAlloyControllerImpl {
 
 		_validateEdit(samTodoItem);
 
-		renderRequest.setAttribute("samTodoItem", samTodoItem);
-
 		renderRequest.setAttribute("SAMTodoItemConstants", getConstantsBean(SAMTodoItemConstants.class));
+
+		renderRequest.setAttribute("samTodoItem", samTodoItem);
 
 		renderRequest.setAttribute("samTodoListId", samTodoItem.getSamTodoListId());
 
@@ -101,11 +101,10 @@ public static class AlloyControllerImpl extends BaseAlloyControllerImpl {
 
 		_validateView(samTodoItem);
 
-		renderRequest.setAttribute("samTodoItem", samTodoItem);
-
 		renderRequest.setAttribute("SAMTodoItemConstants", getConstantsBean(SAMTodoItemConstants.class));
-
 		renderRequest.setAttribute("SAMTodoItemConstantsMethods", new SAMTodoItemConstants());
+
+		renderRequest.setAttribute("samTodoItem", samTodoItem);
 
 		SAMTodoList samTodoList = SAMTodoListLocalServiceUtil.fetchSAMTodoList(samTodoItem.getSamTodoListId());
 
