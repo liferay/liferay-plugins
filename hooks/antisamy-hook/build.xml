@@ -22,7 +22,7 @@
 
 				<mirrors-get
 					dest="docroot/WEB-INF/classes/sanitizer-configuration.xml"
-					src="http://owaspantisamy.googlecode.com/files/antisamy-ebay-1.4.4.xml"
+					src="https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/owaspantisamy/antisamy-ebay-1.4.4.xml"
 				/>
 
 				<replace file="docroot/WEB-INF/classes/sanitizer-configuration.xml">
