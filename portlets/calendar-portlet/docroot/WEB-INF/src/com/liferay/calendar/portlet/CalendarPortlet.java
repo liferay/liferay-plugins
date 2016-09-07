@@ -1246,6 +1246,20 @@ public class CalendarPortlet extends MVCPortlet {
 			CalendarResource calendarResource = calendar.getCalendarResource();
 
 			if (calendarResource.isActive()) {
+				Group group = GroupLocalServiceUtil.getGroup(
+						calendar.getGroupId());
+
+				if (group.hasStagingGroup()) {
+					Group stagingGroup = group.getStagingGroup();
+
+					long stagingGroupId = stagingGroup.getGroupId();
+
+					if (stagingGroupId == themeDisplay.getScopeGroupId()) {
+						calendar = CalendarLocalServiceUtil.
+							fetchCalendarByUuidAndGroupId(
+								calendar.getUuid(), stagingGroupId);
+					}
+				}
 				calendarsSet.add(calendar);
 			}
 		}
