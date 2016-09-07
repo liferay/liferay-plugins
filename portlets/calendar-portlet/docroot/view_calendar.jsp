@@ -45,6 +45,12 @@ for (long calendarId : calendarIds) {
 		CalendarResource calendarResource = calendar.getCalendarResource();
 
 		if (calendarResource.isActive()) {
+			Group scopeGroup = themeDisplay.getScopeGroup();
+			Group calendarGroup = GroupLocalServiceUtil.getGroup(calendar.getGroupId());
+
+			if (calendarGroup.isStagingGroup() && !scopeGroup.isStagingGroup()) {
+				calendar = CalendarLocalServiceUtil.fetchCalendarByUuidAndGroupId(calendar.getUuid(), calendarGroup.getLiveGroupId());
+			}
 			otherCalendars.add(calendar);
 		}
 	}
