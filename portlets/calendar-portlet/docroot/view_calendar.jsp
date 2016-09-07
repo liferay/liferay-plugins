@@ -48,7 +48,7 @@ for (long calendarId : calendarIds) {
 			Group scopeGroup = themeDisplay.getScopeGroup();
 			Group calendarGroup = GroupLocalServiceUtil.getGroup(calendar.getGroupId());
 
-			if (calendarGroup.isStagingGroup() && !scopeGroup.isStagingGroup()) {
+			if (calendarGroup.isStagingGroup() && (!scopeGroup.isStagingGroup() || (scopeGroup.getGroupId() != calendarGroup.getGroupId()))) {
 				calendar = CalendarLocalServiceUtil.fetchCalendarByUuidAndGroupId(calendar.getUuid(), calendarGroup.getLiveGroupId());
 			}
 			otherCalendars.add(calendar);
