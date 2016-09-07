@@ -16,6 +16,7 @@ package com.liferay.calendar.portlet;
 
 import com.liferay.calendar.CalendarBookingDurationException;
 import com.liferay.calendar.CalendarBookingRecurrenceException;
+import com.liferay.calendar.CalendarDisplayContext;
 import com.liferay.calendar.CalendarNameException;
 import com.liferay.calendar.CalendarResourceCodeException;
 import com.liferay.calendar.CalendarResourceNameException;
@@ -251,6 +252,7 @@ public class CalendarPortlet extends MVCPortlet {
 		throws IOException, PortletException {
 
 		try {
+			setRenderRequestAttributes(renderRequest);
 			getCalendar(renderRequest);
 			getCalendarBooking(renderRequest);
 			getCalendarResource(renderRequest);
@@ -1377,6 +1379,17 @@ public class CalendarPortlet extends MVCPortlet {
 		jsonObject.put("success", false);
 
 		writeJSON(resourceRequest, resourceResponse, jsonObject);
+	}
+
+	protected void setRenderRequestAttributes(RenderRequest renderRequest) {
+		ThemeDisplay themeDisplay = (ThemeDisplay)renderRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		CalendarDisplayContext calendarDisplayContext =
+			new CalendarDisplayContext(themeDisplay);
+
+		renderRequest.setAttribute(
+			WebKeys.PORTLET_DISPLAY_CONTEXT, calendarDisplayContext);
 	}
 
 	protected void subscribeToComments(
