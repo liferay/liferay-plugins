@@ -46,6 +46,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.lar.ExportImportThreadLocal;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.sanitizer.Sanitizer;
@@ -833,8 +834,10 @@ public class CalendarBookingLocalServiceImpl
 
 		calendarBookingPersistence.update(calendarBooking);
 
-		addChildCalendarBookings(
-			calendarBooking, childCalendarIds, serviceContext);
+		if (!ExportImportThreadLocal.isImportInProcess()) {
+			addChildCalendarBookings(
+				calendarBooking, childCalendarIds, serviceContext);
+		}
 
 		// Asset
 
