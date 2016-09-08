@@ -55,30 +55,42 @@ public class CalendarDisplayContext {
 			}
 
 			Group scopeGroup = _themeDisplay.getScopeGroup();
+
+			long scopeGroupId = scopeGroup.getGroupId();
+			long scopeLiveGroupId = scopeGroup.getLiveGroupId();
+
 			Group calendarGroup = GroupLocalServiceUtil.getGroup(
 				calendar.getGroupId());
 
-			if (calendarGroup.isStagingGroup() &&
-				(!scopeGroup.isStagingGroup() ||
-					(scopeGroup.getGroupId() != calendarGroup.getGroupId()))) {
+			long calendarGroupId = calendarGroup.getGroupId();
 
-				calendar =
-					CalendarLocalServiceUtil.fetchCalendarByUuidAndGroupId(
-						calendar.getUuid(),	calendarGroup.getLiveGroupId());
-
-				if (calendar == null) {
-					continue;
+			if (scopeGroup.isStagingGroup()) {
+				if (calendarGroup.isStagingGroup()) {
+					if (scopeGroupId != calendarGroupId) {
+						calendar = CalendarLocalServiceUtil.
+							fetchCalendarByUuidAndGroupId(
+								calendar.getUuid(),	
+									calendarGroup.getLiveGroupId());
+					}
+				}
+				else if (scopeLiveGroupId == calendarGroupId) {
+					Group stagingGroup = calendarGroup.getStagingGroup();
+					calendar = CalendarLocalServiceUtil.
+						fetchCalendarByUuidAndGroupId(
+							calendar.getUuid(),
+								stagingGroup.getLiveGroupId());
+					
 				}
 			}
-			else if (scopeGroup.isStagingGroup() &&
-					 (scopeGroup.getLiveGroupId() == 
-						 calendarGroup.getGroupId())) {
-
-				Group stagingGroup = calendarGroup.getStagingGroup();
-
-				calendar =
-					CalendarLocalServiceUtil.fetchCalendarByUuidAndGroupId(
-						calendar.getUuid(), stagingGroup.getGroupId());
+				
+			else if (calendarGroup.isStagingGroup()) {
+				calendar = CalendarLocalServiceUtil.
+					fetchCalendarByUuidAndGroupId(
+						calendar.getUuid(), calendarGroup.getLiveGroupId());
+					
+			}
+			if (calendar == null) {
+				continue;
 			}
 
 			otherCalendars.add(calendar);
