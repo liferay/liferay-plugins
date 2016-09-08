@@ -267,13 +267,7 @@ public class BundleServletContext
 			return _contextPath;
 		}
 
-		StringBundler sb = new StringBundler(5);
-
-		String contextPath = super.getContextPath();
-
-		if (!contextPath.equals(StringPool.SLASH)) {
-			sb.append(contextPath);
-		}
+		StringBundler sb = new StringBundler(4);
 
 		sb.append(PortalUtil.getPathContext());
 		sb.append(Portal.PATH_MODULE);
