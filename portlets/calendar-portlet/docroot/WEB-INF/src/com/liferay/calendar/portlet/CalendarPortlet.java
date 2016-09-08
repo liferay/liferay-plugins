@@ -1068,20 +1068,19 @@ public class CalendarPortlet extends MVCPortlet {
 	protected Hits search(ThemeDisplay themeDisplay, String keywords)
 		throws Exception {
 
-		long companyId = themeDisplay.getCompanyId();
-		Group group = themeDisplay.getScopeGroup();
-		long userId = themeDisplay.getUserId();
-
 		SearchContext searchContext = new SearchContext();
 
 		searchContext.setAttribute(Field.NAME, keywords);
 		searchContext.setAttribute("resourceName", keywords);
-		searchContext.setCompanyId(companyId);
+		searchContext.setCompanyId(themeDisplay.getCompanyId());
 		searchContext.setEnd(SearchContainer.DEFAULT_DELTA);
 		searchContext.setGroupIds(new long[0]);
+
+		Group group = themeDisplay.getScopeGroup();
+
 		searchContext.setIncludeStagingGroups(group.isStagingGroup());
 		searchContext.setStart(0);
-		searchContext.setUserId(userId);
+		searchContext.setUserId(themeDisplay.getUserId());
 
 		Indexer indexer = CalendarSearcher.getInstance();
 
