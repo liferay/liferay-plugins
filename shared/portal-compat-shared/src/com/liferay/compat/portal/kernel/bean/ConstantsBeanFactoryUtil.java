@@ -175,7 +175,6 @@ public class ConstantsBeanFactoryUtil {
 			methodVisitor.visitInsn(returnOpcode);
 
 			methodVisitor.visitMaxs(fieldType.getSize(), 1);
-
 			methodVisitor.visitEnd();
 		}
 
@@ -222,7 +221,6 @@ public class ConstantsBeanFactoryUtil {
 
 			methodVisitor.visitMaxs(
 				stackIndex + returnType.getSize(), parameterTypes.length + 1);
-
 			methodVisitor.visitEnd();
 		}
 
