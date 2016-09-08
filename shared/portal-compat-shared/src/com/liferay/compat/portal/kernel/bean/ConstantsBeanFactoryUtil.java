@@ -12,8 +12,9 @@
  * details.
  */
 
-package com.liferay.compat.portal.kernel.bean;
+package com.liferay.portal.kernel.bean;
 
+import com.liferay.portal.kernel.bean.ConstantsBeanFactory;
 import com.liferay.portal.kernel.memory.EqualityWeakReference;
 import com.liferay.portal.kernel.util.ReflectionUtil;
 
@@ -34,7 +35,6 @@ import org.objectweb.asm.Type;
 
 /**
  * @author Shuyang Zhou
- * @author Ethan Bustad
  */
 public class ConstantsBeanFactoryUtil {
 
@@ -175,52 +175,6 @@ public class ConstantsBeanFactoryUtil {
 			methodVisitor.visitInsn(returnOpcode);
 
 			methodVisitor.visitMaxs(fieldType.getSize(), 1);
-			methodVisitor.visitEnd();
-		}
-
-		Method[] methods = constantsClass.getMethods();
-
-		for (Method method : methods) {
-			if (!Modifier.isStatic(method.getModifiers())) {
-				continue;
-			}
-
-			Class<?>[] parameterClasses = method.getParameterTypes();
-
-			Type[] parameterTypes = new Type[parameterClasses.length];
-
-			for (int i = 0; i < parameterClasses.length; i++) {
-				parameterTypes[i] = Type.getType(parameterClasses[i]);
-			}
-
-			String methodDescriptor = Type.getMethodDescriptor(
-				Type.getType(method.getReturnType()), parameterTypes);
-
-			methodVisitor = classWriter.visitMethod(
-				Opcodes.ACC_PUBLIC | Opcodes.ACC_STATIC, method.getName(),
-				methodDescriptor, null, null);
-
-			methodVisitor.visitCode();
-
-			int stackIndex = 0;
-
-			for (Type parameterType : parameterTypes) {
-				methodVisitor.visitVarInsn(
-					parameterType.getOpcode(Opcodes.ILOAD), stackIndex);
-
-				stackIndex += parameterType.getSize();
-			}
-
-			methodVisitor.visitMethodInsn(
-				Opcodes.INVOKESTATIC, constantsClassBinaryName,
-				method.getName(), methodDescriptor);
-
-			Type returnType = Type.getType(method.getReturnType());
-
-			methodVisitor.visitInsn(returnType.getOpcode(Opcodes.IRETURN));
-
-			methodVisitor.visitMaxs(
-				stackIndex + returnType.getSize(), parameterTypes.length + 1);
 			methodVisitor.visitEnd();
 		}
 
