@@ -38,6 +38,7 @@ import org.objectweb.asm.Type;
  */
 public class ConstantsBeanFactoryUtil {
 
+	@Override
 	public Object getConstantsBean(Class<?> constantsClass) {
 		Reference<?> constantsBeanReference = constantsBeans.get(
 			new EqualityWeakReference<Class<?>>(constantsClass));
@@ -137,45 +138,43 @@ public class ConstantsBeanFactoryUtil {
 
 		Field[] fields = constantsClass.getFields();
 
-		for (Field field : fields) {
-			if (!Modifier.isStatic(field.getModifiers())) {
-				continue;
+		for (Field field :fields) {
+			if (Modifier.isStatic(field.getModifiers())) {
+				Class<?> fieldClass = field.getType();
+
+				Type fieldType = Type.getType(fieldClass);
+
+				methodVisitor = classWriter.visitMethod(
+					Opcodes.ACC_PUBLIC, "get" + field.getName(),
+					"()" + fieldType.getDescriptor(), null, null);
+
+				methodVisitor.visitCode();
+				methodVisitor.visitFieldInsn(
+					Opcodes.GETSTATIC, constantsClassBinaryName,
+					field.getName(), fieldType.getDescriptor());
+
+				int returnOpcode = Opcodes.ARETURN;
+
+				if (fieldClass.isPrimitive()) {
+					if (fieldClass == Float.TYPE) {
+						returnOpcode = Opcodes.FRETURN;
+					}
+					else if (fieldClass == Double.TYPE) {
+						returnOpcode = Opcodes.DRETURN;
+					}
+					else if (fieldClass == Long.TYPE) {
+						returnOpcode = Opcodes.LRETURN;
+					}
+					else {
+						returnOpcode = Opcodes.IRETURN;
+					}
+				}
+
+				methodVisitor.visitInsn(returnOpcode);
+
+				methodVisitor.visitMaxs(fieldType.getSize(), 1);
+				methodVisitor.visitEnd();
 			}
-
-			Class<?> fieldClass = field.getType();
-
-			Type fieldType = Type.getType(fieldClass);
-
-			methodVisitor = classWriter.visitMethod(
-				Opcodes.ACC_PUBLIC, "get" + field.getName(),
-				"()" + fieldType.getDescriptor(), null, null);
-
-			methodVisitor.visitCode();
-			methodVisitor.visitFieldInsn(
-				Opcodes.GETSTATIC, constantsClassBinaryName, field.getName(),
-				fieldType.getDescriptor());
-
-			int returnOpcode = Opcodes.ARETURN;
-
-			if (fieldClass.isPrimitive()) {
-				if (fieldClass == Float.TYPE) {
-					returnOpcode = Opcodes.FRETURN;
-				}
-				else if (fieldClass == Double.TYPE) {
-					returnOpcode = Opcodes.DRETURN;
-				}
-				else if (fieldClass == Long.TYPE) {
-					returnOpcode = Opcodes.LRETURN;
-				}
-				else {
-					returnOpcode = Opcodes.IRETURN;
-				}
-			}
-
-			methodVisitor.visitInsn(returnOpcode);
-
-			methodVisitor.visitMaxs(fieldType.getSize(), 1);
-			methodVisitor.visitEnd();
 		}
 
 		classWriter.visitEnd();
