@@ -75,7 +75,10 @@ public class TikaServletContextListener
 	@Override
 	protected void doPortalInit() {
 		ClassLoader portalClassLoader = PortalClassLoaderUtil.getClassLoader();
-		ClassLoader portletClassLoader = getClass().getClassLoader();
+
+		Class<?> clazz = getClass();
+
+		ClassLoader portletClassLoader = clazz.getClassLoader();
 
 		try {
 			_originalFile = FileUtil.getFile();
