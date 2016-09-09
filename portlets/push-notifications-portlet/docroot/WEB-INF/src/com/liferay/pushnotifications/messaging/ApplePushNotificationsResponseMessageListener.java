@@ -51,8 +51,7 @@ public class ApplePushNotificationsResponseMessageListener
 					deletePushNotificationsDevice(token);
 
 				if (_log.isWarnEnabled()) {
-					_log.warn(
-						"Token " + token + " is invalid and was deleted.");
+					_log.warn("Token " + token + " is invalid and was deleted");
 				}
 			}
 			catch (Exception e) {
