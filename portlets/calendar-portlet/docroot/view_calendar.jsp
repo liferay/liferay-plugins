@@ -38,7 +38,7 @@ List<Calendar> otherCalendars = new ArrayList<Calendar>();
 
 long[] calendarIds = StringUtil.split(SessionClicks.get(request, "calendar-portlet-other-calendars", StringPool.BLANK), 0L);
 
-CalendarDisplayContext calendarDisplayContext = (CalendarDisplayContext)renderRequest.getAttribute(WebKeys.PORTLET_DISPLAY_CONTEXT);
+CalendarDisplayContext calendarDisplayContext = (CalendarDisplayContext)renderRequest.getAttribute(WebKeys.CALENDAR_DISPLAY_CONTEXT);
 
 if (calendarDisplayContext != null) {
 	otherCalendars = calendarDisplayContext.getOtherCalendars(calendarIds);

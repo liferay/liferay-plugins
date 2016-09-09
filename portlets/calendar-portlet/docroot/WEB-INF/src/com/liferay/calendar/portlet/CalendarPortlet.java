@@ -1388,7 +1388,7 @@ public class CalendarPortlet extends MVCPortlet {
 			new CalendarDisplayContext(themeDisplay);
 
 		renderRequest.setAttribute(
-			WebKeys.PORTLET_DISPLAY_CONTEXT, calendarDisplayContext);
+			WebKeys.CALENDAR_DISPLAY_CONTEXT, calendarDisplayContext);
 	}
 
 	protected void subscribeToComments(
