@@ -251,7 +251,7 @@ public class CalendarPortlet extends MVCPortlet {
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws IOException, PortletException {
 
-		try {			
+		try {
 			getCalendar(renderRequest);
 			getCalendarBooking(renderRequest);
 			getCalendarResource(renderRequest);
@@ -1256,11 +1256,13 @@ public class CalendarPortlet extends MVCPortlet {
 					long stagingGroupId = stagingGroup.getGroupId();
 
 					if (stagingGroupId == themeDisplay.getScopeGroupId()) {
-						calendar = CalendarLocalServiceUtil.
-							fetchCalendarByUuidAndGroupId(
-								calendar.getUuid(), stagingGroupId);
+						calendar =
+							CalendarLocalServiceUtil.
+								fetchCalendarByUuidAndGroupId(
+										calendar.getUuid(), stagingGroupId);
 					}
 				}
+
 				calendarsSet.add(calendar);
 			}
 		}

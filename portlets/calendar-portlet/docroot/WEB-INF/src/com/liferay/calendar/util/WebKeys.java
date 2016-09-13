@@ -24,7 +24,8 @@ public class WebKeys implements com.liferay.portal.kernel.util.WebKeys {
 
 	public static final String CALENDAR_BOOKING = "CALENDAR_BOOKING";
 
-	public static final String CALENDAR_DISPLAY_CONTEXT = "CALENDAR_DISPLAY_CONTEXT";
+	public static final String CALENDAR_DISPLAY_CONTEXT =
+		"CALENDAR_DISPLAY_CONTEXT";
 
 	public static final String CALENDAR_RESOURCE = "CALENDAR_RESOURCE";
 

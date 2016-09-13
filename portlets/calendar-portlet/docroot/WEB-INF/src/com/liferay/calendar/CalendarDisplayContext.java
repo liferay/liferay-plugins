@@ -11,9 +11,9 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
- 
+
 package com.liferay.calendar;
- 
+
 import com.liferay.calendar.model.Calendar;
 import com.liferay.calendar.model.CalendarResource;
 import com.liferay.calendar.service.CalendarLocalServiceUtil;
@@ -23,20 +23,20 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
- 
+
 import java.util.ArrayList;
 import java.util.List;
- 
+
 /**
  * @author Adam Brandizzi
  */
 public class CalendarDisplayContext {
- 
+
 	public CalendarDisplayContext(ThemeDisplay themeDisplay) {
 
 		_themeDisplay = themeDisplay;
 	}
- 
+
 	public List<Calendar> getOtherCalendars(long[] calendarIds)
 		throws PortalException, SystemException {
 
@@ -48,7 +48,8 @@ public class CalendarDisplayContext {
 			if (calendar == null) {
 				continue;
 			}
-			CalendarResource calendarResource =	calendar.getCalendarResource();
+
+			CalendarResource calendarResource = calendar.getCalendarResource();
 
 			if (!calendarResource.isActive()) {
 				continue;
@@ -67,28 +68,27 @@ public class CalendarDisplayContext {
 			if (scopeGroup.isStagingGroup()) {
 				if (calendarGroup.isStagingGroup()) {
 					if (scopeGroupId != calendarGroupId) {
-						calendar = CalendarLocalServiceUtil.
-							fetchCalendarByUuidAndGroupId(
-								calendar.getUuid(),	
-									calendarGroup.getLiveGroupId());
+						calendar =
+							CalendarLocalServiceUtil.
+								fetchCalendarByUuidAndGroupId(
+									calendar.getUuid(),
+									calendarGroup. getLiveGroupId());
 					}
 				}
 				else if (scopeLiveGroupId == calendarGroupId) {
 					Group stagingGroup = calendarGroup.getStagingGroup();
-					calendar = CalendarLocalServiceUtil.
-						fetchCalendarByUuidAndGroupId(
-							calendar.getUuid(),
-								stagingGroup.getLiveGroupId());
-					
+					calendar =
+						CalendarLocalServiceUtil.fetchCalendarByUuidAndGroupId(
+							calendar.getUuid(), stagingGroup.getLiveGroupId());
 				}
 			}
-				
+
 			else if (calendarGroup.isStagingGroup()) {
-				calendar = CalendarLocalServiceUtil.
-					fetchCalendarByUuidAndGroupId(
+				calendar =
+					CalendarLocalServiceUtil.fetchCalendarByUuidAndGroupId(
 						calendar.getUuid(), calendarGroup.getLiveGroupId());
-					
 			}
+
 			if (calendar == null) {
 				continue;
 			}
@@ -100,5 +100,5 @@ public class CalendarDisplayContext {
 	}
 
 	private final ThemeDisplay _themeDisplay;
- 
- } 
+
+}
