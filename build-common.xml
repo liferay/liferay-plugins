@@ -171,7 +171,7 @@ Error-Prone was automatically installed. Please rerun your task.
 				<arg value="sass.compiler.class.name=${sass.compiler.class.name}" />
 				<arg value="sass.dir=/" />
 				<arg value="sass.docroot.dir=@{sass.docroot.dir}" />
-				<arg value="sass.portal.common.dir=${app.server.portal.dir}/html/css/common" />
+				<arg value="sass.portal.common.path=${sdk.dir}/dependencies/com.liferay.css.builder/lib/com.liferay.frontend.css.common.jar" />
 			</java>
 
 			<if>
@@ -2237,14 +2237,14 @@ Please find a solution that does not require portal-impl.jar.
 		<sequential>
 			<if>
 				<resourcecount count="1" when="eq">
-					<fileset dir="${module.framework.base.dir}/modules" includes="@{theme.jar.name}*.jar" />
+					<fileset dir="${sdk.dir}/dependencies/com.liferay.css.builder/lib" includes="@{theme.jar.name}*.jar" />
 				</resourcecount>
 				<then>
 					<property name="theme.tmp.dir" value="${sdk.dir}/tmp/@{theme.jar.name}" />
 
 					<pathconvert property="frontend.theme.web.jar.path">
 						<path>
-							<fileset dir="${module.framework.base.dir}/modules" includes="@{theme.jar.name}*.jar" />
+							<fileset dir="${sdk.dir}/dependencies/com.liferay.css.builder/lib" includes="@{theme.jar.name}*.jar" />
 						</path>
 					</pathconvert>
 
@@ -2253,7 +2253,7 @@ Please find a solution that does not require portal-impl.jar.
 					<if>
 						<not>
 							<uptodate
-								srcfile="${module.framework.base.dir}/modules/${frontend.theme.web.file}"
+								srcfile="${sdk.dir}/dependencies/com.liferay.css.builder/lib/${frontend.theme.web.file}"
 								targetfile="${theme.tmp.dir}"
 							/>
 						</not>
