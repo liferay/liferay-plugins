@@ -33,7 +33,6 @@ import java.util.List;
 public class CalendarDisplayContext {
 
 	public CalendarDisplayContext(ThemeDisplay themeDisplay) {
-
 		_themeDisplay = themeDisplay;
 	}
 
@@ -77,6 +76,7 @@ public class CalendarDisplayContext {
 				}
 				else if (scopeLiveGroupId == calendarGroupId) {
 					Group stagingGroup = calendarGroup.getStagingGroup();
+
 					calendar =
 						CalendarLocalServiceUtil.fetchCalendarByUuidAndGroupId(
 							calendar.getUuid(), stagingGroup.getLiveGroupId());

@@ -1248,7 +1248,7 @@ public class CalendarPortlet extends MVCPortlet {
 
 			if (calendarResource.isActive()) {
 				Group group = GroupLocalServiceUtil.getGroup(
-						calendar.getGroupId());
+					calendar.getGroupId());
 
 				if (group.hasStagingGroup()) {
 					Group stagingGroup = group.getStagingGroup();
@@ -1259,7 +1259,7 @@ public class CalendarPortlet extends MVCPortlet {
 						calendar =
 							CalendarLocalServiceUtil.
 								fetchCalendarByUuidAndGroupId(
-										calendar.getUuid(), stagingGroupId);
+									calendar.getUuid(), stagingGroupId);
 					}
 				}
 
