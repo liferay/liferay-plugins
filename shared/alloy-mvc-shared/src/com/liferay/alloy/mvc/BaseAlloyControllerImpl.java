@@ -1497,6 +1497,8 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		ServletResponseUtil.write(response, content.toString());
 	}
 
+	protected static final String _VIEW_PATH_ERROR = "VIEW_PATH_ERROR";
+
 	protected static final String CALLED_PROCESS_ACTION =
 		BaseAlloyControllerImpl.class.getName() + "#CALLED_PROCESS_ACTION";
 
@@ -1547,7 +1549,5 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 	protected ThemeDisplay themeDisplay;
 	protected User user;
 	protected String viewPath;
-
-	protected static final String _VIEW_PATH_ERROR = "VIEW_PATH_ERROR";
 
 }
