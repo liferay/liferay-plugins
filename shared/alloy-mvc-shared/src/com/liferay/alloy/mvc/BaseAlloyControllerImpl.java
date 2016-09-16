@@ -1556,6 +1556,6 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 	protected User user;
 	protected String viewPath;
 
-	private static final String _VIEW_PATH_ERROR = "VIEW_PATH_ERROR";
+	protected static final String _VIEW_PATH_ERROR = "VIEW_PATH_ERROR";
 
 }
