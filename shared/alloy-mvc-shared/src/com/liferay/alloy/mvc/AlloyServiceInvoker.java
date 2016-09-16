@@ -74,6 +74,8 @@ public class AlloyServiceInvoker {
 				});
 			fetchModelMethod = serviceClass.getMethod(
 				"fetch" + simpleClassName, new Class[] {long.class});
+			getModelMethod = serviceClass.getMethod(
+				"get" + simpleClassName, new Class[] {long.class});
 			getModelsCountMethod = serviceClass.getMethod(
 				"get" + TextFormatter.formatPlural(simpleClassName) + "Count",
 				new Class[0]);
@@ -218,6 +220,10 @@ public class AlloyServiceInvoker {
 		return (BaseModel<?>)fetchModelMethod.invoke(false, classPK);
 	}
 
+	public BaseModel<?> getModel(long classPK) throws Exception {
+		return (BaseModel<?>)getModelMethod.invoke(false, classPK);
+	}
+
 	@SuppressWarnings("rawtypes")
 	public List getModels(int start, int end) throws Exception {
 		return (List)getModelsMethod.invoke(false, start, end);
@@ -241,6 +247,7 @@ public class AlloyServiceInvoker {
 	protected Method dynamicQueryMethod3;
 	protected Method dynamicQueryMethod4;
 	protected Method fetchModelMethod;
+	protected Method getModelMethod;
 	protected Method getModelsCountMethod;
 	protected Method getModelsMethod;
 	protected Method updateModelMethod;
