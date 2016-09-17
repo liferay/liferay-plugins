@@ -33,7 +33,7 @@
 	<portlet:renderURL var="editSAMTodoListURL">
 		<portlet:param name="controller" value="todo_lists" />
 		<portlet:param name="action" value="edit" />
-		<portlet:param name="samTodoListId" value="${samTodoList.samTodoListId}" />
+		<portlet:param name="id" value="${samTodoList.samTodoListId}" />
 	</portlet:renderURL>
 
 	<aui:button href="${editSAMTodoListURL}" icon="icon-pencil" value="edit" />
@@ -41,7 +41,7 @@
 	<portlet:renderURL var="createSAMTodoItemURL">
 		<portlet:param name="controller" value="todo_items" />
 		<portlet:param name="action" value="create" />
-		<portlet:param name="samTodoListId" value="${samTodoList.samTodoListId}" />
+		<portlet:param name="id" value="${samTodoList.samTodoListId}" />
 	</portlet:renderURL>
 
 	<aui:button href="${createSAMTodoItemURL}" icon="icon-plus" value="create-todo-item" />
@@ -61,7 +61,7 @@
 		<portlet:renderURL var="viewSAMTodoItemURL">
 			<portlet:param name="controller" value="todo_items" />
 			<portlet:param name="action" value="view" />
-			<portlet:param name="samTodoItemId" value="${samTodoItem.samTodoItemId}" />
+			<portlet:param name="id" value="${samTodoItem.samTodoItemId}" />
 		</portlet:renderURL>
 
 		<liferay-ui:search-container-column-text

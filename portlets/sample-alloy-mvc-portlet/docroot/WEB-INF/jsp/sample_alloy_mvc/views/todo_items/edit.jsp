@@ -56,7 +56,7 @@
 		<portlet:renderURL var="SAMTodoListURL">
 			<portlet:param name="controller" value="todo_lists" />
 			<portlet:param name="action" value="view" />
-			<portlet:param name="samTodoListId" value="${samTodoListId}" />
+			<portlet:param name="id" value="${samTodoListId}" />
 		</portlet:renderURL>
 
 		<portlet:actionURL var="deleteSAMTodoItemURL">
