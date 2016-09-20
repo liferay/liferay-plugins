@@ -1075,11 +1075,11 @@ public class CalendarPortlet extends MVCPortlet {
 		searchContext.setCompanyId(themeDisplay.getCompanyId());
 		searchContext.setEnd(SearchContainer.DEFAULT_DELTA);
 		searchContext.setGroupIds(new long[0]);
+		searchContext.setIncludeStagingGroups(group.isStagingGroup());
+		searchContext.setStart(0);
 
 		Group group = themeDisplay.getScopeGroup();
 
-		searchContext.setIncludeStagingGroups(group.isStagingGroup());
-		searchContext.setStart(0);
 		searchContext.setUserId(themeDisplay.getUserId());
 
 		Indexer indexer = CalendarSearcher.getInstance();
