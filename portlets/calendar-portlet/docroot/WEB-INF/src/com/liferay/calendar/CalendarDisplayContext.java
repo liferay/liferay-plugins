@@ -82,7 +82,6 @@ public class CalendarDisplayContext {
 							calendar.getUuid(), stagingGroup.getLiveGroupId());
 				}
 			}
-
 			else if (calendarGroup.isStagingGroup()) {
 				calendar =
 					CalendarLocalServiceUtil.fetchCalendarByUuidAndGroupId(
