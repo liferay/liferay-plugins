@@ -1079,6 +1079,7 @@ public class CalendarPortlet extends MVCPortlet {
 		Group group = themeDisplay.getScopeGroup();
 
 		searchContext.setIncludeStagingGroups(group.isStagingGroup());
+
 		searchContext.setStart(0);
 		searchContext.setUserId(themeDisplay.getUserId());
 
