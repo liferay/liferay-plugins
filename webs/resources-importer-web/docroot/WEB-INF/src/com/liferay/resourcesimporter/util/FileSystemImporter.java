@@ -966,8 +966,7 @@ public class FileSystemImporter extends BaseImporter {
 
 			if (Validator.isNotNull(layoutPrototypeUuid)) {
 				boolean layoutPrototypeLinkEnabled = GetterUtil.getBoolean(
-					layoutJSONObject.getString("layoutPrototypeLinkEnabled"),
-					false);
+					layoutJSONObject.getString("layoutPrototypeLinkEnabled"));
 
 				serviceContext.setAttribute(
 					"layoutPrototypeLinkEnabled", layoutPrototypeLinkEnabled);

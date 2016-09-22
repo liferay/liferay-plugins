@@ -22,7 +22,7 @@
 <%
 User user2 = (User)request.getAttribute("view_user.jsp-user");
 
-boolean showCompleteYourProfile = GetterUtil.getBoolean((String)request.getAttribute("view_user.jsp-showCompleteYourProfile"), false);
+boolean showCompleteYourProfile = GetterUtil.getBoolean((String)request.getAttribute("view_user.jsp-showCompleteYourProfile"));
 
 List<ProjectsEntry> projectsEntries = null;
 

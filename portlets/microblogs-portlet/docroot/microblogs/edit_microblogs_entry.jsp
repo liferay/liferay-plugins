@@ -74,7 +74,7 @@ String formName = "fm" + formId;
 
 String formCssClass = "microblogs-entry-form";
 
-boolean comment = GetterUtil.getBoolean((String)request.getAttribute("view_comments.jsp-comment"), false);
+boolean comment = GetterUtil.getBoolean((String)request.getAttribute("view_comments.jsp-comment"));
 
 if (comment) {
 	formCssClass += " reply";
