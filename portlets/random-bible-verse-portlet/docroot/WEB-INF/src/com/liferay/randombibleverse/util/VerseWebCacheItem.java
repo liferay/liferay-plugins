@@ -161,9 +161,9 @@ public class VerseWebCacheItem implements WebCacheItem {
 		// Strip &nbsp; and other extra characters
 
 		text = StringUtil.replace(text, "&nbsp;", "");
-		text = StringUtil.replace(text, "(", "");
-		text = StringUtil.replace(text, ")", "");
-		text = StringUtil.replace(text, ":", "");
+		text = StringUtil.replace(text, '(', "");
+		text = StringUtil.replace(text, ')', "");
+		text = StringUtil.replace(text, ':', "");
 		text = text.replaceAll("\\d+", "");
 
 		// Strip carriage returns

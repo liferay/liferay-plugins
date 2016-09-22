@@ -15,6 +15,7 @@
 package com.liferay.resourcesimporter.util;
 
 import com.liferay.portal.kernel.model.LayoutSetPrototype;
+import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.PortalRunMode;
 import com.liferay.portal.kernel.util.PropertiesUtil;
@@ -48,7 +49,7 @@ public class PluginPackageProperties {
 		String contextPath = servletContext.getRealPath(StringPool.SLASH);
 
 		contextPath = StringUtil.replace(
-			contextPath, StringPool.BACK_SLASH, StringPool.SLASH);
+			contextPath, CharPool.BACK_SLASH, CharPool.SLASH);
 
 		propertiesString = propertiesString.replace(
 			"${context.path}", contextPath);

@@ -16,6 +16,7 @@ package com.liferay.socialcoding.model.impl;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -60,7 +61,7 @@ public class SVNRevisionImpl extends SVNRevisionBaseImpl {
 			comments.startsWith(_LPS_PREFIX_3)) {
 
 			comments = StringUtil.replace(
-				comments, StringPool.NEW_LINE, StringPool.SPACE);
+				comments, CharPool.NEW_LINE, CharPool.SPACE);
 
 			int pos = comments.indexOf(StringPool.SPACE);
 

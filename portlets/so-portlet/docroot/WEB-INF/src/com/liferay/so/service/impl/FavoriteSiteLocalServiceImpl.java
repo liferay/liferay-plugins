@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.model.Account;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.model.GroupConstants;
 import com.liferay.portal.kernel.model.User;
+import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -134,8 +135,7 @@ public class FavoriteSiteLocalServiceImpl
 
 			String companyName = account.getName();
 
-			name = StringUtil.replace(
-				name, StringPool.PERCENT, StringPool.BLANK);
+			name = StringUtil.replace(name, CharPool.PERCENT, StringPool.BLANK);
 
 			if (companyName.indexOf(name) != -1) {
 				groupRealName = StringUtil.quote(

@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.service.ServiceContext;
+import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.ClassResourceBundleLoader;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
@@ -168,7 +169,7 @@ public class JIRAActivityInterpreter extends BaseSocialActivityInterpreter {
 		String field = jiraChangeItem.getString("field");
 
 		field = StringUtil.replace(
-			StringUtil.toLowerCase(field), StringPool.SPACE, StringPool.DASH);
+			StringUtil.toLowerCase(field), CharPool.SPACE, CharPool.DASH);
 
 		String newString = jiraChangeItem.getString("newString");
 		String newValue = jiraChangeItem.getString("newValue");
