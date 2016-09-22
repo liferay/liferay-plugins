@@ -35,6 +35,8 @@ page import="com.liferay.social.kernel.model.SocialActivitySet" %><%@
 page import="com.liferay.social.kernel.service.SocialActivityLocalServiceUtil" %><%@
 page import="com.liferay.social.kernel.service.SocialActivitySetLocalServiceUtil" %>
 
+<%@ page import="java.util.Objects" %>
+
 <%
 String tabs1 = ParamUtil.getString(request, "tabs1", "all");
 

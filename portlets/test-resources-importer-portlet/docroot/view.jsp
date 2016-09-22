@@ -314,7 +314,7 @@ for (String importer : importers) {
 
 <%!
 private static String _assertEquals(Object expected, Object actual) {
-	return _assertTrue(Validator.equals(expected, actual));
+	return _assertTrue(Objects.equals(expected, actual));
 }
 
 private static String _assertTrue(boolean value) {

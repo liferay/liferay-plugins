@@ -25,10 +25,11 @@ page import="com.liferay.portal.kernel.portlet.LiferayWindowState" %><%@
 page import="com.liferay.portal.kernel.util.LocaleUtil" %><%@
 page import="com.liferay.portal.kernel.util.ParamUtil" %><%@
 page import="com.liferay.portal.kernel.util.PortalUtil" %><%@
-page import="com.liferay.portal.kernel.util.Validator" %><%@
 page import="com.liferay.portal.kernel.util.WebKeys" %><%@
 page import="com.liferay.testmisc.messaging.TestPortletConfigMessageListener" %><%@
 page import="com.liferay.testmisc.messaging.TestSpringConfigMessageListener" %>
+
+<%@ page import="java.util.Objects" %>
 
 <%@ page import="javax.portlet.ActionRequest" %>
 

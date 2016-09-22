@@ -16,7 +16,7 @@
 
 <%!
 private static boolean _isPendingApproval(WikiPage wikiPage) {
-	if ((wikiPage == null) || !Validator.equals(wikiPage.getSummary(), _AKISMET_CONSTANTS_WIKI_PAGE_PENDING_APPROVAL)) {
+	if ((wikiPage == null) || !Objects.equals(wikiPage.getSummary(), _AKISMET_CONSTANTS_WIKI_PAGE_PENDING_APPROVAL)) {
 		return false;
 	}
 
@@ -24,7 +24,7 @@ private static boolean _isPendingApproval(WikiPage wikiPage) {
 }
 
 private static boolean _isSpam(WikiPage wikiPage) {
-	if ((wikiPage == null) || !Validator.equals(wikiPage.getSummary(), _AKISMET_CONSTANTS_WIKI_PAGE_MARKED_AS_SPAM)) {
+	if ((wikiPage == null) || !Objects.equals(wikiPage.getSummary(), _AKISMET_CONSTANTS_WIKI_PAGE_MARKED_AS_SPAM)) {
 		return false;
 	}
 

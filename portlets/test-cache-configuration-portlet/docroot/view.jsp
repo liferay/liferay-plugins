@@ -46,7 +46,7 @@ private static String _testAttributeList(String cacheManagerName, String name, O
 
 		String value = String.valueOf(attribute.getValue());
 
-		if (!Validator.equals(value, String.valueOf(values[i]))) {
+		if (!Objects.equals(value, String.valueOf(values[i]))) {
 			return name + "=FAILED<br />";
 		}
 	}

@@ -64,7 +64,7 @@ for (SocialActivitySet activitySet : results) {
 			<%= activityFeedEntry.getBody() %>
 
 			<div class="activity-footer">
-				<c:if test="<%= !Validator.equals(activitySet.getClassName(), MBMessage.class.getName()) %>">
+				<c:if test="<%= !Objects.equals(activitySet.getClassName(), MBMessage.class.getName()) %>">
 					<div class="activity-footer-toolbar">
 						<c:if test="<%= Validator.isNotNull(activityFeedEntry.getLink()) %>">
 							<span class="action"><%= activityFeedEntry.getLink() %></span>

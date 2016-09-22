@@ -1555,8 +1555,8 @@ new JNDISecurityExceptionTest(out, themeDisplay, false) {
 
 			Entry existingEntry = EntryLocalServiceUtil.getEntry(entryId);
 
-			if (!Validator.equals(entryId, existingEntry.getEntryId()) ||
-				!Validator.equals(content, existingEntry.getContent())) {
+			if (!Objects.equals(entryId, existingEntry.getEntryId()) ||
+				!Objects.equals(content, existingEntry.getContent())) {
 
 				throw new Exception("Expected identical entry");
 			}
@@ -2792,7 +2792,7 @@ DB db = DBManagerUtil.getDB();
 
 <%!
 private static String _assertEquals(Object expected, Object actual) {
-	return _assertTrue(Validator.equals(expected, actual));
+	return _assertTrue(Objects.equals(expected, actual));
 }
 
 private static String _assertFalse(boolean value) {
