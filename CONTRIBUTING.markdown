@@ -29,4 +29,3 @@ instruction on leveraging Liferay's APIs and frameworks try
 [Tutorials](https://dev.liferay.com/develop/tutorials). The documentation on the
 Liferay Developer Network contains extensive explanations, examples, and
 reference material for you to consult time and time again.
-

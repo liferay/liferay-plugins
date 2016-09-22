@@ -35,7 +35,7 @@ long entryId = ParamUtil.getLong(request, "entryId");
 		<div class="lfr-detail-info">
 			<c:if test="<%= showIcon %>">
 				<div class="lfr-contact-thumb">
-					<img alt="<%= HtmlUtil.escapeAttribute(entry.getFullName()) %>" src='<%= themeDisplay.getPathImage() + "/user_male_portrait?img_id=0&t=" %>' />
+					<img alt="<%= HtmlUtil.escapeAttribute(entry.getFullName()) %>" src="<%= themeDisplay.getPathImage() + "/user_male_portrait?img_id=0&t=" %>" />
 				</div>
 			</c:if>
 
@@ -49,6 +49,7 @@ long entryId = ParamUtil.getLong(request, "entryId");
 				</div>
 			</div>
 		</div>
+
 		<div class="lfr-detail-info">
 			<div class="comments">
 				<%= entry.getComments() %>

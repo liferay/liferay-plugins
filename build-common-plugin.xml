@@ -12,10 +12,10 @@
 
 	<macrodef name="build-service">
 		<attribute name="service.api.dir" />
-		<attribute name="service.auto.namespace.tables" default="true" />
-		<attribute name="service.hbm.file.name" default="portlet-hbm.xml" />
-		<attribute name="service.model.hints.file.name" default="portlet-model-hints.xml" />
-		<attribute name="service.spring.file.name" default="portlet-spring.xml" />
+		<attribute default="true" name="service.auto.namespace.tables" />
+		<attribute default="portlet-hbm.xml" name="service.hbm.file.name" />
+		<attribute default="portlet-model-hints.xml" name="service.model.hints.file.name" />
+		<attribute default="portlet-spring.xml" name="service.spring.file.name" />
 		<attribute name="service.sql.dir" />
 		<attribute name="service.test.dir" />
 
@@ -131,10 +131,10 @@
 		<attribute name="tagbuilder.components.xml" />
 		<attribute name="tagbuilder.java.dir" />
 		<attribute name="tagbuilder.java.package" />
-		<attribute name="tagbuilder.jsp.common.init.path" default="/init.jsp" />
-		<attribute name="tagbuilder.jsp.dir" default="/" />
-		<attribute name="tagbuilder.jsp.parent.dir" default="src/META-INF/resources/" />
-		<attribute name="tagbuilder.tld.dir" default="src/META-INF/resources/" />
+		<attribute default="/init.jsp" name="tagbuilder.jsp.common.init.path" />
+		<attribute default="/" name="tagbuilder.jsp.dir" />
+		<attribute default="src/META-INF/resources/" name="tagbuilder.jsp.parent.dir" />
+		<attribute default="src/META-INF/resources/" name="tagbuilder.tld.dir" />
 
 		<sequential>
 			<loop-macrodef-or-target
@@ -222,9 +222,9 @@
 	</macrodef>
 
 	<macrodef name="compile-jsp">
-		<attribute name="compile.jsp.delete.generated.files" default="true" />
+		<attribute default="true" name="compile.jsp.delete.generated.files" />
 		<attribute name="compile.jsp.docroot.dir" />
-		<attribute name="compile.jsp.temp.dir" default="" />
+		<attribute default="" name="compile.jsp.temp.dir" />
 
 		<sequential>
 			<if>
@@ -291,7 +291,7 @@
 					</if>
 
 					<tstamp>
-						<format property="tstamp.value" pattern="yyyyMMddkkmmssSSS" />
+						<format pattern="yyyyMMddkkmmssSSS" property="tstamp.value" />
 					</tstamp>
 
 					<var name="compile.jsp.jspc.dir" value="${tstamp.value}" />
@@ -351,7 +351,7 @@
 							<delete file="${sdk.dir}/jspc.javac.output.txt" />
 
 							<if>
-								<matches string="${jspc.javac.output.txt.content}" pattern="error: package .* does not exist" />
+								<matches pattern="error: package .* does not exist" string="${jspc.javac.output.txt.content}" />
 								<then>
 									<fail>JSPs failed to compile. Please check whether all dependencies modules are deployed.</fail>
 								</then>
@@ -682,9 +682,9 @@
 		</for>
 	</target>
 
-	<target name="install" depends="publish-local-m2-release" />
+	<target depends="publish-local-m2-release" name="install" />
 
-	<target name="jar-javadoc" depends="javadoc">
+	<target depends="javadoc" name="jar-javadoc">
 		<jar-javadoc
 			module.dir="${basedir}"
 		/>
@@ -784,7 +784,7 @@
 
 	<target name="shrink-zip-cmd">
 		<tstamp>
-			<format property="tstamp.value" pattern="yyyyMMddkkmmssSSS" />
+			<format pattern="yyyyMMddkkmmssSSS" property="tstamp.value" />
 		</tstamp>
 
 		<unzip

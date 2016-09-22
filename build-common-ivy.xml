@@ -2,7 +2,7 @@
 <!DOCTYPE project>
 
 <project name="build-common-ivy" xmlns:antelope="antlib:ise.antelope.tasks" xmlns:artifact="antlib:org.apache.maven.artifact.ant" xmlns:ivy="antlib:org.apache.ivy.ant">
-	<basename property="basedir.name" file="${basedir}" />
+	<basename file="${basedir}" property="basedir.name" />
 
 	<propertyregex
 		input="${basedir.name}"
@@ -316,8 +316,8 @@
 		<sequential>
 			<loadfile property="set-build-xml-var.build.xml.content" srcFile="@{module.dir}/build.xml" />
 
-			<antelope:stringutil string="${set-build-xml-var.build.xml.content}" property="set-build-xml-var.value.beginindex">
-				<antelope:indexof string="property name=&quot;@{build.xml.var.name}&quot; value=&quot;" fromindex="0" />
+			<antelope:stringutil property="set-build-xml-var.value.beginindex" string="${set-build-xml-var.build.xml.content}">
+				<antelope:indexof fromindex="0" string="property name=&quot;@{build.xml.var.name}&quot; value=&quot;" />
 			</antelope:stringutil>
 
 			<if>
@@ -326,8 +326,8 @@
 					<var name="set-build-xml-var.return" unset="true" />
 				</then>
 				<else>
-					<antelope:stringutil string="${set-build-xml-var.build.xml.content}" property="set-build-xml-var.value.beginindex">
-						<antelope:indexof string="value=&quot;" fromindex="${set-build-xml-var.value.beginindex}" />
+					<antelope:stringutil property="set-build-xml-var.value.beginindex" string="${set-build-xml-var.build.xml.content}">
+						<antelope:indexof fromindex="${set-build-xml-var.value.beginindex}" string="value=&quot;" />
 					</antelope:stringutil>
 
 					<antelope:math
@@ -338,11 +338,11 @@
 						result="set-build-xml-var.value.beginindex"
 					/>
 
-					<antelope:stringutil string="${set-build-xml-var.build.xml.content}" property="set-build-xml-var.value.endindex">
-						<antelope:indexof string="&quot;" fromindex="${set-build-xml-var.value.beginindex}" />
+					<antelope:stringutil property="set-build-xml-var.value.endindex" string="${set-build-xml-var.build.xml.content}">
+						<antelope:indexof fromindex="${set-build-xml-var.value.beginindex}" string="&quot;" />
 					</antelope:stringutil>
 
-					<antelope:stringutil string="${set-build-xml-var.build.xml.content}" property="set-build-xml-var.return">
+					<antelope:stringutil property="set-build-xml-var.return" string="${set-build-xml-var.build.xml.content}">
 						<antelope:substring beginindex="${set-build-xml-var.value.beginindex}" endindex="${set-build-xml-var.value.endindex}" />
 					</antelope:stringutil>
 				</else>

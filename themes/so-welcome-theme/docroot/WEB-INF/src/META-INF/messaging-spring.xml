@@ -10,11 +10,11 @@
 
 	<!-- Listeners -->
 
-	<bean id="messageListener.resources_importer" class="com.liferay.welcome.messaging.ResourcesImporterMessageListener" />
+	<bean class="com.liferay.welcome.messaging.ResourcesImporterMessageListener" id="messageListener.resources_importer" />
 
 	<!-- Configurator -->
 
-	<bean id="messagingConfigurator" class="com.liferay.portal.kernel.messaging.config.PluginMessagingConfigurator">
+	<bean class="com.liferay.portal.kernel.messaging.config.PluginMessagingConfigurator" id="messagingConfigurator">
 		<property name="messageListeners">
 			<map key-type="java.lang.String" value-type="java.util.List">
 				<entry key="liferay/resources_importer">

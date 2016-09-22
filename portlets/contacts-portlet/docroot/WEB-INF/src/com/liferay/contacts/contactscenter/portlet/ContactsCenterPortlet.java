@@ -772,8 +772,7 @@ public class ContactsCenterPortlet extends MVCPortlet {
 				jsonArray.put(contactJSONObject);
 			}
 		}
-		else if (filterBy.equals(
-					ContactsConstants.FILTER_BY_FOLLOWERS) &&
+		else if (filterBy.equals(ContactsConstants.FILTER_BY_FOLLOWERS) &&
 				 !portletId.equals(PortletKeys.MEMBERS)) {
 
 			List<SocialRelation> socialRelations =

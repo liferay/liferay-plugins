@@ -43,11 +43,11 @@ public class JIRAIssueFinderImpl
 	public static final String COUNT_BY_CD_P =
 		JIRAIssueFinder.class.getName() + ".countByCD_P";
 
-	public static final String FIND_BY_CD_P =
-		JIRAIssueFinder.class.getName() + ".findByCD_P";
-
 	public static final String FIND_BY_KEY =
 		JIRAIssueFinder.class.getName() + ".findByKey";
+
+	public static final String FIND_BY_CD_P =
+		JIRAIssueFinder.class.getName() + ".findByCD_P";
 
 	public int countByCD_P(Date createDate, long projectId) {
 		Timestamp createDate_TS = CalendarUtil.getTimestamp(createDate);

@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <!DOCTYPE project>
 
-<project name="logos-reftagger-portlet" basedir="." default="deploy">
+<project basedir="." default="deploy" name="logos-reftagger-portlet">
 	<import file="../build-common-portlet.xml" />
 </project>

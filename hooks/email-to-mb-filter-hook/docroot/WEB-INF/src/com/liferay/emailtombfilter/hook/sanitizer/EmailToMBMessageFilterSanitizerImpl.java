@@ -113,7 +113,7 @@ public class EmailToMBMessageFilterSanitizerImpl implements Sanitizer {
 
 		String[] quotedTextLines = quotedText.split("\r\n|\n|\r");
 
-		for (int i = 0; i < quotedTextLines.length; i++ ) {
+		for (int i = 0; i < quotedTextLines.length; i++) {
 			if (Validator.isNull(quotedTextLines[i])) {
 				continue;
 			}

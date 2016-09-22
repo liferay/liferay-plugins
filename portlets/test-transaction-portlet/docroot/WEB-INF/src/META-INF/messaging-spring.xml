@@ -10,17 +10,17 @@
 
 	<!-- Destinations -->
 
-	<bean id="destination.test_transaction" class="com.liferay.portal.kernel.messaging.ParallelDestination">
+	<bean class="com.liferay.portal.kernel.messaging.ParallelDestination" id="destination.test_transaction">
 		<property name="name" value="liferay/test_transaction" />
 	</bean>
 
 	<!-- Listeners -->
 
-	<bean id="messageListener.test_transaction" class="com.liferay.testtransaction.messaging.TestTransactionMessageListener" />
+	<bean class="com.liferay.testtransaction.messaging.TestTransactionMessageListener" id="messageListener.test_transaction" />
 
 	<!-- Configurator -->
 
-	<bean id="messagingConfigurator" class="com.liferay.portal.kernel.messaging.config.PluginMessagingConfigurator">
+	<bean class="com.liferay.portal.kernel.messaging.config.PluginMessagingConfigurator" id="messagingConfigurator">
 		<property name="destinations">
 			<list>
 				<ref bean="destination.test_transaction" />

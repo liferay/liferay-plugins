@@ -23,7 +23,7 @@ import javax.servlet.http.HttpSessionListener;
 
 /**
  * @author Brian Wing Shun Chan
- * @see    com.liferay.testmisc.servlet.TestPortletSessionListenerLoader
+ * @see    TestPortletSessionListenerLoader
  */
 public class TestPortletSessionListener implements HttpSessionListener {
 

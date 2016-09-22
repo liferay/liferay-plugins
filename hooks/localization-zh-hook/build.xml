@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE project>
 
-<project name="localization-zh-hook" basedir="." default="deploy">
+<project basedir="." default="deploy" name="localization-zh-hook">
 	<property name="import.shared" value="localization-shared" />
 
 	<import file="../build-common-hook.xml" />

@@ -26,9 +26,9 @@
 <%@ page import="com.liferay.portal.kernel.util.PortletKeys" %>
 <%@ page import="com.liferay.portal.kernel.util.Validator" %>
 
-<portlet:defineObjects />
-
 <liferay-theme:defineObjects />
+
+<portlet:defineObjects />
 
 <%
 String twitterSn = contact.getTwitterSn();

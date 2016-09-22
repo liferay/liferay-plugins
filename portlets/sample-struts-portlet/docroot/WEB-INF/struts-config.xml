@@ -18,35 +18,35 @@
 
 		<!-- Sample Struts -->
 
-		<action path="/sample_struts_portlet/edit" forward="portlet.sample_struts_portlet.edit" />
+		<action forward="portlet.sample_struts_portlet.edit" path="/sample_struts_portlet/edit" />
 
-		<action path="/sample_struts_portlet/help" forward="portlet.sample_struts_portlet.help" />
+		<action forward="portlet.sample_struts_portlet.help" path="/sample_struts_portlet/help" />
 
-		<action path="/sample_struts_portlet/nested/action" type="com.liferay.samplestruts.struts.action.NestedAction" name="nestedForm" scope="session" validate="true" input="portlet.sample_struts_portlet.nested">
+		<action input="portlet.sample_struts_portlet.nested" name="nestedForm" path="/sample_struts_portlet/nested/action" scope="session" type="com.liferay.samplestruts.struts.action.NestedAction" validate="true">
 			<forward name="/sample_struts_portlet/nested_success" path="/portlet_action/sample_struts_portlet/nested_success" redirect="true" />
 		</action>
 
-		<action path="/sample_struts_portlet/nested/render" type="com.liferay.samplestruts.struts.render.NestedAction" name="nestedForm" scope="session" validate="true" input="portlet.sample_struts_portlet.nested">
+		<action input="portlet.sample_struts_portlet.nested" name="nestedForm" path="/sample_struts_portlet/nested/render" scope="session" type="com.liferay.samplestruts.struts.render.NestedAction" validate="true">
 			<forward name="portlet.sample_struts_portlet.nested" path="portlet.sample_struts_portlet.nested" />
 		</action>
 
-		<action path="/sample_struts_portlet/subscribe/action" type="com.liferay.samplestruts.struts.action.SubscribeAction" name="subscribeForm" scope="session" validate="true" input="portlet.sample_struts_portlet.subscribe">
+		<action input="portlet.sample_struts_portlet.subscribe" name="subscribeForm" path="/sample_struts_portlet/subscribe/action" scope="session" type="com.liferay.samplestruts.struts.action.SubscribeAction" validate="true">
 			<forward name="/sample_struts_portlet/subscribe_success" path="/portlet_action/sample_struts_portlet/subscribe_success" redirect="true" />
 		</action>
 
-		<action path="/sample_struts_portlet/subscribe/render" type="com.liferay.samplestruts.struts.render.SubscribeAction" name="subscribeForm" scope="session" validate="true" input="portlet.sample_struts_portlet.subscribe">
+		<action input="portlet.sample_struts_portlet.subscribe" name="subscribeForm" path="/sample_struts_portlet/subscribe/render" scope="session" type="com.liferay.samplestruts.struts.render.SubscribeAction" validate="true">
 			<forward name="portlet.sample_struts_portlet.subscribe" path="portlet.sample_struts_portlet.subscribe" />
 		</action>
 
-		<action path="/sample_struts_portlet/unsubscribe/action" type="com.liferay.samplestruts.struts.action.UnsubscribeAction" name="unsubscribeForm" scope="session" validate="true" input="portlet.sample_struts_portlet.unsubscribe">
+		<action input="portlet.sample_struts_portlet.unsubscribe" name="unsubscribeForm" path="/sample_struts_portlet/unsubscribe/action" scope="session" type="com.liferay.samplestruts.struts.action.UnsubscribeAction" validate="true">
 			<forward name="/sample_struts_portlet/unsubscribe_success" path="/portlet_action/sample_struts_portlet/unsubscribe_success" redirect="true" />
 		</action>
 
-		<action path="/sample_struts_portlet/unsubscribe/render" type="com.liferay.samplestruts.struts.render.UnsubscribeAction" name="unsubscribeForm" scope="session" validate="true" input="portlet.sample_struts_portlet.unsubscribe">
+		<action input="portlet.sample_struts_portlet.unsubscribe" name="unsubscribeForm" path="/sample_struts_portlet/unsubscribe/render" scope="session" type="com.liferay.samplestruts.struts.render.UnsubscribeAction" validate="true">
 			<forward name="portlet.sample_struts_portlet.unsubscribe" path="portlet.sample_struts_portlet.unsubscribe" />
 		</action>
 
-		<action path="/sample_struts_portlet/upload/action" type="com.liferay.samplestruts.struts.action.UploadAction" name="uploadForm" scope="session" validate="false">
+		<action name="uploadForm" path="/sample_struts_portlet/upload/action" scope="session" type="com.liferay.samplestruts.struts.action.UploadAction" validate="false">
 			<forward name="/sample_struts_portlet/upload_success" path="/portlet_action/sample_struts_portlet/upload_success" redirect="true" />
 		</action>
 
@@ -54,17 +54,17 @@
 			<forward name="portlet.sample_struts_portlet.upload" path="portlet.sample_struts_portlet.upload" />
 		</action>
 
-		<action path="/sample_struts_portlet/nested_success" forward="portlet.sample_struts_portlet.nested_success" />
+		<action forward="portlet.sample_struts_portlet.nested_success" path="/sample_struts_portlet/nested_success" />
 
-		<action path="/sample_struts_portlet/subscribe_success" forward="portlet.sample_struts_portlet.subscribe_success" />
+		<action forward="portlet.sample_struts_portlet.subscribe_success" path="/sample_struts_portlet/subscribe_success" />
 
-		<action path="/sample_struts_portlet/unsubscribe_success" forward="portlet.sample_struts_portlet.unsubscribe_success" />
+		<action forward="portlet.sample_struts_portlet.unsubscribe_success" path="/sample_struts_portlet/unsubscribe_success" />
 
 		<action path="/sample_struts_portlet/upload_success" type="com.liferay.samplestruts.struts.action.UploadSuccessAction">
 			<forward name="portlet.sample_struts_portlet.upload_success" path="portlet.sample_struts_portlet.upload_success" />
 		</action>
 
-		<action path="/sample_struts_portlet/view" forward="portlet.sample_struts_portlet.view" />
+		<action forward="portlet.sample_struts_portlet.view" path="/sample_struts_portlet/view" />
 
 		<action path="/sample_struts_portlet/view_chart" type="com.liferay.samplestruts.struts.action.ViewChartAction">
 			<forward name="/common/error.jsp" path="/html/common/error.jsp" />
@@ -72,12 +72,12 @@
 		</action>
 
 		<action path="/sample_struts_portlet/x/action" type="com.liferay.samplestruts.struts.action.XAction">
-			<exception key="error.sample.exception" type="com.liferay.samplestruts.SampleException" path="portlet.sample_struts_portlet.sample_exception" />
+			<exception key="error.sample.exception" path="portlet.sample_struts_portlet.sample_exception" type="com.liferay.samplestruts.SampleException" />
 			<forward name="portlet.sample_struts_portlet.x" path="portlet.sample_struts_portlet.x" />
 		</action>
 
 		<action path="/sample_struts_portlet/x/render" type="com.liferay.samplestruts.struts.render.XAction">
-			<exception key="error.sample.exception" type="com.liferay.samplestruts.SampleException" path="portlet.sample_struts_portlet.sample_exception" />
+			<exception key="error.sample.exception" path="portlet.sample_struts_portlet.sample_exception" type="com.liferay.samplestruts.SampleException" />
 			<forward name="portlet.sample_struts_portlet.x" path="portlet.sample_struts_portlet.x" />
 		</action>
 
@@ -85,7 +85,7 @@
 			<forward name="portlet.sample_struts_portlet.y" path="portlet.sample_struts_portlet.y" />
 		</action>
 
-		<action path="/sample_struts_portlet/z" forward="portlet.sample_struts_portlet.z" />
+		<action forward="portlet.sample_struts_portlet.z" path="/sample_struts_portlet/z" />
 	</action-mappings>
 
 	<!-- Custom Request Processor -->

@@ -119,8 +119,8 @@ public class FooLocalServiceImpl extends FooLocalServiceBaseImpl {
 			userId, foo.getGroupId(), null, null, Foo.class.getName(),
 			foo.getFooId(), foo.getUuid(), 0, assetCategoryIds, assetTagNames,
 			true, null, null, null, ContentTypes.TEXT_PLAIN_UTF8,
-			foo.getField1(), null, foo.getField1(), null, null, 0, 0,
-			null, false);
+			foo.getField1(), null, foo.getField1(), null, null, 0, 0, null,
+			false);
 	}
 
 	public void updateFoo(

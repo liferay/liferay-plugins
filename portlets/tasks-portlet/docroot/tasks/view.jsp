@@ -93,14 +93,14 @@ portletURL.setParameter("tabs2", tabs2);
 
 <div class="tasks-options">
 	<table>
-	<tr>
-		<td>
-			<input name="all-tasks" onclick="Liferay.Tasks.updateTaskList(null, this.checked);" type="checkbox" <%= (tabs2.equals("all") ? "checked" : StringPool.BLANK) %> />
-		</td>
-		<td>
-			<liferay-ui:message key="show-completed-tasks" />
-		</td>
-	</tr>
+		<tr>
+			<td>
+				<input name="all-tasks" onclick="Liferay.Tasks.updateTaskList(null, this.checked);" type="checkbox" <%= (tabs2.equals("all") ? "checked" : StringPool.BLANK) %> />
+			</td>
+			<td>
+				<liferay-ui:message key="show-completed-tasks" />
+			</td>
+		</tr>
 	</table>
 </div>
 

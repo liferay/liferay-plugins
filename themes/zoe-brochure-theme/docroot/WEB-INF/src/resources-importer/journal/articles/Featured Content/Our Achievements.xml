@@ -1,19 +1,19 @@
 <?xml version="1.0"?>
 
 <root available-locales="en_US" default-locale="en_US">
-	<dynamic-element instance-id="R2jUanzU" name="title" type="text" index-type="">
+	<dynamic-element index-type="" instance-id="R2jUanzU" name="title" type="text">
 		<dynamic-content><![CDATA[Our Achievements]]></dynamic-content>
 	</dynamic-element>
-	<dynamic-element instance-id="516DValA" name="link" type="text" index-type="">
+	<dynamic-element index-type="" instance-id="516DValA" name="link" type="text">
 		<dynamic-content><![CDATA[]]></dynamic-content>
 	</dynamic-element>
-	<dynamic-element instance-id="RXFN7Ijp" name="image" type="document_library" index-type="">
+	<dynamic-element index-type="" instance-id="RXFN7Ijp" name="image" type="document_library">
 		<dynamic-content><![CDATA[[$FILE=trophy_icon.png$]]]></dynamic-content>
 	</dynamic-element>
-	<dynamic-element instance-id="8VMklZ2R" name="description" type="text_box" index-type="">
+	<dynamic-element index-type="" instance-id="8VMklZ2R" name="description" type="text_box">
 		<dynamic-content><![CDATA[Take a look at what we've done to provide you with the best there is.]]></dynamic-content>
 	</dynamic-element>
-	<dynamic-element instance-id="12HH4wl6" name="content" type="text_area" index-type="">
+	<dynamic-element index-type="" instance-id="12HH4wl6" name="content" type="text_area">
 		<dynamic-content><![CDATA[<p>
 	Aliquam consequat, purus vehicula tristique scelerisque, lorem neque rutrum erat, quis aliquet diam magna at ligula. Etiam eget mi tortor, vel pretium lectus. Morbi sit amet dui velit. Cras odio nisl, blandit quis rhoncus eget, convallis nec tortor. In quis tellus lorem. Proin posuere ligula et nisi rhoncus eu mollis ligula varius. Donec pharetra molestie felis non tincidunt. Donec faucibus consectetur cursus. Donec viverra dignissim tempus.<br />
 	<br />

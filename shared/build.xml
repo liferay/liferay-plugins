@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <!DOCTYPE project>
 
-<project name="shared" basedir="." default="deploy">
+<project basedir="." default="deploy" name="shared">
 	<import file="../build-common-plugins.xml" />
 </project>

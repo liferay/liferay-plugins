@@ -4,11 +4,11 @@
 <form-validation>
 	<formset>
 		<form name="unsubscribeForm">
-			<field property="lastName" depends="required">
-				<msg name="required" key="error.lastName.required" />
+			<field depends="required" property="lastName">
+				<msg key="error.lastName.required" name="required" />
 			</field>
-			<field property="emailAddress" depends="required">
-				<msg name="required" key="error.emailAddress.required" />
+			<field depends="required" property="emailAddress">
+				<msg key="error.emailAddress.required" name="required" />
 			</field>
 		</form>
 	</formset>

@@ -4,11 +4,11 @@
 <service-builder package-path="com.liferay.tasks">
 	<author>Ryan Park</author>
 	<namespace>TMS</namespace>
-	<entity name="TasksEntry" local-service="true" remote-service="true">
+	<entity local-service="true" name="TasksEntry" remote-service="true">
 
 		<!-- PK fields -->
 
-		<column name="tasksEntryId" type="long" primary="true" />
+		<column name="tasksEntryId" primary="true" type="long" />
 
 		<!-- Group instance -->
 
@@ -68,21 +68,21 @@
 		</finder>
 		<finder name="U_S" return-type="Collection">
 			<finder-column name="userId" />
-			<finder-column name="status" arrayable-operator="OR" />
+			<finder-column arrayable-operator="OR" name="status" />
 		</finder>
 		<finder name="A_S" return-type="Collection">
 			<finder-column name="assigneeUserId" />
-			<finder-column name="status" arrayable-operator="OR" />
+			<finder-column arrayable-operator="OR" name="status" />
 		</finder>
 		<finder name="G_U_S" return-type="Collection">
 			<finder-column name="groupId" />
 			<finder-column name="userId" />
-			<finder-column name="status" arrayable-operator="OR" />
+			<finder-column arrayable-operator="OR" name="status" />
 		</finder>
 		<finder name="G_A_S" return-type="Collection">
 			<finder-column name="groupId" />
 			<finder-column name="assigneeUserId" />
-			<finder-column name="status" arrayable-operator="OR" />
+			<finder-column arrayable-operator="OR" name="status" />
 		</finder>
 	</entity>
 	<exceptions>

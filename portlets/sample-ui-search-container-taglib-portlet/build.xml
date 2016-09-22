@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <!DOCTYPE project>
 
-<project name="sample-ui-search-container-taglib-portlet" basedir="." default="deploy">
+<project basedir="." default="deploy" name="sample-ui-search-container-taglib-portlet">
 	<import file="../build-common-portlet.xml" />
 </project>

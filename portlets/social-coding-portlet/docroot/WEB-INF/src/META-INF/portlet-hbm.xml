@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
-<hibernate-mapping default-lazy="false" auto-import="false">
+<hibernate-mapping auto-import="false" default-lazy="false">
 	<import class="com.liferay.socialcoding.model.JIRAAction" />
 	<import class="com.liferay.socialcoding.model.JIRAChangeGroup" />
 	<import class="com.liferay.socialcoding.model.JIRAChangeItem" />
@@ -10,30 +10,30 @@
 	<import class="com.liferay.socialcoding.model.SVNRepository" />
 	<import class="com.liferay.socialcoding.model.SVNRevision" />
 	<class name="com.liferay.socialcoding.model.impl.JIRAActionImpl" table="jiraaction">
-		<id name="jiraActionId" column="id" type="long">
+		<id column="id" name="jiraActionId" type="long">
 			<generator class="assigned" />
 		</id>
-		<property name="jiraUserId" type="com.liferay.portal.dao.orm.hibernate.StringType" column="author" />
-		<property name="createDate" type="org.hibernate.type.TimestampType" column="created" />
-		<property name="modifiedDate" type="org.hibernate.type.TimestampType" column="updated" />
-		<property name="jiraIssueId" type="com.liferay.portal.dao.orm.hibernate.LongType" column="issueid" />
-		<property name="type" type="com.liferay.portal.dao.orm.hibernate.StringType" column="actiontype" />
-		<property name="body" type="com.liferay.portal.dao.orm.hibernate.StringType" column="actionbody" />
-		<property name="jiraGroupName" type="com.liferay.portal.dao.orm.hibernate.StringType" column="actionlevel" />
+		<property column="author" name="jiraUserId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property column="created" name="createDate" type="org.hibernate.type.TimestampType" />
+		<property column="updated" name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property column="issueid" name="jiraIssueId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property column="actiontype" name="type" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property column="actionbody" name="body" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property column="actionlevel" name="jiraGroupName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
 	<class name="com.liferay.socialcoding.model.impl.JIRAChangeGroupImpl" table="changegroup">
-		<id name="jiraChangeGroupId" column="id" type="long">
+		<id column="id" name="jiraChangeGroupId" type="long">
 			<generator class="assigned" />
 		</id>
-		<property name="jiraUserId" type="com.liferay.portal.dao.orm.hibernate.StringType" column="author" />
-		<property name="createDate" type="org.hibernate.type.TimestampType" column="created" />
-		<property name="jiraIssueId" type="com.liferay.portal.dao.orm.hibernate.LongType" column="issueid" />
+		<property column="author" name="jiraUserId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property column="created" name="createDate" type="org.hibernate.type.TimestampType" />
+		<property column="issueid" name="jiraIssueId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 	</class>
 	<class name="com.liferay.socialcoding.model.impl.JIRAChangeItemImpl" table="changeitem">
-		<id name="jiraChangeItemId" column="id" type="long">
+		<id column="id" name="jiraChangeItemId" type="long">
 			<generator class="assigned" />
 		</id>
-		<property name="jiraChangeGroupId" type="com.liferay.portal.dao.orm.hibernate.LongType" column="groupid" />
+		<property column="groupid" name="jiraChangeGroupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="field" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="oldValue" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="oldString" type="com.liferay.portal.dao.orm.hibernate.StringType" />
@@ -41,26 +41,26 @@
 		<property name="newString" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
 	<class name="com.liferay.socialcoding.model.impl.JIRAIssueImpl" table="jiraissue">
-		<id name="jiraIssueId" column="id" type="long">
+		<id column="id" name="jiraIssueId" type="long">
 			<generator class="assigned" />
 		</id>
-		<property name="createDate" type="org.hibernate.type.TimestampType" column="created" />
-		<property name="modifiedDate" type="org.hibernate.type.TimestampType" column="updated" />
-		<property name="projectId" type="com.liferay.portal.dao.orm.hibernate.LongType" column="project" />
-		<property name="issueNumber" type="com.liferay.portal.dao.orm.hibernate.LongType" column="issuenum" />
+		<property column="created" name="createDate" type="org.hibernate.type.TimestampType" />
+		<property column="updated" name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property column="project" name="projectId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property column="issuenum" name="issueNumber" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="summary" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="reporterJiraUserId" type="com.liferay.portal.dao.orm.hibernate.StringType" column="reporter" />
-		<property name="assigneeJiraUserId" type="com.liferay.portal.dao.orm.hibernate.StringType" column="assignee" />
+		<property column="reporter" name="reporterJiraUserId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property column="assignee" name="assigneeJiraUserId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="resolution" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="status" type="com.liferay.portal.dao.orm.hibernate.StringType" column="issuestatus" />
+		<property column="issuestatus" name="status" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
 	<class name="com.liferay.socialcoding.model.impl.JIRAProjectImpl" table="project">
-		<id name="jiraProjectId" column="id" type="long">
+		<id column="id" name="jiraProjectId" type="long">
 			<generator class="assigned" />
 		</id>
-		<property name="key" type="com.liferay.portal.dao.orm.hibernate.StringType" column="pkey" />
-		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" column="pname" />
+		<property column="pkey" name="key" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property column="pname" name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
 	<class name="com.liferay.socialcoding.model.impl.SVNRepositoryImpl" table="SC_SVNRepository">
 		<id name="svnRepositoryId" type="long">

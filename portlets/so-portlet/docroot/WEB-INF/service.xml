@@ -3,11 +3,11 @@
 
 <service-builder package-path="com.liferay.so">
 	<namespace>SO</namespace>
-	<entity name="FavoriteSite" local-service="true" remote-service="false">
+	<entity local-service="true" name="FavoriteSite" remote-service="false">
 
 		<!-- PK fields -->
 
-		<column name="favoriteSiteId" type="long" primary="true" />
+		<column name="favoriteSiteId" primary="true" type="long" />
 
 		<!-- Group instance -->
 
@@ -30,15 +30,15 @@
 
 		<!-- References -->
 
-		<reference package-path="com.liferay.portal" entity="Company" />
-		<reference package-path="com.liferay.portal" entity="Group" />
-		<reference package-path="com.liferay.portal" entity="User" />
+		<reference entity="Company" package-path="com.liferay.portal" />
+		<reference entity="Group" package-path="com.liferay.portal" />
+		<reference entity="User" package-path="com.liferay.portal" />
 	</entity>
-	<entity name="MemberRequest" local-service="true" remote-service="false">
+	<entity local-service="true" name="MemberRequest" remote-service="false">
 
 		<!-- PK fields -->
 
-		<column name="memberRequestId" type="long" primary="true" />
+		<column name="memberRequestId" primary="true" type="long" />
 
 		<!-- Group instance -->
 
@@ -86,15 +86,15 @@
 
 		<!-- References -->
 
-		<reference package-path="com.liferay.portal" entity="Group" />
-		<reference package-path="com.liferay.portal" entity="Layout" />
-		<reference package-path="com.liferay.portal" entity="UserGroupRole" />
+		<reference entity="Group" package-path="com.liferay.portal" />
+		<reference entity="Layout" package-path="com.liferay.portal" />
+		<reference entity="UserGroupRole" package-path="com.liferay.portal" />
 	</entity>
-	<entity name="ProjectsEntry" local-service="true" remote-service="false">
+	<entity local-service="true" name="ProjectsEntry" remote-service="false">
 
 		<!-- PK fields -->
 
-		<column name="projectsEntryId" type="long" primary="true" />
+		<column name="projectsEntryId" primary="true" type="long" />
 
 		<!-- Audit fields -->
 
@@ -124,11 +124,11 @@
 			<finder-column name="userId" />
 		</finder>
 	</entity>
-	<entity name="SocialOffice" local-service="false" remote-service="true">
+	<entity local-service="false" name="SocialOffice" remote-service="true">
 
 		<!-- References -->
 
-		<reference package-path="com.liferay.portal" entity="Group" />
+		<reference entity="Group" package-path="com.liferay.portal" />
 	</entity>
 	<exceptions>
 		<exception>MemberRequestAlreadyUsed</exception>

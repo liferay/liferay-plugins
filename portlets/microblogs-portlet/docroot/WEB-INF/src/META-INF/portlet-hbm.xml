@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
-<hibernate-mapping default-lazy="false" auto-import="false">
+<hibernate-mapping auto-import="false" default-lazy="false">
 	<import class="com.liferay.microblogs.model.MicroblogsEntry" />
 	<class name="com.liferay.microblogs.model.impl.MicroblogsEntryImpl" table="MicroblogsEntry">
 		<id name="microblogsEntryId" type="long">
@@ -15,7 +15,7 @@
 		<property name="creatorClassNameId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="creatorClassPK" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="content" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="type" type="com.liferay.portal.dao.orm.hibernate.IntegerType" column="type_" />
+		<property column="type_" name="type" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 		<property name="parentMicroblogsEntryId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="socialRelationType" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 	</class>

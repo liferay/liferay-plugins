@@ -1,9 +1,11 @@
-<#assign portlet_display = portletDisplay />
+<#assign
+	portlet_display = portletDisplay
 
-<#assign portlet_id = htmlUtil.escapeAttribute(portlet_display.getId()) />
-<#assign portlet_title = portlet_display.getTitle() />
-<#assign portlet_content = portlet_display.getContent() />
-<#assign portlet_back_url = htmlUtil.escapeHREF(portlet_display.getURLBack()) />
+	portlet_id = htmlUtil.escapeAttribute(portlet_display.getId())
+	portlet_title = portlet_display.getTitle()
+	portlet_content = portlet_display.getContent()
+	portlet_back_url = htmlUtil.escapeHREF(portlet_display.getURLBack())
+/>
 
 <div class="portlet" id="portlet_${portlet_id}">
 	<div class="portlet-topper">

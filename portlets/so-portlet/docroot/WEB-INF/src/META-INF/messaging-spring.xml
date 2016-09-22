@@ -10,7 +10,7 @@
 
 	<!-- Listeners -->
 
-	<bean id="messageListener.hot_deploy" class="com.liferay.so.messaging.SOHotDeployMessageListener">
+	<bean class="com.liferay.so.messaging.SOHotDeployMessageListener" id="messageListener.hot_deploy">
 		<constructor-arg name="servletContextNames">
 			<array>
 				<bean class="com.liferay.so.service.ClpSerializer" factory-method="getServletContextName" />
@@ -21,7 +21,7 @@
 
 	<!-- Configurator -->
 
-	<bean id="messagingConfigurator" class="com.liferay.portal.kernel.messaging.config.PluginMessagingConfigurator">
+	<bean class="com.liferay.portal.kernel.messaging.config.PluginMessagingConfigurator" id="messagingConfigurator">
 		<property name="messageListeners">
 			<map key-type="java.lang.String" value-type="java.util.List">
 				<entry key="liferay/hot_deploy">

@@ -22,8 +22,8 @@
 							"articleId": "Welcome.xml",
 							"groupId": "${groupId}",
 							"portletSetupShowBorders": "true",
-							"portletSetupUseCustomTitle": "true",
-							"portletSetupTitle_en_US": "Welcome"
+							"portletSetupTitle_en_US": "Welcome",
+							"portletSetupUseCustomTitle": "true"
 						}
 					}
 				],
@@ -34,8 +34,8 @@
 							"articleId": "Luxurious Suites.xml",
 							"groupId": "${groupId}",
 							"portletSetupShowBorders": "true",
-							"portletSetupUseCustomTitle": "true",
-							"portletSetupTitle_en_US": "Luxurious Suites"
+							"portletSetupTitle_en_US": "Luxurious Suites",
+							"portletSetupUseCustomTitle": "true"
 						}
 					}
 				],
@@ -46,8 +46,8 @@
 							"articleId": "Every Room Has.xml",
 							"groupId": "${groupId}",
 							"portletSetupShowBorders": "true",
-							"portletSetupUseCustomTitle": "true",
-							"portletSetupTitle_en_US": "Every Room Has:"
+							"portletSetupTitle_en_US": "Every Room Has:",
+							"portletSetupUseCustomTitle": "true"
 						}
 					}
 				],

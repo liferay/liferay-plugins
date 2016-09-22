@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 
 <root>
-	<dynamic-element name="socials" type="text" index-type="" repeatable="true">
-		<dynamic-element name="icon" type="document_library" index-type="" repeatable="false">
+	<dynamic-element index-type="" name="socials" repeatable="true" type="text">
+		<dynamic-element index-type="" name="icon" repeatable="false" type="document_library">
 			<meta-data>
 				<entry name="displayAsTooltip"><![CDATA[true]]></entry>
 				<entry name="required"><![CDATA[true]]></entry>
@@ -11,7 +11,7 @@
 				<entry name="predefinedValue"><![CDATA[]]></entry>
 			</meta-data>
 		</dynamic-element>
-		<dynamic-element name="link" type="text" index-type="" repeatable="false">
+		<dynamic-element index-type="" name="link" repeatable="false" type="text">
 			<meta-data>
 				<entry name="displayAsTooltip"><![CDATA[true]]></entry>
 				<entry name="required"><![CDATA[true]]></entry>

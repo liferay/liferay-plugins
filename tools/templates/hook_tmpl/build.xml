@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <!DOCTYPE project>
 
-<project name="@hook.name@-hook" basedir="." default="deploy">
+<project basedir="." default="deploy" name="@hook.name@-hook">
 	<import file="@plugin.type.dir@/build-common-hook.xml" />
 </project>

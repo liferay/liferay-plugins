@@ -29,27 +29,27 @@
 				/>
 			</path>
 			<sequential>
-				<antelope:stringutil string="@{service.file}" property="service.file.index">
-					<antelope:indexof string="docroot" fromindex="0" />
+				<antelope:stringutil property="service.file.index" string="@{service.file}">
+					<antelope:indexof fromindex="0" string="docroot" />
 				</antelope:stringutil>
 
 				<if>
 					<equals arg1="${service.file.index}" arg2="-1" />
 					<then>
-						<antelope:stringutil string="@{service.file}" property="service.file.index">
-							<antelope:indexof string="service.xml" fromindex="0" />
+						<antelope:stringutil property="service.file.index" string="@{service.file}">
+							<antelope:indexof fromindex="0" string="service.xml" />
 						</antelope:stringutil>
 					</then>
 				</if>
 
-				<antelope:stringutil string="@{service.file}" property="portlet.dir">
+				<antelope:stringutil property="portlet.dir" string="@{service.file}">
 					<antelope:substring beginindex="0" endindex="${service.file.index}" />
 				</antelope:stringutil>
 
 				<if>
 					<available file="${portlet.dir}/build.xml" />
 					<then>
-						<ant dir="${portlet.dir}" target="build-service" inheritAll="false" />
+						<ant dir="${portlet.dir}" inheritAll="false" target="build-service" />
 					</then>
 				</if>
 			</sequential>

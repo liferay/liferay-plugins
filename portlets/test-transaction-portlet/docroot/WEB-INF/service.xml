@@ -3,11 +3,11 @@
 
 <service-builder package-path="com.liferay.testtransaction">
 	<namespace>TestTransaction</namespace>
-	<entity name="Bar" local-service="true" remote-service="false">
+	<entity local-service="true" name="Bar" remote-service="false">
 
 		<!-- PK fields -->
 
-		<column name="barId" type="long" primary="true" />
+		<column name="barId" primary="true" type="long" />
 
 		<!-- Other fields -->
 
@@ -27,6 +27,6 @@
 
 		<!-- References -->
 
-		<reference package-path="com.liferay.portal" entity="ClassName" />
+		<reference entity="ClassName" package-path="com.liferay.portal" />
 	</entity>
 </service-builder>

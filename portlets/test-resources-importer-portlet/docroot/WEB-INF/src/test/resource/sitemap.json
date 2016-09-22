@@ -162,9 +162,9 @@
 		},
 		{
 			"friendlyURL": "/hidden-page",
+			"hidden": "true",
 			"name": "Hidden Page",
-			"title": "Hidden Page",
-			"hidden": "true"
+			"title": "Hidden Page"
 		}
 	]
 }

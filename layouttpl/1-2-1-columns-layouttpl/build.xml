@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE project>
 
-<project name="1-2-1-columns-layouttpl" basedir="." default="deploy">
+<project basedir="." default="deploy" name="1-2-1-columns-layouttpl">
 	<property name="plugin.version" value="1" />
 
 	<import file="../build-common-layouttpl.xml" />

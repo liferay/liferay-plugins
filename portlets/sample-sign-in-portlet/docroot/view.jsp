@@ -43,9 +43,9 @@
 
 <%@ page import="javax.portlet.WindowState" %>
 
-<portlet:defineObjects />
-
 <liferay-theme:defineObjects />
+
+<portlet:defineObjects />
 
 <c:choose>
 	<c:when test="<%= themeDisplay.isSignedIn() %>">
@@ -87,27 +87,26 @@
 			<liferay-ui:error exception="<%= UserScreenNameException.class %>" message="please-enter-a-valid-screen-name" />
 
 			<table class="lfr-table">
-			<tr>
-				<td>
-					<aui:input name="login" style="width: 120px;" type="text" value="<%= HtmlUtil.escape(login) %>" />
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<aui:input name="password" style="width: 120px;" type="password" value="" />
-
-					<span id="<portlet:namespace />passwordCapsLockSpan" style="display: none;"><liferay-ui:message key="caps-lock-is-on" /></span>
-				</td>
-			</tr>
-
-			<c:if test='<%= company.isAutoLogin() && !GetterUtil.getBoolean(PropsUtil.get("session.disabled")) %>'>
 				<tr>
 					<td>
-						<aui:input checked="<%= rememberMe %>" name="rememberMe" type="checkbox" />
+						<aui:input name="login" style="width: 120px;" type="text" value="<%= HtmlUtil.escape(login) %>" />
 					</td>
 				</tr>
-			</c:if>
+				<tr>
+					<td>
+						<aui:input name="password" style="width: 120px;" type="password" value="" />
 
+						<span id="<portlet:namespace />passwordCapsLockSpan" style="display: none;"><liferay-ui:message key="caps-lock-is-on" /></span>
+					</td>
+				</tr>
+
+				<c:if test='<%= company.isAutoLogin() && !GetterUtil.getBoolean(PropsUtil.get("session.disabled")) %>'>
+					<tr>
+						<td>
+							<aui:input checked="<%= rememberMe %>" name="rememberMe" type="checkbox" />
+						</td>
+					</tr>
+				</c:if>
 			</table>
 
 			<br />

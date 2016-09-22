@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.2.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_2_0.dtd">
 
-<service-builder package-path="com.liferay.microblogs" auto-namespace-tables="false">
+<service-builder auto-namespace-tables="false" package-path="com.liferay.microblogs">
 	<namespace>Microblogs</namespace>
-	<entity name="MicroblogsEntry" local-service="true" remote-service="true">
+	<entity local-service="true" name="MicroblogsEntry" remote-service="true">
 
 		<!-- PK fields -->
 
-		<column name="microblogsEntryId" type="long" primary="true" />
+		<column name="microblogsEntryId" primary="true" type="long" />
 
 		<!-- Audit fields -->
 
@@ -46,7 +46,7 @@
 		</finder>
 		<finder name="CCNI_CCPK" return-type="Collection">
 			<finder-column name="creatorClassNameId" />
-			<finder-column name="creatorClassPK" arrayable-operator="OR" />
+			<finder-column arrayable-operator="OR" name="creatorClassPK" />
 		</finder>
 		<finder name="CCNI_T" return-type="Collection">
 			<finder-column name="creatorClassNameId" />
@@ -58,7 +58,7 @@
 		</finder>
 		<finder name="CCNI_CCPK_T" return-type="Collection">
 			<finder-column name="creatorClassNameId" />
-			<finder-column name="creatorClassPK" arrayable-operator="OR" />
+			<finder-column arrayable-operator="OR" name="creatorClassPK" />
 			<finder-column name="type" />
 		</finder>
 		<finder name="U_C_T_S" return-type="Collection">

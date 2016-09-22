@@ -70,7 +70,6 @@ portletURL.setWindowState(LiferayWindowState.POP_UP);
 		%>
 
 		<%@ include file="/entry_select_scope.jspf" %>
-
 	</aui:fieldset>
 
 	<aui:button onClick='<%= renderResponse.getNamespace() + "manageAddEntry();" %>' value="add-entry" />

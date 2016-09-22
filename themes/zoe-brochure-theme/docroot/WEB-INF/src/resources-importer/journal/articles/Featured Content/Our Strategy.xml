@@ -1,19 +1,19 @@
 <?xml version="1.0"?>
 
 <root available-locales="en_US" default-locale="en_US">
-	<dynamic-element instance-id="p5hIAxLD" name="title" type="text" index-type="">
+	<dynamic-element index-type="" instance-id="p5hIAxLD" name="title" type="text">
 		<dynamic-content><![CDATA[OUR STRATEGY]]></dynamic-content>
 	</dynamic-element>
-	<dynamic-element instance-id="XgFOunh5" name="link" type="text" index-type="">
+	<dynamic-element index-type="" instance-id="XgFOunh5" name="link" type="text">
 		<dynamic-content><![CDATA[]]></dynamic-content>
 	</dynamic-element>
-	<dynamic-element instance-id="UzhxO9Fo" name="image" type="document_library" index-type="">
+	<dynamic-element index-type="" instance-id="UzhxO9Fo" name="image" type="document_library">
 		<dynamic-content><![CDATA[[$FILE=strategy_icon.png$]]]></dynamic-content>
 	</dynamic-element>
-	<dynamic-element instance-id="7Q5MoQdR" name="description" type="text_box" index-type="">
+	<dynamic-element index-type="" instance-id="7Q5MoQdR" name="description" type="text_box">
 		<dynamic-content><![CDATA[How we achieve our goals and provide quality products]]></dynamic-content>
 	</dynamic-element>
-	<dynamic-element instance-id="99r6u5Hk" name="content" type="text_area" index-type="">
+	<dynamic-element index-type="" instance-id="99r6u5Hk" name="content" type="text_area">
 		<dynamic-content><![CDATA[<p>
 	Etiam porta condimentum vulputate. Etiam in eros viverra mauris vehicula commodo vitae vehicula justo. Vestibulum massa diam, iaculis ut posuere dapibus, blandit volutpat nibh.<br />
 	<br />

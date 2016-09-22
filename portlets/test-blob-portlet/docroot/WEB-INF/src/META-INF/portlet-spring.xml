@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-destroy-method="destroy" default-init-method="afterPropertiesSet" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
-	<bean id="com.liferay.testblob.service.TestBlobEntryLocalService" class="com.liferay.testblob.service.impl.TestBlobEntryLocalServiceImpl" />
-	<bean id="com.liferay.testblob.service.persistence.TestBlobEntryPersistence" class="com.liferay.testblob.service.persistence.impl.TestBlobEntryPersistenceImpl" parent="basePersistence" />
+	<bean class="com.liferay.testblob.service.impl.TestBlobEntryLocalServiceImpl" id="com.liferay.testblob.service.TestBlobEntryLocalService" />
+	<bean class="com.liferay.testblob.service.persistence.impl.TestBlobEntryPersistenceImpl" id="com.liferay.testblob.service.persistence.TestBlobEntryPersistence" parent="basePersistence" />
 </beans>

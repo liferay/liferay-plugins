@@ -3,11 +3,11 @@
 
 <service-builder package-path="com.liferay.twitter">
 	<namespace>Twitter</namespace>
-	<entity name="Feed" local-service="true" remote-service="false">
+	<entity local-service="true" name="Feed" remote-service="false">
 
 		<!-- PK fields -->
 
-		<column name="feedId" type="long" primary="true" />
+		<column name="feedId" primary="true" type="long" />
 
 		<!-- Audit fields -->
 

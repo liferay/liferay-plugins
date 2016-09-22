@@ -41,7 +41,7 @@ portletURL.setParameter("mvcPath", "/sites/edit_site.jsp");
 	</div>
 
 	<div class="section-container">
-		<div class="section site-information" data-step='<%= LanguageUtil.format(request, "step-x-of-x", new String[] {"1", "2"}, false) %>' data-title='<%= LanguageUtil.get(request, "add-site-information") %>'>
+		<div class="section site-information" data-step="<%= LanguageUtil.format(request, "step-x-of-x", new String[] {"1", "2"}, false) %>" data-title="<%= LanguageUtil.get(request, "add-site-information") %>">
 			<aui:fieldset>
 				<aui:input name="name" />
 
@@ -53,7 +53,7 @@ portletURL.setParameter("mvcPath", "/sites/edit_site.jsp");
 		LayoutSetPrototype defaultLayoutSetPrototype = null;
 		%>
 
-		<div class="hide section site-settings" data-step='<%= LanguageUtil.format(request, "step-x-of-x", new String[] {"2", "2"}, false) %>' data-title='<%= LanguageUtil.get(request, "add-site-settings") %>'>
+		<div class="hide section site-settings" data-step="<%= LanguageUtil.format(request, "step-x-of-x", new String[] {"2", "2"}, false) %>" data-title="<%= LanguageUtil.get(request, "add-site-settings") %>">
 			<div class="site-options">
 
 				<%

@@ -3,10 +3,10 @@
 
 <service-builder package-path="com.liferay.skinny">
 	<namespace>Skinny</namespace>
-	<entity name="Skinny" local-service="false" remote-service="true">
-		<reference package-path="com.liferay.dynamic.data.lists" entity="DDLRecordSet" />
-		<reference package-path="com.liferay.dynamic.data.mapping" entity="DDMStructure" />
-		<reference package-path="com.liferay.journal" entity="JournalArticle" />
-		<reference package-path="com.liferay.portal" entity="Group" />
+	<entity local-service="false" name="Skinny" remote-service="true">
+		<reference entity="DDLRecordSet" package-path="com.liferay.dynamic.data.lists" />
+		<reference entity="DDMStructure" package-path="com.liferay.dynamic.data.mapping" />
+		<reference entity="JournalArticle" package-path="com.liferay.journal" />
+		<reference entity="Group" package-path="com.liferay.portal" />
 	</entity>
 </service-builder>

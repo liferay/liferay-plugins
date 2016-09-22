@@ -24,63 +24,63 @@ String region = ParamUtil.getString(request, "region", "all");
 %>
 
 <table class="lfr-table netvibes-search-wrapper">
-<tr>
-	<td>
-		<label for="<portlet:namespace />sort"><strong>Sort</strong></label>
+	<tr>
+		<td>
+			<label for="<portlet:namespace />sort"><strong>Sort</strong></label>
 
-		<select name="<portlet:namespace />sort">
-			<option <%= sort.equals("popular") ? "selected" : "" %> value="popular">Most Popular</option>
-			<option <%= sort.equals("recent") ? "selected" : "" %> value="recent">Most Recent</option>
-		</select>
-	</td>
-	<td>
-		<label for="<portlet:namespace />category"><strong>Category</strong></label>
+			<select name="<portlet:namespace />sort">
+				<option <%= sort.equals("popular") ? "selected" : "" %> value="popular">Most Popular</option>
+				<option <%= sort.equals("recent") ? "selected" : "" %> value="recent">Most Recent</option>
+			</select>
+		</td>
+		<td>
+			<label for="<portlet:namespace />category"><strong>Category</strong></label>
 
-		<select name="<portlet:namespace />category">
-			<option <%= category == 0 ? "selected" : "" %> value="0"><liferay-ui:message key="all" /></option>
+			<select name="<portlet:namespace />category">
+				<option <%= category == 0 ? "selected" : "" %> value="0"><liferay-ui:message key="all" /></option>
 
-			<%
-			for (String[] categoryValues : NetvibesWidgetUtil.getCategories()) {
-			%>
+				<%
+				for (String[] categoryValues : NetvibesWidgetUtil.getCategories()) {
+				%>
 
-				<option <%= GetterUtil.getInteger(categoryValues[0]) == category ? "selected" : "" %> value="<%= GetterUtil.getInteger(categoryValues[0]) %>"><%= categoryValues[1] %></option>
+					<option <%= GetterUtil.getInteger(categoryValues[0]) == category ? "selected" : "" %> value="<%= GetterUtil.getInteger(categoryValues[0]) %>"><%= categoryValues[1] %></option>
 
-			<%
-			}
-			%>
+				<%
+				}
+				%>
 
-		</select>
-	</td>
-	<td>
-		<label for="<portlet:namespace />region"><strong>Region</strong></label>
+			</select>
+		</td>
+		<td>
+			<label for="<portlet:namespace />region"><strong>Region</strong></label>
 
-		<select name="<portlet:namespace />region">
+			<select name="<portlet:namespace />region">
 
-			<%
-			for (String[] regionValues : _REGIONS) {
-			%>
+				<%
+				for (String[] regionValues : _REGIONS) {
+				%>
 
-				<option <%= region.equals(regionValues[0]) ? "selected" : "" %> value="<%= regionValues[0] %>"><%= regionValues[1] %></option>
+					<option <%= region.equals(regionValues[0]) ? "selected" : "" %> value="<%= regionValues[0] %>"><%= regionValues[1] %></option>
 
-			<%
-			}
-			%>
+				<%
+				}
+				%>
 
-		</select>
-	</td>
-</tr>
-<tr>
-	<td colspan="3">
-		<br />
-	</td>
-</tr>
-<tr>
-	<td colspan="3">
-		<input class="input-medium search-query" name="<portlet:namespace />query" type="text" value="<%= query %>" />
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="3">
+			<br />
+		</td>
+	</tr>
+	<tr>
+		<td colspan="3">
+			<input class="input-medium search-query" name="<portlet:namespace />query" type="text" value="<%= HtmlUtil.escape(query) %>" />
 
-		<input class="btn btn-primary" onClick="<portlet:namespace />search();" type="button" value="<liferay-ui:message key="search" />" />
-	</td>
-</tr>
+			<input class="btn btn-primary" onClick="<portlet:namespace />search();" type="button" value="<liferay-ui:message key="search" />" />
+		</td>
+	</tr>
 </table>
 
 <div class="separator"><!-- --></div>

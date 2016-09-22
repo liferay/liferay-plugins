@@ -16,8 +16,8 @@
 							"articleId": "Stay Informed.xml",
 							"groupId": "${groupId}",
 							"portletSetupShowBorders": "true",
-							"portletSetupUseCustomTitle": "true",
-							"portletSetupTitle_en_US": "Stay Informed"
+							"portletSetupTitle_en_US": "Stay Informed",
+							"portletSetupUseCustomTitle": "true"
 						}
 					},
 					{
@@ -26,8 +26,8 @@
 							"articleId": "Twitter Block.xml",
 							"groupId": "${groupId}",
 							"portletSetupShowBorders": "true",
-							"portletSetupUseCustomTitle": "true",
-							"portletSetupTitle_en_US": "Twitter"
+							"portletSetupTitle_en_US": "Twitter",
+							"portletSetupUseCustomTitle": "true"
 						}
 					}
 				]

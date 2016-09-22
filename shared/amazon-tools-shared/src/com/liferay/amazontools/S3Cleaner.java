@@ -146,10 +146,9 @@ public class S3Cleaner extends BaseAMITool {
 		describeLaunchConfigurationsRequest.setLaunchConfigurationNames(
 			launchConfigurationNames);
 
-		DescribeLaunchConfigurationsResult
-			describeLaunchConfigurationsResult =
-				amazonAutoScalingClient.describeLaunchConfigurations(
-					describeLaunchConfigurationsRequest);
+		DescribeLaunchConfigurationsResult describeLaunchConfigurationsResult =
+			amazonAutoScalingClient.describeLaunchConfigurations(
+				describeLaunchConfigurationsRequest);
 
 		for (LaunchConfiguration launchConfiguration :
 				describeLaunchConfigurationsResult.getLaunchConfigurations()) {

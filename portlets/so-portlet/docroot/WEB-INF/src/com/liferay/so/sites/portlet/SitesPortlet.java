@@ -150,9 +150,9 @@ public class SitesPortlet extends MVCPortlet {
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 		if (layoutSetPrototypeId <= 0) {
+			jsonObject.put("description", StringPool.BLANK);
 			jsonObject.put("layoutSetPrototypeId", layoutSetPrototypeId);
 			jsonObject.put("name", themeDisplay.translate("none"));
-			jsonObject.put("description", StringPool.BLANK);
 
 			JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 
@@ -163,10 +163,10 @@ public class SitesPortlet extends MVCPortlet {
 				LayoutSetPrototypeServiceUtil.getLayoutSetPrototype(
 					layoutSetPrototypeId);
 
+			jsonObject.put("description", layoutSetPrototype.getDescription());
 			jsonObject.put("layoutSetPrototypeId", layoutSetPrototypeId);
 			jsonObject.put(
 				"name", layoutSetPrototype.getName(themeDisplay.getLocale()));
-			jsonObject.put("description", layoutSetPrototype.getDescription());
 
 			JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 

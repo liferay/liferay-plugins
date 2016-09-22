@@ -22,7 +22,6 @@ import com.liferay.chat.service.EntryLocalServiceUtil;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.PortalUtil;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.testpacl.service.FooLocalService;
 import com.liferay.testpacl.service.FooLocalServiceUtil;
 import com.liferay.testpacl.util.TestPACLUtil;
@@ -30,6 +29,8 @@ import com.liferay.testpacl.util.TestPACLUtil;
 import java.io.IOException;
 
 import java.lang.reflect.Field;
+
+import java.util.Objects;
 
 import javax.portlet.PortletException;
 import javax.portlet.RenderRequest;
@@ -82,7 +83,7 @@ public class TestPACLPortlet extends MVCPortlet {
 	}
 
 	protected void assertEquals(Object expected, Object actual) {
-		assertTrue(Validator.equals(expected, actual));
+		assertTrue(Objects.equals(expected, actual));
 	}
 
 	protected void assertFalse(boolean value) {

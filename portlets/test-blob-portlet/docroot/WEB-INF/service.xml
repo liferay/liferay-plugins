@@ -3,11 +3,11 @@
 
 <service-builder package-path="com.liferay.testblob">
 	<namespace>TestBlob</namespace>
-	<entity name="TestBlobEntry" uuid="true" local-service="true" remote-service="false">
+	<entity local-service="true" name="TestBlobEntry" remote-service="false" uuid="true">
 
 		<!-- PK fields -->
 
-		<column name="testBlobEntryId" type="long" primary="true" />
+		<column name="testBlobEntryId" primary="true" type="long" />
 
 		<!-- Other fields -->
 

@@ -8,7 +8,7 @@
 		</property>
 		<property name="placeholderPrefix" value="${jdbc." />
 	</bean>
-	<bean id="jiraDataSourceTarget" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="jiraDataSourceTarget">
 		<property name="driverClassName" value="${jdbc.jira.driverClassName}" />
 		<property name="url" value="${jdbc.jira.url}" />
 		<property name="username" value="${jdbc.jira.username}" />
@@ -19,22 +19,22 @@
 			<value>jdbc/JIRAPool</value>
 		</property>
 	</bean>-->
-	<bean id="jiraDataSource" class="org.springframework.jdbc.datasource.LazyConnectionDataSourceProxy">
+	<bean class="org.springframework.jdbc.datasource.LazyConnectionDataSourceProxy" id="jiraDataSource">
 		<property name="targetDataSource">
 			<ref bean="jiraDataSourceTarget" />
 		</property>
 	</bean>
-	<bean id="jiraHibernateSessionFactory" class="com.liferay.portal.spring.hibernate.PortletHibernateConfiguration">
+	<bean class="com.liferay.portal.spring.hibernate.PortletHibernateConfiguration" id="jiraHibernateSessionFactory">
 		<property name="dataSource">
 			<ref bean="jiraDataSource" />
 		</property>
 	</bean>
-	<bean id="jiraSessionFactory" class="com.liferay.portal.dao.orm.hibernate.SessionFactoryImpl">
+	<bean class="com.liferay.portal.dao.orm.hibernate.SessionFactoryImpl" id="jiraSessionFactory">
 		<property name="sessionFactoryImplementor">
 			<ref bean="jiraHibernateSessionFactory" />
 		</property>
 	</bean>
-	<bean id="jiraTransactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+	<bean class="org.springframework.orm.hibernate3.HibernateTransactionManager" id="jiraTransactionManager">
 		<property name="dataSource">
 			<ref bean="jiraDataSource" />
 		</property>

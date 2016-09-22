@@ -1,19 +1,19 @@
 <?xml version="1.0"?>
 
 <root available-locales="en_US" default-locale="en_US">
-	<dynamic-element instance-id="0ROUn9x2" name="title" type="text" index-type="">
+	<dynamic-element index-type="" instance-id="0ROUn9x2" name="title" type="text">
 		<dynamic-content><![CDATA[Our Goal]]></dynamic-content>
 	</dynamic-element>
-	<dynamic-element instance-id="jBoTcy7E" name="link" type="text" index-type="">
+	<dynamic-element index-type="" instance-id="jBoTcy7E" name="link" type="text">
 		<dynamic-content><![CDATA[]]></dynamic-content>
 	</dynamic-element>
-	<dynamic-element instance-id="O8nD3wSD" name="image" type="document_library" index-type="">
+	<dynamic-element index-type="" instance-id="O8nD3wSD" name="image" type="document_library">
 		<dynamic-content><![CDATA[]]></dynamic-content>
 	</dynamic-element>
-	<dynamic-element instance-id="6XsJs47K" name="description" type="text_box" index-type="">
+	<dynamic-element index-type="" instance-id="6XsJs47K" name="description" type="text_box">
 		<dynamic-content><![CDATA[The services you want and deserve]]></dynamic-content>
 	</dynamic-element>
-	<dynamic-element instance-id="3GhW6xQ2" name="content" type="text_area" index-type="">
+	<dynamic-element index-type="" instance-id="3GhW6xQ2" name="content" type="text_area">
 		<dynamic-content><![CDATA[<img src="[$FILE=pen.png$]" /><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce malesuada enim ut lorem accumsan lacinia. Cras in orci purus, vitae ultricies dui. Morbi magna neque, laoreet vitae semper non, faucibus vitae lacus. Quisque pretium molestie sapien.</p><p><a class="more left" href="#"><span>More Information</span></a></p>]]></dynamic-content>
 	</dynamic-element>
 </root>

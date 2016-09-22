@@ -99,7 +99,6 @@ if (microblogsEntries != null) {
 					<span class="modified-date">
 						<%= dateFormatDateTime.format(microblogsEntry.getModifiedDate()) %>
 					</span>
-
 					<span class="action-container">
 						<c:if test="<%= microblogsEntry.getType() != MicroblogsEntryConstants.TYPE_REPLY %>">
 

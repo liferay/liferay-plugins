@@ -80,10 +80,15 @@ public class PluginPackageProperties {
 	}
 
 	public boolean isDeveloperModeEnabled() {
-		return GetterUtil.getBoolean(
-			_properties.getProperty(
-				"resources-importer-developer-mode-enabled")) ||
-			PortalRunMode.isTestMode();
+		if (GetterUtil.getBoolean(
+				_properties.getProperty(
+					"resources-importer-developer-mode-enabled")) ||
+			PortalRunMode.isTestMode()) {
+
+			return true;
+		}
+
+		return false;
 	}
 
 	public boolean isUpdateModeEnabled() {

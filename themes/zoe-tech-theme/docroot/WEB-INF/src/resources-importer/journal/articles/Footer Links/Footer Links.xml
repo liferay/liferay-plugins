@@ -1,29 +1,29 @@
 <?xml version="1.0"?>
 
 <root available-locales="en_US" default-locale="en_US">
-	<dynamic-element instance-id="umMah2Cu" name="title" type="text" index-type="">
+	<dynamic-element index-type="" instance-id="umMah2Cu" name="title" type="text">
 		<dynamic-content><![CDATA[Footer Links]]></dynamic-content>
 	</dynamic-element>
-	<dynamic-element instance-id="RRsHqYC8" name="footer-links" type="text" index-type="">
-		<dynamic-element instance-id="0taWbQYJ" name="url-location" type="text" index-type="">
+	<dynamic-element index-type="" instance-id="RRsHqYC8" name="footer-links" type="text">
+		<dynamic-element index-type="" instance-id="0taWbQYJ" name="url-location" type="text">
 			<dynamic-content><![CDATA[#]]></dynamic-content>
 		</dynamic-element>
 		<dynamic-content><![CDATA[Link 1]]></dynamic-content>
 	</dynamic-element>
-	<dynamic-element instance-id="zDZxljs0" name="footer-links" type="text" index-type="">
-		<dynamic-element instance-id="xYz2736x" name="url-location" type="text" index-type="">
+	<dynamic-element index-type="" instance-id="zDZxljs0" name="footer-links" type="text">
+		<dynamic-element index-type="" instance-id="xYz2736x" name="url-location" type="text">
 			<dynamic-content><![CDATA[#]]></dynamic-content>
 		</dynamic-element>
 		<dynamic-content><![CDATA[Link 2]]></dynamic-content>
 	</dynamic-element>
-	<dynamic-element instance-id="XW4ePqv5" name="footer-links" type="text" index-type="">
-		<dynamic-element instance-id="IDDC7b0Y" name="url-location" type="text" index-type="">
+	<dynamic-element index-type="" instance-id="XW4ePqv5" name="footer-links" type="text">
+		<dynamic-element index-type="" instance-id="IDDC7b0Y" name="url-location" type="text">
 			<dynamic-content><![CDATA[#]]></dynamic-content>
 		</dynamic-element>
 		<dynamic-content><![CDATA[Link 3]]></dynamic-content>
 	</dynamic-element>
-	<dynamic-element instance-id="ehen0mXb" name="footer-links" type="text" index-type="">
-		<dynamic-element instance-id="APqM5EaX" name="url-location" type="text" index-type="">
+	<dynamic-element index-type="" instance-id="ehen0mXb" name="footer-links" type="text">
+		<dynamic-element index-type="" instance-id="APqM5EaX" name="url-location" type="text">
 			<dynamic-content><![CDATA[#]]></dynamic-content>
 		</dynamic-element>
 		<dynamic-content><![CDATA[Link 4]]></dynamic-content>

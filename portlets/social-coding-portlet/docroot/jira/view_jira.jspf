@@ -83,14 +83,14 @@ String jiraUserId = ExpandoValueLocalServiceUtil.getData(company.getCompanyId(),
 			</div>
 
 			<table class="lfr-table">
-			<tr>
-				<td>
-					<liferay-ui:message key="jira-login" />
-				</td>
-				<td>
-					<input class="lfr-input-text" name="<portlet:namespace />jiraUserId" style="width: 150px;" type="text" value="<%= HtmlUtil.escapeAttribute(jiraUserId) %>" />
-				</td>
-			</tr>
+				<tr>
+					<td>
+						<liferay-ui:message key="jira-login" />
+					</td>
+					<td>
+						<input class="lfr-input-text" name="<portlet:namespace />jiraUserId" style="width: 150px;" type="text" value="<%= HtmlUtil.escapeAttribute(jiraUserId) %>" />
+					</td>
+				</tr>
 			</table>
 
 			<br />

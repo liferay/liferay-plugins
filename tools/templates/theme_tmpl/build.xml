@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE project>
 
-<project name="@theme.name@-theme" basedir="." default="deploy">
+<project basedir="." default="deploy" name="@theme.name@-theme">
 	<property name="theme.parent" value="_styled" />
 
 	<import file="@plugin.type.dir@/build-common-theme.xml" />

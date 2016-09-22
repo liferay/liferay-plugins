@@ -48,9 +48,11 @@ Result:
 	<liferay-ui:section>
 		One body
 	</liferay-ui:section>
+
 	<liferay-ui:section>
 		Two body
 	</liferay-ui:section>
+
 	<liferay-ui:section>
 		Three body
 	</liferay-ui:section>

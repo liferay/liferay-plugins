@@ -118,7 +118,6 @@ portletURL.setWindowState(WindowState.NORMAL);
 
 										<%
 										for (Group curGroup : groups) {
-
 											String filterByGroupId = ContactsConstants.FILTER_BY_GROUP + curGroup.getGroupId();
 										%>
 
@@ -153,7 +152,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 					<i class="icon-search"></i>
 				</div>
 
-				<div class='<%= userPublicPage ? "contacts-result personal-contact-list" : "contacts-result" %>'>
+				<div class="<%= userPublicPage ? "contacts-result personal-contact-list" : "contacts-result" %>">
 
 					<%
 					String lastNameAnchor = StringPool.SPACE;
@@ -262,7 +261,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 
 									<div class="lfr-contact-grid-item" data-userId="" data-viewSummaryURL="<%= viewContactSummaryURL %>">
 										<div class="lfr-contact-thumb">
-											<img alt="<%= HtmlUtil.escapeAttribute(fullName) %>" src='<%= themeDisplay.getPathImage() + "/user_male_portrait?img_id=0&t=" %>' />
+											<img alt="<%= HtmlUtil.escapeAttribute(fullName) %>" src="<%= themeDisplay.getPathImage() + "/user_male_portrait?img_id=0&t=" %>" />
 										</div>
 
 										<div class="lfr-contact-info">

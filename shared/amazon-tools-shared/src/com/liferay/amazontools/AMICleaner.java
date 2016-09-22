@@ -225,11 +225,11 @@ public class AMICleaner extends BaseAMITool {
 
 			userId = user.getUserId();
 		}
-		catch (AmazonServiceException e) {
-			String errorCode = e.getErrorCode();
+		catch (AmazonServiceException ase) {
+			String errorCode = ase.getErrorCode();
 
 			if (errorCode.compareTo("AccessDenied") == 0) {
-				String message = e.getMessage();
+				String message = ase.getMessage();
 
 				int x = message.indexOf("::");
 

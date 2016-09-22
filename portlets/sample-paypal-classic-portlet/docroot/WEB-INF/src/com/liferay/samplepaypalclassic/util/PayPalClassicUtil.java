@@ -22,7 +22,6 @@ import java.util.Map;
 /**
  * @author Douglas Wong
  */
-
 public class PayPalClassicUtil {
 
 	protected static AdaptivePaymentsService getAdaptivePaymentsService() {

@@ -61,7 +61,6 @@ for (SocialActivitySet activitySet : results) {
 		<%= activityFeedEntry.getTitle() %>
 
 		<div class="activity-block">
-
 			<%= activityFeedEntry.getBody() %>
 
 			<div class="activity-footer">
@@ -103,7 +102,6 @@ for (SocialActivitySet activitySet : results) {
 						<span class="action view-comments">
 							<a data-activitySetId="<%= activitySet.getActivitySetId() %>" href="javascript:;"><%= commentsCount > 0 ? commentsCount : StringPool.BLANK %> <liferay-ui:message key='<%= commentsCount > 1 ? "comments" : "comment" %>' /></a>
 						</span>
-
 						<span class="action hide toggle">
 							<a class="toggle-entry" data-entryId="<%= activitySet.getActivitySetId() %>" href="javascript:;">
 								<i class="icon-expand-alt"></i>

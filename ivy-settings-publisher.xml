@@ -1,8 +1,8 @@
 <ivysettings>
 	<include file="${ivy.custom.settings.file}" />
 
-	<credentials host="${sonatype.release.hostname}" realm="${sonatype.release.realm}" passwd="${sonatype.release.password}" username="${sonatype.release.username}" />
-	<credentials host="${sonatype.snapshot.hostname}" realm="${sonatype.snapshot.realm}" passwd="${sonatype.snapshot.password}" username="${sonatype.snapshot.username}" />
+	<credentials host="${sonatype.release.hostname}" passwd="${sonatype.release.password}" realm="${sonatype.release.realm}" username="${sonatype.release.username}" />
+	<credentials host="${sonatype.snapshot.hostname}" passwd="${sonatype.snapshot.password}" realm="${sonatype.snapshot.realm}" username="${sonatype.snapshot.username}" />
 
 	<resolvers>
 		<filesystem m2compatible="true" name="local-m2">

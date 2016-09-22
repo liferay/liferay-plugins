@@ -143,8 +143,7 @@ public class GroupModelListener extends BaseModelListener<Group> {
 			Object associationClassPK)
 		throws PortalException {
 
-		if (!associationClassName.equals(
-				Organization.class.getName()) &&
+		if (!associationClassName.equals(Organization.class.getName()) &&
 			!associationClassName.equals(UserGroup.class.getName())) {
 
 			return new ArrayList<>();

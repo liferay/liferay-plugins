@@ -76,7 +76,6 @@ for (SocialActivity activity : results) {
 			<span class="avatar">
 				<img alt="<%= HtmlUtil.escapeAttribute(curUser.getFullName()) %>" src="<%= curUser.getPortraitURL(themeDisplay) %>" />
 			</span>
-
 			<span class="icon">
 				<liferay-portlet:icon-portlet portlet="<%= portlet %>" />
 			</span>

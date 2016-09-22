@@ -129,7 +129,7 @@ public class MicroblogsEntryAssetRenderer
 			long microblogsEntryId = _entry.getMicroblogsEntryId();
 
 			if (_entry.getParentMicroblogsEntryId() > 0) {
-				microblogsEntryId =_entry.getParentMicroblogsEntryId();
+				microblogsEntryId = _entry.getParentMicroblogsEntryId();
 			}
 
 			portletURL.setParameter(

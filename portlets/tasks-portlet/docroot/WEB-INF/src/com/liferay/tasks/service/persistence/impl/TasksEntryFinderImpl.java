@@ -239,23 +239,6 @@ public class TasksEntryFinderImpl
 		}
 	}
 
-	protected int countByG_U_S(long groupId, long userId, int status) {
-		if (status != TasksEntryConstants.STATUS_ALL) {
-			if (groupId > 0) {
-				return TasksEntryUtil.countByG_U_S(
-					groupId, userId, getStatuses(status));
-			}
-
-			return TasksEntryUtil.countByU_S(userId, getStatuses(status));
-		}
-
-		if (groupId > 0) {
-			return TasksEntryUtil.countByG_U(groupId, userId);
-		}
-
-		return TasksEntryUtil.countByUserId(userId);
-	}
-
 	protected int countByG_A_S(long groupId, long assigneeUserId, int status) {
 		if (status != TasksEntryConstants.STATUS_ALL) {
 			if (groupId > 0) {
@@ -274,24 +257,21 @@ public class TasksEntryFinderImpl
 		return TasksEntryUtil.countByAssigneeUserId(assigneeUserId);
 	}
 
-	protected List<TasksEntry> findByG_U_S(
-		long groupId, long userId, int status, int start, int end) {
-
+	protected int countByG_U_S(long groupId, long userId, int status) {
 		if (status != TasksEntryConstants.STATUS_ALL) {
 			if (groupId > 0) {
-				return TasksEntryUtil.findByG_U_S(
-					groupId, userId, getStatuses(status), start, end);
+				return TasksEntryUtil.countByG_U_S(
+					groupId, userId, getStatuses(status));
 			}
 
-			return TasksEntryUtil.findByU_S(
-				userId, getStatuses(status), start, end);
+			return TasksEntryUtil.countByU_S(userId, getStatuses(status));
 		}
 
 		if (groupId > 0) {
-			return TasksEntryUtil.findByG_U(groupId, userId, start, end);
+			return TasksEntryUtil.countByG_U(groupId, userId);
 		}
 
-		return TasksEntryUtil.findByUserId(userId, start, end);
+		return TasksEntryUtil.countByUserId(userId);
 	}
 
 	protected List<TasksEntry> findByG_A_S(
@@ -313,6 +293,26 @@ public class TasksEntryFinderImpl
 		}
 
 		return TasksEntryUtil.findByAssigneeUserId(assigneeUserId, start, end);
+	}
+
+	protected List<TasksEntry> findByG_U_S(
+		long groupId, long userId, int status, int start, int end) {
+
+		if (status != TasksEntryConstants.STATUS_ALL) {
+			if (groupId > 0) {
+				return TasksEntryUtil.findByG_U_S(
+					groupId, userId, getStatuses(status), start, end);
+			}
+
+			return TasksEntryUtil.findByU_S(
+				userId, getStatuses(status), start, end);
+		}
+
+		if (groupId > 0) {
+			return TasksEntryUtil.findByG_U(groupId, userId, start, end);
+		}
+
+		return TasksEntryUtil.findByUserId(userId, start, end);
 	}
 
 	protected String getAssetTagTagIds(

@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
-<hibernate-mapping default-lazy="false" auto-import="false">
+<hibernate-mapping auto-import="false" default-lazy="false">
 	<class name="com.liferay.samplehibernate.model.FoodItem" table="FoodItem">
 		<id name="foodItemId" type="long">
 			<generator class="increment" />
 		</id>
-		<property name="name" column="name_" />
+		<property column="name_" name="name" />
 		<property name="points" />
 	</class>
 </hibernate-mapping>

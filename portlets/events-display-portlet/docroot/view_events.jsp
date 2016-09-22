@@ -29,7 +29,6 @@ List<CalendarBooking> calendarBookings = (List<CalendarBooking>)request.getAttri
 	delta="<%= eventsPerPage %>"
 	total="<%= calendarBookings.size() %>"
 >
-
 	<liferay-ui:search-container-results
 		results="<%= calendarBookings.subList(searchContainer.getStart(), searchContainer.getResultEnd()) %>"
 	/>

@@ -32,6 +32,6 @@ page import="com.liferay.testmisc.messaging.TestSpringConfigMessageListener" %>
 
 <%@ page import="javax.portlet.ActionRequest" %>
 
-<portlet:defineObjects />
-
 <liferay-theme:defineObjects />
+
+<portlet:defineObjects />

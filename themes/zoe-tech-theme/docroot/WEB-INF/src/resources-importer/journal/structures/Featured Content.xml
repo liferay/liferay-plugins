@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 
 <root>
-	<dynamic-element name="title" type="text" index-type="" repeatable="false">
+	<dynamic-element index-type="" name="title" repeatable="false" type="text">
 		<meta-data>
 			<entry name="displayAsTooltip"><![CDATA[true]]></entry>
 			<entry name="required"><![CDATA[false]]></entry>
@@ -10,7 +10,7 @@
 			<entry name="predefinedValue"><![CDATA[]]></entry>
 		</meta-data>
 	</dynamic-element>
-	<dynamic-element name="link" type="text" index-type="" repeatable="false">
+	<dynamic-element index-type="" name="link" repeatable="false" type="text">
 		<meta-data>
 			<entry name="displayAsTooltip"><![CDATA[true]]></entry>
 			<entry name="required"><![CDATA[false]]></entry>
@@ -19,7 +19,7 @@
 			<entry name="predefinedValue"><![CDATA[]]></entry>
 		</meta-data>
 	</dynamic-element>
-	<dynamic-element name="image" type="document_library" index-type="" repeatable="false">
+	<dynamic-element index-type="" name="image" repeatable="false" type="document_library">
 		<meta-data>
 			<entry name="displayAsTooltip"><![CDATA[true]]></entry>
 			<entry name="required"><![CDATA[false]]></entry>
@@ -28,7 +28,7 @@
 			<entry name="predefinedValue"><![CDATA[]]></entry>
 		</meta-data>
 	</dynamic-element>
-	<dynamic-element name="description" type="text_box" index-type="" repeatable="false">
+	<dynamic-element index-type="" name="description" repeatable="false" type="text_box">
 		<meta-data>
 			<entry name="displayAsTooltip"><![CDATA[true]]></entry>
 			<entry name="required"><![CDATA[false]]></entry>
@@ -37,7 +37,7 @@
 			<entry name="predefinedValue"><![CDATA[]]></entry>
 		</meta-data>
 	</dynamic-element>
-	<dynamic-element name="content" type="text_area" index-type="" repeatable="false">
+	<dynamic-element index-type="" name="content" repeatable="false" type="text_area">
 		<meta-data>
 			<entry name="displayAsTooltip"><![CDATA[false]]></entry>
 			<entry name="required"><![CDATA[false]]></entry>

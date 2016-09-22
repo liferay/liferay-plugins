@@ -3,12 +3,12 @@
 
 <service-builder package-path="com.liferay.sampleservicebuilder">
 	<namespace>SSB</namespace>
-	<entity name="Foo" uuid="true" local-service="true" remote-service="true">
+	<entity local-service="true" name="Foo" remote-service="true" uuid="true">
 	<!--<entity name="Foo" table="foo" uuid="true" local-service="true" remote-service="false" data-source="sampleDataSource" session-factory="sampleSessionFactory" tx-manager="sampleTransactionManager">-->
 
 		<!-- PK fields -->
 
-		<column name="fooId" type="long" primary="true" />
+		<column name="fooId" primary="true" type="long" />
 
 		<!-- Group instance -->
 
@@ -44,7 +44,7 @@
 
 		<!-- References -->
 
-		<reference package-path="com.liferay.portlet.asset" entity="AssetEntry" />
-		<reference package-path="com.liferay.portlet.asset" entity="AssetTag" />
+		<reference entity="AssetEntry" package-path="com.liferay.portlet.asset" />
+		<reference entity="AssetTag" package-path="com.liferay.portlet.asset" />
 	</entity>
 </service-builder>

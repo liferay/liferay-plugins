@@ -25,7 +25,6 @@
 		rowChecker="<%= new RowChecker(renderResponse) %>"
 		total="<%= ModerationUtil.getWikiPagesCount(scopeGroupId) %>"
 	>
-
 		<liferay-ui:search-container-results
 			results="<%= ModerationUtil.getWikiPages(scopeGroupId, searchContainer.getStart(), searchContainer.getEnd()) %>"
 		/>

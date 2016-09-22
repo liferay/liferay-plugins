@@ -58,10 +58,10 @@ public class ResourcesImporterHotDeployMessageListener
 
 		String resourcesDir = pluginPackageProperties.getResourcesDir();
 
-		if ((servletContext.getResource(
-				ImporterFactory.RESOURCES_DIR) == null) &&
-			(servletContext.getResource(
-				ImporterFactory.TEMPLATES_DIR) == null) &&
+		if ((servletContext.getResource(ImporterFactory.RESOURCES_DIR) ==
+				null) &&
+			(servletContext.getResource(ImporterFactory.TEMPLATES_DIR) ==
+				null) &&
 			Validator.isNull(resourcesDir)) {
 
 			return;

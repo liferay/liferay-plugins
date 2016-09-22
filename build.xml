@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE project>
 
-<project name="plugins" basedir="." default="all" xmlns:antelope="antlib:ise.antelope.tasks" xmlns:artifact="antlib:org.apache.maven.artifact.ant">
+<project basedir="." default="all" name="plugins" xmlns:antelope="antlib:ise.antelope.tasks" xmlns:artifact="antlib:org.apache.maven.artifact.ant">
 	<import file="build-common.xml" />
 
 	<condition property="plugins.includes.path" value="">
@@ -68,9 +68,9 @@
 	</target>
 
 	<target name="build-service">
-		<ant dir="hooks" target="build-service" inheritAll="false" />
-		<ant dir="portlets" target="build-service" inheritAll="false" />
-		<ant dir="webs" target="build-service" inheritAll="false" />
+		<ant dir="hooks" inheritAll="false" target="build-service" />
+		<ant dir="portlets" inheritAll="false" target="build-service" />
+		<ant dir="webs" inheritAll="false" target="build-service" />
 	</target>
 
 	<target name="build-summary">
@@ -89,7 +89,7 @@
 					<fileset dir="." includes="**/liferay-releng.changelog.md5" />
 				</delete>
 
-				<copy todir="${sdk.dir}" overwrite="true">
+				<copy overwrite="true" todir="${sdk.dir}">
 					<fileset dir="${release.plugins.dir}">
 						<include name="**/liferay-plugin-package.properties" />
 					</fileset>
@@ -130,14 +130,14 @@
 	</target>
 
 	<target name="format-javadoc">
-		<ant dir="hooks" target="format-javadoc" inheritAll="false" />
-		<ant dir="layouttpl" target="format-javadoc" inheritAll="false" />
-		<ant dir="portlets" target="format-javadoc" inheritAll="false" />
-		<ant dir="themes" target="format-javadoc" inheritAll="false" />
-		<ant dir="webs" target="format-javadoc" inheritAll="false" />
+		<ant dir="hooks" inheritAll="false" target="format-javadoc" />
+		<ant dir="layouttpl" inheritAll="false" target="format-javadoc" />
+		<ant dir="portlets" inheritAll="false" target="format-javadoc" />
+		<ant dir="themes" inheritAll="false" target="format-javadoc" />
+		<ant dir="webs" inheritAll="false" target="format-javadoc" />
 	</target>
 
-	<target name="publish-sdk" depends="extract-plugins-sdk-with-dependencies">
+	<target depends="extract-plugins-sdk-with-dependencies" name="publish-sdk">
 		<fail message="Please run either publish-sdk-release or publish-sdk-snapshot instead of this target.">
 			<condition>
 				<not>
@@ -146,19 +146,19 @@
 			</condition>
 		</fail>
 
-		<condition property="remote.repository.password" value="${sonatype.snapshot.password}" else="${sonatype.release.password}">
+		<condition else="${sonatype.release.password}" property="remote.repository.password" value="${sonatype.snapshot.password}">
 			<istrue value="${snapshot}" />
 		</condition>
 
-		<condition property="remote.repository.url" value="${sonatype.snapshot.url}" else="${sonatype.release.url}">
+		<condition else="${sonatype.release.url}" property="remote.repository.url" value="${sonatype.snapshot.url}">
 			<istrue value="${snapshot}" />
 		</condition>
 
-		<condition property="remote.repository.username" value="${sonatype.snapshot.username}" else="${sonatype.release.username}">
+		<condition else="${sonatype.release.username}" property="remote.repository.username" value="${sonatype.snapshot.username}">
 			<istrue value="${snapshot}" />
 		</condition>
 
-		<condition property="snapshot.version.suffix" value="-SNAPSHOT" else="">
+		<condition else="" property="snapshot.version.suffix" value="-SNAPSHOT">
 			<istrue value="${snapshot}" />
 		</condition>
 
@@ -166,7 +166,7 @@
 
 		<artifact:pom artifactId="com.liferay.portal.plugins.sdk.with.dependencies" groupId="com.liferay.portal" id="plugins.sdk.pom" packaging="zip" version="${lp.version}${snapshot.version.suffix}" />
 
-		<artifact:writepom pomRefId="plugins.sdk.pom" file="dist/plugins.sdk.pom" />
+		<artifact:writepom file="dist/plugins.sdk.pom" pomRefId="plugins.sdk.pom" />
 
 		<artifact:deploy file="dist/com.liferay.portal.plugins.sdk.with.dependencies-${lp.version}${snapshot.version.suffix}.zip">
 			<pom file="dist/plugins.sdk.pom" />
@@ -204,9 +204,9 @@
 			target.name="compile"
 		/>
 
-		<ant dir="hooks" target="setup-eclipse" inheritAll="false" />
-		<ant dir="portlets" target="setup-eclipse" inheritAll="false" />
-		<ant dir="webs" target="setup-eclipse" inheritAll="false" />
+		<ant dir="hooks" inheritAll="false" target="setup-eclipse" />
+		<ant dir="portlets" inheritAll="false" target="setup-eclipse" />
+		<ant dir="webs" inheritAll="false" target="setup-eclipse" />
 	</target>
 
 	<target name="zip-portal">
@@ -225,7 +225,7 @@ the outputted files will work in any supported application server.
 		</if>
 
 		<tstamp>
-			<format property="tstamp.value" pattern="yyyyMMddkkmmssSSS" />
+			<format pattern="yyyyMMddkkmmssSSS" property="tstamp.value" />
 		</tstamp>
 
 		<zip destfile="dist/liferay-portal-dependencies-${tstamp.value}.zip">
@@ -235,7 +235,7 @@ the outputted files will work in any supported application server.
 			/>
 		</zip>
 
-		<delete file="dist/liferay-portal-${lp.version}.war" failonerror="false" />
+		<delete failonerror="false" file="dist/liferay-portal-${lp.version}.war" />
 
 		<zip
 			basedir="${app.server.portal.dir}"

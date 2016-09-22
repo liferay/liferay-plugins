@@ -11,7 +11,7 @@
 	</info>
 
 	<dependencies defaultconf="default">
-		<dependency org="com.paypal.sdk" name="adaptivepaymentssdk" rev="2.5.106" />
-		<dependency org="com.paypal.sdk" name="paypal-core" transitive="false" rev="1.5.0" />
+		<dependency name="adaptivepaymentssdk" org="com.paypal.sdk" rev="2.5.106" />
+		<dependency name="paypal-core" org="com.paypal.sdk" rev="1.5.0" transitive="false" />
 	</dependencies>
 </ivy-module>

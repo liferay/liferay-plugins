@@ -56,9 +56,9 @@ page import="com.liferay.wiki.model.WikiPage" %>
 <%@ page import="javax.portlet.PortletURL" %><%@
 page import="javax.portlet.WindowState" %>
 
-<portlet:defineObjects />
-
 <liferay-theme:defineObjects />
+
+<portlet:defineObjects />
 
 <%
 PortletURL portletURL = renderResponse.createRenderURL();

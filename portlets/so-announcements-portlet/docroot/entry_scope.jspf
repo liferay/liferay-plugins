@@ -49,7 +49,7 @@ else if (entryClassName.equals(UserGroup.class.getName())) {
 	scopeName = userGroup.getName();
 }
 else {
-	scopeName = LanguageUtil.get(locale, "general");
+	scopeName = LanguageUtil.get(request, "general");
 }
 
 scopeName = HtmlUtil.escape(scopeName);

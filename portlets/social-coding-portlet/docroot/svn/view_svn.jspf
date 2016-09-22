@@ -56,62 +56,60 @@ String svnUserId = user2.getScreenName();
 							</h5>
 
 							<table class="lfr-table">
-							<tr>
-								<td>
-									<portlet:renderURL var="userRevisionsURL" windowState="<%= WindowState.MAXIMIZED.toString() %>">
-										<portlet:param name="url" value="<%= url %>" />
-									</portlet:renderURL>
-
-									<a href="<%= userRevisionsURL %>">
-
-									<c:choose>
-										<c:when test="<%= user2.getUserId() == themeDisplay.getUserId() %>">
-											<liferay-ui:message key="my-commits" />
-										</c:when>
-										<c:otherwise>
-											<%= LanguageUtil.format(request, "x's-commits", HtmlUtil.escape(user2.getFirstName()), false) %>
-										</c:otherwise>
-									</c:choose>
-
-									</a>
-								</td>
-								<td>
-									<%= SVNRevisionLocalServiceUtil.getSVNRevisionsCount(svnUserId, svnRepository.getSvnRepositoryId()) %>
-								</td>
-
-								<c:if test="<%= PortalUtil.isRSSFeedsEnabled() %>">
+								<tr>
 									<td>
-										<liferay-ui:icon
-											iconCssClass="icon-rss"
-											message="rss"
-											url='<%= PortalUtil.getPathFriendlyURLPublic() + StringPool.SLASH + user2.getScreenName() + "/profile/-/svn/rss/user" + svnRepository.getShortURL() %>'
-										/>
+										<portlet:renderURL var="userRevisionsURL" windowState="<%= WindowState.MAXIMIZED.toString() %>">
+											<portlet:param name="url" value="<%= url %>" />
+										</portlet:renderURL>
+
+										<a href="<%= userRevisionsURL %>">
+											<c:choose>
+												<c:when test="<%= user2.getUserId() == themeDisplay.getUserId() %>">
+													<liferay-ui:message key="my-commits" />
+												</c:when>
+												<c:otherwise>
+													<%= LanguageUtil.format(request, "x's-commits", HtmlUtil.escape(user2.getFirstName()), false) %>
+												</c:otherwise>
+											</c:choose>
+										</a>
 									</td>
-								</c:if>
-							</tr>
-							<tr>
-								<td>
-									<portlet:renderURL var="allRevisionsURL" windowState="<%= WindowState.MAXIMIZED.toString() %>">
-										<portlet:param name="url" value="<%= url %>" />
-										<portlet:param name="all" value="true" />
-									</portlet:renderURL>
-
-									<a href="<%= allRevisionsURL %>"><liferay-ui:message key="all-commits" /></a>
-								</td>
-								<td>
-									<%= SVNRevisionLocalServiceUtil.getSVNRevisionsCount(svnRepository.getSvnRepositoryId()) %>
-								</td>
-
-								<c:if test="<%= PortalUtil.isRSSFeedsEnabled() %>">
 									<td>
-										<liferay-ui:icon
-											iconCssClass="icon-rss"
-											message="rss"
-											url='<%= PortalUtil.getPathFriendlyURLPublic() + StringPool.SLASH + user2.getScreenName() + "/profile/-/svn/rss/all" + svnRepository.getShortURL() %>'
-										/>
+										<%= SVNRevisionLocalServiceUtil.getSVNRevisionsCount(svnUserId, svnRepository.getSvnRepositoryId()) %>
 									</td>
-								</c:if>
-							</tr>
+
+									<c:if test="<%= PortalUtil.isRSSFeedsEnabled() %>">
+										<td>
+											<liferay-ui:icon
+												iconCssClass="icon-rss"
+												message="rss"
+												url='<%= PortalUtil.getPathFriendlyURLPublic() + StringPool.SLASH + user2.getScreenName() + "/profile/-/svn/rss/user" + svnRepository.getShortURL() %>'
+											/>
+										</td>
+									</c:if>
+								</tr>
+								<tr>
+									<td>
+										<portlet:renderURL var="allRevisionsURL" windowState="<%= WindowState.MAXIMIZED.toString() %>">
+											<portlet:param name="url" value="<%= url %>" />
+											<portlet:param name="all" value="true" />
+										</portlet:renderURL>
+
+										<a href="<%= allRevisionsURL %>"><liferay-ui:message key="all-commits" /></a>
+									</td>
+									<td>
+										<%= SVNRevisionLocalServiceUtil.getSVNRevisionsCount(svnRepository.getSvnRepositoryId()) %>
+									</td>
+
+									<c:if test="<%= PortalUtil.isRSSFeedsEnabled() %>">
+										<td>
+											<liferay-ui:icon
+												iconCssClass="icon-rss"
+												message="rss"
+												url='<%= PortalUtil.getPathFriendlyURLPublic() + StringPool.SLASH + user2.getScreenName() + "/profile/-/svn/rss/all" + svnRepository.getShortURL() %>'
+											/>
+										</td>
+									</c:if>
+								</tr>
 							</table>
 						</div>
 					</c:if>

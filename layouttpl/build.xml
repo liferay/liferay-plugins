@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE project>
 
-<project name="layouttpl" basedir="." default="deploy" xmlns:antelope="antlib:ise.antelope.tasks">
+<project basedir="." default="deploy" name="layouttpl" xmlns:antelope="antlib:ise.antelope.tasks">
 	<import file="../build-common-plugins.xml" />
 
 	<target name="create">
@@ -35,7 +35,7 @@
 			/>
 		</copy>
 
-		<antelope:stringutil string="${layouttpl.name}" property="layouttpl.template.name">
+		<antelope:stringutil property="layouttpl.template.name" string="${layouttpl.name}">
 			<replace regex="-" replacement="_" />
 		</antelope:stringutil>
 

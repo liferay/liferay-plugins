@@ -39,9 +39,9 @@ page import="com.liferay.stocks.util.StocksUtil" %>
 <%@ page import="javax.portlet.ValidatorException" %><%@
 page import="javax.portlet.WindowState" %>
 
-<portlet:defineObjects />
-
 <liferay-theme:defineObjects />
+
+<portlet:defineObjects />
 
 <%
 WindowState windowState = renderRequest.getWindowState();

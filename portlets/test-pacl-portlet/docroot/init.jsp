@@ -111,6 +111,6 @@ page import="javax.naming.InitialContext" %>
 
 <%@ page import="org.codehaus.jackson.map.ObjectMapper" %>
 
-<portlet:defineObjects />
-
 <liferay-theme:defineObjects />
+
+<portlet:defineObjects />

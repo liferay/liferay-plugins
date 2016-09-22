@@ -22,7 +22,6 @@
 
 	<%= _testAttributeList("MULTI_VM_PORTAL_CACHE_MANAGER", "com.liferay.portal.kernel.dao.orm.EntityCache.com.liferay.portal.model.impl.UserImpl", false, 10, 60) %>
 	<%= _testAttributeList("MULTI_VM_PORTAL_CACHE_MANAGER", "com.liferay.testcacheconfiguration.MultiVMClusteredObject", false, 100000, 6000) %>
-
 </p>
 
 <h3>liferay-single-vm</h3>
@@ -30,7 +29,6 @@
 <p>
 
 	<%= _testAttributeList("SINGLE_VM_PORTAL_CACHE_MANAGER", "com.liferay.portal.kernel.webcache.WebCachePool", false, 1, 10) %>
-
 </p>
 
 <%!

@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.2.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_2_0.dtd">
 
-<service-builder package-path="com.liferay.samplelar" auto-namespace-tables="false">
+<service-builder auto-namespace-tables="false" package-path="com.liferay.samplelar">
 	<author>Mate Thurzo</author>
 	<namespace>SampleLAR</namespace>
-	<entity name="SampleLARBooking" uuid="true" local-service="true" remote-service="false">
+	<entity local-service="true" name="SampleLARBooking" remote-service="false" uuid="true">
 
 		<!-- PK fields -->
 
-		<column name="sampleLARBookingId" type="long" primary="true" />
+		<column name="sampleLARBookingId" primary="true" type="long" />
 
 		<!-- Group instance -->
 

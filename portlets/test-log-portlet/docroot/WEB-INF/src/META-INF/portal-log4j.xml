@@ -2,7 +2,7 @@
 <!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
 
 <log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
-	<appender name="RollingFileAppender" class="org.apache.log4j.rolling.RollingFileAppender">
+	<appender class="org.apache.log4j.rolling.RollingFileAppender" name="RollingFileAppender">
 		<rollingPolicy class="org.apache.log4j.rolling.TimeBasedRollingPolicy">
 			<param name="FileNamePattern" value="@liferay.home@/logs/test-log-portlet.%d{yyyy-MM-dd}.log" />
 		</rollingPolicy>

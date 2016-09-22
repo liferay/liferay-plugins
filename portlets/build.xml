@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE project>
 
-<project name="portlets" basedir="." default="deploy" xmlns:antelope="antlib:ise.antelope.tasks">
+<project basedir="." default="deploy" name="portlets" xmlns:antelope="antlib:ise.antelope.tasks">
 	<import file="../build-common-plugins.xml" />
 
 	<target name="create">
@@ -35,12 +35,12 @@
 			/>
 		</copy>
 
-		<antelope:stringutil string="${portlet.display.name}" property="portlet.java.class.name">
+		<antelope:stringutil property="portlet.java.class.name" string="${portlet.display.name}">
 			<antelope:replace regex="\s+" replacement="" />
 			<antelope:trim />
 		</antelope:stringutil>
 
-		<antelope:stringutil string="${portlet.name}" property="portlet.java.package.name">
+		<antelope:stringutil property="portlet.java.package.name" string="${portlet.name}">
 			<antelope:replace regex="-" replacement="" />
 			<antelope:trim />
 		</antelope:stringutil>
@@ -97,7 +97,7 @@
 						<equals arg1="${portlet.framework}" arg2="richfaces" />
 					</or>
 					<then>
-						<echo file="${portlet.dir}/docroot/WEB-INF/liferay-plugin-package.properties" append="true">
+						<echo append="true" file="${portlet.dir}/docroot/WEB-INF/liferay-plugin-package.properties">
 
 portal-dependency-jars=commons-beanutils.jar,commons-collections.jar,commons-digester.jar,commons-fileupload.jar,commons-io.jar,commons-lang.jar
 
@@ -105,7 +105,7 @@ speed-filters-enabled=false
 						</echo>
 					</then>
 					<else>
-						<echo file="${portlet.dir}/docroot/WEB-INF/liferay-plugin-package.properties" append="true">
+						<echo append="true" file="${portlet.dir}/docroot/WEB-INF/liferay-plugin-package.properties">
 
 portal-dependency-jars=commons-beanutils.jar,commons-collections.jar,commons-digester.jar,commons-lang.jar
 
@@ -121,7 +121,7 @@ speed-filters-enabled=false
 		<ajaxable>false</ajaxable>]]></replacevalue>
 				</replace>
 
-				<replaceregexp match="&lt;/header-portlet-css&gt;(.*)&lt;/footer-portlet-javascript&gt;" replace="&lt;/header-portlet-css&gt;" flags="s">
+				<replaceregexp flags="s" match="&lt;/header-portlet-css&gt;(.*)&lt;/footer-portlet-javascript&gt;" replace="&lt;/header-portlet-css&gt;">
 					<fileset
 						dir="${portlet.dir}/docroot/WEB-INF"
 						includes="liferay-portlet.xml"
@@ -170,7 +170,7 @@ speed-filters-enabled=false
 					tofile="${portlet.dir}/docroot/WEB-INF/src/${portlet.java.package.name}/${portlet.java.class.name}PortletViewController.java"
 				/>
 
-				<echo file="${portlet.dir}/docroot/WEB-INF/liferay-plugin-package.properties" append="true">
+				<echo append="true" file="${portlet.dir}/docroot/WEB-INF/liferay-plugin-package.properties">
 
 portal-dependency-jars=aopalliance.jar,commons-logging.jar,jstl-api.jar,jstl-impl.jar,spring-aop.jar,spring-beans.jar,spring-context.jar,spring-core.jar,spring-expression.jar,spring-web.jar,spring-webmvc.jar,spring-webmvc-portlet.jar</echo>
 
@@ -212,7 +212,7 @@ portal-dependency-jars=aopalliance.jar,commons-logging.jar,jstl-api.jar,jstl-imp
 					tofile="${portlet.dir}/docroot/WEB-INF/src/${portlet.java.package.name}/${portlet.java.class.name}Application.java"
 				/>
 
-				<echo file="${portlet.dir}/docroot/WEB-INF/liferay-plugin-package.properties" append="true">
+				<echo append="true" file="${portlet.dir}/docroot/WEB-INF/liferay-plugin-package.properties">
 
 portal-dependency-jars=vaadin.jar</echo>
 
@@ -231,7 +231,7 @@ portal-dependency-jars=vaadin.jar</echo>
 					<replacevalue><![CDATA[<value>@portlet.java.package.name@.@portlet.java.class.name@Application</value>]]></replacevalue>
 				</replace>
 
-				<replaceregexp match="&lt;/icon&gt;(.*)&lt;/footer-portlet-javascript&gt;" replace="&lt;/icon&gt;" flags="s">
+				<replaceregexp flags="s" match="&lt;/icon&gt;(.*)&lt;/footer-portlet-javascript&gt;" replace="&lt;/icon&gt;">
 					<fileset
 						dir="${portlet.dir}/docroot/WEB-INF"
 						includes="liferay-portlet.xml"

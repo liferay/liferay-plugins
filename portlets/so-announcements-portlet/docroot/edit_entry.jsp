@@ -53,7 +53,6 @@ if (entry == null) {
 
 		<c:choose>
 			<c:when test="<%= entry != null %>">
-
 				<%@ include file="/entry_scope.jspf" %>
 
 				<aui:input name="scope" type="hidden" value="<%= scopeName %>" />

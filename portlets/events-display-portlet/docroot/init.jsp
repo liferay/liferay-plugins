@@ -69,9 +69,9 @@ page import="java.util.List" %>
 <%@ page import="javax.portlet.PortletMode" %><%@
 page import="javax.portlet.PortletRequest" %>
 
-<portlet:defineObjects />
-
 <liferay-theme:defineObjects />
+
+<portlet:defineObjects />
 
 <%
 int eventsPerPage = PrefsParamUtil.getInteger(portletPreferences, request, "eventsPerPage", 10);

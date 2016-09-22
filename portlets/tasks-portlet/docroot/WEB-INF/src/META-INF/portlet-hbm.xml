@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
-<hibernate-mapping default-lazy="false" auto-import="false">
+<hibernate-mapping auto-import="false" default-lazy="false">
 	<import class="com.liferay.tasks.model.TasksEntry" />
 	<class name="com.liferay.tasks.model.impl.TasksEntryImpl" table="TMS_TasksEntry">
 		<id name="tasksEntryId" type="long">

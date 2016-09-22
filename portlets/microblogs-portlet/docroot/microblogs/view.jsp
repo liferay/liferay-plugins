@@ -270,7 +270,6 @@ portletURL.setParameter("tabs1", tabs1);
 			event.preventDefault();
 
 			if (confirm('Are you sure you want to delete this post?')) {
-
 				A.io.request(
 					event.currentTarget.getAttribute('href'),
 					{

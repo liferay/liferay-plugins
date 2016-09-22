@@ -8,28 +8,28 @@
 		</property>
 		<property name="placeholderPrefix" value="${jdbc." />
 	</bean>
-	<bean id="sampleDataSourceTarget" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="sampleDataSourceTarget">
 		<property name="driverClassName" value="${jdbc.sample.driverClassName}" />
 		<property name="url" value="${jdbc.sample.url}" />
 		<property name="username" value="${jdbc.sample.username}" />
 		<property name="password" value="${jdbc.sample.password}" />
 	</bean>
-	<bean id="sampleDataSource" class="org.springframework.jdbc.datasource.LazyConnectionDataSourceProxy">
+	<bean class="org.springframework.jdbc.datasource.LazyConnectionDataSourceProxy" id="sampleDataSource">
 		<property name="targetDataSource">
 			<ref bean="sampleDataSourceTarget" />
 		</property>
 	</bean>
-	<bean id="sampleHibernateSessionFactory" class="com.liferay.portal.spring.hibernate.PortletHibernateConfiguration">
+	<bean class="com.liferay.portal.spring.hibernate.PortletHibernateConfiguration" id="sampleHibernateSessionFactory">
 		<property name="dataSource">
 			<ref bean="sampleDataSource" />
 		</property>
 	</bean>
-	<bean id="sampleSessionFactory" class="com.liferay.portal.dao.orm.hibernate.SessionFactoryImpl">
+	<bean class="com.liferay.portal.dao.orm.hibernate.SessionFactoryImpl" id="sampleSessionFactory">
 		<property name="sessionFactoryImplementor">
 			<ref bean="sampleHibernateSessionFactory" />
 		</property>
 	</bean>
-	<bean id="sampleTransactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+	<bean class="org.springframework.orm.hibernate3.HibernateTransactionManager" id="sampleTransactionManager">
 		<property name="dataSource">
 			<ref bean="sampleDataSource" />
 		</property>

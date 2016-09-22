@@ -1764,8 +1764,7 @@ public class FileSystemImporter extends BaseImporter {
 			{"asset_entry", AssetEntry.class}, {"asset_tag", AssetTag.class},
 			{"blogs_entry", BlogsEntry.class},
 			{"document_library", FileEntry.class},
-			{"site_map", LayoutSet.class},
-			{"wiki_page", WikiPage.class}
+			{"site_map", LayoutSet.class}, {"wiki_page", WikiPage.class}
 		};
 
 	private static final String _DDL_STRUCTURE_DIR_NAME =

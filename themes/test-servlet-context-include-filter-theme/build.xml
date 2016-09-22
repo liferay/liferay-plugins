@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE project>
 
-<project name="test-servlet-context-include-filter-theme" basedir="." default="deploy">
+<project basedir="." default="deploy" name="test-servlet-context-include-filter-theme">
 	<property name="theme.parent" value="_styled" />
 
 	<import file="../build-common-theme.xml" />

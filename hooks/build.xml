@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE project>
 
-<project name="hooks" basedir="." default="deploy">
+<project basedir="." default="deploy" name="hooks">
 	<import file="../build-common-plugins.xml" />
 
 	<target name="create">

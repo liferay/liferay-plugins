@@ -14,12 +14,11 @@
 
 package com.liferay.testevent.portlet;
 
-import com.liferay.portal.kernel.util.Validator;
-
 import java.io.IOException;
 import java.io.PrintWriter;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 import javax.portlet.Event;
 import javax.portlet.EventRequest;
@@ -64,7 +63,7 @@ public class EventConsumer extends GenericPortlet {
 
 		String value = hashMap.get("hello");
 
-		if (Validator.equals(value, "world")) {
+		if (Objects.equals(value, "world")) {
 			_result = true;
 		}
 		else {

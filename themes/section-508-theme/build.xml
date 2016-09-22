@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE project>
 
-<project name="section-508-theme" basedir="." default="deploy">
+<project basedir="." default="deploy" name="section-508-theme">
 	<property name="theme.parent" value="_styled" />
 
 	<import file="../build-common-theme.xml" />

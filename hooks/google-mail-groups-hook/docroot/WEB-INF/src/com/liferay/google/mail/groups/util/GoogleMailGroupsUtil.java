@@ -176,8 +176,8 @@ public class GoogleMailGroupsUtil {
 
 					String groupEmailAddress = getGroupEmailAddress(group);
 
-					if (GoogleDirectoryUtil.getGroup(
-							groupEmailAddress) == null) {
+					if (GoogleDirectoryUtil.getGroup(groupEmailAddress) ==
+							null) {
 
 						try {
 							GoogleDirectoryUtil.addGroup(

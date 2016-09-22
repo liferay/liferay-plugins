@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE project>
 
-<project name="google-apps-connector-shared" basedir="." default="compile">
+<project basedir="." default="compile" name="google-apps-connector-shared">
 	<property name="plugin.version" value="1" />
 
 	<import file="../build-common-shared.xml" />

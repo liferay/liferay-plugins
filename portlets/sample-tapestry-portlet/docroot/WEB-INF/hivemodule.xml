@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<module id="sample" version="1.0.0" package="com.liferay.sampletapestry">
+<module id="sample" package="com.liferay.sampletapestry" version="1.0.0">
 	<contribution configuration-id="tapestry.state.ApplicationObjects">
 		<state-object name="bookList" scope="session">
 			<create-instance class="com.liferay.sampletapestry.bean.BookList" />

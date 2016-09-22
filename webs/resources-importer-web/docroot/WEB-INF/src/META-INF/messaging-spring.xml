@@ -10,17 +10,17 @@
 
 	<!-- Destinations -->
 
-	<bean id="destination.resources_importer" class="com.liferay.portal.kernel.messaging.SerialDestination">
+	<bean class="com.liferay.portal.kernel.messaging.SerialDestination" id="destination.resources_importer">
 		<property name="name" value="liferay/resources_importer" />
 	</bean>
 
 	<!-- Listeners -->
 
-	<bean id="messageListener.hot_deploy" class="com.liferay.resourcesimporter.messaging.ResourcesImporterHotDeployMessageListener" />
+	<bean class="com.liferay.resourcesimporter.messaging.ResourcesImporterHotDeployMessageListener" id="messageListener.hot_deploy" />
 
 	<!-- Configurator -->
 
-	<bean id="messagingConfigurator" class="com.liferay.portal.kernel.messaging.config.PluginMessagingConfigurator">
+	<bean class="com.liferay.portal.kernel.messaging.config.PluginMessagingConfigurator" id="messagingConfigurator">
 		<property name="destinations">
 			<list>
 				<ref bean="destination.resources_importer" />

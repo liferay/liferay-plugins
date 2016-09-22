@@ -1,19 +1,19 @@
 <?xml version="1.0"?>
 
 <root available-locales="en_US" default-locale="en_US">
-	<dynamic-element instance-id="7niT3c9Q" name="title" type="text" index-type="">
+	<dynamic-element index-type="" instance-id="7niT3c9Q" name="title" type="text">
 		<dynamic-content><![CDATA[Exceptional Support]]></dynamic-content>
 	</dynamic-element>
-	<dynamic-element instance-id="93Ar6Euy" name="link" type="text" index-type="">
+	<dynamic-element index-type="" instance-id="93Ar6Euy" name="link" type="text">
 		<dynamic-content><![CDATA[]]></dynamic-content>
 	</dynamic-element>
-	<dynamic-element instance-id="kewBv1i9" name="image" type="document_library" index-type="">
+	<dynamic-element index-type="" instance-id="kewBv1i9" name="image" type="document_library">
 		<dynamic-content><![CDATA[]]></dynamic-content>
 	</dynamic-element>
-	<dynamic-element instance-id="Znaw8Uj1" name="description" type="text_box" index-type="">
+	<dynamic-element index-type="" instance-id="Znaw8Uj1" name="description" type="text_box">
 		<dynamic-content><![CDATA[Great Support and Service]]></dynamic-content>
 	</dynamic-element>
-	<dynamic-element instance-id="HlvOk8qY" name="content" type="text_area" index-type="">
+	<dynamic-element index-type="" instance-id="HlvOk8qY" name="content" type="text_area">
 		<dynamic-content><![CDATA[<img src="[$FILE=mouse.png$]" /><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce malesuada enim ut lorem accumsan lacinia. Cras in orci purus, vitae ultricies dui. Morbi magna neque, laoreet vitae semper non, faucibus vitae lacus. Quisque pretium molestie sapien.</p><p><a class="more left" href="#"><span>More Information</span></a></p>]]></dynamic-content>
 	</dynamic-element>
 </root>

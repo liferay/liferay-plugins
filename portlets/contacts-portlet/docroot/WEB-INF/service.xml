@@ -3,11 +3,11 @@
 
 <service-builder package-path="com.liferay.contacts">
 	<namespace>Contacts</namespace>
-	<entity name="Entry" local-service="true" remote-service="true">
+	<entity local-service="true" name="Entry" remote-service="true">
 
 		<!-- PK fields -->
 
-		<column name="entryId" type="long" primary="true" />
+		<column name="entryId" primary="true" type="long" />
 
 		<!-- Group instance -->
 
@@ -30,7 +30,7 @@
 		<!-- Order -->
 
 		<order by="asc">
-			<order-column name="fullName" case-sensitive="false" />
+			<order-column case-sensitive="false" name="fullName" />
 		</order>
 
 		<!-- Finder methods -->

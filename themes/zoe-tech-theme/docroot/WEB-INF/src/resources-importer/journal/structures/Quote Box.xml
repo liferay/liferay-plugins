@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 
 <root>
-	<dynamic-element name="title" type="text" index-type="" repeatable="false">
+	<dynamic-element index-type="" name="title" repeatable="false" type="text">
 		<meta-data>
 			<entry name="displayAsTooltip"><![CDATA[true]]></entry>
 			<entry name="required"><![CDATA[false]]></entry>
@@ -10,8 +10,8 @@
 			<entry name="predefinedValue"><![CDATA[]]></entry>
 		</meta-data>
 	</dynamic-element>
-	<dynamic-element name="quote" type="text_box" index-type="" repeatable="true">
-		<dynamic-element name="author" type="text" index-type="" repeatable="false">
+	<dynamic-element index-type="" name="quote" repeatable="true" type="text_box">
+		<dynamic-element index-type="" name="author" repeatable="false" type="text">
 			<meta-data>
 				<entry name="displayAsTooltip"><![CDATA[true]]></entry>
 				<entry name="required"><![CDATA[false]]></entry>

@@ -53,11 +53,11 @@
 							"description" : "Lorem ipsum dolor sit amet, lohtil consectetur adipiscing elit. Vivamus feugiat, augue in sollicitudin blandit, magna purus bibendum justo, quisnic scelerisque ipsum turpis eu dui. Nunc lobortis, augue ac viverra convallis.",
 							"fieldLabel1": "Full Name",
 							"fieldLabel2": "Email",
-							"fieldsEditingDisabled": "true",
 							"fieldType1": "text",
 							"fieldType2": "text",
 							"fieldType3": "textarea",
 							"fieldValue": "Write your short description here",
+							"fieldsEditingDisabled": "true",
 							"portletSetupCss": {
 								"advancedData": {
 									"customCSSClassName": "make-appointment"
@@ -82,6 +82,7 @@
 				]
 			],
 			"friendlyURL": "/about",
+			"layoutTemplateId": "2-1-2-4-columns",
 			"layouts": [
 				{
 					"friendlyURL": "/category-1",
@@ -104,7 +105,6 @@
 					"title": "Category 4"
 				}
 			],
-			"layoutTemplateId": "2-1-2-4-columns",
 			"name": "About",
 			"title": "About"
 		},

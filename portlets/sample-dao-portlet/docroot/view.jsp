@@ -55,32 +55,32 @@ WindowState windowState = renderRequest.getWindowState();
 
 		<table class="lfr-table">
 
-		<%
-		if (cmd.equals(Constants.EDIT)) {
-		%>
+			<%
+			if (cmd.equals(Constants.EDIT)) {
+			%>
 
-			<tr>
-				<td>
-					Food Item ID
-				</td>
-				<td>
-					<%= foodItemId %>
-				</td>
-			</tr>
+				<tr>
+					<td>
+						Food Item ID
+					</td>
+					<td>
+						<%= foodItemId %>
+					</td>
+				</tr>
 
-		<%
-		}
+			<%
+			}
 
-		FoodItem foodItem = FoodItemDAO.getFoodItem(foodItemId);
-		%>
+			FoodItem foodItem = FoodItemDAO.getFoodItem(foodItemId);
+			%>
 
-		<aui:model-context bean="<%= foodItem %>" model="<%= FoodItem.class %>" />
+			<aui:model-context bean="<%= foodItem %>" model="<%= FoodItem.class %>" />
 
-		<aui:fieldset>
-			<aui:input autoFocus="<%= windowState.equals(WindowState.MAXIMIZED) %>" name="name" type="text" />
+			<aui:fieldset>
+				<aui:input autoFocus="<%= windowState.equals(WindowState.MAXIMIZED) %>" name="name" type="text" />
 
-			<aui:input label="Points" name="points" type="text" />
-		</aui:fieldset>
+				<aui:input label="Points" name="points" type="text" />
+			</aui:fieldset>
 		</table>
 
 		<br />
@@ -100,48 +100,48 @@ WindowState windowState = renderRequest.getWindowState();
 		<br /><br />
 
 		<table border="1" cellpadding="4" cellspacing="0" width="100%">
-		<tr>
-			<td>
-				<strong>Food Item ID</strong>
-			</td>
-			<td>
-				<strong>Name</strong>
-			</td>
-			<td>
-				<strong>Points</strong>
-			</td>
-			<td>
-				<strong>Action</strong>
-			</td>
-		</tr>
-
-		<%
-		List foodItems = FoodItemDAO.getFoodItems();
-
-		for (int i = 0; i < foodItems.size(); i++) {
-			FoodItem foodItem = (FoodItem)foodItems.get(i);
-		%>
-
 			<tr>
 				<td>
-					<%= foodItem.getFoodItemId() %>
+					<strong>Food Item ID</strong>
 				</td>
 				<td>
-					<%= foodItem.getName() %>
+					<strong>Name</strong>
 				</td>
 				<td>
-					<%= foodItem.getPoints() %>
+					<strong>Points</strong>
 				</td>
 				<td>
-					<input onClick="self.location = '<portlet:renderURL><portlet:param name="<%= Constants.CMD %>" value="<%= Constants.EDIT %>" /><portlet:param name="foodItemId" value="<%= String.valueOf(foodItem.getFoodItemId()) %>" /></portlet:renderURL>';" type="button" value="Edit" />
-
-					<input onClick="document.<portlet:namespace />fm.<%= Constants.CMD %>.value = '<%= Constants.DELETE %>'; document.<portlet:namespace />fm.<portlet:namespace />foodItemId.value = '<%= foodItem.getFoodItemId() %>'; document.<portlet:namespace />fm.submit();" type="button" value="Delete" />
+					<strong>Action</strong>
 				</td>
 			</tr>
 
-		<%
-		}
-		%>
+			<%
+			List foodItems = FoodItemDAO.getFoodItems();
+
+			for (int i = 0; i < foodItems.size(); i++) {
+				FoodItem foodItem = (FoodItem)foodItems.get(i);
+			%>
+
+				<tr>
+					<td>
+						<%= foodItem.getFoodItemId() %>
+					</td>
+					<td>
+						<%= foodItem.getName() %>
+					</td>
+					<td>
+						<%= foodItem.getPoints() %>
+					</td>
+					<td>
+						<input onClick="self.location = '<portlet:renderURL><portlet:param name="<%= Constants.CMD %>" value="<%= Constants.EDIT %>" /><portlet:param name="foodItemId" value="<%= String.valueOf(foodItem.getFoodItemId()) %>" /></portlet:renderURL>';" type="button" value="Edit" />
+
+						<input onClick="document.<portlet:namespace />fm.<%= Constants.CMD %>.value = '<%= Constants.DELETE %>'; document.<portlet:namespace />fm.<portlet:namespace />foodItemId.value = '<%= foodItem.getFoodItemId() %>'; document.<portlet:namespace />fm.submit();" type="button" value="Delete" />
+					</td>
+				</tr>
+
+			<%
+			}
+			%>
 
 		</table>
 

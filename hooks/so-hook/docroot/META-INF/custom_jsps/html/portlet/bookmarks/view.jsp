@@ -62,74 +62,73 @@ request.setAttribute("view.jsp-viewFolder", Boolean.TRUE.toString());
 <liferay-portlet:renderURLParams varImpl="searchURL" />
 
 <form action="<%= searchURL %>" method="get" name="<portlet:namespace />fm2" onSubmit="submitForm(this); return false;">
-<input name="<portlet:namespace />redirect" type="hidden" value="<%= HtmlUtil.escapeAttribute(currentURL) %>" />
-<input name="<portlet:namespace />breadcrumbsFolderId" type="hidden" value="<%= folderId %>" />
-<input name="<portlet:namespace />searchFolderId" type="hidden" value="<%= folderId %>" />
+	<input name="<portlet:namespace />redirect" type="hidden" value="<%= HtmlUtil.escapeAttribute(currentURL) %>" />
+	<input name="<portlet:namespace />breadcrumbsFolderId" type="hidden" value="<%= folderId %>" />
+	<input name="<portlet:namespace />searchFolderId" type="hidden" value="<%= folderId %>" />
 
-<liferay-ui:search-container
-	curParam="cur1"
-	iteratorURL="<%= portletURL %>"
-	total="<%= BookmarksEntryServiceUtil.getEntriesCount(scopeGroupId, folderId) %>"
->
-
-	<%
-	OrderByComparator orderByComparator = BookmarksUtil.getEntryOrderByComparator("name", "asc");
-	%>
-
-	<liferay-ui:search-container-results
-		results="<%= BookmarksEntryServiceUtil.getEntries(scopeGroupId, folderId, searchContainer.getStart(), searchContainer.getEnd(), orderByComparator) %>"
-	/>
-
-	<liferay-ui:search-container-row
-		className="com.liferay.portlet.bookmarks.model.BookmarksEntry"
-		escapedModel="<%= true %>"
-		keyProperty="entryId"
-		modelVar="entry"
+	<liferay-ui:search-container
+		curParam="cur1"
+		iteratorURL="<%= portletURL %>"
+		total="<%= BookmarksEntryServiceUtil.getEntriesCount(scopeGroupId, folderId) %>"
 	>
 
 		<%
-		String rowHREF = null;
-
-		if (BookmarksEntryPermission.contains(permissionChecker, entry, ActionKeys.VIEW)) {
-			StringBuilder sb = new StringBuilder();
-
-			sb.append(themeDisplay.getPathMain());
-			sb.append("/bookmarks/open_entry?entryId=");
-			sb.append(entry.getEntryId());
-
-			rowHREF = sb.toString();
-		}
+		OrderByComparator orderByComparator = BookmarksUtil.getEntryOrderByComparator("name", "asc");
 		%>
 
-		<liferay-ui:search-container-column-text
-			href="<%= rowHREF %>"
-			orderable="<%= true %>"
-			orderableProperty="name"
-			property="name"
-			target="_blank"
-			title="<%= entry.getDescription() %>"
+		<liferay-ui:search-container-results
+			results="<%= BookmarksEntryServiceUtil.getEntries(scopeGroupId, folderId, searchContainer.getStart(), searchContainer.getEnd(), orderByComparator) %>"
 		/>
 
-		<liferay-ui:search-container-column-jsp
-			align="right"
-			cssClass="entry-action"
-			path="/html/portlet/bookmarks/entry_action.jsp"
-		/>
-	</liferay-ui:search-container-row>
+		<liferay-ui:search-container-row
+			className="com.liferay.portlet.bookmarks.model.BookmarksEntry"
+			escapedModel="<%= true %>"
+			keyProperty="entryId"
+			modelVar="entry"
+		>
 
-	<c:if test="<%= BookmarksFolderPermission.contains(permissionChecker, scopeGroupId, folderId, ActionKeys.ADD_ENTRY) %>">
-		<div class="control-wrapper">
-			<a href="javascript:;" onClick="<portlet:namespace />addEntry();"><liferay-ui:message key="add-entry" /></a>
-		</div>
-	</c:if>
+			<%
+			String rowHREF = null;
 
-	<c:if test="<%= BookmarksEntryServiceUtil.getEntriesCount(scopeGroupId, folderId) <= 0 %>">
-		<liferay-ui:message key="there-are-no-entries" />
-	</c:if>
+			if (BookmarksEntryPermission.contains(permissionChecker, entry, ActionKeys.VIEW)) {
+				StringBuilder sb = new StringBuilder();
 
-	<liferay-ui:search-iterator />
-</liferay-ui:search-container>
+				sb.append(themeDisplay.getPathMain());
+				sb.append("/bookmarks/open_entry?entryId=");
+				sb.append(entry.getEntryId());
 
+				rowHREF = sb.toString();
+			}
+			%>
+
+			<liferay-ui:search-container-column-text
+				href="<%= rowHREF %>"
+				orderable="<%= true %>"
+				orderableProperty="name"
+				property="name"
+				target="_blank"
+				title="<%= entry.getDescription() %>"
+			/>
+
+			<liferay-ui:search-container-column-jsp
+				align="right"
+				cssClass="entry-action"
+				path="/html/portlet/bookmarks/entry_action.jsp"
+			/>
+		</liferay-ui:search-container-row>
+
+		<c:if test="<%= BookmarksFolderPermission.contains(permissionChecker, scopeGroupId, folderId, ActionKeys.ADD_ENTRY) %>">
+			<div class="control-wrapper">
+				<a href="javascript:;" onClick="<portlet:namespace />addEntry();"><liferay-ui:message key="add-entry" /></a>
+			</div>
+		</c:if>
+
+		<c:if test="<%= BookmarksEntryServiceUtil.getEntriesCount(scopeGroupId, folderId) <= 0 %>">
+			<liferay-ui:message key="there-are-no-entries" />
+		</c:if>
+
+		<liferay-ui:search-iterator />
+	</liferay-ui:search-container>
 </form>
 
 <script type="text/javascript">

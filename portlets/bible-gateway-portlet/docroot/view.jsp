@@ -49,6 +49,7 @@
 			</aui:button-row>
 		</aui:form>
 	</liferay-ui:section>
+
 	<liferay-ui:section>
 		<aui:form name="fm2" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "compare();" %>'>
 			<aui:fieldset>
@@ -74,6 +75,7 @@
 			</aui:button-row>
 		</aui:form>
 	</liferay-ui:section>
+
 	<liferay-ui:section>
 		<aui:form method="get" name='<%= renderResponse.getNamespace() + "fm3" %>' onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "search();" %>' portletNamespace="" target="_blank">
 			<aui:fieldset>

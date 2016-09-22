@@ -3,11 +3,11 @@
 
 <service-builder package-path="com.liferay.akismet">
 	<namespace>Akismet</namespace>
-	<entity name="AkismetData" local-service="true" remote-service="false">
+	<entity local-service="true" name="AkismetData" remote-service="false">
 
 		<!-- PK fields -->
 
-		<column name="akismetDataId" type="long" primary="true" />
+		<column name="akismetDataId" primary="true" type="long" />
 
 		<!-- Audit fields -->
 
@@ -27,7 +27,7 @@
 		<!-- Finder methods -->
 
 		<finder name="LtModifiedDate" return-type="Collection">
-			<finder-column name="modifiedDate" comparator="&lt;" />
+			<finder-column comparator="&lt;" name="modifiedDate" />
 		</finder>
 		<finder name="C_C" return-type="AkismetData">
 			<finder-column name="classNameId" />

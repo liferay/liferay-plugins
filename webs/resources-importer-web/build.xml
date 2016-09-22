@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <!DOCTYPE project>
 
-<project name="resources-importer-web" basedir="." default="deploy">
+<project basedir="." default="deploy" name="resources-importer-web">
 	<import file="../build-common-web.xml" />
 </project>

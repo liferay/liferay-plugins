@@ -57,7 +57,6 @@ public class UpgradeUser extends UpgradeProcess {
 
 				@Override
 				public void performAction(User user) throws PortalException {
-
 					try {
 						if (user.isDefaultUser()) {
 							return;

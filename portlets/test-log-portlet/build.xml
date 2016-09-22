@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <!DOCTYPE project>
 
-<project name="test-log-portlet" basedir="." default="deploy">
+<project basedir="." default="deploy" name="test-log-portlet">
 	<import file="../build-common-portlet.xml" />
 </project>

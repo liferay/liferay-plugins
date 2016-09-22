@@ -71,7 +71,6 @@ RowChecker userRoleChecker = (RowChecker)InstanceFactory.newInstance(PortalClass
 		modelVar="user2"
 		rowIdProperty="screenName"
 	>
-
 		<liferay-ui:search-container-column-text
 			name="name"
 			property="fullName"

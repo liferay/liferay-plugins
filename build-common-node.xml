@@ -128,7 +128,7 @@ ${nodejs.url[osx64]}.
 					<available file="${sdk.tools.dir}/node-v${nodejs.version}" />
 				</not>
 				<then>
-					<antelope:stringutil string="${nodejs.url}" property="nodejs.file.beginindex">
+					<antelope:stringutil property="nodejs.file.beginindex" string="${nodejs.url}">
 						<antelope:lastindexof string="/" />
 					</antelope:stringutil>
 
@@ -140,7 +140,7 @@ ${nodejs.url[osx64]}.
 						result="nodejs.file.beginindex"
 					/>
 
-					<antelope:stringutil string="${nodejs.url}" property="nodejs.file">
+					<antelope:stringutil property="nodejs.file" string="${nodejs.url}">
 						<antelope:substring beginindex="${nodejs.file.beginindex}" />
 					</antelope:stringutil>
 
@@ -160,11 +160,11 @@ ${nodejs.url[osx64]}.
 								<arg line="xfz ${sdk.tools.dir}/${nodejs.file} -C ${sdk.tools.dir}" />
 							</exec>
 
-							<antelope:stringutil string="${nodejs.file}" property="nodejs.dir.endindex">
+							<antelope:stringutil property="nodejs.dir.endindex" string="${nodejs.file}">
 								<antelope:lastindexof string=".tar.gz" />
 							</antelope:stringutil>
 
-							<antelope:stringutil string="${nodejs.file}" property="nodejs.dir">
+							<antelope:stringutil property="nodejs.dir" string="${nodejs.file}">
 								<antelope:substring endindex="${nodejs.dir.endindex}" />
 							</antelope:stringutil>
 
@@ -291,12 +291,12 @@ ${nodejs.url[osx64]}.
 						</then>
 					</if>
 
-					<var name="node.executable" value="${node.executable}@{node.command}.${node.command.extension}"/>
+					<var name="node.executable" value="${node.executable}@{node.command}.${node.command.extension}" />
 				</else>
 			</if>
 
 			<exec dir="@{node.working.dir}" executable="${node.executable}">
-				<env key="PATH" path="${node.path}"/>
+				<env key="PATH" path="${node.path}" />
 				<arg line="@{node.command.args} @{node.args}" />
 			</exec>
 		</sequential>
@@ -326,7 +326,7 @@ ${nodejs.url[osx64]}.
 				node.module.version="${nodejs.modules.version[lfr-amd-loader]}"
 			/>
 
-			<pathconvert pathsep=" " property="transpile.files" setonempty="false" refid="transpile.fileset" >
+			<pathconvert pathsep=" " property="transpile.files" refid="transpile.fileset" setonempty="false" >
 				<map from="@{module.dir}/src/" to="" />
 			</pathconvert>
 

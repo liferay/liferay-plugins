@@ -1,19 +1,19 @@
 <?xml version="1.0"?>
 
 <root available-locales="en_US" default-locale="en_US">
-	<dynamic-element instance-id="M4puwHg8" name="title" type="text" index-type="">
+	<dynamic-element index-type="" instance-id="M4puwHg8" name="title" type="text">
 		<dynamic-content><![CDATA[How do we do it?]]></dynamic-content>
 	</dynamic-element>
-	<dynamic-element instance-id="VP25Oqe7" name="link" type="text" index-type="">
+	<dynamic-element index-type="" instance-id="VP25Oqe7" name="link" type="text">
 		<dynamic-content><![CDATA[]]></dynamic-content>
 	</dynamic-element>
-	<dynamic-element instance-id="6n0S7AjA" name="image" type="document_library" index-type="">
+	<dynamic-element index-type="" instance-id="6n0S7AjA" name="image" type="document_library">
 		<dynamic-content><![CDATA[[$FILE=gears_icon.png$]]]></dynamic-content>
 	</dynamic-element>
-	<dynamic-element instance-id="jrO1zZ9V" name="description" type="text_box" index-type="">
+	<dynamic-element index-type="" instance-id="jrO1zZ9V" name="description" type="text_box">
 		<dynamic-content><![CDATA[A walk through of our process to bring new reality to your world]]></dynamic-content>
 	</dynamic-element>
-	<dynamic-element instance-id="Q9mUXJt6" name="content" type="text_area" index-type="">
+	<dynamic-element index-type="" instance-id="Q9mUXJt6" name="content" type="text_area">
 		<dynamic-content><![CDATA[<p>
 	Nulla turpis erat, sagittis eget mattis sit amet, sagittis at leo. Maecenas condimentum, mi nec iaculis faucibus, ligula libero malesuada massa, quis consequat leo sem et lorem. Sed dignissim, augue bibendum convallis faucibus, sapien ante sollicitudin felis, ac tristique est sapien a enim.<br />
 	<br />

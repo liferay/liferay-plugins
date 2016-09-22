@@ -1,44 +1,44 @@
 <?xml version="1.0"?>
 
 <root available-locales="en_US" default-locale="en_US">
-	<dynamic-element instance-id="5ByhMfQG" name="title" type="text" index-type="">
+	<dynamic-element index-type="" instance-id="5ByhMfQG" name="title" type="text">
 		<dynamic-content><![CDATA[Stay Updated]]></dynamic-content>
 	</dynamic-element>
-	<dynamic-element instance-id="ClMr3Ooh" name="tagline" type="text" index-type="">
+	<dynamic-element index-type="" instance-id="ClMr3Ooh" name="tagline" type="text">
 		<dynamic-content><![CDATA[Subscribe and follow us]]></dynamic-content>
 	</dynamic-element>
-	<dynamic-element instance-id="tsRcWebO" name="social-links" type="text" index-type="">
-		<dynamic-element instance-id="pR2CBoAV" name="icon" type="document_library" index-type="">
+	<dynamic-element index-type="" instance-id="tsRcWebO" name="social-links" type="text">
+		<dynamic-element index-type="" instance-id="pR2CBoAV" name="icon" type="document_library">
 			<dynamic-content><![CDATA[[$FILE=linkedin.png$]]]></dynamic-content>
 		</dynamic-element>
-		<dynamic-element instance-id="IW9cyHuX" name="url-location" type="text" index-type="">
+		<dynamic-element index-type="" instance-id="IW9cyHuX" name="url-location" type="text">
 			<dynamic-content><![CDATA[//www.linkedin.com/company/liferay-inc.]]></dynamic-content>
 		</dynamic-element>
 		<dynamic-content><![CDATA[LinkedIn]]></dynamic-content>
 	</dynamic-element>
-	<dynamic-element instance-id="15PiwExp" name="social-links" type="text" index-type="">
-		<dynamic-element instance-id="mPf8qYG8" name="icon" type="document_library" index-type="">
+	<dynamic-element index-type="" instance-id="15PiwExp" name="social-links" type="text">
+		<dynamic-element index-type="" instance-id="mPf8qYG8" name="icon" type="document_library">
 			<dynamic-content><![CDATA[[$FILE=facebook.png$]]]></dynamic-content>
 		</dynamic-element>
-		<dynamic-element instance-id="gBaaWyD7" name="url-location" type="text" index-type="">
+		<dynamic-element index-type="" instance-id="gBaaWyD7" name="url-location" type="text">
 			<dynamic-content><![CDATA[//facebook.com/liferay]]></dynamic-content>
 		</dynamic-element>
 		<dynamic-content><![CDATA[Facebook]]></dynamic-content>
 	</dynamic-element>
-	<dynamic-element instance-id="1N9ja4Ro" name="social-links" type="text" index-type="">
-		<dynamic-element instance-id="ZMyL8K8V" name="icon" type="document_library" index-type="">
+	<dynamic-element index-type="" instance-id="1N9ja4Ro" name="social-links" type="text">
+		<dynamic-element index-type="" instance-id="ZMyL8K8V" name="icon" type="document_library">
 			<dynamic-content><![CDATA[[$FILE=twitter.png$]]]></dynamic-content>
 		</dynamic-element>
-		<dynamic-element instance-id="XknqciB1" name="url-location" type="text" index-type="">
+		<dynamic-element index-type="" instance-id="XknqciB1" name="url-location" type="text">
 			<dynamic-content><![CDATA[//twitter.com/liferay]]></dynamic-content>
 		</dynamic-element>
 		<dynamic-content><![CDATA[Twitter]]></dynamic-content>
 	</dynamic-element>
-	<dynamic-element instance-id="yjRtC4YQ" name="social-links" type="text" index-type="">
-		<dynamic-element instance-id="6qbJy5AA" name="icon" type="document_library" index-type="">
+	<dynamic-element index-type="" instance-id="yjRtC4YQ" name="social-links" type="text">
+		<dynamic-element index-type="" instance-id="6qbJy5AA" name="icon" type="document_library">
 			<dynamic-content><![CDATA[[$FILE=rss.png$]]]></dynamic-content>
 		</dynamic-element>
-		<dynamic-element instance-id="Jaw7trL5" name="url-location" type="text" index-type="">
+		<dynamic-element index-type="" instance-id="Jaw7trL5" name="url-location" type="text">
 			<dynamic-content><![CDATA[#]]></dynamic-content>
 		</dynamic-element>
 		<dynamic-content><![CDATA[RSS]]></dynamic-content>

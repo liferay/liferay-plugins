@@ -1,22 +1,22 @@
 <?xml version="1.0"?>
 
 <root available-locales="en_US" default-locale="en_US">
-	<dynamic-element instance-id="9T65cMfh" name="title" type="text" index-type="">
+	<dynamic-element index-type="" instance-id="9T65cMfh" name="title" type="text">
 		<dynamic-content><![CDATA[Who We Are]]></dynamic-content>
 	</dynamic-element>
-	<dynamic-element instance-id="rCjUCAH7" name="link" type="text" index-type="">
+	<dynamic-element index-type="" instance-id="rCjUCAH7" name="link" type="text">
 		<dynamic-content><![CDATA[]]></dynamic-content>
 	</dynamic-element>
-	<dynamic-element instance-id="UVplaFX5" name="imageselect" type="document_library" index-type="">
+	<dynamic-element index-type="" instance-id="UVplaFX5" name="imageselect" type="document_library">
 		<dynamic-content><![CDATA[[$FILE=gears.png$]]]></dynamic-content>
 	</dynamic-element>
-	<dynamic-element instance-id="mPj0tpWQ" name="imageupload" type="image" index-type="">
+	<dynamic-element index-type="" instance-id="mPj0tpWQ" name="imageupload" type="image">
 		<dynamic-content><![CDATA[]]></dynamic-content>
 	</dynamic-element>
-	<dynamic-element instance-id="DHao9cNb" name="description" type="text_box" index-type="">
+	<dynamic-element index-type="" instance-id="DHao9cNb" name="description" type="text_box">
 		<dynamic-content><![CDATA[How we achieve our goals and provide quality products]]></dynamic-content>
 	</dynamic-element>
-	<dynamic-element instance-id="EVZd09wH" name="content" type="text_area" index-type="">
+	<dynamic-element index-type="" instance-id="EVZd09wH" name="content" type="text_area">
 		<dynamic-content><![CDATA[<p>
 	Aliquam consequat, purus vehicula tristique scelerisque, lorem neque rutrum erat, quis aliquet diam magna at ligula. Etiam eget mi tortor, vel pretium lectus. Morbi sit amet dui velit. Cras odio nisl, blandit quis rhoncus eget, convallis nec tortor. In quis tellus lorem. Proin posuere ligula et nisi rhoncus eu mollis ligula varius. Donec pharetra molestie felis non tincidunt. Donec faucibus consectetur cursus. Donec viverra dignissim tempus.<br />
 	<br />
