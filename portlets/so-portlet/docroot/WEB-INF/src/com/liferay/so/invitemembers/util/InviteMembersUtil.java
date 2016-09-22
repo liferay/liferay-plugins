@@ -42,8 +42,8 @@ public class InviteMembersUtil {
 			"usersInvited",
 			new CustomSQLParam(
 				CustomSQLUtil.get(
-					"com.liferay.portal.kernel.service.persistence.UserFinder." +
-						"filterByUsersGroupsGroupId"),
+					"com.liferay.portal.kernel.service.persistence." +
+						"UserFinder.filterByUsersGroupsGroupId"),
 				groupId));
 
 		return UserLocalServiceUtil.search(
@@ -61,8 +61,8 @@ public class InviteMembersUtil {
 			"usersInvited",
 			new CustomSQLParam(
 				CustomSQLUtil.get(
-					"com.liferay.portal.kernel.service.persistence.UserFinder." +
-						"filterByUsersGroupsGroupId"),
+					"com.liferay.portal.kernel.service.persistence." +
+						"UserFinder.filterByUsersGroupsGroupId"),
 				groupId));
 
 		return UserLocalServiceUtil.searchCount(
