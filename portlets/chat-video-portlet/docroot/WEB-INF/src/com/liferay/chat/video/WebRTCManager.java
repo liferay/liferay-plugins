@@ -445,9 +445,9 @@ public class WebRTCManager {
 		destinationOutgoingWebRTCMailbox.pushWebRTCMail(webRTCMail);
 	}
 
-	private static long _CONNECTION_TIMEOUT_DURATION_TIME = 60000;
+	private static final long _CONNECTION_TIMEOUT_DURATION_TIME = 60000;
 
-	private static long _PRESENCE_TIMEOUT_DURATION_TIME = 30000;
+	private static final long _PRESENCE_TIMEOUT_DURATION_TIME = 30000;
 
 	private Map<Long, WebRTCClient> _webRTCClients = new ConcurrentHashMap<>();
 
