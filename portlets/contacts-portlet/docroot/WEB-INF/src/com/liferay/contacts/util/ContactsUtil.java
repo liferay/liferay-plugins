@@ -167,6 +167,7 @@ public class ContactsUtil {
 		Contact contact = user.getContact();
 
 		sb.append(_getName(user, contact));
+
 		sb.append(_getJobTitle(user));
 		sb.append(_getEmailAddresses(user));
 		sb.append(_getPhones(user));

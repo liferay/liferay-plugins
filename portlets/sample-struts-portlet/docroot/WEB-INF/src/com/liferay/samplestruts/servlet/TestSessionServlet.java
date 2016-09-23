@@ -64,6 +64,7 @@ public class TestSessionServlet extends HttpServlet {
 			Object attrValue = session.getAttribute(attrName);
 
 			sb.append(attrName);
+
 			sb.append("=");
 			sb.append(attrValue);
 			sb.append("<br />");

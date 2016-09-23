@@ -103,6 +103,7 @@ public class ImporterFactory {
 			Group group = GroupLocalServiceUtil.getCompanyGroup(companyId);
 
 			importer.setGroupId(group.getGroupId());
+
 			importer.setResourcesDir(TEMPLATES_DIR);
 		}
 		else if (Validator.isNotNull(resourcesDir)) {

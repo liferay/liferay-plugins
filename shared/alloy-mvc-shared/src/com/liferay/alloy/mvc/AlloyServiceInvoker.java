@@ -50,6 +50,7 @@ public class AlloyServiceInvoker {
 
 			addModelMethod = serviceClass.getMethod(
 				"add" + simpleClassName, new Class[] {modelClass});
+
 			createModelMethod = serviceClass.getMethod(
 				"create" + simpleClassName, new Class[] {long.class});
 			deleteModelMethod = serviceClass.getMethod(

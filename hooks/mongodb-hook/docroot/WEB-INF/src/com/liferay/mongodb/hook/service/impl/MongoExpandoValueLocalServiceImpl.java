@@ -112,6 +112,7 @@ public class MongoExpandoValueLocalServiceImpl
 			expandoValue.setValueId(valueId);
 
 			queryDBObject.put("valueId", valueId);
+
 			queryDBObject.put(
 				expandoColumn.getName(), getData(expandoColumn, expandoValue));
 

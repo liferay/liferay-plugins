@@ -121,6 +121,7 @@ public class DLActivityInterpreter extends SOSocialActivityInterpreter {
 			fileEntry, fileVersion, null, serviceContext.getThemeDisplay());
 
 		sb.append(thumbnailSrc);
+
 		sb.append("\"></span>");
 		sb.append("<div class=\"document-container\"><div class=\"title\">");
 		sb.append(getPageTitle(className, classPK, serviceContext));

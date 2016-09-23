@@ -164,6 +164,7 @@ public class SitesPortlet extends MVCPortlet {
 					layoutSetPrototypeId);
 
 			jsonObject.put("description", layoutSetPrototype.getDescription());
+
 			jsonObject.put("layoutSetPrototypeId", layoutSetPrototypeId);
 			jsonObject.put(
 				"name", layoutSetPrototype.getName(themeDisplay.getLocale()));
@@ -335,6 +336,7 @@ public class SitesPortlet extends MVCPortlet {
 						false);
 
 					membershipRequestURL.setParameter("comments", comments);
+
 					membershipRequestURL.setWindowState(WindowState.NORMAL);
 
 					groupJSONObject.put(
