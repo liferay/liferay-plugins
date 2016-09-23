@@ -31,7 +31,7 @@ import javax.portlet.PortletRequest;
 @Documented
 @Inherited
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.METHOD})
+@Target(ElementType.METHOD)
 public @interface JSONWebServiceMethod {
 
 	public String lifecycle() default PortletRequest.RENDER_PHASE;

@@ -216,9 +216,8 @@ public class JIRAActivityInterpreter extends BaseSocialActivityInterpreter {
 		}
 
 		if (jiraChangeItemsJSONArray.length() == 0) {
-			return(
-				serviceContext.translate(
-					"activity-social-coding-jira-add-change-default"));
+			return serviceContext.translate(
+				"activity-social-coding-jira-add-change-default");
 		}
 
 		StringBundler sb = new StringBundler(jiraChangeItemsJSONArray.length());
