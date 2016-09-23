@@ -733,6 +733,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 
 	protected void initClass() {
 		clazz = getClass();
+
 		classLoader = clazz.getClassLoader();
 	}
 

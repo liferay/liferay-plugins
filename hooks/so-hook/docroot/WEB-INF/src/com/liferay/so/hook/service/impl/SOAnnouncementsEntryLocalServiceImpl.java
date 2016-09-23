@@ -262,6 +262,7 @@ public class SOAnnouncementsEntryLocalServiceImpl
 				List<User> users = null;
 
 				int start = (i * Indexer.DEFAULT_INTERVAL);
+
 				int end = start + Indexer.DEFAULT_INTERVAL;
 
 				if (announcementEntry.getClassNameId() == 0) {

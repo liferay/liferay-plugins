@@ -84,6 +84,7 @@ public class TestRenderResponse extends RenderResponseWrapper {
 
 		if (_printWriter == null) {
 			_unsyncStringWriter = new UnsyncStringWriter();
+
 			_printWriter = UnsyncPrintWriterPool.borrow(_unsyncStringWriter);
 		}
 

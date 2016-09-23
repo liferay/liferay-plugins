@@ -100,6 +100,7 @@ public class UserIndexerPostProcessor extends BaseIndexerPostProcessor {
 
 		for (int i = 0; i <= pages; i++) {
 			int start = (i * Indexer.DEFAULT_INTERVAL);
+
 			int end = start + Indexer.DEFAULT_INTERVAL;
 
 			List<User> socialRelationshipUsers =

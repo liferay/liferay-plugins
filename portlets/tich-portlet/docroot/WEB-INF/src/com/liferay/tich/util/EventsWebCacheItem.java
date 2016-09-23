@@ -41,6 +41,7 @@ public class EventsWebCacheItem implements WebCacheItem {
 				"http://www.studylight.org/his/tich");
 
 			int x = text.indexOf("<div class=\"border_bottom_medium\"");
+
 			int y = text.indexOf("<p class=\"small\">", x);
 
 			text = HtmlUtil.stripHtml(text.substring(x, y));
