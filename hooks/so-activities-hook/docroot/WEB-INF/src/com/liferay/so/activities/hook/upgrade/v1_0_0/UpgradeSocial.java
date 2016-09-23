@@ -31,7 +31,7 @@ public class UpgradeSocial extends UpgradeProcess {
 
 	protected void addActivitySet(
 			long activitySetId, long groupId, long companyId, long userId,
-			long createDate, long classNameId, long classPK, int type_)
+			long createDate, long classNameId, long classPK, int type)
 		throws Exception {
 
 		Connection con = null;
@@ -57,7 +57,7 @@ public class UpgradeSocial extends UpgradeProcess {
 			ps.setLong(6, createDate);
 			ps.setLong(7, classNameId);
 			ps.setLong(8, classPK);
-			ps.setInt(9, type_);
+			ps.setInt(9, type);
 			ps.setInt(10, 1);
 
 			ps.executeUpdate();
@@ -132,7 +132,7 @@ public class UpgradeSocial extends UpgradeProcess {
 				long mirrorActivityId = rs.getLong("mirrorActivityId");
 				long classNameId = rs.getLong("classNameId");
 				long classPK = rs.getLong("classPK");
-				int type_ = rs.getInt("type_");
+				int type = rs.getInt("type_");
 
 				if (mirrorActivityId > 0) {
 					continue;
@@ -142,7 +142,7 @@ public class UpgradeSocial extends UpgradeProcess {
 
 				addActivitySet(
 					activitySetId, groupId, companyId, userId, createDate,
-					classNameId, classPK, type_);
+					classNameId, classPK, type);
 				updateActivity(activityId, activitySetId);
 			}
 		}

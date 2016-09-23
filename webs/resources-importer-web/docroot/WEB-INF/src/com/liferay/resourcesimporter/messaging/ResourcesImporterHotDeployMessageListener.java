@@ -74,7 +74,7 @@ public class ResourcesImporterHotDeployMessageListener
 			ExportImportThreadLocal.setPortletImportInProcess(true);
 
 			for (Company company : companies) {
-				importResources(
+				_importResources(
 					company, servletContext, pluginPackageProperties,
 					message.getResponseId());
 			}
@@ -90,7 +90,7 @@ public class ResourcesImporterHotDeployMessageListener
 		initialize(message);
 	}
 
-	private void importResources(
+	private void _importResources(
 			Company company, ServletContext servletContext,
 			PluginPackageProperties pluginPackageProperties,
 			String messageResponseId)
