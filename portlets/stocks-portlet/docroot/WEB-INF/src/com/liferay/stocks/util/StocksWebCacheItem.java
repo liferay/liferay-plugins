@@ -58,8 +58,11 @@ public class StocksWebCacheItem implements WebCacheItem {
 			st.nextToken();
 
 			try {
-				lastTrade = GetterUtil.getDouble(
-					st.nextToken().replace('"', ' ').trim());
+				String token = st.nextToken();
+
+				token = token.replace('"', ' ');
+
+				lastTrade = GetterUtil.getDouble(token.trim());
 
 				stocks.setLastTrade(lastTrade);
 			}
@@ -73,8 +76,11 @@ public class StocksWebCacheItem implements WebCacheItem {
 			st.nextToken();
 
 			try {
-				change = GetterUtil.getDouble(
-					st.nextToken().replace('"', ' ').trim());
+				String token = st.nextToken();
+
+				token = token.replace('"', ' ');
+
+				change = GetterUtil.getDouble(token.trim());
 
 				stocks.setChange(change);
 			}
@@ -83,8 +89,11 @@ public class StocksWebCacheItem implements WebCacheItem {
 			}
 
 			try {
-				open = GetterUtil.getDouble(
-					st.nextToken().replace('"', ' ').trim());
+				String token = st.nextToken();
+
+				token = token.replace('"', ' ');
+
+				open = GetterUtil.getDouble(token.trim());
 
 				stocks.setOpen(open);
 			}
@@ -93,8 +102,11 @@ public class StocksWebCacheItem implements WebCacheItem {
 			}
 
 			try {
-				dayHigh = GetterUtil.getDouble(
-					st.nextToken().replace('"', ' ').trim());
+				String token = st.nextToken();
+
+				token = token.replace('"', ' ');
+
+				dayHigh = GetterUtil.getDouble(token.trim());
 
 				stocks.setDayHigh(dayHigh);
 			}
@@ -103,8 +115,11 @@ public class StocksWebCacheItem implements WebCacheItem {
 			}
 
 			try {
-				dayLow = GetterUtil.getDouble(
-					st.nextToken().replace('"', ' ').trim());
+				String token = st.nextToken();
+
+				token = token.replace('"', ' ');
+
+				dayLow = GetterUtil.getDouble(token.trim());
 
 				stocks.setDayLow(dayLow);
 			}
@@ -113,8 +128,11 @@ public class StocksWebCacheItem implements WebCacheItem {
 			}
 
 			try {
-				volume = GetterUtil.getLong(
-					st.nextToken().replace('"', ' ').trim());
+				String token = st.nextToken();
+
+				token = token.replace('"', ' ');
+
+				volume = GetterUtil.getLong(token.trim());
 
 				stocks.setVolume(volume);
 			}

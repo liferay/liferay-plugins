@@ -61,7 +61,9 @@ public class ConnectionPool {
 
 			// Properties
 
-			ClassLoader classLoader = getClass().getClassLoader();
+			Class<?> clazz = getClass();
+
+			ClassLoader classLoader = clazz.getClassLoader();
 
 			_props = new Properties();
 

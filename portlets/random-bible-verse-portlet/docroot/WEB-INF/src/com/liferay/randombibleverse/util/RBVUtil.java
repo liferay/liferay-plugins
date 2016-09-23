@@ -62,7 +62,9 @@ public class RBVUtil {
 		Document document = null;
 
 		try {
-			ClassLoader classLoader = getClass().getClassLoader();
+			Class<?> clazz = getClass();
+
+			ClassLoader classLoader = clazz.getClassLoader();
 
 			URL url = classLoader.getResource(
 				"com/liferay/randombibleverse/dependencies/" +
