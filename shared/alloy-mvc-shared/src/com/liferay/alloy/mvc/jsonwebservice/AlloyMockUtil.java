@@ -358,6 +358,9 @@ public class AlloyMockUtil {
 			throw new UnsupportedOperationException();
 		}
 
+		/**
+		 * @deprecated As of 7.0.0
+		 */
 		@Deprecated
 		@Override
 		public String getRealPath(String path) {
@@ -459,6 +462,9 @@ public class AlloyMockUtil {
 			throw new UnsupportedOperationException();
 		}
 
+		/**
+		 * @deprecated As of 7.0.0
+		 */
 		@Deprecated
 		@Override
 		public boolean isRequestedSessionIdFromUrl() {
@@ -553,6 +559,9 @@ public class AlloyMockUtil {
 			throw new UnsupportedOperationException();
 		}
 
+		/**
+		 * @deprecated As of 7.0.0
+		 */
 		@Deprecated
 		@Override
 		public String encodeRedirectUrl(String url) {
@@ -564,6 +573,9 @@ public class AlloyMockUtil {
 			throw new UnsupportedOperationException();
 		}
 
+		/**
+		 * @deprecated As of 7.0.0
+		 */
 		@Deprecated
 		@Override
 		public String encodeUrl(String url) {
@@ -705,6 +717,9 @@ public class AlloyMockUtil {
 			throw new UnsupportedOperationException();
 		}
 
+		/**
+		 * @deprecated As of 7.0.0
+		 */
 		@Deprecated
 		@Override
 		public void setStatus(int status, String message) {
@@ -750,18 +765,27 @@ public class AlloyMockUtil {
 			throw new UnsupportedOperationException();
 		}
 
+		/**
+		 * @deprecated As of 7.0.0
+		 */
 		@Deprecated
 		@Override
 		public HttpSessionContext getSessionContext() {
 			throw new UnsupportedOperationException();
 		}
 
+		/**
+		 * @deprecated As of 7.0.0
+		 */
 		@Deprecated
 		@Override
 		public Object getValue(String name) {
 			throw new UnsupportedOperationException();
 		}
 
+		/**
+		 * @deprecated As of 7.0.0
+		 */
 		@Deprecated
 		@Override
 		public String[] getValueNames() {
@@ -778,6 +802,9 @@ public class AlloyMockUtil {
 			throw new UnsupportedOperationException();
 		}
 
+		/**
+		 * @deprecated As of 7.0.0
+		 */
 		@Deprecated
 		@Override
 		public void putValue(String name, Object value) {
@@ -789,6 +816,9 @@ public class AlloyMockUtil {
 			throw new UnsupportedOperationException();
 		}
 
+		/**
+		 * @deprecated As of 7.0.0
+		 */
 		@Deprecated
 		@Override
 		public void removeValue(String name) {
@@ -851,6 +881,9 @@ public class AlloyMockUtil {
 			throw new UnsupportedOperationException();
 		}
 
+		/**
+		 * @deprecated As of 7.0.0
+		 */
 		@Deprecated
 		@Override
 		public ExpressionEvaluator getExpressionEvaluator() {
@@ -892,6 +925,9 @@ public class AlloyMockUtil {
 			return new MockHttpSession();
 		}
 
+		/**
+		 * @deprecated As of 7.0.0
+		 */
 		@Deprecated
 		@Override
 		public VariableResolver getVariableResolver() {

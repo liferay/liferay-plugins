@@ -284,6 +284,7 @@ public class HttpServletRequestAdapterImpl
 	/**
 	 * @deprecated As of 6.2.0
 	 */
+	@Deprecated
 	@Override
 	public String getRealPath(String path) {
 		return _httpServletRequest.getRealPath(path);
@@ -401,6 +402,7 @@ public class HttpServletRequestAdapterImpl
 	/**
 	 * @deprecated As of 6.2.0
 	 */
+	@Deprecated
 	@Override
 	public boolean isRequestedSessionIdFromUrl() {
 		return _httpServletRequest.isRequestedSessionIdFromUrl();
