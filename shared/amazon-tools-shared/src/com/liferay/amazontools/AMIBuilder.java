@@ -151,7 +151,7 @@ public class AMIBuilder extends BaseAMITool {
 
 		boolean created = false;
 
-		for (int i = 0; i < 6; i ++) {
+		for (int i = 0; i < 6; i++) {
 			sleep(30);
 
 			created = isImageCreated(createImageResult.getImageId());

@@ -647,7 +647,7 @@ public class FileSystemImporter extends BaseImporter {
 	protected void addDLFileEntries(String dirName) throws Exception {
 		File dir = new File(_resourcesDir, dirName);
 
-		if (!dir.isDirectory()|| !dir.canRead()) {
+		if (!dir.isDirectory() || !dir.canRead()) {
 			return;
 		}
 
