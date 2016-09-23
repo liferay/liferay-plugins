@@ -25,6 +25,7 @@ import com.liferay.pushnotifications.model.PushNotificationsDevice;
 import com.liferay.pushnotifications.service.base.PushNotificationsDeviceServiceBaseImpl;
 import com.liferay.pushnotifications.service.permission.PushNotificationsPermission;
 import com.liferay.pushnotifications.util.ActionKeys;
+import com.liferay.pushnotifications.util.PushNotificationsConstants;
 
 import java.util.List;
 
@@ -52,7 +53,7 @@ public class PushNotificationsDeviceServiceImpl
 				pushNotificationsDeviceLocalService.addPushNotificationsDevice(
 					getGuestOrUserId(), platform, token);
 		}
-		else {
+		else if (!platform.equals(PushNotificationsConstants.PLATFORM_SMS)) {
 			long userId = getGuestOrUserId();
 
 			pushNotificationsDevice.setUserId(userId);
