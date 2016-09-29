@@ -18,8 +18,6 @@
 
 This is the <strong>Sample UI Taglibs Portlet</strong>. This was made to showcase some of Liferay's UI taglibs.<br /><br />
 
-<a href="<portlet:renderURL><portlet:param name="mvcPath" value="/calendar.jsp" /></portlet:renderURL>">liferay-ui:calendar</a><br /><br />
-
 <a href="<portlet:renderURL><portlet:param name="mvcPath" value="/tabs.jsp" /></portlet:renderURL>">liferay-ui:tabs</a><br /><br />
 
 <a href="<portlet:renderURL><portlet:param name="mvcPath" value="/toggle.jsp" /></portlet:renderURL>">liferay-ui:toggle</a>
