@@ -71,11 +71,6 @@ public class MockAlloyControllerImpl
 	}
 
 	@Override
-	public void indexModel(BaseModel<?> baseModel) throws Exception {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
 	public void setPageContext(PageContext pageContext) {
 		throw new UnsupportedOperationException();
 	}
