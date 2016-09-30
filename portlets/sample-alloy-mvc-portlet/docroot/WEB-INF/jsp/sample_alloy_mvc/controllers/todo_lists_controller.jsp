@@ -133,7 +133,7 @@ public static class AlloyControllerImpl extends BaseAlloyControllerImpl {
 	}
 
 	private SAMTodoList _fetchSAMTodoList() throws Exception {
-		long samTodoListId = ParamUtil.getLong(request, "samTodoListId");
+		long samTodoListId = ParamUtil.getLong(request, "id");
 
 		return SAMTodoListLocalServiceUtil.fetchSAMTodoList(samTodoListId);
 	}
