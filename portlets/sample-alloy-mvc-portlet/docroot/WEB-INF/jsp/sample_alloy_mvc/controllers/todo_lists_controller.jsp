@@ -168,7 +168,7 @@ public static class AlloyControllerImpl extends BaseAlloyControllerImpl {
 		List<SAMTodoList> samTodoLists = alloyServiceInvoker.executeDynamicQuery(new Object[] {"userId", themeDisplay.getUserId(), "name", name});
 
 		if (!samTodoLists.isEmpty()) {
-			long samTodoListId = ParamUtil.getLong(request, "samTodoListId");
+			long samTodoListId = ParamUtil.getLong(request, "id");
 
 			SAMTodoList samTodoList = samTodoLists.get(0);
 
@@ -180,7 +180,7 @@ public static class AlloyControllerImpl extends BaseAlloyControllerImpl {
 
 	private void _validateSAMTodoList(SAMTodoList samTodoList) throws Exception {
 		if ((samTodoList == null) || samTodoList.isNew()) {
-			long samTodoListId = ParamUtil.getLong(request, "samTodoListId");
+			long samTodoListId = ParamUtil.getLong(request, "id");
 
 			throw new AlloyException(translate("the-todo-list-with-id-x-does-not-exist", samTodoListId), false);
 		}

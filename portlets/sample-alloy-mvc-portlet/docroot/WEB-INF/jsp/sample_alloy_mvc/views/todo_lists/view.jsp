@@ -41,7 +41,7 @@
 	<portlet:renderURL var="createSAMTodoItemURL">
 		<portlet:param name="controller" value="todo_items" />
 		<portlet:param name="action" value="create" />
-		<portlet:param name="id" value="${samTodoList.samTodoListId}" />
+		<portlet:param name="samTodoListId" value="${samTodoList.samTodoListId}" />
 	</portlet:renderURL>
 
 	<aui:button href="${createSAMTodoItemURL}" icon="icon-plus" value="create-todo-item" />

@@ -137,7 +137,7 @@ public static class AlloyControllerImpl extends BaseAlloyControllerImpl {
 		if (!samTodoItems.isEmpty()) {
 			SAMTodoItem samTodoItem = samTodoItems.get(0);
 
-			long samTodoItemId = ParamUtil.getLong(request, "samTodoItemId");
+			long samTodoItemId = ParamUtil.getLong(request, "id");
 
 			if (samTodoItem.getSamTodoItemId() != samTodoItemId) {
 				throw new AlloyException("the-todo-item-already-exists", false);
@@ -151,7 +151,7 @@ public static class AlloyControllerImpl extends BaseAlloyControllerImpl {
 
 	private void _validateSAMTodoItem(SAMTodoItem samTodoItem) throws Exception {
 		if ((samTodoItem == null) || samTodoItem.isNew()) {
-			long samTodoItemId = ParamUtil.getLong(request, "samTodoItemId");
+			long samTodoItemId = ParamUtil.getLong(request, "id");
 
 			throw new AlloyException(translate("the-todo-item-with-id-x-does-not-exist", samTodoItemId), false);
 		}
