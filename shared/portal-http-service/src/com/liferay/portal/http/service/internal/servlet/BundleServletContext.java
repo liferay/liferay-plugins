@@ -405,15 +405,17 @@ public class BundleServletContext
 
 		String contextPath = getContextPath();
 
-		if (Validator.isNotNull(portalContextPath) &&
-			contextPath.startsWith(portalContextPath)) {
+		if (Validator.isNotNull(portalContextPath)) {
+			if (contextPath.startsWith(portalContextPath)) {
+				contextPath = contextPath.substring(portalContextPath.length());
+			}
 
-			contextPath = contextPath.substring(portalContextPath.length());
+			if (path.startsWith(portalContextPath)) {
+				path = path.substring(portalContextPath.length());
+			}
 		}
 
-		if (path.startsWith(_PATH_MODULE_SLASH) &&
-			path.startsWith(contextPath)) {
-
+		if (path.startsWith(contextPath)) {
 			path = path.substring(contextPath.length());
 		}
 
