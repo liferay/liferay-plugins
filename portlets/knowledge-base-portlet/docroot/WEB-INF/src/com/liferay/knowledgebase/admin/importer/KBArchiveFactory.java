@@ -15,13 +15,11 @@
 package com.liferay.knowledgebase.admin.importer;
 
 import com.liferay.knowledgebase.KBArticleImportException;
+import com.liferay.knowledgebase.admin.importer.util.PathUtil;
 import com.liferay.knowledgebase.util.PortletPropsValues;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.zip.ZipReader;
-
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -66,13 +64,11 @@ public class KBArchiveFactory {
 				continue;
 			}
 
-			Path entryPath = Paths.get(entry);
-
-			Path entryParentPath = entryPath.getParent();
+			String entryParentPath = PathUtil.getParent(entry);
 
 			kbArchiveState.setCurrentFolder(entryParentPath);
 
-			Path entryFileNamePath = entryPath.getFileName();
+			String entryFileNamePath = PathUtil.getFileName(entry);
 
 			String markdownImporterArticleIntro =
 				PortletPropsValues.MARKDOWN_IMPORTER_ARTICLE_INTRO;
@@ -80,10 +76,10 @@ public class KBArchiveFactory {
 			String entryFileName = entryFileNamePath.toString();
 
 			if (entryFileName.endsWith(markdownImporterArticleIntro)) {
-				kbArchiveState.setCurrentFolderIntroFile(entryPath);
+				kbArchiveState.setCurrentFolderIntroFile(entry);
 			}
 			else {
-				kbArchiveState.addCurrentFolderFile(entryPath);
+				kbArchiveState.addCurrentFolderFile(entry);
 			}
 		}
 
@@ -176,8 +172,8 @@ public class KBArchiveFactory {
 			_zipReader = zipReader;
 		}
 
-		public void addCurrentFolderFile(Path path) {
-			_currentFolderFiles.add(new FileImpl(path.toString(), _zipReader));
+		public void addCurrentFolderFile(String path) {
+			_currentFolderFiles.add(new FileImpl(path, _zipReader));
 		}
 
 		public Collection<KBArchive.Folder> getFolders() {
@@ -186,7 +182,7 @@ public class KBArchiveFactory {
 			return _folders.values();
 		}
 
-		public void setCurrentFolder(Path folderPath) {
+		public void setCurrentFolder(String folderPath) {
 			if (folderPath == null) {
 				folderPath = _ROOT_FOLDER_PATH;
 			}
@@ -199,11 +195,11 @@ public class KBArchiveFactory {
 			_restoreFolderState(folderPath);
 		}
 
-		public void setCurrentFolderIntroFile(Path path) {
-			_currentFolderIntroFile = new FileImpl(path.toString(), _zipReader);
+		public void setCurrentFolderIntroFile(String path) {
+			_currentFolderIntroFile = new FileImpl(path, _zipReader);
 		}
 
-		private void _restoreFolderState(Path folderPath) {
+		private void _restoreFolderState(String folderPath) {
 			_currentFolderPath = folderPath;
 
 			KBArchive.Folder folder = _folders.get(folderPath);
@@ -226,7 +222,8 @@ public class KBArchiveFactory {
 				return;
 			}
 
-			Path currentFolderParentPath = _currentFolderPath.getParent();
+			String currentFolderParentPath = PathUtil.getParent(
+				_currentFolderPath);
 
 			KBArchive.Folder parentFolder = null;
 
@@ -235,20 +232,19 @@ public class KBArchiveFactory {
 			}
 
 			KBArchive.Folder folder = new FolderImpl(
-				_currentFolderPath.toString(), parentFolder,
-				_currentFolderIntroFile, _currentFolderFiles);
+				_currentFolderPath, parentFolder, _currentFolderIntroFile,
+				_currentFolderFiles);
 
 			_folders.put(_currentFolderPath, folder);
 		}
 
-		private static final Path _ROOT_FOLDER_PATH = Paths.get(
-			StringPool.SLASH);
+		private static final String _ROOT_FOLDER_PATH = StringPool.SLASH;
 
 		private Collection<KBArchive.File> _currentFolderFiles;
 		private KBArchive.File _currentFolderIntroFile;
-		private Path _currentFolderPath;
-		private final Map<Path, KBArchive.Folder> _folders =
-			new TreeMap<Path, KBArchive.Folder>();
+		private String _currentFolderPath;
+		private final Map<String, KBArchive.Folder> _folders =
+			new TreeMap<String, KBArchive.Folder>();
 		private final ZipReader _zipReader;
 
 	}
