@@ -35,7 +35,7 @@ import java.util.TreeMap;
  */
 public class KBArchiveFactory {
 
-	public KBArchive createKBArchive(long groupId, ZipReader zipReader)
+	public KBArchive createKBArchive(ZipReader zipReader)
 		throws PortalException {
 
 		List<String> entries = zipReader.getEntries();
