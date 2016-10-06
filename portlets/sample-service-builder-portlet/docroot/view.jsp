@@ -16,6 +16,27 @@
 
 <%@ include file="/init.jsp" %>
 
+<%
+PortletURL currentURLObj = PortletURLUtil.getCurrent(PortalUtil.getLiferayPortletRequest(renderRequest), PortalUtil.getLiferayPortletResponse(renderResponse));
+
+String[] field1 = ParamUtil.getStringValues(renderRequest, "field1");
+
+SearchContainer<Foo> fooSearchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, SearchContainer.DEFAULT_DELTA, currentURLObj, null, "no-entries-were-found");
+
+fooSearchContainer.setForcePost(true);
+
+if (field1.length == 0) {
+	fooSearchContainer.setTotal(FooLocalServiceUtil.getFoosCount());
+
+	fooSearchContainer.setResults(FooLocalServiceUtil.getFoos(fooSearchContainer.getStart(), fooSearchContainer.getEnd(), new FooField4Comparator()));
+}
+else {
+	fooSearchContainer.setTotal(FooLocalServiceUtil.getField1FoosCount(field1));
+
+	fooSearchContainer.setResults(FooLocalServiceUtil.getField1Foos(field1, fooSearchContainer.getStart(), fooSearchContainer.getEnd(), new FooField4Comparator()));
+}
+%>
+
 <strong><liferay-ui:message key="welcome-to-the-sample-service-builder-portlet" /></strong>
 
 <aui:button-row>
@@ -28,11 +49,43 @@
 </aui:button-row>
 
 <liferay-ui:search-container
-	total="<%= FooLocalServiceUtil.getFoosCount() %>"
+	searchContainer="<%= fooSearchContainer %>"
 >
-	<liferay-ui:search-container-results
-		results="<%= FooLocalServiceUtil.getFoos(searchContainer.getStart(), searchContainer.getEnd(), new FooField4Comparator()) %>"
-	/>
+	<portlet:renderURL var="refreshURL" windowState="normal">
+		<portlet:param name="mvcPath" value="/view.jsp" />
+	</portlet:renderURL>
+
+	<aui:form action="<%= refreshURL %>" method="post" name="fm">
+		<section>
+			<article>
+				<aui:select label="Select" multiple="true" name="field1" />
+
+				<aui:script use="liferay-dynamic-select">
+					var data = function(callback) {
+						Liferay.Service(
+							'/sample-service-builder-portlet.foo/get-foos',
+							callback
+						);
+					};
+
+					new Liferay.DynamicSelect(
+						[
+							{
+								select: '<portlet:namespace />field1',
+								selectData: data,
+								selectDesc: 'field1',
+								selectId: 'field1',
+								selectSort: '',
+								selectVal: ['<%= StringUtil.merge(field1, "','") %>']
+							}
+						]
+					);
+				</aui:script>
+
+				<aui:button type="submit" value="search" />
+			</article>
+		</section>
+	</aui:form>
 
 	<liferay-ui:search-container-row
 		className="com.liferay.sampleservicebuilder.model.Foo"
