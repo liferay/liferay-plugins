@@ -326,19 +326,19 @@ public interface FooModel extends BaseModel<Foo>, GroupedModel, ShardedModel,
 	public Object clone();
 
 	@Override
-	public int compareTo(com.liferay.sampleservicebuilder.model.Foo foo);
+	public int compareTo(Foo foo);
 
 	@Override
 	public int hashCode();
 
 	@Override
-	public CacheModel<com.liferay.sampleservicebuilder.model.Foo> toCacheModel();
+	public CacheModel<Foo> toCacheModel();
 
 	@Override
-	public com.liferay.sampleservicebuilder.model.Foo toEscapedModel();
+	public Foo toEscapedModel();
 
 	@Override
-	public com.liferay.sampleservicebuilder.model.Foo toUnescapedModel();
+	public Foo toUnescapedModel();
 
 	@Override
 	public String toString();

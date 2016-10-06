@@ -34,10 +34,12 @@ import com.liferay.portal.kernel.service.ServiceContextThreadLocal;
 import com.liferay.portal.kernel.service.persistence.CompanyProvider;
 import com.liferay.portal.kernel.service.persistence.CompanyProviderWrapper;
 import com.liferay.portal.kernel.service.persistence.impl.BasePersistenceImpl;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
 
@@ -49,6 +51,7 @@ import com.liferay.sampleservicebuilder.service.persistence.FooPersistence;
 
 import java.io.Serializable;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
@@ -56,6 +59,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -198,7 +202,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 
 			if ((list != null) && !list.isEmpty()) {
 				for (Foo foo : list) {
-					if (!Validator.equals(uuid, foo.getUuid())) {
+					if (!Objects.equals(uuid, foo.getUuid())) {
 						list = null;
 
 						break;
@@ -710,7 +714,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 		if (result instanceof Foo) {
 			Foo foo = (Foo)result;
 
-			if (!Validator.equals(uuid, foo.getUuid()) ||
+			if (!Objects.equals(uuid, foo.getUuid()) ||
 					(groupId != foo.getGroupId())) {
 				result = null;
 			}
@@ -1000,7 +1004,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 
 			if ((list != null) && !list.isEmpty()) {
 				for (Foo foo : list) {
-					if (!Validator.equals(uuid, foo.getUuid()) ||
+					if (!Objects.equals(uuid, foo.getUuid()) ||
 							(companyId != foo.getCompanyId())) {
 						list = null;
 
@@ -1460,6 +1464,841 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 	private static final String _FINDER_COLUMN_UUID_C_UUID_2 = "foo.uuid = ? AND ";
 	private static final String _FINDER_COLUMN_UUID_C_UUID_3 = "(foo.uuid IS NULL OR foo.uuid = '') AND ";
 	private static final String _FINDER_COLUMN_UUID_C_COMPANYID_2 = "foo.companyId = ?";
+	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_FIELD1 = new FinderPath(FooModelImpl.ENTITY_CACHE_ENABLED,
+			FooModelImpl.FINDER_CACHE_ENABLED, FooImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByField1",
+			new String[] {
+				String.class.getName(),
+				
+			Integer.class.getName(), Integer.class.getName(),
+				OrderByComparator.class.getName()
+			});
+	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_FIELD1 =
+		new FinderPath(FooModelImpl.ENTITY_CACHE_ENABLED,
+			FooModelImpl.FINDER_CACHE_ENABLED, FooImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByField1",
+			new String[] { String.class.getName() },
+			FooModelImpl.FIELD1_COLUMN_BITMASK);
+	public static final FinderPath FINDER_PATH_COUNT_BY_FIELD1 = new FinderPath(FooModelImpl.ENTITY_CACHE_ENABLED,
+			FooModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByField1",
+			new String[] { String.class.getName() });
+	public static final FinderPath FINDER_PATH_WITH_PAGINATION_COUNT_BY_FIELD1 = new FinderPath(FooModelImpl.ENTITY_CACHE_ENABLED,
+			FooModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "countByField1",
+			new String[] { String.class.getName() });
+
+	/**
+	 * Returns all the foos where field1 = &#63;.
+	 *
+	 * @param field1 the field1
+	 * @return the matching foos
+	 */
+	@Override
+	public List<Foo> findByField1(String field1) {
+		return findByField1(field1, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Returns a range of all the foos where field1 = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link FooModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param field1 the field1
+	 * @param start the lower bound of the range of foos
+	 * @param end the upper bound of the range of foos (not inclusive)
+	 * @return the range of matching foos
+	 */
+	@Override
+	public List<Foo> findByField1(String field1, int start, int end) {
+		return findByField1(field1, start, end, null);
+	}
+
+	/**
+	 * Returns an ordered range of all the foos where field1 = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link FooModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param field1 the field1
+	 * @param start the lower bound of the range of foos
+	 * @param end the upper bound of the range of foos (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching foos
+	 */
+	@Override
+	public List<Foo> findByField1(String field1, int start, int end,
+		OrderByComparator<Foo> orderByComparator) {
+		return findByField1(field1, start, end, orderByComparator, true);
+	}
+
+	/**
+	 * Returns an ordered range of all the foos where field1 = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link FooModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param field1 the field1
+	 * @param start the lower bound of the range of foos
+	 * @param end the upper bound of the range of foos (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @return the ordered range of matching foos
+	 */
+	@Override
+	public List<Foo> findByField1(String field1, int start, int end,
+		OrderByComparator<Foo> orderByComparator, boolean retrieveFromCache) {
+		boolean pagination = true;
+		FinderPath finderPath = null;
+		Object[] finderArgs = null;
+
+		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
+				(orderByComparator == null)) {
+			pagination = false;
+			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_FIELD1;
+			finderArgs = new Object[] { field1 };
+		}
+		else {
+			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_FIELD1;
+			finderArgs = new Object[] { field1, start, end, orderByComparator };
+		}
+
+		List<Foo> list = null;
+
+		if (retrieveFromCache) {
+			list = (List<Foo>)finderCache.getResult(finderPath, finderArgs, this);
+
+			if ((list != null) && !list.isEmpty()) {
+				for (Foo foo : list) {
+					if (!Objects.equals(field1, foo.getField1())) {
+						list = null;
+
+						break;
+					}
+				}
+			}
+		}
+
+		if (list == null) {
+			StringBundler query = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(3 +
+						(orderByComparator.getOrderByFields().length * 2));
+			}
+			else {
+				query = new StringBundler(3);
+			}
+
+			query.append(_SQL_SELECT_FOO_WHERE);
+
+			boolean bindField1 = false;
+
+			if (field1 == null) {
+				query.append(_FINDER_COLUMN_FIELD1_FIELD1_1);
+			}
+			else if (field1.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_FIELD1_FIELD1_3);
+			}
+			else {
+				bindField1 = true;
+
+				query.append(_FINDER_COLUMN_FIELD1_FIELD1_2);
+			}
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+			else
+			 if (pagination) {
+				query.append(FooModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				if (bindField1) {
+					qPos.add(field1);
+				}
+
+				if (!pagination) {
+					list = (List<Foo>)QueryUtil.list(q, getDialect(), start,
+							end, false);
+
+					Collections.sort(list);
+
+					list = Collections.unmodifiableList(list);
+				}
+				else {
+					list = (List<Foo>)QueryUtil.list(q, getDialect(), start, end);
+				}
+
+				cacheResult(list);
+
+				finderCache.putResult(finderPath, finderArgs, list);
+			}
+			catch (Exception e) {
+				finderCache.removeResult(finderPath, finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	/**
+	 * Returns the first foo in the ordered set where field1 = &#63;.
+	 *
+	 * @param field1 the field1
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching foo
+	 * @throws NoSuchFooException if a matching foo could not be found
+	 */
+	@Override
+	public Foo findByField1_First(String field1,
+		OrderByComparator<Foo> orderByComparator) throws NoSuchFooException {
+		Foo foo = fetchByField1_First(field1, orderByComparator);
+
+		if (foo != null) {
+			return foo;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("field1=");
+		msg.append(field1);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchFooException(msg.toString());
+	}
+
+	/**
+	 * Returns the first foo in the ordered set where field1 = &#63;.
+	 *
+	 * @param field1 the field1
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching foo, or <code>null</code> if a matching foo could not be found
+	 */
+	@Override
+	public Foo fetchByField1_First(String field1,
+		OrderByComparator<Foo> orderByComparator) {
+		List<Foo> list = findByField1(field1, 0, 1, orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the last foo in the ordered set where field1 = &#63;.
+	 *
+	 * @param field1 the field1
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching foo
+	 * @throws NoSuchFooException if a matching foo could not be found
+	 */
+	@Override
+	public Foo findByField1_Last(String field1,
+		OrderByComparator<Foo> orderByComparator) throws NoSuchFooException {
+		Foo foo = fetchByField1_Last(field1, orderByComparator);
+
+		if (foo != null) {
+			return foo;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("field1=");
+		msg.append(field1);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchFooException(msg.toString());
+	}
+
+	/**
+	 * Returns the last foo in the ordered set where field1 = &#63;.
+	 *
+	 * @param field1 the field1
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching foo, or <code>null</code> if a matching foo could not be found
+	 */
+	@Override
+	public Foo fetchByField1_Last(String field1,
+		OrderByComparator<Foo> orderByComparator) {
+		int count = countByField1(field1);
+
+		if (count == 0) {
+			return null;
+		}
+
+		List<Foo> list = findByField1(field1, count - 1, count,
+				orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the foos before and after the current foo in the ordered set where field1 = &#63;.
+	 *
+	 * @param fooId the primary key of the current foo
+	 * @param field1 the field1
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next foo
+	 * @throws NoSuchFooException if a foo with the primary key could not be found
+	 */
+	@Override
+	public Foo[] findByField1_PrevAndNext(long fooId, String field1,
+		OrderByComparator<Foo> orderByComparator) throws NoSuchFooException {
+		Foo foo = findByPrimaryKey(fooId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			Foo[] array = new FooImpl[3];
+
+			array[0] = getByField1_PrevAndNext(session, foo, field1,
+					orderByComparator, true);
+
+			array[1] = foo;
+
+			array[2] = getByField1_PrevAndNext(session, foo, field1,
+					orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected Foo getByField1_PrevAndNext(Session session, Foo foo,
+		String field1, OrderByComparator<Foo> orderByComparator,
+		boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(4 +
+					(orderByComparator.getOrderByConditionFields().length * 3) +
+					(orderByComparator.getOrderByFields().length * 3));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_FOO_WHERE);
+
+		boolean bindField1 = false;
+
+		if (field1 == null) {
+			query.append(_FINDER_COLUMN_FIELD1_FIELD1_1);
+		}
+		else if (field1.equals(StringPool.BLANK)) {
+			query.append(_FINDER_COLUMN_FIELD1_FIELD1_3);
+		}
+		else {
+			bindField1 = true;
+
+			query.append(_FINDER_COLUMN_FIELD1_FIELD1_2);
+		}
+
+		if (orderByComparator != null) {
+			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+
+			if (orderByConditionFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByConditionFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByConditionFields[i]);
+
+				if ((i + 1) < orderByConditionFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+		else {
+			query.append(FooModelImpl.ORDER_BY_JPQL);
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		if (bindField1) {
+			qPos.add(field1);
+		}
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByConditionValues(foo);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<Foo> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
+	 * Returns all the foos where field1 = any &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link FooModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param field1s the field1s
+	 * @return the matching foos
+	 */
+	@Override
+	public List<Foo> findByField1(String[] field1s) {
+		return findByField1(field1s, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Returns a range of all the foos where field1 = any &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link FooModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param field1s the field1s
+	 * @param start the lower bound of the range of foos
+	 * @param end the upper bound of the range of foos (not inclusive)
+	 * @return the range of matching foos
+	 */
+	@Override
+	public List<Foo> findByField1(String[] field1s, int start, int end) {
+		return findByField1(field1s, start, end, null);
+	}
+
+	/**
+	 * Returns an ordered range of all the foos where field1 = any &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link FooModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param field1s the field1s
+	 * @param start the lower bound of the range of foos
+	 * @param end the upper bound of the range of foos (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching foos
+	 */
+	@Override
+	public List<Foo> findByField1(String[] field1s, int start, int end,
+		OrderByComparator<Foo> orderByComparator) {
+		return findByField1(field1s, start, end, orderByComparator, true);
+	}
+
+	/**
+	 * Returns an ordered range of all the foos where field1 = &#63;, optionally using the finder cache.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link FooModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param field1 the field1
+	 * @param start the lower bound of the range of foos
+	 * @param end the upper bound of the range of foos (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @return the ordered range of matching foos
+	 */
+	@Override
+	public List<Foo> findByField1(String[] field1s, int start, int end,
+		OrderByComparator<Foo> orderByComparator, boolean retrieveFromCache) {
+		if (field1s == null) {
+			field1s = new String[0];
+		}
+		else if (field1s.length > 1) {
+			field1s = ArrayUtil.distinct(field1s, NULL_SAFE_STRING_COMPARATOR);
+
+			Arrays.sort(field1s, NULL_SAFE_STRING_COMPARATOR);
+		}
+
+		if (field1s.length == 1) {
+			return findByField1(field1s[0], start, end, orderByComparator);
+		}
+
+		boolean pagination = true;
+		Object[] finderArgs = null;
+
+		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
+				(orderByComparator == null)) {
+			pagination = false;
+			finderArgs = new Object[] { StringUtil.merge(field1s) };
+		}
+		else {
+			finderArgs = new Object[] {
+					StringUtil.merge(field1s),
+					
+					start, end, orderByComparator
+				};
+		}
+
+		List<Foo> list = null;
+
+		if (retrieveFromCache) {
+			list = (List<Foo>)finderCache.getResult(FINDER_PATH_WITH_PAGINATION_FIND_BY_FIELD1,
+					finderArgs, this);
+
+			if ((list != null) && !list.isEmpty()) {
+				for (Foo foo : list) {
+					if (!ArrayUtil.contains(field1s, foo.getField1())) {
+						list = null;
+
+						break;
+					}
+				}
+			}
+		}
+
+		if (list == null) {
+			StringBundler query = new StringBundler();
+
+			query.append(_SQL_SELECT_FOO_WHERE);
+
+			if (field1s.length > 0) {
+				query.append(StringPool.OPEN_PARENTHESIS);
+
+				for (int i = 0; i < field1s.length; i++) {
+					String field1 = field1s[i];
+
+					if (field1 == null) {
+						query.append(_FINDER_COLUMN_FIELD1_FIELD1_1);
+					}
+					else if (field1.equals(StringPool.BLANK)) {
+						query.append(_FINDER_COLUMN_FIELD1_FIELD1_3);
+					}
+					else {
+						query.append(_FINDER_COLUMN_FIELD1_FIELD1_2);
+					}
+
+					if ((i + 1) < field1s.length) {
+						query.append(WHERE_OR);
+					}
+				}
+
+				query.append(StringPool.CLOSE_PARENTHESIS);
+			}
+
+			query.setStringAt(removeConjunction(query.stringAt(query.index() -
+						1)), query.index() - 1);
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+			else
+			 if (pagination) {
+				query.append(FooModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				for (String field1 : field1s) {
+					if ((field1 != null) && !field1.isEmpty()) {
+						qPos.add(field1);
+					}
+				}
+
+				if (!pagination) {
+					list = (List<Foo>)QueryUtil.list(q, getDialect(), start,
+							end, false);
+
+					Collections.sort(list);
+
+					list = Collections.unmodifiableList(list);
+				}
+				else {
+					list = (List<Foo>)QueryUtil.list(q, getDialect(), start, end);
+				}
+
+				cacheResult(list);
+
+				finderCache.putResult(FINDER_PATH_WITH_PAGINATION_FIND_BY_FIELD1,
+					finderArgs, list);
+			}
+			catch (Exception e) {
+				finderCache.removeResult(FINDER_PATH_WITH_PAGINATION_FIND_BY_FIELD1,
+					finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	/**
+	 * Removes all the foos where field1 = &#63; from the database.
+	 *
+	 * @param field1 the field1
+	 */
+	@Override
+	public void removeByField1(String field1) {
+		for (Foo foo : findByField1(field1, QueryUtil.ALL_POS,
+				QueryUtil.ALL_POS, null)) {
+			remove(foo);
+		}
+	}
+
+	/**
+	 * Returns the number of foos where field1 = &#63;.
+	 *
+	 * @param field1 the field1
+	 * @return the number of matching foos
+	 */
+	@Override
+	public int countByField1(String field1) {
+		FinderPath finderPath = FINDER_PATH_COUNT_BY_FIELD1;
+
+		Object[] finderArgs = new Object[] { field1 };
+
+		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(2);
+
+			query.append(_SQL_COUNT_FOO_WHERE);
+
+			boolean bindField1 = false;
+
+			if (field1 == null) {
+				query.append(_FINDER_COLUMN_FIELD1_FIELD1_1);
+			}
+			else if (field1.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_FIELD1_FIELD1_3);
+			}
+			else {
+				bindField1 = true;
+
+				query.append(_FINDER_COLUMN_FIELD1_FIELD1_2);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				if (bindField1) {
+					qPos.add(field1);
+				}
+
+				count = (Long)q.uniqueResult();
+
+				finderCache.putResult(finderPath, finderArgs, count);
+			}
+			catch (Exception e) {
+				finderCache.removeResult(finderPath, finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	/**
+	 * Returns the number of foos where field1 = any &#63;.
+	 *
+	 * @param field1s the field1s
+	 * @return the number of matching foos
+	 */
+	@Override
+	public int countByField1(String[] field1s) {
+		if (field1s == null) {
+			field1s = new String[0];
+		}
+		else if (field1s.length > 1) {
+			field1s = ArrayUtil.distinct(field1s, NULL_SAFE_STRING_COMPARATOR);
+
+			Arrays.sort(field1s, NULL_SAFE_STRING_COMPARATOR);
+		}
+
+		Object[] finderArgs = new Object[] { StringUtil.merge(field1s) };
+
+		Long count = (Long)finderCache.getResult(FINDER_PATH_WITH_PAGINATION_COUNT_BY_FIELD1,
+				finderArgs, this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler();
+
+			query.append(_SQL_COUNT_FOO_WHERE);
+
+			if (field1s.length > 0) {
+				query.append(StringPool.OPEN_PARENTHESIS);
+
+				for (int i = 0; i < field1s.length; i++) {
+					String field1 = field1s[i];
+
+					if (field1 == null) {
+						query.append(_FINDER_COLUMN_FIELD1_FIELD1_1);
+					}
+					else if (field1.equals(StringPool.BLANK)) {
+						query.append(_FINDER_COLUMN_FIELD1_FIELD1_3);
+					}
+					else {
+						query.append(_FINDER_COLUMN_FIELD1_FIELD1_2);
+					}
+
+					if ((i + 1) < field1s.length) {
+						query.append(WHERE_OR);
+					}
+				}
+
+				query.append(StringPool.CLOSE_PARENTHESIS);
+			}
+
+			query.setStringAt(removeConjunction(query.stringAt(query.index() -
+						1)), query.index() - 1);
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				for (String field1 : field1s) {
+					if ((field1 != null) && !field1.isEmpty()) {
+						qPos.add(field1);
+					}
+				}
+
+				count = (Long)q.uniqueResult();
+
+				finderCache.putResult(FINDER_PATH_WITH_PAGINATION_COUNT_BY_FIELD1,
+					finderArgs, count);
+			}
+			catch (Exception e) {
+				finderCache.removeResult(FINDER_PATH_WITH_PAGINATION_COUNT_BY_FIELD1,
+					finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	private static final String _FINDER_COLUMN_FIELD1_FIELD1_1 = "foo.field1 IS NULL";
+	private static final String _FINDER_COLUMN_FIELD1_FIELD1_2 = "foo.field1 = ?";
+	private static final String _FINDER_COLUMN_FIELD1_FIELD1_3 = "(foo.field1 IS NULL OR foo.field1 = '')";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_FIELD2 = new FinderPath(FooModelImpl.ENTITY_CACHE_ENABLED,
 			FooModelImpl.FINDER_CACHE_ENABLED, FooImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByField2",
@@ -2287,6 +3126,21 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 
 				finderCache.removeResult(FINDER_PATH_COUNT_BY_UUID_C, args);
 				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID_C,
+					args);
+			}
+
+			if ((fooModelImpl.getColumnBitmask() &
+					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_FIELD1.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] { fooModelImpl.getOriginalField1() };
+
+				finderCache.removeResult(FINDER_PATH_COUNT_BY_FIELD1, args);
+				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_FIELD1,
+					args);
+
+				args = new Object[] { fooModelImpl.getField1() };
+
+				finderCache.removeResult(FINDER_PATH_COUNT_BY_FIELD1, args);
+				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_FIELD1,
 					args);
 			}
 

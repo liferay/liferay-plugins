@@ -65,6 +65,21 @@ import java.rmi.RemoteException;
  */
 @ProviderType
 public class FooServiceSoap {
+	public static com.liferay.sampleservicebuilder.model.FooSoap[] getFoos()
+		throws RemoteException {
+		try {
+			java.util.List<com.liferay.sampleservicebuilder.model.Foo> returnValue =
+				FooServiceUtil.getFoos();
+
+			return com.liferay.sampleservicebuilder.model.FooSoap.toSoapModels(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
 	public static com.liferay.portal.kernel.model.User getUser(long userId)
 		throws RemoteException {
 		try {

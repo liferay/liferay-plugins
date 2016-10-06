@@ -176,6 +176,11 @@ public class FooLocalServiceWrapper implements FooLocalService,
 		return _fooLocalService.updateFoo(foo);
 	}
 
+	@Override
+	public int getField1FoosCount(java.lang.String[] field1s) {
+		return _fooLocalService.getField1FoosCount(field1s);
+	}
+
 	/**
 	* Returns the number of foos.
 	*
@@ -259,6 +264,18 @@ public class FooLocalServiceWrapper implements FooLocalService,
 		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator) {
 		return _fooLocalService.dynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
+	}
+
+	@Override
+	public java.util.List<com.liferay.sampleservicebuilder.model.Foo> getField1Foos(
+		java.lang.String[] field1s, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sampleservicebuilder.model.Foo> obc) {
+		return _fooLocalService.getField1Foos(field1s, start, end, obc);
+	}
+
+	@Override
+	public java.util.List<com.liferay.sampleservicebuilder.model.Foo> getFoos() {
+		return _fooLocalService.getFoos();
 	}
 
 	@Override
@@ -355,6 +372,11 @@ public class FooLocalServiceWrapper implements FooLocalService,
 		throws com.liferay.portal.kernel.exception.PortalException {
 		_fooLocalService.addFoo(field1, field2, field3, field4, field5,
 			serviceContext);
+	}
+
+	@Override
+	public void deleteFoos() {
+		_fooLocalService.deleteFoos();
 	}
 
 	@Override

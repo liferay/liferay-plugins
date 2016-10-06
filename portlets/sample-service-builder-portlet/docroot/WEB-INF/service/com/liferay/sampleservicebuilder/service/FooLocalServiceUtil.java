@@ -172,6 +172,10 @@ public class FooLocalServiceUtil {
 		return getService().updateFoo(foo);
 	}
 
+	public static int getField1FoosCount(java.lang.String[] field1s) {
+		return getService().getField1FoosCount(field1s);
+	}
+
 	/**
 	* Returns the number of foos.
 	*
@@ -248,6 +252,16 @@ public class FooLocalServiceUtil {
 		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator) {
 		return getService()
 				   .dynamicQuery(dynamicQuery, start, end, orderByComparator);
+	}
+
+	public static java.util.List<com.liferay.sampleservicebuilder.model.Foo> getField1Foos(
+		java.lang.String[] field1s, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sampleservicebuilder.model.Foo> obc) {
+		return getService().getField1Foos(field1s, start, end, obc);
+	}
+
+	public static java.util.List<com.liferay.sampleservicebuilder.model.Foo> getFoos() {
+		return getService().getFoos();
 	}
 
 	public static java.util.List<com.liferay.sampleservicebuilder.model.Foo> getFoos(
@@ -337,6 +351,10 @@ public class FooLocalServiceUtil {
 		throws com.liferay.portal.kernel.exception.PortalException {
 		getService()
 			.addFoo(field1, field2, field3, field4, field5, serviceContext);
+	}
+
+	public static void deleteFoos() {
+		getService().deleteFoos();
 	}
 
 	public static void updateAsset(long userId,

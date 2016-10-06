@@ -56,6 +56,11 @@ public class FooServiceWrapper implements FooService,
 	}
 
 	@Override
+	public java.util.List<com.liferay.sampleservicebuilder.model.Foo> getFoos() {
+		return _fooService.getFoos();
+	}
+
+	@Override
 	public java.util.List<com.liferay.portal.kernel.model.Group> getUserSitesGroups()
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _fooService.getUserSitesGroups();

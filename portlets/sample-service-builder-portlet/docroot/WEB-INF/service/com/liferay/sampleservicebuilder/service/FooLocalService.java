@@ -170,6 +170,9 @@ public interface FooLocalService extends BaseLocalService, InvokableLocalService
 	@Indexable(type = IndexableType.REINDEX)
 	public Foo updateFoo(Foo foo);
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getField1FoosCount(java.lang.String[] field1s);
+
 	/**
 	* Returns the number of foos.
 	*
@@ -231,6 +234,13 @@ public interface FooLocalService extends BaseLocalService, InvokableLocalService
 	*/
 	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
 		int end, OrderByComparator<T> orderByComparator);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<Foo> getField1Foos(java.lang.String[] field1s, int start,
+		int end, OrderByComparator<Foo> obc);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<Foo> getFoos();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<Foo> getFoos(OrderByComparator<Foo> obc);
@@ -299,6 +309,8 @@ public interface FooLocalService extends BaseLocalService, InvokableLocalService
 	public void addFoo(java.lang.String field1, boolean field2, int field3,
 		Date field4, java.lang.String field5, ServiceContext serviceContext)
 		throws PortalException;
+
+	public void deleteFoos();
 
 	public void updateAsset(long userId, Foo foo, long[] assetCategoryIds,
 		java.lang.String[] assetTagNames) throws PortalException;

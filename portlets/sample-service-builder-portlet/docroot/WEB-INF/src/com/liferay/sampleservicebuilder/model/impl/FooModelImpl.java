@@ -121,10 +121,10 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 				"value.object.column.bitmask.enabled.com.liferay.sampleservicebuilder.model.Foo"),
 			true);
 	public static final long COMPANYID_COLUMN_BITMASK = 1L;
-	public static final long FIELD2_COLUMN_BITMASK = 2L;
-	public static final long GROUPID_COLUMN_BITMASK = 4L;
-	public static final long UUID_COLUMN_BITMASK = 8L;
-	public static final long FIELD1_COLUMN_BITMASK = 16L;
+	public static final long FIELD1_COLUMN_BITMASK = 2L;
+	public static final long FIELD2_COLUMN_BITMASK = 4L;
+	public static final long GROUPID_COLUMN_BITMASK = 8L;
+	public static final long UUID_COLUMN_BITMASK = 16L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.
@@ -484,7 +484,15 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 	public void setField1(String field1) {
 		_columnBitmask = -1L;
 
+		if (_originalField1 == null) {
+			_originalField1 = _field1;
+		}
+
 		_field1 = field1;
+	}
+
+	public String getOriginalField1() {
+		return GetterUtil.getString(_originalField1);
 	}
 
 	@JSON
@@ -674,6 +682,8 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 		fooModelImpl._setOriginalCompanyId = false;
 
 		fooModelImpl._setModifiedDate = false;
+
+		fooModelImpl._originalField1 = fooModelImpl._field1;
 
 		fooModelImpl._originalField2 = fooModelImpl._field2;
 
@@ -880,6 +890,7 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 	private Date _modifiedDate;
 	private boolean _setModifiedDate;
 	private String _field1;
+	private String _originalField1;
 	private boolean _field2;
 	private boolean _originalField2;
 	private boolean _setOriginalField2;

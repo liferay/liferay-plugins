@@ -22,13 +22,13 @@ import com.liferay.exportimport.kernel.lar.StagedModelType;
 
 import com.liferay.portal.kernel.model.ModelWrapper;
 import com.liferay.portal.kernel.service.ServiceContext;
-import com.liferay.portal.kernel.util.Validator;
 
 import java.io.Serializable;
 
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * <p>
@@ -157,6 +157,16 @@ public class FooWrapper implements Foo, ModelWrapper<Foo> {
 		}
 	}
 
+	@Override
+	public Foo toEscapedModel() {
+		return new FooWrapper(_foo.toEscapedModel());
+	}
+
+	@Override
+	public Foo toUnescapedModel() {
+		return new FooWrapper(_foo.toUnescapedModel());
+	}
+
 	/**
 	* Returns the field2 of this foo.
 	*
@@ -198,22 +208,12 @@ public class FooWrapper implements Foo, ModelWrapper<Foo> {
 	}
 
 	@Override
-	public com.liferay.portal.kernel.model.CacheModel<com.liferay.sampleservicebuilder.model.Foo> toCacheModel() {
+	public com.liferay.portal.kernel.model.CacheModel<Foo> toCacheModel() {
 		return _foo.toCacheModel();
 	}
 
 	@Override
-	public com.liferay.sampleservicebuilder.model.Foo toEscapedModel() {
-		return new FooWrapper(_foo.toEscapedModel());
-	}
-
-	@Override
-	public com.liferay.sampleservicebuilder.model.Foo toUnescapedModel() {
-		return new FooWrapper(_foo.toUnescapedModel());
-	}
-
-	@Override
-	public int compareTo(com.liferay.sampleservicebuilder.model.Foo foo) {
+	public int compareTo(Foo foo) {
 		return _foo.compareTo(foo);
 	}
 
@@ -580,7 +580,7 @@ public class FooWrapper implements Foo, ModelWrapper<Foo> {
 
 		FooWrapper fooWrapper = (FooWrapper)obj;
 
-		if (Validator.equals(_foo, fooWrapper._foo)) {
+		if (Objects.equals(_foo, fooWrapper._foo)) {
 			return true;
 		}
 

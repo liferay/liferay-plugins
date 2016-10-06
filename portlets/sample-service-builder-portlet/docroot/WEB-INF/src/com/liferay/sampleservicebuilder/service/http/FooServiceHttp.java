@@ -55,12 +55,38 @@ import com.liferay.sampleservicebuilder.service.FooServiceUtil;
  */
 @ProviderType
 public class FooServiceHttp {
+	public static java.util.List<com.liferay.sampleservicebuilder.model.Foo> getFoos(
+		HttpPrincipal httpPrincipal) {
+		try {
+			MethodKey methodKey = new MethodKey(FooServiceUtil.class,
+					"getFoos", _getFoosParameterTypes0);
+
+			MethodHandler methodHandler = new MethodHandler(methodKey);
+
+			Object returnObj = null;
+
+			try {
+				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
+			}
+			catch (Exception e) {
+				throw new com.liferay.portal.kernel.exception.SystemException(e);
+			}
+
+			return (java.util.List<com.liferay.sampleservicebuilder.model.Foo>)returnObj;
+		}
+		catch (com.liferay.portal.kernel.exception.SystemException se) {
+			_log.error(se, se);
+
+			throw se;
+		}
+	}
+
 	public static com.liferay.portal.kernel.model.User getUser(
 		HttpPrincipal httpPrincipal, long userId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			MethodKey methodKey = new MethodKey(FooServiceUtil.class,
-					"getUser", _getUserParameterTypes0);
+					"getUser", _getUserParameterTypes1);
 
 			MethodHandler methodHandler = new MethodHandler(methodKey, userId);
 
@@ -91,7 +117,7 @@ public class FooServiceHttp {
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			MethodKey methodKey = new MethodKey(FooServiceUtil.class,
-					"getUserSitesGroups", _getUserSitesGroupsParameterTypes1);
+					"getUserSitesGroups", _getUserSitesGroupsParameterTypes2);
 
 			MethodHandler methodHandler = new MethodHandler(methodKey);
 
@@ -118,10 +144,11 @@ public class FooServiceHttp {
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(FooServiceHttp.class);
-	private static final Class<?>[] _getUserParameterTypes0 = new Class[] {
+	private static final Class<?>[] _getFoosParameterTypes0 = new Class[] {  };
+	private static final Class<?>[] _getUserParameterTypes1 = new Class[] {
 			long.class
 		};
-	private static final Class<?>[] _getUserSitesGroupsParameterTypes1 = new Class[] {
+	private static final Class<?>[] _getUserSitesGroupsParameterTypes2 = new Class[] {
 			
 		};
 }

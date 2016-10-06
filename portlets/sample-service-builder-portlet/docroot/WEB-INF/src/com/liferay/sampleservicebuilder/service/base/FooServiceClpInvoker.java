@@ -31,13 +31,17 @@ public class FooServiceClpInvoker {
 
 		_methodParameterTypes36 = new String[] {  };
 
-		_methodName41 = "getUser";
+		_methodName41 = "getFoos";
 
-		_methodParameterTypes41 = new String[] { "long" };
+		_methodParameterTypes41 = new String[] {  };
 
-		_methodName42 = "getUserSitesGroups";
+		_methodName42 = "getUser";
 
-		_methodParameterTypes42 = new String[] {  };
+		_methodParameterTypes42 = new String[] { "long" };
+
+		_methodName43 = "getUserSitesGroups";
+
+		_methodParameterTypes43 = new String[] {  };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -49,11 +53,16 @@ public class FooServiceClpInvoker {
 
 		if (_methodName41.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes41, parameterTypes)) {
-			return FooServiceUtil.getUser(((Long)arguments[0]).longValue());
+			return FooServiceUtil.getFoos();
 		}
 
 		if (_methodName42.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes42, parameterTypes)) {
+			return FooServiceUtil.getUser(((Long)arguments[0]).longValue());
+		}
+
+		if (_methodName43.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes43, parameterTypes)) {
 			return FooServiceUtil.getUserSitesGroups();
 		}
 
@@ -66,4 +75,6 @@ public class FooServiceClpInvoker {
 	private String[] _methodParameterTypes41;
 	private String _methodName42;
 	private String[] _methodParameterTypes42;
+	private String _methodName43;
+	private String[] _methodParameterTypes43;
 }
