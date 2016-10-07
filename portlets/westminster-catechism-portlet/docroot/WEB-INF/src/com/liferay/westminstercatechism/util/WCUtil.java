@@ -58,8 +58,8 @@ public class WCUtil {
 			ClassLoader classLoader = clazz.getClassLoader();
 
 			URL url = classLoader.getResource(
-				"com/liferay/westminstercatechism/dependencies/" +
-					"westminster_catechmism.xml");
+				"com/liferay/westminstercatechism/dependencies" +
+					"/westminster_catechmism.xml");
 
 			document = SAXReaderUtil.read(url);
 		}

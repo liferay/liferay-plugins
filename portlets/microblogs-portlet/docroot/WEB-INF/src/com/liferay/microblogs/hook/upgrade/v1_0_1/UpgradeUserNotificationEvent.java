@@ -48,8 +48,8 @@ public class UpgradeUserNotificationEvent extends UpgradeProcess {
 			con = DataAccess.getUpgradeOptimizedConnection();
 
 			ps = con.prepareStatement(
-				"update UserNotificationEvent set payload = ? " +
-					"where userNotificationEventId = ?");
+				"update UserNotificationEvent set payload = ? where " +
+					"userNotificationEventId = ?");
 
 			ps.setString(1, jsonObject.toString());
 			ps.setLong(2, userNotificationEventId);

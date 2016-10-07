@@ -8,7 +8,8 @@
 	<theme id="zoe-political" name="Zoe Political">
 		<template-extension>vm</template-extension>
 		<settings>
-			<setting configurable="true" key="portlet-setup-show-borders-default" type="checkbox" value="true" />
+			<setting configurable="true" key="button-title" type="text"  value="Donate" />
+			<setting configurable="true" key="button-url" type="text"  value="//liferay.com" />
 			<setting configurable="true" key="display-button" type="checkbox" value="true">
 				<![CDATA[
 					AUI().ready(
@@ -42,9 +43,8 @@
 					);
 				]]>
 			</setting>
-			<setting configurable="true" key="button-title" type="text"  value="Donate" />
-			<setting configurable="true" key="button-url" type="text"  value="//liferay.com" />
 			<setting configurable="true" key="display-header-social" type="checkbox" value="true" />
+			<setting configurable="true" key="portlet-setup-show-borders-default" type="checkbox" value="true" />
 		</settings>
 		<color-scheme id="01" name="Democrat">
 			<css-class>democrat</css-class>

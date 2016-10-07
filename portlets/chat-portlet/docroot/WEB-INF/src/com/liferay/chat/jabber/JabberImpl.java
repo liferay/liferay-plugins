@@ -238,8 +238,8 @@ public class JabberImpl implements Jabber {
 			if (connection == null) {
 				if (_log.isWarnEnabled()) {
 					_log.warn(
-						"User " + fromUserId + " is not connected to Jabber" +
-							" and cannot send messages");
+						"User " + fromUserId + " is not connected to Jabber " +
+							"and cannot send messages");
 				}
 
 				return;

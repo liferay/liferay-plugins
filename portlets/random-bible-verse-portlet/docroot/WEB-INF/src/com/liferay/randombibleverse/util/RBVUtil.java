@@ -67,8 +67,8 @@ public class RBVUtil {
 			ClassLoader classLoader = clazz.getClassLoader();
 
 			URL url = classLoader.getResource(
-				"com/liferay/randombibleverse/dependencies/" +
-					"random_bible_verse.xml");
+				"com/liferay/randombibleverse/dependencies" +
+					"/random_bible_verse.xml");
 
 			document = SAXReaderUtil.read(url);
 		}
