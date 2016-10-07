@@ -1,6 +1,0 @@
-<?xml version="1.0"?>
-<!DOCTYPE project>
-
-<project basedir="." default="deploy" name="events-display-portlet">
-	<import file="../build-common-portlet.xml" />
-</project>
