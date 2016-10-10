@@ -28,7 +28,6 @@ import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.OrderFactoryUtil;
-import com.liferay.portal.kernel.dao.orm.Projection;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.lar.BasePortletDataHandler;
@@ -39,8 +38,6 @@ import com.liferay.portal.kernel.lar.StagedModelDataHandlerUtil;
 import com.liferay.portal.kernel.lar.StagedModelType;
 import com.liferay.portal.kernel.xml.Element;
 import com.liferay.portal.util.PortalUtil;
-
-import java.lang.reflect.Method;
 
 import java.util.List;
 
@@ -215,21 +212,8 @@ public class AdminPortletDataHandler extends BasePortletDataHandler {
 				addDefaultCriteria(dynamicQuery);
 				addCriteriaForCount(dynamicQuery);
 
-				Method dynamicQueryCountMethod;
-				try {
-					dynamicQueryCountMethod =
-						KBArticleLocalServiceUtil.getService().getClass().
-						getMethod(
-							"dynamicQueryCount", DynamicQuery.class,
-							Projection.class);
-				}
-				catch (NoSuchMethodException nsme) {
-					throw new SystemException(nsme);
-				}
-
-				return (Long)executeDynamicQuery(
-						dynamicQueryCountMethod, dynamicQuery,
-						getCountProjection());
+				return KBArticleLocalServiceUtil.dynamicQueryCount(
+					dynamicQuery, getCountProjection());
 			}
 
 		};
