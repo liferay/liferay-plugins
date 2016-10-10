@@ -29,7 +29,7 @@ public class JCIFSNTLMSchemeFactory implements AuthSchemeProvider {
 		_workstation = workstation;
 	}
 
-	public AuthScheme create(final HttpContext context) {
+	public AuthScheme create(final HttpContext httpContext) {
 		return new NTLMScheme(new JCIFSEngine(_domain, _workstation));
 	}
 
