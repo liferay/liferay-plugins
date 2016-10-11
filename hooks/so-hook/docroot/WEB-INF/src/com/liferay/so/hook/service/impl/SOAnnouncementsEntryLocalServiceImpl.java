@@ -261,7 +261,7 @@ public class SOAnnouncementsEntryLocalServiceImpl
 			for (int i = 0; i <= pages; i++) {
 				List<User> users = null;
 
-				int start = (i * Indexer.DEFAULT_INTERVAL);
+				int start = i * Indexer.DEFAULT_INTERVAL;
 
 				int end = start + Indexer.DEFAULT_INTERVAL;
 
