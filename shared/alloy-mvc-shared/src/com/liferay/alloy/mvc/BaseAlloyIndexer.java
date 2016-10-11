@@ -132,7 +132,7 @@ public abstract class BaseAlloyIndexer extends BaseIndexer {
 		int pages = count / Indexer.DEFAULT_INTERVAL;
 
 		for (int i = 0; i <= pages; i++) {
-			int start = (i * Indexer.DEFAULT_INTERVAL);
+			int start = i * Indexer.DEFAULT_INTERVAL;
 			int end = start + Indexer.DEFAULT_INTERVAL;
 
 			reindexModels(companyId, start, end);
