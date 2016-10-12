@@ -253,7 +253,7 @@ a {
 	}
 }
 
-/* ---------- Color scheme---------- */
+/* ---------- Color scheme ---------- */
 
 @each $color-scheme in democrat, republican, independent {
 	body.#{$color-scheme} {

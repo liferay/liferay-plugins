@@ -169,7 +169,7 @@ taskListURL.setParameter("tabs2", tabs2);
 			name="due"
 		>
 			<c:choose>
-				<c:when test="<%= (TasksEntryPermission.contains(permissionChecker, tasksEntry, ActionKeys.UPDATE)) %>">
+				<c:when test="<%= TasksEntryPermission.contains(permissionChecker, tasksEntry, ActionKeys.UPDATE) %>">
 
 					<%
 					int curStatus = tasksEntry.getStatus();

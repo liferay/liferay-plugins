@@ -245,7 +245,7 @@ if (user2 != null) {
 				on: {
 					click: function(event) {
 						<c:choose>
-							<c:when test="<%= (user2 != null) %>">
+							<c:when test="<%= user2 != null %>">
 								location.href = '<liferay-portlet:resourceURL id="exportVCard"><portlet:param name="userId" value="<%= String.valueOf(user2.getUserId()) %>" /></liferay-portlet:resourceURL>';
 							</c:when>
 							<c:otherwise>
