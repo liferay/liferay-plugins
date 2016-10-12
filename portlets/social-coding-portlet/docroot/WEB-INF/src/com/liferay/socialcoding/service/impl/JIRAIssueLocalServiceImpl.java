@@ -96,7 +96,7 @@ public class JIRAIssueLocalServiceImpl extends JIRAIssueLocalServiceBaseImpl {
 		List<JIRAIssue> jiraIssues = jiraIssuePersistence.findByP_AJUI(
 			projectId, assigneeJiraUserId, count - 1, count);
 
-		if (jiraIssues.size() > 0) {
+		if (!jiraIssues.isEmpty()) {
 			return jiraIssues.get(0);
 		}
 		else {
@@ -114,7 +114,7 @@ public class JIRAIssueLocalServiceImpl extends JIRAIssueLocalServiceBaseImpl {
 		List<JIRAIssue> jiraIssues = jiraIssuePersistence.findByP_RJUI(
 			projectId, reporterJiraUserId, count - 1, count);
 
-		if (jiraIssues.size() > 0) {
+		if (!jiraIssues.isEmpty()) {
 			return jiraIssues.get(0);
 		}
 		else {
@@ -138,7 +138,7 @@ public class JIRAIssueLocalServiceImpl extends JIRAIssueLocalServiceBaseImpl {
 		List<JIRAIssue> jiraIssues = jiraIssuePersistence.findByP_AJUI(
 			projectId, assigneeJiraUserId, 0, 1);
 
-		if (jiraIssues.size() > 0) {
+		if (!jiraIssues.isEmpty()) {
 			return jiraIssues.get(0);
 		}
 		else {
@@ -153,7 +153,7 @@ public class JIRAIssueLocalServiceImpl extends JIRAIssueLocalServiceBaseImpl {
 		List<JIRAIssue> jiraIssues = jiraIssuePersistence.findByP_RJUI(
 			projectId, reporterJiraUserId, 0, 1);
 
-		if (jiraIssues.size() > 0) {
+		if (!jiraIssues.isEmpty()) {
 			return jiraIssues.get(0);
 		}
 		else {
@@ -300,7 +300,7 @@ public class JIRAIssueLocalServiceImpl extends JIRAIssueLocalServiceBaseImpl {
 			SocialActivityLocalServiceUtil.getActivities(
 				JIRAIssue.class.getName(), 0, 1);
 
-		if (socialActivities.size() > 0) {
+		if (!socialActivities.isEmpty()) {
 			SocialActivity socialActivity = socialActivities.get(0);
 
 			modifiedDate = JIRAUtil.getJIRADate(
@@ -319,7 +319,7 @@ public class JIRAIssueLocalServiceImpl extends JIRAIssueLocalServiceBaseImpl {
 				PortalUtil.getDefaultCompanyId(), User.class.getName(), "SC",
 				"jiraUserId", jiraUserId, 0, 1);
 
-		if (expandoValues.size() == 0) {
+		if (expandoValues.isEmpty()) {
 			return 0;
 		}
 

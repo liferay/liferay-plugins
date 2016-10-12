@@ -45,7 +45,7 @@ public class StocksPreferencesValidator implements PreferencesValidator {
 			}
 		}
 
-		if (badSymbols.size() > 0) {
+		if (!badSymbols.isEmpty()) {
 			throw new ValidatorException(
 				"Failed to retrieve symbols", badSymbols);
 		}

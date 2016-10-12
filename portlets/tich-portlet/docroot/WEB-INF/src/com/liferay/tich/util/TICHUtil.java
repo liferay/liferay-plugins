@@ -33,7 +33,7 @@ public class TICHUtil {
 		List<Event> events = (List<Event>)WebCachePoolUtil.get(key, wci);
 
 		try {
-			if (events.size() > 0) {
+			if (!events.isEmpty()) {
 				Event event = events.get(0);
 			}
 		}

@@ -93,7 +93,7 @@ public class SVNRevisionLocalServiceImpl
 		List<SVNRevision> svnRevisions = svnRevisionPersistence.findBySVNUserId(
 			svnUserId, count - 1, count);
 
-		if (svnRevisions.size() > 0) {
+		if (!svnRevisions.isEmpty()) {
 			return svnRevisions.get(0);
 		}
 		else {
@@ -107,7 +107,7 @@ public class SVNRevisionLocalServiceImpl
 		List<SVNRevision> svnRevisions = svnRevisionPersistence.findBySVNUserId(
 			svnUserId, 0, 1);
 
-		if (svnRevisions.size() > 0) {
+		if (!svnRevisions.isEmpty()) {
 			return svnRevisions.get(0);
 		}
 		else {
