@@ -206,8 +206,8 @@ public class AdminPortletDataHandler extends BasePortletDataHandler {
 				DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
 					KBArticle.class, ClpSerializer.class.getClassLoader());
 
-				addDefaultCriteria(dynamicQuery);
 				addCriteriaForCount(dynamicQuery);
+				addDefaultCriteria(dynamicQuery);
 
 				return KBArticleLocalServiceUtil.dynamicQueryCount(
 					dynamicQuery, getCountProjection());
