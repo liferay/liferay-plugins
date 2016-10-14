@@ -143,7 +143,7 @@ public class AssetEntrySetLocalServiceClpInvoker {
 		_methodName71 = "getNewAssetEntrySets";
 
 		_methodParameterTypes71 = new String[] {
-				"long", "long", "boolean", "long", "long",
+				"long", "long", "boolean", "long", "boolean", "long",
 				"com.liferay.portal.kernel.json.JSONArray",
 				"com.liferay.portal.kernel.json.JSONArray", "long[][]",
 				"long[][]", "java.lang.String[][]", "int", "int"
@@ -167,7 +167,7 @@ public class AssetEntrySetLocalServiceClpInvoker {
 		_methodName74 = "getOldAssetEntrySets";
 
 		_methodParameterTypes74 = new String[] {
-				"long", "long", "boolean", "long", "long",
+				"long", "long", "boolean", "long", "boolean", "long",
 				"com.liferay.portal.kernel.json.JSONArray",
 				"com.liferay.portal.kernel.json.JSONArray", "long[][]",
 				"long[][]", "java.lang.String[][]", "int", "int"
@@ -348,13 +348,14 @@ public class AssetEntrySetLocalServiceClpInvoker {
 				((Long)arguments[1]).longValue(),
 				((Boolean)arguments[2]).booleanValue(),
 				((Long)arguments[3]).longValue(),
-				((Long)arguments[4]).longValue(),
-				(com.liferay.portal.kernel.json.JSONArray)arguments[5],
+				((Boolean)arguments[4]).booleanValue(),
+				((Long)arguments[5]).longValue(),
 				(com.liferay.portal.kernel.json.JSONArray)arguments[6],
-				(long[])arguments[7], (long[])arguments[8],
-				(java.lang.String[])arguments[9],
-				((Integer)arguments[10]).intValue(),
-				((Integer)arguments[11]).intValue());
+				(com.liferay.portal.kernel.json.JSONArray)arguments[7],
+				(long[])arguments[8], (long[])arguments[9],
+				(java.lang.String[])arguments[10],
+				((Integer)arguments[11]).intValue(),
+				((Integer)arguments[12]).intValue());
 		}
 
 		if (_methodName72.equals(name) &&
@@ -386,13 +387,14 @@ public class AssetEntrySetLocalServiceClpInvoker {
 				((Long)arguments[1]).longValue(),
 				((Boolean)arguments[2]).booleanValue(),
 				((Long)arguments[3]).longValue(),
-				((Long)arguments[4]).longValue(),
-				(com.liferay.portal.kernel.json.JSONArray)arguments[5],
+				((Boolean)arguments[4]).booleanValue(),
+				((Long)arguments[5]).longValue(),
 				(com.liferay.portal.kernel.json.JSONArray)arguments[6],
-				(long[])arguments[7], (long[])arguments[8],
-				(java.lang.String[])arguments[9],
-				((Integer)arguments[10]).intValue(),
-				((Integer)arguments[11]).intValue());
+				(com.liferay.portal.kernel.json.JSONArray)arguments[7],
+				(long[])arguments[8], (long[])arguments[9],
+				(java.lang.String[])arguments[10],
+				((Integer)arguments[11]).intValue(),
+				((Integer)arguments[12]).intValue());
 		}
 
 		if (_methodName75.equals(name) &&

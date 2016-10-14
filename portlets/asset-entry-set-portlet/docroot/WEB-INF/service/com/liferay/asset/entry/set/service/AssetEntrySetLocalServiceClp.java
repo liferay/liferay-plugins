@@ -134,7 +134,7 @@ public class AssetEntrySetLocalServiceClp implements AssetEntrySetLocalService {
 		_methodName22 = "getNewAssetEntrySets";
 
 		_methodParameterTypes22 = new String[] {
-				"long", "long", "boolean", "long", "long",
+				"long", "long", "boolean", "long", "boolean", "long",
 				"com.liferay.portal.kernel.json.JSONArray",
 				"com.liferay.portal.kernel.json.JSONArray", "long[][]",
 				"long[][]", "java.lang.String[][]", "int", "int"
@@ -158,7 +158,7 @@ public class AssetEntrySetLocalServiceClp implements AssetEntrySetLocalService {
 		_methodName25 = "getOldAssetEntrySets";
 
 		_methodParameterTypes25 = new String[] {
-				"long", "long", "boolean", "long", "long",
+				"long", "long", "boolean", "long", "boolean", "long",
 				"com.liferay.portal.kernel.json.JSONArray",
 				"com.liferay.portal.kernel.json.JSONArray", "long[][]",
 				"long[][]", "java.lang.String[][]", "int", "int"
@@ -876,7 +876,8 @@ public class AssetEntrySetLocalServiceClp implements AssetEntrySetLocalService {
 	@Override
 	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getNewAssetEntrySets(
 		long userId, long time, boolean modifiedTime,
-		long parentAssetEntrySetId, long stickyTime,
+		long parentAssetEntrySetId, boolean privateAssetEntrySet,
+		long stickyTime,
 		com.liferay.portal.kernel.json.JSONArray creatorJSONArray,
 		com.liferay.portal.kernel.json.JSONArray sharedToJSONArray,
 		long[] includeAssetEntrySetIds, long[] excludeAssetEntrySetIds,
@@ -896,6 +897,8 @@ public class AssetEntrySetLocalServiceClp implements AssetEntrySetLocalService {
 					modifiedTime,
 						
 					parentAssetEntrySetId,
+						
+					privateAssetEntrySet,
 						
 					stickyTime,
 						
@@ -1045,7 +1048,8 @@ public class AssetEntrySetLocalServiceClp implements AssetEntrySetLocalService {
 	@Override
 	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getOldAssetEntrySets(
 		long userId, long time, boolean modifiedTime,
-		long parentAssetEntrySetId, long stickyTime,
+		long parentAssetEntrySetId, boolean privateAssetEntrySet,
+		long stickyTime,
 		com.liferay.portal.kernel.json.JSONArray creatorJSONArray,
 		com.liferay.portal.kernel.json.JSONArray sharedToJSONArray,
 		long[] includeAssetEntrySetIds, long[] excludeAssetEntrySetIds,
@@ -1065,6 +1069,8 @@ public class AssetEntrySetLocalServiceClp implements AssetEntrySetLocalService {
 					modifiedTime,
 						
 					parentAssetEntrySetId,
+						
+					privateAssetEntrySet,
 						
 					stickyTime,
 						
