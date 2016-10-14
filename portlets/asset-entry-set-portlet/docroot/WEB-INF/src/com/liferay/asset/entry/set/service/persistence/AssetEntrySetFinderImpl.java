@@ -124,7 +124,8 @@ public class AssetEntrySetFinderImpl
 	@Override
 	public List<AssetEntrySet> findByCT_PAESI_ST_CNI(
 			long classNameId, long classPK, long createTime,
-			boolean gtCreateTime, long parentAssetEntrySetId, long stickyTime,
+			boolean gtCreateTime, long parentAssetEntrySetId,
+			boolean privateAssetEntrySet, long stickyTime,
 			JSONArray creatorJSONArray, JSONArray sharedToJSONArray,
 			long[] includeAssetEntrySetIds, long[] excludeAssetEntrySetIds,
 			String[] assetTagNames, int start, int end)
@@ -151,11 +152,22 @@ public class AssetEntrySetFinderImpl
 
 			if (gtCreateTime) {
 				sql = StringUtil.replace(
-					sql, "[$CREATE_TIME_COMPARATOR$]", ">");
+					sql, "[$CREATE_TIME_COMPARATOR$]", StringPool.GREATER_THAN);
 			}
 			else {
 				sql = StringUtil.replace(
-					sql, "[$CREATE_TIME_COMPARATOR$]", "<=");
+					sql, "[$CREATE_TIME_COMPARATOR$]",
+					StringPool.LESS_THAN_OR_EQUAL);
+			}
+
+			if (privateAssetEntrySet) {
+				sql = StringUtil.replace(
+					sql, "[$PRIVATE_ASSET_ENTRY_SET]",
+					_PRIVATE_ASSET_ENTRY_SET);
+			}
+			else {
+				sql = StringUtil.replace(
+					sql, "[$PRIVATE_ASSET_ENTRY_SET]", StringPool.BLANK);
 			}
 
 			List<String> whereClauses = new ArrayList<String>();
@@ -207,7 +219,8 @@ public class AssetEntrySetFinderImpl
 	@Override
 	public List<AssetEntrySet> findByMT_PAESI_ST_CNI(
 			long classNameId, long classPK, long modifiedTime,
-			boolean gtModifiedTime, long parentAssetEntrySetId, long stickyTime,
+			boolean gtModifiedTime, long parentAssetEntrySetId,
+			boolean privateAssetEntrySet, long stickyTime,
 			JSONArray creatorJSONArray, JSONArray sharedToJSONArray,
 			long[] includeAssetEntrySetIds, long[] excludeAssetEntrySetIds,
 			String[] assetTagNames, int start, int end)
@@ -234,11 +247,23 @@ public class AssetEntrySetFinderImpl
 
 			if (gtModifiedTime) {
 				sql = StringUtil.replace(
-					sql, "[$MODIFIED_TIME_COMPARATOR$]", ">");
+					sql, "[$MODIFIED_TIME_COMPARATOR$]",
+					StringPool.GREATER_THAN);
 			}
 			else {
 				sql = StringUtil.replace(
-					sql, "[$MODIFIED_TIME_COMPARATOR$]", "<=");
+					sql, "[$MODIFIED_TIME_COMPARATOR$]",
+					StringPool.LESS_THAN_OR_EQUAL);
+			}
+
+			if (privateAssetEntrySet) {
+				sql = StringUtil.replace(
+					sql, "[$PRIVATE_ASSET_ENTRY_SET]",
+					_PRIVATE_ASSET_ENTRY_SET);
+			}
+			else {
+				sql = StringUtil.replace(
+					sql, "[$PRIVATE_ASSET_ENTRY_SET]", StringPool.BLANK);
 			}
 
 			List<String> whereClauses = new ArrayList<String>();
@@ -315,11 +340,12 @@ public class AssetEntrySetFinderImpl
 
 			if (gtCreateTime) {
 				sql = StringUtil.replace(
-					sql, "[$CREATE_TIME_COMPARATOR$]", ">");
+					sql, "[$CREATE_TIME_COMPARATOR$]", StringPool.GREATER_THAN);
 			}
 			else {
 				sql = StringUtil.replace(
-					sql, "[$CREATE_TIME_COMPARATOR$]", "<=");
+					sql, "[$CREATE_TIME_COMPARATOR$]",
+					StringPool.LESS_THAN_OR_EQUAL);
 			}
 
 			List<String> whereClauses = new ArrayList<String>();
@@ -593,6 +619,9 @@ public class AssetEntrySetFinderImpl
 			qPos.add(StringUtil.toLowerCase(assetTagName));
 		}
 	}
+
+	private static final String _PRIVATE_ASSET_ENTRY_SET =
+		"(AssetEntrySet.privateAssetEntrySet = 1) AND";
 
 	private static final List<String> _emptyList = Arrays.asList(
 		StringPool.BLANK);
