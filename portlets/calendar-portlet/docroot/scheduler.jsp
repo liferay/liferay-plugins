@@ -93,6 +93,7 @@ String viewCalendarBookingURL = ParamUtil.getString(request, "viewCalendarBookin
 	<c:if test="<%= !hideAgendaView %>">
 		window.<portlet:namespace />agendaView = new A.SchedulerAgendaView(
 			{
+				daysCount: 31,
 				height: 700,
 				isoTime: <%= useIsoTimeFormat %>,
 				readOnly: <%= readOnly %>,
