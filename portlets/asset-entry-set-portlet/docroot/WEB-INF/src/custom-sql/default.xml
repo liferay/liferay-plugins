@@ -12,7 +12,7 @@
 					(AssetSharingEntry1.classPK = AssetEntrySet.assetEntrySetId)
 			[$JOIN_BY$]
 			WHERE
-				(AssetEntrySet.createTime [$CREATE_TIME_COMPARATOR$] ?) AND
+				(AssetEntrySet.createTime [$TIME_COMPARATOR$] ?) AND
 				(AssetEntrySet.parentAssetEntrySetId = ?) AND
 				(AssetEntrySet.stickyTime < ?) AND
 				(AssetSharingEntry1.classNameId = ?) AND
@@ -34,7 +34,7 @@
 					(AssetSharingEntry1.classPK = AssetEntrySet.assetEntrySetId)
 			[$JOIN_BY$]
 			WHERE
-				(AssetEntrySet.modifiedTime [$MODIFIED_TIME_COMPARATOR$] ?) AND
+				(AssetEntrySet.modifiedTime [$TIME_COMPARATOR$] ?) AND
 				(AssetEntrySet.parentAssetEntrySetId = ?) AND
 				(AssetEntrySet.stickyTime < ?) AND
 				(AssetSharingEntry1.classNameId = ?) AND
@@ -56,7 +56,7 @@
 					(AssetSharingEntry1.classPK = AssetEntrySet.assetEntrySetId)
 			[$JOIN_BY$]
 			WHERE
-				(AssetEntrySet.createTime [$CREATE_TIME_COMPARATOR$] ?) AND
+				(AssetEntrySet.createTime [$TIME_COMPARATOR$] ?) AND
 				(AssetEntrySet.parentAssetEntrySetId = ?) AND
 				(AssetEntrySet.stickyTime >= ?) AND
 				(AssetEntrySet.type_ = ?) AND

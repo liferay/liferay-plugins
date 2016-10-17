@@ -150,25 +150,8 @@ public class AssetEntrySetFinderImpl
 				sql, "[$JOIN_BY$]",
 				getJoinBy(sharedToJSONArray, assetTagNames));
 
-			if (gtCreateTime) {
-				sql = StringUtil.replace(
-					sql, "[$CREATE_TIME_COMPARATOR$]", StringPool.GREATER_THAN);
-			}
-			else {
-				sql = StringUtil.replace(
-					sql, "[$CREATE_TIME_COMPARATOR$]",
-					StringPool.LESS_THAN_OR_EQUAL);
-			}
-
-			if (privateAssetEntrySet) {
-				sql = StringUtil.replace(
-					sql, "[$PRIVATE_ASSET_ENTRY_SET]",
-					_PRIVATE_ASSET_ENTRY_SET);
-			}
-			else {
-				sql = StringUtil.replace(
-					sql, "[$PRIVATE_ASSET_ENTRY_SET]", StringPool.BLANK);
-			}
+			sql = replacePrivateAssetEntrySet(sql, privateAssetEntrySet);
+			sql = replaceTimeComparator(sql, gtCreateTime);
 
 			List<String> whereClauses = new ArrayList<String>();
 
@@ -245,26 +228,8 @@ public class AssetEntrySetFinderImpl
 				sql, "[$JOIN_BY$]",
 				getJoinBy(sharedToJSONArray, assetTagNames));
 
-			if (gtModifiedTime) {
-				sql = StringUtil.replace(
-					sql, "[$MODIFIED_TIME_COMPARATOR$]",
-					StringPool.GREATER_THAN);
-			}
-			else {
-				sql = StringUtil.replace(
-					sql, "[$MODIFIED_TIME_COMPARATOR$]",
-					StringPool.LESS_THAN_OR_EQUAL);
-			}
-
-			if (privateAssetEntrySet) {
-				sql = StringUtil.replace(
-					sql, "[$PRIVATE_ASSET_ENTRY_SET]",
-					_PRIVATE_ASSET_ENTRY_SET);
-			}
-			else {
-				sql = StringUtil.replace(
-					sql, "[$PRIVATE_ASSET_ENTRY_SET]", StringPool.BLANK);
-			}
+			sql = replacePrivateAssetEntrySet(sql, privateAssetEntrySet);
+			sql = replaceTimeComparator(sql, gtModifiedTime);
 
 			List<String> whereClauses = new ArrayList<String>();
 
@@ -338,15 +303,7 @@ public class AssetEntrySetFinderImpl
 				sql, "[$JOIN_BY$]",
 				getJoinBy(sharedToJSONArray, assetTagNames));
 
-			if (gtCreateTime) {
-				sql = StringUtil.replace(
-					sql, "[$CREATE_TIME_COMPARATOR$]", StringPool.GREATER_THAN);
-			}
-			else {
-				sql = StringUtil.replace(
-					sql, "[$CREATE_TIME_COMPARATOR$]",
-					StringPool.LESS_THAN_OR_EQUAL);
-			}
+			sql = replaceTimeComparator(sql, gtCreateTime);
 
 			List<String> whereClauses = new ArrayList<String>();
 
@@ -610,6 +567,29 @@ public class AssetEntrySetFinderImpl
 		return false;
 	}
 
+	protected String replacePrivateAssetEntrySet(
+		String sql, boolean privateAssetEntrySet) {
+
+		String privateAssetEntrySetSQL = StringPool.BLANK;
+
+		if (privateAssetEntrySet) {
+			privateAssetEntrySetSQL = _PRIVATE_ASSET_ENTRY_SET_SQL;
+		}
+
+		return StringUtil.replace(
+			sql, "[$PRIVATE_ASSET_ENTRY_SET]", privateAssetEntrySetSQL);
+	}
+
+	protected String replaceTimeComparator(String sql, boolean greaterThan) {
+		String comparator = StringPool.LESS_THAN_OR_EQUAL;
+
+		if (greaterThan) {
+			comparator = StringPool.GREATER_THAN;
+		}
+
+		return StringUtil.replace(sql, "[$TIME_COMPARATOR$]", comparator);
+	}
+
 	protected void setAssetTagNames(QueryPos qPos, String[] assetTagNames) {
 		if (ArrayUtil.isEmpty(assetTagNames)) {
 			return;
@@ -620,7 +600,7 @@ public class AssetEntrySetFinderImpl
 		}
 	}
 
-	private static final String _PRIVATE_ASSET_ENTRY_SET =
+	private static final String _PRIVATE_ASSET_ENTRY_SET_SQL =
 		"(AssetEntrySet.privateAssetEntrySet = 1) AND";
 
 	private static final List<String> _emptyList = Arrays.asList(
