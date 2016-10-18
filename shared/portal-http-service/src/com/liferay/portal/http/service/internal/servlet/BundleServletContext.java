@@ -401,9 +401,9 @@ public class BundleServletContext
 
 	@Override
 	public RequestDispatcher getRequestDispatcher(String path) {
-		String portalContextPath = PortalUtil.getPathContext();
-
 		String contextPath = getContextPath();
+
+		String portalContextPath = PortalUtil.getPathContext();
 
 		if (Validator.isNotNull(portalContextPath)) {
 			if (contextPath.startsWith(portalContextPath)) {
