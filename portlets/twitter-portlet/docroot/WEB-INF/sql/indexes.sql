@@ -1,1 +1,0 @@
-create index IX_9D184930 on Twitter_Feed (userId, twitterScreenName[$COLUMN_LENGTH:75$]);
