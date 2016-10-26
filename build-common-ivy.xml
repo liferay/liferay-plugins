@@ -72,6 +72,7 @@
 	</macrodef>
 
 	<macrodef name="mirrors-get">
+		<attribute default="false" name="clear.local.cache" />
 		<attribute name="dest" />
 		<attribute default="false" name="ignoreerrors" />
 		<attribute name="src" />
@@ -108,6 +109,16 @@
 				regexp=".+/(.+)"
 				replace="\1"
 			/>
+
+			<if>
+				<and>
+					<equals arg1="@{clear.local.cache}" arg2="true" />
+					<available file="${mirrors.cache.artifact.dir}/${mirrors.cache.artifact.file.name}" />
+				</and>
+				<then>
+					<delete file="${mirrors.cache.artifact.dir}/${mirrors.cache.artifact.file.name}" />
+				</then>
+			</if>
 
 			<if>
 				<not>
