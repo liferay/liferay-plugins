@@ -1256,8 +1256,10 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 
 		alloySearchResult.setHits(hits);
 
-		alloySearchResult.setPortletURL(
-			portletURL, searchContext.getAttributes());
+		if (portletURL != null) {
+			alloySearchResult.setPortletURL(
+				portletURL, searchContext.getAttributes());
+		}
 
 		alloySearchResult.afterPropertiesSet();
 
