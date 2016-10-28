@@ -290,6 +290,11 @@ public class AssetEntrySetLikeLocalServiceUtil {
 			classPK, start, end);
 	}
 
+	public static int getAssetEntrySetLikeCount(long assetEntrySetId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getAssetEntrySetLikeCount(assetEntrySetId);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}

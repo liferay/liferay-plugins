@@ -263,4 +263,8 @@ public interface AssetEntrySetLikeLocalService extends BaseLocalService,
 	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySetLike> getAssetEntrySetLikes(
 		long assetEntrySetId, long classNameId, long classPK, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getAssetEntrySetLikeCount(long assetEntrySetId)
+		throws com.liferay.portal.kernel.exception.SystemException;
 }

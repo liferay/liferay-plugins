@@ -131,6 +131,10 @@ public class AssetEntrySetLikeLocalServiceClpInvoker {
 		_methodParameterTypes55 = new String[] {
 				"long", "long", "long", "int", "int"
 			};
+
+		_methodName56 = "getAssetEntrySetLikeCount";
+
+		_methodParameterTypes56 = new String[] { "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -250,6 +254,11 @@ public class AssetEntrySetLikeLocalServiceClpInvoker {
 				((Integer)arguments[4]).intValue());
 		}
 
+		if (_methodName56.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes56, parameterTypes)) {
+			return AssetEntrySetLikeLocalServiceUtil.getAssetEntrySetLikeCount(((Long)arguments[0]).longValue());
+		}
+
 		throw new UnsupportedOperationException();
 	}
 
@@ -293,4 +302,6 @@ public class AssetEntrySetLikeLocalServiceClpInvoker {
 	private String[] _methodParameterTypes54;
 	private String _methodName55;
 	private String[] _methodParameterTypes55;
+	private String _methodName56;
+	private String[] _methodParameterTypes56;
 }
