@@ -49,4 +49,11 @@ public class AssetEntrySetLikeLocalServiceImpl
 			assetEntrySetId, classNameId, classPK, start, end);
 	}
 
+	public int getAssetEntrySetLikeCount(long assetEntrySetId)
+		throws SystemException {
+
+		return assetEntrySetLikePersistence.countByAssetEntrySetId(
+			assetEntrySetId);
+	}
+
 }
