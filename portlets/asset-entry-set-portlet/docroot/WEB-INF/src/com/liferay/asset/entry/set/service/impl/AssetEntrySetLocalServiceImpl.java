@@ -86,10 +86,10 @@ public class AssetEntrySetLocalServiceImpl
 		assetEntrySet.setCompanyId(user.getCompanyId());
 		assetEntrySet.setUserId(user.getUserId());
 
-		Date now = new Date();
+		long currentTime = System.currentTimeMillis();
 
-		assetEntrySet.setCreateTime(now.getTime());
-		assetEntrySet.setModifiedTime(now.getTime());
+		assetEntrySet.setCreateTime(currentTime);
+		assetEntrySet.setModifiedTime(currentTime);
 
 		assetEntrySet.setParentAssetEntrySetId(parentAssetEntrySetId);
 		assetEntrySet.setCreatorClassNameId(creatorClassNameId);
@@ -112,7 +112,7 @@ public class AssetEntrySetLocalServiceImpl
 		assetEntrySetPersistence.update(assetEntrySet);
 
 		updateChildAssetEntrySetsCount(parentAssetEntrySetId);
-		updateModifiedTime(parentAssetEntrySetId, now.getTime());
+		updateModifiedTime(parentAssetEntrySetId, currentTime);
 
 		updateAssetEntry(
 			assetEntrySet,
@@ -174,6 +174,9 @@ public class AssetEntrySetLocalServiceImpl
 
 				updateChildAssetEntrySetsCount(
 					parentAssetEntrySet.getAssetEntrySetId());
+				updateModifiedTime(
+					parentAssetEntrySet.getAssetEntrySetId(),
+					System.currentTimeMillis());
 			}
 		}
 
