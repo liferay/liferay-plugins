@@ -19,21 +19,21 @@
 <%
 PortletURL currentURLObj = PortletURLUtil.getCurrent(PortalUtil.getLiferayPortletRequest(renderRequest), PortalUtil.getLiferayPortletResponse(renderResponse));
 
-String[] field1 = ParamUtil.getStringValues(renderRequest, "field1");
+String[] field1s = ParamUtil.getStringValues(renderRequest, "field1");
 
 SearchContainer<Foo> fooSearchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, SearchContainer.DEFAULT_DELTA, currentURLObj, null, "no-entries-were-found");
 
 fooSearchContainer.setForcePost(true);
 
-if (field1.length == 0) {
+if (field1s.length == 0) {
 	fooSearchContainer.setTotal(FooLocalServiceUtil.getFoosCount());
 
 	fooSearchContainer.setResults(FooLocalServiceUtil.getFoos(fooSearchContainer.getStart(), fooSearchContainer.getEnd(), new FooField4Comparator()));
 }
 else {
-	fooSearchContainer.setTotal(FooLocalServiceUtil.getField1FoosCount(field1));
+	fooSearchContainer.setTotal(FooLocalServiceUtil.getField1FoosCount(field1s));
 
-	fooSearchContainer.setResults(FooLocalServiceUtil.getField1Foos(field1, fooSearchContainer.getStart(), fooSearchContainer.getEnd(), new FooField4Comparator()));
+	fooSearchContainer.setResults(FooLocalServiceUtil.getField1Foos(field1s, fooSearchContainer.getStart(), fooSearchContainer.getEnd(), new FooField4Comparator()));
 }
 %>
 
@@ -76,7 +76,7 @@ else {
 								selectDesc: 'field1',
 								selectId: 'field1',
 								selectSort: '',
-								selectVal: ['<%= StringUtil.merge(field1, "','") %>']
+								selectVal: ['<%= StringUtil.merge(field1s, "','") %>']
 							}
 						]
 					);
