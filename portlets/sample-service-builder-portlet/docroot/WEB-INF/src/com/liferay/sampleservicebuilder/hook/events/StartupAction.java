@@ -48,32 +48,25 @@ public class StartupAction extends SimpleAction {
 	}
 
 	protected void setupFoo(long companyId) throws Exception {
-		try {
-			FooLocalServiceUtil.deleteFoos();
+		FooLocalServiceUtil.deleteFoos();
 
-			ServiceContext serviceContext = new ServiceContext();
+		ServiceContext serviceContext = new ServiceContext();
 
-			serviceContext.setCreateDate(DateUtil.newDate());
-			serviceContext.setModifiedDate(DateUtil.newDate());
+		serviceContext.setCreateDate(DateUtil.newDate());
+		serviceContext.setModifiedDate(DateUtil.newDate());
 
-			Company company = CompanyLocalServiceUtil.getCompany(companyId);
+		Company company = CompanyLocalServiceUtil.getCompany(companyId);
 
-			serviceContext.setScopeGroupId(company.getGroupId());
+		serviceContext.setScopeGroupId(company.getGroupId());
 
-			User user = company.getDefaultUser();
+		User user = company.getDefaultUser();
 
-			serviceContext.setUserId(user.getUserId());
+		serviceContext.setUserId(user.getUserId());
 
-			for (int i = 0; i < 100; i++) {
-				FooLocalServiceUtil.addFoo(
-					StringUtil.randomString(), true, i, DateUtil.newDate(),
-					StringUtil.randomString(), serviceContext);
-			}
-		}
-		catch (PortalException pe) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(pe);
-			}
+		for (int i = 0; i < 100; i++) {
+			FooLocalServiceUtil.addFoo(
+				StringUtil.randomString(), true, i, DateUtil.newDate(),
+				StringUtil.randomString(), serviceContext);
 		}
 	}
 
