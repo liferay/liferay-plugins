@@ -57,10 +57,10 @@ public class StartupAction extends SimpleAction {
 
 			ServiceContext serviceContext = new ServiceContext();
 
-			serviceContext.setUserId(defaultUser.getUserId());
-			serviceContext.setScopeGroupId(company.getGroupId());
 			serviceContext.setCreateDate(DateUtil.newDate());
 			serviceContext.setModifiedDate(DateUtil.newDate());
+			serviceContext.setScopeGroupId(company.getGroupId());
+			serviceContext.setUserId(defaultUser.getUserId());
 
 			for (int i = 0; i < 100; i++) {
 				FooLocalServiceUtil.addFoo(
