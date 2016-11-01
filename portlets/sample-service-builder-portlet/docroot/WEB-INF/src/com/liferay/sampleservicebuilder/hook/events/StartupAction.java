@@ -51,16 +51,18 @@ public class StartupAction extends SimpleAction {
 		try {
 			FooLocalServiceUtil.deleteFoos();
 
-			Company company = CompanyLocalServiceUtil.getCompany(companyId);
-
-			User defaultUser = company.getDefaultUser();
-
 			ServiceContext serviceContext = new ServiceContext();
 
 			serviceContext.setCreateDate(DateUtil.newDate());
 			serviceContext.setModifiedDate(DateUtil.newDate());
+
+			Company company = CompanyLocalServiceUtil.getCompany(companyId);
+
 			serviceContext.setScopeGroupId(company.getGroupId());
-			serviceContext.setUserId(defaultUser.getUserId());
+
+			User user = company.getDefaultUser();
+
+			serviceContext.setUserId(user.getUserId());
 
 			for (int i = 0; i < 100; i++) {
 				FooLocalServiceUtil.addFoo(
