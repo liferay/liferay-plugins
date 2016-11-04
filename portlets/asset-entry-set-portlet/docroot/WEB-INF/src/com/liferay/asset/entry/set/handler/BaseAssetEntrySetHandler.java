@@ -104,6 +104,7 @@ public class BaseAssetEntrySetHandler implements AssetEntrySetHandler {
 		}
 
 		jsonObject.put("type", payloadJSONObject.getString("type"));
+		jsonObject.put("userAgent", payloadJSONObject.getString("userAgent"));
 
 		JSONArray sharedToJSONArray = payloadJSONObject.getJSONArray(
 			AssetEntrySetConstants.PAYLOAD_KEY_SHARED_TO);
