@@ -516,6 +516,7 @@
 		<field indexed="true" name="mimeType" stored="true" type="string" />
 		<field indexed="true" name="modified" stored="true" type="string" />
 		<field indexed="true" name="modified_sortable" stored="true" type="long" />
+		<field indexed="true" name="name" stored="true" type="text_lowercase" />
 		<field indexed="true" name="nodeId" stored="true" type="string" />
 		<field indexed="true" name="organizationId" stored="true" type="string" />
 		<field indexed="true" multiValued="true" name="organizationIds" stored="true" type="string" />
