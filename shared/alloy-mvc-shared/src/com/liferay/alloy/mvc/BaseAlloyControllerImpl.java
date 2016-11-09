@@ -14,6 +14,8 @@
 
 package com.liferay.alloy.mvc;
 
+import static com.liferay.portal.kernel.util.TextFormatter.G;
+
 import com.liferay.alloy.mvc.jsonwebservice.AlloyMockUtil;
 import com.liferay.compat.portal.kernel.bean.BeanPropertiesUtil;
 import com.liferay.counter.service.CounterLocalServiceUtil;
@@ -63,6 +65,7 @@ import com.liferay.portal.kernel.util.ServiceBeanMethodInvocationFactoryUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.TextFormatter;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.AttachedModel;
@@ -71,6 +74,7 @@ import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.Company;
 import com.liferay.portal.model.GroupedModel;
 import com.liferay.portal.model.Layout;
+import com.liferay.portal.model.ModelHintsUtil;
 import com.liferay.portal.model.PersistedModel;
 import com.liferay.portal.model.Portlet;
 import com.liferay.portal.model.User;
@@ -178,6 +182,43 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 
 		setAuditedModel(
 			baseModel, CompanyLocalServiceUtil.getCompany(companyId), user);
+	}
+
+	public static void setLocalizedRequestValues(
+			BaseModel<?> baseModel, HttpServletRequest request)
+		throws Exception {
+
+		Map<String, Object> modelAttributes = baseModel.getModelAttributes();
+
+		for (String propertyName : modelAttributes.keySet()) {
+			boolean isLocalized = ModelHintsUtil.isLocalized(
+				baseModel.getModelClassName(), propertyName);
+
+			if (isLocalized) {
+				String upperCasePropertyName = TextFormatter.format(
+					propertyName, G);
+
+				String getMethodName = "get" + upperCasePropertyName + "Map";
+
+				Class baseModelClass = baseModel.getModelClass();
+
+				Method getMethod = baseModelClass.getMethod(getMethodName);
+
+				Map<Locale, String> currentValue =
+					(Map<Locale, String>)getMethod.invoke(baseModel);
+
+				String requestValue = request.getParameter(propertyName);
+
+				currentValue.put(request.getLocale(), requestValue);
+
+				String setMethodName = "set" + upperCasePropertyName + "Map";
+
+				Method setMethod = baseModelClass.getMethod(
+					setMethodName, new Class<?>[] {Map.class});
+
+				setMethod.invoke(baseModel, currentValue);
+			}
+		}
 	}
 
 	@Override
