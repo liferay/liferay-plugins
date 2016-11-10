@@ -32,12 +32,14 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portlet.documentlibrary.model.DLFileEntry;
+import com.liferay.portlet.documentlibrary.model.DLFolder;
 import com.liferay.portlet.documentlibrary.model.DLFolderConstants;
 import com.liferay.sync.model.SyncDLObject;
 import com.liferay.sync.model.SyncDLObjectConstants;
 import com.liferay.sync.service.base.SyncDLObjectLocalServiceBaseImpl;
 import com.liferay.sync.service.persistence.SyncDLObjectActionableDynamicQuery;
 import com.liferay.sync.util.PortletPropsValues;
+import com.liferay.sync.util.SyncUtil;
 
 import java.util.Date;
 import java.util.List;
@@ -49,6 +51,13 @@ import java.util.List;
 public class SyncDLObjectLocalServiceImpl
 	extends SyncDLObjectLocalServiceBaseImpl {
 
+	/**
+	 * @deprecated As of 6.2.0, replaced by {@link #addSyncDLObject(long, long,
+	 *             String, long, long, long, String, String, String, String,
+	 *             String, String, String, String, long, long, String, String,
+	 *             String, Date, long, String, String, long, String)}
+	 */
+	@Deprecated
 	@Override
 	public SyncDLObject addSyncDLObject(
 			long companyId, long userId, String userName, long modifiedTime,
@@ -58,6 +67,25 @@ public class SyncDLObjectLocalServiceImpl
 			long versionId, long size, String checksum, String event,
 			Date lockExpirationDate, long lockUserId, String lockUserName,
 			String type, long typePK, String typeUuid)
+		throws PortalException, SystemException {
+
+		return addSyncDLObject(
+			companyId, userId, userName, modifiedTime, repositoryId,
+			parentFolderId, treePath, name, extension, mimeType, description,
+			changeLog, extraSettings, version, versionId, size, checksum, event,
+			StringPool.BLANK, lockExpirationDate, lockUserId, lockUserName,
+			type, typePK, typeUuid);
+	}
+
+	@Override
+	public SyncDLObject addSyncDLObject(
+			long companyId, long userId, String userName, long modifiedTime,
+			long repositoryId, long parentFolderId, String treePath,
+			String name, String extension, String mimeType, String description,
+			String changeLog, String extraSettings, String version,
+			long versionId, long size, String checksum, String event,
+			String lanTokenKey, Date lockExpirationDate, long lockUserId,
+			String lockUserName, String type, long typePK, String typeUuid)
 		throws PortalException, SystemException {
 
 		if (!isDefaultRepository(parentFolderId)) {
@@ -137,6 +165,7 @@ public class SyncDLObjectLocalServiceImpl
 		syncDLObject.setSize(size);
 		syncDLObject.setChecksum(checksum);
 		syncDLObject.setEvent(event);
+		syncDLObject.setLanTokenKey(lanTokenKey);
 
 		if (event.equals(SyncDLObjectConstants.EVENT_MOVE)) {
 			syncDLObject.setLastPermissionChangeDate(new Date());
@@ -326,11 +355,38 @@ public class SyncDLObjectLocalServiceImpl
 
 					SyncDLObject syncDLObject = (SyncDLObject)object;
 
+					String type = syncDLObject.getType();
+
+					if (type.equals(SyncDLObjectConstants.TYPE_FOLDER)) {
+						DLFolder dlFolder = dlFolderLocalService.getFolder(
+							syncDLObject.getTypePK());
+
+						if (dlFolder.isInTrash()) {
+							return;
+						}
+					}
+					else {
+						DLFileEntry dlFileEntry =
+							dlFileEntryLocalService.getDLFileEntry(
+								syncDLObject.getTypePK());
+
+						if (dlFileEntry.isInTrash()) {
+							return;
+						}
+					}
+
 					syncDLObject.setUserId(parentSyncDLObject.getUserId());
 					syncDLObject.setUserName(parentSyncDLObject.getUserName());
 					syncDLObject.setModifiedTime(
 						parentSyncDLObject.getModifiedTime());
 					syncDLObject.setEvent(SyncDLObjectConstants.EVENT_RESTORE);
+
+					if (!type.equals(SyncDLObjectConstants.TYPE_FOLDER)) {
+						syncDLObject.setLanTokenKey(
+							SyncUtil.getLanTokenKey(
+								parentSyncDLObject.getModifiedTime(),
+								syncDLObject.getTypePK(), false));
+					}
 
 					syncDLObjectPersistence.update(syncDLObject);
 				}

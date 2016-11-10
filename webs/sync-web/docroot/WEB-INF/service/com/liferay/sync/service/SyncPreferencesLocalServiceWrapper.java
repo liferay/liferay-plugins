@@ -60,6 +60,13 @@ public class SyncPreferencesLocalServiceWrapper
 	}
 
 	@Override
+	public void enableLanSync(long companyId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_syncPreferencesLocalService.enableLanSync(companyId);
+	}
+
+	@Override
 	public void enableOAuth(long companyId,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,

@@ -95,6 +95,7 @@ public class SyncDLObjectClp extends BaseModelImpl<SyncDLObject>
 		attributes.put("size", getSize());
 		attributes.put("checksum", getChecksum());
 		attributes.put("event", getEvent());
+		attributes.put("lanTokenKey", getLanTokenKey());
 		attributes.put("lastPermissionChangeDate", getLastPermissionChangeDate());
 		attributes.put("lockExpirationDate", getLockExpirationDate());
 		attributes.put("lockUserId", getLockUserId());
@@ -226,6 +227,12 @@ public class SyncDLObjectClp extends BaseModelImpl<SyncDLObject>
 
 		if (event != null) {
 			setEvent(event);
+		}
+
+		String lanTokenKey = (String)attributes.get("lanTokenKey");
+
+		if (lanTokenKey != null) {
+			setLanTokenKey(lanTokenKey);
 		}
 
 		Date lastPermissionChangeDate = (Date)attributes.get(
@@ -743,6 +750,29 @@ public class SyncDLObjectClp extends BaseModelImpl<SyncDLObject>
 	}
 
 	@Override
+	public String getLanTokenKey() {
+		return _lanTokenKey;
+	}
+
+	@Override
+	public void setLanTokenKey(String lanTokenKey) {
+		_lanTokenKey = lanTokenKey;
+
+		if (_syncDLObjectRemoteModel != null) {
+			try {
+				Class<?> clazz = _syncDLObjectRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setLanTokenKey", String.class);
+
+				method.invoke(_syncDLObjectRemoteModel, lanTokenKey);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
 	public Date getLastPermissionChangeDate() {
 		return _lastPermissionChangeDate;
 	}
@@ -916,25 +946,6 @@ public class SyncDLObjectClp extends BaseModelImpl<SyncDLObject>
 	}
 
 	@Override
-	public java.lang.String buildTreePath() {
-		try {
-			String methodName = "buildTreePath";
-
-			Class<?>[] parameterTypes = new Class<?>[] {  };
-
-			Object[] parameterValues = new Object[] {  };
-
-			java.lang.String returnObj = (java.lang.String)invokeOnRemoteModel(methodName,
-					parameterTypes, parameterValues);
-
-			return returnObj;
-		}
-		catch (Exception e) {
-			throw new UnsupportedOperationException(e);
-		}
-	}
-
-	@Override
 	public void setCreateDate(java.util.Date createDate) {
 		try {
 			String methodName = "setCreateDate";
@@ -960,6 +971,25 @@ public class SyncDLObjectClp extends BaseModelImpl<SyncDLObject>
 			Object[] parameterValues = new Object[] { modifiedDate };
 
 			invokeOnRemoteModel(methodName, parameterTypes, parameterValues);
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
+	}
+
+	@Override
+	public java.lang.String buildTreePath() {
+		try {
+			String methodName = "buildTreePath";
+
+			Class<?>[] parameterTypes = new Class<?>[] {  };
+
+			Object[] parameterValues = new Object[] {  };
+
+			java.lang.String returnObj = (java.lang.String)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
 		}
 		catch (Exception e) {
 			throw new UnsupportedOperationException(e);
@@ -1068,6 +1098,7 @@ public class SyncDLObjectClp extends BaseModelImpl<SyncDLObject>
 		clone.setSize(getSize());
 		clone.setChecksum(getChecksum());
 		clone.setEvent(getEvent());
+		clone.setLanTokenKey(getLanTokenKey());
 		clone.setLastPermissionChangeDate(getLastPermissionChangeDate());
 		clone.setLockExpirationDate(getLockExpirationDate());
 		clone.setLockUserId(getLockUserId());
@@ -1147,7 +1178,7 @@ public class SyncDLObjectClp extends BaseModelImpl<SyncDLObject>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(55);
+		StringBundler sb = new StringBundler(57);
 
 		sb.append("{syncDLObjectId=");
 		sb.append(getSyncDLObjectId());
@@ -1189,6 +1220,8 @@ public class SyncDLObjectClp extends BaseModelImpl<SyncDLObject>
 		sb.append(getChecksum());
 		sb.append(", event=");
 		sb.append(getEvent());
+		sb.append(", lanTokenKey=");
+		sb.append(getLanTokenKey());
 		sb.append(", lastPermissionChangeDate=");
 		sb.append(getLastPermissionChangeDate());
 		sb.append(", lockExpirationDate=");
@@ -1210,7 +1243,7 @@ public class SyncDLObjectClp extends BaseModelImpl<SyncDLObject>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(85);
+		StringBundler sb = new StringBundler(88);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.sync.model.SyncDLObject");
@@ -1297,6 +1330,10 @@ public class SyncDLObjectClp extends BaseModelImpl<SyncDLObject>
 		sb.append(getEvent());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>lanTokenKey</column-name><column-value><![CDATA[");
+		sb.append(getLanTokenKey());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>lastPermissionChangeDate</column-name><column-value><![CDATA[");
 		sb.append(getLastPermissionChangeDate());
 		sb.append("]]></column-value></column>");
@@ -1351,6 +1388,7 @@ public class SyncDLObjectClp extends BaseModelImpl<SyncDLObject>
 	private long _size;
 	private String _checksum;
 	private String _event;
+	private String _lanTokenKey;
 	private Date _lastPermissionChangeDate;
 	private Date _lockExpirationDate;
 	private long _lockUserId;

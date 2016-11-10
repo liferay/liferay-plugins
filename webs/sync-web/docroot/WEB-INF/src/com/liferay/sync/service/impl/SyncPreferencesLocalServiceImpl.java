@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.sync.service.base.SyncPreferencesLocalServiceBaseImpl;
 import com.liferay.sync.shared.util.PortletPropsKeys;
+import com.liferay.sync.util.SyncUtil;
 import com.liferay.util.portlet.PortletProps;
 
 import java.io.InputStream;
@@ -40,6 +41,18 @@ import javax.portlet.PortletPreferences;
  */
 public class SyncPreferencesLocalServiceImpl
 	extends SyncPreferencesLocalServiceBaseImpl {
+
+	@Override
+	public void enableLanSync(long companyId)
+		throws PortalException, SystemException {
+
+		try {
+			SyncUtil.enableLanSync(companyId);
+		}
+		catch (Exception e) {
+			throw new PortalException(e);
+		}
+	}
 
 	@Override
 	public void enableOAuth(long companyId, ServiceContext serviceContext)

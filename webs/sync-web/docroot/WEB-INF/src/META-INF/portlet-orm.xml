@@ -77,6 +77,7 @@
 			</basic>
 			<basic name="checksum" />
 			<basic name="event" />
+			<basic name="lanTokenKey" />
 			<basic name="lastPermissionChangeDate">
 				<temporal>TIMESTAMP</temporal>
 			</basic>

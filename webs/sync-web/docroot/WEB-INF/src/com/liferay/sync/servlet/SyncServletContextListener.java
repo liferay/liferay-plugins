@@ -42,6 +42,7 @@ import com.liferay.sync.service.SyncDLObjectLocalServiceUtil;
 import com.liferay.sync.service.SyncPreferencesLocalServiceUtil;
 import com.liferay.sync.util.PortletPropsKeys;
 import com.liferay.sync.util.PortletPropsValues;
+import com.liferay.sync.util.SyncUtil;
 import com.liferay.sync.util.VerifyUtil;
 
 import java.util.HashMap;
@@ -134,6 +135,19 @@ public class SyncServletContextListener
 			List<Company> companies = CompanyLocalServiceUtil.getCompanies();
 
 			for (Company company : companies) {
+				boolean lanEnabled = PrefsPropsUtil.getBoolean(
+					company.getCompanyId(), PortletPropsKeys.SYNC_LAN_ENABLED,
+					PortletPropsValues.SYNC_LAN_ENABLED);
+
+				if (lanEnabled) {
+					try {
+						SyncUtil.enableLanSync(company.getCompanyId());
+					}
+					catch (Exception e) {
+						_log.error(e, e);
+					}
+				}
+
 				boolean oAuthEnabled = PrefsPropsUtil.getBoolean(
 					company.getCompanyId(), PortletPropsKeys.SYNC_OAUTH_ENABLED,
 					PortletPropsValues.SYNC_OAUTH_ENABLED);

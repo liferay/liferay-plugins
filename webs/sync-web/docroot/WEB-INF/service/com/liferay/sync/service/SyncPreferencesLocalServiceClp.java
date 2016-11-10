@@ -34,19 +34,23 @@ public class SyncPreferencesLocalServiceClp
 
 		_methodParameterTypes1 = new String[] { "java.lang.String" };
 
-		_methodName3 = "enableOAuth";
+		_methodName3 = "enableLanSync";
 
-		_methodParameterTypes3 = new String[] {
+		_methodParameterTypes3 = new String[] { "long" };
+
+		_methodName4 = "enableOAuth";
+
+		_methodParameterTypes4 = new String[] {
 				"long", "com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName4 = "getPortletPreferences";
-
-		_methodParameterTypes4 = new String[] { "long" };
-
-		_methodName5 = "isOAuthApplicationAvailable";
+		_methodName5 = "getPortletPreferences";
 
 		_methodParameterTypes5 = new String[] { "long" };
+
+		_methodName6 = "isOAuthApplicationAvailable";
+
+		_methodParameterTypes6 = new String[] { "long" };
 	}
 
 	@Override
@@ -100,13 +104,42 @@ public class SyncPreferencesLocalServiceClp
 	}
 
 	@Override
+	public void enableLanSync(long companyId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		try {
+			_invokableLocalService.invokeMethod(_methodName3,
+				_methodParameterTypes3, new Object[] { companyId });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
+	@Override
 	public void enableOAuth(long companyId,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		try {
-			_invokableLocalService.invokeMethod(_methodName3,
-				_methodParameterTypes3,
+			_invokableLocalService.invokeMethod(_methodName4,
+				_methodParameterTypes4,
 				new Object[] {
 					companyId,
 					
@@ -142,8 +175,8 @@ public class SyncPreferencesLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName4,
-					_methodParameterTypes4, new Object[] { companyId });
+			returnObj = _invokableLocalService.invokeMethod(_methodName5,
+					_methodParameterTypes5, new Object[] { companyId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -174,8 +207,8 @@ public class SyncPreferencesLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName5,
-					_methodParameterTypes5, new Object[] { oAuthApplicationId });
+			returnObj = _invokableLocalService.invokeMethod(_methodName6,
+					_methodParameterTypes6, new Object[] { oAuthApplicationId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -207,4 +240,6 @@ public class SyncPreferencesLocalServiceClp
 	private String[] _methodParameterTypes4;
 	private String _methodName5;
 	private String[] _methodParameterTypes5;
+	private String _methodName6;
+	private String[] _methodParameterTypes6;
 }

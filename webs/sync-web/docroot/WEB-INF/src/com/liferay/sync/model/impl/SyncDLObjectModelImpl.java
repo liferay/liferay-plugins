@@ -86,6 +86,7 @@ public class SyncDLObjectModelImpl extends BaseModelImpl<SyncDLObject>
 			{ "size_", Types.BIGINT },
 			{ "checksum", Types.VARCHAR },
 			{ "event", Types.VARCHAR },
+			{ "lanTokenKey", Types.VARCHAR },
 			{ "lastPermissionChangeDate", Types.TIMESTAMP },
 			{ "lockExpirationDate", Types.TIMESTAMP },
 			{ "lockUserId", Types.BIGINT },
@@ -94,7 +95,7 @@ public class SyncDLObjectModelImpl extends BaseModelImpl<SyncDLObject>
 			{ "typePK", Types.BIGINT },
 			{ "typeUuid", Types.VARCHAR }
 		};
-	public static final String TABLE_SQL_CREATE = "create table SyncDLObject (syncDLObjectId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createTime LONG,modifiedTime LONG,repositoryId LONG,parentFolderId LONG,treePath STRING null,name VARCHAR(255) null,extension VARCHAR(75) null,mimeType VARCHAR(75) null,description STRING null,changeLog VARCHAR(75) null,extraSettings TEXT null,version VARCHAR(75) null,versionId LONG,size_ LONG,checksum VARCHAR(75) null,event VARCHAR(75) null,lastPermissionChangeDate DATE null,lockExpirationDate DATE null,lockUserId LONG,lockUserName VARCHAR(75) null,type_ VARCHAR(75) null,typePK LONG,typeUuid VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table SyncDLObject (syncDLObjectId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createTime LONG,modifiedTime LONG,repositoryId LONG,parentFolderId LONG,treePath STRING null,name VARCHAR(255) null,extension VARCHAR(75) null,mimeType VARCHAR(75) null,description STRING null,changeLog VARCHAR(75) null,extraSettings TEXT null,version VARCHAR(75) null,versionId LONG,size_ LONG,checksum VARCHAR(75) null,event VARCHAR(75) null,lanTokenKey VARCHAR(75) null,lastPermissionChangeDate DATE null,lockExpirationDate DATE null,lockUserId LONG,lockUserName VARCHAR(75) null,type_ VARCHAR(75) null,typePK LONG,typeUuid VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table SyncDLObject";
 	public static final String ORDER_BY_JPQL = " ORDER BY syncDLObject.modifiedTime ASC, syncDLObject.repositoryId ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY SyncDLObject.modifiedTime ASC, SyncDLObject.repositoryId ASC";
@@ -151,6 +152,7 @@ public class SyncDLObjectModelImpl extends BaseModelImpl<SyncDLObject>
 		model.setSize(soapModel.getSize());
 		model.setChecksum(soapModel.getChecksum());
 		model.setEvent(soapModel.getEvent());
+		model.setLanTokenKey(soapModel.getLanTokenKey());
 		model.setLastPermissionChangeDate(soapModel.getLastPermissionChangeDate());
 		model.setLockExpirationDate(soapModel.getLockExpirationDate());
 		model.setLockUserId(soapModel.getLockUserId());
@@ -242,6 +244,7 @@ public class SyncDLObjectModelImpl extends BaseModelImpl<SyncDLObject>
 		attributes.put("size", getSize());
 		attributes.put("checksum", getChecksum());
 		attributes.put("event", getEvent());
+		attributes.put("lanTokenKey", getLanTokenKey());
 		attributes.put("lastPermissionChangeDate", getLastPermissionChangeDate());
 		attributes.put("lockExpirationDate", getLockExpirationDate());
 		attributes.put("lockUserId", getLockUserId());
@@ -373,6 +376,12 @@ public class SyncDLObjectModelImpl extends BaseModelImpl<SyncDLObject>
 
 		if (event != null) {
 			setEvent(event);
+		}
+
+		String lanTokenKey = (String)attributes.get("lanTokenKey");
+
+		if (lanTokenKey != null) {
+			setLanTokenKey(lanTokenKey);
 		}
 
 		Date lastPermissionChangeDate = (Date)attributes.get(
@@ -760,6 +769,22 @@ public class SyncDLObjectModelImpl extends BaseModelImpl<SyncDLObject>
 		return GetterUtil.getString(_originalEvent);
 	}
 
+	@JSON
+	@Override
+	public String getLanTokenKey() {
+		if (_lanTokenKey == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _lanTokenKey;
+		}
+	}
+
+	@Override
+	public void setLanTokenKey(String lanTokenKey) {
+		_lanTokenKey = lanTokenKey;
+	}
+
 	@JSON(include = false)
 	@Override
 	public Date getLastPermissionChangeDate() {
@@ -935,6 +960,7 @@ public class SyncDLObjectModelImpl extends BaseModelImpl<SyncDLObject>
 		syncDLObjectImpl.setSize(getSize());
 		syncDLObjectImpl.setChecksum(getChecksum());
 		syncDLObjectImpl.setEvent(getEvent());
+		syncDLObjectImpl.setLanTokenKey(getLanTokenKey());
 		syncDLObjectImpl.setLastPermissionChangeDate(getLastPermissionChangeDate());
 		syncDLObjectImpl.setLockExpirationDate(getLockExpirationDate());
 		syncDLObjectImpl.setLockUserId(getLockUserId());
@@ -1149,6 +1175,14 @@ public class SyncDLObjectModelImpl extends BaseModelImpl<SyncDLObject>
 			syncDLObjectCacheModel.event = null;
 		}
 
+		syncDLObjectCacheModel.lanTokenKey = getLanTokenKey();
+
+		String lanTokenKey = syncDLObjectCacheModel.lanTokenKey;
+
+		if ((lanTokenKey != null) && (lanTokenKey.length() == 0)) {
+			syncDLObjectCacheModel.lanTokenKey = null;
+		}
+
 		Date lastPermissionChangeDate = getLastPermissionChangeDate();
 
 		if (lastPermissionChangeDate != null) {
@@ -1200,7 +1234,7 @@ public class SyncDLObjectModelImpl extends BaseModelImpl<SyncDLObject>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(55);
+		StringBundler sb = new StringBundler(57);
 
 		sb.append("{syncDLObjectId=");
 		sb.append(getSyncDLObjectId());
@@ -1242,6 +1276,8 @@ public class SyncDLObjectModelImpl extends BaseModelImpl<SyncDLObject>
 		sb.append(getChecksum());
 		sb.append(", event=");
 		sb.append(getEvent());
+		sb.append(", lanTokenKey=");
+		sb.append(getLanTokenKey());
 		sb.append(", lastPermissionChangeDate=");
 		sb.append(getLastPermissionChangeDate());
 		sb.append(", lockExpirationDate=");
@@ -1263,7 +1299,7 @@ public class SyncDLObjectModelImpl extends BaseModelImpl<SyncDLObject>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(85);
+		StringBundler sb = new StringBundler(88);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.sync.model.SyncDLObject");
@@ -1350,6 +1386,10 @@ public class SyncDLObjectModelImpl extends BaseModelImpl<SyncDLObject>
 		sb.append(getEvent());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>lanTokenKey</column-name><column-value><![CDATA[");
+		sb.append(getLanTokenKey());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>lastPermissionChangeDate</column-name><column-value><![CDATA[");
 		sb.append(getLastPermissionChangeDate());
 		sb.append("]]></column-value></column>");
@@ -1416,6 +1456,7 @@ public class SyncDLObjectModelImpl extends BaseModelImpl<SyncDLObject>
 	private String _checksum;
 	private String _event;
 	private String _originalEvent;
+	private String _lanTokenKey;
 	private Date _lastPermissionChangeDate;
 	private Date _lockExpirationDate;
 	private long _lockUserId;

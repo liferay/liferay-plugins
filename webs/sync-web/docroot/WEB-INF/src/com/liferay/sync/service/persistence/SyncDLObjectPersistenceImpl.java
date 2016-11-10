@@ -3819,7 +3819,11 @@ public class SyncDLObjectPersistenceImpl extends BasePersistenceImpl<SyncDLObjec
 				qPos.add(repositoryId);
 
 				if (events != null) {
-					qPos.add(events);
+					for (String event : events) {
+						if ((event != null) && !event.isEmpty()) {
+							qPos.add(event);
+						}
+					}
 				}
 
 				if (!pagination) {
@@ -4037,7 +4041,11 @@ public class SyncDLObjectPersistenceImpl extends BasePersistenceImpl<SyncDLObjec
 				qPos.add(repositoryId);
 
 				if (events != null) {
-					qPos.add(events);
+					for (String event : events) {
+						if ((event != null) && !event.isEmpty()) {
+							qPos.add(event);
+						}
+					}
 				}
 
 				count = (Long)q.uniqueResult();
@@ -4774,7 +4782,11 @@ public class SyncDLObjectPersistenceImpl extends BasePersistenceImpl<SyncDLObjec
 				qPos.add(parentFolderId);
 
 				if (types != null) {
-					qPos.add(types);
+					for (String type : types) {
+						if ((type != null) && !type.isEmpty()) {
+							qPos.add(type);
+						}
+					}
 				}
 
 				if (!pagination) {
@@ -4992,7 +5004,11 @@ public class SyncDLObjectPersistenceImpl extends BasePersistenceImpl<SyncDLObjec
 				qPos.add(parentFolderId);
 
 				if (types != null) {
-					qPos.add(types);
+					for (String type : types) {
+						if ((type != null) && !type.isEmpty()) {
+							qPos.add(type);
+						}
+					}
 				}
 
 				count = (Long)q.uniqueResult();
@@ -5439,6 +5455,7 @@ public class SyncDLObjectPersistenceImpl extends BasePersistenceImpl<SyncDLObjec
 		syncDLObjectImpl.setSize(syncDLObject.getSize());
 		syncDLObjectImpl.setChecksum(syncDLObject.getChecksum());
 		syncDLObjectImpl.setEvent(syncDLObject.getEvent());
+		syncDLObjectImpl.setLanTokenKey(syncDLObject.getLanTokenKey());
 		syncDLObjectImpl.setLastPermissionChangeDate(syncDLObject.getLastPermissionChangeDate());
 		syncDLObjectImpl.setLockExpirationDate(syncDLObject.getLockExpirationDate());
 		syncDLObjectImpl.setLockUserId(syncDLObject.getLockUserId());

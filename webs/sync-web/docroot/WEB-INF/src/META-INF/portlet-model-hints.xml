@@ -53,6 +53,7 @@
 		<field name="size" type="long" />
 		<field name="checksum" type="String" />
 		<field name="event" type="String" />
+		<field name="lanTokenKey" type="String" />
 		<field name="lastPermissionChangeDate" type="Date" />
 		<field name="lockExpirationDate" type="Date" />
 		<field name="lockUserId" type="long" />

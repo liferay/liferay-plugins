@@ -37,6 +37,7 @@ import com.liferay.portal.service.persistence.UserPersistence;
 
 import com.liferay.portlet.documentlibrary.service.persistence.DLFileEntryPersistence;
 import com.liferay.portlet.documentlibrary.service.persistence.DLFileVersionPersistence;
+import com.liferay.portlet.documentlibrary.service.persistence.DLFolderPersistence;
 
 import com.liferay.sync.model.SyncDLObject;
 import com.liferay.sync.service.SyncDLObjectLocalService;
@@ -952,6 +953,62 @@ public abstract class SyncDLObjectLocalServiceBaseImpl
 		this.dlFileVersionPersistence = dlFileVersionPersistence;
 	}
 
+	/**
+	 * Returns the document library folder local service.
+	 *
+	 * @return the document library folder local service
+	 */
+	public com.liferay.portlet.documentlibrary.service.DLFolderLocalService getDLFolderLocalService() {
+		return dlFolderLocalService;
+	}
+
+	/**
+	 * Sets the document library folder local service.
+	 *
+	 * @param dlFolderLocalService the document library folder local service
+	 */
+	public void setDLFolderLocalService(
+		com.liferay.portlet.documentlibrary.service.DLFolderLocalService dlFolderLocalService) {
+		this.dlFolderLocalService = dlFolderLocalService;
+	}
+
+	/**
+	 * Returns the document library folder remote service.
+	 *
+	 * @return the document library folder remote service
+	 */
+	public com.liferay.portlet.documentlibrary.service.DLFolderService getDLFolderService() {
+		return dlFolderService;
+	}
+
+	/**
+	 * Sets the document library folder remote service.
+	 *
+	 * @param dlFolderService the document library folder remote service
+	 */
+	public void setDLFolderService(
+		com.liferay.portlet.documentlibrary.service.DLFolderService dlFolderService) {
+		this.dlFolderService = dlFolderService;
+	}
+
+	/**
+	 * Returns the document library folder persistence.
+	 *
+	 * @return the document library folder persistence
+	 */
+	public DLFolderPersistence getDLFolderPersistence() {
+		return dlFolderPersistence;
+	}
+
+	/**
+	 * Sets the document library folder persistence.
+	 *
+	 * @param dlFolderPersistence the document library folder persistence
+	 */
+	public void setDLFolderPersistence(DLFolderPersistence dlFolderPersistence) {
+		this.dlFolderPersistence = dlFolderPersistence;
+	}
+
 	public void afterPropertiesSet() {
 		Class<?> clazz = getClass();
 
@@ -1104,6 +1161,12 @@ public abstract class SyncDLObjectLocalServiceBaseImpl
 	protected com.liferay.portlet.documentlibrary.service.DLFileVersionService dlFileVersionService;
 	@BeanReference(type = DLFileVersionPersistence.class)
 	protected DLFileVersionPersistence dlFileVersionPersistence;
+	@BeanReference(type = com.liferay.portlet.documentlibrary.service.DLFolderLocalService.class)
+	protected com.liferay.portlet.documentlibrary.service.DLFolderLocalService dlFolderLocalService;
+	@BeanReference(type = com.liferay.portlet.documentlibrary.service.DLFolderService.class)
+	protected com.liferay.portlet.documentlibrary.service.DLFolderService dlFolderService;
+	@BeanReference(type = DLFolderPersistence.class)
+	protected DLFolderPersistence dlFolderPersistence;
 	private String _beanIdentifier;
 	private ClassLoader _classLoader;
 	private SyncDLObjectLocalServiceClpInvoker _clpInvoker = new SyncDLObjectLocalServiceClpInvoker();

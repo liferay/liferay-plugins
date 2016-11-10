@@ -76,7 +76,7 @@ public class SyncDLObjectUpdate {
 	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(
-			(_settingsModifiedTimes.size() * 4) + (_syncDLObjects.size() * 78) +
+			(_settingsModifiedTimes.size() * 4) + (_syncDLObjects.size() * 80) +
 				5);
 
 		sb.append("{\"lastAccessTime\":");
@@ -126,6 +126,8 @@ public class SyncDLObjectUpdate {
 			append(sb, syncDLObject.getExtension(), true);
 			sb.append(",\"extraSettings\":");
 			append(sb, syncDLObject.getExtraSettings(), true);
+			sb.append(",\"lanTokenKey\":");
+			append(sb, syncDLObject.getLanTokenKey(), false);
 			sb.append(",\"lockExpirationDate\":");
 
 			Date lockExpirationDate = syncDLObject.getLockExpirationDate();

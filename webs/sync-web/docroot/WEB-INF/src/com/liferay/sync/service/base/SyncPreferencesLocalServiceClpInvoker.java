@@ -32,19 +32,23 @@ public class SyncPreferencesLocalServiceClpInvoker {
 
 		_methodParameterTypes39 = new String[] { "java.lang.String" };
 
-		_methodName42 = "enableOAuth";
+		_methodName42 = "enableLanSync";
 
-		_methodParameterTypes42 = new String[] {
+		_methodParameterTypes42 = new String[] { "long" };
+
+		_methodName43 = "enableOAuth";
+
+		_methodParameterTypes43 = new String[] {
 				"long", "com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName43 = "getPortletPreferences";
-
-		_methodParameterTypes43 = new String[] { "long" };
-
-		_methodName44 = "isOAuthApplicationAvailable";
+		_methodName44 = "getPortletPreferences";
 
 		_methodParameterTypes44 = new String[] { "long" };
+
+		_methodName45 = "isOAuthApplicationAvailable";
+
+		_methodParameterTypes45 = new String[] { "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -63,19 +67,26 @@ public class SyncPreferencesLocalServiceClpInvoker {
 
 		if (_methodName42.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes42, parameterTypes)) {
-			SyncPreferencesLocalServiceUtil.enableOAuth(((Long)arguments[0]).longValue(),
-				(com.liferay.portal.service.ServiceContext)arguments[1]);
+			SyncPreferencesLocalServiceUtil.enableLanSync(((Long)arguments[0]).longValue());
 
 			return null;
 		}
 
 		if (_methodName43.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes43, parameterTypes)) {
-			return SyncPreferencesLocalServiceUtil.getPortletPreferences(((Long)arguments[0]).longValue());
+			SyncPreferencesLocalServiceUtil.enableOAuth(((Long)arguments[0]).longValue(),
+				(com.liferay.portal.service.ServiceContext)arguments[1]);
+
+			return null;
 		}
 
 		if (_methodName44.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes44, parameterTypes)) {
+			return SyncPreferencesLocalServiceUtil.getPortletPreferences(((Long)arguments[0]).longValue());
+		}
+
+		if (_methodName45.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes45, parameterTypes)) {
 			return SyncPreferencesLocalServiceUtil.isOAuthApplicationAvailable(((Long)arguments[0]).longValue());
 		}
 
@@ -92,4 +103,6 @@ public class SyncPreferencesLocalServiceClpInvoker {
 	private String[] _methodParameterTypes43;
 	private String _methodName44;
 	private String[] _methodParameterTypes44;
+	private String _methodName45;
+	private String[] _methodParameterTypes45;
 }

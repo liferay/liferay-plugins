@@ -82,6 +82,9 @@ public class PortletPropsValues {
 			PortletProps.get(
 				PortletPropsKeys.SYNC_FILE_DIFF_CACHE_EXPIRATION_TIME));
 
+	public static final boolean SYNC_LAN_ENABLED = GetterUtil.getBoolean(
+		PortletProps.get(PortletPropsKeys.SYNC_LAN_ENABLED));
+
 	public static final String[] SYNC_MAC_PACKAGE_FOLDER_EXTENSIONS =
 		GetterUtil.getStringValues(
 			PortletProps.getArray(

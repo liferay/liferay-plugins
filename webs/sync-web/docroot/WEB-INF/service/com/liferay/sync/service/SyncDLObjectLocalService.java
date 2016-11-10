@@ -254,6 +254,13 @@ public interface SyncDLObjectLocalService extends BaseLocalService,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable;
 
+	/**
+	* @deprecated As of 6.2.0, replaced by {@link #addSyncDLObject(long, long,
+	String, long, long, long, String, String, String, String,
+	String, String, String, String, long, long, String, String,
+	String, Date, long, String, String, long, String)}
+	*/
+	@java.lang.Deprecated
 	public com.liferay.sync.model.SyncDLObject addSyncDLObject(long companyId,
 		long userId, java.lang.String userName, long modifiedTime,
 		long repositoryId, long parentFolderId, java.lang.String treePath,
@@ -265,6 +272,20 @@ public interface SyncDLObjectLocalService extends BaseLocalService,
 		java.util.Date lockExpirationDate, long lockUserId,
 		java.lang.String lockUserName, java.lang.String type, long typePK,
 		java.lang.String typeUuid)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	public com.liferay.sync.model.SyncDLObject addSyncDLObject(long companyId,
+		long userId, java.lang.String userName, long modifiedTime,
+		long repositoryId, long parentFolderId, java.lang.String treePath,
+		java.lang.String name, java.lang.String extension,
+		java.lang.String mimeType, java.lang.String description,
+		java.lang.String changeLog, java.lang.String extraSettings,
+		java.lang.String version, long versionId, long size,
+		java.lang.String checksum, java.lang.String event,
+		java.lang.String lanTokenKey, java.util.Date lockExpirationDate,
+		long lockUserId, java.lang.String lockUserName, java.lang.String type,
+		long typePK, java.lang.String typeUuid)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 

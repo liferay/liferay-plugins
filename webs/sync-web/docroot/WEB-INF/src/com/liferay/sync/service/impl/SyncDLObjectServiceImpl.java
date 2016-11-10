@@ -534,9 +534,9 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 					PortletPropsKeys.SYNC_OAUTH_CONSUMER_SECRET);
 
 				syncContext.setOAuthConsumerSecret(oAuthConsumerSecret);
-			}
 
-			syncContext.setOAuthEnabled(oAuthEnabled);
+				syncContext.setOAuthEnabled(oAuthEnabled);
+			}
 
 			PluginPackage syncWebPluginPackage =
 				DeployManagerUtil.getInstalledPluginPackage("sync-web");
@@ -544,6 +544,31 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			syncContext.setPluginVersion(syncWebPluginPackage.getVersion());
 
 			if (!user.isDefaultUser()) {
+				boolean lanEnabled = PrefsPropsUtil.getBoolean(
+					user.getCompanyId(), PortletPropsKeys.SYNC_LAN_ENABLED,
+					PortletPropsValues.SYNC_LAN_ENABLED);
+
+				if (lanEnabled) {
+					String lanCertificate = PrefsPropsUtil.getString(
+						user.getCompanyId(),
+						PortletPropsKeys.SYNC_LAN_CERTIFICATE);
+
+					syncContext.setLanCertificate(lanCertificate);
+
+					syncContext.setLanEnabled(lanEnabled);
+
+					String lanKey = PrefsPropsUtil.getString(
+						user.getCompanyId(), PortletPropsKeys.SYNC_LAN_KEY);
+
+					syncContext.setLanKey(lanKey);
+
+					String lanServerUuid = PrefsPropsUtil.getString(
+						user.getCompanyId(),
+						PortletPropsKeys.SYNC_LAN_SERVER_UUID);
+
+					syncContext.setLanServerUuid(lanServerUuid);
+				}
+
 				syncContext.setPortalBuildNumber(ReleaseInfo.getBuildNumber());
 
 				PluginPackage soPortletPluginPackage =
@@ -1409,7 +1434,14 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 		SyncDLObject syncDLObject = SyncUtil.toSyncDLObject(fileEntry, event);
 
-		return checkModifiedTime(syncDLObject, fileEntry.getFileEntryId());
+		checkModifiedTime(syncDLObject, fileEntry.getFileEntryId());
+
+		String lanTokenKey = SyncUtil.getLanTokenKey(
+			syncDLObject.getModifiedTime(), fileEntry.getFileEntryId(), true);
+
+		syncDLObject.setLanTokenKey(lanTokenKey);
+
+		return syncDLObject;
 	}
 
 	protected SyncDLObject toSyncDLObject(Folder folder, String event)
