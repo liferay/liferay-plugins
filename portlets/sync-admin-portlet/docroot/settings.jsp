@@ -24,6 +24,7 @@ portletPreferences = SyncPreferencesLocalServiceUtil.getPortletPreferences(theme
 boolean allowUserPersonalSites = PrefsPropsUtil.getBoolean(portletPreferences, themeDisplay.getCompanyId(), PortletPropsKeys.SYNC_ALLOW_USER_PERSONAL_SITES);
 boolean enabled = PrefsPropsUtil.getBoolean(portletPreferences, themeDisplay.getCompanyId(), PortletPropsKeys.SYNC_SERVICES_ENABLED);
 boolean forceSecurityMode = PrefsPropsUtil.getBoolean(portletPreferences, themeDisplay.getCompanyId(), PortletPropsKeys.SYNC_CLIENT_FORCE_SECURITY_MODE);
+boolean lanEnabled = PrefsPropsUtil.getBoolean(portletPreferences, themeDisplay.getCompanyId(), PortletPropsKeys.SYNC_LAN_ENABLED);
 int maxConnections = PrefsPropsUtil.getInteger(portletPreferences, themeDisplay.getCompanyId(), PortletPropsKeys.SYNC_CLIENT_MAX_CONNECTIONS);
 int maxDownloadRate = PrefsPropsUtil.getInteger(themeDisplay.getCompanyId(), PortletPropsKeys.SYNC_CLIENT_MAX_DOWNLOAD_RATE);
 int maxUploadRate = PrefsPropsUtil.getInteger(themeDisplay.getCompanyId(), PortletPropsKeys.SYNC_CLIENT_MAX_UPLOAD_RATE);
@@ -67,13 +68,15 @@ if (oAuthEnabled) {
 		<aui:input label="allow-users-to-sync-their-personal-sites" name="allowUserPersonalSites" type="checkbox" value="<%= allowUserPersonalSites %>" />
 	</aui:fieldset>
 
-	<h4><liferay-ui:message key="desktop" /></h4>
-
 	<c:if test='<%= DeployManagerUtil.isDeployed("oauth-portlet") %>'>
 		<aui:fieldset>
 			<aui:input helpMessage="oauth-enabled-help" label="oauth-enabled" name="oAuthEnabled" type="checkbox" value="<%= oAuthEnabled %>" />
 		</aui:fieldset>
 	</c:if>
+
+	<h4><liferay-ui:message key="desktop" /></h4>
+
+	<aui:input helpMessage="allow-lan-syncing-help" label="allow-lan-syncing" name="lanEnabled" type="checkbox" value="<%= lanEnabled %>" />
 
 	<aui:input helpMessage="max-connections-help" label="max-connections" name="maxConnections" type="text" value="<%= maxConnections %>" wrapperCssClass="lfr-input-text-container">
 		<aui:validator name="digits" />

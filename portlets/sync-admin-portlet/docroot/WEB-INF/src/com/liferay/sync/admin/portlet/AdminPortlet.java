@@ -133,6 +133,11 @@ public class AdminPortlet extends MVCPortlet {
 			PortletPropsKeys.SYNC_CLIENT_FORCE_SECURITY_MODE,
 			String.valueOf(forceSecurityMode));
 
+		boolean lanEnabled = ParamUtil.getBoolean(actionRequest, "lanEnabled");
+
+		portletPreferences.setValue(
+			PortletPropsKeys.SYNC_LAN_ENABLED, String.valueOf(lanEnabled));
+
 		int maxConnections = ParamUtil.getInteger(
 			actionRequest, "maxConnections");
 
@@ -171,6 +176,11 @@ public class AdminPortlet extends MVCPortlet {
 			String.valueOf(System.currentTimeMillis()));
 
 		portletPreferences.store();
+
+		if (lanEnabled) {
+			SyncPreferencesLocalServiceUtil.enableLanSync(
+				CompanyThreadLocal.getCompanyId());
+		}
 
 		if (oAuthEnabled) {
 			PluginPackage oAuthPortletPluginPackage =

@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 public class OAuthPortletUndeployedException extends PortalException {
 
 	public OAuthPortletUndeployedException() {
+		super();
 	}
 
 	public OAuthPortletUndeployedException(String msg) {
