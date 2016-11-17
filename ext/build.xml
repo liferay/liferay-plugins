@@ -1,0 +1,120 @@
+<?xml version="1.0"?>
+<!DOCTYPE project>
+
+<project name="ext" basedir="." default="deploy">
+	<import file="../build-common-plugins.xml" />
+
+	<target name="create">
+		<if>
+			<not>
+				<isset property="ext.name" />
+			</not>
+			<then>
+				<fail>This task must be called by the create script.</fail>
+			</then>
+		</if>
+
+		<property name="ext.parent.dir" value="${user.dir}" />
+		<property name="ext.plugin.dir" value="${ext.parent.dir}/${ext.name}-ext" />
+
+		<if>
+			<available file="${ext.plugin.dir}" />
+			<then>
+				<fail>${ext.name}-ext already exists.</fail>
+			</then>
+		</if>
+
+		<copy todir="${ext.plugin.dir}">
+			<fileset
+				dir="${sdk.dir}/tools/templates/ext_tmpl"
+			/>
+		</copy>
+
+		<mkdir dir="${ext.plugin.dir}/docroot/WEB-INF/ext-impl/src" />
+		<mkdir dir="${ext.plugin.dir}/docroot/WEB-INF/ext-lib/global" />
+		<mkdir dir="${ext.plugin.dir}/docroot/WEB-INF/ext-lib/portal" />
+		<mkdir dir="${ext.plugin.dir}/docroot/WEB-INF/ext-service/src" />
+		<mkdir dir="${ext.plugin.dir}/docroot/WEB-INF/ext-util-bridges/src" />
+		<mkdir dir="${ext.plugin.dir}/docroot/WEB-INF/ext-util-java/src" />
+		<mkdir dir="${ext.plugin.dir}/docroot/WEB-INF/ext-util-taglib/src" />
+
+		<replace dir="${ext.plugin.dir}">
+			<replacefilter token="@ext.display.name@" value="${ext.display.name}" />
+			<replacefilter token="@ext.name@" value="${ext.name}" />
+			<replacefilter token="@plugin.type.dir@" value="${plugin.type.dir}" />
+		</replace>
+	</target>
+
+	<target name="upgrade-ext">
+		<if>
+			<not>
+				<isset property="ext.name" />
+			</not>
+			<then>
+				<fail>
+.
+
+Usage: ant upgrade-ext -Dext.dir=C:\ext -Dext.name=hello-world -Dext.display.name="Hello World"
+
+The arguments "ext.dir", "ext.name", and "ext.display.name" are not properly
+specified.
+
+This task will build an EXT plugin from a legacy EXT environment. The files in
+the directory denoted by "ext.dir" will be copied into the EXT plugin directory
+called "ext.name"-ext. The property "ext.dir" must point to a legacy EXT
+environment and the EXT plugin directory called "ext-name"-ext must not already
+exist.
+				</fail>
+			</then>
+		</if>
+
+		<if>
+			<available file="${ext.name}-ext" />
+			<then>
+				<fail>${ext.name}-ext already exists.</fail>
+			</then>
+		</if>
+
+		<antcall target="create">
+			<param name="ext.display.name" value="${ext.display.name}" />
+			<param name="ext.name" value="${ext.name}" />
+		</antcall>
+
+		<copy todir="${ext.name}-ext/docroot/WEB-INF/ext-impl/src" failonerror="false">
+			<fileset dir="${ext.dir}/ext-impl/src" />
+		</copy>
+
+		<copy todir="${ext.name}-ext/docroot/WEB-INF/ext-lib/global" failonerror="false">
+			<fileset dir="${ext.dir}/ext-lib/global" />
+		</copy>
+
+		<copy todir="${ext.name}-ext/docroot/WEB-INF/ext-lib/portal" failonerror="false">
+			<fileset dir="${ext.dir}/ext-lib/portal" />
+		</copy>
+
+		<copy todir="${ext.name}-ext/docroot/WEB-INF/ext-service/src" failonerror="false">
+			<fileset dir="${ext.dir}/ext-service/src" />
+		</copy>
+
+		<copy todir="${ext.name}-ext/docroot/WEB-INF/ext-web/docroot" failonerror="false" overwrite="true">
+			<fileset
+				dir="${ext.dir}/ext-web/docroot"
+				excludes="**/struts-config.xml,**/tiles-defs.xml"
+			/>
+		</copy>
+
+		<copy
+			file="${ext.dir}/ext-web/docroot/WEB-INF/struts-config.xml"
+			tofile="${ext.name}-ext/docroot/WEB-INF/ext-web/docroot/WEB-INF/struts-config-ext.xml"
+		/>
+
+		<copy
+			file="${ext.dir}/ext-web/docroot/WEB-INF/tiles-defs.xml"
+			tofile="${ext.name}-ext/docroot/WEB-INF/ext-web/docroot/WEB-INF/tiles-defs-ext.xml"
+		/>
+
+		<copy todir="${ext.name}-ext/docroot/WEB-INF/sql" failonerror="false">
+			<fileset dir="${ext.dir}/sql" />
+		</copy>
+	</target>
+</project>

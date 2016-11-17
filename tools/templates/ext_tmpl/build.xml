@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<!DOCTYPE project>
+
+<project name="@ext.name@-ext" basedir="." default="deploy">
+	<import file="@plugin.type.dir@/build-common-ext.xml" />
+</project>

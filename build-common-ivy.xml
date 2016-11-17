@@ -352,6 +352,7 @@
 			<if>
 				<and>
 					<or>
+						<antelope:endswith string="${plugin.name}" with="-ext" />
 						<antelope:endswith string="${plugin.name}" with="-hook" />
 						<antelope:endswith string="${plugin.name}" with="-layouttpl" />
 						<antelope:endswith string="${plugin.name}" with="-portlet" />
