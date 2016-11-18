@@ -68,12 +68,6 @@
 		<pathelement location="test-classes/unit" />
 	</path>
 
-	<path id="classpath.com.liferay.ant.mirrors.get">
-		<fileset dir="${sdk.dir}/dependencies/com.liferay.ant.mirrors.get/lib" includes="*.jar" />
-	</path>
-
-	<taskdef classname="com.liferay.ant.mirrors.get.MirrorsGetTask" classpathref="classpath.com.liferay.ant.mirrors.get" name="mirrors-get" />
-
 	<condition property="correct.ant.version">
 		<antversion atleast="1.7.0" />
 	</condition>
