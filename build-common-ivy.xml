@@ -19,6 +19,12 @@
 		replace="\."
 	/>
 
+	<path id="classpath.com.liferay.ant.mirrors.get">
+		<fileset dir="${sdk.dir}/dependencies/com.liferay.ant.mirrors.get/lib" includes="*.jar" />
+	</path>
+
+	<taskdef classname="com.liferay.ant.mirrors.get.MirrorsGetTask" classpathref="classpath.com.liferay.ant.mirrors.get" name="mirrors-get" />
+
 	<if>
 		<not>
 			<available file="${ivy.home}/ivy-${ivy.version}.jar" />

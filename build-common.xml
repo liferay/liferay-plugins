@@ -98,12 +98,6 @@
 
 	<taskdef classpathref="classpath.net.sourceforge.cobertura" resource="tasks.properties" />
 
-	<path id="classpath.com.liferay.ant.mirrors.get">
-		<fileset dir="${sdk.dir}/dependencies/com.liferay.ant.mirrors.get/lib" includes="*.jar" />
-	</path>
-
-	<taskdef classname="com.liferay.ant.mirrors.get.MirrorsGetTask" classpathref="classpath.com.liferay.ant.mirrors.get" name="mirrors-get" />
-
 	<path id="classpath.net.sourceforge.pmd">
 		<fileset dir="${sdk.dir}/dependencies/net.sourceforge.pmd/lib" includes="*.jar" />
 	</path>
