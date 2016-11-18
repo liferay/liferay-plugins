@@ -200,7 +200,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 				continue;
 			}
 
-			Class baseModelClass = baseModel.getModelClass();
+			Class<?> baseModelClass = baseModel.getModelClass();
 
 			String setMethodName =
 				"set" + TextFormatter.format(propertyName, TextFormatter.G);
@@ -208,9 +208,9 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 			Method setMethod = baseModelClass.getMethod(
 				setMethodName, new Class<?>[] {String.class, Locale.class});
 
-			String requestValue = ParamUtil.getString(request, propertyName);
+			String value = ParamUtil.getString(request, propertyName);
 
-			setMethod.invoke(baseModel, requestValue, request.getLocale());
+			setMethod.invoke(baseModel, value, request.getLocale());
 		}
 	}
 
