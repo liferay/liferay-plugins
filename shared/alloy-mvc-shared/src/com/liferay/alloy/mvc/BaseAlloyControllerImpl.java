@@ -183,7 +183,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 	}
 
 	public static void setLocalizedProperties(
-			BaseModel<?> baseModel, HttpServletRequest request)
+			BaseModel<?> baseModel, HttpServletRequest request, Locale locale)
 		throws Exception {
 
 		Map<String, Object> modelAttributes = baseModel.getModelAttributes();
@@ -206,7 +206,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 
 			String value = ParamUtil.getString(request, propertyName);
 
-			setMethod.invoke(baseModel, value, request.getLocale());
+			setMethod.invoke(baseModel, value, locale);
 		}
 	}
 
@@ -1400,7 +1400,13 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 	protected void setLocalizedProperties(BaseModel<?> baseModel)
 		throws Exception {
 
-		setLocalizedProperties(baseModel, request);
+		setLocalizedProperties(baseModel, request, request.getLocale());
+	}
+
+	protected void setLocalizedProperties(BaseModel<?> baseModel, Locale locale)
+		throws Exception {
+
+		setLocalizedProperties(baseModel, request, locale);
 	}
 
 	protected void setOpenerSuccessMessage() {
