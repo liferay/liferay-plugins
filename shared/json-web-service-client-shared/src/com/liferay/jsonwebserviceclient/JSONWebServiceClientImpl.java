@@ -157,11 +157,10 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 				RegistryBuilder registerBuilder =
 					RegistryBuilder.<AuthSchemeProvider>create();
 
-				registerBuilder =
-					registerBuilder.register(
-						AuthSchemes.NTLM,
-						new JCIFSNTLMSchemeFactory(
-							_proxyDomain, _proxyWorkstation));
+				registerBuilder = registerBuilder.register(
+					AuthSchemes.NTLM,
+					new JCIFSNTLMSchemeFactory(
+						_proxyDomain, _proxyWorkstation));
 
 				Lookup<AuthSchemeProvider> authSchemeRegistry =
 					registerBuilder.build();
@@ -395,14 +394,17 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 		return _headers;
 	}
 
+	@Override
 	public String getHostName() {
 		return _hostName;
 	}
 
+	@Override
 	public int getHostPort() {
 		return _hostPort;
 	}
 
+	@Override
 	public String getProtocol() {
 		return _protocol;
 	}
@@ -422,10 +424,12 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 		_headers = headers;
 	}
 
+	@Override
 	public void setHostName(String hostName) {
 		_hostName = hostName;
 	}
 
+	@Override
 	public void setHostPort(int hostPort) {
 		_hostPort = hostPort;
 	}
@@ -445,6 +449,7 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 		_password = password;
 	}
 
+	@Override
 	public void setProtocol(String protocol) {
 		_protocol = protocol;
 	}
@@ -535,29 +540,34 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 
 			StatusLine statusLine = httpResponse.getStatusLine();
 
-			if (statusLine.getStatusCode() ==
-					HttpServletResponse.SC_UNAUTHORIZED) {
+			int statusCode = statusLine.getStatusCode();
 
+			if ((statusCode == HttpServletResponse.SC_BAD_REQUEST) ||
+				(statusCode == HttpServletResponse.SC_FORBIDDEN) ||
+				(statusCode == HttpServletResponse.SC_NOT_ACCEPTABLE) ||
+				(statusCode == HttpServletResponse.SC_NOT_FOUND)) {
+
+				if (httpResponse.getEntity() != null) {
+					if (_logger.isDebugEnabled()) {
+						_logger.debug("Server returned status " + statusCode);
+					}
+
+					return EntityUtils.toString(
+						httpResponse.getEntity(), StandardCharsets.UTF_8);
+				}
+			}
+			else if (statusCode == HttpServletResponse.SC_OK) {
+				return EntityUtils.toString(
+					httpResponse.getEntity(), StandardCharsets.UTF_8);
+			}
+			else if (statusCode == HttpServletResponse.SC_UNAUTHORIZED) {
 				throw new JSONWebServiceTransportException.
 					AuthenticationFailure(
 						"Not authorized to access JSON web service");
 			}
-			else if (statusLine.getStatusCode() >= 400) {
-				String message = null;
 
-				if (httpResponse.getEntity() != null) {
-					HttpEntity httpEntity = httpResponse.getEntity();
-
-					message = EntityUtils.toString(
-						httpEntity, StandardCharsets.UTF_8);
-				}
-
-				throw new JSONWebServiceTransportException.CommunicationFailure(
-					message, statusLine.getStatusCode());
-			}
-
-			return EntityUtils.toString(
-				httpResponse.getEntity(), StandardCharsets.UTF_8);
+			throw new JSONWebServiceTransportException.CommunicationFailure(
+				"Server returned status " + statusCode, statusCode);
 		}
 		catch (IOException ioe) {
 			throw new JSONWebServiceTransportException.CommunicationFailure(
@@ -593,7 +603,7 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 
 	protected Registry<ConnectionSocketFactory> getSocketFactoryRegistry() {
 		RegistryBuilder<ConnectionSocketFactory> registryBuilder =
-			RegistryBuilder.<ConnectionSocketFactory> create();
+			RegistryBuilder.<ConnectionSocketFactory>create();
 
 		registryBuilder.register("http", new PlainConnectionSocketFactory());
 		registryBuilder.register("https", getSSLConnectionSocketFactory());
