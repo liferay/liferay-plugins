@@ -36,19 +36,20 @@ public class JCIFSEngine implements NTLMEngine {
 		_workstation = workstation;
 	}
 
-	public String generateType1Msg(
-			final String domain, final String workstation)
+	@Override
+	public String generateType1Msg(String domain, String workstation)
 		throws NTLMEngineException {
 
-		final Type1Message type1Message = new Type1Message(
+		Type1Message type1Message = new Type1Message(
 			_TYPE_1_FLAGS, domain, workstation);
 
 		return Base64.encode(type1Message.toByteArray());
 	}
 
+	@Override
 	public String generateType3Msg(
-			final String username, final String password, String domain,
-			String workstation, final String challenge)
+			String username, String password, String domain, String workstation,
+			String challenge)
 		throws NTLMEngineException {
 
 		Type2Message type2Message = null;
@@ -56,15 +57,18 @@ public class JCIFSEngine implements NTLMEngine {
 		try {
 			type2Message = new Type2Message(Base64.decode(challenge));
 		}
-		catch (final IOException exception) {
+		catch (final IOException ioe) {
 			throw new NTLMEngineException(
-				"Invalid NTLM type 2 message", exception);
+				"Invalid NTLM type 2 message", ioe);
 		}
 
-		final int type2Flags = type2Message.getFlags();
-		final int type3Flags = type2Flags
-			& (0xffffffff ^ (NtlmFlags.NTLMSSP_TARGET_TYPE_DOMAIN
-			| NtlmFlags.NTLMSSP_TARGET_TYPE_SERVER));
+		int type2Flags = type2Message.getFlags();
+
+		int type3Flags =
+			type2Flags &
+			(0xffffffff ^
+			 (NtlmFlags.NTLMSSP_TARGET_TYPE_DOMAIN |
+			  NtlmFlags.NTLMSSP_TARGET_TYPE_SERVER));
 
 		if (domain == null) {
 			domain = _domain;
@@ -87,7 +91,7 @@ public class JCIFSEngine implements NTLMEngine {
 			NtlmFlags.NTLMSSP_NEGOTIATE_ALWAYS_SIGN |
 			NtlmFlags.NTLMSSP_REQUEST_TARGET;
 
-	private String _domain;
-	private String _workstation;
+	private final String _domain;
+	private final String _workstation;
 
 }
