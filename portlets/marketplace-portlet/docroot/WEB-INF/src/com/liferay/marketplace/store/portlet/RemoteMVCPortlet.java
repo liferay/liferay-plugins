@@ -32,6 +32,9 @@ import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.User;
 import com.liferay.portal.security.auth.AuthTokenUtil;
+import com.liferay.portal.security.auth.PrincipalException;
+import com.liferay.portal.security.permission.PermissionChecker;
+import com.liferay.portal.security.permission.PermissionThreadLocal;
 import com.liferay.portal.theme.ThemeDisplay;
 
 import java.io.IOException;
@@ -119,6 +122,8 @@ public class RemoteMVCPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws IOException, PortletException {
 
+		checkOmniAdmin();
+
 		try {
 			String actionName = ParamUtil.getString(
 				actionRequest, ActionRequest.ACTION_NAME);
@@ -147,6 +152,8 @@ public class RemoteMVCPortlet extends MVCPortlet {
 	public void render(
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws IOException, PortletException {
+
+		checkOmniAdmin();
 
 		try {
 			HttpServletRequest httpServletRequest =
@@ -185,6 +192,8 @@ public class RemoteMVCPortlet extends MVCPortlet {
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws IOException, PortletException {
 
+		checkOmniAdmin();
+
 		try {
 			remoteServeResource(resourceRequest, resourceResponse);
 		}
@@ -204,6 +213,21 @@ public class RemoteMVCPortlet extends MVCPortlet {
 		}
 		else if (oAuthRequest.getVerb() == Verb.POST) {
 			oAuthRequest.addBodyParameter(key, value);
+		}
+	}
+
+	protected void checkOmniAdmin() throws PortletException {
+		PermissionChecker permissionChecker =
+			PermissionThreadLocal.getPermissionChecker();
+
+		if (!permissionChecker.isOmniadmin()) {
+			PrincipalException principalException =
+				new PrincipalException(
+					String.format(
+						"User %s must be the company administrator to " +
+						"perform the action", permissionChecker.getUserId()));
+
+			throw new PortletException(principalException);
 		}
 	}
 
