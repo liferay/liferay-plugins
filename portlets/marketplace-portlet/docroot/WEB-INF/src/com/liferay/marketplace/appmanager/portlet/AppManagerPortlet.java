@@ -41,6 +41,9 @@ import com.liferay.portal.model.Plugin;
 import com.liferay.portal.model.PluginSetting;
 import com.liferay.portal.model.Portlet;
 import com.liferay.portal.model.Theme;
+import com.liferay.portal.security.auth.PrincipalException;
+import com.liferay.portal.security.permission.PermissionChecker;
+import com.liferay.portal.security.permission.PermissionThreadLocal;
 import com.liferay.portal.service.PluginSettingLocalServiceUtil;
 import com.liferay.portal.service.PluginSettingServiceUtil;
 import com.liferay.portal.service.PortletServiceUtil;
@@ -59,6 +62,11 @@ import java.util.List;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
+import javax.portlet.PortletException;
+import javax.portlet.RenderRequest;
+import javax.portlet.RenderResponse;
+import javax.portlet.ResourceRequest;
+import javax.portlet.ResourceResponse;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
@@ -133,6 +141,36 @@ public class AppManagerPortlet extends MVCPortlet {
 		String redirect = ParamUtil.getString(uploadPortletRequest, "redirect");
 
 		actionResponse.sendRedirect(redirect);
+	}
+
+	@Override
+	public void processAction(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws IOException, PortletException {
+
+		checkOmniAdmin();
+
+		super.processAction(actionRequest, actionResponse);
+	}
+
+	@Override
+	public void render(
+			RenderRequest renderRequest, RenderResponse renderResponse)
+		throws IOException, PortletException {
+
+		checkOmniAdmin();
+
+		super.render(renderRequest, renderResponse);
+	}
+
+	@Override
+	public void serveResource(
+			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
+		throws IOException, PortletException {
+
+		checkOmniAdmin();
+
+		super.serveResource(resourceRequest, resourceResponse);
 	}
 
 	public void uninstallApp(
@@ -254,6 +292,21 @@ public class AppManagerPortlet extends MVCPortlet {
 						Plugin.TYPE_THEME, pluginSetting.getRoles(), active);
 				}
 			}
+		}
+	}
+
+	protected void checkOmniAdmin() throws PortletException {
+		PermissionChecker permissionChecker =
+			PermissionThreadLocal.getPermissionChecker();
+
+		if (!permissionChecker.isOmniadmin()) {
+			PrincipalException principalException =
+				new PrincipalException(
+					String.format(
+						"User %s must be the company administrator to " +
+						"perform the action", permissionChecker.getUserId()));
+
+			throw new PortletException(principalException);
 		}
 	}
 
