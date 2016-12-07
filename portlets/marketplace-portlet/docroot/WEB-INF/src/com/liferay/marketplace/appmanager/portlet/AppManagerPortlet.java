@@ -304,7 +304,8 @@ public class AppManagerPortlet extends MVCPortlet {
 				new PrincipalException(
 					String.format(
 						"User %s must be the company administrator to " +
-						"perform the action", permissionChecker.getUserId()));
+							"perform the action",
+						permissionChecker.getUserId()));
 
 			throw new PortletException(principalException);
 		}
