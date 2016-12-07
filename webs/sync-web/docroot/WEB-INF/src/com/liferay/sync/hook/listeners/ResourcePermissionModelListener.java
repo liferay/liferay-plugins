@@ -41,9 +41,7 @@ public class ResourcePermissionModelListener
 		throws ModelListenerException {
 
 		try {
-			SyncDLObject syncDLObject = null;
-
-			syncDLObject = fetchSyncDLObject(resourcePermission);
+			SyncDLObject syncDLObject = fetchSyncDLObject(resourcePermission);
 
 			if (syncDLObject == null) {
 				return;
@@ -63,9 +61,7 @@ public class ResourcePermissionModelListener
 		throws ModelListenerException {
 
 		try {
-			SyncDLObject syncDLObject = null;
-
-			syncDLObject = fetchSyncDLObject(resourcePermission);
+			SyncDLObject syncDLObject = fetchSyncDLObject(resourcePermission);
 
 			if (syncDLObject == null) {
 				return;
@@ -98,22 +94,20 @@ public class ResourcePermissionModelListener
 			ResourcePermission resourcePermission)
 		throws SystemException {
 
-		SyncDLObject syncDLObject = null;
-
 		String modelName = resourcePermission.getName();
 
 		if (modelName.equals(DLFileEntry.class.getName())) {
-			syncDLObject = SyncDLObjectLocalServiceUtil.fetchSyncDLObject(
+			return SyncDLObjectLocalServiceUtil.fetchSyncDLObject(
 				SyncDLObjectConstants.TYPE_FILE,
 				GetterUtil.getLong(resourcePermission.getPrimKey()));
 		}
 		else if (modelName.equals(DLFolder.class.getName())) {
-			syncDLObject = SyncDLObjectLocalServiceUtil.fetchSyncDLObject(
+			return SyncDLObjectLocalServiceUtil.fetchSyncDLObject(
 				SyncDLObjectConstants.TYPE_FOLDER,
 				GetterUtil.getLong(resourcePermission.getPrimKey()));
 		}
 
-		return syncDLObject;
+		return null;
 	}
 
 	protected void updateSyncDLObject(SyncDLObject syncDLObject)
