@@ -1,6 +1,0 @@
-<h3>$page-title.data</h3>
-
-<ul>
-	<li>Description: $description.data</li>
-	<li>Author: $author.data</li>
-</ul>

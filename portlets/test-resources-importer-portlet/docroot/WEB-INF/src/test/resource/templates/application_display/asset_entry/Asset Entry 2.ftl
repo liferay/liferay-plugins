@@ -1,3 +1,0 @@
-${assetEntry}
-${entry}
-${formattedContent}

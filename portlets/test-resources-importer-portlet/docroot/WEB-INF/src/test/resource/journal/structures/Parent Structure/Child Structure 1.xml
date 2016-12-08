@@ -1,6 +1,0 @@
-<?xml version="1.0"?>
-
-<root>
-	<dynamic-element name="description" type="text" index-type="" repeatable="false" />
-	<dynamic-element name="author" type="text" index-type="" repeatable="false" />
-</root>

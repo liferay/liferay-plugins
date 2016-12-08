@@ -1,3 +1,0 @@
-${company}
-${companyId}
-${device}
