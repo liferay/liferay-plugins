@@ -182,7 +182,7 @@ public static class AlloyControllerImpl extends BaseAlloyControllerImpl {
 		if ((samTodoList == null) || samTodoList.isNew()) {
 			long samTodoListId = ParamUtil.getLong(request, "id");
 
-			throw new AlloyException(translate("the-todo-list-with-id-x-does-not-exist", samTodoListId), false);
+			throw new AlloyException("the-todo-list-with-id-x-does-not-exist", new Object[] {samTodoListId}, false, null);
 		}
 	}
 
