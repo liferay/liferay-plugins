@@ -16,13 +16,25 @@ package com.liferay.sync.hook.listeners;
 
 import com.liferay.portal.ModelListenerException;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
+import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.model.BaseModelListener;
+import com.liferay.portal.model.Role;
 import com.liferay.portal.model.User;
+import com.liferay.portal.model.ResourcePermission;
+import com.liferay.portal.security.permission.ActionKeys;
+import com.liferay.portal.service.ResourcePermissionLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
+import com.liferay.portlet.documentlibrary.model.DLFileEntry;
+import com.liferay.portlet.documentlibrary.model.DLFolder;
+import com.liferay.sync.model.SyncDLObject;
+import com.liferay.sync.model.SyncDLObjectConstants;
 import com.liferay.sync.model.SyncDevice;
+import com.liferay.sync.service.SyncDLObjectLocalServiceUtil;
 import com.liferay.sync.service.SyncDeviceLocalServiceUtil;
 import com.liferay.sync.shared.util.SyncDeviceConstants;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -41,6 +53,80 @@ public class UserModelListener extends BaseModelListener<User> {
 
 				for (SyncDevice syncDevice : syncDevices) {
 					SyncDeviceLocalServiceUtil.deleteSyncDevice(syncDevice);
+				}
+			}
+		}
+		catch (Exception e) {
+			throw new ModelListenerException(e);
+		}
+	}
+
+	@Override
+	public void onBeforeAddAssociation(
+			Object classPK, String associationClassName,
+			Object associationClassPK)
+		throws ModelListenerException {
+
+		if (!associationClassName.equals(Role.class.getName())) {
+			return;
+		}
+
+		long roleId = (Long)associationClassPK;
+
+		try {
+			List<ResourcePermission> resourcePermissions =
+				ResourcePermissionLocalServiceUtil
+					.getRoleResourcePermissions(roleId);
+
+			for (ResourcePermission resourcePermission : resourcePermissions) {
+				if (resourcePermission.hasActionId(ActionKeys.VIEW)) {
+					SyncDLObject syncDLObject =
+						fetchSyncDLObject(resourcePermission);
+	
+					if (syncDLObject == null) {
+						return;
+					}
+	
+					updateSyncDLObject(syncDLObject);
+				}
+			}
+		}
+		catch (Exception e) {
+			throw new ModelListenerException(e);
+		}
+	}
+
+	@Override
+	public void onBeforeRemoveAssociation(
+			Object classPK, String associationClassName,
+			Object associationClassPK)
+		throws ModelListenerException {
+
+		if (!associationClassName.equals(Role.class.getName())) {
+			return;
+		}
+
+		long roleId = (Long)associationClassPK;
+
+		try {
+			List<ResourcePermission> resourcePermissions =
+				ResourcePermissionLocalServiceUtil
+					.getRoleResourcePermissions(roleId);
+
+			for (ResourcePermission resourcePermission : resourcePermissions) {
+				if (resourcePermission.hasActionId(ActionKeys.VIEW)) {
+					SyncDLObject syncDLObject =
+						fetchSyncDLObject(resourcePermission);
+	
+					if (syncDLObject == null) {
+						return;
+					}
+	
+					syncDLObject.setModifiedTime(System.currentTimeMillis());
+					syncDLObject.setLastPermissionChangeDate(new Date());
+	
+					SyncDLObjectLocalServiceUtil
+						.updateSyncDLObject(syncDLObject);
 				}
 			}
 		}
@@ -81,6 +167,48 @@ public class UserModelListener extends BaseModelListener<User> {
 		}
 		catch (Exception e) {
 			throw new ModelListenerException(e);
+		}
+	}
+
+	protected SyncDLObject fetchSyncDLObject(
+			ResourcePermission resourcePermission)
+		throws SystemException {
+
+		String modelName = resourcePermission.getName();
+
+		if (modelName.equals(DLFileEntry.class.getName())) {
+			return SyncDLObjectLocalServiceUtil.fetchSyncDLObject(
+				SyncDLObjectConstants.TYPE_FILE,
+				GetterUtil.getLong(resourcePermission.getPrimKey()));
+		}
+		else if (modelName.equals(DLFolder.class.getName())) {
+			return SyncDLObjectLocalServiceUtil.fetchSyncDLObject(
+				SyncDLObjectConstants.TYPE_FOLDER,
+				GetterUtil.getLong(resourcePermission.getPrimKey()));
+		}
+
+		return null;
+	}
+
+	protected void updateSyncDLObject(SyncDLObject syncDLObject)
+		throws SystemException {
+
+		syncDLObject.setModifiedTime(System.currentTimeMillis());
+
+		SyncDLObjectLocalServiceUtil.updateSyncDLObject(syncDLObject);
+
+		String type = syncDLObject.getType();
+
+		if (!type.equals(SyncDLObjectConstants.TYPE_FOLDER)) {
+			return;
+		}
+
+		List<SyncDLObject> childSyncDLObjects =
+			SyncDLObjectLocalServiceUtil.getSyncDLObjects(
+				syncDLObject.getRepositoryId(), syncDLObject.getTypePK());
+
+		for (SyncDLObject childSyncDLObject : childSyncDLObjects) {
+			updateSyncDLObject(childSyncDLObject);
 		}
 	}
 
