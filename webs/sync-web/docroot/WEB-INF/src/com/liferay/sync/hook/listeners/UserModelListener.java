@@ -122,8 +122,10 @@ public class UserModelListener extends BaseModelListener<User> {
 						return;
 					}
 	
-					syncDLObject.setModifiedTime(System.currentTimeMillis());
-					syncDLObject.setLastPermissionChangeDate(new Date());
+					Date date = new Date();
+
+					syncDLObject.setModifiedTime(date.getTime());
+					syncDLObject.setLastPermissionChangeDate(date);
 	
 					SyncDLObjectLocalServiceUtil
 						.updateSyncDLObject(syncDLObject);
