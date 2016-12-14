@@ -57,6 +57,29 @@ public class ResourcePermissionModelListener
 	}
 
 	@Override
+	public void onBeforeRemove(ResourcePermission resourcePermission)
+		throws ModelListenerException {
+
+		try {
+			SyncDLObject syncDLObject = fetchSyncDLObject(resourcePermission);
+	
+			if (syncDLObject == null) {
+				return;
+			}
+	
+			if (resourcePermission.hasActionId(ActionKeys.VIEW)) {
+				syncDLObject.setModifiedTime(System.currentTimeMillis());
+				syncDLObject.setLastPermissionChangeDate(new Date());
+	
+				SyncDLObjectLocalServiceUtil.updateSyncDLObject(syncDLObject);
+			}
+		}
+		catch (Exception e) {
+			throw new ModelListenerException(e);
+		}
+	}
+
+	@Override
 	public void onBeforeUpdate(ResourcePermission resourcePermission)
 		throws ModelListenerException {
 
