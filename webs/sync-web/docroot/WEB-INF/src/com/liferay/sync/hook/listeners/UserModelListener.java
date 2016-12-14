@@ -119,7 +119,7 @@ public class UserModelListener extends BaseModelListener<User> {
 						fetchSyncDLObject(resourcePermission);
 	
 					if (syncDLObject == null) {
-						return;
+						continue;
 					}
 	
 					Date date = new Date();
