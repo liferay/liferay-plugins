@@ -17,18 +17,13 @@ package com.liferay.sync.hook.listeners;
 import com.liferay.portal.ModelListenerException;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.model.BaseModelListener;
 import com.liferay.portal.model.Role;
 import com.liferay.portal.model.User;
 import com.liferay.portal.model.ResourcePermission;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.service.ResourcePermissionLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
-import com.liferay.portlet.documentlibrary.model.DLFileEntry;
-import com.liferay.portlet.documentlibrary.model.DLFolder;
 import com.liferay.sync.model.SyncDLObject;
-import com.liferay.sync.model.SyncDLObjectConstants;
 import com.liferay.sync.model.SyncDevice;
 import com.liferay.sync.service.SyncDLObjectLocalServiceUtil;
 import com.liferay.sync.service.SyncDeviceLocalServiceUtil;
@@ -40,7 +35,7 @@ import java.util.List;
 /**
  * @author Jonsthan McCann
  */
-public class UserModelListener extends BaseModelListener<User> {
+public class UserModelListener extends SyncBaseModelListener<User> {
 
 	@Override
 	public void onAfterRemove(User user) throws ModelListenerException {
@@ -169,48 +164,6 @@ public class UserModelListener extends BaseModelListener<User> {
 		}
 		catch (Exception e) {
 			throw new ModelListenerException(e);
-		}
-	}
-
-	protected SyncDLObject fetchSyncDLObject(
-			ResourcePermission resourcePermission)
-		throws SystemException {
-
-		String modelName = resourcePermission.getName();
-
-		if (modelName.equals(DLFileEntry.class.getName())) {
-			return SyncDLObjectLocalServiceUtil.fetchSyncDLObject(
-				SyncDLObjectConstants.TYPE_FILE,
-				GetterUtil.getLong(resourcePermission.getPrimKey()));
-		}
-		else if (modelName.equals(DLFolder.class.getName())) {
-			return SyncDLObjectLocalServiceUtil.fetchSyncDLObject(
-				SyncDLObjectConstants.TYPE_FOLDER,
-				GetterUtil.getLong(resourcePermission.getPrimKey()));
-		}
-
-		return null;
-	}
-
-	protected void updateSyncDLObject(SyncDLObject syncDLObject)
-		throws SystemException {
-
-		syncDLObject.setModifiedTime(System.currentTimeMillis());
-
-		SyncDLObjectLocalServiceUtil.updateSyncDLObject(syncDLObject);
-
-		String type = syncDLObject.getType();
-
-		if (!type.equals(SyncDLObjectConstants.TYPE_FOLDER)) {
-			return;
-		}
-
-		List<SyncDLObject> childSyncDLObjects =
-			SyncDLObjectLocalServiceUtil.getSyncDLObjects(
-				syncDLObject.getRepositoryId(), syncDLObject.getTypePK());
-
-		for (SyncDLObject childSyncDLObject : childSyncDLObjects) {
-			updateSyncDLObject(childSyncDLObject);
 		}
 	}
 
