@@ -469,11 +469,10 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 
 		for (UserThread userThread : userThreads) {
 			if ((userThread.getUserId() == mbMessage.getUserId()) ||
-				((userThread.getUserId() != mbMessage.getUserId()) &&
 				!UserNotificationManagerUtil.isDeliver(
 					userThread.getUserId(), PortletKeys.PRIVATE_MESSAGING,
 					PrivateMessagingConstants.NEW_MESSAGE, 0,
-					UserNotificationDeliveryConstants.TYPE_EMAIL))) {
+					UserNotificationDeliveryConstants.TYPE_EMAIL)) {
 
 				continue;
 			}
@@ -525,11 +524,10 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 
 		for (UserThread userThread : userThreads) {
 			if ((userThread.getUserId() == mbMessage.getUserId()) ||
-				((userThread.getUserId() != mbMessage.getUserId()) &&
 				 !UserNotificationManagerUtil.isDeliver(
 					 userThread.getUserId(), PortletKeys.PRIVATE_MESSAGING, 0,
 					 PrivateMessagingConstants.NEW_MESSAGE,
-					 UserNotificationDeliveryConstants.TYPE_WEBSITE))) {
+					 UserNotificationDeliveryConstants.TYPE_WEBSITE)) {
 
 				continue;
 			}
