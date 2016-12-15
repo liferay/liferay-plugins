@@ -115,26 +115,20 @@ public class BookmarksEntryLocalServiceImpl
 		List<ObjectValuePair<String, Long>> subscribersOVPs =
 			new ArrayList<ObjectValuePair<String, Long>>();
 
-		if (subscriptionClassName.equals(_BOOKMARKS_ENTRY_CLASS_NAME)) {
-			subscribersOVPs.add(
-				new ObjectValuePair<String, Long>(
-					subscriptionClassName, subscriptionClassPK));
-
-			subscriptionClassName = _BOOKMARKS_FOLDER_CLASS_NAME;
-			subscriptionClassPK = bookmarksEntry.getFolderId();
-		}
-
-		if (subscriptionClassPK <= 0) {
-			subscriptionClassPK = bookmarksEntry.getGroupId();
-		}
+		long bookmarksFolderId = bookmarksEntry.getFolderId();
 
 		List<Long> folderIds = new ArrayList<Long>();
 
-		folderIds.add(subscriptionClassPK);
+		if (bookmarksFolderId <= 0) {
+			folderIds.add(bookmarksEntry.getGroupId());
+		}
+		else {
+			folderIds.add(bookmarksFolderId);
+		}
 
 		BookmarksFolder folder = bookmarksEntry.getFolder();
 
-		if (subscriptionClassPK !=
+		if (bookmarksFolderId !=
 				BookmarksFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
 
 			folderIds.addAll(folder.getAncestorFolderIds());
@@ -143,7 +137,13 @@ public class BookmarksEntryLocalServiceImpl
 		for (Long folderId : folderIds) {
 			subscribersOVPs.add(
 				new ObjectValuePair<String, Long>(
-					subscriptionClassName, folderId));
+					_BOOKMARKS_FOLDER_CLASS_NAME, folderId));
+		}
+
+		if (subscriptionClassName.equals(_BOOKMARKS_ENTRY_CLASS_NAME)) {
+			subscribersOVPs.add(
+				new ObjectValuePair<String, Long>(
+					subscriptionClassName, subscriptionClassPK));
 		}
 
 		return subscribersOVPs;
