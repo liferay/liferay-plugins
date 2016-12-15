@@ -468,11 +468,12 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 				mbMessage.getThreadId());
 
 		for (UserThread userThread : userThreads) {
-			if ((userThread.getUserId() == mbMessage.getUserId()) &&
-				UserNotificationManagerUtil.isDeliver(
+			if ((userThread.getUserId() == mbMessage.getUserId()) ||
+				((userThread.getUserId() != mbMessage.getUserId()) &&
+				!UserNotificationManagerUtil.isDeliver(
 					userThread.getUserId(), PortletKeys.PRIVATE_MESSAGING,
 					PrivateMessagingConstants.NEW_MESSAGE, 0,
-					UserNotificationDeliveryConstants.TYPE_EMAIL)) {
+					UserNotificationDeliveryConstants.TYPE_EMAIL))) {
 
 				continue;
 			}
