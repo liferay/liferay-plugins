@@ -525,9 +525,9 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 		for (UserThread userThread : userThreads) {
 			if ((userThread.getUserId() == mbMessage.getUserId()) ||
 				!UserNotificationManagerUtil.isDeliver(
-					 userThread.getUserId(), PortletKeys.PRIVATE_MESSAGING, 0,
-					 PrivateMessagingConstants.NEW_MESSAGE,
-					 UserNotificationDeliveryConstants.TYPE_WEBSITE)) {
+					userThread.getUserId(), PortletKeys.PRIVATE_MESSAGING, 0,
+					PrivateMessagingConstants.NEW_MESSAGE,
+					UserNotificationDeliveryConstants.TYPE_WEBSITE)) {
 
 				continue;
 			}
