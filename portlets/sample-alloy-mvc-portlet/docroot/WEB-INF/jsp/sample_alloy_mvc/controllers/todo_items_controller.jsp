@@ -153,7 +153,7 @@ public static class AlloyControllerImpl extends BaseAlloyControllerImpl {
 		if ((samTodoItem == null) || samTodoItem.isNew()) {
 			long samTodoItemId = ParamUtil.getLong(request, "id");
 
-			throw new AlloyException("the-todo-item-with-id-x-does-not-exist", new Object[] {samTodoItemId}, false, null);
+			throw new AlloyException("the-todo-item-with-id-x-does-not-exist", new Object[] {samTodoItemId}, false);
 		}
 	}
 
