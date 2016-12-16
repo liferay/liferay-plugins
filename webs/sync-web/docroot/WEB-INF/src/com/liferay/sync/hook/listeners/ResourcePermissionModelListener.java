@@ -15,7 +15,6 @@
 package com.liferay.sync.hook.listeners;
 
 import com.liferay.portal.ModelListenerException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.ResourcePermission;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.service.ResourcePermissionLocalServiceUtil;
@@ -56,17 +55,17 @@ public class ResourcePermissionModelListener
 
 		try {
 			SyncDLObject syncDLObject = fetchSyncDLObject(resourcePermission);
-	
+
 			if (syncDLObject == null) {
 				return;
 			}
-	
+
 			if (resourcePermission.hasActionId(ActionKeys.VIEW)) {
 				Date date = new Date();
 
 				syncDLObject.setModifiedTime(date.getTime());
 				syncDLObject.setLastPermissionChangeDate(date);
-	
+
 				SyncDLObjectLocalServiceUtil.updateSyncDLObject(syncDLObject);
 			}
 		}

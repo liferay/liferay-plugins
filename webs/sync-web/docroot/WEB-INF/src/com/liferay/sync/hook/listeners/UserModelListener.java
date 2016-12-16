@@ -16,10 +16,9 @@ package com.liferay.sync.hook.listeners;
 
 import com.liferay.portal.ModelListenerException;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
-import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.model.ResourcePermission;
 import com.liferay.portal.model.Role;
 import com.liferay.portal.model.User;
-import com.liferay.portal.model.ResourcePermission;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.service.ResourcePermissionLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
@@ -70,18 +69,18 @@ public class UserModelListener extends SyncBaseModelListener<User> {
 
 		try {
 			List<ResourcePermission> resourcePermissions =
-				ResourcePermissionLocalServiceUtil
-					.getRoleResourcePermissions(roleId);
+				ResourcePermissionLocalServiceUtil.getRoleResourcePermissions(
+					roleId);
 
 			for (ResourcePermission resourcePermission : resourcePermissions) {
 				if (resourcePermission.hasActionId(ActionKeys.VIEW)) {
-					SyncDLObject syncDLObject =
-						fetchSyncDLObject(resourcePermission);
-	
+					SyncDLObject syncDLObject = fetchSyncDLObject(
+						resourcePermission);
+
 					if (syncDLObject == null) {
 						return;
 					}
-	
+
 					updateSyncDLObject(syncDLObject);
 				}
 			}
@@ -105,25 +104,25 @@ public class UserModelListener extends SyncBaseModelListener<User> {
 
 		try {
 			List<ResourcePermission> resourcePermissions =
-				ResourcePermissionLocalServiceUtil
-					.getRoleResourcePermissions(roleId);
+				ResourcePermissionLocalServiceUtil.getRoleResourcePermissions(
+					roleId);
 
 			for (ResourcePermission resourcePermission : resourcePermissions) {
 				if (resourcePermission.hasActionId(ActionKeys.VIEW)) {
-					SyncDLObject syncDLObject =
-						fetchSyncDLObject(resourcePermission);
-	
+					SyncDLObject syncDLObject = fetchSyncDLObject(
+						resourcePermission);
+
 					if (syncDLObject == null) {
 						continue;
 					}
-	
+
 					Date date = new Date();
 
 					syncDLObject.setModifiedTime(date.getTime());
 					syncDLObject.setLastPermissionChangeDate(date);
-	
-					SyncDLObjectLocalServiceUtil
-						.updateSyncDLObject(syncDLObject);
+
+					SyncDLObjectLocalServiceUtil.updateSyncDLObject(
+						syncDLObject);
 				}
 			}
 		}
