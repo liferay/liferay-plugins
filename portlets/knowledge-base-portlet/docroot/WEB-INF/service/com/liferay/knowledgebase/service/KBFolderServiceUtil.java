@@ -63,6 +63,13 @@ public class KBFolderServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
+	public static com.liferay.knowledgebase.model.KBFolder fetchKBFolder(
+		long kbFolderId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().fetchKBFolder(kbFolderId);
+	}
+
 	public static com.liferay.knowledgebase.model.KBFolder addKBFolder(
 		long groupId, long parentResourceClassNameId,
 		long parentResourcePrimKey, java.lang.String name,

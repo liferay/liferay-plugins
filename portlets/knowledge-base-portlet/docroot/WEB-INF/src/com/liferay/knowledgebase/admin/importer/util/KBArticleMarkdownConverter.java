@@ -15,10 +15,10 @@
 package com.liferay.knowledgebase.admin.importer.util;
 
 import com.liferay.compat.portal.kernel.util.HtmlUtil;
+import com.liferay.knowledge.base.markdown.converter.MarkdownConverter;
+import com.liferay.knowledge.base.markdown.converter.factory.MarkdownConverterFactoryUtil;
 import com.liferay.knowledgebase.KBArticleImportException;
 import com.liferay.knowledgebase.model.KBArticle;
-import com.liferay.markdown.converter.MarkdownConverter;
-import com.liferay.markdown.converter.factory.MarkdownConverterFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;

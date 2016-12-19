@@ -634,6 +634,13 @@ public class KBArticleLocalServiceWrapper implements KBArticleLocalService,
 	}
 
 	@Override
+	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getKBFolderKBArticles(
+		long groupId, long kbFolderId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _kbArticleLocalService.getKBFolderKBArticles(groupId, kbFolderId);
+	}
+
+	@Override
 	public int getKBFolderKBArticlesCount(long groupId, long kbFolderId,
 		int status) throws com.liferay.portal.kernel.exception.SystemException {
 		return _kbArticleLocalService.getKBFolderKBArticlesCount(groupId,

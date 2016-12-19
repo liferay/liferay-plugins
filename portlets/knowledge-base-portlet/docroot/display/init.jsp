@@ -21,7 +21,9 @@ PortalPreferences portalPreferences = PortletPreferencesFactoryUtil.getPortalPre
 
 String portletResource = ParamUtil.getString(request, "portletResource");
 
-long resourceClassNameId = GetterUtil.getLong(portletPreferences.getValue("resourceClassNameId", null), PortalUtil.getClassNameId(KBFolderConstants.getClassName()));
+long kbFolderClassNameId = PortalUtil.getClassNameId(KBFolderConstants.getClassName());
+
+long resourceClassNameId = GetterUtil.getLong(portletPreferences.getValue("resourceClassNameId", null), kbFolderClassNameId);
 long resourcePrimKey = GetterUtil.getLong(portletPreferences.getValue("resourcePrimKey", null));
 
 boolean enableKBArticleDescription = GetterUtil.getBoolean(portletPreferences.getValue("enableKBArticleDescription", null));
@@ -39,6 +41,7 @@ String socialBookmarksDisplayStyle = portletPreferences.getValue("socialBookmark
 String socialBookmarksDisplayPosition = portletPreferences.getValue("socialBookmarksDisplayPosition", "bottom");
 String socialBookmarksTypes = portletPreferences.getValue("socialBookmarksTypes", PropsUtil.get(PropsKeys.SOCIAL_BOOKMARK_TYPES));
 String contentRootPrefix = GetterUtil.getString(portletPreferences.getValue("contentRootPrefix", null));
+int maxNestingLevel = GetterUtil.getInteger(portletPreferences.getValue("maxNestingLevel", null), 3);
 
 boolean enableRSS = !PortalUtil.isRSSFeedsEnabled() ? false : GetterUtil.getBoolean(portletPreferences.getValue("enableRss", null), true);
 int rssDelta = GetterUtil.getInteger(portletPreferences.getValue("rssDelta", StringPool.BLANK), SearchContainer.DEFAULT_DELTA);

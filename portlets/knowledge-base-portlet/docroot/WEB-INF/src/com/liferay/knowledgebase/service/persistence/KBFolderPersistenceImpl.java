@@ -18,6 +18,7 @@ import com.liferay.knowledgebase.NoSuchFolderException;
 import com.liferay.knowledgebase.model.KBFolder;
 import com.liferay.knowledgebase.model.impl.KBFolderImpl;
 import com.liferay.knowledgebase.model.impl.KBFolderModelImpl;
+import com.liferay.knowledgebase.service.persistence.KBFolderPersistence;
 
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;

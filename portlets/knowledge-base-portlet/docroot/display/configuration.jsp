@@ -24,8 +24,6 @@ String tabs2Names = Validator.equals(portletResource, PortletKeys.KNOWLEDGE_BASE
 if (PortalUtil.isRSSFeedsEnabled()) {
 	tabs2Names += ",rss";
 }
-
-long kbFolderClassNameId = PortalUtil.getClassNameId(KBFolderConstants.getClassName());
 %>
 
 <liferay-portlet:actionURL portletConfiguration="true" var="configurationActionURL" />
@@ -146,6 +144,8 @@ long kbFolderClassNameId = PortalUtil.getClassNameId(KBFolderConstants.getClassN
 
 				<aui:field-wrapper>
 					<aui:input label="content-root-prefix" name="preferences--contentRootPrefix--" type="input" value="<%= contentRootPrefix %>" />
+
+					<aui:input label="maximum-nesting-level" name="preferences--maxNestingLevel--" type="input" value="<%= maxNestingLevel %>" />
 				</aui:field-wrapper>
 			</c:when>
 			<c:when test='<%= tabs2.equals("rss") %>'>

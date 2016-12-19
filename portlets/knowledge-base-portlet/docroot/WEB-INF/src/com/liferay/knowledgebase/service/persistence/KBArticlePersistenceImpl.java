@@ -18,6 +18,7 @@ import com.liferay.knowledgebase.NoSuchArticleException;
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.model.impl.KBArticleImpl;
 import com.liferay.knowledgebase.model.impl.KBArticleModelImpl;
+import com.liferay.knowledgebase.service.persistence.KBArticlePersistence;
 
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
@@ -22995,6 +22996,979 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	private static final String _FINDER_COLUMN_G_KBFI_UT_URLTITLE_1 = "kbArticle.urlTitle IS NULL";
 	private static final String _FINDER_COLUMN_G_KBFI_UT_URLTITLE_2 = "kbArticle.urlTitle = ?";
 	private static final String _FINDER_COLUMN_G_KBFI_UT_URLTITLE_3 = "(kbArticle.urlTitle IS NULL OR kbArticle.urlTitle = '')";
+	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_G_KBFI_L = new FinderPath(KBArticleModelImpl.ENTITY_CACHE_ENABLED,
+			KBArticleModelImpl.FINDER_CACHE_ENABLED, KBArticleImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByG_KBFI_L",
+			new String[] {
+				Long.class.getName(), Long.class.getName(),
+				Boolean.class.getName(),
+				
+			Integer.class.getName(), Integer.class.getName(),
+				OrderByComparator.class.getName()
+			});
+	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_KBFI_L =
+		new FinderPath(KBArticleModelImpl.ENTITY_CACHE_ENABLED,
+			KBArticleModelImpl.FINDER_CACHE_ENABLED, KBArticleImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByG_KBFI_L",
+			new String[] {
+				Long.class.getName(), Long.class.getName(),
+				Boolean.class.getName()
+			},
+			KBArticleModelImpl.GROUPID_COLUMN_BITMASK |
+			KBArticleModelImpl.KBFOLDERID_COLUMN_BITMASK |
+			KBArticleModelImpl.LATEST_COLUMN_BITMASK |
+			KBArticleModelImpl.MODIFIEDDATE_COLUMN_BITMASK);
+	public static final FinderPath FINDER_PATH_COUNT_BY_G_KBFI_L = new FinderPath(KBArticleModelImpl.ENTITY_CACHE_ENABLED,
+			KBArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByG_KBFI_L",
+			new String[] {
+				Long.class.getName(), Long.class.getName(),
+				Boolean.class.getName()
+			});
+
+	/**
+	 * Returns all the k b articles where groupId = &#63; and kbFolderId = &#63; and latest = &#63;.
+	 *
+	 * @param groupId the group ID
+	 * @param kbFolderId the kb folder ID
+	 * @param latest the latest
+	 * @return the matching k b articles
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public List<KBArticle> findByG_KBFI_L(long groupId, long kbFolderId,
+		boolean latest) throws SystemException {
+		return findByG_KBFI_L(groupId, kbFolderId, latest, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Returns a range of all the k b articles where groupId = &#63; and kbFolderId = &#63; and latest = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBArticleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param groupId the group ID
+	 * @param kbFolderId the kb folder ID
+	 * @param latest the latest
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
+	 * @return the range of matching k b articles
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public List<KBArticle> findByG_KBFI_L(long groupId, long kbFolderId,
+		boolean latest, int start, int end) throws SystemException {
+		return findByG_KBFI_L(groupId, kbFolderId, latest, start, end, null);
+	}
+
+	/**
+	 * Returns an ordered range of all the k b articles where groupId = &#63; and kbFolderId = &#63; and latest = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBArticleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param groupId the group ID
+	 * @param kbFolderId the kb folder ID
+	 * @param latest the latest
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching k b articles
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public List<KBArticle> findByG_KBFI_L(long groupId, long kbFolderId,
+		boolean latest, int start, int end, OrderByComparator orderByComparator)
+		throws SystemException {
+		boolean pagination = true;
+		FinderPath finderPath = null;
+		Object[] finderArgs = null;
+
+		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
+				(orderByComparator == null)) {
+			pagination = false;
+			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_KBFI_L;
+			finderArgs = new Object[] { groupId, kbFolderId, latest };
+		}
+		else {
+			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_G_KBFI_L;
+			finderArgs = new Object[] {
+					groupId, kbFolderId, latest,
+					
+					start, end, orderByComparator
+				};
+		}
+
+		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(finderPath,
+				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if ((groupId != kbArticle.getGroupId()) ||
+						(kbFolderId != kbArticle.getKbFolderId()) ||
+						(latest != kbArticle.getLatest())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
+		if (list == null) {
+			StringBundler query = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(5 +
+						(orderByComparator.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(5);
+			}
+
+			query.append(_SQL_SELECT_KBARTICLE_WHERE);
+
+			query.append(_FINDER_COLUMN_G_KBFI_L_GROUPID_2);
+
+			query.append(_FINDER_COLUMN_G_KBFI_L_KBFOLDERID_2);
+
+			query.append(_FINDER_COLUMN_G_KBFI_L_LATEST_2);
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+			else
+			 if (pagination) {
+				query.append(KBArticleModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(groupId);
+
+				qPos.add(kbFolderId);
+
+				qPos.add(latest);
+
+				if (!pagination) {
+					list = (List<KBArticle>)QueryUtil.list(q, getDialect(),
+							start, end, false);
+
+					Collections.sort(list);
+
+					list = new UnmodifiableList<KBArticle>(list);
+				}
+				else {
+					list = (List<KBArticle>)QueryUtil.list(q, getDialect(),
+							start, end);
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+			}
+			catch (Exception e) {
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	/**
+	 * Returns the first k b article in the ordered set where groupId = &#63; and kbFolderId = &#63; and latest = &#63;.
+	 *
+	 * @param groupId the group ID
+	 * @param kbFolderId the kb folder ID
+	 * @param latest the latest
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching k b article
+	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching k b article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public KBArticle findByG_KBFI_L_First(long groupId, long kbFolderId,
+		boolean latest, OrderByComparator orderByComparator)
+		throws NoSuchArticleException, SystemException {
+		KBArticle kbArticle = fetchByG_KBFI_L_First(groupId, kbFolderId,
+				latest, orderByComparator);
+
+		if (kbArticle != null) {
+			return kbArticle;
+		}
+
+		StringBundler msg = new StringBundler(8);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("groupId=");
+		msg.append(groupId);
+
+		msg.append(", kbFolderId=");
+		msg.append(kbFolderId);
+
+		msg.append(", latest=");
+		msg.append(latest);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchArticleException(msg.toString());
+	}
+
+	/**
+	 * Returns the first k b article in the ordered set where groupId = &#63; and kbFolderId = &#63; and latest = &#63;.
+	 *
+	 * @param groupId the group ID
+	 * @param kbFolderId the kb folder ID
+	 * @param latest the latest
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching k b article, or <code>null</code> if a matching k b article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public KBArticle fetchByG_KBFI_L_First(long groupId, long kbFolderId,
+		boolean latest, OrderByComparator orderByComparator)
+		throws SystemException {
+		List<KBArticle> list = findByG_KBFI_L(groupId, kbFolderId, latest, 0,
+				1, orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the last k b article in the ordered set where groupId = &#63; and kbFolderId = &#63; and latest = &#63;.
+	 *
+	 * @param groupId the group ID
+	 * @param kbFolderId the kb folder ID
+	 * @param latest the latest
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching k b article
+	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching k b article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public KBArticle findByG_KBFI_L_Last(long groupId, long kbFolderId,
+		boolean latest, OrderByComparator orderByComparator)
+		throws NoSuchArticleException, SystemException {
+		KBArticle kbArticle = fetchByG_KBFI_L_Last(groupId, kbFolderId, latest,
+				orderByComparator);
+
+		if (kbArticle != null) {
+			return kbArticle;
+		}
+
+		StringBundler msg = new StringBundler(8);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("groupId=");
+		msg.append(groupId);
+
+		msg.append(", kbFolderId=");
+		msg.append(kbFolderId);
+
+		msg.append(", latest=");
+		msg.append(latest);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchArticleException(msg.toString());
+	}
+
+	/**
+	 * Returns the last k b article in the ordered set where groupId = &#63; and kbFolderId = &#63; and latest = &#63;.
+	 *
+	 * @param groupId the group ID
+	 * @param kbFolderId the kb folder ID
+	 * @param latest the latest
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching k b article, or <code>null</code> if a matching k b article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public KBArticle fetchByG_KBFI_L_Last(long groupId, long kbFolderId,
+		boolean latest, OrderByComparator orderByComparator)
+		throws SystemException {
+		int count = countByG_KBFI_L(groupId, kbFolderId, latest);
+
+		if (count == 0) {
+			return null;
+		}
+
+		List<KBArticle> list = findByG_KBFI_L(groupId, kbFolderId, latest,
+				count - 1, count, orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the k b articles before and after the current k b article in the ordered set where groupId = &#63; and kbFolderId = &#63; and latest = &#63;.
+	 *
+	 * @param kbArticleId the primary key of the current k b article
+	 * @param groupId the group ID
+	 * @param kbFolderId the kb folder ID
+	 * @param latest the latest
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next k b article
+	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a k b article with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public KBArticle[] findByG_KBFI_L_PrevAndNext(long kbArticleId,
+		long groupId, long kbFolderId, boolean latest,
+		OrderByComparator orderByComparator)
+		throws NoSuchArticleException, SystemException {
+		KBArticle kbArticle = findByPrimaryKey(kbArticleId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			KBArticle[] array = new KBArticleImpl[3];
+
+			array[0] = getByG_KBFI_L_PrevAndNext(session, kbArticle, groupId,
+					kbFolderId, latest, orderByComparator, true);
+
+			array[1] = kbArticle;
+
+			array[2] = getByG_KBFI_L_PrevAndNext(session, kbArticle, groupId,
+					kbFolderId, latest, orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected KBArticle getByG_KBFI_L_PrevAndNext(Session session,
+		KBArticle kbArticle, long groupId, long kbFolderId, boolean latest,
+		OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_KBARTICLE_WHERE);
+
+		query.append(_FINDER_COLUMN_G_KBFI_L_GROUPID_2);
+
+		query.append(_FINDER_COLUMN_G_KBFI_L_KBFOLDERID_2);
+
+		query.append(_FINDER_COLUMN_G_KBFI_L_LATEST_2);
+
+		if (orderByComparator != null) {
+			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+
+			if (orderByConditionFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByConditionFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByConditionFields[i]);
+
+				if ((i + 1) < orderByConditionFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+		else {
+			query.append(KBArticleModelImpl.ORDER_BY_JPQL);
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(groupId);
+
+		qPos.add(kbFolderId);
+
+		qPos.add(latest);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByConditionValues(kbArticle);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<KBArticle> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
+	 * Returns all the k b articles that the user has permission to view where groupId = &#63; and kbFolderId = &#63; and latest = &#63;.
+	 *
+	 * @param groupId the group ID
+	 * @param kbFolderId the kb folder ID
+	 * @param latest the latest
+	 * @return the matching k b articles that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public List<KBArticle> filterFindByG_KBFI_L(long groupId, long kbFolderId,
+		boolean latest) throws SystemException {
+		return filterFindByG_KBFI_L(groupId, kbFolderId, latest,
+			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Returns a range of all the k b articles that the user has permission to view where groupId = &#63; and kbFolderId = &#63; and latest = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBArticleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param groupId the group ID
+	 * @param kbFolderId the kb folder ID
+	 * @param latest the latest
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
+	 * @return the range of matching k b articles that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public List<KBArticle> filterFindByG_KBFI_L(long groupId, long kbFolderId,
+		boolean latest, int start, int end) throws SystemException {
+		return filterFindByG_KBFI_L(groupId, kbFolderId, latest, start, end,
+			null);
+	}
+
+	/**
+	 * Returns an ordered range of all the k b articles that the user has permissions to view where groupId = &#63; and kbFolderId = &#63; and latest = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBArticleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param groupId the group ID
+	 * @param kbFolderId the kb folder ID
+	 * @param latest the latest
+	 * @param start the lower bound of the range of k b articles
+	 * @param end the upper bound of the range of k b articles (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching k b articles that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public List<KBArticle> filterFindByG_KBFI_L(long groupId, long kbFolderId,
+		boolean latest, int start, int end, OrderByComparator orderByComparator)
+		throws SystemException {
+		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
+			return findByG_KBFI_L(groupId, kbFolderId, latest, start, end,
+				orderByComparator);
+		}
+
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(5 +
+					(orderByComparator.getOrderByFields().length * 3));
+		}
+		else {
+			query = new StringBundler(5);
+		}
+
+		if (getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_KBARTICLE_WHERE);
+		}
+		else {
+			query.append(_FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_1);
+		}
+
+		query.append(_FINDER_COLUMN_G_KBFI_L_GROUPID_2);
+
+		query.append(_FINDER_COLUMN_G_KBFI_L_KBFOLDERID_2);
+
+		query.append(_FINDER_COLUMN_G_KBFI_L_LATEST_2);
+
+		if (!getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_2);
+		}
+
+		if (orderByComparator != null) {
+			if (getDB().isSupportsInlineDistinct()) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator, true);
+			}
+			else {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
+					orderByComparator, true);
+			}
+		}
+		else {
+			if (getDB().isSupportsInlineDistinct()) {
+				query.append(KBArticleModelImpl.ORDER_BY_JPQL);
+			}
+			else {
+				query.append(KBArticleModelImpl.ORDER_BY_SQL);
+			}
+		}
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				KBArticle.class.getName(),
+				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			if (getDB().isSupportsInlineDistinct()) {
+				q.addEntity(_FILTER_ENTITY_ALIAS, KBArticleImpl.class);
+			}
+			else {
+				q.addEntity(_FILTER_ENTITY_TABLE, KBArticleImpl.class);
+			}
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(groupId);
+
+			qPos.add(kbFolderId);
+
+			qPos.add(latest);
+
+			return (List<KBArticle>)QueryUtil.list(q, getDialect(), start, end);
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	/**
+	 * Returns the k b articles before and after the current k b article in the ordered set of k b articles that the user has permission to view where groupId = &#63; and kbFolderId = &#63; and latest = &#63;.
+	 *
+	 * @param kbArticleId the primary key of the current k b article
+	 * @param groupId the group ID
+	 * @param kbFolderId the kb folder ID
+	 * @param latest the latest
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next k b article
+	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a k b article with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public KBArticle[] filterFindByG_KBFI_L_PrevAndNext(long kbArticleId,
+		long groupId, long kbFolderId, boolean latest,
+		OrderByComparator orderByComparator)
+		throws NoSuchArticleException, SystemException {
+		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
+			return findByG_KBFI_L_PrevAndNext(kbArticleId, groupId, kbFolderId,
+				latest, orderByComparator);
+		}
+
+		KBArticle kbArticle = findByPrimaryKey(kbArticleId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			KBArticle[] array = new KBArticleImpl[3];
+
+			array[0] = filterGetByG_KBFI_L_PrevAndNext(session, kbArticle,
+					groupId, kbFolderId, latest, orderByComparator, true);
+
+			array[1] = kbArticle;
+
+			array[2] = filterGetByG_KBFI_L_PrevAndNext(session, kbArticle,
+					groupId, kbFolderId, latest, orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected KBArticle filterGetByG_KBFI_L_PrevAndNext(Session session,
+		KBArticle kbArticle, long groupId, long kbFolderId, boolean latest,
+		OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		if (getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_KBARTICLE_WHERE);
+		}
+		else {
+			query.append(_FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_1);
+		}
+
+		query.append(_FINDER_COLUMN_G_KBFI_L_GROUPID_2);
+
+		query.append(_FINDER_COLUMN_G_KBFI_L_KBFOLDERID_2);
+
+		query.append(_FINDER_COLUMN_G_KBFI_L_LATEST_2);
+
+		if (!getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_2);
+		}
+
+		if (orderByComparator != null) {
+			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+
+			if (orderByConditionFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByConditionFields.length; i++) {
+				if (getDB().isSupportsInlineDistinct()) {
+					query.append(_ORDER_BY_ENTITY_ALIAS);
+				}
+				else {
+					query.append(_ORDER_BY_ENTITY_TABLE);
+				}
+
+				query.append(orderByConditionFields[i]);
+
+				if ((i + 1) < orderByConditionFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				if (getDB().isSupportsInlineDistinct()) {
+					query.append(_ORDER_BY_ENTITY_ALIAS);
+				}
+				else {
+					query.append(_ORDER_BY_ENTITY_TABLE);
+				}
+
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+		else {
+			if (getDB().isSupportsInlineDistinct()) {
+				query.append(KBArticleModelImpl.ORDER_BY_JPQL);
+			}
+			else {
+				query.append(KBArticleModelImpl.ORDER_BY_SQL);
+			}
+		}
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				KBArticle.class.getName(),
+				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+
+		SQLQuery q = session.createSQLQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		if (getDB().isSupportsInlineDistinct()) {
+			q.addEntity(_FILTER_ENTITY_ALIAS, KBArticleImpl.class);
+		}
+		else {
+			q.addEntity(_FILTER_ENTITY_TABLE, KBArticleImpl.class);
+		}
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(groupId);
+
+		qPos.add(kbFolderId);
+
+		qPos.add(latest);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByConditionValues(kbArticle);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<KBArticle> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
+	 * Removes all the k b articles where groupId = &#63; and kbFolderId = &#63; and latest = &#63; from the database.
+	 *
+	 * @param groupId the group ID
+	 * @param kbFolderId the kb folder ID
+	 * @param latest the latest
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public void removeByG_KBFI_L(long groupId, long kbFolderId, boolean latest)
+		throws SystemException {
+		for (KBArticle kbArticle : findByG_KBFI_L(groupId, kbFolderId, latest,
+				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+			remove(kbArticle);
+		}
+	}
+
+	/**
+	 * Returns the number of k b articles where groupId = &#63; and kbFolderId = &#63; and latest = &#63;.
+	 *
+	 * @param groupId the group ID
+	 * @param kbFolderId the kb folder ID
+	 * @param latest the latest
+	 * @return the number of matching k b articles
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public int countByG_KBFI_L(long groupId, long kbFolderId, boolean latest)
+		throws SystemException {
+		FinderPath finderPath = FINDER_PATH_COUNT_BY_G_KBFI_L;
+
+		Object[] finderArgs = new Object[] { groupId, kbFolderId, latest };
+
+		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
+				this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(4);
+
+			query.append(_SQL_COUNT_KBARTICLE_WHERE);
+
+			query.append(_FINDER_COLUMN_G_KBFI_L_GROUPID_2);
+
+			query.append(_FINDER_COLUMN_G_KBFI_L_KBFOLDERID_2);
+
+			query.append(_FINDER_COLUMN_G_KBFI_L_LATEST_2);
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(groupId);
+
+				qPos.add(kbFolderId);
+
+				qPos.add(latest);
+
+				count = (Long)q.uniqueResult();
+
+				FinderCacheUtil.putResult(finderPath, finderArgs, count);
+			}
+			catch (Exception e) {
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	/**
+	 * Returns the number of k b articles that the user has permission to view where groupId = &#63; and kbFolderId = &#63; and latest = &#63;.
+	 *
+	 * @param groupId the group ID
+	 * @param kbFolderId the kb folder ID
+	 * @param latest the latest
+	 * @return the number of matching k b articles that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public int filterCountByG_KBFI_L(long groupId, long kbFolderId,
+		boolean latest) throws SystemException {
+		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
+			return countByG_KBFI_L(groupId, kbFolderId, latest);
+		}
+
+		StringBundler query = new StringBundler(4);
+
+		query.append(_FILTER_SQL_COUNT_KBARTICLE_WHERE);
+
+		query.append(_FINDER_COLUMN_G_KBFI_L_GROUPID_2);
+
+		query.append(_FINDER_COLUMN_G_KBFI_L_KBFOLDERID_2);
+
+		query.append(_FINDER_COLUMN_G_KBFI_L_LATEST_2);
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				KBArticle.class.getName(),
+				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			q.addScalar(COUNT_COLUMN_NAME,
+				com.liferay.portal.kernel.dao.orm.Type.LONG);
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(groupId);
+
+			qPos.add(kbFolderId);
+
+			qPos.add(latest);
+
+			Long count = (Long)q.uniqueResult();
+
+			return count.intValue();
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	private static final String _FINDER_COLUMN_G_KBFI_L_GROUPID_2 = "kbArticle.groupId = ? AND ";
+	private static final String _FINDER_COLUMN_G_KBFI_L_KBFOLDERID_2 = "kbArticle.kbFolderId = ? AND ";
+	private static final String _FINDER_COLUMN_G_KBFI_L_LATEST_2 = "kbArticle.latest = ?";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_G_KBFI_S = new FinderPath(KBArticleModelImpl.ENTITY_CACHE_ENABLED,
 			KBArticleModelImpl.FINDER_CACHE_ENABLED, KBArticleImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByG_KBFI_S",
@@ -24998,7 +25972,11 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 			qPos.add(groupId);
 
 			if (sectionses != null) {
-				qPos.add(sectionses);
+				for (String sections : sectionses) {
+					if ((sections != null) && !sections.isEmpty()) {
+						qPos.add(sections);
+					}
+				}
 			}
 
 			qPos.add(latest);
@@ -25188,7 +26166,11 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 				qPos.add(groupId);
 
 				if (sectionses != null) {
-					qPos.add(sectionses);
+					for (String sections : sectionses) {
+						if ((sections != null) && !sections.isEmpty()) {
+							qPos.add(sections);
+						}
+					}
 				}
 
 				qPos.add(latest);
@@ -25406,7 +26388,11 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 				qPos.add(groupId);
 
 				if (sectionses != null) {
-					qPos.add(sectionses);
+					for (String sections : sectionses) {
+						if ((sections != null) && !sections.isEmpty()) {
+							qPos.add(sections);
+						}
+					}
 				}
 
 				qPos.add(latest);
@@ -25591,7 +26577,11 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 			qPos.add(groupId);
 
 			if (sectionses != null) {
-				qPos.add(sectionses);
+				for (String sections : sectionses) {
+					if ((sections != null) && !sections.isEmpty()) {
+						qPos.add(sections);
+					}
+				}
 			}
 
 			qPos.add(latest);
@@ -26653,7 +27643,11 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 			qPos.add(groupId);
 
 			if (sectionses != null) {
-				qPos.add(sectionses);
+				for (String sections : sectionses) {
+					if ((sections != null) && !sections.isEmpty()) {
+						qPos.add(sections);
+					}
+				}
 			}
 
 			qPos.add(main);
@@ -26843,7 +27837,11 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 				qPos.add(groupId);
 
 				if (sectionses != null) {
-					qPos.add(sectionses);
+					for (String sections : sectionses) {
+						if ((sections != null) && !sections.isEmpty()) {
+							qPos.add(sections);
+						}
+					}
 				}
 
 				qPos.add(main);
@@ -27061,7 +28059,11 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 				qPos.add(groupId);
 
 				if (sectionses != null) {
-					qPos.add(sectionses);
+					for (String sections : sectionses) {
+						if ((sections != null) && !sections.isEmpty()) {
+							qPos.add(sections);
+						}
+					}
 				}
 
 				qPos.add(main);
@@ -27246,7 +28248,11 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 			qPos.add(groupId);
 
 			if (sectionses != null) {
-				qPos.add(sectionses);
+				for (String sections : sectionses) {
+					if ((sections != null) && !sections.isEmpty()) {
+						qPos.add(sections);
+					}
+				}
 			}
 
 			qPos.add(main);
@@ -28308,7 +29314,11 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 			qPos.add(groupId);
 
 			if (sectionses != null) {
-				qPos.add(sectionses);
+				for (String sections : sectionses) {
+					if ((sections != null) && !sections.isEmpty()) {
+						qPos.add(sections);
+					}
+				}
 			}
 
 			qPos.add(status);
@@ -28498,7 +29508,11 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 				qPos.add(groupId);
 
 				if (sectionses != null) {
-					qPos.add(sectionses);
+					for (String sections : sectionses) {
+						if ((sections != null) && !sections.isEmpty()) {
+							qPos.add(sections);
+						}
+					}
 				}
 
 				qPos.add(status);
@@ -28716,7 +29730,11 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 				qPos.add(groupId);
 
 				if (sectionses != null) {
-					qPos.add(sectionses);
+					for (String sections : sectionses) {
+						if ((sections != null) && !sections.isEmpty()) {
+							qPos.add(sections);
+						}
+					}
 				}
 
 				qPos.add(status);
@@ -28901,7 +29919,11 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 			qPos.add(groupId);
 
 			if (sectionses != null) {
-				qPos.add(sectionses);
+				for (String sections : sectionses) {
+					if ((sections != null) && !sections.isEmpty()) {
+						qPos.add(sections);
+					}
+				}
 			}
 
 			qPos.add(status);
@@ -31617,6 +32639,29 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_G_KBFI_UT,
 					args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_KBFI_UT,
+					args);
+			}
+
+			if ((kbArticleModelImpl.getColumnBitmask() &
+					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_KBFI_L.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						kbArticleModelImpl.getOriginalGroupId(),
+						kbArticleModelImpl.getOriginalKbFolderId(),
+						kbArticleModelImpl.getOriginalLatest()
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_G_KBFI_L, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_KBFI_L,
+					args);
+
+				args = new Object[] {
+						kbArticleModelImpl.getGroupId(),
+						kbArticleModelImpl.getKbFolderId(),
+						kbArticleModelImpl.getLatest()
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_G_KBFI_L, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_KBFI_L,
 					args);
 			}
 

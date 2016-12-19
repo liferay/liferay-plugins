@@ -65,6 +65,12 @@ public interface KBFolderService extends BaseService, InvokableService {
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.knowledgebase.model.KBFolder fetchKBFolder(
+		long kbFolderId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
 	public com.liferay.knowledgebase.model.KBFolder addKBFolder(long groupId,
 		long parentResourceClassNameId, long parentResourcePrimKey,
 		java.lang.String name, java.lang.String description,

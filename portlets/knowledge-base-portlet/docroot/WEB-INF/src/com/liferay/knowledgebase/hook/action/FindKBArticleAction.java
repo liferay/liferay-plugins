@@ -83,6 +83,7 @@ public class FindKBArticleAction extends BaseStrutsAction {
 		int status = ParamUtil.getInteger(
 			request, "status", WorkflowConstants.STATUS_APPROVED);
 		boolean maximized = ParamUtil.getBoolean(request, "maximized");
+		String redirect = ParamUtil.getString(request, "redirect");
 
 		KBArticle kbArticle = getKBArticle(resourcePrimKey, status);
 
@@ -115,6 +116,10 @@ public class FindKBArticleAction extends BaseStrutsAction {
 		if (maximized) {
 			portletURL.setWindowState(LiferayWindowState.MAXIMIZED);
 			portletURL.setPortletMode(PortletMode.VIEW);
+		}
+
+		if (Validator.isNotNull(redirect)) {
+			portletURL.setParameter("redirect", redirect);
 		}
 
 		response.sendRedirect(portletURL.toString());

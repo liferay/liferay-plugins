@@ -17,13 +17,9 @@
 <%@ include file="/display/init.jsp" %>
 
 <%
-KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_ARTICLE);
-
 KBNavigationDisplayContext kbNavigationDisplayContext = (KBNavigationDisplayContext)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_NAVIGATION_DISPLAY_CONTEXT);
 
 List<Long> ancestorResourcePrimaryKeys = kbNavigationDisplayContext.getAncestorResourcePrimaryKeys();
-
-long kbFolderClassNameId = PortalUtil.getClassNameId(KBFolderConstants.getClassName());
 
 long rootResourcePrimKey = kbNavigationDisplayContext.getRootResourcePrimKey();
 
@@ -42,98 +38,11 @@ KBArticleURLHelper kbArticleURLHelper = new KBArticleURLHelper(renderRequest, re
 	</c:if>
 
 	<%
-	List<KBArticle> kbArticles = KBArticleLocalServiceUtil.getKBArticles(themeDisplay.getScopeGroupId(), rootResourcePrimKey, WorkflowConstants.STATUS_APPROVED, QueryUtil.ALL_POS, QueryUtil.ALL_POS, new KBArticlePriorityComparator(true));
-
-	for (KBArticle curKBArticle : kbArticles) {
-		PortletURL viewURL = kbArticleURLHelper.createViewURL(curKBArticle);
+	request.setAttribute("view_navigation_articles.jsp-ancestorResourcePrimaryKeys", ancestorResourcePrimaryKeys);
+	request.setAttribute("view_navigation_articles.jsp-kbArticleURLHelper", kbArticleURLHelper);
+	request.setAttribute("view_navigation_articles.jsp-level", 0);
+	request.setAttribute("view_navigation_articles.jsp-parentResourcePrimKey", rootResourcePrimKey);
 	%>
 
-		<ul>
-			<li>
-
-				<%
-				boolean kbArticleExpanded = false;
-
-				if ((ancestorResourcePrimaryKeys.size() > 0) && (curKBArticle.getResourcePrimKey() == ancestorResourcePrimaryKeys.get(0))) {
-					kbArticleExpanded = true;
-				}
-
-				String kbArticleClass = StringPool.BLANK;
-
-				if (curKBArticle.getResourcePrimKey() == kbArticle.getResourcePrimKey()) {
-					kbArticleClass = "kbarticle-selected";
-				}
-				else if (kbArticleExpanded) {
-					kbArticleClass = "kbarticle-expanded";
-				}
-				%>
-
-				<a class="<%= kbArticleClass %>" href="<%= viewURL %>"><%= HtmlUtil.escape(curKBArticle.getTitle()) %></a>
-
-				<c:if test="<%= kbArticleExpanded %>">
-
-					<%
-					List<KBArticle> childKBArticles = KBArticleLocalServiceUtil.getKBArticles(themeDisplay.getScopeGroupId(), curKBArticle.getResourcePrimKey(), WorkflowConstants.STATUS_APPROVED, QueryUtil.ALL_POS, QueryUtil.ALL_POS, new KBArticlePriorityComparator(true));
-
-					for (KBArticle childKBArticle : childKBArticles) {
-						PortletURL viewChildURL = kbArticleURLHelper.createViewURL(childKBArticle);
-					%>
-
-						<ul>
-							<li>
-
-								<%
-								boolean childKBArticleExpanded = false;
-
-								if ((ancestorResourcePrimaryKeys.size() > 1) && (childKBArticle.getResourcePrimKey() == ancestorResourcePrimaryKeys.get(1))) {
-									childKBArticleExpanded = true;
-								}
-
-								String childKBArticleClass = StringPool.BLANK;
-
-								if (childKBArticle.getResourcePrimKey() == kbArticle.getResourcePrimKey()) {
-									childKBArticleClass = "kbarticle-selected";
-								}
-								else if (childKBArticleExpanded) {
-									childKBArticleClass = "kbarticle-expanded";
-								}
-								%>
-
-								<a class="<%= childKBArticleClass %>" href="<%= viewChildURL %>"><%= HtmlUtil.escape(childKBArticle.getTitle()) %></a>
-
-								<c:if test="<%= childKBArticleExpanded %>">
-
-									<%
-									List<KBArticle> allDescendantKBArticles = KBArticleLocalServiceUtil.getAllDescendantKBArticles(childKBArticle.getResourcePrimKey(), WorkflowConstants.STATUS_APPROVED, new KBArticlePriorityComparator(true));
-
-									for (KBArticle descendantKBArticle : allDescendantKBArticles) {
-										PortletURL viewCurKBArticleURL = kbArticleURLHelper.createViewURL(descendantKBArticle);
-									%>
-
-										<ul>
-											<li>
-												<a class="<%= descendantKBArticle.getResourcePrimKey() == kbArticle.getResourcePrimKey() ? "kbarticle-selected" : StringPool.BLANK %>" href="<%= viewCurKBArticleURL %>"><%= HtmlUtil.escape(descendantKBArticle.getTitle()) %></a>
-											</li>
-										</ul>
-
-									<%
-									}
-									%>
-
-								</c:if>
-							</li>
-						</ul>
-
-					<%
-					}
-					%>
-
-				</c:if>
-			</li>
-		</ul>
-
-	<%
-	}
-	%>
-
+	<liferay-util:include page="/display/view_navigation_articles.jsp" servletContext="<%= application %>" />
 </div>

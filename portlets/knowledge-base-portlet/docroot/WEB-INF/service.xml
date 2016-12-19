@@ -154,6 +154,11 @@
 			<finder-column name="kbFolderId" />
 			<finder-column name="urlTitle" />
 		</finder>
+		<finder name="G_KBFI_L" return-type="Collection">
+			<finder-column name="groupId" />
+			<finder-column name="kbFolderId" />
+			<finder-column name="latest" />
+		</finder>
 		<finder name="G_KBFI_S" return-type="Collection">
 			<finder-column name="groupId" />
 			<finder-column name="kbFolderId" />

@@ -753,6 +753,13 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	}
 
 	@Override
+	public List<KBArticle> getKBFolderKBArticles(long groupId, long kbFolderId)
+		throws SystemException {
+
+		return kbArticlePersistence.findByG_KBFI_L(groupId, kbFolderId, true);
+	}
+
+	@Override
 	public int getKBFolderKBArticlesCount(
 			long groupId, long kbFolderId, int status)
 		throws SystemException {

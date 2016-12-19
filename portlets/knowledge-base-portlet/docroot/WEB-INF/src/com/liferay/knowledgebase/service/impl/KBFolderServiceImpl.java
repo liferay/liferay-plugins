@@ -54,6 +54,20 @@ public class KBFolderServiceImpl extends KBFolderServiceBaseImpl {
 		return kbFolderLocalService.deleteKBFolder(kbFolderId);
 	}
 
+	@Override
+	public KBFolder fetchKBFolder(long kbFolderId)
+		throws PortalException, SystemException {
+
+		KBFolder kbFolder = kbFolderLocalService.fetchKBFolder(kbFolderId);
+
+		if (kbFolder != null) {
+			KBFolderPermission.check(
+				getPermissionChecker(), kbFolder, ActionKeys.VIEW);
+		}
+
+		return kbFolder;
+	}
+
 	public KBFolder fetchKBFolderByUrlTitle(
 			long groupId, long parentKbFolderId, String urlTitle)
 		throws PortalException, SystemException {

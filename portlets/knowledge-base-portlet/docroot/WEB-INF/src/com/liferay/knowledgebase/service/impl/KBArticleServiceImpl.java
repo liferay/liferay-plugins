@@ -17,6 +17,8 @@ package com.liferay.knowledgebase.service.impl;
 import com.liferay.knowledgebase.admin.util.AdminUtil;
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.model.KBArticleSearchDisplay;
+import com.liferay.knowledgebase.model.KBFolder;
+import com.liferay.knowledgebase.model.KBFolderConstants;
 import com.liferay.knowledgebase.model.impl.KBArticleSearchDisplayImpl;
 import com.liferay.knowledgebase.service.base.KBArticleServiceBaseImpl;
 import com.liferay.knowledgebase.service.permission.AdminPermission;
@@ -39,6 +41,8 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Group;
+import com.liferay.portal.model.GroupConstants;
+import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
@@ -171,6 +175,18 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 			getPermissionChecker(), kbArticle, ActionKeys.VIEW);
 
 		return kbArticle;
+	}
+
+	@Override
+	public List<KBArticle> getAllDescendantKBArticles(
+			long groupId, long resourcePrimKey, int status,
+			OrderByComparator orderByComparator)
+		throws PortalException, SystemException {
+
+		groupId = checkGroupId(groupId, resourcePrimKey);
+
+		return getAllDescendantKBArticles(
+			groupId, resourcePrimKey, status, orderByComparator, false);
 	}
 
 	@Override
@@ -752,6 +768,54 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 			resourcePrimKeyToPriorityMap);
 	}
 
+	protected long checkGroupId(long groupId, long resourcePrimKey)
+		throws PortalException, SystemException {
+
+		if (groupId == GroupConstants.DEFAULT_PARENT_GROUP_ID) {
+			if (resourcePrimKey == KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
+				throw new PrincipalException();
+			}
+
+			KBArticle kbArticle = fetchLatestKBArticle(
+				resourcePrimKey, WorkflowConstants.STATUS_ANY);
+
+			if (kbArticle != null) {
+				return kbArticle.getGroupId();
+			}
+
+			KBFolder kbFolder = kbFolderService.fetchKBFolder(resourcePrimKey);
+
+			if (kbFolder == null) {
+				throw new PrincipalException();
+			}
+
+			return kbFolder.getGroupId();
+		}
+
+		if (resourcePrimKey == KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
+			return groupId;
+		}
+
+		KBArticle kbArticle = fetchLatestKBArticle(
+			resourcePrimKey, WorkflowConstants.STATUS_ANY);
+
+		if (kbArticle != null) {
+			if (kbArticle.getGroupId() != groupId) {
+				throw new PrincipalException();
+			}
+
+			return kbArticle.getGroupId();
+		}
+
+		KBFolder kbFolder = kbFolderService.fetchKBFolder(resourcePrimKey);
+
+		if ((kbFolder == null) || (kbFolder.getGroupId() != groupId)) {
+			throw new PrincipalException();
+		}
+
+		return kbFolder.getGroupId();
+	}
+
 	protected String exportToRSS(
 			String rssDisplayStyle, String rssFormat, String name,
 			String description, String feedURL, List<KBArticle> kbArticles,
@@ -845,6 +909,61 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 		}
 		catch (FeedException fe) {
 			throw new SystemException(fe);
+		}
+	}
+
+	protected List<KBArticle> getAllDescendantKBArticles(
+			long groupId, long resourcePrimKey, int status,
+			OrderByComparator orderByComparator, boolean includeParentArticle)
+		throws PortalException, SystemException {
+
+		List<KBArticle> kbArticles = null;
+
+		if (includeParentArticle) {
+			kbArticles = getKBArticles(
+				groupId, new long[] {resourcePrimKey}, status, null);
+
+			kbArticles = ListUtil.copy(kbArticles);
+		}
+		else {
+			kbArticles = new ArrayList<KBArticle>();
+		}
+
+		_getAllDescendantKBArticles(
+			kbArticles, groupId, resourcePrimKey, status, orderByComparator);
+
+		return Collections.unmodifiableList(kbArticles);
+	}
+
+	private void _getAllDescendantKBArticles(
+			List<KBArticle> kbArticles, long groupId, long resourcePrimKey,
+			int status, OrderByComparator orderByComparator)
+		throws SystemException {
+
+		List<KBArticle> curKBArticles = null;
+
+		if (status == WorkflowConstants.STATUS_ANY) {
+			curKBArticles = kbArticlePersistence.filterFindByG_P_L(
+				groupId, resourcePrimKey, true, QueryUtil.ALL_POS,
+				QueryUtil.ALL_POS, orderByComparator);
+		}
+		else if (status == WorkflowConstants.STATUS_APPROVED) {
+			curKBArticles = kbArticlePersistence.findByG_P_M(
+				groupId, resourcePrimKey, true, QueryUtil.ALL_POS,
+				QueryUtil.ALL_POS, orderByComparator);
+		}
+		else {
+			curKBArticles = kbArticlePersistence.findByG_P_S(
+				groupId, resourcePrimKey, status, QueryUtil.ALL_POS,
+				QueryUtil.ALL_POS, orderByComparator);
+		}
+
+		for (KBArticle curKBArticle : curKBArticles) {
+			kbArticles.add(curKBArticle);
+
+			_getAllDescendantKBArticles(
+				kbArticles, groupId, curKBArticle.getResourcePrimKey(), status,
+				orderByComparator);
 		}
 	}
 
