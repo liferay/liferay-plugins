@@ -291,11 +291,9 @@ public class NotificationsUtil {
 				for (Subscription subscription : subscriptions) {
 					long subscriberUserId = subscription.getUserId();
 
-					if (subscriberUserId == userId) {
-						continue;
-					}
+					if ((subscriberUserId == userId) ||
+						subscriberUserIds.contains(subscriberUserId)) {
 
-					if (subscriberUserIds.contains(subscriberUserId)) {
 						continue;
 					}
 
