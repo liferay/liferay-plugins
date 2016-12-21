@@ -242,10 +242,10 @@ public class NotificationsUtil {
 
 		protected boolean hasPermission(
 				Subscription subscription, String inferredClassName,
-				long inferredClassPK, long userId)
+				long inferredClassPK)
 			throws Exception {
 
-			User user = UserLocalServiceUtil.fetchUserById(
+			User user = UserLocalServiceUtil.getUserById(
 				subscription.getUserId());
 
 			PermissionChecker permissionChecker =
@@ -302,7 +302,7 @@ public class NotificationsUtil {
 					try {
 						if (!hasPermission(
 								subscription, inferredClassName,
-								inferredClassPK, subscriberUserId)) {
+								inferredClassPK)) {
 
 							continue;
 						}
