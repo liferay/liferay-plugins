@@ -1,0 +1,119 @@
+buildscript {
+	repositories {
+		if(System.getenv("JENKINS_HOME")) {
+			ivy {
+				layout "gradle"
+				url ".ivy"
+			}
+		}
+		else {
+			maven {
+				url "https://cdn.lfrs.sl/repository.liferay.com/nexus/content/groups/public"
+				url "https://plugins.gradle.org/m2/"
+			}
+		}
+	}
+
+	dependencies {
+		classpath group: "com.liferay", name: "com.liferay.gradle.plugins.poshi.runner", version: "1.0.10"
+		classpath group: "org.ysb33r.gradle", name: "ivypot", version: "0.4"
+	}
+}
+
+allprojects {
+	apply plugin: "org.ysb33r.ivypot"
+
+	syncRemoteRepositories {
+		doFirst {
+			configurations*.resolve()
+		}
+
+		includeBuildScriptDependencies = true
+
+		outputs.upToDateWhen {
+			false
+		}
+
+		repoRoot = rootProject.file(".ivy")
+
+		repositories {
+			maven {
+				url "https://cdn.lfrs.sl/repository.liferay.com/nexus/content/groups/public"
+				url "https://plugins.gradle.org/m2/"
+			}
+		}
+	}
+}
+
+subprojects {
+	apply plugin: "com.liferay.poshi.runner"
+
+	task syncSikuliComplete(type: Copy)
+
+	configurations {
+		poshiRunner {
+			resolutionStrategy {
+				force group: "com.google.guava", name: "guava", version: "16.0.1"
+				force group: "commons-codec", name: "commons-codec", version: "1.10"
+			}
+		}
+
+		sikuliComplete
+	}
+
+	poshiRunner {
+		baseDir = "test/functional"
+
+		String[] testPropertiesFileNames = [
+			"test.properties",
+			"test.${System.env.HOSTNAME}.properties",
+			"test.${System.env.HOST}.properties",
+			"test.${System.env.COMPUTERNAME}.properties",
+			"test.${System.env.USER}.properties"
+		]
+
+		for (String testPropertiesFileName in testPropertiesFileNames) {
+			File testPropertiesFile = file("test/functional/${testPropertiesFileName}")
+
+			if (testPropertiesFile.exists()) {
+				poshiProperties << GUtil.loadProperties(testPropertiesFile)
+			}
+		}
+
+		poshiPropertiesFile = rootProject.file("${baseDir}/test.properties")
+		openCVVersion = "2.4.10-0.10"
+		version = "1.0.50"
+	}
+
+	dependencies {
+		["x86", "x86_64"].each {
+			sikuliComplete classifier: "linux-${it}", group: "org.bytedeco.javacpp-presets", name: "opencv", version: poshiRunner.openCVVersion
+			sikuliComplete classifier: "windows-${it}", group: "org.bytedeco.javacpp-presets", name: "opencv", version: poshiRunner.openCVVersion
+		}
+
+		sikuliComplete classifier: "macosx-x86_64", group: "org.bytedeco.javacpp-presets", name: "opencv", version: poshiRunner.openCVVersion
+	}
+
+	repositories {
+		if(System.getenv("JENKINS_HOME")) {
+			ivy {
+				layout "gradle"
+				url rootProject.file(".ivy")
+			}
+		}
+		else {
+			maven {
+				url "https://cdn.lfrs.sl/repository.liferay.com/nexus/content/groups/public"
+			}
+		}
+	}
+
+	syncRemoteRepositories {
+		finalizedBy syncSikuliComplete
+	}
+
+	syncSikuliComplete {
+		from configurations.sikuliComplete
+		into rootProject.file(".ivy/org.bytedeco.javacpp-presets/opencv/${poshiRunner.openCVVersion}")
+	}
+}

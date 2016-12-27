@@ -1,0 +1,1 @@
+include 'portlets:lcs-portlet', 'portlets:loop-portlet', 'portlets:osb-patcher-portlet', 'portlets:so-portlet'
