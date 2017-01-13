@@ -67,6 +67,7 @@ import org.scribe.oauth.OAuthService;
  * @author Ryan Park
  * @author Joan Kim
  * @author Douglas Wong
+ * @author Haote Chou
  */
 public class RemoteMVCPortlet extends MVCPortlet {
 
@@ -342,6 +343,8 @@ public class RemoteMVCPortlet extends MVCPortlet {
 				HttpHeaders.CONTENT_DISPOSITION_ATTACHMENT);
 		}
 		else {
+			resourceResponse.setContentType(contentType);
+
 			PortletResponseUtil.write(resourceResponse, response.getStream());
 		}
 	}
