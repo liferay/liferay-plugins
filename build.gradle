@@ -1,6 +1,6 @@
 buildscript {
 	repositories {
-		if(System.getenv("JENKINS_HOME")) {
+		if (System.getenv("JENKINS_HOME")) {
 			ivy {
 				layout "gradle"
 				url ".ivy"
@@ -95,7 +95,7 @@ subprojects {
 	}
 
 	repositories {
-		if(System.getenv("JENKINS_HOME")) {
+		if (System.getenv("JENKINS_HOME")) {
 			ivy {
 				layout "gradle"
 				url rootProject.file(".ivy")

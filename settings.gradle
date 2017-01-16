@@ -1,1 +1,4 @@
-include 'portlets:lcs-portlet', 'portlets:loop-portlet', 'portlets:osb-patcher-portlet', 'portlets:so-portlet'
+include "portlets:lcs-portlet"
+include "portlets:loop-portlet"
+include "portlets:osb-patcher-portlet"
+include "portlets:so-portlet"
