@@ -14,6 +14,12 @@
 
 package com.liferay.sync.servlet;
 
+import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.Property;
+import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.messaging.DestinationNames;
@@ -35,9 +41,9 @@ import com.liferay.portal.service.CompanyLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portlet.documentlibrary.model.DLSyncEvent;
-import com.liferay.portlet.documentlibrary.service.DLSyncEventLocalServiceUtil;
+import com.liferay.portlet.documentlibrary.service.persistence.DLSyncEventActionableDynamicQuery;
 import com.liferay.sync.messaging.DLSyncEventMessageListener;
-import com.liferay.sync.messaging.SyncDLFileVersionDiffMessageListener;
+import com.liferay.sync.messaging.SyncMaintenanceMessageListener;
 import com.liferay.sync.service.SyncDLObjectLocalServiceUtil;
 import com.liferay.sync.service.SyncPreferencesLocalServiceUtil;
 import com.liferay.sync.util.PortletPropsKeys;
@@ -69,43 +75,45 @@ public class SyncServletContextListener
 		registerPortalLifecycle();
 	}
 
-	protected void consumeDLSyncEvents() {
-		try {
-			long latestModifiedTime =
-				SyncDLObjectLocalServiceUtil.getLatestModifiedTime();
+	protected void consumeDLSyncEvents() throws Exception {
+		final long latestModifiedTime =
+			SyncDLObjectLocalServiceUtil.getLatestModifiedTime();
 
-			List<DLSyncEvent> dlSyncEvents = null;
+		ActionableDynamicQuery actionableDynamicQuery =
+			new DLSyncEventActionableDynamicQuery() {
 
-			if (latestModifiedTime == 0) {
-				dlSyncEvents =
-					DLSyncEventLocalServiceUtil.getLatestDLSyncEvents();
-			}
-			else {
-				dlSyncEvents = DLSyncEventLocalServiceUtil.getDLSyncEvents(
-					latestModifiedTime);
-			}
+				@Override
+				protected void addCriteria(DynamicQuery dynamicQuery) {
+					Property modifiedTime = PropertyFactoryUtil.forName(
+						"modifiedTime");
 
-			for (DLSyncEvent dlSyncEvent : dlSyncEvents) {
-				Message message = new Message();
+					dynamicQuery.add(modifiedTime.gt(latestModifiedTime));
+				}
 
-				Map<String, Object> values = new HashMap<String, Object>(4);
+				@Override
+				protected void performAction(Object object)
+					throws PortalException, SystemException {
 
-				values.put("event", dlSyncEvent.getEvent());
-				values.put("modifiedTime", dlSyncEvent.getModifiedTime());
-				values.put("syncEventId", dlSyncEvent.getSyncEventId());
-				values.put("type", dlSyncEvent.getType());
-				values.put("typePK", dlSyncEvent.getTypePK());
+					Message message = new Message();
 
-				message.setValues(values);
+					Map<String, Object> values = new HashMap<String, Object>();
 
-				MessageBusUtil.sendMessage(
-					DestinationNames.DOCUMENT_LIBRARY_SYNC_EVENT_PROCESSOR,
-					message);
-			}
-		}
-		catch (Exception e) {
-			_log.error(e, e);
-		}
+					DLSyncEvent dlSyncEvent = (DLSyncEvent)object;
+
+					values.put("event", dlSyncEvent.getEvent());
+					values.put("modifiedTime", dlSyncEvent.getModifiedTime());
+					values.put("type", dlSyncEvent.getType());
+					values.put("typePK", dlSyncEvent.getTypePK());
+
+					message.setValues(values);
+
+					MessageBusUtil.sendMessage(
+						DestinationNames.DOCUMENT_LIBRARY_SYNC_EVENT_PROCESSOR,
+						message);
+				}
+			};
+
+		actionableDynamicQuery.performActions();
 	}
 
 	@Override
@@ -114,15 +122,13 @@ public class SyncServletContextListener
 			DestinationNames.DOCUMENT_LIBRARY_SYNC_EVENT_PROCESSOR,
 			_dlSyncEventMessageListener);
 
-		if (PortletPropsValues.SYNC_FILE_DIFF_CACHE_ENABLED) {
-			MessageBusUtil.unregisterMessageListener(
-				SyncDLFileVersionDiffMessageListener.DESTINATION_NAME,
-				_syncDLFileVersionDiffMessageListener);
+		MessageBusUtil.unregisterMessageListener(
+			SyncMaintenanceMessageListener.DESTINATION_NAME,
+			_syncMaintenanceMessageListener);
 
-			SchedulerEngineHelperUtil.unschedule(
-				SyncDLFileVersionDiffMessageListener.class.getName(),
-				StorageType.MEMORY_CLUSTERED);
-		}
+		SchedulerEngineHelperUtil.unschedule(
+			SyncMaintenanceMessageListener.class.getName(),
+			StorageType.MEMORY_CLUSTERED);
 	}
 
 	@Override
@@ -177,18 +183,20 @@ public class SyncServletContextListener
 			_dlSyncEventMessageListener,
 			DestinationNames.DOCUMENT_LIBRARY_SYNC_EVENT_PROCESSOR);
 
-		if (PortletPropsValues.SYNC_FILE_DIFF_CACHE_ENABLED) {
-			_syncDLFileVersionDiffMessageListener =
-				new SyncDLFileVersionDiffMessageListener();
+		_syncMaintenanceMessageListener = new SyncMaintenanceMessageListener();
 
-			registerMessageListener(
-				_syncDLFileVersionDiffMessageListener,
-				SyncDLFileVersionDiffMessageListener.DESTINATION_NAME);
+		registerMessageListener(
+			_syncMaintenanceMessageListener,
+			SyncMaintenanceMessageListener.DESTINATION_NAME);
 
-			scheduleDLFileVersionDiffMessageListener();
+		scheduleSyncMaintenanceMessageListener();
+
+		try {
+			consumeDLSyncEvents();
 		}
-
-		consumeDLSyncEvents();
+		catch (Exception e) {
+			_log.error(e, e);
+		}
 	}
 
 	protected void registerMessageListener(
@@ -206,20 +214,19 @@ public class SyncServletContextListener
 			destinationName, messageListener);
 	}
 
-	protected void scheduleDLFileVersionDiffMessageListener() {
+	protected void scheduleSyncMaintenanceMessageListener() {
 		try {
 			SchedulerEntry schedulerEntry = new SchedulerEntryImpl();
 
 			schedulerEntry.setEventListenerClass(
-				SyncDLFileVersionDiffMessageListener.class.getName());
+				SyncMaintenanceMessageListener.class.getName());
 			schedulerEntry.setTimeUnit(TimeUnit.HOUR);
 			schedulerEntry.setTriggerType(TriggerType.SIMPLE);
-			schedulerEntry.setTriggerValue(
-				PortletPropsValues.SYNC_FILE_DIFF_CACHE_DELETE_INTERVAL);
+			schedulerEntry.setTriggerValue(1);
 
 			SchedulerEngineHelperUtil.schedule(
 				schedulerEntry.getTrigger(), StorageType.MEMORY_CLUSTERED, null,
-				SyncDLFileVersionDiffMessageListener.DESTINATION_NAME, null, 0);
+				SyncMaintenanceMessageListener.DESTINATION_NAME, null, 0);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -230,6 +237,6 @@ public class SyncServletContextListener
 		SyncServletContextListener.class);
 
 	private MessageListener _dlSyncEventMessageListener;
-	private MessageListener _syncDLFileVersionDiffMessageListener;
+	private MessageListener _syncMaintenanceMessageListener;
 
 }

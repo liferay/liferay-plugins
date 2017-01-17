@@ -14,70 +14,41 @@
 
 package com.liferay.sync.messaging;
 
-import com.liferay.portal.kernel.dao.orm.DynamicQuery;
-import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.messaging.BaseMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.model.User;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.security.permission.PermissionThreadLocal;
 import com.liferay.portlet.documentlibrary.model.DLFileEntry;
+import com.liferay.portlet.documentlibrary.model.DLFileVersion;
 import com.liferay.portlet.documentlibrary.model.DLFolder;
-import com.liferay.portlet.documentlibrary.model.DLSyncEvent;
 import com.liferay.portlet.documentlibrary.service.DLFileEntryLocalServiceUtil;
 import com.liferay.portlet.documentlibrary.service.DLFolderLocalServiceUtil;
-import com.liferay.portlet.documentlibrary.service.DLSyncEventLocalServiceUtil;
 import com.liferay.sync.model.SyncDLObject;
 import com.liferay.sync.model.SyncDLObjectConstants;
 import com.liferay.sync.model.impl.SyncDLObjectImpl;
 import com.liferay.sync.util.SyncUtil;
-
-import java.util.List;
 
 /**
  * @author Dennis Ju
  */
 public class DLSyncEventMessageListener extends BaseMessageListener {
 
-	protected void deleteDLSyncEvent(
-			long modifiedTime, long syncEventId, long typePK)
-		throws Exception {
-
-		if (syncEventId != 0) {
-			DLSyncEventLocalServiceUtil.deleteDLSyncEvent(syncEventId);
-
-			return;
-		}
-
-		DynamicQuery dynamicQuery = DLSyncEventLocalServiceUtil.dynamicQuery();
-
-		dynamicQuery.add(
-			RestrictionsFactoryUtil.eq("modifiedTime", modifiedTime));
-		dynamicQuery.add(RestrictionsFactoryUtil.eq("typePK", typePK));
-
-		List<DLSyncEvent> dlSyncEvents =
-			DLSyncEventLocalServiceUtil.dynamicQuery(dynamicQuery);
-
-		if (dlSyncEvents.isEmpty()) {
-			return;
-		}
-
-		DLSyncEvent dlSyncEvent = dlSyncEvents.get(0);
-
-		DLSyncEventLocalServiceUtil.deleteDLSyncEvent(dlSyncEvent);
-	}
-
 	@Override
 	protected void doReceive(Message message) throws Exception {
 		String event = message.getString("event");
 		long modifiedTime = message.getLong("modifiedTime");
-		long syncEventId = message.getLong("syncEventId");
 		String type = message.getString("type");
 		long typePK = message.getLong("typePK");
 
-		processDLSyncEvent(modifiedTime, event, type, typePK);
-
-		deleteDLSyncEvent(modifiedTime, syncEventId, typePK);
+		try {
+			processDLSyncEvent(modifiedTime, event, type, typePK);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+		}
 	}
 
 	protected void processDLSyncEvent(
@@ -100,6 +71,12 @@ public class DLSyncEventMessageListener extends BaseMessageListener {
 				DLFileEntryLocalServiceUtil.fetchDLFileEntry(typePK);
 
 			if (dlFileEntry == null) {
+				return;
+			}
+
+			DLFileVersion dlFileVersion = dlFileEntry.getFileVersion();
+
+			if (dlFileVersion.isPending()) {
 				return;
 			}
 
@@ -139,5 +116,8 @@ public class DLSyncEventMessageListener extends BaseMessageListener {
 			syncDLObject.setUserName(user.getFullName());
 		}
 	}
+
+	private static Log _log = LogFactoryUtil.getLog(
+		DLSyncEventMessageListener.class);
 
 }

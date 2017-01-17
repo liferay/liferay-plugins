@@ -68,6 +68,7 @@ public class PortletPropsValues {
 			PortletProps.get(
 				PortletPropsKeys.SYNC_FILE_CHECKSUM_THRESHOLD_SIZE));
 
+	@Deprecated
 	public static final int SYNC_FILE_DIFF_CACHE_DELETE_INTERVAL =
 		GetterUtil.getInteger(
 			PortletProps.get(
