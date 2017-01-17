@@ -21,6 +21,7 @@ _sass_cache_*.css
 /.ivy
 
 /*/*/bin
+/*/*/build
 /*/*/classes
 /*/*/javadoc
 /*/*/temp
@@ -32,6 +33,7 @@ _sass_cache_*.css
 /*/*/docroot/WEB-INF/lib/portal-compat-shared.jar
 
 /baseline-reports
+/build
 /build.*.properties
 /dist
 
