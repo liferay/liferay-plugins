@@ -15,7 +15,6 @@
 package com.liferay.sync.admin.portlet;
 
 import com.liferay.portal.kernel.deploy.DeployManagerUtil;
-import com.liferay.portal.kernel.plugin.PluginPackage;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PrefsPropsUtil;
@@ -183,10 +182,7 @@ public class AdminPortlet extends MVCPortlet {
 		}
 
 		if (oAuthEnabled) {
-			PluginPackage oAuthPortletPluginPackage =
-				DeployManagerUtil.getInstalledPluginPackage("oauth-portlet");
-
-			if (oAuthPortletPluginPackage == null) {
+			if (!DeployManagerUtil.isDeployed("oauth-portlet")) {
 				SessionErrors.add(
 					actionRequest, OAuthPortletUndeployedException.class);
 
