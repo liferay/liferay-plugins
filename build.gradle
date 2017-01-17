@@ -45,7 +45,7 @@ allprojects {
 	}
 }
 
-subprojects {
+configure(subprojects.findAll {!it.childProjects}) {
 	apply plugin: "com.liferay.poshi.runner"
 
 	task syncSikuliComplete(type: Copy)
