@@ -19,6 +19,6 @@ package com.liferay.asset.entry.set.util;
  */
 public class PortletKeys extends com.liferay.portal.util.PortletKeys {
 
-    public static final String ASSET_ENTRY_SET = "1_WAR_assetentrysetportlet";
+	public static final String ASSET_ENTRY_SET = "1_WAR_assetentrysetportlet";
 
 }
