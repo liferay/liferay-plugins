@@ -30,6 +30,7 @@
 /.gradle
 /.ivy
 /baseline-reports
+/build
 /build.*.properties
 /dist
 /hooks/*/test/integration/arquillian.xml
