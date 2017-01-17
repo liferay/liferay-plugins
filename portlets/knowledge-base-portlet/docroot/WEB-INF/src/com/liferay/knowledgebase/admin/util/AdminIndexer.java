@@ -223,16 +223,14 @@ public class AdminIndexer extends BaseIndexer {
 	}
 
 	protected void reindexAttachments(KBArticle kbArticle)
- 		throws PortalException {
-
-		List<FileEntry> attachmentsFileEntries =
-			kbArticle.getAttachmentsFileEntries();
+ 		throws PortalException, SystemException {
 
 			Indexer indexer = IndexerRegistryUtil.nullSafeGetIndexer(
 				DLFileEntry.class);
 
-		for (FileEntry attachmentsFileEntry : attachmentsFileEntries) {
-			indexer.reindex(attachmentsFileEntry.getModel());
+		for (FileEntry attachmentsFileEntry :
+				kbArticle.getAttachmentsFileEntries()) {
+					indexer.reindex(attachmentsFileEntry.getModel());
 		}
 	}
 
