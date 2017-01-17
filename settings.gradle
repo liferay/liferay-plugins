@@ -1,4 +1,15 @@
-include "portlets:lcs-portlet"
-include "portlets:loop-portlet"
-include "portlets:osb-patcher-portlet"
-include "portlets:so-portlet"
+FileTree testPropertiesFileTree = fileTree(dir: rootDir, include: "**/test/functional/test.properties")
+
+URI rootURI = rootDir.toURI()
+
+include testPropertiesFileTree.collect {
+	File testPropertiesFile ->
+
+	File dir = testPropertiesFile.parentFile.parentFile.parentFile
+
+	URI relativeURI = rootURI.relativize(dir.toURI())
+
+	String projectPath = relativeURI.path.replace('/' as char, ':' as char)
+
+	":" + projectPath[0 .. -2]
+} as String[]
