@@ -189,7 +189,7 @@
 		<zip destfile="dist/liferay-plugins-sdk-${lp.version}.zip">
 			<zipfileset
 				dir="."
-				excludes="*.iml,.bnd/**,.git/**,.ivy/**,build.*.properties,dependencies/**/ivy.xml.MD5,dependencies/**/lib/**,dist/**,ext/*-ext/**,hooks/*-hook/**,lib/**,ivy.xml.MD5,layouttpl/*-layouttpl/**,portlets/*-portlet/**,private-plugins.txt,shared/*-shared/**,source_formatter_*,suites/**,summary.*,themes/*-theme/**,tmp/**,tools/node-*/**,webs/*-web/**"
+				excludes="**/.gradle/**,**/build/**,**/gradle.properties,**/test.*.properties,*.iml,.bnd/**,.git/**,.ivy/**,build.*.properties,build.gradle,dependencies/**/ivy.xml.MD5,dependencies/**/lib/**,dist/**,ext/*-ext/**,gradle/**,gradlew*,hooks/*-hook/**,ivy.xml.MD5,layouttpl/*-layouttpl/**,lib/**,portlets/*-portlet/**,private-plugins.txt,settings.gradle,shared/*-shared/**,source_formatter_*,suites/**,summary.*,themes/*-theme/**,tmp/**,tools/node-*/**,webs/*-web/**"
 				prefix="liferay-plugins-sdk-${lp.version}"
 			/>
 			<zipfileset
