@@ -15,7 +15,7 @@
 			<artifact ext="jar" m2:classifier="noarch" name="com.xuggle.xuggler" />
 		</dependency>
 		<dependency name="commons-lang" org="commons-lang" rev="2.6" />
-		<dependency name="tika-core" org="org.apache.tika" rev="1.6" />
-		<dependency name="tika-parsers" org="org.apache.tika" rev="1.6" />
+		<dependency name="tika-core" org="org.apache.tika" rev="1.14" />
+		<dependency name="tika-parsers" org="org.apache.tika" rev="1.14" />
 	</dependencies>
 </ivy-module>
