@@ -975,7 +975,26 @@ public class FileSystemImporter extends BaseImporter {
 					"layoutPrototypeUuid", layoutPrototypeUuid);
 			}
 
-			Layout layout = LayoutLocalServiceUtil.addLayout(
+			Layout layout = LayoutLocalServiceUtil.fetchLayoutByFriendlyURL(
+				groupId, privateLayout, friendlyURL);
+
+			if (layout != null) {
+				if (!developerModeEnabled) {
+					if (_log.isInfoEnabled()) {
+						_log.info(
+							"Layout with friendlyURL " + friendlyURL +
+								" already exists");
+					}
+
+					return;
+				}
+
+				if (!updateModeEnabled) {
+					LayoutLocalServiceUtil.deleteLayout(layout);
+				}
+			}
+
+			layout = LayoutLocalServiceUtil.addLayout(
 				userId, groupId, privateLayout, parentLayoutId, nameMap,
 				titleMap, null, null, null, type, typeSettings, hidden,
 				friendlyURLMap, serviceContext);
