@@ -231,7 +231,7 @@ public class AdminIndexer extends BaseIndexer {
 		for (FileEntry attachmentsFileEntry :
 				kbArticle.getAttachmentsFileEntries()) {
 
-			indexer.reindex(attachmentsFileEntry.getModel());
+			indexer.reindex((DLFileEntry)attachmentsFileEntry.getModel());
 		}
 	}
 
