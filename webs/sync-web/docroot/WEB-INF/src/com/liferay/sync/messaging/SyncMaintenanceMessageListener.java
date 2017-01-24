@@ -61,11 +61,12 @@ public class SyncMaintenanceMessageListener extends BaseMessageListener {
 
 					@Override
 					protected void addCriteria(DynamicQuery dynamicQuery) {
-						Property modifiedTime = PropertyFactoryUtil.forName(
-							"modifiedTime");
+						Property modifiedTimeProperty =
+							PropertyFactoryUtil.forName("modifiedTime");
 
 						dynamicQuery.add(
-							modifiedTime.le(latestModifiedTime - Time.HOUR));
+							modifiedTimeProperty.le(
+								latestModifiedTime - Time.HOUR));
 					}
 
 					@Override
