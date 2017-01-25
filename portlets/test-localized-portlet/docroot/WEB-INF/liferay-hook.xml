@@ -6,4 +6,5 @@
 	<language-properties>com/liferay/testlocalized/resources/Language_en.properties</language-properties>
 	<language-properties>com/liferay/testlocalized/resources/Language_es.properties</language-properties>
 	<language-properties>com/liferay/testlocalized/resources/Language_fr_FR.properties</language-properties>
+	<language-properties>com/liferay/testlocalized/resources/Language2.properties</language-properties>
 </hook>
