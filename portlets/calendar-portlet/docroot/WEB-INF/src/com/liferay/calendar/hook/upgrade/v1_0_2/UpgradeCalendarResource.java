@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.dao.jdbc.DataAccess;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.Company;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Role;
@@ -86,10 +87,15 @@ public class UpgradeCalendarResource extends UpgradeProcess {
 		try {
 			con = DataAccess.getUpgradeOptimizedConnection();
 
-			ps = con.prepareStatement(
-				"select Calendar.calendarId from Calendar join " +
-					"CalendarResource where CalendarResource.classNameId = " +
-						"? and CalendarResource.userId = ?");
+			StringBundler sb = new StringBundler(5);
+
+			sb.append("select Calendar.calendarId from Calendar join ");
+			sb.append("CalendarResource on Calendar.calendarResourceId = ");
+			sb.append("CalendarResource.calendarResourceId where ");
+			sb.append("CalendarResource.classNameId = ? and ");
+			sb.append("CalendarResource.userId = ?");
+
+			ps = con.prepareStatement(sb.toString());
 
 			ps.setLong(1, groupClassNameId);
 			ps.setLong(2, defaultUserId);
