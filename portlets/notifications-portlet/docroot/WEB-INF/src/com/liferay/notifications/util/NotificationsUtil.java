@@ -20,8 +20,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.notifications.NotificationEvent;
 import com.liferay.portal.kernel.notifications.NotificationEventFactoryUtil;
 import com.liferay.portal.kernel.notifications.UserNotificationManagerUtil;
@@ -308,8 +306,6 @@ public class NotificationsUtil {
 						}
 					}
 					catch (Exception e) {
-						_log.error(e, e);
-
 						continue;
 					}
 
@@ -335,9 +331,6 @@ public class NotificationsUtil {
 		}
 
 		private static final long serialVersionUID = 1L;
-
-		private static Log _log = LogFactoryUtil.getLog(
-			NotificationsUtil.class);
 
 		private long _companyId;
 		private JSONObject _notificationEventJSONObject;
