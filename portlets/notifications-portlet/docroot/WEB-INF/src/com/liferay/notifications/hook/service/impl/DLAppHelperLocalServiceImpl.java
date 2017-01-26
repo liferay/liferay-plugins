@@ -30,11 +30,8 @@ import com.liferay.portlet.asset.AssetRendererFactoryRegistryUtil;
 import com.liferay.portlet.asset.model.AssetRenderer;
 import com.liferay.portlet.asset.model.AssetRendererFactory;
 import com.liferay.portlet.documentlibrary.model.DLFileEntry;
-import com.liferay.portlet.documentlibrary.model.DLFileEntryType;
-import com.liferay.portlet.documentlibrary.model.DLFileEntryTypeConstants;
 import com.liferay.portlet.documentlibrary.service.DLAppHelperLocalService;
 import com.liferay.portlet.documentlibrary.service.DLAppHelperLocalServiceWrapper;
-import com.liferay.portlet.documentlibrary.service.DLFileEntryTypeLocalServiceUtil;
 
 import java.io.Serializable;
 
@@ -127,31 +124,6 @@ public class DLAppHelperLocalServiceImpl
 				new ObjectValuePair<String, Long>(
 					_FOLDER_CLASS_NAME, folderId));
 		}
-
-		DLFileEntry dlFileEntry = (DLFileEntry)fileEntry.getModel();
-
-		DLFileEntryType dlFileEntryType =
-			DLFileEntryTypeLocalServiceUtil.getDLFileEntryType(
-				dlFileEntry.getFileEntryTypeId());
-
-		long dlFileEntryTypeId = dlFileEntryType.getFileEntryTypeId();
-
-		if (dlFileEntryTypeId ==
-				DLFileEntryTypeConstants.FILE_ENTRY_TYPE_ID_BASIC_DOCUMENT) {
-
-			subscribersOVPs.add(
-				new ObjectValuePair<String, Long>(
-					DLFileEntryType.class.getName(), dlFileEntry.getGroupId()));
-		}
-		else {
-			subscribersOVPs.add(
-				new ObjectValuePair<String, Long>(
-					DLFileEntryType.class.getName(), dlFileEntryTypeId));
-		}
-
-		subscribersOVPs.add(
-			new ObjectValuePair<String, Long>(
-				DLFileEntry.class.getName(), fileEntry.getFileEntryId()));
 
 		return subscribersOVPs;
 	}
