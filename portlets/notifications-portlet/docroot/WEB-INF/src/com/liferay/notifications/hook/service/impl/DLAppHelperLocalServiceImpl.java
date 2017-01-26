@@ -100,7 +100,7 @@ public class DLAppHelperLocalServiceImpl
 	}
 
 	protected List<ObjectValuePair<String, Long>> getSubscribersOVPs(
-			FileVersion fileVersion)
+			FileVersion latestFileVersion)
 		throws PortalException, SystemException {
 
 		List<ObjectValuePair<String, Long>> subscribersOVPs =
@@ -108,11 +108,11 @@ public class DLAppHelperLocalServiceImpl
 
 		subscribersOVPs.add(
 			new ObjectValuePair<String, Long>(
-				_FOLDER_CLASS_NAME, fileVersion.getGroupId()));
+				_FOLDER_CLASS_NAME, latestFileVersion.getGroupId()));
 
 		List<Long> folderIds = new ArrayList<Long>();
 
-		FileEntry fileEntry = fileVersion.getFileEntry();
+		FileEntry fileEntry = latestFileVersion.getFileEntry();
 
 		Folder folder = fileEntry.getFolder();
 
@@ -141,17 +141,17 @@ public class DLAppHelperLocalServiceImpl
 
 			subscribersOVPs.add(
 				new ObjectValuePair<String, Long>(
-					_DL_FILE_ENTRY_TYPE_CLASS_NAME, fileVersion.getGroupId()));
+					DLFileEntryType.class.getName(), dlFileEntry.getGroupId()));
 		}
 		else {
 			subscribersOVPs.add(
 				new ObjectValuePair<String, Long>(
-					_DL_FILE_ENTRY_TYPE_CLASS_NAME, dlFileEntryTypeId));
+					DLFileEntryType.class.getName(), dlFileEntryTypeId));
 		}
 
 		subscribersOVPs.add(
 			new ObjectValuePair<String, Long>(
-				_DL_FILE_ENTRY_CLASS_NAME, fileEntry.getFileEntryId()));
+				DLFileEntry.class.getName(), fileEntry.getFileEntryId()));
 
 		return subscribersOVPs;
 	}
@@ -162,9 +162,6 @@ public class DLAppHelperLocalServiceImpl
 
 	private static final String _DL_FILE_ENTRY_CLASS_NAME =
 		DLFileEntry.class.getName();
-
-	private static final String _DL_FILE_ENTRY_TYPE_CLASS_NAME =
-		DLFileEntryType.class.getName();
 
 	private static final String _FOLDER_CLASS_NAME = Folder.class.getName();
 
