@@ -20,10 +20,10 @@
 	/>
 
 	<path id="classpath.com.liferay.ant.mirrors.get">
-		<fileset dir="${sdk.dir}/dependencies/com.liferay.ant.mirrors.get/lib" includes="*.jar" />
+		<fileset dir="${sdk.dir}/dependencies/com.liferay.ant.mirrors.get/lib" erroronmissingdir="false" includes="*.jar" />
 	</path>
 
-	<taskdef classname="com.liferay.ant.mirrors.get.MirrorsGetTask" classpathref="classpath.com.liferay.ant.mirrors.get" name="mirrors-get" />
+	<taskdef classname="com.liferay.ant.mirrors.get.MirrorsGetTask" classpathref="classpath.com.liferay.ant.mirrors.get" name="mirrors-get" onerror="ignore" />
 
 	<if>
 		<not>
@@ -32,10 +32,21 @@
 		<then>
 			<mkdir dir="${ivy.home}" />
 
-			<mirrors-get
-				dest="${ivy.home}/ivy-${ivy.version}.jar"
-				src="${ivy.jar.url}"
-			/>
+			<if>
+				<typefound name="mirrors-get" />
+				<then>
+					<mirrors-get
+						dest="${ivy.home}/ivy-${ivy.version}.jar"
+						src="${ivy.jar.url}"
+					/>
+				</then>
+				<else>
+					<get
+						dest="${ivy.home}/ivy-${ivy.version}.jar"
+						src="${ivy.jar.url}"
+					/>
+				</else>
+			</if>
 		</then>
 	</if>
 
