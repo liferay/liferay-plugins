@@ -1296,6 +1296,12 @@ AUI.add(
 						instance.load();
 					},
 
+					_afterAddEventModalLoad: function(event) {
+						var instance = this;
+
+						event.target.node.getDOMNode().contentWindow.focus();
+					},
+
 					_afterSchedulerEventChange: function(event) {
 						var instance = this;
 
@@ -1455,6 +1461,12 @@ AUI.add(
 										titleCurrentValue: ''
 									}
 								)
+							},
+							function(modal) {
+								modal.iframe.on(
+									'load',
+									A.bind(instance._afterAddEventModalLoad, instance)
+								);
 							}
 						);
 					},
