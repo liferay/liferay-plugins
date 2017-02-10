@@ -1,7 +1,7 @@
 <ivysettings>
 	<settings defaultResolver="default" />
 
-	<credentials host="repository.liferay.com" passwd="${ivy.repository.liferay.private.password}" realm="Sonatype Nexus Repository Manager" username="${ivy.repository.liferay.private.username}" />
+	<credentials host="repository.liferay.com" passwd="${ivy.repository.liferay.private.password}" realm="Sonatype Nexus Repository Manager API" username="${ivy.repository.liferay.private.username}" />
 
 	<resolvers>
 		<ibiblio m2compatible="true" name="liferay-private" root="${ivy.repository.liferay.private.url}" />
