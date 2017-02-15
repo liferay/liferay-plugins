@@ -31,6 +31,8 @@ public interface PortletPropsKeys {
 
 	public static final String APPLE_SANDBOX = "apple.sandbox";
 
+	public static final String FIREBASE_API_KEY = "firebase.api.key";
+
 	public static final String LIFERAY_PASSWORD = "liferay.password";
 
 	public static final String LIFERAY_SERVER = "liferay.server";

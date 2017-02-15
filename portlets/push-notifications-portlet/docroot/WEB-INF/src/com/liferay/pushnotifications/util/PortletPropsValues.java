@@ -38,6 +38,9 @@ public class PortletPropsValues {
 	public static final boolean APPLE_SANDBOX = GetterUtil.getBoolean(
 		PortletProps.get(PortletPropsKeys.APPLE_SANDBOX), true);
 
+	public static final String FIREBASE_API_KEY = GetterUtil.getString(
+		PortletProps.get(PortletPropsKeys.FIREBASE_API_KEY));
+
 	public static final String LIFERAY_PASSWORD = GetterUtil.getString(
 		PortletProps.get(PortletPropsKeys.LIFERAY_PASSWORD));
 
