@@ -15,6 +15,9 @@
 		<entry key="apple">
 			<bean class="com.liferay.pushnotifications.sender.apple.ApplePushNotificationsSender" />
 		</entry>
+		<entry key="firebase">
+			<bean class="com.liferay.pushnotifications.sender.firebase.FirebasePushNotificationsSender" />
+		</entry>
 		<entry key="microsoft">
 			<bean class="com.liferay.pushnotifications.sender.microsoft.MicrosoftPushNotificationsSender" />
 		</entry>
