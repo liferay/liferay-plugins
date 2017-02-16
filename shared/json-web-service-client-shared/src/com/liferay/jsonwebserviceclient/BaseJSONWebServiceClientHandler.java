@@ -56,11 +56,11 @@ public abstract class BaseJSONWebServiceClientHandler {
 
 		if (matcher.find()) {
 			throw new JSONWebServiceInvocationException(
-					json, Integer.parseInt(matcher.group(2)));
+				json, Integer.parseInt(matcher.group(2)));
 		}
 		else if (json.contains("exception\":\"")) {
 			throw new JSONWebServiceInvocationException(
-					getExceptionMessage(json), getStatus(json));
+				getExceptionMessage(json), getStatus(json));
 		}
 
 		return json;
