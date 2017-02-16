@@ -43,29 +43,6 @@ public abstract class BaseJSONWebServiceClientHandler {
 			ObjectMapper.DefaultTyping.JAVA_LANG_OBJECT, "class");
 	}
 
-	protected String updateJSON(String json)
-		throws JSONWebServiceInvocationException {
-
-		if ((json == null) || json.equals("") || json.equals("{}") ||
-			json.equals("[]")) {
-
-			return null;
-		}
-
-		Matcher matcher = _errorMessagePattern.matcher(json);
-
-		if (matcher.find()) {
-			throw new JSONWebServiceInvocationException(
-				json, Integer.parseInt(matcher.group(2)));
-		}
-		else if (json.contains("exception\":\"")) {
-			throw new JSONWebServiceInvocationException(
-				getExceptionMessage(json), getStatus(json));
-		}
-
-		return json;
-	}
-
 	protected String doDelete(
 		String url, Map<String, String> parameters,
 		Map<String, String> headers) {
@@ -256,6 +233,29 @@ public abstract class BaseJSONWebServiceClientHandler {
 		}
 
 		return Integer.parseInt(statusMatcher.group(1));
+	}
+
+	protected String updateJSON(String json)
+		throws JSONWebServiceInvocationException {
+
+		if ((json == null) || json.equals("") || json.equals("{}") ||
+			json.equals("[]")) {
+
+			return null;
+		}
+
+		Matcher matcher = _errorMessagePattern.matcher(json);
+
+		if (matcher.find()) {
+			throw new JSONWebServiceInvocationException(
+				json, Integer.parseInt(matcher.group(2)));
+		}
+		else if (json.contains("exception\":\"")) {
+			throw new JSONWebServiceInvocationException(
+				getExceptionMessage(json), getStatus(json));
+		}
+
+		return json;
 	}
 
 	protected ObjectMapper objectMapper = new ObjectMapper();
