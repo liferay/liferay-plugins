@@ -113,7 +113,7 @@ catch (NoSuchRecordSetException nsrse) {
 				sb.append("selectRecordSet('");
 				sb.append(recordSet.getRecordSetId());
 				sb.append("','");
-				sb.append(recordSet.getName(locale));
+				sb.append(HtmlUtil.escapeJS(recordSet.getName(locale)));
 				sb.append("');");
 
 				String rowURL = sb.toString();
