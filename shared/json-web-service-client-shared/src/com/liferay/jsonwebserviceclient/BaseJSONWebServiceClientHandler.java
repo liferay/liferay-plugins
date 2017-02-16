@@ -43,7 +43,7 @@ public abstract class BaseJSONWebServiceClientHandler {
 			ObjectMapper.DefaultTyping.JAVA_LANG_OBJECT, "class");
 	}
 
-	protected String checkJSON(String json)
+	protected String updateJSON(String json)
 		throws JSONWebServiceInvocationException {
 
 		if ((json == null) || json.equals("") || json.equals("{}") ||
@@ -113,7 +113,7 @@ public abstract class BaseJSONWebServiceClientHandler {
 			Map<String, String> headers)
 		throws JSONWebServiceInvocationException {
 
-		String json = checkJSON(doGet(url, parameters, headers));
+		String json = updateJSON(doGet(url, parameters, headers));
 
 		if (json == null) {
 			return Collections.emptyList();
@@ -150,7 +150,7 @@ public abstract class BaseJSONWebServiceClientHandler {
 			Class<T> clazz, String url, String... parametersArray)
 		throws JSONWebServiceInvocationException {
 
-		String json = checkJSON(doGet(url, parametersArray));
+		String json = updateJSON(doGet(url, parametersArray));
 
 		if (json == null) {
 			return null;
@@ -205,7 +205,7 @@ public abstract class BaseJSONWebServiceClientHandler {
 			Class<T> clazz, String url, String... parametersArray)
 		throws JSONWebServiceInvocationException {
 
-		String json = checkJSON(doPost(url, parametersArray));
+		String json = updateJSON(doPost(url, parametersArray));
 
 		if (json == null) {
 			return null;
