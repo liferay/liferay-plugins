@@ -52,11 +52,11 @@ public abstract class BaseJSONWebServiceClientHandler {
 			return null;
 		}
 
-		Matcher errorMessageMatcher = _errorMessagePattern.matcher(json);
+		Matcher matcher = _errorMessagePattern.matcher(json);
 
-		if (errorMessageMatcher.find()) {
+		if (matcher.find()) {
 			throw new JSONWebServiceInvocationException(
-					json, Integer.parseInt(errorMessageMatcher.group(2)));
+					json, Integer.parseInt(matcher.group(2)));
 		}
 		else if (json.contains("exception\":\"")) {
 			throw new JSONWebServiceInvocationException(
