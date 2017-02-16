@@ -221,10 +221,14 @@ public class NotificationUtil {
 
 		Set<User> users = new HashSet<User>();
 
-		users.add(UserLocalServiceUtil.getUser(calendarBooking.getUserId()));
-		users.add(UserLocalServiceUtil.getUser(calendarResource.getUserId()));
+		users.add(UserLocalServiceUtil.fetchUser(calendarBooking.getUserId()));
+		users.add(UserLocalServiceUtil.fetchUser(calendarResource.getUserId()));
 
 		for (User user : users) {
+			if (user == null) {
+				continue;
+			}
+
 			notificationRecipients.add(new NotificationRecipient(user));
 		}
 
