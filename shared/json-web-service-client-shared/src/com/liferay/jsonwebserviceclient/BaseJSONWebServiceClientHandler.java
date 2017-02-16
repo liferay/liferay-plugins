@@ -43,6 +43,29 @@ public abstract class BaseJSONWebServiceClientHandler {
 			ObjectMapper.DefaultTyping.JAVA_LANG_OBJECT, "class");
 	}
 
+	protected String checkJSON(String json)
+		throws JSONWebServiceInvocationException {
+
+		if ((json == null) || json.equals("") || json.equals("{}") ||
+			json.equals("[]")) {
+
+			return null;
+		}
+
+		Matcher errorMessageMatcher = _errorMessagePattern.matcher(json);
+
+		if (errorMessageMatcher.find()) {
+			throw new JSONWebServiceInvocationException(
+					json, Integer.parseInt(errorMessageMatcher.group(2)));
+		}
+		else if (json.contains("exception\":\"")) {
+			throw new JSONWebServiceInvocationException(
+					getExceptionMessage(json), getStatus(json));
+		}
+
+		return json;
+	}
+
 	protected String doDelete(
 		String url, Map<String, String> parameters,
 		Map<String, String> headers) {
@@ -90,17 +113,10 @@ public abstract class BaseJSONWebServiceClientHandler {
 			Map<String, String> headers)
 		throws JSONWebServiceInvocationException {
 
-		String json = doGet(url, parameters, headers);
+		String json = checkJSON(doGet(url, parameters, headers));
 
-		if ((json == null) || json.equals("") || json.equals("{}") ||
-			json.equals("[]")) {
-
+		if (json == null) {
 			return Collections.emptyList();
-		}
-
-		if (json.contains("exception\":\"")) {
-			throw new JSONWebServiceInvocationException(
-				getExceptionMessage(json), getStatus(json));
 		}
 
 		try {
@@ -134,15 +150,10 @@ public abstract class BaseJSONWebServiceClientHandler {
 			Class<T> clazz, String url, String... parametersArray)
 		throws JSONWebServiceInvocationException {
 
-		String json = doGet(url, parametersArray);
+		String json = checkJSON(doGet(url, parametersArray));
 
-		if ((json == null) || json.equals("") || json.equals("{}")) {
+		if (json == null) {
 			return null;
-		}
-
-		if (json.contains("exception\":\"")) {
-			throw new JSONWebServiceInvocationException(
-				getExceptionMessage(json), getStatus(json));
 		}
 
 		try {
@@ -194,15 +205,10 @@ public abstract class BaseJSONWebServiceClientHandler {
 			Class<T> clazz, String url, String... parametersArray)
 		throws JSONWebServiceInvocationException {
 
-		String json = doPost(url, parametersArray);
+		String json = checkJSON(doPost(url, parametersArray));
 
-		if ((json == null) || json.equals("") || json.equals("{}")) {
+		if (json == null) {
 			return null;
-		}
-
-		if (json.contains("exception\":\"")) {
-			throw new JSONWebServiceInvocationException(
-				getExceptionMessage(json), getStatus(json));
 		}
 
 		try {
@@ -254,6 +260,8 @@ public abstract class BaseJSONWebServiceClientHandler {
 
 	protected ObjectMapper objectMapper = new ObjectMapper();
 
+	private final Pattern _errorMessagePattern = Pattern.compile(
+		"errorCode\":\\s*(\\d+).+message\":.+status\":\\s*(\\d+)");
 	private final Pattern _statusPattern = Pattern.compile("status\":(\\d+)");
 
 }
