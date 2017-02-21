@@ -84,15 +84,15 @@ public class FirebasePushNotificationsSender
 
 		Message.Builder builder = new Message.Builder();
 
-		builder.to(tokens);
-		builder.notification(buildNotification(payloadJSONObject));
-
 		boolean silent = payloadJSONObject.getBoolean(
 			PushNotificationsConstants.KEY_SILENT);
 
 		if (silent) {
 			builder.contentAvailable(silent);
 		}
+
+		builder.notification(buildNotification(payloadJSONObject));
+		builder.to(tokens);
 
 		payloadJSONObject.remove(PushNotificationsConstants.KEY_SILENT);
 
