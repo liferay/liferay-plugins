@@ -1420,12 +1420,17 @@ Please find a solution that does not require portal-impl.jar.
 						</then>
 					</if>
 				</then>
-				<else>
-					<loop-macrodef-or-target
-						module.dirs="@{module.dir}"
-						target.name="jar"
-					/>
-				</else>
+				<elseif>
+					<not>
+						<antelope:endswith string="${plugin.name}" with="-ext" />
+					</not>
+					<then>
+						<loop-macrodef-or-target
+							module.dirs="@{module.dir}"
+							target.name="jar"
+						/>
+					</then>
+				</elseif>
 			</if>
 		</sequential>
 	</macrodef>
