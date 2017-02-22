@@ -1,8 +1,18 @@
 <?xml version="1.0"?>
 <!DOCTYPE project>
 
-<project name="ext" basedir="." default="deploy">
+<project name="ext" basedir="." default="deploy" xmlns:antelope="antlib:ise.antelope.tasks">
 	<import file="../build-common-plugins.xml" />
+
+	<target name="clean">
+		<antcall target="loop-modules">
+			<param name="loop.modules.cmd" value="clean-module" />
+		</antcall>
+	</target>
+
+	<target name="clean-module">
+		<ant dir="${module.name}" target="clean" inheritAll="false" />
+	</target>
 
 	<target name="create">
 		<if>
@@ -43,6 +53,40 @@
 			<replacefilter token="@ext.name@" value="${ext.name}" />
 			<replacefilter token="@plugin.type.dir@" value="${plugin.type.dir}" />
 		</replace>
+	</target>
+
+	<target name="deploy">
+		<antcall target="loop-modules">
+			<param name="loop.modules.cmd" value="deploy-module" />
+		</antcall>
+	</target>
+
+	<target name="deploy-module">
+		<ant dir="${module.name}" target="deploy" inheritAll="false" />
+	</target>
+
+	<target name="loop-modules">
+		<if>
+			<not>
+				<equals arg1="${plugins.includes}" arg2="" />
+			</not>
+			<then>
+				<for param="module.name">
+					<path>
+						<dirset dir="." excludes="${plugins.excludes}" includes="${plugins.includes}" />
+					</path>
+					<sequential>
+						<antelope:stringutil string="@{module.name}" property="module.name.unix">
+							<antelope:replace regex="\\" replacement="/" />
+						</antelope:stringutil>
+
+						<antelope:grep in="${module.name.unix}" regex="(.*/)(.*)" group="2" property="module.name" />
+
+						<antcall target="${loop.modules.cmd}" />
+					</sequential>
+				</for>
+			</then>
+		</if>
 	</target>
 
 	<target name="upgrade-ext">

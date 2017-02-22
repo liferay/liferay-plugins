@@ -198,7 +198,11 @@ loader.
 		/>
 	</target>
 
-	<target name="deploy-properties">
+    <target name="deploy" depends="war">
+        <copy file="${plugin.file}" todir="${auto.deploy.dir}" />
+    </target>
+
+    <target name="deploy-properties">
 		<copy todir="${app.server.classes.portal.dir}" overwrite="true">
 			<fileset dir="docroot/WEB-INF/ext-impl/src" includes="portal-*.properties,system-*.properties" />
 		</copy>
