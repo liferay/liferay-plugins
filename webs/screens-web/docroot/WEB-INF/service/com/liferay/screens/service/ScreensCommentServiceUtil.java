@@ -19,24 +19,24 @@ import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.InvokableService;
 
 /**
- * Provides the remote service utility for ScreensAssetEntry. This utility wraps
- * {@link com.liferay.screens.service.impl.ScreensAssetEntryServiceImpl} and is the
+ * Provides the remote service utility for ScreensComment. This utility wraps
+ * {@link com.liferay.screens.service.impl.ScreensCommentServiceImpl} and is the
  * primary access point for service operations in application layer code running
  * on a remote server. Methods of this service are expected to have security
  * checks based on the propagated JAAS credentials because this service can be
  * accessed remotely.
  *
  * @author José Manuel Navarro
- * @see ScreensAssetEntryService
- * @see com.liferay.screens.service.base.ScreensAssetEntryServiceBaseImpl
- * @see com.liferay.screens.service.impl.ScreensAssetEntryServiceImpl
+ * @see ScreensCommentService
+ * @see com.liferay.screens.service.base.ScreensCommentServiceBaseImpl
+ * @see com.liferay.screens.service.impl.ScreensCommentServiceImpl
  * @generated
  */
-public class ScreensAssetEntryServiceUtil {
+public class ScreensCommentServiceUtil {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify this class directly. Add custom service methods to {@link com.liferay.screens.service.impl.ScreensAssetEntryServiceImpl} and rerun ServiceBuilder to regenerate this class.
+	 * Never modify this class directly. Add custom service methods to {@link com.liferay.screens.service.impl.ScreensCommentServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
 
 	/**
@@ -63,55 +63,57 @@ public class ScreensAssetEntryServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
-	public static com.liferay.portal.kernel.json.JSONArray getAssetEntries(
-		com.liferay.portlet.asset.service.persistence.AssetEntryQuery assetEntryQuery,
-		java.util.Locale locale)
+	public static com.liferay.portal.kernel.json.JSONObject addComment(
+		java.lang.String className, long classPK, java.lang.String body)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getService().getAssetEntries(assetEntryQuery, locale);
+		return getService().addComment(className, classPK, body);
 	}
 
-	public static com.liferay.portal.kernel.json.JSONArray getAssetEntries(
-		long companyId, long groupId, java.lang.String portletItemName,
-		java.util.Locale locale, int max)
+	public static com.liferay.portal.kernel.json.JSONObject getComment(
+		long commentId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getService()
-				   .getAssetEntries(companyId, groupId, portletItemName,
-			locale, max);
+		return getService().getComment(commentId);
 	}
 
-	public static com.liferay.portal.kernel.json.JSONObject getAssetEntry(
-		long entryId, java.util.Locale locale)
+	public static com.liferay.portal.kernel.json.JSONArray getComments(
+		java.lang.String className, long classPK, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getService().getAssetEntry(entryId, locale);
+		return getService().getComments(className, classPK, start, end);
 	}
 
-	public static com.liferay.portal.kernel.json.JSONObject getAssetEntry(
-		java.lang.String className, long classPK, java.util.Locale locale)
+	public static int getCommentsCount(java.lang.String className, long classPK)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getService().getAssetEntry(className, classPK, locale);
+		return getService().getCommentsCount(className, classPK);
+	}
+
+	public static com.liferay.portal.kernel.json.JSONObject updateComment(
+		long commentId, java.lang.String body)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().updateComment(commentId, body);
 	}
 
 	public static void clearService() {
 		_service = null;
 	}
 
-	public static ScreensAssetEntryService getService() {
+	public static ScreensCommentService getService() {
 		if (_service == null) {
 			InvokableService invokableService = (InvokableService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
-					ScreensAssetEntryService.class.getName());
+					ScreensCommentService.class.getName());
 
-			if (invokableService instanceof ScreensAssetEntryService) {
-				_service = (ScreensAssetEntryService)invokableService;
+			if (invokableService instanceof ScreensCommentService) {
+				_service = (ScreensCommentService)invokableService;
 			}
 			else {
-				_service = new ScreensAssetEntryServiceClp(invokableService);
+				_service = new ScreensCommentServiceClp(invokableService);
 			}
 
-			ReferenceRegistry.registerReference(ScreensAssetEntryServiceUtil.class,
+			ReferenceRegistry.registerReference(ScreensCommentServiceUtil.class,
 				"_service");
 		}
 
@@ -121,8 +123,8 @@ public class ScreensAssetEntryServiceUtil {
 	/**
 	 * @deprecated As of 6.2.0
 	 */
-	public void setService(ScreensAssetEntryService service) {
+	public void setService(ScreensCommentService service) {
 	}
 
-	private static ScreensAssetEntryService _service;
+	private static ScreensCommentService _service;
 }

@@ -25,25 +25,25 @@ import com.liferay.portal.service.BaseService;
 import com.liferay.portal.service.InvokableService;
 
 /**
- * Provides the remote service interface for ScreensAssetEntry. Methods of this
+ * Provides the remote service interface for ScreensRatingsEntry. Methods of this
  * service are expected to have security checks based on the propagated JAAS
  * credentials because this service can be accessed remotely.
  *
  * @author José Manuel Navarro
- * @see ScreensAssetEntryServiceUtil
- * @see com.liferay.screens.service.base.ScreensAssetEntryServiceBaseImpl
- * @see com.liferay.screens.service.impl.ScreensAssetEntryServiceImpl
+ * @see ScreensRatingsEntryServiceUtil
+ * @see com.liferay.screens.service.base.ScreensRatingsEntryServiceBaseImpl
+ * @see com.liferay.screens.service.impl.ScreensRatingsEntryServiceImpl
  * @generated
  */
 @AccessControlled
 @JSONWebService
 @Transactional(isolation = Isolation.PORTAL, rollbackFor =  {
 	PortalException.class, SystemException.class})
-public interface ScreensAssetEntryService extends BaseService, InvokableService {
+public interface ScreensRatingsEntryService extends BaseService, InvokableService {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify or reference this interface directly. Always use {@link ScreensAssetEntryServiceUtil} to access the screens asset entry remote service. Add custom service methods to {@link com.liferay.screens.service.impl.ScreensAssetEntryServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
+	 * Never modify or reference this interface directly. Always use {@link ScreensRatingsEntryServiceUtil} to access the screens ratings entry remote service. Add custom service methods to {@link com.liferay.screens.service.impl.ScreensRatingsEntryServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 
 	/**
@@ -65,29 +65,26 @@ public interface ScreensAssetEntryService extends BaseService, InvokableService 
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.kernel.json.JSONArray getAssetEntries(
-		com.liferay.portlet.asset.service.persistence.AssetEntryQuery assetEntryQuery,
-		java.util.Locale locale)
+	public com.liferay.portal.kernel.json.JSONObject deleteRatingsEntry(
+		long classPK, java.lang.String className, int ratingsLength)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.kernel.json.JSONArray getAssetEntries(
-		long companyId, long groupId, java.lang.String portletItemName,
-		java.util.Locale locale, int max)
+	public com.liferay.portal.kernel.json.JSONObject getRatingsEntries(
+		long assetEntryId, int ratingsLength)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.kernel.json.JSONObject getAssetEntry(
-		long entryId, java.util.Locale locale)
+	public com.liferay.portal.kernel.json.JSONObject getRatingsEntries(
+		long classPK, java.lang.String className, int ratingsLength)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.kernel.json.JSONObject getAssetEntry(
-		java.lang.String className, long classPK, java.util.Locale locale)
+	public com.liferay.portal.kernel.json.JSONObject updateRatingsEntry(
+		long classPK, java.lang.String className, double score,
+		int ratingsLength)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 }

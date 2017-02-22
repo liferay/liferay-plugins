@@ -19,8 +19,10 @@ import com.liferay.portal.kernel.messaging.Message;
 
 import com.liferay.screens.service.ClpSerializer;
 import com.liferay.screens.service.ScreensAssetEntryServiceUtil;
+import com.liferay.screens.service.ScreensCommentServiceUtil;
 import com.liferay.screens.service.ScreensDDLRecordServiceUtil;
 import com.liferay.screens.service.ScreensJournalArticleServiceUtil;
+import com.liferay.screens.service.ScreensRatingsEntryServiceUtil;
 import com.liferay.screens.service.ScreensUserServiceUtil;
 
 /**
@@ -40,9 +42,13 @@ public class ClpMessageListener extends BaseMessageListener {
 				servletContextName.equals(getServletContextName())) {
 			ScreensAssetEntryServiceUtil.clearService();
 
+			ScreensCommentServiceUtil.clearService();
+
 			ScreensDDLRecordServiceUtil.clearService();
 
 			ScreensJournalArticleServiceUtil.clearService();
+
+			ScreensRatingsEntryServiceUtil.clearService();
 
 			ScreensUserServiceUtil.clearService();
 		}

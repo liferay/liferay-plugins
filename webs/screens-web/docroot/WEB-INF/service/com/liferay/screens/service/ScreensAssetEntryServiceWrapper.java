@@ -77,6 +77,23 @@ public class ScreensAssetEntryServiceWrapper implements ScreensAssetEntryService
 			portletItemName, locale, max);
 	}
 
+	@Override
+	public com.liferay.portal.kernel.json.JSONObject getAssetEntry(
+		long entryId, java.util.Locale locale)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _screensAssetEntryService.getAssetEntry(entryId, locale);
+	}
+
+	@Override
+	public com.liferay.portal.kernel.json.JSONObject getAssetEntry(
+		java.lang.String className, long classPK, java.util.Locale locale)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _screensAssetEntryService.getAssetEntry(className, classPK,
+			locale);
+	}
+
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */

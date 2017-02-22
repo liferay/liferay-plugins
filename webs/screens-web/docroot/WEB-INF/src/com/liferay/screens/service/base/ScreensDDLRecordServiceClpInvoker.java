@@ -24,63 +24,63 @@ import java.util.Arrays;
  */
 public class ScreensDDLRecordServiceClpInvoker {
 	public ScreensDDLRecordServiceClpInvoker() {
-		_methodName32 = "getBeanIdentifier";
+		_methodName36 = "getBeanIdentifier";
 
-		_methodParameterTypes32 = new String[] {  };
+		_methodParameterTypes36 = new String[] {  };
 
-		_methodName33 = "setBeanIdentifier";
+		_methodName37 = "setBeanIdentifier";
 
-		_methodParameterTypes33 = new String[] { "java.lang.String" };
+		_methodParameterTypes37 = new String[] { "java.lang.String" };
 
-		_methodName36 = "getDDLRecord";
+		_methodName40 = "getDDLRecord";
 
-		_methodParameterTypes36 = new String[] { "long", "java.util.Locale" };
+		_methodParameterTypes40 = new String[] { "long", "java.util.Locale" };
 
-		_methodName37 = "getDDLRecords";
+		_methodName41 = "getDDLRecords";
 
-		_methodParameterTypes37 = new String[] {
+		_methodParameterTypes41 = new String[] {
 				"long", "java.util.Locale", "int", "int",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
-		_methodName38 = "getDDLRecords";
+		_methodName42 = "getDDLRecords";
 
-		_methodParameterTypes38 = new String[] {
+		_methodParameterTypes42 = new String[] {
 				"long", "long", "java.util.Locale", "int", "int",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
-		_methodName39 = "getDDLRecordsCount";
+		_methodName43 = "getDDLRecordsCount";
 
-		_methodParameterTypes39 = new String[] { "long" };
+		_methodParameterTypes43 = new String[] { "long" };
 
-		_methodName40 = "getDDLRecordsCount";
+		_methodName44 = "getDDLRecordsCount";
 
-		_methodParameterTypes40 = new String[] { "long", "long" };
+		_methodParameterTypes44 = new String[] { "long", "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
 		Object[] arguments) throws Throwable {
-		if (_methodName32.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes32, parameterTypes)) {
+		if (_methodName36.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes36, parameterTypes)) {
 			return ScreensDDLRecordServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName33.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes33, parameterTypes)) {
+		if (_methodName37.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes37, parameterTypes)) {
 			ScreensDDLRecordServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
 		}
 
-		if (_methodName36.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes36, parameterTypes)) {
+		if (_methodName40.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes40, parameterTypes)) {
 			return ScreensDDLRecordServiceUtil.getDDLRecord(((Long)arguments[0]).longValue(),
 				(java.util.Locale)arguments[1]);
 		}
 
-		if (_methodName37.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes37, parameterTypes)) {
+		if (_methodName41.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes41, parameterTypes)) {
 			return ScreensDDLRecordServiceUtil.getDDLRecords(((Long)arguments[0]).longValue(),
 				(java.util.Locale)arguments[1],
 				((Integer)arguments[2]).intValue(),
@@ -88,8 +88,8 @@ public class ScreensDDLRecordServiceClpInvoker {
 				(com.liferay.portal.kernel.util.OrderByComparator)arguments[4]);
 		}
 
-		if (_methodName38.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes38, parameterTypes)) {
+		if (_methodName42.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes42, parameterTypes)) {
 			return ScreensDDLRecordServiceUtil.getDDLRecords(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				(java.util.Locale)arguments[2],
@@ -98,13 +98,13 @@ public class ScreensDDLRecordServiceClpInvoker {
 				(com.liferay.portal.kernel.util.OrderByComparator)arguments[5]);
 		}
 
-		if (_methodName39.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes39, parameterTypes)) {
+		if (_methodName43.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes43, parameterTypes)) {
 			return ScreensDDLRecordServiceUtil.getDDLRecordsCount(((Long)arguments[0]).longValue());
 		}
 
-		if (_methodName40.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes40, parameterTypes)) {
+		if (_methodName44.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes44, parameterTypes)) {
 			return ScreensDDLRecordServiceUtil.getDDLRecordsCount(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue());
 		}
@@ -112,18 +112,18 @@ public class ScreensDDLRecordServiceClpInvoker {
 		throw new UnsupportedOperationException();
 	}
 
-	private String _methodName32;
-	private String[] _methodParameterTypes32;
-	private String _methodName33;
-	private String[] _methodParameterTypes33;
 	private String _methodName36;
 	private String[] _methodParameterTypes36;
 	private String _methodName37;
 	private String[] _methodParameterTypes37;
-	private String _methodName38;
-	private String[] _methodParameterTypes38;
-	private String _methodName39;
-	private String[] _methodParameterTypes39;
 	private String _methodName40;
 	private String[] _methodParameterTypes40;
+	private String _methodName41;
+	private String[] _methodParameterTypes41;
+	private String _methodName42;
+	private String[] _methodParameterTypes42;
+	private String _methodName43;
+	private String[] _methodParameterTypes43;
+	private String _methodName44;
+	private String[] _methodParameterTypes44;
 }

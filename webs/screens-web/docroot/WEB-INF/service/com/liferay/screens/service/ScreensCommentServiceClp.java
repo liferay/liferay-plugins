@@ -20,8 +20,8 @@ import com.liferay.portal.service.InvokableService;
  * @author José Manuel Navarro
  * @generated
  */
-public class ScreensAssetEntryServiceClp implements ScreensAssetEntryService {
-	public ScreensAssetEntryServiceClp(InvokableService invokableService) {
+public class ScreensCommentServiceClp implements ScreensCommentService {
+	public ScreensCommentServiceClp(InvokableService invokableService) {
 		_invokableService = invokableService;
 
 		_methodName0 = "getBeanIdentifier";
@@ -32,28 +32,29 @@ public class ScreensAssetEntryServiceClp implements ScreensAssetEntryService {
 
 		_methodParameterTypes1 = new String[] { "java.lang.String" };
 
-		_methodName3 = "getAssetEntries";
+		_methodName3 = "addComment";
 
 		_methodParameterTypes3 = new String[] {
-				"com.liferay.portlet.asset.service.persistence.AssetEntryQuery",
-				"java.util.Locale"
+				"java.lang.String", "long", "java.lang.String"
 			};
 
-		_methodName4 = "getAssetEntries";
+		_methodName4 = "getComment";
 
-		_methodParameterTypes4 = new String[] {
-				"long", "long", "java.lang.String", "java.util.Locale", "int"
+		_methodParameterTypes4 = new String[] { "long" };
+
+		_methodName5 = "getComments";
+
+		_methodParameterTypes5 = new String[] {
+				"java.lang.String", "long", "int", "int"
 			};
 
-		_methodName5 = "getAssetEntry";
+		_methodName6 = "getCommentsCount";
 
-		_methodParameterTypes5 = new String[] { "long", "java.util.Locale" };
+		_methodParameterTypes6 = new String[] { "java.lang.String", "long" };
 
-		_methodName6 = "getAssetEntry";
+		_methodName7 = "updateComment";
 
-		_methodParameterTypes6 = new String[] {
-				"java.lang.String", "long", "java.util.Locale"
-			};
+		_methodParameterTypes7 = new String[] { "long", "java.lang.String" };
 	}
 
 	@Override
@@ -107,9 +108,8 @@ public class ScreensAssetEntryServiceClp implements ScreensAssetEntryService {
 	}
 
 	@Override
-	public com.liferay.portal.kernel.json.JSONArray getAssetEntries(
-		com.liferay.portlet.asset.service.persistence.AssetEntryQuery assetEntryQuery,
-		java.util.Locale locale)
+	public com.liferay.portal.kernel.json.JSONObject addComment(
+		java.lang.String className, long classPK, java.lang.String body)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -118,91 +118,12 @@ public class ScreensAssetEntryServiceClp implements ScreensAssetEntryService {
 			returnObj = _invokableService.invokeMethod(_methodName3,
 					_methodParameterTypes3,
 					new Object[] {
-						ClpSerializer.translateInput(assetEntryQuery),
+						ClpSerializer.translateInput(className),
 						
-					ClpSerializer.translateInput(locale)
+					classPK,
+						
+					ClpSerializer.translateInput(body)
 					});
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (com.liferay.portal.kernel.json.JSONArray)ClpSerializer.translateOutput(returnObj);
-	}
-
-	@Override
-	public com.liferay.portal.kernel.json.JSONArray getAssetEntries(
-		long companyId, long groupId, java.lang.String portletItemName,
-		java.util.Locale locale, int max)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableService.invokeMethod(_methodName4,
-					_methodParameterTypes4,
-					new Object[] {
-						companyId,
-						
-					groupId,
-						
-					ClpSerializer.translateInput(portletItemName),
-						
-					ClpSerializer.translateInput(locale),
-						
-					max
-					});
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (com.liferay.portal.kernel.json.JSONArray)ClpSerializer.translateOutput(returnObj);
-	}
-
-	@Override
-	public com.liferay.portal.kernel.json.JSONObject getAssetEntry(
-		long entryId, java.util.Locale locale)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableService.invokeMethod(_methodName5,
-					_methodParameterTypes5,
-					new Object[] { entryId, ClpSerializer.translateInput(locale) });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -228,8 +149,83 @@ public class ScreensAssetEntryServiceClp implements ScreensAssetEntryService {
 	}
 
 	@Override
-	public com.liferay.portal.kernel.json.JSONObject getAssetEntry(
-		java.lang.String className, long classPK, java.util.Locale locale)
+	public com.liferay.portal.kernel.json.JSONObject getComment(long commentId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableService.invokeMethod(_methodName4,
+					_methodParameterTypes4, new Object[] { commentId });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.portal.kernel.json.JSONObject)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
+	public com.liferay.portal.kernel.json.JSONArray getComments(
+		java.lang.String className, long classPK, int start, int end)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableService.invokeMethod(_methodName5,
+					_methodParameterTypes5,
+					new Object[] {
+						ClpSerializer.translateInput(className),
+						
+					classPK,
+						
+					start,
+						
+					end
+					});
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.portal.kernel.json.JSONArray)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
+	public int getCommentsCount(java.lang.String className, long classPK)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -240,10 +236,43 @@ public class ScreensAssetEntryServiceClp implements ScreensAssetEntryService {
 					new Object[] {
 						ClpSerializer.translateInput(className),
 						
-					classPK,
-						
-					ClpSerializer.translateInput(locale)
+					classPK
 					});
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return ((Integer)returnObj).intValue();
+	}
+
+	@Override
+	public com.liferay.portal.kernel.json.JSONObject updateComment(
+		long commentId, java.lang.String body)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableService.invokeMethod(_methodName7,
+					_methodParameterTypes7,
+					new Object[] { commentId, ClpSerializer.translateInput(body) });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -281,4 +310,6 @@ public class ScreensAssetEntryServiceClp implements ScreensAssetEntryService {
 	private String[] _methodParameterTypes5;
 	private String _methodName6;
 	private String[] _methodParameterTypes6;
+	private String _methodName7;
+	private String[] _methodParameterTypes7;
 }
