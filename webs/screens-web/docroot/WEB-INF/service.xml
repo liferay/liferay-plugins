@@ -16,12 +16,23 @@
 		<reference package-path="com.liferay.portlet.dynamicdatamapping" entity="DDMStructure" />
 		<reference package-path="com.liferay.portlet.journal" entity="JournalArticle" />
 	</entity>
+	<entity name="ScreensComment" local-service="false" remote-service="true">
+		<reference package-path="com.liferay.portal" entity="ClassName" />
+		<reference package-path="com.liferay.portal" entity="Group"  />
+		<reference package-path="com.liferay.portlet.asset" entity="AssetEntry"  />
+		<reference package-path="com.liferay.portlet.messageboards" entity="MBDiscussion" />
+		<reference package-path="com.liferay.portlet.messageboards" entity="MBMessage"  />
+	</entity>
 	<entity name="ScreensDDLRecord" local-service="false" remote-service="true">
 		<reference package-path="com.liferay.portlet.dynamicdatalists" entity="DDLRecord" />
 	</entity>
 	<entity name="ScreensJournalArticle" local-service="false" remote-service="true">
 		<reference package-path="com.liferay.portlet.journal" entity="JournalArticle" />
 		<reference package-path="com.liferay.portlet.journal" entity="JournalArticleResource" />
+	</entity>
+	<entity name="ScreensRatingsEntry" local-service="false" remote-service="true">
+		<reference package-path="com.liferay.portlet.asset" entity="AssetEntry" />
+		<reference package-path="com.liferay.portlet.ratings" entity="RatingsEntry" />
 	</entity>
 	<entity name="ScreensUser" local-service="false" remote-service="true">
 		<reference package-path="com.liferay.portal" entity="Company" />

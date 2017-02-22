@@ -169,10 +169,63 @@ public class ScreensAssetEntryServiceImpl
 		}
 	}
 
-	protected boolean containsPermission(
-			PermissionChecker permissionChecker, AssetEntry assetEntry,
+	public JSONObject getAssetEntry(long entryId, Locale locale)
+		throws PortalException, SystemException {
+
+		checkPermission(getPermissionChecker(), entryId, ActionKeys.VIEW);
+
+		return toJSONObject(assetEntryLocalService.getEntry(entryId), locale);
+	}
+
+	public JSONObject getAssetEntry(
+			String className, long classPK, Locale locale)
+		throws PortalException, SystemException {
+
+		checkPermission(
+			getPermissionChecker(), className, classPK, ActionKeys.VIEW);
+
+		return toJSONObject(
+			assetEntryLocalService.getEntry(className, classPK), locale);
+	}
+
+	protected void checkPermission(
+		PermissionChecker permissionChecker, long entryId,
+		String actionId) throws PortalException {
+
+		try {
+			PortalClassInvoker.invoke(
+				false, _checkPermissionMethodKeyEntryId, permissionChecker,
+				entryId, actionId);
+		}
+		catch (PortalException pe) {
+			throw pe;
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+		}
+	}
+
+	protected void checkPermission(
+			PermissionChecker permissionChecker, String className, long classPK,
 			String actionId)
 		throws PortalException {
+
+		try {
+			PortalClassInvoker.invoke(
+				false, _checkPermissionMethodKeyClassNameClassPK,
+				permissionChecker, className, classPK, actionId);
+		}
+		catch (PortalException pe) {
+			throw pe;
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+		}
+	}
+
+	protected boolean containsPermission(
+		PermissionChecker permissionChecker, AssetEntry assetEntry,
+		String actionId) throws PortalException {
 
 		try {
 			return (Boolean)PortalClassInvoker.invoke(
@@ -356,16 +409,7 @@ public class ScreensAssetEntryServiceImpl
 		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 
 		for (AssetEntry assetEntry : assetEntries) {
-			JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
-				JSONFactoryUtil.looseSerialize(assetEntry));
-
-			jsonObject.put("className", assetEntry.getClassName());
-			jsonObject.put("description", assetEntry.getDescription(locale));
-			jsonObject.put("locale", String.valueOf(locale));
-			jsonObject.put(
-				"object", getAssetObjectJSONObject(assetEntry, locale));
-			jsonObject.put("summary", assetEntry.getSummary(locale));
-			jsonObject.put("title", assetEntry.getTitle(locale));
+			JSONObject jsonObject = toJSONObject(assetEntry, locale);
 
 			jsonArray.put(jsonObject);
 		}
@@ -373,11 +417,39 @@ public class ScreensAssetEntryServiceImpl
 		return jsonArray;
 	}
 
+	protected JSONObject toJSONObject(AssetEntry assetEntry, Locale locale)
+		throws PortalException, SystemException {
+
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
+			JSONFactoryUtil.looseSerialize(assetEntry));
+
+		jsonObject.put("className", assetEntry.getClassName());
+		jsonObject.put("description", assetEntry.getDescription(locale));
+		jsonObject.put("locale", String.valueOf(locale));
+		jsonObject.put("object", getAssetObjectJSONObject(assetEntry, locale));
+		jsonObject.put("summary", assetEntry.getSummary(locale));
+		jsonObject.put("title", assetEntry.getTitle(locale));
+		return jsonObject;
+	}
+
+	private static final MethodKey _checkPermissionMethodKeyClassNameClassPK =
+		new MethodKey(
+			ClassResolverUtil.resolveByPortalClassLoader(
+				"com.liferay.portlet.asset.service.permission." +
+				"AssetEntryPermission"),
+			"check", PermissionChecker.class, String.class, long.class,
+			String.class);
+	private static final MethodKey _checkPermissionMethodKeyEntryId =
+		new MethodKey(
+			ClassResolverUtil.resolveByPortalClassLoader(
+				"com.liferay.portlet.asset.service.permission." +
+				"AssetEntryPermission"),
+			"check", PermissionChecker.class, long.class, String.class);
 	private static final MethodKey _containsPermissionMethodKey =
 		new MethodKey(
 			ClassResolverUtil.resolveByPortalClassLoader(
 				"com.liferay.portlet.asset.service.permission." +
-					"AssetEntryPermission"),
+				"AssetEntryPermission"),
 			"contains", PermissionChecker.class, AssetEntry.class,
 			String.class);
 
