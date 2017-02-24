@@ -24,30 +24,6 @@
 
 	<pathconvert pathsep="," property="plugins.includes.path" refid="plugins.includes.path" targetos="unix" />
 
-	<macrodef name="extract-plugins-sdk">
-		<sequential>
-			<var name="plugins.sdk.name" value="com.liferay.portal.plugins.sdk-${lp.version}" />
-			<var name="plugins.sdk.zip.excludes" value="**/.gradle/**,**/build/**,**/gradle.properties,**/test.*.properties,*.iml,.git/**,.ivy/**,build.*.properties,build.gradle,dependencies/**/ivy.xml.MD5,dependencies/**/lib/**,dist/**,ext/*-ext/**,gradle/**,gradlew*,hooks/*-hook/**,ivy.xml.MD5,layouttpl/*-layouttpl/**,lib/**,portlets/*-portlet/**,private-plugins.txt,settings.gradle,shared/*-shared/**,source_formatter_*,suites/**,summary.*,themes/*-theme/**,tmp/**,tools/node-*/**,webs/*-web/**" />
-
-			<mkdir dir="dist" />
-
-			<delete file="dist/${plugins.sdk.name}.zip" />
-
-			<zip destfile="dist/${plugins.sdk.name}.zip" duplicate="preserve">
-				<zipfileset
-					dir="."
-					excludes="${plugins.sdk.zip.excludes}"
-					prefix="${plugins.sdk.name}"
-				/>
-				<zipfileset
-					dir="."
-					includes="lib/ant-contrib.jar,lib/antelopetasks.jar,lib/bcpg-jdk16.jar,lib/bcprov-jdk16.jar"
-					prefix="${plugins.sdk.name}"
-				/>
-			</zip>
-		</sequential>
-	</macrodef>
-
 	<target name="all">
 		<antcall target="clean" />
 		<antcall target="deploy" />
@@ -108,7 +84,25 @@
 	</target>
 
 	<target name="extract-plugins-sdk">
-		<extract-plugins-sdk />
+		<property name="plugins.sdk.name" value="com.liferay.portal.plugins.sdk-${lp.version}" />
+		<property name="plugins.sdk.zip.excludes" value="**/.gradle/**,**/build/**,**/gradle.properties,**/test.*.properties,*.iml,.git/**,.ivy/**,build.*.properties,build.gradle,dependencies/**/ivy.xml.MD5,dependencies/**/lib/**,dist/**,ext/*-ext/**,gradle/**,gradlew*,hooks/*-hook/**,ivy.xml.MD5,layouttpl/*-layouttpl/**,lib/**,portlets/*-portlet/**,private-plugins.txt,settings.gradle,shared/*-shared/**,source_formatter_*,suites/**,summary.*,themes/*-theme/**,tmp/**,tools/node-*/**,webs/*-web/**" />
+
+		<mkdir dir="dist" />
+
+		<delete file="dist/${plugins.sdk.name}.zip" />
+
+		<zip destfile="dist/${plugins.sdk.name}.zip" duplicate="preserve">
+			<zipfileset
+				dir="."
+				excludes="${plugins.sdk.zip.excludes}"
+				prefix="${plugins.sdk.name}"
+			/>
+			<zipfileset
+				dir="."
+				includes="lib/ant-contrib.jar,lib/antelopetasks.jar,lib/bcpg-jdk16.jar,lib/bcprov-jdk16.jar"
+				prefix="${plugins.sdk.name}"
+			/>
+		</zip>
 	</target>
 
 	<target name="format-javadoc">
