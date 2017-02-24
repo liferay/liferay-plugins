@@ -137,7 +137,7 @@
 		<ant dir="webs" inheritAll="false" target="format-javadoc" />
 	</target>
 
-	<target depends="extract-plugins-sdk-with-dependencies" name="publish-sdk">
+	<target depends="extract-plugins-sdk" name="publish-sdk">
 		<fail message="Please run either publish-sdk-release or publish-sdk-snapshot instead of this target.">
 			<condition>
 				<not>
@@ -162,13 +162,13 @@
 			<istrue value="${snapshot}" />
 		</condition>
 
-		<move file="dist/com.liferay.portal.plugins.sdk.with.dependencies-${lp.version}.zip" tofile="dist/com.liferay.portal.plugins.sdk.with.dependencies-${lp.version}${snapshot.version.suffix}.zip" />
+		<move file="dist/com.liferay.portal.plugins.sdk-${lp.version}.zip" tofile="dist/com.liferay.portal.plugins.sdk-${lp.version}${snapshot.version.suffix}.zip" />
 
-		<artifact:pom artifactId="com.liferay.portal.plugins.sdk.with.dependencies" groupId="com.liferay.portal" id="plugins.sdk.pom" packaging="zip" version="${lp.version}${snapshot.version.suffix}" />
+		<artifact:pom artifactId="com.liferay.portal.plugins.sdk" groupId="com.liferay.portal" id="plugins.sdk.pom" packaging="zip" version="${lp.version}${snapshot.version.suffix}" />
 
 		<artifact:writepom file="dist/plugins.sdk.pom" pomRefId="plugins.sdk.pom" />
 
-		<artifact:deploy file="dist/com.liferay.portal.plugins.sdk.with.dependencies-${lp.version}${snapshot.version.suffix}.zip">
+		<artifact:deploy file="dist/com.liferay.portal.plugins.sdk-${lp.version}${snapshot.version.suffix}.zip">
 			<pom file="dist/plugins.sdk.pom" />
 			<remoteRepository url="${remote.repository.url}">
 				<authentication password="${remote.repository.password}" username="${remote.repository.username}" />
