@@ -98,6 +98,9 @@
 		<if>
 			<equals arg1="${sdk.version}" arg2="latest" />
 			<then>
+				<delete dir="${ivy.home}/cache/com.liferay.portal/com.liferay.portal.plugins.sdk" />
+				<delete dir="${user.home}/.m2/repository/com/liferay/portal/com.liferay.portal.plugins.sdk" />
+
 				<ivy:settings file="${ivy.custom.settings.file}" />
 
 				<ivy:findrevision
