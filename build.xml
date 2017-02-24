@@ -112,60 +112,19 @@
 		<ant dir="webs" inheritAll="false" target="format-javadoc" />
 	</target>
 
-	<target depends="extract-plugins-sdk" name="publish-sdk">
-		<fail message="Please run either publish-sdk-release or publish-sdk-snapshot instead of this target.">
-			<condition>
-				<not>
-					<istrue value="${publish.sdk}" />
-				</not>
-			</condition>
-		</fail>
-
-		<condition else="${sonatype.release.password}" property="remote.repository.password" value="${sonatype.snapshot.password}">
-			<istrue value="${snapshot}" />
-		</condition>
-
-		<condition else="${sonatype.release.url}" property="remote.repository.url" value="${sonatype.snapshot.url}">
-			<istrue value="${snapshot}" />
-		</condition>
-
-		<condition else="${sonatype.release.username}" property="remote.repository.username" value="${sonatype.snapshot.username}">
-			<istrue value="${snapshot}" />
-		</condition>
-
-		<condition else="" property="snapshot.version.suffix" value="-SNAPSHOT">
-			<istrue value="${snapshot}" />
-		</condition>
-
-		<move file="dist/com.liferay.portal.plugins.sdk-${lp.version}.zip" tofile="dist/com.liferay.portal.plugins.sdk-${lp.version}${snapshot.version.suffix}.zip" />
-
-		<artifact:pom artifactId="com.liferay.portal.plugins.sdk" groupId="com.liferay.portal" id="plugins.sdk.pom" packaging="zip" version="${lp.version}${snapshot.version.suffix}" />
+	<target depends="extract-plugins-sdk" name="publish-sdk-release">
+		<artifact:pom artifactId="com.liferay.portal.plugins.sdk" groupId="com.liferay.portal" id="plugins.sdk.pom" packaging="zip" version="${lp.version}" />
 
 		<artifact:writepom file="dist/plugins.sdk.pom" pomRefId="plugins.sdk.pom" />
 
-		<artifact:deploy file="dist/com.liferay.portal.plugins.sdk-${lp.version}${snapshot.version.suffix}.zip">
+		<artifact:deploy file="dist/com.liferay.portal.plugins.sdk-${lp.version}.zip">
 			<pom file="dist/plugins.sdk.pom" />
-			<remoteRepository url="${remote.repository.url}">
-				<authentication password="${remote.repository.password}" username="${remote.repository.username}" />
+			<remoteRepository url="${sonatype.release.url}">
+				<authentication password="${sonatype.release.password}" username="${sonatype.release.username}" />
 			</remoteRepository>
 		</artifact:deploy>
 
 		<delete file="dist/plugins.sdk.pom" />
-	</target>
-
-	<target name="publish-sdk-release">
-		<antcall target="publish-sdk">
-			<param name="lp.version" value="${lp.version}" />
-			<param name="publish.sdk" value="true" />
-		</antcall>
-	</target>
-
-	<target name="publish-sdk-snapshot">
-		<antcall target="publish-sdk">
-			<param name="lp.version" value="${lp.version}" />
-			<param name="publish.sdk" value="true" />
-			<param name="snapshot" value="true" />
-		</antcall>
 	</target>
 
 	<target name="setup-eclipse">
