@@ -25,23 +25,9 @@
 	<pathconvert pathsep="," property="plugins.includes.path" refid="plugins.includes.path" targetos="unix" />
 
 	<macrodef name="extract-plugins-sdk">
-		<attribute default="false" name="plugins.sdk.with.dependencies" />
-
 		<sequential>
-			<var name="plugins.sdk.name" value="com.liferay.portal.plugins.sdk" />
-			<var name="plugins.sdk.zip.excludes" value="**/.gradle/**,**/build/**,**/gradle.properties,**/test.*.properties,*.iml,.git/**,.ivy/**,build.*.properties,build.gradle,dist/**,ext/*-ext/**,gradle/**,gradlew*,hooks/*-hook/**,layouttpl/*-layouttpl/**,portlets/*-portlet/**,private-plugins.txt,settings.gradle,shared/*-shared/**,source_formatter_*,suites/**,summary.*,themes/*-theme/**,tmp/**,tools/node-*/**,webs/*-web/**" />
-
-			<if>
-				<istrue value="@{plugins.sdk.with.dependencies}" />
-				<then>
-					<var name="plugins.sdk.name" value="${plugins.sdk.name}.with.dependencies" />
-				</then>
-				<else>
-					<var name="plugins.sdk.zip.excludes" value="${plugins.sdk.zip.excludes},dependencies/**/ivy.xml.MD5,dependencies/**/lib/**,lib/**,ivy.xml.MD5" />
-				</else>
-			</if>
-
-			<var name="plugins.sdk.name" value="${plugins.sdk.name}-${lp.version}" />
+			<var name="plugins.sdk.name" value="com.liferay.portal.plugins.sdk-${lp.version}" />
+			<var name="plugins.sdk.zip.excludes" value="**/.gradle/**,**/build/**,**/gradle.properties,**/test.*.properties,*.iml,.git/**,.ivy/**,build.*.properties,build.gradle,dependencies/**/ivy.xml.MD5,dependencies/**/lib/**,dist/**,ext/*-ext/**,gradle/**,gradlew*,hooks/*-hook/**,ivy.xml.MD5,layouttpl/*-layouttpl/**,lib/**,portlets/*-portlet/**,private-plugins.txt,settings.gradle,shared/*-shared/**,source_formatter_*,suites/**,summary.*,themes/*-theme/**,tmp/**,tools/node-*/**,webs/*-web/**" />
 
 			<mkdir dir="dist" />
 
@@ -123,10 +109,6 @@
 
 	<target name="extract-plugins-sdk">
 		<extract-plugins-sdk />
-	</target>
-
-	<target name="extract-plugins-sdk-with-dependencies">
-		<extract-plugins-sdk plugins.sdk.with.dependencies="true" />
 	</target>
 
 	<target name="format-javadoc">
