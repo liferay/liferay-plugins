@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE project>
 
-<project basedir="." default="all" name="plugins" xmlns:antelope="antlib:ise.antelope.tasks" xmlns:artifact="antlib:org.apache.maven.artifact.ant">
+<project basedir="." default="all" name="plugins" xmlns:antelope="antlib:ise.antelope.tasks" xmlns:artifact="antlib:org.apache.maven.artifact.ant" xmlns:ivy="antlib:org.apache.ivy.ant">
 	<import file="build-common.xml" />
 
 	<condition property="plugins.includes.path" value="">
@@ -84,7 +84,67 @@
 	</target>
 
 	<target name="extract-plugins-sdk">
-		<property name="plugins.sdk.name" value="com.liferay.portal.plugins.sdk-${lp.version}" />
+		<fail message="Please set the property &quot;sdk.version&quot; to &quot;latest&quot; or to a valid version number.">
+			<condition>
+				<not>
+					<or>
+						<equals arg1="${sdk.version}" arg2="latest" />
+						<matches pattern="^\d+\.\d+\.\d+$" string="${sdk.version}" />
+					</or>
+				</not>
+			</condition>
+		</fail>
+
+		<if>
+			<equals arg1="${sdk.version}" arg2="latest" />
+			<then>
+				<ivy:settings file="${ivy.custom.settings.file}" />
+
+				<ivy:findrevision
+					module="com.liferay.portal.plugins.sdk"
+					organisation="com.liferay.portal"
+					property="sdk.version.latest"
+					revision="latest.release"
+				/>
+
+				<fail message="Unable to find latest version. Please set the property &quot;sdk.version&quot; to a valid version number." unless="sdk.version.latest" />
+
+				<antelope:stringutil property="sdk.version.latest.index" string="${sdk.version.latest}">
+					<antelope:lastindexof string="." />
+				</antelope:stringutil>
+
+				<antelope:math
+					datatype="int"
+					operand1="${sdk.version.latest.index}"
+					operand2="1"
+					operation="+"
+					result="sdk.version.latest.index"
+				/>
+
+				<antelope:stringutil property="sdk.version.latest.prefix" string="${sdk.version.latest}">
+					<antelope:substring endindex="${sdk.version.latest.index}" />
+				</antelope:stringutil>
+
+				<antelope:stringutil property="sdk.version.latest.micro" string="${sdk.version.latest}">
+					<antelope:substring beginindex="${sdk.version.latest.index}" />
+				</antelope:stringutil>
+
+				<antelope:math
+					datatype="int"
+					operand1="${sdk.version.latest.micro}"
+					operand2="1"
+					operation="+"
+					result="sdk.version.latest.micro"
+				/>
+
+				<property name="sdk.version.current" value="${sdk.version.latest.prefix}${sdk.version.latest.micro}" />
+			</then>
+			<else>
+				<property name="sdk.version.current" value="${sdk.version}" />
+			</else>
+		</if>
+
+		<property name="plugins.sdk.name" value="com.liferay.portal.plugins.sdk-${sdk.version.current}" />
 
 		<mkdir dir="dist" />
 
@@ -113,11 +173,11 @@
 	</target>
 
 	<target depends="extract-plugins-sdk" name="publish-sdk-release">
-		<artifact:pom artifactId="com.liferay.portal.plugins.sdk" groupId="com.liferay.portal" id="plugins.sdk.pom" packaging="zip" version="${lp.version}" />
+		<artifact:pom artifactId="com.liferay.portal.plugins.sdk" groupId="com.liferay.portal" id="plugins.sdk.pom" packaging="zip" version="${sdk.version.current}" />
 
 		<artifact:writepom file="dist/plugins.sdk.pom" pomRefId="plugins.sdk.pom" />
 
-		<artifact:deploy file="dist/com.liferay.portal.plugins.sdk-${lp.version}.zip">
+		<artifact:deploy file="dist/com.liferay.portal.plugins.sdk-${sdk.version.current}.zip">
 			<pom file="dist/plugins.sdk.pom" />
 			<remoteRepository url="${sonatype.release.url}">
 				<authentication password="${sonatype.release.password}" username="${sonatype.release.username}" />
