@@ -5,7 +5,7 @@
 		<listener-class>com.liferay.portal.servlet.context.ExtAddEntryWebXmlPortalContextLoaderListener</listener-class>
 	</listener>
 	<session-config>
-		<session-timeout>1</session-timeout>
+		<session-timeout>2</session-timeout>
 		<cookie-config>
 			<http-only>true</http-only>
 		</cookie-config>
