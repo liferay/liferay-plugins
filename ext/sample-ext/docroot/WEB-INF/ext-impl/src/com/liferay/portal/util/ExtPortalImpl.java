@@ -21,7 +21,7 @@ public class ExtPortalImpl extends PortalImpl {
 
 	@Override
 	public String getComputerName() {
-		return "EXT_PORTALIMPL_INSTALLED_" + super.getComputerName();
+		return "EXT_PORTAL_IMPL_INSTALLED_" + super.getComputerName();
 	}
 
 }

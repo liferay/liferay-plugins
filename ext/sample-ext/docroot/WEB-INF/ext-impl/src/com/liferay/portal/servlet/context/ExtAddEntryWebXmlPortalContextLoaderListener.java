@@ -27,7 +27,7 @@ public class ExtAddEntryWebXmlPortalContextLoaderListener
 	}
 
 	public void contextInitialized(ServletContextEvent servletContextEvent) {
-		System.out.println("EXT_ADD_ENTRY_WEBXML_INSTALLED");
+		System.out.println("EXT_ADD_ENTRY_WEB_XML_INSTALLED");
 	}
 
 }
