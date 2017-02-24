@@ -1,0 +1,1033 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<classpath>
+	<classpathentry excluding="**/.svn/**|.svn/" kind="src" path="docroot/WEB-INF/ext-impl/src" />
+	<classpathentry excluding="**/.svn/**|.svn/" kind="src" path="docroot/WEB-INF/ext-service/src" />
+	<classpathentry excluding="**/.svn/**|.svn/" kind="src" path="docroot/WEB-INF/ext-util-bridges/src" />
+	<classpathentry excluding="**/.svn/**|.svn/" kind="src" path="docroot/WEB-INF/ext-util-java/src" />
+	<classpathentry excluding="**/.svn/**|.svn/" kind="src" path="docroot/WEB-INF/ext-util-taglib/src" />
+	<classpathentry kind="src" path="/portal-master" />
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER" />
+	<classpathentry kind="lib" path="/portal-master/lib/development/activation.jar" />
+	<classpathentry kind="lib" path="/portal-master/lib/development/annotations.jar" />
+	<classpathentry kind="lib" path="/portal-master/lib/development/jsp-api.jar" />
+	<classpathentry kind="lib" path="/portal-master/lib/development/mail.jar" />
+	<classpathentry kind="lib" path="/portal-master/lib/development/servlet-api.jar" />
+	<classpathentry kind="lib" path="/portal-master/lib/global/activation.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/global/ccpp.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/global/com.liferay.registry.api.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/global/hsql.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/global/jms.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/global/jta.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/global/jutf7.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/global/mail.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/global/mariadb.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/global/mysql.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/global/persistence.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/global/portal-kernel.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/global/portlet.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/global/postgresql.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/global/support-tomcat.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/abdera.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/ant.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/antlr2.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/antlr3-runtime.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/antlr3.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/aopalliance.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/asm-debug-all.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/aspectj-rt.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/aspectj-weaver.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/axiom-api.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/axiom-impl.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/axis-ant.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/axis.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/bcmail.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/bcprov.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/bnd.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/boilerpipe.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/bsf.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/c3p0.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/ccpp-ri.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/cglib-nodep.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/chardet.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/chemistry-opencmis-client-api.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/chemistry-opencmis-client-bindings.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/chemistry-opencmis-client-impl.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/chemistry-opencmis-commons-api.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/chemistry-opencmis-commons-impl.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/closure-compiler.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/commons-beanutils.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/commons-chain.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/commons-codec.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/commons-collections.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/commons-compress.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/commons-configuration.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/commons-dbcp.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/commons-digester.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/commons-discovery.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/commons-email.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/commons-fileupload.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/commons-httpclient.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/commons-io.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/commons-lang.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/commons-logging.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/commons-math.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/commons-pool.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/commons-validator.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/concurrent.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/crypt.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/daisydiff.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/displaytag.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/dom4j.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/easyconf.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/eclipse-core-runtime.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/ecs.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/fontbox.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/freshcookies-security.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/gif89.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/hessian.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/hibernate-commons-annotations.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/hibernate-core.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/hikaricp.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/htmlparser.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/httpclient.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/httpcore.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/httpmime.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/ical4j.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/im4java.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/isoparser.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/jabsorb.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/jai_codec.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/jai_core.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/jakarta-regexp.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/java-diff.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/java-libpst.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/javassist.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/jaxb-impl.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/jaxen.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/jaxrpc.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/jaxws-rt.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/jazzy.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/jcifs.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/jcl-over-slf4j.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/jcommon.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/jdom.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/jempbox.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/jena.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/jericho-html.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/jfreechart.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/jhighlight.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/jhlabs-filters.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/jmatio.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/jna.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/jodconverter.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/jodd.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/jrcs-diff.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/json-java.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/json-schema-validator.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/jsr107cache.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/jstl-api.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/jstl-impl.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/juh.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/juniversalchardet.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/jurt.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/kxml2.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/liferay-icu4j.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/liferay-yui-compressor.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/log4j-extras.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/log4j.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/mchange-commons-java.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/metadata-extractor.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/mime4j-core.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/mime4j-dom.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/mimepull.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/monte-cc.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/nekohtml.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/netcdf.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/netty-all.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/odmg.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/oro.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/pdfbox.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/poi-ooxml-schemas.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/poi-ooxml.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/poi-scratchpad.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/poi.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/portal-client.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/portal-impl.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/portals-bridges.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/rdffilter.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/ridl.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/rome.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/saaj-api.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/saaj-impl.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/scribe.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/serializer.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/simplecaptcha.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/slf4j-api.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/soap.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/spring-aop.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/spring-aspects.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/spring-beans.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/spring-context-support.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/spring-context.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/spring-core.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/spring-expression.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/spring-jdbc.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/spring-jms.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/spring-orm.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/spring-oxm.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/spring-tx.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/spring-web.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/spring-webmvc-portlet.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/spring-webmvc.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/stax-ex.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/stax.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/streambuffer.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/stringtemplate.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/struts-core.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/struts-el.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/struts-extras.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/struts-taglib.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/struts-tiles.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/tagsoup.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/tika-core.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/tika-parsers.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/tomcat-jdbc.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/tomcat-juli.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/truezip.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/unoil.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/urlrewritefilter.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/util-bridges.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/util-java.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/util-taglib.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/vorbis-java-core.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/vorbis-java-tika.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/wsdl4j.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/wstx.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/xalan.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/xbean-spring.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/xbean.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/xercesImpl.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/xml-apis.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/xmlsec.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/xmpcore.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/xpp3.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/xstream.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/xuggle-xuggler-noarch.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/lib/portal/xz.jar">
+		<attributes>
+			<attribute name="optional" value="true" />
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/portal-master/portal-kernel/portal-kernel.jar" />
+	<classpathentry kind="lib" path="/portal-master/util-bridges/util-bridges.jar" />
+	<classpathentry kind="lib" path="/portal-master/util-java/util-java.jar" />
+	<classpathentry kind="lib" path="/portal-master/util-slf4j/util-slf4j.jar" />
+	<classpathentry kind="lib" path="/portal-master/util-taglib/util-taglib.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/portal-compat-shared.jar" />
+	<classpathentry kind="output" path="bin" />
+</classpath>
