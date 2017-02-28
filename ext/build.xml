@@ -5,13 +5,13 @@
 	<import file="../build-common-plugins.xml" />
 
 	<target name="clean">
-		<antcall target="loop-modules">
-			<param name="loop.modules.cmd" value="clean-module" />
+		<antcall target="loop-exts">
+			<param name="loop.exts.cmd" value="clean-ext" />
 		</antcall>
 	</target>
 
-	<target name="clean-module">
-		<ant dir="${module.name}" target="clean" inheritAll="false" />
+	<target name="clean-ext">
+		<ant dir="${ext.name}" target="clean" inheritAll="false" />
 	</target>
 
 	<target name="create">
@@ -56,33 +56,33 @@
 	</target>
 
 	<target name="deploy">
-		<antcall target="loop-modules">
-			<param name="loop.modules.cmd" value="deploy-module" />
+		<antcall target="loop-exts">
+			<param name="loop.exts.cmd" value="deploy-ext" />
 		</antcall>
 	</target>
 
-	<target name="deploy-module">
-		<ant dir="${module.name}" target="deploy" inheritAll="false" />
+	<target name="deploy-ext">
+		<ant dir="${ext.name}" target="deploy" inheritAll="false" />
 	</target>
 
-	<target name="loop-modules">
+	<target name="loop-exts">
 		<if>
 			<not>
 				<equals arg1="${plugins.includes}" arg2="" />
 			</not>
 			<then>
-				<for param="module.name">
+				<for param="ext.name">
 					<path>
 						<dirset dir="." excludes="${plugins.excludes}" includes="${plugins.includes}" />
 					</path>
 					<sequential>
-						<antelope:stringutil string="@{module.name}" property="module.name.unix">
+						<antelope:stringutil string="@{ext.name}" property="ext.name.unix">
 							<antelope:replace regex="\\" replacement="/" />
 						</antelope:stringutil>
 
-						<antelope:grep in="${module.name.unix}" regex="(.*/)(.*)" group="2" property="module.name" />
+						<antelope:grep in="${ext.name.unix}" regex="(.*/)(.*)" group="2" property="ext.name" />
 
-						<antcall target="${loop.modules.cmd}" />
+						<antcall target="${loop.exts.cmd}" />
 					</sequential>
 				</for>
 			</then>
