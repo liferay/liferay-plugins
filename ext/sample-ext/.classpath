@@ -2,7 +2,7 @@
 
 <classpath>
 	<classpathentry excluding="**/.svn/**|.svn/" kind="src" path="docroot/WEB-INF/ext-impl/src" />
-	<classpathentry excluding="**/.svn/**|.svn/" kind="src" path="docroot/WEB-INF/ext-service/src" />
+	<classpathentry excluding="**/.svn/**|.svn/" kind="src" path="docroot/WEB-INF/ext-kernel/src" />
 	<classpathentry excluding="**/.svn/**|.svn/" kind="src" path="docroot/WEB-INF/ext-util-bridges/src" />
 	<classpathentry excluding="**/.svn/**|.svn/" kind="src" path="docroot/WEB-INF/ext-util-java/src" />
 	<classpathentry excluding="**/.svn/**|.svn/" kind="src" path="docroot/WEB-INF/ext-util-taglib/src" />
