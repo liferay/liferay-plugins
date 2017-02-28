@@ -41,9 +41,9 @@
 		</copy>
 
 		<mkdir dir="${ext.plugin.dir}/docroot/WEB-INF/ext-impl/src" />
+		<mkdir dir="${ext.plugin.dir}/docroot/WEB-INF/ext-kernel/src" />
 		<mkdir dir="${ext.plugin.dir}/docroot/WEB-INF/ext-lib/global" />
 		<mkdir dir="${ext.plugin.dir}/docroot/WEB-INF/ext-lib/portal" />
-		<mkdir dir="${ext.plugin.dir}/docroot/WEB-INF/ext-service/src" />
 		<mkdir dir="${ext.plugin.dir}/docroot/WEB-INF/ext-util-bridges/src" />
 		<mkdir dir="${ext.plugin.dir}/docroot/WEB-INF/ext-util-java/src" />
 		<mkdir dir="${ext.plugin.dir}/docroot/WEB-INF/ext-util-taglib/src" />
@@ -136,8 +136,8 @@ exist.
 			<fileset dir="${ext.dir}/ext-lib/portal" />
 		</copy>
 
-		<copy todir="${ext.name}-ext/docroot/WEB-INF/ext-service/src" failonerror="false">
-			<fileset dir="${ext.dir}/ext-service/src" />
+		<copy todir="${ext.name}-ext/docroot/WEB-INF/ext-kernel/src" failonerror="false">
+			<fileset dir="${ext.dir}/ext-kernel/src" />
 		</copy>
 
 		<copy todir="${ext.name}-ext/docroot/WEB-INF/ext-web/docroot" failonerror="false" overwrite="true">

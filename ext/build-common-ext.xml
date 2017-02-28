@@ -48,7 +48,7 @@ a portlet plugin.
 			<arg value="service.orm.file=${basedir}/docroot/WEB-INF/ext-impl/src/META-INF/ext-orm.xml" />
 			<arg value="service.model.hints.file=${basedir}/docroot/WEB-INF/ext-impl/src/META-INF/ext-model-hints.xml" />
 			<arg value="service.spring.file=${basedir}/docroot/WEB-INF/ext-impl/src/META-INF/ext-spring.xml" />
-			<arg value="service.api.dir=${basedir}/docroot/WEB-INF/ext-service/src" />
+			<arg value="service.api.dir=${basedir}/docroot/WEB-INF/ext-kernel/src" />
 			<arg value="service.impl.dir=${basedir}/docroot/WEB-INF/ext-impl/src" />
 			<arg value="service.sql.dir=${basedir}/docroot/WEB-INF/sql" />
 			<arg value="service.sql.file=portal-tables.sql" />
@@ -116,26 +116,26 @@ then "app.server.dir" should point to
 
 	<target name="compile">
 		<antcall target="compile-with-global-class-loader">
-			<param name="module.name" value="service" />
+			<param name="module.name" value="kernel" />
 		</antcall>
 
 		<antcall target="compile-with-portal-class-loader">
-			<param name="module.class.path" value="docroot/WEB-INF/ext-service/classes" />
+			<param name="module.class.path" value="docroot/WEB-INF/ext-kernel/classes" />
 			<param name="module.name" value="util-bridges" />
 		</antcall>
 
 		<antcall target="compile-with-portal-class-loader">
-			<param name="module.class.path" value="docroot/WEB-INF/ext-service/classes;docroot/WEB-INF/ext-util-bridges/classes" />
+			<param name="module.class.path" value="docroot/WEB-INF/ext-kernel/classes;docroot/WEB-INF/ext-util-bridges/classes" />
 			<param name="module.name" value="util-java" />
 		</antcall>
 
 		<antcall target="compile-with-portal-class-loader">
-			<param name="module.class.path" value="docroot/WEB-INF/ext-service/classes;docroot/WEB-INF/ext-util-bridges/classes;docroot/WEB-INF/ext-util-java/classes" />
+			<param name="module.class.path" value="docroot/WEB-INF/ext-kernel/classes;docroot/WEB-INF/ext-util-bridges/classes;docroot/WEB-INF/ext-util-java/classes" />
 			<param name="module.name" value="util-taglib" />
 		</antcall>
 
 		<antcall target="compile-with-portal-class-loader">
-			<param name="module.class.path" value="docroot/WEB-INF/ext-service/classes;docroot/WEB-INF/ext-util-bridges/classes;docroot/WEB-INF/ext-util-java/classes;docroot/WEB-INF/ext-util-taglib/classes" />
+			<param name="module.class.path" value="docroot/WEB-INF/ext-kernel/classes;docroot/WEB-INF/ext-util-bridges/classes;docroot/WEB-INF/ext-util-java/classes;docroot/WEB-INF/ext-util-taglib/classes" />
 			<param name="module.name" value="impl" />
 		</antcall>
 
@@ -214,8 +214,8 @@ loader.
 		</copy>
 
 		<copy
-			file="docroot/WEB-INF/ext-service/ext-service.jar"
-			tofile="${app.server.lib.global.dir}/ext-${plugin.name}-service.jar"
+			file="docroot/WEB-INF/ext-kernel/ext-kernel.jar"
+			tofile="${app.server.lib.global.dir}/ext-${plugin.name}-kernel.jar"
 			overwrite="true"
 		/>
 
@@ -286,8 +286,8 @@ loader.
 
 	<target name="war" depends="compile">
 		<jar
-			basedir="docroot/WEB-INF/ext-service/classes"
-			destfile="docroot/WEB-INF/ext-service/ext-service.jar"
+			basedir="docroot/WEB-INF/ext-kernel/classes"
+			destfile="docroot/WEB-INF/ext-kernel/ext-kernel.jar"
 		/>
 
 		<antcall target="war-util">
