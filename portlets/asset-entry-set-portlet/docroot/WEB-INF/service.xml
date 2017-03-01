@@ -29,6 +29,7 @@
 		<column name="privateAssetEntrySet" type="boolean" />
 		<column name="stickyTime" type="long" />
 		<column name="type" type="int" />
+		<column name="level" type="int" />
 
 		<!-- Order -->
 
