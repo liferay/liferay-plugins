@@ -100,7 +100,9 @@ public class FriendlyURLServlet extends HttpServlet {
 
 		_pathInfoOffset = _friendlyURLPathPrefix.length() - proxyPath.length();
 
-		System.out.println("EXT_FRIENDLY_URL_SERVLET_INSTALLED");
+		if (_log.isInfoEnabled()) {
+			_log.info("EXT_FRIENDLY_URL_SERVLET_INSTALLED");
+		}
 	}
 
 	@Override

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+	<appender class="org.apache.log4j.rolling.RollingFileAppender" name="TEXT_FILE">
+		<rollingPolicy class="org.apache.log4j.rolling.TimeBasedRollingPolicy">
+			<param name="FileNamePattern" value="@liferay.home@/logs/liferay@spi.id@.%d{yyyy-MM-dd}.log" />
+		</rollingPolicy>
+
+		<layout class="org.apache.log4j.EnhancedPatternLayout">
+			<param name="ConversionPattern" value="%d{ABSOLUTE} %-5p [%t][%c{1}:%L] %m%n" />
+		</layout>
+	</appender>
+
+	<logger name="com.liferay.portal.servlet.FriendlyURLServlet">
+		<level value="INFO" />
+		<appender-ref ref="TEXT_FILE" />
+	</logger>
+</log4j:configuration>
