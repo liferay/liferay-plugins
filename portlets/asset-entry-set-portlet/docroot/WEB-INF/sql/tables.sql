@@ -9,9 +9,10 @@ create table AssetEntrySet (
 	creatorClassNameId LONG,
 	creatorClassPK LONG,
 	creatorName VARCHAR(75) null,
-	payload STRING null,
-	childAssetEntrySetsCount INTEGER,
 	assetEntrySetLikesCount INTEGER,
+	childAssetEntrySetsCount INTEGER,
+	level INTEGER,
+	payload STRING null,
 	privateAssetEntrySet BOOLEAN,
 	stickyTime LONG,
 	type_ INTEGER

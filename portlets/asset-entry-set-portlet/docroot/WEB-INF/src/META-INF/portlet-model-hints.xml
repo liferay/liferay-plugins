@@ -12,11 +12,12 @@
 		<field name="creatorClassNameId" type="long" />
 		<field name="creatorClassPK" type="long" />
 		<field name="creatorName" type="String" />
+		<field name="assetEntrySetLikesCount" type="int" />
+		<field name="childAssetEntrySetsCount" type="int" />
+		<field name="level" type="int" />
 		<field name="payload" type="String">
 			<hint-collection name="TEXTAREA" />
 		</field>
-		<field name="childAssetEntrySetsCount" type="int" />
-		<field name="assetEntrySetLikesCount" type="int" />
 		<field name="privateAssetEntrySet" type="boolean" />
 		<field name="stickyTime" type="long" />
 		<field name="type" type="int" />

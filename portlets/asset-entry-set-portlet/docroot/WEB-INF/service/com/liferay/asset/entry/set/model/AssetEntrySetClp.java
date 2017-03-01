@@ -84,9 +84,10 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 		attributes.put("creatorClassNameId", getCreatorClassNameId());
 		attributes.put("creatorClassPK", getCreatorClassPK());
 		attributes.put("creatorName", getCreatorName());
-		attributes.put("payload", getPayload());
-		attributes.put("childAssetEntrySetsCount", getChildAssetEntrySetsCount());
 		attributes.put("assetEntrySetLikesCount", getAssetEntrySetLikesCount());
+		attributes.put("childAssetEntrySetsCount", getChildAssetEntrySetsCount());
+		attributes.put("level", getLevel());
+		attributes.put("payload", getPayload());
 		attributes.put("privateAssetEntrySet", getPrivateAssetEntrySet());
 		attributes.put("stickyTime", getStickyTime());
 		attributes.put("type", getType());
@@ -157,10 +158,11 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 			setCreatorName(creatorName);
 		}
 
-		String payload = (String)attributes.get("payload");
+		Integer assetEntrySetLikesCount = (Integer)attributes.get(
+				"assetEntrySetLikesCount");
 
-		if (payload != null) {
-			setPayload(payload);
+		if (assetEntrySetLikesCount != null) {
+			setAssetEntrySetLikesCount(assetEntrySetLikesCount);
 		}
 
 		Integer childAssetEntrySetsCount = (Integer)attributes.get(
@@ -170,11 +172,16 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 			setChildAssetEntrySetsCount(childAssetEntrySetsCount);
 		}
 
-		Integer assetEntrySetLikesCount = (Integer)attributes.get(
-				"assetEntrySetLikesCount");
+		Integer level = (Integer)attributes.get("level");
 
-		if (assetEntrySetLikesCount != null) {
-			setAssetEntrySetLikesCount(assetEntrySetLikesCount);
+		if (level != null) {
+			setLevel(level);
+		}
+
+		String payload = (String)attributes.get("payload");
+
+		if (payload != null) {
+			setPayload(payload);
 		}
 
 		Boolean privateAssetEntrySet = (Boolean)attributes.get(
@@ -440,21 +447,22 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 	}
 
 	@Override
-	public String getPayload() {
-		return _payload;
+	public int getAssetEntrySetLikesCount() {
+		return _assetEntrySetLikesCount;
 	}
 
 	@Override
-	public void setPayload(String payload) {
-		_payload = payload;
+	public void setAssetEntrySetLikesCount(int assetEntrySetLikesCount) {
+		_assetEntrySetLikesCount = assetEntrySetLikesCount;
 
 		if (_assetEntrySetRemoteModel != null) {
 			try {
 				Class<?> clazz = _assetEntrySetRemoteModel.getClass();
 
-				Method method = clazz.getMethod("setPayload", String.class);
+				Method method = clazz.getMethod("setAssetEntrySetLikesCount",
+						int.class);
 
-				method.invoke(_assetEntrySetRemoteModel, payload);
+				method.invoke(_assetEntrySetRemoteModel, assetEntrySetLikesCount);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -488,22 +496,44 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 	}
 
 	@Override
-	public int getAssetEntrySetLikesCount() {
-		return _assetEntrySetLikesCount;
+	public int getLevel() {
+		return _level;
 	}
 
 	@Override
-	public void setAssetEntrySetLikesCount(int assetEntrySetLikesCount) {
-		_assetEntrySetLikesCount = assetEntrySetLikesCount;
+	public void setLevel(int level) {
+		_level = level;
 
 		if (_assetEntrySetRemoteModel != null) {
 			try {
 				Class<?> clazz = _assetEntrySetRemoteModel.getClass();
 
-				Method method = clazz.getMethod("setAssetEntrySetLikesCount",
-						int.class);
+				Method method = clazz.getMethod("setLevel", int.class);
 
-				method.invoke(_assetEntrySetRemoteModel, assetEntrySetLikesCount);
+				method.invoke(_assetEntrySetRemoteModel, level);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public String getPayload() {
+		return _payload;
+	}
+
+	@Override
+	public void setPayload(String payload) {
+		_payload = payload;
+
+		if (_assetEntrySetRemoteModel != null) {
+			try {
+				Class<?> clazz = _assetEntrySetRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setPayload", String.class);
+
+				method.invoke(_assetEntrySetRemoteModel, payload);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -703,9 +733,10 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 		clone.setCreatorClassNameId(getCreatorClassNameId());
 		clone.setCreatorClassPK(getCreatorClassPK());
 		clone.setCreatorName(getCreatorName());
-		clone.setPayload(getPayload());
-		clone.setChildAssetEntrySetsCount(getChildAssetEntrySetsCount());
 		clone.setAssetEntrySetLikesCount(getAssetEntrySetLikesCount());
+		clone.setChildAssetEntrySetsCount(getChildAssetEntrySetsCount());
+		clone.setLevel(getLevel());
+		clone.setPayload(getPayload());
 		clone.setPrivateAssetEntrySet(getPrivateAssetEntrySet());
 		clone.setStickyTime(getStickyTime());
 		clone.setType(getType());
@@ -769,7 +800,7 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(33);
+		StringBundler sb = new StringBundler(35);
 
 		sb.append("{assetEntrySetId=");
 		sb.append(getAssetEntrySetId());
@@ -791,12 +822,14 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 		sb.append(getCreatorClassPK());
 		sb.append(", creatorName=");
 		sb.append(getCreatorName());
-		sb.append(", payload=");
-		sb.append(getPayload());
-		sb.append(", childAssetEntrySetsCount=");
-		sb.append(getChildAssetEntrySetsCount());
 		sb.append(", assetEntrySetLikesCount=");
 		sb.append(getAssetEntrySetLikesCount());
+		sb.append(", childAssetEntrySetsCount=");
+		sb.append(getChildAssetEntrySetsCount());
+		sb.append(", level=");
+		sb.append(getLevel());
+		sb.append(", payload=");
+		sb.append(getPayload());
 		sb.append(", privateAssetEntrySet=");
 		sb.append(getPrivateAssetEntrySet());
 		sb.append(", stickyTime=");
@@ -810,7 +843,7 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(52);
+		StringBundler sb = new StringBundler(55);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.asset.entry.set.model.AssetEntrySet");
@@ -857,16 +890,20 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 		sb.append(getCreatorName());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>payload</column-name><column-value><![CDATA[");
-		sb.append(getPayload());
+			"<column><column-name>assetEntrySetLikesCount</column-name><column-value><![CDATA[");
+		sb.append(getAssetEntrySetLikesCount());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>childAssetEntrySetsCount</column-name><column-value><![CDATA[");
 		sb.append(getChildAssetEntrySetsCount());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>assetEntrySetLikesCount</column-name><column-value><![CDATA[");
-		sb.append(getAssetEntrySetLikesCount());
+			"<column><column-name>level</column-name><column-value><![CDATA[");
+		sb.append(getLevel());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>payload</column-name><column-value><![CDATA[");
+		sb.append(getPayload());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>privateAssetEntrySet</column-name><column-value><![CDATA[");
@@ -897,9 +934,10 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 	private long _creatorClassNameId;
 	private long _creatorClassPK;
 	private String _creatorName;
-	private String _payload;
-	private int _childAssetEntrySetsCount;
 	private int _assetEntrySetLikesCount;
+	private int _childAssetEntrySetsCount;
+	private int _level;
+	private String _payload;
 	private boolean _privateAssetEntrySet;
 	private long _stickyTime;
 	private int _type;

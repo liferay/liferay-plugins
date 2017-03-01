@@ -215,19 +215,18 @@ public interface AssetEntrySetModel extends BaseModel<AssetEntrySet> {
 	public void setCreatorName(String creatorName);
 
 	/**
-	 * Returns the payload of this asset entry set.
+	 * Returns the asset entry set likes count of this asset entry set.
 	 *
-	 * @return the payload of this asset entry set
+	 * @return the asset entry set likes count of this asset entry set
 	 */
-	@AutoEscape
-	public String getPayload();
+	public int getAssetEntrySetLikesCount();
 
 	/**
-	 * Sets the payload of this asset entry set.
+	 * Sets the asset entry set likes count of this asset entry set.
 	 *
-	 * @param payload the payload of this asset entry set
+	 * @param assetEntrySetLikesCount the asset entry set likes count of this asset entry set
 	 */
-	public void setPayload(String payload);
+	public void setAssetEntrySetLikesCount(int assetEntrySetLikesCount);
 
 	/**
 	 * Returns the child asset entry sets count of this asset entry set.
@@ -244,18 +243,33 @@ public interface AssetEntrySetModel extends BaseModel<AssetEntrySet> {
 	public void setChildAssetEntrySetsCount(int childAssetEntrySetsCount);
 
 	/**
-	 * Returns the asset entry set likes count of this asset entry set.
+	 * Returns the level of this asset entry set.
 	 *
-	 * @return the asset entry set likes count of this asset entry set
+	 * @return the level of this asset entry set
 	 */
-	public int getAssetEntrySetLikesCount();
+	public int getLevel();
 
 	/**
-	 * Sets the asset entry set likes count of this asset entry set.
+	 * Sets the level of this asset entry set.
 	 *
-	 * @param assetEntrySetLikesCount the asset entry set likes count of this asset entry set
+	 * @param level the level of this asset entry set
 	 */
-	public void setAssetEntrySetLikesCount(int assetEntrySetLikesCount);
+	public void setLevel(int level);
+
+	/**
+	 * Returns the payload of this asset entry set.
+	 *
+	 * @return the payload of this asset entry set
+	 */
+	@AutoEscape
+	public String getPayload();
+
+	/**
+	 * Sets the payload of this asset entry set.
+	 *
+	 * @param payload the payload of this asset entry set
+	 */
+	public void setPayload(String payload);
 
 	/**
 	 * Returns the private asset entry set of this asset entry set.

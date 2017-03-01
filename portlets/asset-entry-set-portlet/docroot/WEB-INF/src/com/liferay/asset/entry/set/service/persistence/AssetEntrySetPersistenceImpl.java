@@ -4388,9 +4388,10 @@ public class AssetEntrySetPersistenceImpl extends BasePersistenceImpl<AssetEntry
 		assetEntrySetImpl.setCreatorClassNameId(assetEntrySet.getCreatorClassNameId());
 		assetEntrySetImpl.setCreatorClassPK(assetEntrySet.getCreatorClassPK());
 		assetEntrySetImpl.setCreatorName(assetEntrySet.getCreatorName());
-		assetEntrySetImpl.setPayload(assetEntrySet.getPayload());
-		assetEntrySetImpl.setChildAssetEntrySetsCount(assetEntrySet.getChildAssetEntrySetsCount());
 		assetEntrySetImpl.setAssetEntrySetLikesCount(assetEntrySet.getAssetEntrySetLikesCount());
+		assetEntrySetImpl.setChildAssetEntrySetsCount(assetEntrySet.getChildAssetEntrySetsCount());
+		assetEntrySetImpl.setLevel(assetEntrySet.getLevel());
+		assetEntrySetImpl.setPayload(assetEntrySet.getPayload());
 		assetEntrySetImpl.setPrivateAssetEntrySet(assetEntrySet.isPrivateAssetEntrySet());
 		assetEntrySetImpl.setStickyTime(assetEntrySet.getStickyTime());
 		assetEntrySetImpl.setType(assetEntrySet.getType());

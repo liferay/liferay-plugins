@@ -19,9 +19,10 @@
 			<basic name="creatorClassNameId" />
 			<basic name="creatorClassPK" />
 			<basic name="creatorName" />
-			<basic name="payload" />
-			<basic name="childAssetEntrySetsCount" />
 			<basic name="assetEntrySetLikesCount" />
+			<basic name="childAssetEntrySetsCount" />
+			<basic name="level" />
+			<basic name="payload" />
 			<basic name="privateAssetEntrySet" />
 			<basic name="stickyTime" />
 			<basic name="type">

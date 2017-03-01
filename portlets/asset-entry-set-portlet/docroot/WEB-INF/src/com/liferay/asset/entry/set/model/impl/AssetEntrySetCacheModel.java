@@ -36,7 +36,7 @@ public class AssetEntrySetCacheModel implements CacheModel<AssetEntrySet>,
 	Externalizable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(33);
+		StringBundler sb = new StringBundler(35);
 
 		sb.append("{assetEntrySetId=");
 		sb.append(assetEntrySetId);
@@ -58,12 +58,14 @@ public class AssetEntrySetCacheModel implements CacheModel<AssetEntrySet>,
 		sb.append(creatorClassPK);
 		sb.append(", creatorName=");
 		sb.append(creatorName);
-		sb.append(", payload=");
-		sb.append(payload);
-		sb.append(", childAssetEntrySetsCount=");
-		sb.append(childAssetEntrySetsCount);
 		sb.append(", assetEntrySetLikesCount=");
 		sb.append(assetEntrySetLikesCount);
+		sb.append(", childAssetEntrySetsCount=");
+		sb.append(childAssetEntrySetsCount);
+		sb.append(", level=");
+		sb.append(level);
+		sb.append(", payload=");
+		sb.append(payload);
 		sb.append(", privateAssetEntrySet=");
 		sb.append(privateAssetEntrySet);
 		sb.append(", stickyTime=");
@@ -96,6 +98,10 @@ public class AssetEntrySetCacheModel implements CacheModel<AssetEntrySet>,
 			assetEntrySetImpl.setCreatorName(creatorName);
 		}
 
+		assetEntrySetImpl.setAssetEntrySetLikesCount(assetEntrySetLikesCount);
+		assetEntrySetImpl.setChildAssetEntrySetsCount(childAssetEntrySetsCount);
+		assetEntrySetImpl.setLevel(level);
+
 		if (payload == null) {
 			assetEntrySetImpl.setPayload(StringPool.BLANK);
 		}
@@ -103,8 +109,6 @@ public class AssetEntrySetCacheModel implements CacheModel<AssetEntrySet>,
 			assetEntrySetImpl.setPayload(payload);
 		}
 
-		assetEntrySetImpl.setChildAssetEntrySetsCount(childAssetEntrySetsCount);
-		assetEntrySetImpl.setAssetEntrySetLikesCount(assetEntrySetLikesCount);
 		assetEntrySetImpl.setPrivateAssetEntrySet(privateAssetEntrySet);
 		assetEntrySetImpl.setStickyTime(stickyTime);
 		assetEntrySetImpl.setType(type);
@@ -126,9 +130,10 @@ public class AssetEntrySetCacheModel implements CacheModel<AssetEntrySet>,
 		creatorClassNameId = objectInput.readLong();
 		creatorClassPK = objectInput.readLong();
 		creatorName = objectInput.readUTF();
-		payload = objectInput.readUTF();
-		childAssetEntrySetsCount = objectInput.readInt();
 		assetEntrySetLikesCount = objectInput.readInt();
+		childAssetEntrySetsCount = objectInput.readInt();
+		level = objectInput.readInt();
+		payload = objectInput.readUTF();
 		privateAssetEntrySet = objectInput.readBoolean();
 		stickyTime = objectInput.readLong();
 		type = objectInput.readInt();
@@ -154,6 +159,10 @@ public class AssetEntrySetCacheModel implements CacheModel<AssetEntrySet>,
 			objectOutput.writeUTF(creatorName);
 		}
 
+		objectOutput.writeInt(assetEntrySetLikesCount);
+		objectOutput.writeInt(childAssetEntrySetsCount);
+		objectOutput.writeInt(level);
+
 		if (payload == null) {
 			objectOutput.writeUTF(StringPool.BLANK);
 		}
@@ -161,8 +170,6 @@ public class AssetEntrySetCacheModel implements CacheModel<AssetEntrySet>,
 			objectOutput.writeUTF(payload);
 		}
 
-		objectOutput.writeInt(childAssetEntrySetsCount);
-		objectOutput.writeInt(assetEntrySetLikesCount);
 		objectOutput.writeBoolean(privateAssetEntrySet);
 		objectOutput.writeLong(stickyTime);
 		objectOutput.writeInt(type);
@@ -178,9 +185,10 @@ public class AssetEntrySetCacheModel implements CacheModel<AssetEntrySet>,
 	public long creatorClassNameId;
 	public long creatorClassPK;
 	public String creatorName;
-	public String payload;
-	public int childAssetEntrySetsCount;
 	public int assetEntrySetLikesCount;
+	public int childAssetEntrySetsCount;
+	public int level;
+	public String payload;
 	public boolean privateAssetEntrySet;
 	public long stickyTime;
 	public int type;

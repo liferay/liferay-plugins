@@ -75,14 +75,15 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 			{ "creatorClassNameId", Types.BIGINT },
 			{ "creatorClassPK", Types.BIGINT },
 			{ "creatorName", Types.VARCHAR },
-			{ "payload", Types.VARCHAR },
-			{ "childAssetEntrySetsCount", Types.INTEGER },
 			{ "assetEntrySetLikesCount", Types.INTEGER },
+			{ "childAssetEntrySetsCount", Types.INTEGER },
+			{ "level", Types.INTEGER },
+			{ "payload", Types.VARCHAR },
 			{ "privateAssetEntrySet", Types.BOOLEAN },
 			{ "stickyTime", Types.BIGINT },
 			{ "type_", Types.INTEGER }
 		};
-	public static final String TABLE_SQL_CREATE = "create table AssetEntrySet (assetEntrySetId LONG not null primary key,companyId LONG,userId LONG,createTime LONG,modifiedTime LONG,assetEntryId LONG,parentAssetEntrySetId LONG,creatorClassNameId LONG,creatorClassPK LONG,creatorName VARCHAR(75) null,payload STRING null,childAssetEntrySetsCount INTEGER,assetEntrySetLikesCount INTEGER,privateAssetEntrySet BOOLEAN,stickyTime LONG,type_ INTEGER)";
+	public static final String TABLE_SQL_CREATE = "create table AssetEntrySet (assetEntrySetId LONG not null primary key,companyId LONG,userId LONG,createTime LONG,modifiedTime LONG,assetEntryId LONG,parentAssetEntrySetId LONG,creatorClassNameId LONG,creatorClassPK LONG,creatorName VARCHAR(75) null,assetEntrySetLikesCount INTEGER,childAssetEntrySetsCount INTEGER,level INTEGER,payload STRING null,privateAssetEntrySet BOOLEAN,stickyTime LONG,type_ INTEGER)";
 	public static final String TABLE_SQL_DROP = "drop table AssetEntrySet";
 	public static final String ORDER_BY_JPQL = " ORDER BY assetEntrySet.createTime DESC";
 	public static final String ORDER_BY_SQL = " ORDER BY AssetEntrySet.createTime DESC";
@@ -126,9 +127,10 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 		model.setCreatorClassNameId(soapModel.getCreatorClassNameId());
 		model.setCreatorClassPK(soapModel.getCreatorClassPK());
 		model.setCreatorName(soapModel.getCreatorName());
-		model.setPayload(soapModel.getPayload());
-		model.setChildAssetEntrySetsCount(soapModel.getChildAssetEntrySetsCount());
 		model.setAssetEntrySetLikesCount(soapModel.getAssetEntrySetLikesCount());
+		model.setChildAssetEntrySetsCount(soapModel.getChildAssetEntrySetsCount());
+		model.setLevel(soapModel.getLevel());
+		model.setPayload(soapModel.getPayload());
 		model.setPrivateAssetEntrySet(soapModel.getPrivateAssetEntrySet());
 		model.setStickyTime(soapModel.getStickyTime());
 		model.setType(soapModel.getType());
@@ -206,9 +208,10 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 		attributes.put("creatorClassNameId", getCreatorClassNameId());
 		attributes.put("creatorClassPK", getCreatorClassPK());
 		attributes.put("creatorName", getCreatorName());
-		attributes.put("payload", getPayload());
-		attributes.put("childAssetEntrySetsCount", getChildAssetEntrySetsCount());
 		attributes.put("assetEntrySetLikesCount", getAssetEntrySetLikesCount());
+		attributes.put("childAssetEntrySetsCount", getChildAssetEntrySetsCount());
+		attributes.put("level", getLevel());
+		attributes.put("payload", getPayload());
 		attributes.put("privateAssetEntrySet", getPrivateAssetEntrySet());
 		attributes.put("stickyTime", getStickyTime());
 		attributes.put("type", getType());
@@ -279,10 +282,11 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 			setCreatorName(creatorName);
 		}
 
-		String payload = (String)attributes.get("payload");
+		Integer assetEntrySetLikesCount = (Integer)attributes.get(
+				"assetEntrySetLikesCount");
 
-		if (payload != null) {
-			setPayload(payload);
+		if (assetEntrySetLikesCount != null) {
+			setAssetEntrySetLikesCount(assetEntrySetLikesCount);
 		}
 
 		Integer childAssetEntrySetsCount = (Integer)attributes.get(
@@ -292,11 +296,16 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 			setChildAssetEntrySetsCount(childAssetEntrySetsCount);
 		}
 
-		Integer assetEntrySetLikesCount = (Integer)attributes.get(
-				"assetEntrySetLikesCount");
+		Integer level = (Integer)attributes.get("level");
 
-		if (assetEntrySetLikesCount != null) {
-			setAssetEntrySetLikesCount(assetEntrySetLikesCount);
+		if (level != null) {
+			setLevel(level);
+		}
+
+		String payload = (String)attributes.get("payload");
+
+		if (payload != null) {
+			setPayload(payload);
 		}
 
 		Boolean privateAssetEntrySet = (Boolean)attributes.get(
@@ -494,18 +503,13 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 
 	@JSON
 	@Override
-	public String getPayload() {
-		if (_payload == null) {
-			return StringPool.BLANK;
-		}
-		else {
-			return _payload;
-		}
+	public int getAssetEntrySetLikesCount() {
+		return _assetEntrySetLikesCount;
 	}
 
 	@Override
-	public void setPayload(String payload) {
-		_payload = payload;
+	public void setAssetEntrySetLikesCount(int assetEntrySetLikesCount) {
+		_assetEntrySetLikesCount = assetEntrySetLikesCount;
 	}
 
 	@JSON
@@ -521,13 +525,29 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 
 	@JSON
 	@Override
-	public int getAssetEntrySetLikesCount() {
-		return _assetEntrySetLikesCount;
+	public int getLevel() {
+		return _level;
 	}
 
 	@Override
-	public void setAssetEntrySetLikesCount(int assetEntrySetLikesCount) {
-		_assetEntrySetLikesCount = assetEntrySetLikesCount;
+	public void setLevel(int level) {
+		_level = level;
+	}
+
+	@JSON
+	@Override
+	public String getPayload() {
+		if (_payload == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _payload;
+		}
+	}
+
+	@Override
+	public void setPayload(String payload) {
+		_payload = payload;
 	}
 
 	@JSON
@@ -609,9 +629,10 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 		assetEntrySetImpl.setCreatorClassNameId(getCreatorClassNameId());
 		assetEntrySetImpl.setCreatorClassPK(getCreatorClassPK());
 		assetEntrySetImpl.setCreatorName(getCreatorName());
-		assetEntrySetImpl.setPayload(getPayload());
-		assetEntrySetImpl.setChildAssetEntrySetsCount(getChildAssetEntrySetsCount());
 		assetEntrySetImpl.setAssetEntrySetLikesCount(getAssetEntrySetLikesCount());
+		assetEntrySetImpl.setChildAssetEntrySetsCount(getChildAssetEntrySetsCount());
+		assetEntrySetImpl.setLevel(getLevel());
+		assetEntrySetImpl.setPayload(getPayload());
 		assetEntrySetImpl.setPrivateAssetEntrySet(getPrivateAssetEntrySet());
 		assetEntrySetImpl.setStickyTime(getStickyTime());
 		assetEntrySetImpl.setType(getType());
@@ -724,6 +745,12 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 			assetEntrySetCacheModel.creatorName = null;
 		}
 
+		assetEntrySetCacheModel.assetEntrySetLikesCount = getAssetEntrySetLikesCount();
+
+		assetEntrySetCacheModel.childAssetEntrySetsCount = getChildAssetEntrySetsCount();
+
+		assetEntrySetCacheModel.level = getLevel();
+
 		assetEntrySetCacheModel.payload = getPayload();
 
 		String payload = assetEntrySetCacheModel.payload;
@@ -731,10 +758,6 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 		if ((payload != null) && (payload.length() == 0)) {
 			assetEntrySetCacheModel.payload = null;
 		}
-
-		assetEntrySetCacheModel.childAssetEntrySetsCount = getChildAssetEntrySetsCount();
-
-		assetEntrySetCacheModel.assetEntrySetLikesCount = getAssetEntrySetLikesCount();
 
 		assetEntrySetCacheModel.privateAssetEntrySet = getPrivateAssetEntrySet();
 
@@ -747,7 +770,7 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(33);
+		StringBundler sb = new StringBundler(35);
 
 		sb.append("{assetEntrySetId=");
 		sb.append(getAssetEntrySetId());
@@ -769,12 +792,14 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 		sb.append(getCreatorClassPK());
 		sb.append(", creatorName=");
 		sb.append(getCreatorName());
-		sb.append(", payload=");
-		sb.append(getPayload());
-		sb.append(", childAssetEntrySetsCount=");
-		sb.append(getChildAssetEntrySetsCount());
 		sb.append(", assetEntrySetLikesCount=");
 		sb.append(getAssetEntrySetLikesCount());
+		sb.append(", childAssetEntrySetsCount=");
+		sb.append(getChildAssetEntrySetsCount());
+		sb.append(", level=");
+		sb.append(getLevel());
+		sb.append(", payload=");
+		sb.append(getPayload());
 		sb.append(", privateAssetEntrySet=");
 		sb.append(getPrivateAssetEntrySet());
 		sb.append(", stickyTime=");
@@ -788,7 +813,7 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(52);
+		StringBundler sb = new StringBundler(55);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.asset.entry.set.model.AssetEntrySet");
@@ -835,16 +860,20 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 		sb.append(getCreatorName());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>payload</column-name><column-value><![CDATA[");
-		sb.append(getPayload());
+			"<column><column-name>assetEntrySetLikesCount</column-name><column-value><![CDATA[");
+		sb.append(getAssetEntrySetLikesCount());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>childAssetEntrySetsCount</column-name><column-value><![CDATA[");
 		sb.append(getChildAssetEntrySetsCount());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>assetEntrySetLikesCount</column-name><column-value><![CDATA[");
-		sb.append(getAssetEntrySetLikesCount());
+			"<column><column-name>level</column-name><column-value><![CDATA[");
+		sb.append(getLevel());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>payload</column-name><column-value><![CDATA[");
+		sb.append(getPayload());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>privateAssetEntrySet</column-name><column-value><![CDATA[");
@@ -887,9 +916,10 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 	private long _originalCreatorClassPK;
 	private boolean _setOriginalCreatorClassPK;
 	private String _creatorName;
-	private String _payload;
-	private int _childAssetEntrySetsCount;
 	private int _assetEntrySetLikesCount;
+	private int _childAssetEntrySetsCount;
+	private int _level;
+	private String _payload;
 	private boolean _privateAssetEntrySet;
 	private long _stickyTime;
 	private int _type;

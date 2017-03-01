@@ -59,9 +59,10 @@ public class AssetEntrySetWrapper implements AssetEntrySet,
 		attributes.put("creatorClassNameId", getCreatorClassNameId());
 		attributes.put("creatorClassPK", getCreatorClassPK());
 		attributes.put("creatorName", getCreatorName());
-		attributes.put("payload", getPayload());
-		attributes.put("childAssetEntrySetsCount", getChildAssetEntrySetsCount());
 		attributes.put("assetEntrySetLikesCount", getAssetEntrySetLikesCount());
+		attributes.put("childAssetEntrySetsCount", getChildAssetEntrySetsCount());
+		attributes.put("level", getLevel());
+		attributes.put("payload", getPayload());
 		attributes.put("privateAssetEntrySet", getPrivateAssetEntrySet());
 		attributes.put("stickyTime", getStickyTime());
 		attributes.put("type", getType());
@@ -132,10 +133,11 @@ public class AssetEntrySetWrapper implements AssetEntrySet,
 			setCreatorName(creatorName);
 		}
 
-		String payload = (String)attributes.get("payload");
+		Integer assetEntrySetLikesCount = (Integer)attributes.get(
+				"assetEntrySetLikesCount");
 
-		if (payload != null) {
-			setPayload(payload);
+		if (assetEntrySetLikesCount != null) {
+			setAssetEntrySetLikesCount(assetEntrySetLikesCount);
 		}
 
 		Integer childAssetEntrySetsCount = (Integer)attributes.get(
@@ -145,11 +147,16 @@ public class AssetEntrySetWrapper implements AssetEntrySet,
 			setChildAssetEntrySetsCount(childAssetEntrySetsCount);
 		}
 
-		Integer assetEntrySetLikesCount = (Integer)attributes.get(
-				"assetEntrySetLikesCount");
+		Integer level = (Integer)attributes.get("level");
 
-		if (assetEntrySetLikesCount != null) {
-			setAssetEntrySetLikesCount(assetEntrySetLikesCount);
+		if (level != null) {
+			setLevel(level);
+		}
+
+		String payload = (String)attributes.get("payload");
+
+		if (payload != null) {
+			setPayload(payload);
 		}
 
 		Boolean privateAssetEntrySet = (Boolean)attributes.get(
@@ -415,23 +422,23 @@ public class AssetEntrySetWrapper implements AssetEntrySet,
 	}
 
 	/**
-	* Returns the payload of this asset entry set.
+	* Returns the asset entry set likes count of this asset entry set.
 	*
-	* @return the payload of this asset entry set
+	* @return the asset entry set likes count of this asset entry set
 	*/
 	@Override
-	public java.lang.String getPayload() {
-		return _assetEntrySet.getPayload();
+	public int getAssetEntrySetLikesCount() {
+		return _assetEntrySet.getAssetEntrySetLikesCount();
 	}
 
 	/**
-	* Sets the payload of this asset entry set.
+	* Sets the asset entry set likes count of this asset entry set.
 	*
-	* @param payload the payload of this asset entry set
+	* @param assetEntrySetLikesCount the asset entry set likes count of this asset entry set
 	*/
 	@Override
-	public void setPayload(java.lang.String payload) {
-		_assetEntrySet.setPayload(payload);
+	public void setAssetEntrySetLikesCount(int assetEntrySetLikesCount) {
+		_assetEntrySet.setAssetEntrySetLikesCount(assetEntrySetLikesCount);
 	}
 
 	/**
@@ -455,23 +462,43 @@ public class AssetEntrySetWrapper implements AssetEntrySet,
 	}
 
 	/**
-	* Returns the asset entry set likes count of this asset entry set.
+	* Returns the level of this asset entry set.
 	*
-	* @return the asset entry set likes count of this asset entry set
+	* @return the level of this asset entry set
 	*/
 	@Override
-	public int getAssetEntrySetLikesCount() {
-		return _assetEntrySet.getAssetEntrySetLikesCount();
+	public int getLevel() {
+		return _assetEntrySet.getLevel();
 	}
 
 	/**
-	* Sets the asset entry set likes count of this asset entry set.
+	* Sets the level of this asset entry set.
 	*
-	* @param assetEntrySetLikesCount the asset entry set likes count of this asset entry set
+	* @param level the level of this asset entry set
 	*/
 	@Override
-	public void setAssetEntrySetLikesCount(int assetEntrySetLikesCount) {
-		_assetEntrySet.setAssetEntrySetLikesCount(assetEntrySetLikesCount);
+	public void setLevel(int level) {
+		_assetEntrySet.setLevel(level);
+	}
+
+	/**
+	* Returns the payload of this asset entry set.
+	*
+	* @return the payload of this asset entry set
+	*/
+	@Override
+	public java.lang.String getPayload() {
+		return _assetEntrySet.getPayload();
+	}
+
+	/**
+	* Sets the payload of this asset entry set.
+	*
+	* @param payload the payload of this asset entry set
+	*/
+	@Override
+	public void setPayload(java.lang.String payload) {
+		_assetEntrySet.setPayload(payload);
 	}
 
 	/**
