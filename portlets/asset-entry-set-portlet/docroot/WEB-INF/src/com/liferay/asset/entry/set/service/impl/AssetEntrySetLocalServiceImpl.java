@@ -73,7 +73,7 @@ public class AssetEntrySetLocalServiceImpl
 	public AssetEntrySet addAssetEntrySet(
 			long userId, long parentAssetEntrySetId, long creatorClassNameId,
 			long creatorClassPK, JSONObject payloadJSONObject,
-			boolean privateAssetEntrySet, long stickyTime, int type)
+			boolean privateAssetEntrySet, long stickyTime, int type, int level)
 		throws PortalException, SystemException {
 
 		long assetEntrySetId = counterLocalService.increment();
@@ -108,6 +108,7 @@ public class AssetEntrySetLocalServiceImpl
 		assetEntrySet.setPrivateAssetEntrySet(privateAssetEntrySet);
 		assetEntrySet.setStickyTime(stickyTime);
 		assetEntrySet.setType(type);
+		assetEntrySet.setLevel(level);
 
 		assetEntrySetPersistence.update(assetEntrySet);
 
