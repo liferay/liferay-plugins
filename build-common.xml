@@ -3081,12 +3081,21 @@ for (String path : paths) {
 	</target>
 
 	<target name="compile-jsp">
-		<for param="module.web.dir">
-			<dirset dir="." excludes="**/templates/**" />
-			<sequential>
-				<ant antfile="@{module.web.dir}/build.xml" dir="@{module.web.dir}" target="compile-jsp" />
-			</sequential>
-		</for>
+		<subant target="compile-jsp">
+			<dirset dir="." excludes="apps/test-broken/**,**/templates/**,**/docroot/**" includes="*/**">
+				<or>
+					<present targetdir=".">
+						<mapper from="*" to="*/docroot" type="glob" />
+					</present>
+					<present targetdir=".">
+						<mapper from="*" to="*/src/META-INF/resources" type="glob" />
+					</present>
+					<present targetdir=".">
+						<mapper from="*" to="*/tmp" type="glob" />
+					</present>
+				</or>
+			</dirset>
+		</subant>
 	</target>
 
 	<target name="compile-test">
