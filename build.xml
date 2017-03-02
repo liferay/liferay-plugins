@@ -187,6 +187,7 @@
 			</remoteRepository>
 		</artifact:deploy>
 
+		<delete dir="${user.home}/.m2/repository/com/liferay/portal/com.liferay.portal.plugins.sdk" />
 		<delete file="dist/plugins.sdk.pom" />
 	</target>
 
