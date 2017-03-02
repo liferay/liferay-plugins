@@ -234,13 +234,14 @@ public class AssetEntrySetLocalServiceImpl
 	@Override
 	public List<AssetEntrySet> getNewAssetEntrySets(
 			long userId, long createTime, long parentAssetEntrySetId,
-			long stickyTime, int type, JSONArray sharedToJSONArray,
-			String[] assetTagNames, int start, int end)
+			long stickyTime, int type, JSONArray creatorJSONArray,
+			JSONArray sharedToJSONArray, String[] assetTagNames, int start,
+			int end)
 		throws PortalException, SystemException {
 
 		return getAssetEntrySets(
 			userId, createTime, true, parentAssetEntrySetId, stickyTime, type,
-			sharedToJSONArray, assetTagNames, start, end);
+			creatorJSONArray, sharedToJSONArray, assetTagNames, start, end);
 	}
 
 	@Override
@@ -277,13 +278,14 @@ public class AssetEntrySetLocalServiceImpl
 	@Override
 	public List<AssetEntrySet> getOldAssetEntrySets(
 			long userId, long createTime, long parentAssetEntrySetId,
-			long stickyTime, int type, JSONArray sharedToJSONArray,
-			String[] assetTagNames, int start, int end)
+			long stickyTime, int type, JSONArray creatorJSONArray,
+			JSONArray sharedToJSONArray, String[] assetTagNames, int start,
+			int end)
 		throws PortalException, SystemException {
 
 		return getAssetEntrySets(
 			userId, createTime, false, parentAssetEntrySetId, stickyTime, type,
-			sharedToJSONArray, assetTagNames, start, end);
+			creatorJSONArray, sharedToJSONArray, assetTagNames, start, end);
 	}
 
 	@Override
@@ -463,8 +465,8 @@ public class AssetEntrySetLocalServiceImpl
 	protected List<AssetEntrySet> getAssetEntrySets(
 			long userId, long createTime, boolean gtCreateTime,
 			long parentAssetEntrySetId, long stickyTime, int type,
-			JSONArray sharedToJSONArray, String[] assetTagNames, int start,
-			int end)
+			JSONArray creatorJSONArray, JSONArray sharedToJSONArray,
+			String[] assetTagNames, int start, int end)
 		throws PortalException, SystemException {
 
 		ObjectValuePair<Long, Long> classNameIdAndClassPKOVP =
@@ -474,8 +476,8 @@ public class AssetEntrySetLocalServiceImpl
 		return assetEntrySetFinder.findByCT_PAESI_ST_T_CNI(
 			classNameIdAndClassPKOVP.getKey(),
 			classNameIdAndClassPKOVP.getValue(), createTime, gtCreateTime,
-			parentAssetEntrySetId, stickyTime, type, sharedToJSONArray,
-			assetTagNames, start, end);
+			parentAssetEntrySetId, stickyTime, type, creatorJSONArray,
+			sharedToJSONArray, assetTagNames, start, end);
 	}
 
 	protected List<Long> getFileEntryIds(JSONObject payloadJSONObject)

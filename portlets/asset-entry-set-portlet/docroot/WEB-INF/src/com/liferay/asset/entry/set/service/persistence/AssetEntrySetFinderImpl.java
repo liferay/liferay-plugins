@@ -281,8 +281,8 @@ public class AssetEntrySetFinderImpl
 	public List<AssetEntrySet> findByCT_PAESI_ST_T_CNI(
 			long classNameId, long classPK, long createTime,
 			boolean gtCreateTime, long parentAssetEntrySetId, long stickyTime,
-			int type, JSONArray sharedToJSONArray, String[] assetTagNames,
-			int start, int end)
+			int type, JSONArray creatorJSONArray, JSONArray sharedToJSONArray,
+			String[] assetTagNames, int start, int end)
 		throws SystemException {
 
 		if (((sharedToJSONArray == null) ||
@@ -308,9 +308,11 @@ public class AssetEntrySetFinderImpl
 			List<String> whereClauses = new ArrayList<String>();
 
 			whereClauses.add(
-				getSharedTo(classNameId, classPK, sharedToJSONArray));
-			whereClauses.add(
 				getAssetTagNames(classNameId, classPK, assetTagNames));
+			whereClauses.add(
+				getCreator(classNameId, classPK, creatorJSONArray));
+			whereClauses.add(
+				getSharedTo(classNameId, classPK, sharedToJSONArray));
 
 			whereClauses.removeAll(_emptyList);
 
