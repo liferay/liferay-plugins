@@ -24,6 +24,39 @@
 
 	<pathconvert pathsep="," property="plugins.includes.path" refid="plugins.includes.path" targetos="unix" />
 
+	<macrodef name="extract-plugins-sdk">
+		<attribute name="sdk.name" />
+		<attribute default="false" name="sdk.with.dependencies" />
+
+		<sequential>
+			<var name="sdk.zip.excludes" value="**/.gradle/**,**/build/**,**/gradle.properties,**/test.*.properties,*.iml,.git/**,.ivy/**,build.*.properties,build.gradle,dist/**,ext/*-ext/**,gradle/**,gradlew*,hooks/*-hook/**,layouttpl/*-layouttpl/**,portlets/*-portlet/**,private-plugins.txt,settings.gradle,shared/*-shared/**,source_formatter_*,suites/**,summary.*,themes/*-theme/**,tmp/**,tools/node-*/**,webs/*-web/**" />
+
+			<if>
+				<isfalse value="@{sdk.with.dependencies}" />
+				<then>
+					<var name="sdk.zip.excludes" value="${sdk.zip.excludes},dependencies/**/ivy.xml.MD5,dependencies/**/lib/**,lib/**,ivy.xml.MD5" />
+				</then>
+			</if>
+
+			<mkdir dir="dist" />
+
+			<delete file="dist/@{sdk.name}.zip" />
+
+			<zip destfile="dist/@{sdk.name}.zip" duplicate="preserve">
+				<zipfileset
+					dir="."
+					excludes="${sdk.zip.excludes}"
+					prefix="@{sdk.name}"
+				/>
+				<zipfileset
+					dir="."
+					includes="lib/ant-contrib.jar,lib/antelopetasks.jar,lib/bcpg-jdk16.jar,lib/bcprov-jdk16.jar"
+					prefix="@{sdk.name}"
+				/>
+			</zip>
+		</sequential>
+	</macrodef>
+
 	<target name="all">
 		<antcall target="clean" />
 		<antcall target="deploy" />
@@ -83,7 +116,15 @@
 		</if>
 	</target>
 
-	<target name="extract-plugins-sdk">
+	<target name="format-javadoc">
+		<ant dir="hooks" inheritAll="false" target="format-javadoc" />
+		<ant dir="layouttpl" inheritAll="false" target="format-javadoc" />
+		<ant dir="portlets" inheritAll="false" target="format-javadoc" />
+		<ant dir="themes" inheritAll="false" target="format-javadoc" />
+		<ant dir="webs" inheritAll="false" target="format-javadoc" />
+	</target>
+
+	<target name="publish-sdk-release">
 		<fail message="Please set the property &quot;sdk.version&quot; to &quot;latest&quot; or to a valid version number.">
 			<condition>
 				<not>
@@ -147,40 +188,15 @@
 			</else>
 		</if>
 
-		<property name="plugins.sdk.name" value="com.liferay.portal.plugins.sdk-${sdk.version.current}" />
+		<extract-plugins-sdk sdk.name="com.liferay.portal.plugins.sdk-${sdk.version.current}" />
+		<extract-plugins-sdk sdk.name="com.liferay.portal.plugins.sdk-${sdk.version.current}-withdependencies" sdk.with.dependencies="true" />
 
-		<mkdir dir="dist" />
-
-		<delete file="dist/${plugins.sdk.name}.zip" />
-
-		<zip destfile="dist/${plugins.sdk.name}.zip" duplicate="preserve">
-			<zipfileset
-				dir="."
-				excludes="**/.gradle/**,**/build/**,**/gradle.properties,**/test.*.properties,*.iml,.git/**,.ivy/**,build.*.properties,build.gradle,dependencies/**/ivy.xml.MD5,dependencies/**/lib/**,dist/**,ext/*-ext/**,gradle/**,gradlew*,hooks/*-hook/**,ivy.xml.MD5,layouttpl/*-layouttpl/**,lib/**,portlets/*-portlet/**,private-plugins.txt,settings.gradle,shared/*-shared/**,source_formatter_*,suites/**,summary.*,themes/*-theme/**,tmp/**,tools/node-*/**,webs/*-web/**"
-				prefix="${plugins.sdk.name}"
-			/>
-			<zipfileset
-				dir="."
-				includes="lib/ant-contrib.jar,lib/antelopetasks.jar,lib/bcpg-jdk16.jar,lib/bcprov-jdk16.jar"
-				prefix="${plugins.sdk.name}"
-			/>
-		</zip>
-	</target>
-
-	<target name="format-javadoc">
-		<ant dir="hooks" inheritAll="false" target="format-javadoc" />
-		<ant dir="layouttpl" inheritAll="false" target="format-javadoc" />
-		<ant dir="portlets" inheritAll="false" target="format-javadoc" />
-		<ant dir="themes" inheritAll="false" target="format-javadoc" />
-		<ant dir="webs" inheritAll="false" target="format-javadoc" />
-	</target>
-
-	<target depends="extract-plugins-sdk" name="publish-sdk-release">
 		<artifact:pom artifactId="com.liferay.portal.plugins.sdk" groupId="com.liferay.portal" id="plugins.sdk.pom" packaging="zip" version="${sdk.version.current}" />
 
 		<artifact:writepom file="dist/plugins.sdk.pom" pomRefId="plugins.sdk.pom" />
 
 		<artifact:deploy file="dist/com.liferay.portal.plugins.sdk-${sdk.version.current}.zip">
+			<attach classifier="withdependencies" file="dist/com.liferay.portal.plugins.sdk-${sdk.version.current}-withdependencies.zip" type="zip" />
 			<pom file="dist/plugins.sdk.pom" />
 			<remoteRepository url="${sonatype.release.url}">
 				<authentication password="${sonatype.release.password}" username="${sonatype.release.username}" />
