@@ -16,6 +16,7 @@ package com.liferay.portal.servlet;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -34,7 +35,6 @@ public class ExtWebServlet extends HttpServlet {
 		}
 	}
 
-	private static final Log _log = LogFactoryUtil.getLog(
-		ExtWebServlet.class);
+	private static final Log _log = LogFactoryUtil.getLog(ExtWebServlet.class);
 
 }

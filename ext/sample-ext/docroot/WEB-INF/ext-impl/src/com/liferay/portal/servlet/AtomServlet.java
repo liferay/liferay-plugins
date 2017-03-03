@@ -101,4 +101,5 @@ public class AtomServlet extends AbderaServlet {
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(AtomServlet.class);
+
 }
