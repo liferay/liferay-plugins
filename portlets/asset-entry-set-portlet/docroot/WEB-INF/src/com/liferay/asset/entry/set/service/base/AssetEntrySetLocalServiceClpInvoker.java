@@ -154,7 +154,8 @@ public class AssetEntrySetLocalServiceClpInvoker {
 		_methodParameterTypes72 = new String[] {
 				"long", "long", "long", "long", "int",
 				"com.liferay.portal.kernel.json.JSONArray",
-				"java.lang.String[][]", "int", "int"
+				"com.liferay.portal.kernel.json.JSONArray", "long[][]",
+				"long[][]", "java.lang.String[][]", "int", "int"
 			};
 
 		_methodName73 = "getNewChildAssetEntrySets";
@@ -178,7 +179,8 @@ public class AssetEntrySetLocalServiceClpInvoker {
 		_methodParameterTypes75 = new String[] {
 				"long", "long", "long", "long", "int",
 				"com.liferay.portal.kernel.json.JSONArray",
-				"java.lang.String[][]", "int", "int"
+				"com.liferay.portal.kernel.json.JSONArray", "long[][]",
+				"long[][]", "java.lang.String[][]", "int", "int"
 			};
 
 		_methodName76 = "getOldChildAssetEntrySets";
@@ -366,9 +368,11 @@ public class AssetEntrySetLocalServiceClpInvoker {
 				((Long)arguments[3]).longValue(),
 				((Integer)arguments[4]).intValue(),
 				(com.liferay.portal.kernel.json.JSONArray)arguments[5],
-				(java.lang.String[])arguments[6],
-				((Integer)arguments[7]).intValue(),
-				((Integer)arguments[8]).intValue());
+				(com.liferay.portal.kernel.json.JSONArray)arguments[6],
+				(long[])arguments[7], (long[])arguments[8],
+				(java.lang.String[])arguments[9],
+				((Integer)arguments[10]).intValue(),
+				((Integer)arguments[11]).intValue());
 		}
 
 		if (_methodName73.equals(name) &&
@@ -405,9 +409,11 @@ public class AssetEntrySetLocalServiceClpInvoker {
 				((Long)arguments[3]).longValue(),
 				((Integer)arguments[4]).intValue(),
 				(com.liferay.portal.kernel.json.JSONArray)arguments[5],
-				(java.lang.String[])arguments[6],
-				((Integer)arguments[7]).intValue(),
-				((Integer)arguments[8]).intValue());
+				(com.liferay.portal.kernel.json.JSONArray)arguments[6],
+				(long[])arguments[7], (long[])arguments[8],
+				(java.lang.String[])arguments[9],
+				((Integer)arguments[10]).intValue(),
+				((Integer)arguments[11]).intValue());
 		}
 
 		if (_methodName76.equals(name) &&
