@@ -61,7 +61,9 @@
 				(AssetEntrySet.stickyTime >= ?) AND
 				(AssetEntrySet.type_ = ?) AND
 				(AssetSharingEntry1.classNameId = ?) AND
+				[$PRIVATE_ASSET_ENTRY_SET]
 				([$WHERE$])
+				[$EXCLUDE_ASSET_ENTRY_SET_IDS$]
 			ORDER BY
 				AssetEntrySet.createTime DESC
 		]]>

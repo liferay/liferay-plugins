@@ -219,15 +219,15 @@ public class AssetEntrySetLocalServiceImpl
 			long userId, long time, boolean modifiedTime,
 			long parentAssetEntrySetId, boolean privateAssetEntrySet,
 			long stickyTime, JSONArray creatorJSONArray,
-			JSONArray sharedToJSONArray, long[] includeAssetEntrySetIds,
-			long[] excludeAssetEntrySetIds, String[] assetTagNames, int start,
+			JSONArray sharedToJSONArray, long[] excludeAssetEntrySetIds,
+			long[] includeAssetEntrySetIds, String[] assetTagNames, int start,
 			int end)
 		throws PortalException, SystemException {
 
 		return getAssetEntrySets(
 			userId, time, true, modifiedTime, parentAssetEntrySetId,
 			privateAssetEntrySet, stickyTime, creatorJSONArray,
-			sharedToJSONArray, includeAssetEntrySetIds, excludeAssetEntrySetIds,
+			sharedToJSONArray, excludeAssetEntrySetIds, includeAssetEntrySetIds,
 			assetTagNames, start, end);
 	}
 
@@ -235,13 +235,15 @@ public class AssetEntrySetLocalServiceImpl
 	public List<AssetEntrySet> getNewAssetEntrySets(
 			long userId, long createTime, long parentAssetEntrySetId,
 			long stickyTime, int type, JSONArray creatorJSONArray,
-			JSONArray sharedToJSONArray, String[] assetTagNames, int start,
+			JSONArray sharedToJSONArray, long[] excludeAssetEntrySetIds,
+			long[] includeAssetEntrySetIds, String[] assetTagNames, int start,
 			int end)
 		throws PortalException, SystemException {
 
 		return getAssetEntrySets(
 			userId, createTime, true, parentAssetEntrySetId, stickyTime, type,
-			creatorJSONArray, sharedToJSONArray, assetTagNames, start, end);
+			creatorJSONArray, sharedToJSONArray, excludeAssetEntrySetIds,
+			includeAssetEntrySetIds, assetTagNames, start, end);
 	}
 
 	@Override
@@ -263,15 +265,15 @@ public class AssetEntrySetLocalServiceImpl
 			long userId, long time, boolean modifiedTime,
 			long parentAssetEntrySetId, boolean privateAssetEntrySet,
 			long stickyTime, JSONArray creatorJSONArray,
-			JSONArray sharedToJSONArray, long[] includeAssetEntrySetIds,
-			long[] excludeAssetEntrySetIds, String[] assetTagNames, int start,
+			JSONArray sharedToJSONArray, long[] excludeAssetEntrySetIds,
+			long[] includeAssetEntrySetIds, String[] assetTagNames, int start,
 			int end)
 		throws PortalException, SystemException {
 
 		return getAssetEntrySets(
 			userId, time, false, modifiedTime, parentAssetEntrySetId,
 			privateAssetEntrySet, stickyTime, creatorJSONArray,
-			sharedToJSONArray, includeAssetEntrySetIds, excludeAssetEntrySetIds,
+			sharedToJSONArray, excludeAssetEntrySetIds, includeAssetEntrySetIds,
 			assetTagNames, start, end);
 	}
 
@@ -279,13 +281,15 @@ public class AssetEntrySetLocalServiceImpl
 	public List<AssetEntrySet> getOldAssetEntrySets(
 			long userId, long createTime, long parentAssetEntrySetId,
 			long stickyTime, int type, JSONArray creatorJSONArray,
-			JSONArray sharedToJSONArray, String[] assetTagNames, int start,
+			JSONArray sharedToJSONArray, long[] excludeAssetEntrySetIds,
+			long[] includeAssetEntrySetIds, String[] assetTagNames, int start,
 			int end)
 		throws PortalException, SystemException {
 
 		return getAssetEntrySets(
 			userId, createTime, false, parentAssetEntrySetId, stickyTime, type,
-			creatorJSONArray, sharedToJSONArray, assetTagNames, start, end);
+			creatorJSONArray, sharedToJSONArray, excludeAssetEntrySetIds,
+			includeAssetEntrySetIds, assetTagNames, start, end);
 	}
 
 	@Override
@@ -435,8 +439,8 @@ public class AssetEntrySetLocalServiceImpl
 			long userId, long time, boolean gtTime, boolean modifiedTime,
 			long parentAssetEntrySetId, boolean privateAssetEntrySet,
 			long stickyTime, JSONArray creatorJSONArray,
-			JSONArray sharedToJSONArray, long[] includeAssetEntrySetIds,
-			long[] excludeAssetEntrySetIds, String[] assetTagNames, int start,
+			JSONArray sharedToJSONArray, long[] excludeAssetEntrySetIds,
+			long[] includeAssetEntrySetIds, String[] assetTagNames, int start,
 			int end)
 		throws PortalException, SystemException {
 
@@ -449,16 +453,16 @@ public class AssetEntrySetLocalServiceImpl
 				classNameIdAndClassPKOVP.getKey(),
 				classNameIdAndClassPKOVP.getValue(), time, gtTime,
 				parentAssetEntrySetId, privateAssetEntrySet, stickyTime,
-				creatorJSONArray, sharedToJSONArray, includeAssetEntrySetIds,
-				excludeAssetEntrySetIds, assetTagNames, start, end);
+				creatorJSONArray, sharedToJSONArray, excludeAssetEntrySetIds,
+				includeAssetEntrySetIds, assetTagNames, start, end);
 		}
 		else {
 			return assetEntrySetFinder.findByMT_PAESI_ST_CNI(
 				classNameIdAndClassPKOVP.getKey(),
 				classNameIdAndClassPKOVP.getValue(), time, gtTime,
 				parentAssetEntrySetId, privateAssetEntrySet, stickyTime,
-				creatorJSONArray, sharedToJSONArray, includeAssetEntrySetIds,
-				excludeAssetEntrySetIds, assetTagNames, start, end);
+				creatorJSONArray, sharedToJSONArray, excludeAssetEntrySetIds,
+				includeAssetEntrySetIds, assetTagNames, start, end);
 		}
 	}
 
@@ -466,6 +470,7 @@ public class AssetEntrySetLocalServiceImpl
 			long userId, long createTime, boolean gtCreateTime,
 			long parentAssetEntrySetId, long stickyTime, int type,
 			JSONArray creatorJSONArray, JSONArray sharedToJSONArray,
+			long[] excludeAssetEntrySetIds, long[] includeAssetEntrySetIds,
 			String[] assetTagNames, int start, int end)
 		throws PortalException, SystemException {
 
@@ -477,7 +482,8 @@ public class AssetEntrySetLocalServiceImpl
 			classNameIdAndClassPKOVP.getKey(),
 			classNameIdAndClassPKOVP.getValue(), createTime, gtCreateTime,
 			parentAssetEntrySetId, stickyTime, type, creatorJSONArray,
-			sharedToJSONArray, assetTagNames, start, end);
+			sharedToJSONArray, excludeAssetEntrySetIds, includeAssetEntrySetIds,
+			assetTagNames, start, end);
 	}
 
 	protected List<Long> getFileEntryIds(JSONObject payloadJSONObject)

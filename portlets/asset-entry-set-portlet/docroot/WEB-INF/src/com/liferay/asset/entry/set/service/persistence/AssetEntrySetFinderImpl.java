@@ -127,7 +127,7 @@ public class AssetEntrySetFinderImpl
 			boolean gtCreateTime, long parentAssetEntrySetId,
 			boolean privateAssetEntrySet, long stickyTime,
 			JSONArray creatorJSONArray, JSONArray sharedToJSONArray,
-			long[] includeAssetEntrySetIds, long[] excludeAssetEntrySetIds,
+			long[] excludeAssetEntrySetIds, long[] includeAssetEntrySetIds,
 			String[] assetTagNames, int start, int end)
 		throws SystemException {
 
@@ -146,34 +146,10 @@ public class AssetEntrySetFinderImpl
 
 			String sql = CustomSQLUtil.get(FIND_BY_CT_PAESI_ST_CNI);
 
-			sql = StringUtil.replace(
-				sql, "[$JOIN_BY$]",
-				getJoinBy(sharedToJSONArray, assetTagNames));
-
-			sql = replacePrivateAssetEntrySet(sql, privateAssetEntrySet);
-			sql = replaceTimeComparator(sql, gtCreateTime);
-
-			List<String> whereClauses = new ArrayList<String>();
-
-			whereClauses.add(
-				getAssetTagNames(classNameId, classPK, assetTagNames));
-			whereClauses.add(
-				getCreator(classNameId, classPK, creatorJSONArray));
-			whereClauses.add(
-				getIncludeAssetEntrySetIds(
-					classNameId, classPK, includeAssetEntrySetIds));
-			whereClauses.add(
-				getSharedTo(classNameId, classPK, sharedToJSONArray));
-
-			whereClauses.removeAll(_emptyList);
-
-			sql = StringUtil.replace(
-				sql, "[$WHERE$]",
-				ListUtil.toString(whereClauses, StringPool.BLANK, " OR "));
-
-			sql = StringUtil.replace(
-				sql, "[$EXCLUDE_ASSET_ENTRY_SET_IDS$]",
-				getExcludeAssetEntrySetIds(excludeAssetEntrySetIds));
+			sql = addSQL(
+				sql, classNameId, classPK, gtCreateTime, privateAssetEntrySet,
+				creatorJSONArray, sharedToJSONArray, excludeAssetEntrySetIds,
+				includeAssetEntrySetIds, assetTagNames);
 
 			SQLQuery q = session.createSQLQuery(sql);
 
@@ -205,7 +181,7 @@ public class AssetEntrySetFinderImpl
 			boolean gtModifiedTime, long parentAssetEntrySetId,
 			boolean privateAssetEntrySet, long stickyTime,
 			JSONArray creatorJSONArray, JSONArray sharedToJSONArray,
-			long[] includeAssetEntrySetIds, long[] excludeAssetEntrySetIds,
+			long[] excludeAssetEntrySetIds, long[] includeAssetEntrySetIds,
 			String[] assetTagNames, int start, int end)
 		throws SystemException {
 
@@ -224,34 +200,10 @@ public class AssetEntrySetFinderImpl
 
 			String sql = CustomSQLUtil.get(FIND_BY_MT_PAESI_ST_CNI);
 
-			sql = StringUtil.replace(
-				sql, "[$JOIN_BY$]",
-				getJoinBy(sharedToJSONArray, assetTagNames));
-
-			sql = replacePrivateAssetEntrySet(sql, privateAssetEntrySet);
-			sql = replaceTimeComparator(sql, gtModifiedTime);
-
-			List<String> whereClauses = new ArrayList<String>();
-
-			whereClauses.add(
-				getAssetTagNames(classNameId, classPK, assetTagNames));
-			whereClauses.add(
-				getCreator(classNameId, classPK, creatorJSONArray));
-			whereClauses.add(
-				getIncludeAssetEntrySetIds(
-					classNameId, classPK, includeAssetEntrySetIds));
-			whereClauses.add(
-				getSharedTo(classNameId, classPK, sharedToJSONArray));
-
-			whereClauses.removeAll(_emptyList);
-
-			sql = StringUtil.replace(
-				sql, "[$WHERE$]",
-				ListUtil.toString(whereClauses, StringPool.BLANK, " OR "));
-
-			sql = StringUtil.replace(
-				sql, "[$EXCLUDE_ASSET_ENTRY_SET_IDS$]",
-				getExcludeAssetEntrySetIds(excludeAssetEntrySetIds));
+			sql = addSQL(
+				sql, classNameId, classPK, gtModifiedTime, privateAssetEntrySet,
+				creatorJSONArray, sharedToJSONArray, excludeAssetEntrySetIds,
+				includeAssetEntrySetIds, assetTagNames);
 
 			SQLQuery q = session.createSQLQuery(sql);
 
@@ -282,6 +234,7 @@ public class AssetEntrySetFinderImpl
 			long classNameId, long classPK, long createTime,
 			boolean gtCreateTime, long parentAssetEntrySetId, long stickyTime,
 			int type, JSONArray creatorJSONArray, JSONArray sharedToJSONArray,
+			long[] excludeAssetEntrySetIds, long[] includeAssetEntrySetIds,
 			String[] assetTagNames, int start, int end)
 		throws SystemException {
 
@@ -299,26 +252,10 @@ public class AssetEntrySetFinderImpl
 
 			String sql = CustomSQLUtil.get(FIND_BY_CT_PAESI_ST_T_CNI);
 
-			sql = StringUtil.replace(
-				sql, "[$JOIN_BY$]",
-				getJoinBy(sharedToJSONArray, assetTagNames));
-
-			sql = replaceTimeComparator(sql, gtCreateTime);
-
-			List<String> whereClauses = new ArrayList<String>();
-
-			whereClauses.add(
-				getAssetTagNames(classNameId, classPK, assetTagNames));
-			whereClauses.add(
-				getCreator(classNameId, classPK, creatorJSONArray));
-			whereClauses.add(
-				getSharedTo(classNameId, classPK, sharedToJSONArray));
-
-			whereClauses.removeAll(_emptyList);
-
-			sql = StringUtil.replace(
-				sql, "[$WHERE$]",
-				ListUtil.toString(whereClauses, StringPool.BLANK, " OR "));
+			sql = addSQL(
+				sql, classNameId, classPK, gtCreateTime, false,
+				creatorJSONArray, sharedToJSONArray, excludeAssetEntrySetIds,
+				includeAssetEntrySetIds, assetTagNames);
 
 			SQLQuery q = session.createSQLQuery(sql);
 
@@ -343,6 +280,40 @@ public class AssetEntrySetFinderImpl
 		finally {
 			closeSession(session);
 		}
+	}
+
+	protected String addSQL(
+			String sql, long classNameId, long classPK, boolean greaterThan,
+			boolean privateAssetEntrySet, JSONArray creatorJSONArray,
+			JSONArray sharedToJSONArray, long[] excludeAssetEntrySetIds,
+			long[] includeAssetEntrySetIds, String[] assetTagNames)
+		throws Exception {
+
+		sql = StringUtil.replace(
+			sql, "[$JOIN_BY$]",
+			getJoinBy(sharedToJSONArray, assetTagNames));
+
+		sql = replacePrivateAssetEntrySet(sql, privateAssetEntrySet);
+		sql = replaceTimeComparator(sql, greaterThan);
+
+		List<String> whereClauses = new ArrayList<String>();
+
+		whereClauses.add(getAssetTagNames(classNameId, classPK, assetTagNames));
+		whereClauses.add(getCreator(classNameId, classPK, creatorJSONArray));
+		whereClauses.add(
+			getIncludeAssetEntrySetIds(
+				classNameId, classPK, includeAssetEntrySetIds));
+		whereClauses.add(getSharedTo(classNameId, classPK, sharedToJSONArray));
+
+		whereClauses.removeAll(_emptyList);
+
+		sql = StringUtil.replace(
+			sql, "[$WHERE$]",
+			ListUtil.toString(whereClauses, StringPool.BLANK, " OR "));
+
+		return StringUtil.replace(
+			sql, "[$EXCLUDE_ASSET_ENTRY_SET_IDS$]",
+			getExcludeAssetEntrySetIds(excludeAssetEntrySetIds));
 	}
 
 	protected String getAssetTagNames(
