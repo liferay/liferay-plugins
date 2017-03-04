@@ -200,12 +200,12 @@ public class AssetEntrySetFinderImpl
 
 			String sql = CustomSQLUtil.get(FIND_BY_MT_PAESI_ST_CNI);
 
-			sql = addSQL(
-				sql, classNameId, classPK, gtModifiedTime, privateAssetEntrySet,
-				creatorJSONArray, sharedToJSONArray, excludeAssetEntrySetIds,
-				includeAssetEntrySetIds, assetTagNames);
-
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSQLQuery(
+				updateSQL(
+					sql, classNameId, classPK, gtModifiedTime,
+					privateAssetEntrySet, creatorJSONArray, sharedToJSONArray,
+					excludeAssetEntrySetIds, includeAssetEntrySetIds,
+					assetTagNames));
 
 			q.addEntity("AssetEntrySet", AssetEntrySetImpl.class);
 
@@ -252,12 +252,12 @@ public class AssetEntrySetFinderImpl
 
 			String sql = CustomSQLUtil.get(FIND_BY_CT_PAESI_ST_T_CNI);
 
-			sql = addSQL(
-				sql, classNameId, classPK, gtCreateTime, false,
-				creatorJSONArray, sharedToJSONArray, excludeAssetEntrySetIds,
-				includeAssetEntrySetIds, assetTagNames);
-
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSQLQuery(
+				updateSQL(
+					sql, classNameId, classPK, gtCreateTime, false,
+					creatorJSONArray, sharedToJSONArray,
+					excludeAssetEntrySetIds, includeAssetEntrySetIds,
+					assetTagNames));
 
 			q.addEntity("AssetEntrySet", AssetEntrySetImpl.class);
 
@@ -280,40 +280,6 @@ public class AssetEntrySetFinderImpl
 		finally {
 			closeSession(session);
 		}
-	}
-
-	protected String addSQL(
-			String sql, long classNameId, long classPK, boolean greaterThan,
-			boolean privateAssetEntrySet, JSONArray creatorJSONArray,
-			JSONArray sharedToJSONArray, long[] excludeAssetEntrySetIds,
-			long[] includeAssetEntrySetIds, String[] assetTagNames)
-		throws Exception {
-
-		sql = StringUtil.replace(
-			sql, "[$JOIN_BY$]",
-			getJoinBy(sharedToJSONArray, assetTagNames));
-
-		sql = replacePrivateAssetEntrySet(sql, privateAssetEntrySet);
-		sql = replaceTimeComparator(sql, greaterThan);
-
-		List<String> whereClauses = new ArrayList<String>();
-
-		whereClauses.add(getAssetTagNames(classNameId, classPK, assetTagNames));
-		whereClauses.add(getCreator(classNameId, classPK, creatorJSONArray));
-		whereClauses.add(
-			getIncludeAssetEntrySetIds(
-				classNameId, classPK, includeAssetEntrySetIds));
-		whereClauses.add(getSharedTo(classNameId, classPK, sharedToJSONArray));
-
-		whereClauses.removeAll(_emptyList);
-
-		sql = StringUtil.replace(
-			sql, "[$WHERE$]",
-			ListUtil.toString(whereClauses, StringPool.BLANK, " OR "));
-
-		return StringUtil.replace(
-			sql, "[$EXCLUDE_ASSET_ENTRY_SET_IDS$]",
-			getExcludeAssetEntrySetIds(excludeAssetEntrySetIds));
 	}
 
 	protected String getAssetTagNames(
@@ -571,6 +537,40 @@ public class AssetEntrySetFinderImpl
 		for (String assetTagName : assetTagNames) {
 			qPos.add(StringUtil.toLowerCase(assetTagName));
 		}
+	}
+
+	protected String updateSQL(
+			String sql, long classNameId, long classPK, boolean greaterThan,
+			boolean privateAssetEntrySet, JSONArray creatorJSONArray,
+			JSONArray sharedToJSONArray, long[] excludeAssetEntrySetIds,
+			long[] includeAssetEntrySetIds, String[] assetTagNames)
+		throws Exception {
+
+		sql = StringUtil.replace(
+			sql, "[$JOIN_BY$]",
+			getJoinBy(sharedToJSONArray, assetTagNames));
+
+		sql = replacePrivateAssetEntrySet(sql, privateAssetEntrySet);
+		sql = replaceTimeComparator(sql, greaterThan);
+
+		List<String> whereClauses = new ArrayList<String>();
+
+		whereClauses.add(getAssetTagNames(classNameId, classPK, assetTagNames));
+		whereClauses.add(getCreator(classNameId, classPK, creatorJSONArray));
+		whereClauses.add(
+			getIncludeAssetEntrySetIds(
+				classNameId, classPK, includeAssetEntrySetIds));
+		whereClauses.add(getSharedTo(classNameId, classPK, sharedToJSONArray));
+
+		whereClauses.removeAll(_emptyList);
+
+		sql = StringUtil.replace(
+			sql, "[$WHERE$]",
+			ListUtil.toString(whereClauses, StringPool.BLANK, " OR "));
+
+		return StringUtil.replace(
+			sql, "[$EXCLUDE_ASSET_ENTRY_SET_IDS$]",
+			getExcludeAssetEntrySetIds(excludeAssetEntrySetIds));
 	}
 
 	private static final String _PRIVATE_ASSET_ENTRY_SET_SQL =
