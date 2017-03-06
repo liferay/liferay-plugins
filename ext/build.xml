@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE project>
 
-<project name="ext" basedir="." default="deploy" xmlns:antelope="antlib:ise.antelope.tasks">
+<project basedir="." default="deploy" name="ext" xmlns:antelope="antlib:ise.antelope.tasks">
 	<import file="../build-common-plugins.xml" />
 
 	<target name="clean">
@@ -11,7 +11,7 @@
 	</target>
 
 	<target name="clean-ext">
-		<ant dir="${ext.name}" target="clean" inheritAll="false" />
+		<ant dir="${ext.name}" inheritAll="false" target="clean" />
 	</target>
 
 	<target name="create">
@@ -62,7 +62,7 @@
 	</target>
 
 	<target name="deploy-ext">
-		<ant dir="${ext.name}" target="deploy" inheritAll="false" />
+		<ant dir="${ext.name}" inheritAll="false" target="deploy" />
 	</target>
 
 	<target name="loop-exts">
@@ -76,11 +76,11 @@
 						<dirset dir="." excludes="${plugins.excludes}" includes="${plugins.includes}" />
 					</path>
 					<sequential>
-						<antelope:stringutil string="@{ext.name}" property="ext.name.unix">
+						<antelope:stringutil property="ext.name.unix" string="@{ext.name}">
 							<antelope:replace regex="\\" replacement="/" />
 						</antelope:stringutil>
 
-						<antelope:grep in="${ext.name.unix}" regex="(.*/)(.*)" group="2" property="ext.name" />
+						<antelope:grep group="2" in="${ext.name.unix}" property="ext.name" regex="(.*/)(.*)" />
 
 						<antcall target="${loop.exts.cmd}" />
 					</sequential>
@@ -124,23 +124,23 @@ exist.
 			<param name="ext.name" value="${ext.name}" />
 		</antcall>
 
-		<copy todir="${ext.name}-ext/docroot/WEB-INF/ext-impl/src" failonerror="false">
+		<copy failonerror="false" todir="${ext.name}-ext/docroot/WEB-INF/ext-impl/src">
 			<fileset dir="${ext.dir}/ext-impl/src" />
 		</copy>
 
-		<copy todir="${ext.name}-ext/docroot/WEB-INF/ext-lib/global" failonerror="false">
+		<copy failonerror="false" todir="${ext.name}-ext/docroot/WEB-INF/ext-lib/global">
 			<fileset dir="${ext.dir}/ext-lib/global" />
 		</copy>
 
-		<copy todir="${ext.name}-ext/docroot/WEB-INF/ext-lib/portal" failonerror="false">
+		<copy failonerror="false" todir="${ext.name}-ext/docroot/WEB-INF/ext-lib/portal">
 			<fileset dir="${ext.dir}/ext-lib/portal" />
 		</copy>
 
-		<copy todir="${ext.name}-ext/docroot/WEB-INF/ext-kernel/src" failonerror="false">
+		<copy failonerror="false" todir="${ext.name}-ext/docroot/WEB-INF/ext-kernel/src">
 			<fileset dir="${ext.dir}/ext-kernel/src" />
 		</copy>
 
-		<copy todir="${ext.name}-ext/docroot/WEB-INF/ext-web/docroot" failonerror="false" overwrite="true">
+		<copy failonerror="false" overwrite="true" todir="${ext.name}-ext/docroot/WEB-INF/ext-web/docroot">
 			<fileset
 				dir="${ext.dir}/ext-web/docroot"
 				excludes="**/struts-config.xml,**/tiles-defs.xml"
@@ -157,7 +157,7 @@ exist.
 			tofile="${ext.name}-ext/docroot/WEB-INF/ext-web/docroot/WEB-INF/tiles-defs-ext.xml"
 		/>
 
-		<copy todir="${ext.name}-ext/docroot/WEB-INF/sql" failonerror="false">
+		<copy failonerror="false" todir="${ext.name}-ext/docroot/WEB-INF/sql">
 			<fileset dir="${ext.dir}/sql" />
 		</copy>
 	</target>

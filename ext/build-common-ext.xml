@@ -111,7 +111,7 @@ then "app.server.dir" should point to
 
 		<delete dir="${app.server.dir}" />
 
-		<unzip src="${app.server.zip.name}" dest="${ext.work.dir}" />
+		<unzip dest="${ext.work.dir}" src="${app.server.zip.name}" />
 	</target>
 
 	<target name="compile">
@@ -198,18 +198,18 @@ loader.
 		/>
 	</target>
 
-    <target name="deploy" depends="war">
+    <target depends="war" name="deploy">
         <copy file="${plugin.file}" todir="${auto.deploy.dir}" />
     </target>
 
     <target name="deploy-properties">
-		<copy todir="${app.server.classes.portal.dir}" overwrite="true">
+		<copy overwrite="true" todir="${app.server.classes.portal.dir}">
 			<fileset dir="docroot/WEB-INF/ext-impl/src" includes="portal-*.properties,system-*.properties" />
 		</copy>
 	</target>
 
-	<target name="direct-deploy" depends="war">
-		<copy todir="${app.server.lib.global.dir}" overwrite="true">
+	<target depends="war" name="direct-deploy">
+		<copy overwrite="true" todir="${app.server.lib.global.dir}">
 			<fileset dir="docroot/WEB-INF/ext-lib/global" includes="*.jar" />
 		</copy>
 
@@ -219,7 +219,7 @@ loader.
 			overwrite="true"
 		/>
 
-		<copy todir="${app.server.lib.portal.dir}" overwrite="true">
+		<copy overwrite="true" todir="${app.server.lib.portal.dir}">
 			<fileset dir="docroot/WEB-INF/ext-lib/portal" includes="*.jar" />
 		</copy>
 
@@ -250,7 +250,7 @@ loader.
 		<if>
 			<available file="docroot/WEB-INF/ext-web/docroot" />
 			<then>
-				<copy todir="${app.server.portal.dir}" overwrite="true">
+				<copy overwrite="true" todir="${app.server.portal.dir}">
 					<fileset dir="docroot/WEB-INF/ext-web/docroot" excludes="WEB-INF/web.xml" />
 				</copy>
 			</then>
@@ -275,7 +275,7 @@ loader.
 			</then>
 		</if>
 
-		<unzip src="${plugin.file}" dest="${app.server.portal.dir}">
+		<unzip dest="${app.server.portal.dir}" src="${plugin.file}">
 			<patternset>
 				<include name="WEB-INF/ext-${plugin.name}.xml" />
 			</patternset>
@@ -284,7 +284,7 @@ loader.
 		<antcall target="deploy-properties" />
 	</target>
 
-	<target name="war" depends="compile">
+	<target depends="compile" name="war">
 		<jar
 			basedir="docroot/WEB-INF/ext-kernel/classes"
 			destfile="docroot/WEB-INF/ext-kernel/ext-kernel.jar"
