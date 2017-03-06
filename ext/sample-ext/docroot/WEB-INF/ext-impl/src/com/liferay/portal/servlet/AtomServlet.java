@@ -46,7 +46,9 @@ public class AtomServlet extends AbderaServlet {
 	public void init(ServletConfig servletConfig) throws ServletException {
 		super.init(servletConfig);
 
-		_log.error("EXT_ATOM_SERVLET_INSTALLED");
+		if (_log.isInfoEnabled()) {
+			_log.info("EXT_ATOM_SERVLET_INSTALLED");
+		}
 	}
 
 	@Override

@@ -29,7 +29,9 @@ public class ExtWebServlet extends HttpServlet {
 	public void init(ServletConfig servletConfig) throws ServletException {
 		super.init(servletConfig);
 
-		_log.error("EXT_WEB_SERVLET_INSTALLED");
+		if (_log.isInfoEnabled()) {
+			_log.info("EXT_WEB_SERVLET_INSTALLED");
+		}
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(

@@ -12,7 +12,12 @@
 		</layout>
 	</appender>
 
-	<logger name="com.liferay.portal.servlet.FriendlyURLServlet">
+	<logger name="com.liferay.portal.servlet.AtomServlet">
+		<level value="INFO" />
+		<appender-ref ref="TEXT_FILE" />
+	</logger>
+
+	<logger name="com.liferay.portal.servlet.ExtWebServlet">
 		<level value="INFO" />
 		<appender-ref ref="TEXT_FILE" />
 	</logger>
