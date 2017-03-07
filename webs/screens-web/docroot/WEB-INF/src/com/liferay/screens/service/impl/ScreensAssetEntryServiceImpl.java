@@ -189,8 +189,8 @@ public class ScreensAssetEntryServiceImpl
 	}
 
 	protected void checkPermission(
-		PermissionChecker permissionChecker, long entryId,
-		String actionId) throws PortalException {
+			PermissionChecker permissionChecker, long entryId, String actionId)
+		throws PortalException {
 
 		try {
 			PortalClassInvoker.invoke(
@@ -224,8 +224,9 @@ public class ScreensAssetEntryServiceImpl
 	}
 
 	protected boolean containsPermission(
-		PermissionChecker permissionChecker, AssetEntry assetEntry,
-		String actionId) throws PortalException {
+			PermissionChecker permissionChecker, AssetEntry assetEntry,
+			String actionId)
+		throws PortalException {
 
 		try {
 			return (Boolean)PortalClassInvoker.invoke(
