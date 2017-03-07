@@ -240,6 +240,23 @@ public class KBArticleStagedModelDataHandler
 					true, null);
 
 				if (existingKBArticle == null) {
+					Map<Long, Long> kbFolderIds =
+						(Map<Long, Long>)portletDataContext.
+							getNewPrimaryKeysMap(KBFolder.class);
+
+					long kbFolderId = MapUtil.getLong(
+						kbFolderIds, kbArticle.getKbFolderId(),
+						kbArticle.getKbFolderId());
+
+					existingKBArticle =
+						KBArticleLocalServiceUtil.
+							fetchLatestKBArticleByUrlTitle(
+								portletDataContext.getScopeGroupId(),
+								kbFolderId, kbArticle.getUrlTitle(),
+								WorkflowConstants.STATUS_ANY);
+				}
+
+				if (existingKBArticle == null) {
 					importedKBArticle = KBArticleLocalServiceUtil.addKBArticle(
 						userId, kbArticle.getParentResourceClassNameId(),
 						parentResourcePrimKey, kbArticle.getTitle(),
