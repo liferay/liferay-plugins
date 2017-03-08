@@ -47,7 +47,7 @@ String viewCalendarBookingURL = ParamUtil.getString(request, "viewCalendarBookin
 	};
 
 	<c:if test="<%= !hideDayView %>">
-		window.<portlet:namespace />dayView = new A.SchedulerDayView(
+		window.<portlet:namespace />dayView = new Liferay.SchedulerDayView(
 			{
 				headerViewConfig: {
 					strings: showMoreStrings
