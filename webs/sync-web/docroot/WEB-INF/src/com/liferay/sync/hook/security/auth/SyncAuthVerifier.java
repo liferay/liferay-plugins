@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.Company;
@@ -163,7 +164,13 @@ public class SyncAuthVerifier implements AuthVerifier {
 
 			StringTokenizer st = new StringTokenizer(authorization);
 
-			st.nextToken();
+			String authorizationType = st.nextToken();
+
+			if (!StringUtil.equalsIgnoreCase(
+					authorizationType, HttpServletRequest.BASIC_AUTH)) {
+
+				return authVerifierResult;
+			}
 
 			String credentials = new String(Base64.decode(st.nextToken()));
 
