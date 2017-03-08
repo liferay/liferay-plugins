@@ -24,6 +24,7 @@ import com.liferay.portal.kernel.lar.BaseStagedModelDataHandler;
 import com.liferay.portal.kernel.lar.ExportImportPathUtil;
 import com.liferay.portal.kernel.lar.PortletDataContext;
 import com.liferay.portal.kernel.lar.StagedModelDataHandlerUtil;
+import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.xml.Element;
 import com.liferay.portal.service.ServiceContext;
 
@@ -95,6 +96,14 @@ public class KBFolderStagedModelDataHandler
 				portletDataContext, kbFolder, KBFolder.class);
 		}
 
+		Map<Long, Long> kbFolderIds =
+			(Map<Long, Long>)portletDataContext.getNewPrimaryKeysMap(
+				KBFolder.class);
+
+		long parentFolderId = MapUtil.getLong(
+			kbFolderIds, kbFolder.getParentKBFolderId(),
+			kbFolder.getParentKBFolderId());
+
 		ServiceContext serviceContext = portletDataContext.createServiceContext(
 			kbFolder);
 
@@ -107,13 +116,13 @@ public class KBFolderStagedModelDataHandler
 			if (existingKBFolder == null) {
 				importedKBFolder = KBFolderLocalServiceUtil.addKBFolder(
 					userId, portletDataContext.getScopeGroupId(),
-					kbFolder.getClassNameId(), kbFolder.getParentKBFolderId(),
+					kbFolder.getClassNameId(), parentFolderId,
 					kbFolder.getName(), kbFolder.getDescription(),
 					serviceContext);
 			}
 			else {
 				importedKBFolder = KBFolderLocalServiceUtil.updateKBFolder(
-					kbFolder.getClassNameId(), kbFolder.getParentKBFolderId(),
+					kbFolder.getClassNameId(), parentFolderId,
 					kbFolder.getKbFolderId(), kbFolder.getName(),
 					kbFolder.getDescription());
 			}
@@ -121,8 +130,8 @@ public class KBFolderStagedModelDataHandler
 		else {
 			importedKBFolder = KBFolderLocalServiceUtil.addKBFolder(
 				userId, portletDataContext.getScopeGroupId(),
-				kbFolder.getClassNameId(), kbFolder.getParentKBFolderId(),
-				kbFolder.getName(), kbFolder.getDescription(), serviceContext);
+				kbFolder.getClassNameId(), parentFolderId, kbFolder.getName(),
+				kbFolder.getDescription(), serviceContext);
 		}
 
 		portletDataContext.importClassedModel(kbFolder, importedKBFolder);
