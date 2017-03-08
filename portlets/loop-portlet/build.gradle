@@ -1,6 +1,6 @@
-apply plugin: "com.liferay.node"
-
 import com.liferay.gradle.plugins.node.tasks.ExecuteNpmTask
+
+apply plugin: "com.liferay.node"
 
 task testJS(type: ExecuteNpmTask)
 
