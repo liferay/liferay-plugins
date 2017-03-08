@@ -15,7 +15,7 @@ buildscript {
 	}
 
 	dependencies {
-		classpath group: "com.liferay", name: "com.liferay.gradle.plugins.node", version: "1.5.0"
+		classpath group: "com.liferay", name: "com.liferay.gradle.plugins.node", version: "2.0.0"
 		classpath group: "com.liferay", name: "com.liferay.gradle.plugins.poshi.runner", version: "1.0.10"
 		classpath group: "org.ysb33r.gradle", name: "ivypot", version: "0.4"
 	}
