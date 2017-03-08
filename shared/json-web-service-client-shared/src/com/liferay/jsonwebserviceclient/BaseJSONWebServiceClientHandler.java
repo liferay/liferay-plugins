@@ -150,7 +150,9 @@ public abstract class BaseJSONWebServiceClientHandler {
 		return jsonWebServiceClient.doPost(url, parameters, headers);
 	}
 
-	protected String doPost(String url, String... parametersArray) {
+	protected String doPost(String url, String... parametersArray)
+		throws JSONWebServiceInvocationException {
+
 		JSONWebServiceClient jsonWebServiceClient = getJSONWebServiceClient();
 
 		Map<String, String> parameters = new HashMap<String, String>();
@@ -159,7 +161,9 @@ public abstract class BaseJSONWebServiceClientHandler {
 			parameters.put(parametersArray[i], parametersArray[i + 1]);
 		}
 
-		return jsonWebServiceClient.doPost(url, parameters);
+		String json = jsonWebServiceClient.doPost(url, parameters);
+
+		return updateJSON(json);
 	}
 
 	protected String doPostAsJSON(String url, Object object)
@@ -182,7 +186,7 @@ public abstract class BaseJSONWebServiceClientHandler {
 			Class<T> clazz, String url, String... parametersArray)
 		throws JSONWebServiceInvocationException {
 
-		String json = updateJSON(doPost(url, parametersArray));
+		String json = doPost(url, parametersArray);
 
 		if (json == null) {
 			return null;
