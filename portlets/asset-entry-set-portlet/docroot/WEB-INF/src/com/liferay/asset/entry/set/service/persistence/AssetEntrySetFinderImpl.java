@@ -146,7 +146,7 @@ public class AssetEntrySetFinderImpl
 
 			String sql = CustomSQLUtil.get(FIND_BY_CT_PAESI_ST_CNI);
 
-			sql = addSQL(
+			sql = updateSQL(
 				sql, classNameId, classPK, gtCreateTime, privateAssetEntrySet,
 				creatorJSONArray, sharedToJSONArray, excludeAssetEntrySetIds,
 				includeAssetEntrySetIds, assetTagNames);
