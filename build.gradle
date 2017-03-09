@@ -1,53 +1,18 @@
 buildscript {
 	repositories {
-		if (System.getenv("JENKINS_HOME")) {
-			ivy {
-				layout "gradle"
-				url ".ivy"
-			}
-		}
-		else {
-			maven {
-				url "https://cdn.lfrs.sl/repository.liferay.com/nexus/content/groups/public"
-			}
+		maven {
+			url "https://cdn.lfrs.sl/repository.liferay.com/nexus/content/groups/public"
 		}
 	}
 
 	dependencies {
 		classpath group: "com.liferay", name: "com.liferay.gradle.plugins.node", version: "2.0.0"
 		classpath group: "com.liferay", name: "com.liferay.gradle.plugins.poshi.runner", version: "1.0.12"
-		classpath group: "org.ysb33r.gradle", name: "ivypot", version: "0.4"
-	}
-}
-
-allprojects {
-	apply plugin: "org.ysb33r.ivypot"
-
-	syncRemoteRepositories {
-		doFirst {
-			configurations*.resolve()
-		}
-
-		includeBuildScriptDependencies = true
-
-		outputs.upToDateWhen {
-			false
-		}
-
-		repoRoot = rootProject.file(".ivy")
-
-		repositories {
-			maven {
-				url "https://cdn.lfrs.sl/repository.liferay.com/nexus/content/groups/public"
-			}
-		}
 	}
 }
 
 configure(subprojects.findAll {!it.childProjects}) {
 	apply plugin: "com.liferay.poshi.runner"
-
-	task syncSikuliComplete(type: Copy)
 
 	configurations {
 		poshiRunner {
@@ -56,8 +21,6 @@ configure(subprojects.findAll {!it.childProjects}) {
 				force group: "commons-codec", name: "commons-codec", version: "1.10"
 			}
 		}
-
-		sikuliComplete
 	}
 
 	poshiRunner {
@@ -84,35 +47,9 @@ configure(subprojects.findAll {!it.childProjects}) {
 		version = "1.0.78"
 	}
 
-	dependencies {
-		["x86", "x86_64"].each {
-			sikuliComplete classifier: "linux-${it}", group: "org.bytedeco.javacpp-presets", name: "opencv", version: poshiRunner.openCVVersion
-			sikuliComplete classifier: "windows-${it}", group: "org.bytedeco.javacpp-presets", name: "opencv", version: poshiRunner.openCVVersion
-		}
-
-		sikuliComplete classifier: "macosx-x86_64", group: "org.bytedeco.javacpp-presets", name: "opencv", version: poshiRunner.openCVVersion
-	}
-
 	repositories {
-		if (System.getenv("JENKINS_HOME")) {
-			ivy {
-				layout "gradle"
-				url rootProject.file(".ivy")
-			}
+		maven {
+			url "https://cdn.lfrs.sl/repository.liferay.com/nexus/content/groups/public"
 		}
-		else {
-			maven {
-				url "https://cdn.lfrs.sl/repository.liferay.com/nexus/content/groups/public"
-			}
-		}
-	}
-
-	syncRemoteRepositories {
-		finalizedBy syncSikuliComplete
-	}
-
-	syncSikuliComplete {
-		from configurations.sikuliComplete
-		into rootProject.file(".ivy/org.bytedeco.javacpp-presets/opencv/${poshiRunner.openCVVersion}")
 	}
 }
