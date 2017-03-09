@@ -37,6 +37,7 @@ import com.liferay.portlet.messageboards.model.MBThread;
 import com.liferay.portlet.messageboards.util.comparator.MessageCreateDateComparator;
 import com.liferay.screens.service.base.ScreensCommentServiceBaseImpl;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -173,7 +174,10 @@ public class ScreensCommentServiceImpl extends ScreensCommentServiceBaseImpl {
 
 		jsonObject.put("body", comment.getBody());
 		jsonObject.put("commentId", comment.getMessageId());
-		jsonObject.put("createDate", comment.getCreateDate().getTime());
+
+		Date createDate = comment.getCreateDate();
+
+		jsonObject.put("createDate", createDate.getTime());
 
 		boolean deletePermission = (Boolean)checkPermission(
 			_containsMBMessagePermissionMethodKey, getPermissionChecker(),
@@ -181,7 +185,9 @@ public class ScreensCommentServiceImpl extends ScreensCommentServiceBaseImpl {
 
 		jsonObject.put("deletePermission", deletePermission);
 
-		jsonObject.put("modifiedDate", comment.getModifiedDate().getTime());
+		Date modifiedDate = comment.getModifiedDate();
+
+		jsonObject.put("modifiedDate", modifiedDate.getTime());
 
 		boolean updatePermission = (Boolean)checkPermission(
 			_containsMBMessagePermissionMethodKey, getPermissionChecker(),
