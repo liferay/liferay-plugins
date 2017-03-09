@@ -13,21 +13,21 @@
 	<dependencies defaultconf="default">
 		<dependency name="antlr" org="antlr" rev="2.7.7" />
 		<dependency name="commons-beanutils" org="commons-beanutils" rev="1.9.2" />
-		<dependency name="commons-validator" org="commons-validator" rev="1.5.0" />
-		<dependency name="commons-collections" org="commons-collections" rev="3.2.2" />
 		<dependency name="commons-chain" org="commons-chain" rev="1.2" />
-		<dependency name="commons-fileupload" org="commons-fileupload" rev="1.3.2" />
+		<dependency name="commons-collections" org="commons-collections" rev="3.2.2" />
 		<dependency name="commons-digester" org="commons-digester" rev="1.8.1" />
-		<dependency name="commons-lang" org="commons-lang" rev="2.6" />
+		<dependency name="commons-fileupload" org="commons-fileupload" rev="1.3.2" />
 		<dependency name="commons-io" org="commons-io" rev="2.2" />
+		<dependency name="commons-lang" org="commons-lang" rev="2.6" />
+		<dependency name="commons-validator" org="commons-validator" rev="1.5.0" />
 		<dependency name="jcommon" org="jfree" rev="1.0.16" />
 		<dependency name="jfreechart" org="jfree" rev="1.0.13" />
 		<dependency name="oro" org="oro" rev="2.0.8" />
 		<dependency name="portals-bridges-common" org="org.apache.portals.bridges" rev="1.0" />
 		<dependency name="portals-bridges-struts" org="org.apache.portals.bridges" rev="1.2.7-1.0" />
-		<dependency name="struts-tiles" org="org.apache.struts" rev="1.3.10" />
+		<dependency name="struts-core" org="org.apache.struts" rev="1.3.10" />
 		<dependency name="struts-extras" org="org.apache.struts" rev="1.3.10" />
 		<dependency name="struts-taglib" org="org.apache.struts" rev="1.3.10" />
-		<dependency name="struts-core" org="org.apache.struts" rev="1.3.10" />
+		<dependency name="struts-tiles" org="org.apache.struts" rev="1.3.10" />
 	</dependencies>
 </ivy-module>
