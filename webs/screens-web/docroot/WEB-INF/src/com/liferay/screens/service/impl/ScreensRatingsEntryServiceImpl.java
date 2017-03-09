@@ -63,14 +63,14 @@ public class ScreensRatingsEntryServiceImpl
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-		List<RatingsEntry> ratingsEntries = ratingsEntryLocalService.getEntries(
-			className, classPK);
-
 		int[] ratings = new int[ratingsLength];
 		int ratingsDefaultNumberOfStars = GetterUtil.getInteger(
 			PropsUtil.get(PropsKeys.RATINGS_DEFAULT_NUMBER_OF_STARS));
 		double totalScore = 0;
 		double userScore = -1;
+
+		List<RatingsEntry> ratingsEntries = ratingsEntryLocalService.getEntries(
+			className, classPK);
 
 		for (RatingsEntry ratingsEntry : ratingsEntries) {
 			double score = ratingsEntry.getScore()
