@@ -50,10 +50,10 @@ public class ScreensRatingsEntryServiceImpl
 	public JSONObject getRatingsEntries(long assetEntryId, int ratingsLength)
 		throws PortalException, SystemException {
 
-		AssetEntry entry = assetEntryService.getEntry(assetEntryId);
+		AssetEntry assetEntry = assetEntryService.getEntry(assetEntryId);
 
 		return getRatingsEntries(
-			entry.getClassPK(), entry.getClassName(), ratingsLength);
+			assetEntry.getClassPK(), assetEntry.getClassName(), ratingsLength);
 	}
 
 	@Override
