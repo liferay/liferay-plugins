@@ -40,26 +40,9 @@ import com.liferay.screens.service.base.ScreensCommentServiceBaseImpl;
 import java.util.List;
 
 /**
- * The implementation of the screens comment remote service.
- * <p/>
- * <p>
- * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link com.liferay.screens.service.ScreensCommentService} interface.
- * <p/>
- * <p>
- * This is a remote service. Methods of this service are expected to have security checks based on the propagated JAAS credentials because this service can be accessed remotely.
- * </p>
- *
  * @author José Manuel Navarro
- * @see com.liferay.screens.service.base.ScreensCommentServiceBaseImpl
- * @see com.liferay.screens.service.ScreensCommentServiceUtil
  */
 public class ScreensCommentServiceImpl extends ScreensCommentServiceBaseImpl {
-
-	/**
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never reference this interface directly. Always use {@link com.liferay.screens.service.ScreensCommentServiceUtil} to access the screens comment remote service.
-	 */
 
 	@Override
 	public JSONObject addComment(String className, long classPK, String body)
