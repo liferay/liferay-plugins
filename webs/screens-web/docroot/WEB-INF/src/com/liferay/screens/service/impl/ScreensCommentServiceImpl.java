@@ -233,20 +233,20 @@ public class ScreensCommentServiceImpl extends ScreensCommentServiceBaseImpl {
 		new MethodKey(
 			ClassResolverUtil.resolveByPortalClassLoader(
 				"com.liferay.portlet.messageboards.service.permission." +
-				"MBDiscussionPermission"),
+					"MBDiscussionPermission"),
 			"check", PermissionChecker.class, long.class, long.class,
 			String.class, long.class, long.class, String.class);
 	private static final MethodKey _checkMBMessagePermissionMethodKey =
 		new MethodKey(
 			ClassResolverUtil.resolveByPortalClassLoader(
 				"com.liferay.portlet.messageboards.service.permission." +
-				"MBMessagePermission"),
+					"MBMessagePermission"),
 			"check", PermissionChecker.class, long.class, String.class);
 	private static final MethodKey _containsMBMessagePermissionMethodKey =
 		new MethodKey(
 			ClassResolverUtil.resolveByPortalClassLoader(
 				"com.liferay.portlet.messageboards.service.permission." +
-				"MBMessagePermission"),
+					"MBMessagePermission"),
 			"contains", PermissionChecker.class, long.class, String.class);
 
 	private static Log _log = LogFactoryUtil.getLog(
