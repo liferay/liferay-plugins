@@ -1,7 +1,20 @@
 buildscript {
+	if (System.properties["http.proxyHost"] == "squid.lax.liferay.com") {
+		logger.lifecycle "Using proxy {}:{}.", System.properties["http.proxyHost"], System.properties["http.proxyPort"]
+
+		ext {
+			repositoryUrl = "http://repository.liferay.com/nexus/content/groups/public"
+		}
+	}
+	else {
+		ext {
+			repositoryUrl = "https://cdn.lfrs.sl/repository.liferay.com/nexus/content/groups/public"
+		}
+	}
+
 	repositories {
 		maven {
-			url "https://cdn.lfrs.sl/repository.liferay.com/nexus/content/groups/public"
+			url repositoryUrl
 		}
 	}
 
@@ -49,7 +62,7 @@ configure(subprojects.findAll {!it.childProjects}) {
 
 	repositories {
 		maven {
-			url "https://cdn.lfrs.sl/repository.liferay.com/nexus/content/groups/public"
+			url repositoryUrl
 		}
 	}
 }
