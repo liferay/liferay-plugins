@@ -391,6 +391,7 @@ public class ScreensAssetEntryServiceImpl
 		jsonObject.put("object", getAssetObjectJSONObject(assetEntry, locale));
 		jsonObject.put("summary", assetEntry.getSummary(locale));
 		jsonObject.put("title", assetEntry.getTitle(locale));
+
 		return jsonObject;
 	}
 
