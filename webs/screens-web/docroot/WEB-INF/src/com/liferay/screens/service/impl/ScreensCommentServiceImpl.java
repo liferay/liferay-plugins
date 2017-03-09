@@ -181,11 +181,15 @@ public class ScreensCommentServiceImpl extends ScreensCommentServiceBaseImpl {
 		boolean deletePermission = (Boolean)checkPermission(
 			_containsMBMessagePermissionMethodKey, getPermissionChecker(),
 			comment.getMessageId(), ActionKeys.DELETE);
+
+		jsonObject.put("deletePermission", deletePermission);
+
 		boolean updatePermission = (Boolean)checkPermission(
 			_containsMBMessagePermissionMethodKey, getPermissionChecker(),
 			comment.getMessageId(), ActionKeys.UPDATE);
+
 		jsonObject.put("updatePermission", updatePermission);
-		jsonObject.put("deletePermission", deletePermission);
+
 		return jsonObject;
 	}
 
