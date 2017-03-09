@@ -54,8 +54,8 @@ public class ScreensCommentServiceImpl extends ScreensCommentServiceBaseImpl {
 
 		Group group = groupService.getGroup(assetEntry.getGroupId());
 
-		checkPermission(
-			_checkMBDiscussionPermissionMethodKey, getPermissionChecker(),
+		invoke(
+			_mbDiscussionPermissionCheckMethodKey, getPermissionChecker(),
 			group.getCompanyId(), group.getGroupId(), className, classPK,
 			getUserId(), ActionKeys.ADD_DISCUSSION);
 
@@ -72,8 +72,8 @@ public class ScreensCommentServiceImpl extends ScreensCommentServiceBaseImpl {
 
 		MBMessage mbMessage = mbMessageLocalService.getMBMessage(commentId);
 
-		checkPermission(
-			_checkMBMessagePermissionMethodKey, getPermissionChecker(),
+		invoke(
+			_mbMessagePermissionCheckMethodKey, getPermissionChecker(),
 			commentId, ActionKeys.VIEW);
 
 		return toJSONObject(mbMessage);
@@ -89,8 +89,8 @@ public class ScreensCommentServiceImpl extends ScreensCommentServiceBaseImpl {
 
 		Group group = groupService.getGroup(assetEntry.getGroupId());
 
-		checkPermission(
-			_checkMBDiscussionPermissionMethodKey, getPermissionChecker(),
+		invoke(
+			_mbDiscussionPermissionCheckMethodKey, getPermissionChecker(),
 			group.getCompanyId(), group.getGroupId(), className, classPK,
 			getUserId(), ActionKeys.VIEW);
 
@@ -118,8 +118,8 @@ public class ScreensCommentServiceImpl extends ScreensCommentServiceBaseImpl {
 
 		Group group = groupService.getGroup(assetEntry.getGroupId());
 
-		checkPermission(
-			_checkMBDiscussionPermissionMethodKey, getPermissionChecker(),
+		invoke(
+			_mbDiscussionPermissionCheckMethodKey, getPermissionChecker(),
 			group.getCompanyId(), group.getGroupId(), className, classPK,
 			getUserId(), ActionKeys.VIEW);
 
@@ -131,8 +131,8 @@ public class ScreensCommentServiceImpl extends ScreensCommentServiceBaseImpl {
 	public JSONObject updateComment(long commentId, String body)
 		throws PortalException, SystemException {
 
-		checkPermission(
-			_checkMBMessagePermissionMethodKey, getPermissionChecker(),
+		invoke(
+			_mbMessagePermissionCheckMethodKey, getPermissionChecker(),
 			commentId, ActionKeys.UPDATE);
 
 		MBMessage mbMessage = mbMessageLocalService.getMBMessage(commentId);
@@ -177,7 +177,7 @@ public class ScreensCommentServiceImpl extends ScreensCommentServiceBaseImpl {
 			StringPool.BLANK, body, serviceContext);
 	}
 
-	protected Object checkPermission(MethodKey methodKey, Object... args)
+	protected Object invoke(MethodKey methodKey, Object... args)
 		throws PortalException, SystemException {
 
 		try {
@@ -208,8 +208,8 @@ public class ScreensCommentServiceImpl extends ScreensCommentServiceBaseImpl {
 
 		jsonObject.put("createDate", createDate.getTime());
 
-		boolean deletePermission = (Boolean)checkPermission(
-			_containsMBMessagePermissionMethodKey, getPermissionChecker(),
+		boolean deletePermission = (Boolean)invoke(
+			_mbMessagePermissionContainsMethodKey, getPermissionChecker(),
 			comment.getMessageId(), ActionKeys.DELETE);
 
 		jsonObject.put("deletePermission", deletePermission);
@@ -218,8 +218,8 @@ public class ScreensCommentServiceImpl extends ScreensCommentServiceBaseImpl {
 
 		jsonObject.put("modifiedDate", modifiedDate.getTime());
 
-		boolean updatePermission = (Boolean)checkPermission(
-			_containsMBMessagePermissionMethodKey, getPermissionChecker(),
+		boolean updatePermission = (Boolean)invoke(
+			_mbMessagePermissionContainsMethodKey, getPermissionChecker(),
 			comment.getMessageId(), ActionKeys.UPDATE);
 
 		jsonObject.put("updatePermission", updatePermission);
@@ -230,20 +230,20 @@ public class ScreensCommentServiceImpl extends ScreensCommentServiceBaseImpl {
 		return jsonObject;
 	}
 
-	private static final MethodKey _checkMBDiscussionPermissionMethodKey =
+	private static final MethodKey _mbDiscussionPermissionCheckMethodKey =
 		new MethodKey(
 			ClassResolverUtil.resolveByPortalClassLoader(
 				"com.liferay.portlet.messageboards.service.permission." +
 					"MBDiscussionPermission"),
 			"check", PermissionChecker.class, long.class, long.class,
 			String.class, long.class, long.class, String.class);
-	private static final MethodKey _checkMBMessagePermissionMethodKey =
+	private static final MethodKey _mbMessagePermissionCheckMethodKey =
 		new MethodKey(
 			ClassResolverUtil.resolveByPortalClassLoader(
 				"com.liferay.portlet.messageboards.service.permission." +
 					"MBMessagePermission"),
 			"check", PermissionChecker.class, long.class, String.class);
-	private static final MethodKey _containsMBMessagePermissionMethodKey =
+	private static final MethodKey _mbMessagePermissionContainsMethodKey =
 		new MethodKey(
 			ClassResolverUtil.resolveByPortalClassLoader(
 				"com.liferay.portlet.messageboards.service.permission." +

@@ -179,15 +179,15 @@ public class ScreensAssetEntryServiceImpl
 			String className, long classPK, Locale locale)
 		throws PortalException, SystemException {
 
-		checkPermission(
-			_checkPermissionMethodKey, getPermissionChecker(), className,
-			classPK, ActionKeys.VIEW);
+		invoke(
+			_assetEntryPermissionCheckMethodKey, getPermissionChecker(),
+			className, classPK, ActionKeys.VIEW);
 
 		return toJSONObject(
 			assetEntryLocalService.getEntry(className, classPK), locale);
 	}
 
-	protected Object checkPermission(MethodKey methodKey, Object... args)
+	protected Object invoke(MethodKey methodKey, Object... args)
 		throws PortalException {
 
 		try {
@@ -210,9 +210,10 @@ public class ScreensAssetEntryServiceImpl
 			assetEntries.size());
 
 		for (AssetEntry assetEntry : assetEntries) {
-			if ((Boolean)checkPermission(
-					_containsPermissionMethodKey, getPermissionChecker(),
-				assetEntry, ActionKeys.VIEW)) {
+			if ((Boolean)invoke(
+					_assetEntryPermissionContainsMethodKey,
+					getPermissionChecker(),
+					assetEntry, ActionKeys.VIEW)) {
 
 				filteredAssetEntries.add(assetEntry);
 			}
@@ -395,14 +396,14 @@ public class ScreensAssetEntryServiceImpl
 		return jsonObject;
 	}
 
-	private static final MethodKey _checkPermissionMethodKey =
+	private static final MethodKey _assetEntryPermissionCheckMethodKey =
 		new MethodKey(
 			ClassResolverUtil.resolveByPortalClassLoader(
 				"com.liferay.portlet.asset.service.permission." +
 					"AssetEntryPermission"),
 			"check", PermissionChecker.class, String.class, long.class,
 			String.class);
-	private static final MethodKey _containsPermissionMethodKey =
+	private static final MethodKey _assetEntryPermissionContainsMethodKey =
 		new MethodKey(
 			ClassResolverUtil.resolveByPortalClassLoader(
 				"com.liferay.portlet.asset.service.permission." +
