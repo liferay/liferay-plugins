@@ -206,15 +206,15 @@ public class ScreensCommentServiceImpl extends ScreensCommentServiceBaseImpl {
 			long classPK, String body, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
-		MBMessageDisplay messageDisplay =
+		MBMessageDisplay mbMessageDisplay =
 			mbMessageLocalService.getDiscussionMessageDisplay(
 				userId, groupId, className, classPK,
 				WorkflowConstants.STATUS_APPROVED);
 
-		MBThread thread = messageDisplay.getThread();
+		MBThread mbThread = mbMessageDisplay.getThread();
 
 		List<MBMessage> mbMessages = mbMessageLocalService.getThreadMessages(
-			thread.getThreadId(), WorkflowConstants.STATUS_APPROVED);
+			mbThread.getThreadId(), WorkflowConstants.STATUS_APPROVED);
 
 		for (MBMessage mbMessage : mbMessages) {
 			String mbMessageBody = mbMessage.getBody();
@@ -225,8 +225,9 @@ public class ScreensCommentServiceImpl extends ScreensCommentServiceBaseImpl {
 		}
 
 		return mbMessageLocalService.addDiscussionMessage(
-			userId, fullName, groupId, className, classPK, thread.getThreadId(),
-			thread.getRootMessageId(), StringPool.BLANK, body, serviceContext);
+			userId, fullName, groupId, className, classPK,
+			mbThread.getThreadId(), mbThread.getRootMessageId(),
+			StringPool.BLANK, body, serviceContext);
 	}
 
 	private static final MethodKey _checkMBDiscussionPermissionMethodKey =
