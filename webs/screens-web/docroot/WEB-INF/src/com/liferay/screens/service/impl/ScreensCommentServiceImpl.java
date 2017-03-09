@@ -148,6 +148,35 @@ public class ScreensCommentServiceImpl extends ScreensCommentServiceBaseImpl {
 		return toJSONObject(mbMessage);
 	}
 
+	protected MBMessage addComment(
+			long userId, String fullName, long groupId, String className,
+			long classPK, String body, ServiceContext serviceContext)
+		throws PortalException, SystemException {
+
+		MBMessageDisplay mbMessageDisplay =
+			mbMessageLocalService.getDiscussionMessageDisplay(
+				userId, groupId, className, classPK,
+				WorkflowConstants.STATUS_APPROVED);
+
+		MBThread mbThread = mbMessageDisplay.getThread();
+
+		List<MBMessage> mbMessages = mbMessageLocalService.getThreadMessages(
+			mbThread.getThreadId(), WorkflowConstants.STATUS_APPROVED);
+
+		for (MBMessage mbMessage : mbMessages) {
+			String mbMessageBody = mbMessage.getBody();
+
+			if (mbMessageBody.equals(body)) {
+				throw new SystemException(body);
+			}
+		}
+
+		return mbMessageLocalService.addDiscussionMessage(
+			userId, fullName, groupId, className, classPK,
+			mbThread.getThreadId(), mbThread.getRootMessageId(),
+			StringPool.BLANK, body, serviceContext);
+	}
+
 	protected Object checkPermission(MethodKey methodKey, Object... args)
 		throws PortalException, SystemException {
 
@@ -199,35 +228,6 @@ public class ScreensCommentServiceImpl extends ScreensCommentServiceBaseImpl {
 		jsonObject.put("userName", comment.getUserName());
 
 		return jsonObject;
-	}
-
-	protected MBMessage addComment(
-			long userId, String fullName, long groupId, String className,
-			long classPK, String body, ServiceContext serviceContext)
-		throws PortalException, SystemException {
-
-		MBMessageDisplay mbMessageDisplay =
-			mbMessageLocalService.getDiscussionMessageDisplay(
-				userId, groupId, className, classPK,
-				WorkflowConstants.STATUS_APPROVED);
-
-		MBThread mbThread = mbMessageDisplay.getThread();
-
-		List<MBMessage> mbMessages = mbMessageLocalService.getThreadMessages(
-			mbThread.getThreadId(), WorkflowConstants.STATUS_APPROVED);
-
-		for (MBMessage mbMessage : mbMessages) {
-			String mbMessageBody = mbMessage.getBody();
-
-			if (mbMessageBody.equals(body)) {
-				throw new SystemException(body);
-			}
-		}
-
-		return mbMessageLocalService.addDiscussionMessage(
-			userId, fullName, groupId, className, classPK,
-			mbThread.getThreadId(), mbThread.getRootMessageId(),
-			StringPool.BLANK, body, serviceContext);
 	}
 
 	private static final MethodKey _checkMBDiscussionPermissionMethodKey =
