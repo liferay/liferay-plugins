@@ -201,7 +201,7 @@ public class ScreensCommentServiceImpl extends ScreensCommentServiceBaseImpl {
 		return jsonObject;
 	}
 
-	private MBMessage addComment(
+	protected MBMessage addComment(
 			long userId, String fullName, long groupId, String className,
 			long classPK, String body, ServiceContext serviceContext)
 		throws PortalException, SystemException {
