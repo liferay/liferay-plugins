@@ -180,8 +180,8 @@ public class ScreensAssetEntryServiceImpl
 		throws PortalException, SystemException {
 
 		checkPermission(
-			_checkPermissionMethodKeyClassNameClassPK, getPermissionChecker(),
-			className, classPK, ActionKeys.VIEW);
+			_checkPermissionMethodKey, getPermissionChecker(), className,
+			classPK, ActionKeys.VIEW);
 
 		return toJSONObject(
 			assetEntryLocalService.getEntry(className, classPK), locale);
@@ -394,7 +394,7 @@ public class ScreensAssetEntryServiceImpl
 		return jsonObject;
 	}
 
-	private static final MethodKey _checkPermissionMethodKeyClassNameClassPK =
+	private static final MethodKey _checkPermissionMethodKey =
 		new MethodKey(
 			ClassResolverUtil.resolveByPortalClassLoader(
 				"com.liferay.portlet.asset.service.permission." +
