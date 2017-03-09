@@ -172,9 +172,7 @@ public class ScreensAssetEntryServiceImpl
 	public JSONObject getAssetEntry(long entryId, Locale locale)
 		throws PortalException, SystemException {
 
-		checkPermission(getPermissionChecker(), entryId, ActionKeys.VIEW);
-
-		return toJSONObject(assetEntryLocalService.getEntry(entryId), locale);
+		return toJSONObject(assetEntryService.getEntry(entryId), locale);
 	}
 
 	public JSONObject getAssetEntry(
@@ -182,56 +180,18 @@ public class ScreensAssetEntryServiceImpl
 		throws PortalException, SystemException {
 
 		checkPermission(
-			getPermissionChecker(), className, classPK, ActionKeys.VIEW);
+			_checkPermissionMethodKeyClassNameClassPK, getPermissionChecker(),
+			className, classPK, ActionKeys.VIEW);
 
 		return toJSONObject(
 			assetEntryLocalService.getEntry(className, classPK), locale);
 	}
 
-	protected void checkPermission(
-			PermissionChecker permissionChecker, long entryId, String actionId)
+	protected Object checkPermission(MethodKey methodKey, Object... args)
 		throws PortalException {
 
 		try {
-			PortalClassInvoker.invoke(
-				false, _checkPermissionMethodKeyEntryId, permissionChecker,
-				entryId, actionId);
-		}
-		catch (PortalException pe) {
-			throw pe;
-		}
-		catch (Exception e) {
-			_log.error(e, e);
-		}
-	}
-
-	protected void checkPermission(
-			PermissionChecker permissionChecker, String className, long classPK,
-			String actionId)
-		throws PortalException {
-
-		try {
-			PortalClassInvoker.invoke(
-				false, _checkPermissionMethodKeyClassNameClassPK,
-				permissionChecker, className, classPK, actionId);
-		}
-		catch (PortalException pe) {
-			throw pe;
-		}
-		catch (Exception e) {
-			_log.error(e, e);
-		}
-	}
-
-	protected boolean containsPermission(
-			PermissionChecker permissionChecker, AssetEntry assetEntry,
-			String actionId)
-		throws PortalException {
-
-		try {
-			return (Boolean)PortalClassInvoker.invoke(
-				false, _containsPermissionMethodKey, permissionChecker,
-				assetEntry, actionId);
+			return PortalClassInvoker.invoke(false, methodKey, args);
 		}
 		catch (PortalException pe) {
 			throw pe;
@@ -240,7 +200,7 @@ public class ScreensAssetEntryServiceImpl
 			_log.error(e, e);
 		}
 
-		return false;
+		return null;
 	}
 
 	protected List<AssetEntry> filterAssetEntries(List<AssetEntry> assetEntries)
@@ -250,8 +210,9 @@ public class ScreensAssetEntryServiceImpl
 			assetEntries.size());
 
 		for (AssetEntry assetEntry : assetEntries) {
-			if (containsPermission(
-					getPermissionChecker(), assetEntry, ActionKeys.VIEW)) {
+			if ((Boolean)checkPermission(
+					_containsPermissionMethodKey, getPermissionChecker(),
+				assetEntry, ActionKeys.VIEW)) {
 
 				filteredAssetEntries.add(assetEntry);
 			}
@@ -440,12 +401,6 @@ public class ScreensAssetEntryServiceImpl
 				"AssetEntryPermission"),
 			"check", PermissionChecker.class, String.class, long.class,
 			String.class);
-	private static final MethodKey _checkPermissionMethodKeyEntryId =
-		new MethodKey(
-			ClassResolverUtil.resolveByPortalClassLoader(
-				"com.liferay.portlet.asset.service.permission." +
-				"AssetEntryPermission"),
-			"check", PermissionChecker.class, long.class, String.class);
 	private static final MethodKey _containsPermissionMethodKey =
 		new MethodKey(
 			ClassResolverUtil.resolveByPortalClassLoader(

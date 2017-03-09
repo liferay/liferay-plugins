@@ -67,7 +67,7 @@ public class ScreensCommentServiceImpl extends ScreensCommentServiceBaseImpl {
 
 		AssetEntry assetEntry = assetEntryLocalService.getEntry(
 			className, classPK);
-		Group group = groupLocalService.getGroup(assetEntry.getGroupId());
+		Group group = groupService.getGroup(assetEntry.getGroupId());
 
 		checkPermission(
 			_checkPermissionDiscussion, getPermissionChecker(),
@@ -102,7 +102,7 @@ public class ScreensCommentServiceImpl extends ScreensCommentServiceBaseImpl {
 		AssetEntry assetEntry = assetEntryLocalService.getEntry(
 			className, classPK);
 
-		Group group = groupLocalService.getGroup(assetEntry.getGroupId());
+		Group group = groupService.getGroup(assetEntry.getGroupId());
 
 		checkPermission(
 			_checkPermissionDiscussion, getPermissionChecker(),
@@ -131,7 +131,7 @@ public class ScreensCommentServiceImpl extends ScreensCommentServiceBaseImpl {
 		AssetEntry assetEntry = assetEntryLocalService.getEntry(
 			className, classPK);
 
-		Group group = groupLocalService.getGroup(assetEntry.getGroupId());
+		Group group = groupService.getGroup(assetEntry.getGroupId());
 
 		checkPermission(
 			_checkPermissionDiscussion, getPermissionChecker(),

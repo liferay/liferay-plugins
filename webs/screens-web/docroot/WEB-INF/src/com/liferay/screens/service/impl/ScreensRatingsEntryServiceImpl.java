@@ -21,15 +21,9 @@ import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.util.ClassResolverUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.MethodKey;
-import com.liferay.portal.kernel.util.PortalClassInvoker;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
-import com.liferay.portal.security.permission.ActionKeys;
-import com.liferay.portal.security.permission.PermissionChecker;
-import com.liferay.portal.service.ServiceContext;
 import com.liferay.portlet.asset.model.AssetEntry;
 import com.liferay.portlet.ratings.model.RatingsEntry;
 import com.liferay.screens.service.base.ScreensRatingsEntryServiceBaseImpl;
@@ -64,10 +58,7 @@ public class ScreensRatingsEntryServiceImpl
 			long classPK, String className, int ratingsLength)
 		throws PortalException, SystemException {
 
-		checkPermission(
-			getPermissionChecker(), className, classPK, ActionKeys.DELETE);
-
-		ratingsEntryLocalService.deleteEntry(getUserId(), className, classPK);
+		ratingsEntryService.deleteEntry(className, classPK);
 
 		return getRatingsEntries(classPK, className, ratingsLength);
 	}
@@ -76,9 +67,7 @@ public class ScreensRatingsEntryServiceImpl
 	public JSONObject getRatingsEntries(long assetEntryId, int ratingsLength)
 		throws PortalException, SystemException {
 
-		checkPermission(getPermissionChecker(), assetEntryId, ActionKeys.VIEW);
-
-		AssetEntry entry = assetEntryLocalService.fetchEntry(assetEntryId);
+		AssetEntry entry = assetEntryService.getEntry(assetEntryId);
 
 		return getRatingsEntries(
 			entry.getClassPK(), entry.getClassName(), ratingsLength);
@@ -145,67 +134,10 @@ public class ScreensRatingsEntryServiceImpl
 			long classPK, String className, double score, int ratingsLength)
 		throws PortalException, SystemException {
 
-		checkPermission(
-			getPermissionChecker(), className, classPK, ActionKeys.UPDATE);
-
-		ratingsEntryLocalService.updateEntry(
-				getUserId(), className, classPK, score, new ServiceContext());
+		ratingsEntryService.updateEntry(className, classPK, score);
 
 		return getRatingsEntries(classPK, className, ratingsLength);
 	}
-
-	protected Object checkPermission(
-			PermissionChecker permissionChecker, long entryId, String actionId)
-		throws PortalException {
-
-		try {
-			return PortalClassInvoker.invoke(
-				false, _checkPermissionMethodKeyEntryId, permissionChecker,
-				entryId, actionId);
-		}
-		catch (PortalException pe) {
-			throw pe;
-		}
-		catch (Exception e) {
-			_log.error(e, e);
-		}
-
-		return null;
-	}
-
-	protected Object checkPermission(
-			PermissionChecker permissionChecker, String className, long classPK,
-			String actionId)
-		throws PortalException {
-
-		try {
-			return PortalClassInvoker.invoke(
-				false, _checkPermissionMethodKeyClassNameClassPK,
-				permissionChecker, className, classPK, actionId);
-		}
-		catch (PortalException pe) {
-			throw pe;
-		}
-		catch (Exception e) {
-			_log.error(e, e);
-		}
-
-		return null;
-	}
-
-	private static final MethodKey _checkPermissionMethodKeyClassNameClassPK =
-			new MethodKey(
-					ClassResolverUtil.resolveByPortalClassLoader(
-							"com.liferay.portlet.asset.service.permission." +
-									"AssetEntryPermission"),
-					"check", PermissionChecker.class, String.class, long.class,
-					String.class);
-	private static final MethodKey _checkPermissionMethodKeyEntryId =
-		new MethodKey(
-			ClassResolverUtil.resolveByPortalClassLoader(
-					"com.liferay.portlet.asset.service.permission." +
-							"AssetEntryPermission"),
-			"check", PermissionChecker.class, long.class, String.class);
 
 	private static Log _log = LogFactoryUtil.getLog(
 		ScreensRatingsEntryServiceImpl.class);
