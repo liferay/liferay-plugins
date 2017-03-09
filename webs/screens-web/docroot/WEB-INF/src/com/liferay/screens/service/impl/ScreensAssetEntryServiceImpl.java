@@ -187,22 +187,6 @@ public class ScreensAssetEntryServiceImpl
 			assetEntryLocalService.getEntry(className, classPK), locale);
 	}
 
-	protected Object invoke(MethodKey methodKey, Object... args)
-		throws PortalException {
-
-		try {
-			return PortalClassInvoker.invoke(false, methodKey, args);
-		}
-		catch (PortalException pe) {
-			throw pe;
-		}
-		catch (Exception e) {
-			_log.error(e, e);
-		}
-
-		return null;
-	}
-
 	protected List<AssetEntry> filterAssetEntries(List<AssetEntry> assetEntries)
 		throws PortalException {
 
@@ -212,8 +196,7 @@ public class ScreensAssetEntryServiceImpl
 		for (AssetEntry assetEntry : assetEntries) {
 			if ((Boolean)invoke(
 					_assetEntryPermissionContainsMethodKey,
-					getPermissionChecker(),
-					assetEntry, ActionKeys.VIEW)) {
+					getPermissionChecker(), assetEntry, ActionKeys.VIEW)) {
 
 				filteredAssetEntries.add(assetEntry);
 			}
@@ -363,6 +346,22 @@ public class ScreensAssetEntryServiceImpl
 				JSONFactoryUtil.looseSerialize(user)));
 
 		return userJSONObject;
+	}
+
+	protected Object invoke(MethodKey methodKey, Object... args)
+		throws PortalException {
+
+		try {
+			return PortalClassInvoker.invoke(false, methodKey, args);
+		}
+		catch (PortalException pe) {
+			throw pe;
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+		}
+
+		return null;
 	}
 
 	protected JSONArray toJSONArray(
