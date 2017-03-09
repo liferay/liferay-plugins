@@ -73,8 +73,9 @@ public class ScreensRatingsEntryServiceImpl
 			className, classPK);
 
 		for (RatingsEntry ratingsEntry : ratingsEntries) {
-			double score = ratingsEntry.getScore()
-						/ ratingsDefaultNumberOfStars;
+			double score =
+				ratingsEntry.getScore() / ratingsDefaultNumberOfStars;
+
 			int index = (int)(score * ratingsLength);
 
 			if (index == ratingsLength) {
@@ -82,6 +83,7 @@ public class ScreensRatingsEntryServiceImpl
 			}
 
 			ratings[index]++;
+
 			totalScore += score;
 
 			if (ratingsEntry.getUserId() == getUserId()) {
