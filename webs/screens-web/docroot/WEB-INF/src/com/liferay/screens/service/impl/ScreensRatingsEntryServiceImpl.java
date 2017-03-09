@@ -67,10 +67,10 @@ public class ScreensRatingsEntryServiceImpl
 			className, classPK);
 
 		int[] ratings = new int[ratingsLength];
-		double totalScore = 0;
-		double userScore = -1;
 		int ratingsDefaultNumberOfStars = GetterUtil.getInteger(
 			PropsUtil.get(PropsKeys.RATINGS_DEFAULT_NUMBER_OF_STARS));
+		double totalScore = 0;
+		double userScore = -1;
 
 		for (RatingsEntry ratingsEntry : ratingsEntries) {
 			double score = ratingsEntry.getScore()
