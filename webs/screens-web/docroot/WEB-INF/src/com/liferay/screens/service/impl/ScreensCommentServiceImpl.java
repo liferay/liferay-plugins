@@ -174,9 +174,6 @@ public class ScreensCommentServiceImpl extends ScreensCommentServiceBaseImpl {
 		jsonObject.put("body", comment.getBody());
 		jsonObject.put("commentId", comment.getMessageId());
 		jsonObject.put("createDate", comment.getCreateDate().getTime());
-		jsonObject.put("modifiedDate", comment.getModifiedDate().getTime());
-		jsonObject.put("userId", comment.getUserId());
-		jsonObject.put("userName", comment.getUserName());
 
 		boolean deletePermission = (Boolean)checkPermission(
 			_containsMBMessagePermissionMethodKey, getPermissionChecker(),
@@ -184,11 +181,16 @@ public class ScreensCommentServiceImpl extends ScreensCommentServiceBaseImpl {
 
 		jsonObject.put("deletePermission", deletePermission);
 
+		jsonObject.put("modifiedDate", comment.getModifiedDate().getTime());
+
 		boolean updatePermission = (Boolean)checkPermission(
 			_containsMBMessagePermissionMethodKey, getPermissionChecker(),
 			comment.getMessageId(), ActionKeys.UPDATE);
 
 		jsonObject.put("updatePermission", updatePermission);
+
+		jsonObject.put("userId", comment.getUserId());
+		jsonObject.put("userName", comment.getUserName());
 
 		return jsonObject;
 	}
