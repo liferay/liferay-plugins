@@ -50,6 +50,7 @@ public class ScreensCommentServiceImpl extends ScreensCommentServiceBaseImpl {
 
 		AssetEntry assetEntry = assetEntryLocalService.getEntry(
 			className, classPK);
+
 		Group group = groupService.getGroup(assetEntry.getGroupId());
 
 		checkPermission(
