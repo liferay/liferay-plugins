@@ -213,13 +213,13 @@ public class ScreensCommentServiceImpl extends ScreensCommentServiceBaseImpl {
 
 		MBThread thread = messageDisplay.getThread();
 
-		List<MBMessage> messages = mbMessageLocalService.getThreadMessages(
+		List<MBMessage> mbMessages = mbMessageLocalService.getThreadMessages(
 			thread.getThreadId(), WorkflowConstants.STATUS_APPROVED);
 
-		for (MBMessage message : messages) {
-			String messageBody = message.getBody();
+		for (MBMessage mbMessage : mbMessages) {
+			String mbMessageBody = mbMessage.getBody();
 
-			if (messageBody.equals(body)) {
+			if (mbMessageBody.equals(body)) {
 				throw new SystemException(body);
 			}
 		}
