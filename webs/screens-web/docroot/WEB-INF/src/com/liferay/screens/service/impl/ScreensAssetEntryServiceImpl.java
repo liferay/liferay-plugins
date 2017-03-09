@@ -399,14 +399,14 @@ public class ScreensAssetEntryServiceImpl
 		new MethodKey(
 			ClassResolverUtil.resolveByPortalClassLoader(
 				"com.liferay.portlet.asset.service.permission." +
-				"AssetEntryPermission"),
+					"AssetEntryPermission"),
 			"check", PermissionChecker.class, String.class, long.class,
 			String.class);
 	private static final MethodKey _containsPermissionMethodKey =
 		new MethodKey(
 			ClassResolverUtil.resolveByPortalClassLoader(
 				"com.liferay.portlet.asset.service.permission." +
-				"AssetEntryPermission"),
+					"AssetEntryPermission"),
 			"contains", PermissionChecker.class, AssetEntry.class,
 			String.class);
 
