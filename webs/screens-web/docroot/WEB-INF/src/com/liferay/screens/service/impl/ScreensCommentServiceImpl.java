@@ -137,6 +137,7 @@ public class ScreensCommentServiceImpl extends ScreensCommentServiceBaseImpl {
 		MBMessage mbMessage = mbMessageLocalService.getMBMessage(commentId);
 
 		ServiceContext serviceContext = new ServiceContext();
+
 		serviceContext.setWorkflowAction(WorkflowConstants.ACTION_PUBLISH);
 
 		mbMessage = mbMessageLocalService.updateDiscussionMessage(
