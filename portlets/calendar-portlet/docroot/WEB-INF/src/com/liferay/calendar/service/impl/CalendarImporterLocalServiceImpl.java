@@ -112,7 +112,6 @@ public class CalendarImporterLocalServiceImpl
 
 		if (calEvent.getRemindBy() == CalEventConstants.REMIND_BY_NONE) {
 			firstReminder = 0;
-
 			secondReminder = 0;
 		}
 
