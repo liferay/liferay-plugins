@@ -51,6 +51,7 @@ import com.liferay.portlet.asset.model.AssetLink;
 import com.liferay.portlet.asset.model.AssetTag;
 import com.liferay.portlet.asset.model.AssetVocabulary;
 import com.liferay.portlet.calendar.model.CalEvent;
+import com.liferay.portlet.calendar.model.CalEventConstants;
 import com.liferay.portlet.calendar.service.persistence.CalEventActionableDynamicQuery;
 import com.liferay.portlet.messageboards.model.MBDiscussion;
 import com.liferay.portlet.messageboards.model.MBMessage;
@@ -106,6 +107,15 @@ public class CalendarImporterLocalServiceImpl
 
 		String recurrence = getRecurrence(calEvent.getRecurrenceObj());
 
+		int firstReminder = calEvent.getFirstReminder();
+		int secondReminder = calEvent.getSecondReminder();
+
+		if (calEvent.getRemindBy() == CalEventConstants.REMIND_BY_NONE) {
+			firstReminder = 0;
+
+			secondReminder = 0;
+		}
+
 		addCalendarBooking(
 			calEvent.getUuid(), calendarBookingId, calEvent.getCompanyId(),
 			calendarResource.getGroupId(), calEvent.getUserId(),
@@ -113,9 +123,8 @@ public class CalendarImporterLocalServiceImpl
 			calEvent.getModifiedDate(), calendarResource.getDefaultCalendarId(),
 			calendarResource.getCalendarResourceId(), calEvent.getTitle(),
 			calEvent.getDescription(), calEvent.getLocation(), startTime,
-			endTime, calEvent.getAllDay(), recurrence,
-			calEvent.getFirstReminder(), NotificationType.EMAIL,
-			calEvent.getSecondReminder(), NotificationType.EMAIL);
+			endTime, calEvent.getAllDay(), recurrence, firstReminder,
+			NotificationType.EMAIL, secondReminder, NotificationType.EMAIL);
 
 		// Resources
 
