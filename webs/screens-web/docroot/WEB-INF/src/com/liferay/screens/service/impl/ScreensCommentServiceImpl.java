@@ -105,9 +105,9 @@ public class ScreensCommentServiceImpl extends ScreensCommentServiceBaseImpl {
 			start = 0;
 		}
 
-		MBTreeWalker treeWalker = mbMessageDisplay.getTreeWalker();
+		MBTreeWalker mbTreeWalker = mbMessageDisplay.getTreeWalker();
 
-		List<MBMessage> mbMessages = treeWalker.getMessages();
+		List<MBMessage> mbMessages = mbTreeWalker.getMessages();
 
 		Iterator<MBMessage> iterator = mbMessages.listIterator(start);
 
