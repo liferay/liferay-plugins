@@ -14,6 +14,7 @@
 
 package com.liferay.screens.service.impl;
 
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONArray;
@@ -34,10 +35,11 @@ import com.liferay.portlet.asset.model.AssetEntry;
 import com.liferay.portlet.messageboards.model.MBMessage;
 import com.liferay.portlet.messageboards.model.MBMessageDisplay;
 import com.liferay.portlet.messageboards.model.MBThread;
-import com.liferay.portlet.messageboards.util.comparator.MessageCreateDateComparator;
+import com.liferay.portlet.messageboards.model.MBTreeWalker;
 import com.liferay.screens.service.base.ScreensCommentServiceBaseImpl;
 
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -94,16 +96,48 @@ public class ScreensCommentServiceImpl extends ScreensCommentServiceBaseImpl {
 			group.getCompanyId(), group.getGroupId(), className, classPK,
 			getUserId(), ActionKeys.VIEW);
 
-		List<MBMessage> mbMessages =
-			mbMessageLocalService.getUserDiscussionMessages(
-				getUserId(), classNameLocalService.getClassNameId(className),
-				classPK, WorkflowConstants.STATUS_APPROVED, start, end,
-				new MessageCreateDateComparator(false));
+		MBMessageDisplay mbMessageDisplay =
+			mbMessageLocalService.getDiscussionMessageDisplay(
+				getUserId(), assetEntry.getGroupId(), className, classPK,
+				WorkflowConstants.STATUS_APPROVED);
+
+		if (start == QueryUtil.ALL_POS) {
+			start = 0;
+		}
+
+		MBTreeWalker treeWalker = mbMessageDisplay.getTreeWalker();
+
+		List<MBMessage> mbMessages = treeWalker.getMessages();
+
+		Iterator<MBMessage> iterator = mbMessages.listIterator(start);
 
 		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 
-		for (MBMessage mbMessage : mbMessages) {
-			jsonArray.put(toJSONObject(mbMessage));
+		if (end == QueryUtil.ALL_POS) {
+			while (iterator.hasNext()) {
+				MBMessage mbMessage = iterator.next();
+
+				if (!mbMessage.isRoot()) {
+					JSONObject jsonObject = toJSONObject(mbMessage);
+
+					jsonArray.put(jsonObject);
+				}
+			}
+		}
+		else {
+			int commentsCount = end - start;
+
+			while (iterator.hasNext() && (commentsCount > 0)) {
+				MBMessage mbMessage = iterator.next();
+
+				if (!mbMessage.isRoot()) {
+					JSONObject jsonObject = toJSONObject(mbMessage);
+
+					jsonArray.put(jsonObject);
+
+					commentsCount--;
+				}
+			}
 		}
 
 		return jsonArray;
