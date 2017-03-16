@@ -498,6 +498,11 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 
 		String queryString = query.toString();
 
+		SolrExpandoPostProcessor solrExpandoPostProcessor =
+			new SolrExpandoPostProcessor(queryString);
+
+		queryString = solrExpandoPostProcessor.postProcess();
+
 		StringBundler sb = new StringBundler(6);
 
 		sb.append(StringPool.PLUS);
