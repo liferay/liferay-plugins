@@ -73,7 +73,7 @@ public class AssetEntrySetLocalServiceImpl
 	public AssetEntrySet addAssetEntrySet(
 			long userId, long parentAssetEntrySetId, long creatorClassNameId,
 			long creatorClassPK, JSONObject payloadJSONObject,
-			boolean privateAssetEntrySet, long stickyTime, int type, int level)
+			boolean privateAssetEntrySet, long stickyTime, int type)
 		throws PortalException, SystemException {
 
 		long assetEntrySetId = counterLocalService.increment();
@@ -108,7 +108,7 @@ public class AssetEntrySetLocalServiceImpl
 		assetEntrySet.setPrivateAssetEntrySet(privateAssetEntrySet);
 		assetEntrySet.setStickyTime(stickyTime);
 		assetEntrySet.setType(type);
-		assetEntrySet.setLevel(level);
+		assetEntrySet.setLevel(getLevel(parentAssetEntrySetId));
 
 		assetEntrySetPersistence.update(assetEntrySet);
 
@@ -129,6 +129,23 @@ public class AssetEntrySetLocalServiceImpl
 		indexer.reindex(assetEntrySet);
 
 		return assetEntrySet;
+	}
+
+	protected int getLevel(long parentAssetEntrySetId)
+		throws PortalException, SystemException {
+
+		int level = 0;
+
+		while (parentAssetEntrySetId > 0) {
+			level++;
+
+			AssetEntrySet assetEntrySet = getAssetEntrySet(
+				parentAssetEntrySetId);
+
+			parentAssetEntrySetId = assetEntrySet.getParentAssetEntrySetId();
+		}
+
+		return level;
 	}
 
 	@Override
