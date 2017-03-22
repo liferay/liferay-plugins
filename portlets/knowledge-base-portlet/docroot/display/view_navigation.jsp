@@ -21,7 +21,7 @@ KBNavigationDisplayContext kbNavigationDisplayContext = (KBNavigationDisplayCont
 
 List<Long> ancestorResourcePrimaryKeys = kbNavigationDisplayContext.getAncestorResourcePrimaryKeys();
 
-long rootResourcePrimKey = kbNavigationDisplayContext.getRootResourcePrimKey();
+long parentResourcePrimKey  = kbNavigationDisplayContext.getParentResourcePrimKey();
 
 String pageTitle = kbNavigationDisplayContext.getPageTitle();
 
@@ -41,7 +41,7 @@ KBArticleURLHelper kbArticleURLHelper = new KBArticleURLHelper(renderRequest, re
 	request.setAttribute("view_navigation_articles.jsp-ancestorResourcePrimaryKeys", ancestorResourcePrimaryKeys);
 	request.setAttribute("view_navigation_articles.jsp-kbArticleURLHelper", kbArticleURLHelper);
 	request.setAttribute("view_navigation_articles.jsp-level", 0);
-	request.setAttribute("view_navigation_articles.jsp-parentResourcePrimKey", rootResourcePrimKey);
+	request.setAttribute("view_navigation_articles.jsp-parentResourcePrimKey", parentResourcePrimKey);
 	%>
 
 	<liferay-util:include page="/display/view_navigation_articles.jsp" servletContext="<%= application %>" />
