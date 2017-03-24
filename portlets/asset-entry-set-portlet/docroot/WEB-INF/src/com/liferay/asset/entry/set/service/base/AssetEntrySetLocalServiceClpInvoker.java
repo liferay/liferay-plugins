@@ -161,7 +161,7 @@ public class AssetEntrySetLocalServiceClpInvoker {
 		_methodName73 = "getNewChildAssetEntrySets";
 
 		_methodParameterTypes73 = new String[] {
-				"long", "long", "long", "int", "int",
+				"long", "long", "int", "int",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
@@ -186,7 +186,7 @@ public class AssetEntrySetLocalServiceClpInvoker {
 		_methodName76 = "getOldChildAssetEntrySets";
 
 		_methodParameterTypes76 = new String[] {
-				"long", "long", "long", "int", "int",
+				"long", "long", "int", "int",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
@@ -379,10 +379,9 @@ public class AssetEntrySetLocalServiceClpInvoker {
 				Arrays.deepEquals(_methodParameterTypes73, parameterTypes)) {
 			return AssetEntrySetLocalServiceUtil.getNewChildAssetEntrySets(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
-				((Long)arguments[2]).longValue(),
+				((Integer)arguments[2]).intValue(),
 				((Integer)arguments[3]).intValue(),
-				((Integer)arguments[4]).intValue(),
-				(com.liferay.portal.kernel.util.OrderByComparator)arguments[5]);
+				(com.liferay.portal.kernel.util.OrderByComparator)arguments[4]);
 		}
 
 		if (_methodName74.equals(name) &&
@@ -420,10 +419,9 @@ public class AssetEntrySetLocalServiceClpInvoker {
 				Arrays.deepEquals(_methodParameterTypes76, parameterTypes)) {
 			return AssetEntrySetLocalServiceUtil.getOldChildAssetEntrySets(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
-				((Long)arguments[2]).longValue(),
+				((Integer)arguments[2]).intValue(),
 				((Integer)arguments[3]).intValue(),
-				((Integer)arguments[4]).intValue(),
-				(com.liferay.portal.kernel.util.OrderByComparator)arguments[5]);
+				(com.liferay.portal.kernel.util.OrderByComparator)arguments[4]);
 		}
 
 		if (_methodName77.equals(name) &&

@@ -152,7 +152,7 @@ public class AssetEntrySetLocalServiceClp implements AssetEntrySetLocalService {
 		_methodName24 = "getNewChildAssetEntrySets";
 
 		_methodParameterTypes24 = new String[] {
-				"long", "long", "long", "int", "int",
+				"long", "long", "int", "int",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
@@ -177,7 +177,7 @@ public class AssetEntrySetLocalServiceClp implements AssetEntrySetLocalService {
 		_methodName27 = "getOldChildAssetEntrySets";
 
 		_methodParameterTypes27 = new String[] {
-				"long", "long", "long", "int", "int",
+				"long", "long", "int", "int",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
@@ -1008,8 +1008,7 @@ public class AssetEntrySetLocalServiceClp implements AssetEntrySetLocalService {
 
 	@Override
 	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getNewChildAssetEntrySets(
-		long userId, long createTime, long parentAssetEntrySetId, int start,
-		int end,
+		long createTime, long parentAssetEntrySetId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -1019,9 +1018,7 @@ public class AssetEntrySetLocalServiceClp implements AssetEntrySetLocalService {
 			returnObj = _invokableLocalService.invokeMethod(_methodName24,
 					_methodParameterTypes24,
 					new Object[] {
-						userId,
-						
-					createTime,
+						createTime,
 						
 					parentAssetEntrySetId,
 						
@@ -1188,8 +1185,7 @@ public class AssetEntrySetLocalServiceClp implements AssetEntrySetLocalService {
 
 	@Override
 	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getOldChildAssetEntrySets(
-		long userId, long createTime, long parentAssetEntrySetId, int start,
-		int end,
+		long createTime, long parentAssetEntrySetId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -1199,9 +1195,7 @@ public class AssetEntrySetLocalServiceClp implements AssetEntrySetLocalService {
 			returnObj = _invokableLocalService.invokeMethod(_methodName27,
 					_methodParameterTypes27,
 					new Object[] {
-						userId,
-						
-					createTime,
+						createTime,
 						
 					parentAssetEntrySetId,
 						
