@@ -21,7 +21,7 @@ KBNavigationDisplayContext kbNavigationDisplayContext = (KBNavigationDisplayCont
 
 List<Long> ancestorResourcePrimaryKeys = kbNavigationDisplayContext.getAncestorResourcePrimaryKeys();
 
-long parentResourcePrimKey  = kbNavigationDisplayContext.getParentResourcePrimKey();
+long parentResourcePrimKey = kbNavigationDisplayContext.getParentResourcePrimKey();
 
 String pageTitle = kbNavigationDisplayContext.getPageTitle();
 
