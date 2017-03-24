@@ -17,16 +17,21 @@ package com.liferay.knowledgebase.article.portlet;
 import com.liferay.knowledgebase.NoSuchArticleException;
 import com.liferay.knowledgebase.NoSuchCommentException;
 import com.liferay.knowledgebase.model.KBArticle;
+import com.liferay.knowledgebase.model.KBFolderConstants;
 import com.liferay.knowledgebase.portlet.BaseKBPortlet;
+import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
 import com.liferay.knowledgebase.service.KBArticleServiceUtil;
 import com.liferay.knowledgebase.service.permission.KBArticlePermission;
 import com.liferay.knowledgebase.util.ActionKeys;
 import com.liferay.knowledgebase.util.WebKeys;
 import com.liferay.portal.NoSuchSubscriptionException;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.security.permission.PermissionChecker;
@@ -143,8 +148,12 @@ public class ArticlePortlet extends BaseKBPortlet {
 			return 0;
 		}
 
-		long resourcePrimKey = ParamUtil.getLong(
-			renderRequest, "resourcePrimKey", defaultValue);
+		long resourcePrimKey = getResourcePrimKeyFromUrlTitle(renderRequest);
+
+		if (resourcePrimKey == 0) {
+			resourcePrimKey = ParamUtil.getLong(
+				renderRequest, "resourcePrimKey", defaultValue);
+		}
 
 		if ((resourcePrimKey == 0) || (resourcePrimKey != defaultValue)) {
 			return resourcePrimKey;
@@ -160,6 +169,38 @@ public class ArticlePortlet extends BaseKBPortlet {
 		}
 
 		return defaultValue;
+	}
+
+	protected long getResourcePrimKeyFromUrlTitle(RenderRequest renderRequest)
+		throws PortalException, SystemException {
+
+		String urlTitle = ParamUtil.getString(renderRequest, "urlTitle");
+
+		if (Validator.isNull(urlTitle)) {
+			return 0;
+		}
+
+		String kbFolderUrlTitle = ParamUtil.getString(
+			renderRequest, "kbFolderUrlTitle");
+
+		KBArticle kbArticle = null;
+
+		if (Validator.isNull(kbFolderUrlTitle)) {
+			kbArticle = KBArticleLocalServiceUtil.fetchKBArticleByUrlTitle(
+				PortalUtil.getScopeGroupId(renderRequest),
+				KBFolderConstants.DEFAULT_PARENT_FOLDER_ID, urlTitle);
+		}
+		else {
+			kbArticle = KBArticleLocalServiceUtil.fetchKBArticleByUrlTitle(
+				PortalUtil.getScopeGroupId(renderRequest), kbFolderUrlTitle,
+				urlTitle);
+		}
+
+		if (kbArticle != null) {
+			return kbArticle.getResourcePrimKey();
+		}
+
+		return 0;
 	}
 
 	protected int getStatus(RenderRequest renderRequest) throws Exception {
