@@ -23,13 +23,13 @@
 		<column name="creatorClassNameId" type="long" />
 		<column name="creatorClassPK" type="long" />
 		<column name="creatorName" type="String" />
-		<column name="payload" type="String" />
-		<column name="childAssetEntrySetsCount" type="int" />
 		<column name="assetEntrySetLikesCount" type="int" />
+		<column name="childAssetEntrySetsCount" type="int" />
+		<column name="level" type="int" />
+		<column name="payload" type="String" />
 		<column name="privateAssetEntrySet" type="boolean" />
 		<column name="stickyTime" type="long" />
 		<column name="type" type="int" />
-		<column name="level" type="int" />
 
 		<!-- Order -->
 

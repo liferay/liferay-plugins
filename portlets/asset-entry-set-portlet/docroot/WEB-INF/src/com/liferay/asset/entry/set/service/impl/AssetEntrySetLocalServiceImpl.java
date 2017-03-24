@@ -98,6 +98,8 @@ public class AssetEntrySetLocalServiceImpl
 			AssetEntrySetParticipantInfoUtil.getParticipantName(
 				creatorClassNameId, creatorClassPK));
 
+		assetEntrySet.setLevel(getLevel(parentAssetEntrySetId));
+
 		filterAssetTagNames(payloadJSONObject);
 
 		assetEntrySet.setPayload(
@@ -108,7 +110,6 @@ public class AssetEntrySetLocalServiceImpl
 		assetEntrySet.setPrivateAssetEntrySet(privateAssetEntrySet);
 		assetEntrySet.setStickyTime(stickyTime);
 		assetEntrySet.setType(type);
-		assetEntrySet.setLevel(getLevel(parentAssetEntrySetId));
 
 		assetEntrySetPersistence.update(assetEntrySet);
 
@@ -129,23 +130,6 @@ public class AssetEntrySetLocalServiceImpl
 		indexer.reindex(assetEntrySet);
 
 		return assetEntrySet;
-	}
-
-	protected int getLevel(long parentAssetEntrySetId)
-		throws PortalException, SystemException {
-
-		int level = 0;
-
-		while (parentAssetEntrySetId > 0) {
-			level++;
-
-			AssetEntrySet assetEntrySet = getAssetEntrySet(
-				parentAssetEntrySetId);
-
-			parentAssetEntrySetId = assetEntrySet.getParentAssetEntrySetId();
-		}
-
-		return level;
 	}
 
 	@Override
@@ -531,6 +515,23 @@ public class AssetEntrySetLocalServiceImpl
 		}
 
 		return fileEntryIds;
+	}
+
+	protected int getLevel(long parentAssetEntrySetId)
+		throws PortalException, SystemException {
+
+		int level = 0;
+
+		while (parentAssetEntrySetId > 0) {
+			level++;
+
+			AssetEntrySet assetEntrySet = getAssetEntrySet(
+				parentAssetEntrySetId);
+
+			parentAssetEntrySetId = assetEntrySet.getParentAssetEntrySetId();
+		}
+
+		return level;
 	}
 
 	protected Map<Long, Set<Long>> getSharedToClassPKsMap(
