@@ -46,6 +46,10 @@
 			<finder-column name="createTime" comparator="&gt;" />
 			<finder-column name="parentAssetEntrySetId" />
 		</finder>
+		<finder name="GteCT_PAESI" return-type="Collection">
+			<finder-column name="createTime" comparator="&gt;=" />
+			<finder-column name="parentAssetEntrySetId" />
+		</finder>
 		<finder name="LtCT_PAESI" return-type="Collection">
 			<finder-column name="createTime" comparator="&lt;=" />
 			<finder-column name="parentAssetEntrySetId" />

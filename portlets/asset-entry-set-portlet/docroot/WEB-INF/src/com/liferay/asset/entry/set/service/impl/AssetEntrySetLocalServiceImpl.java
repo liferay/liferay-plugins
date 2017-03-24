@@ -250,16 +250,18 @@ public class AssetEntrySetLocalServiceImpl
 
 	@Override
 	public List<AssetEntrySet> getNewChildAssetEntrySets(
-			long userId, long createTime, long parentAssetEntrySetId, int start,
-			int end, OrderByComparator orderByComparator)
+			long createTime, long parentAssetEntrySetId, boolean equalTo,
+			int start, int end, OrderByComparator orderByComparator)
 		throws PortalException, SystemException {
 
-		List<AssetEntrySet> assetEntrySets =
-			assetEntrySetPersistence.findByGtCT_PAESI(
+		if (equalTo) {
+			return assetEntrySetPersistence.findByGteCT_PAESI(
 				createTime, parentAssetEntrySetId, start, end,
 				orderByComparator);
+		}
 
-		return assetEntrySets;
+		return assetEntrySetPersistence.findByGtCT_PAESI(
+			createTime, parentAssetEntrySetId, start, end, orderByComparator);
 	}
 
 	@Override
@@ -296,8 +298,8 @@ public class AssetEntrySetLocalServiceImpl
 
 	@Override
 	public List<AssetEntrySet> getOldChildAssetEntrySets(
-			long userId, long createTime, long parentAssetEntrySetId, int start,
-			int end, OrderByComparator orderByComparator)
+			long createTime, long parentAssetEntrySetId, int start, int end,
+			OrderByComparator orderByComparator)
 		throws PortalException, SystemException {
 
 		List<AssetEntrySet> assetEntrySets =
