@@ -43,6 +43,7 @@ import com.liferay.portal.kernel.util.ReleaseInfo;
 import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.zip.ZipReader;
 import com.liferay.portal.kernel.zip.ZipReaderFactoryUtil;
 import com.liferay.portal.model.Group;
@@ -130,7 +131,8 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 				repositoryId, folderId, sourceFileName, mimeType, title,
 				description, changeLog, file, serviceContext);
 
-			return toSyncDLObject(fileEntry, SyncDLObjectConstants.EVENT_ADD);
+			return toSyncDLObject(
+				fileEntry, SyncDLObjectConstants.EVENT_ADD, checksum);
 		}
 		catch (PortalException pe) {
 			if (pe instanceof DuplicateFileException) {
@@ -307,6 +309,10 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			FileEntry sourceFileEntry = dlAppLocalService.getFileEntry(
 				sourceFileEntryId);
 
+			SyncDLObject sourceSyncDLObject =
+				syncDLObjectLocalService.fetchSyncDLObject(
+					SyncDLObjectConstants.TYPE_FILE, sourceFileEntryId);
+
 			FileVersion fileVersion = sourceFileEntry.getLatestFileVersion();
 
 			if (!group.isUser() &&
@@ -323,7 +329,9 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 				fileVersion.getContentStream(false), sourceFileEntry.getSize(),
 				serviceContext);
 
-			return toSyncDLObject(fileEntry, SyncDLObjectConstants.EVENT_ADD);
+			return toSyncDLObject(
+				fileEntry, SyncDLObjectConstants.EVENT_ADD,
+				sourceSyncDLObject.getChecksum());
 		}
 		catch (PortalException pe) {
 			throw new PortalException(SyncUtil.buildExceptionMessage(pe), pe);
@@ -1073,7 +1081,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 				changeLog, majorVersion, file, serviceContext);
 
 			return toSyncDLObject(
-				fileEntry, SyncDLObjectConstants.EVENT_UPDATE);
+				fileEntry, SyncDLObjectConstants.EVENT_UPDATE, checksum);
 		}
 		catch (PortalException pe) {
 			throw new PortalException(SyncUtil.buildExceptionMessage(pe), pe);
@@ -1432,9 +1440,22 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 	protected SyncDLObject toSyncDLObject(FileEntry fileEntry, String event)
 		throws PortalException, SystemException {
 
+		return toSyncDLObject(fileEntry, event, null);
+	}
+
+	protected SyncDLObject toSyncDLObject(
+			FileEntry fileEntry, String event, String checksum)
+		throws PortalException, SystemException {
+
 		SyncDLObject syncDLObject = SyncUtil.toSyncDLObject(fileEntry, event);
 
 		checkModifiedTime(syncDLObject, fileEntry.getFileEntryId());
+
+		if (Validator.isNotNull(checksum)) {
+			SyncUtil.addChecksum(
+				syncDLObject.getModifiedTime(), fileEntry.getFileEntryId(),
+				checksum);
+		}
 
 		String lanTokenKey = SyncUtil.getLanTokenKey(
 			syncDLObject.getModifiedTime(), fileEntry.getFileEntryId(), true);

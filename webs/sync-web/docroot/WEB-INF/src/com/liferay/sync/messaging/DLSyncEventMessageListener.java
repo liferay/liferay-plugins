@@ -80,8 +80,20 @@ public class DLSyncEventMessageListener extends BaseMessageListener {
 				return;
 			}
 
+			boolean calculateChecksum = false;
+
+			String checksum = SyncUtil.getChecksum(modifiedTime, typePK);
+
+			if ((checksum == null) && !dlFileEntry.isInTrash()) {
+				calculateChecksum = true;
+			}
+
 			syncDLObject = SyncUtil.toSyncDLObject(
-				dlFileEntry, event, !dlFileEntry.isInTrash());
+				dlFileEntry, event, calculateChecksum);
+
+			if (checksum != null) {
+				syncDLObject.setChecksum(checksum);
+			}
 
 			if (event.equals(SyncDLObjectConstants.EVENT_TRASH)) {
 				setUser(syncDLObject);
