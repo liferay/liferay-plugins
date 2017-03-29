@@ -223,6 +223,12 @@ public class KBFolderKBArticleSelector implements KBArticleSelector {
 			return true;
 		}
 
+		if (kbArticle.getKbFolderId() ==
+				KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
+
+			return false;
+		}
+
 		KBFolder parentKBFolder = KBFolderLocalServiceUtil.fetchKBFolder(
 			kbArticle.getKbFolderId());
 
