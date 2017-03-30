@@ -38,9 +38,7 @@ import org.jsoup.select.Elements;
  */
 public class URLMetadataScraperProcessor {
 
-	public String getURLMetadataJSON(String url, String userAgent)
-		throws Exception {
-
+	public String getURLMetadataJSON(String url) throws Exception {
 		JSONObject jsonObject = new JSONObject();
 
 		Document document = null;
@@ -53,11 +51,7 @@ public class URLMetadataScraperProcessor {
 
 			Connection connection = Jsoup.connect(url);
 
-			if (Validator.isNull(userAgent)) {
-				userAgent = _USER_AGENT_DEFAULT;
-			}
-
-			connection.userAgent(userAgent);
+			connection.userAgent(_USER_AGENT_DEFAULT);
 
 			document = connection.get();
 		}
@@ -80,8 +74,7 @@ public class URLMetadataScraperProcessor {
 			StringUtil.shorten(
 				getContent(document, _SELECTORS_DESCRIPTION),
 				_DESCRIPTION_LENGTH_MAXIMUM));
-		jsonObject.put(
-			"imageURLs", getImageURLs(document, protocol, userAgent));
+		jsonObject.put("imageURLs", getImageURLs(document, protocol));
 		jsonObject.put("videoURL", getContent(document, _SELECTORS_VIDEO_URL_));
 
 		String domain = "";
@@ -127,15 +120,14 @@ public class URLMetadataScraperProcessor {
 		return "";
 	}
 
-	protected List<String> getImageURLs(
-			Document document, String protocol, String userAgent)
+	protected List<String> getImageURLs(Document document, String protocol)
 		throws Exception {
 
 		List<String> imageURLs = new ArrayList<String>();
 
 		String imageURL = getContent(document, _SELECTORS_IMAGE);
 
-		if (isValidImageURL(imageURL, protocol, userAgent)) {
+		if (isValidImageURL(imageURL, protocol)) {
 			imageURLs.add(imageURL);
 		}
 
@@ -145,7 +137,7 @@ public class URLMetadataScraperProcessor {
 			imageURL = imageElement.absUrl("src");
 
 			if (isValidImageElement(imageElement) &&
-				isValidImageURL(imageURL, protocol, userAgent) &&
+				isValidImageURL(imageURL, protocol) &&
 				!imageURLs.contains(imageURL)) {
 
 				imageURLs.add(imageURL);
@@ -183,8 +175,7 @@ public class URLMetadataScraperProcessor {
 		return true;
 	}
 
-	protected boolean isValidImageURL(
-			String imageURL, String protocol, String userAgent)
+	protected boolean isValidImageURL(String imageURL, String protocol)
 		throws Exception {
 
 		if (Validator.isNull(imageURL)) {
@@ -201,7 +192,8 @@ public class URLMetadataScraperProcessor {
 			HttpURLConnection httpURLConnection =
 				(HttpURLConnection)url.openConnection();
 
-			httpURLConnection.setRequestProperty("User-Agent", userAgent);
+			httpURLConnection.setRequestProperty(
+				"User-Agent", _USER_AGENT_DEFAULT);
 
 			BufferedImage bufferedImage = ImageIO.read(
 				httpURLConnection.getInputStream());
@@ -254,7 +246,7 @@ public class URLMetadataScraperProcessor {
 	};
 
 	private static final String _USER_AGENT_DEFAULT =
-		"Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 " +
-			"Firefox/40.0";
+		"Mozilla/5.0 (compatible; Googlebot/2.1; " +
+			"+http://www.google.com/bot.html";
 
 }
