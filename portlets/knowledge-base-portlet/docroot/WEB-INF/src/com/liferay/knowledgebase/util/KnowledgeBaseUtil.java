@@ -30,6 +30,7 @@ import com.liferay.knowledgebase.util.comparator.KBArticleVersionComparator;
 import com.liferay.knowledgebase.util.comparator.KBArticleViewCountComparator;
 import com.liferay.knowledgebase.util.comparator.KBCommentCreateDateComparator;
 import com.liferay.knowledgebase.util.comparator.KBCommentModifiedDateComparator;
+import com.liferay.knowledgebase.util.comparator.KBFolderNameComparator;
 import com.liferay.knowledgebase.util.comparator.KBTemplateCreateDateComparator;
 import com.liferay.knowledgebase.util.comparator.KBTemplateModifiedDateComparator;
 import com.liferay.knowledgebase.util.comparator.KBTemplateTitleComparator;
@@ -68,7 +69,6 @@ import com.liferay.portlet.PortletPreferencesFactoryUtil;
 import java.io.InputStream;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
@@ -146,19 +146,7 @@ public class KnowledgeBaseUtil {
 			}
 		}
 
-		return ListUtil.sort(
-			kbFolders,
-			new Comparator<KBFolder>() {
-
-				@Override
-				public int compare(KBFolder kbFolder1, KBFolder kbFolder2) {
-					String name1 = kbFolder1.getName();
-					String name2 = kbFolder2.getName();
-
-					return name1.compareTo(name2) * -1;
-				}
-
-			});
+		return ListUtil.sort(kbFolders, new KBFolderNameComparator(false));
 	}
 
 	public static OrderByComparator getKBArticleOrderByComparator(
