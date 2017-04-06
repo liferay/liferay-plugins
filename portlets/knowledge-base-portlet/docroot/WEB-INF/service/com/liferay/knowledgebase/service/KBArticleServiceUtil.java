@@ -78,16 +78,6 @@ public class KBArticleServiceUtil {
 			sourceURL, sections, selectedFileNames, serviceContext);
 	}
 
-	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> getAllDescendantKBArticles(
-		long groupId, long resourcePrimKey, int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getService()
-				   .getAllDescendantKBArticles(groupId, resourcePrimKey,
-			status, orderByComparator);
-	}
-
 	public static int addKBArticlesMarkdown(long groupId,
 		long parentKBFolderId, java.lang.String fileName,
 		boolean prioritizeByNumericalPrefix, java.io.InputStream inputStream,
@@ -136,6 +126,16 @@ public class KBArticleServiceUtil {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService().fetchLatestKBArticle(resourcePrimKey, status);
+	}
+
+	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> getAllDescendantKBArticles(
+		long groupId, long resourcePrimKey, int status,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .getAllDescendantKBArticles(groupId, resourcePrimKey,
+			status, orderByComparator);
 	}
 
 	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> getGroupKBArticles(

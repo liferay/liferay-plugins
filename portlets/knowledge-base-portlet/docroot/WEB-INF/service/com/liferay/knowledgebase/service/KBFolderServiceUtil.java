@@ -63,13 +63,6 @@ public class KBFolderServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
-	public static com.liferay.knowledgebase.model.KBFolder fetchKBFolder(
-		long kbFolderId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getService().fetchKBFolder(kbFolderId);
-	}
-
 	public static com.liferay.knowledgebase.model.KBFolder addKBFolder(
 		long groupId, long parentResourceClassNameId,
 		long parentResourcePrimKey, java.lang.String name,
@@ -87,6 +80,28 @@ public class KBFolderServiceUtil {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService().deleteKBFolder(kbFolderId);
+	}
+
+	public static com.liferay.knowledgebase.model.KBFolder fetchFirstChildKBFolder(
+		long groupId, long kbFolderId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().fetchFirstChildKBFolder(groupId, kbFolderId);
+	}
+
+	public static com.liferay.knowledgebase.model.KBFolder fetchFirstChildKBFolder(
+		long groupId, long kbFolderId,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().fetchFirstChildKBFolder(groupId, kbFolderId, obc);
+	}
+
+	public static com.liferay.knowledgebase.model.KBFolder fetchKBFolder(
+		long kbFolderId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().fetchKBFolder(kbFolderId);
 	}
 
 	public static com.liferay.knowledgebase.model.KBFolder fetchKBFolderByUrlTitle(
