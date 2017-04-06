@@ -15,7 +15,6 @@
 package com.liferay.knowledgebase.display.selector;
 
 import com.liferay.knowledgebase.model.KBArticle;
-import com.liferay.knowledgebase.model.KBArticleConstants;
 import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -38,16 +37,6 @@ public class KBArticleKBArticleSelector implements KBArticleSelector {
 
 		if (ancestorKBArticle == null) {
 			return new KBArticleSelection(null, false);
-		}
-
-		if (resourcePrimKey ==
-				KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) {
-
-			KBArticle kbArticle =
-				KBArticleLocalServiceUtil.fetchFirstChildKBArticle(
-					groupId, ancestorKBArticle.getResourcePrimKey());
-
-			return new KBArticleSelection(kbArticle, true);
 		}
 
 		KBArticle kbArticle = KBArticleLocalServiceUtil.fetchLatestKBArticle(
