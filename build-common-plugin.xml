@@ -464,8 +464,7 @@
 			<arg value="lang.file=${lang.file}" />
 			<arg value="lang.plugin=true" />
 			<arg value="lang.translate=${lang.translate}" />
-			<arg value="lang.translate.client.id=${microsoft.translator.client.id}" />
-			<arg value="lang.translate.client.secret=${microsoft.translator.client.secret}" />
+			<arg value="lang.translate.subscription.key=${microsoft.translator.subscription.key}" />
 		</java>
 	</target>
 
