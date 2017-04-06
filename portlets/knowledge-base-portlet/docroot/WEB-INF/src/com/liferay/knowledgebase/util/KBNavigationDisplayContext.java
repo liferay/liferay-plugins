@@ -115,14 +115,12 @@ public class KBNavigationDisplayContext {
 		return pageTitle;
 	}
 
-	public long getParentResourcePrimKey()
-		throws PortalException, SystemException {
+	public long getParentResourcePrimKey() throws PortalException {
+			if (_kbArticle != null) {
+				return _kbArticle.getParentResourcePrimKey();
+			}
 
-		if (_kbArticle != null) {
-			return _kbArticle.getParentResourcePrimKey();
-		}
-
-		return getRootResourcePrimKey();
+			return getRootResourcePrimKey();
 	}
 
 	public long getRootResourcePrimKey()
