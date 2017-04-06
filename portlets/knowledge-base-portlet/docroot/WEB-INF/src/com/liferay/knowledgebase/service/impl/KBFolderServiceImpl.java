@@ -20,6 +20,7 @@ import com.liferay.knowledgebase.service.permission.KBFolderPermission;
 import com.liferay.knowledgebase.util.ActionKeys;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.service.ServiceContext;
 
 import java.util.List;
@@ -52,6 +53,28 @@ public class KBFolderServiceImpl extends KBFolderServiceBaseImpl {
 			getPermissionChecker(), kbFolderId, ActionKeys.DELETE);
 
 		return kbFolderLocalService.deleteKBFolder(kbFolderId);
+	}
+
+	@Override
+	public KBFolder fetchFirstChildKBFolder(long groupId, long kbFolderId)
+		throws PortalException, SystemException {
+
+		return fetchFirstChildKBFolder(groupId, kbFolderId, null);
+	}
+
+	@Override
+	public KBFolder fetchFirstChildKBFolder(
+			long groupId, long kbFolderId, OrderByComparator obc)
+		throws PortalException, SystemException {
+
+		List<KBFolder> kbFolders = kbFolderPersistence.filterFindByG_P(
+			groupId, kbFolderId, 0, 1, obc);
+
+		if (kbFolders.isEmpty()) {
+			return null;
+		}
+
+		return kbFolders.get(0);
 	}
 
 	@Override

@@ -23,6 +23,7 @@ import com.liferay.knowledgebase.service.base.KBFolderLocalServiceBaseImpl;
 import com.liferay.knowledgebase.util.KnowledgeBaseUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
@@ -115,7 +116,15 @@ public class KBFolderLocalServiceImpl extends KBFolderLocalServiceBaseImpl {
 	public KBFolder fetchFirstChildKBFolder(long groupId, long kbFolderId)
 		throws PortalException, SystemException {
 
-		return kbFolderPersistence.fetchByG_P_First(groupId, kbFolderId, null);
+		return fetchFirstChildKBFolder(groupId, kbFolderId, null);
+	}
+
+	@Override
+	public KBFolder fetchFirstChildKBFolder(
+			long groupId, long kbFolderId, OrderByComparator obc)
+		throws PortalException, SystemException {
+
+		return kbFolderPersistence.fetchByG_P_First(groupId, kbFolderId, obc);
 	}
 
 	@Override
