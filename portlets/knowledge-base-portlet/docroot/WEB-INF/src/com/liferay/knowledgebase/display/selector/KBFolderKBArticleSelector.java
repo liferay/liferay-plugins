@@ -101,9 +101,12 @@ public class KBFolderKBArticleSelector implements KBArticleSelector {
 			}
 		}
 
-		KBArticle kbArticle =
-			KBArticleLocalServiceUtil.fetchKBArticleByUrlTitle(
+		KBArticle kbArticle = null;
+
+		if (kbFolder != null) {
+			kbArticle = KBArticleLocalServiceUtil.fetchKBArticleByUrlTitle(
 				groupId, kbFolder.getKbFolderId(), urlTitle);
+		}
 
 		if ((kbArticle == null) || !isDescendant(kbArticle, ancestorKBFolder)) {
 			return findClosestMatchingKBArticle(
