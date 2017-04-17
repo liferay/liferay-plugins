@@ -24,6 +24,18 @@ KBArticle[] previousAndNextKBArticles = KBArticleLocalServiceUtil.getPreviousAnd
 KBArticle previousKBArticle = previousAndNextKBArticles[0];
 KBArticle nextKBArticle = previousAndNextKBArticles[2];
 
+if (resourceClassNameId != kbFolderClassNameId) {
+	if (resourcePrimKey == kbArticle.getResourcePrimKey()) {
+		previousKBArticle = null;
+	}
+	if (nextKBArticle != null) {
+		List<Long> ancestorResourcePrimaryKeys = nextKBArticle.getAncestorResourcePrimaryKeys();
+		if (!ancestorResourcePrimaryKeys.contains(resourcePrimKey)) {
+			nextKBArticle = null;
+		}
+	}
+}
+
 KBArticleURLHelper kbArticleURLHelper = new KBArticleURLHelper(renderRequest, renderResponse, templatePath);
 %>
 
