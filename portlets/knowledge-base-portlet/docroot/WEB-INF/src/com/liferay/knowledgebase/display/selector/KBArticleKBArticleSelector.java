@@ -43,11 +43,7 @@ public class KBArticleKBArticleSelector implements KBArticleSelector {
 		if (resourcePrimKey ==
 				KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) {
 
-			KBArticle kbArticle =
-				KBArticleLocalServiceUtil.fetchFirstChildKBArticle(
-					groupId, ancestorKBArticle.getResourcePrimKey());
-
-			return new KBArticleSelection(kbArticle, true);
+			return new KBArticleSelection(ancestorKBArticle, true);
 		}
 
 		KBArticle kbArticle = KBArticleLocalServiceUtil.fetchLatestKBArticle(
