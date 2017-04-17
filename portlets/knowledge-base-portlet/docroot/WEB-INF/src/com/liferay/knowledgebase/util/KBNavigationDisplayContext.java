@@ -14,11 +14,14 @@
 
 package com.liferay.knowledgebase.util;
 
+import com.liferay.knowledge.base.service.KBArticleServiceUtil;
+import com.liferay.knowledge.base.util.comparator.KBArticlePriorityComparator;
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.model.KBFolder;
 import com.liferay.knowledgebase.model.KBFolderConstants;
 import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
 import com.liferay.knowledgebase.service.KBFolderServiceUtil;
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -72,6 +75,30 @@ public class KBNavigationDisplayContext {
 		return ancestorResourcePrimaryKeys;
 	}
 
+	public List<KBArticle> getChildKBArticles(
+			long groupId, long parentResourcePrimKey, int level)
+		throws PortalException {
+
+		boolean maxNestingLevelReached = isMaxNestingLevelReached(level);
+
+		List<KBArticle> childKBArticles;
+
+		if (maxNestingLevelReached) {
+			childKBArticles = KBArticleServiceUtil.getAllDescendantKBArticles(
+				groupId, parentResourcePrimKey,
+				WorkflowConstants.STATUS_APPROVED,
+				new KBArticlePriorityComparator(true));
+		}
+		else {
+			childKBArticles = KBArticleServiceUtil.getKBArticles(
+				groupId, parentResourcePrimKey,
+				WorkflowConstants.STATUS_APPROVED, QueryUtil.ALL_POS,
+				QueryUtil.ALL_POS, new KBArticlePriorityComparator(true));
+		}
+
+		return childKBArticles;
+	}
+
 	public String getCurrentKBFolderURLTitle()
 		throws PortalException, SystemException {
 
@@ -96,7 +123,10 @@ public class KBNavigationDisplayContext {
 
 		String pageTitle = null;
 
-		if (rootResourcePrimKey != KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
+		if (isFolderResource() &&
+			(rootResourcePrimKey !=
+					KBFolderConstants.DEFAULT_PARENT_FOLDER_ID)) {
+
 			KBFolder kbFolder = KBFolderServiceUtil.getKBFolder(
 				rootResourcePrimKey);
 
@@ -150,6 +180,52 @@ public class KBNavigationDisplayContext {
 		return _rootResourcePrimKey;
 	}
 
+	public boolean isChildKBArticleExpanded(KBArticle childKBArticle, int level)
+		throws PortalException {
+
+		List<Long> ancestorResourcePrimaryKeys =
+			getAncestorResourcePrimaryKeys();
+
+		if ((ancestorResourcePrimaryKeys.size() > 1) &&
+			(level < ancestorResourcePrimaryKeys.size()) &&
+			(childKBArticle.getResourcePrimKey() ==
+				ancestorResourcePrimaryKeys.get(level))) {
+
+			return true;
+		}
+
+		return false;
+	}
+
+	public boolean isFolderResource() {
+		long kbFolderClassNameId = PortalUtil.getClassNameId(
+			KBFolderConstants.getClassName());
+
+		if (kbFolderClassNameId == getResourceClassNameId()) {
+			return true;
+		}
+
+		return false;
+	}
+
+	public boolean isFurtherExpansionRequired(
+			long parentResourcePrimKey, KBArticle childKBArticle, int level)
+		throws PortalException {
+
+		List<Long> ancestorResourcePrimaryKeys =
+			getAncestorResourcePrimaryKeys();
+
+		if ((parentResourcePrimKey != _kbArticle.getResourcePrimKey()) &&
+			!isMaxNestingLevelReached(level) &&
+			ancestorResourcePrimaryKeys.contains(
+				childKBArticle.getResourcePrimKey())) {
+
+			return true;
+		}
+
+		return false;
+	}
+
 	public boolean isLeftNavigationVisible()
 		throws PortalException, SystemException {
 
@@ -160,15 +236,23 @@ public class KBNavigationDisplayContext {
 		return _leftNavigationVisible;
 	}
 
+	public boolean isMaxNestingLevelReached(int level) {
+		int maxNestingLevel =
+			_kbDisplayPortletInstanceConfiguration.maxNestingLevel();
+
+		boolean maxNestingLevelReached = false;
+
+		if ((maxNestingLevel - level) <= 1) {
+			maxNestingLevelReached = true;
+		}
+
+		return maxNestingLevelReached;
+	}
+
 	public boolean isTopNavigationVisible()
 		throws PortalException, SystemException {
 
-		long kbFolderClassNameId = PortalUtil.getClassNameId(
-			KBFolderConstants.getClassName());
-
-		if ((getResourceClassNameId() == kbFolderClassNameId) &&
-			!isLeftNavigationVisible()) {
-
+		if (isFolderResource() && !isLeftNavigationVisible()) {
 			return true;
 		}
 
@@ -202,12 +286,7 @@ public class KBNavigationDisplayContext {
 	protected boolean hasMultipleDescendantKBArticles()
 		throws PortalException, SystemException {
 
-		long scopeGroupId = PortalUtil.getScopeGroupId(_portletRequest);
-
-		long kbFolderClassNameId = PortalUtil.getClassNameId(
-			KBFolderConstants.getClassName());
-
-		if (getResourceClassNameId() == kbFolderClassNameId) {
+		if (isFolderResource()) {
 			List<KBFolder> kbFolders =
 				KnowledgeBaseUtil.getAlternateRootKBFolders(
 					scopeGroupId, getResourcePrimKey());

@@ -19,8 +19,6 @@
 <%
 KBNavigationDisplayContext kbNavigationDisplayContext = (KBNavigationDisplayContext)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_NAVIGATION_DISPLAY_CONTEXT);
 
-List<Long> ancestorResourcePrimaryKeys = kbNavigationDisplayContext.getAncestorResourcePrimaryKeys();
-
 long parentResourcePrimKey = GetterUtil.getLong(portletPreferences.getValue("resourcePrimKey", null));
 
 String pageTitle = kbNavigationDisplayContext.getPageTitle();
@@ -38,7 +36,6 @@ KBArticleURLHelper kbArticleURLHelper = new KBArticleURLHelper(renderRequest, re
 	</c:if>
 
 	<%
-	request.setAttribute("view_navigation_articles.jsp-ancestorResourcePrimaryKeys", ancestorResourcePrimaryKeys);
 	request.setAttribute("view_navigation_articles.jsp-kbArticleURLHelper", kbArticleURLHelper);
 	request.setAttribute("view_navigation_articles.jsp-level", 0);
 	request.setAttribute("view_navigation_articles.jsp-parentResourcePrimKey", parentResourcePrimKey);

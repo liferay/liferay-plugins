@@ -17,28 +17,18 @@
 <%@ include file="/display/init.jsp" %>
 
 <%
+KBNavigationDisplayContext kbNavigationDisplayContext = (KBNavigationDisplayContext)request.getAttribute(KBWebKeys.KNOWLEDGE_BASE_KB_NAVIGATION_DISPLAY_CONTEXT);
+
 KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_ARTICLE);
 
 long parentResourcePrimKey = (Long)request.getAttribute("view_navigation_articles.jsp-parentResourcePrimKey");
-List<Long> ancestorResourcePrimaryKeys = (List<Long>)request.getAttribute("view_navigation_articles.jsp-ancestorResourcePrimaryKeys");
 int level = GetterUtil.getInteger(request.getAttribute("view_navigation_articles.jsp-level"));
-
-boolean maxNestingLevelReached = false;
-
-if ((maxNestingLevel - level) <= 1) {
-	maxNestingLevelReached = true;
-}
 
 KBArticleURLHelper kbArticleURLHelper = (KBArticleURLHelper)request.getAttribute("view_navigation_articles.jsp-kbArticleURLHelper");
 
 List<KBArticle> childKBArticles = null;
 
-if (maxNestingLevelReached) {
-	childKBArticles = KBArticleServiceUtil.getAllDescendantKBArticles(themeDisplay.getScopeGroupId(), parentResourcePrimKey, WorkflowConstants.STATUS_APPROVED, new KBArticlePriorityComparator(true));
-}
-else {
-	childKBArticles = KBArticleServiceUtil.getKBArticles(themeDisplay.getScopeGroupId(), parentResourcePrimKey, WorkflowConstants.STATUS_APPROVED, QueryUtil.ALL_POS, QueryUtil.ALL_POS, new KBArticlePriorityComparator(true));
-}
+List<KBArticle> childKBArticles = kbNavigationDisplayContext.getChildKBArticles(themeDisplay.getScopeGroupId(), parentResourcePrimKey, level);
 
 for (KBArticle childKBArticle : childKBArticles) {
 	PortletURL viewChildURL = kbArticleURLHelper.createViewURL(childKBArticle);
@@ -48,25 +38,21 @@ for (KBArticle childKBArticle : childKBArticles) {
 		<li>
 
 			<%
-			boolean childKBArticleExpanded = false;
-
-			if ((ancestorResourcePrimaryKeys.size() > 1) && (level < ancestorResourcePrimaryKeys.size()) && (childKBArticle.getResourcePrimKey() == ancestorResourcePrimaryKeys.get(level))) {
-				childKBArticleExpanded = true;
-			}
+			boolean childKBArticleExpanded = kbNavigationDisplayContext.isChildKBArticleExpanded(childKBArticle, level);
 
 			String childKBArticleClass = StringPool.BLANK;
 
 			if (childKBArticle.getResourcePrimKey() == kbArticle.getResourcePrimKey()) {
 				childKBArticleClass = "kbarticle-selected";
 			}
-			else if (childKBArticleExpanded && !maxNestingLevelReached) {
+			else if (childKBArticleExpanded && !kbNavigationDisplayContext.isMaxNestingLevelReached(level)) {
 				childKBArticleClass = "kbarticle-expanded";
 			}
 			%>
 
 			<a class="<%= childKBArticleClass %>" href="<%= viewChildURL %>"><%= HtmlUtil.escape(childKBArticle.getTitle()) %></a>
 
-			<c:if test="<%= (parentResourcePrimKey != kbArticle.getResourcePrimKey()) && !maxNestingLevelReached && ancestorResourcePrimaryKeys.contains(childKBArticle.getResourcePrimKey()) %>">
+			<c:if test="<%= kbNavigationDisplayContext.isFurtherExpansionRequired(parentResourcePrimKey, childKBArticle, level) %>">
 
 				<%
 				request.setAttribute("view_navigation_articles.jsp-level", level + 1);
