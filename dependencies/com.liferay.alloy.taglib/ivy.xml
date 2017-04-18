@@ -11,6 +11,6 @@
 	</info>
 
 	<dependencies defaultconf="default">
-		<dependency name="com.liferay.alloy.taglib" org="com.liferay" rev="1.1.5" />
+		<dependency name="alloy-taglib" org="com.liferay.alloy-taglibs" rev="1.1.10" />
 	</dependencies>
 </ivy-module>
