@@ -17,7 +17,7 @@
 <%@ include file="/display/init.jsp" %>
 
 <%
-KBNavigationDisplayContext kbNavigationDisplayContext = (KBNavigationDisplayContext)request.getAttribute(KBWebKeys.KNOWLEDGE_BASE_KB_NAVIGATION_DISPLAY_CONTEXT);
+KBNavigationDisplayContext kbNavigationDisplayContext = (KBNavigationDisplayContext)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_NAVIGATION_DISPLAY_CONTEXT);
 
 KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_ARTICLE);
 
@@ -25,8 +25,6 @@ long parentResourcePrimKey = (Long)request.getAttribute("view_navigation_article
 int level = GetterUtil.getInteger(request.getAttribute("view_navigation_articles.jsp-level"));
 
 KBArticleURLHelper kbArticleURLHelper = (KBArticleURLHelper)request.getAttribute("view_navigation_articles.jsp-kbArticleURLHelper");
-
-List<KBArticle> childKBArticles = null;
 
 List<KBArticle> childKBArticles = kbNavigationDisplayContext.getChildKBArticles(themeDisplay.getScopeGroupId(), parentResourcePrimKey, level);
 

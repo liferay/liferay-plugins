@@ -14,13 +14,13 @@
 
 package com.liferay.knowledgebase.util;
 
-import com.liferay.knowledge.base.service.KBArticleServiceUtil;
-import com.liferay.knowledge.base.util.comparator.KBArticlePriorityComparator;
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.model.KBFolder;
 import com.liferay.knowledgebase.model.KBFolderConstants;
 import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
+import com.liferay.knowledgebase.service.KBArticleServiceUtil;
 import com.liferay.knowledgebase.service.KBFolderServiceUtil;
+import com.liferay.knowledgebase.util.comparator.KBArticlePriorityComparator;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -77,7 +77,7 @@ public class KBNavigationDisplayContext {
 
 	public List<KBArticle> getChildKBArticles(
 			long groupId, long parentResourcePrimKey, int level)
-		throws PortalException {
+		throws PortalException, SystemException {
 
 		boolean maxNestingLevelReached = isMaxNestingLevelReached(level);
 
@@ -181,7 +181,7 @@ public class KBNavigationDisplayContext {
 	}
 
 	public boolean isChildKBArticleExpanded(KBArticle childKBArticle, int level)
-		throws PortalException {
+		throws PortalException, SystemException {
 
 		List<Long> ancestorResourcePrimaryKeys =
 			getAncestorResourcePrimaryKeys();
@@ -210,7 +210,7 @@ public class KBNavigationDisplayContext {
 
 	public boolean isFurtherExpansionRequired(
 			long parentResourcePrimKey, KBArticle childKBArticle, int level)
-		throws PortalException {
+		throws PortalException, SystemException {
 
 		List<Long> ancestorResourcePrimaryKeys =
 			getAncestorResourcePrimaryKeys();
@@ -237,8 +237,8 @@ public class KBNavigationDisplayContext {
 	}
 
 	public boolean isMaxNestingLevelReached(int level) {
-		int maxNestingLevel =
-			_kbDisplayPortletInstanceConfiguration.maxNestingLevel();
+		int maxNestingLevel = GetterUtil.getInteger(
+			portletPreferences.getValue("maxNestingLevel", null), 3);
 
 		boolean maxNestingLevelReached = false;
 
@@ -285,6 +285,8 @@ public class KBNavigationDisplayContext {
 
 	protected boolean hasMultipleDescendantKBArticles()
 		throws PortalException, SystemException {
+
+		long scopeGroupId = PortalUtil.getScopeGroupId(_portletRequest);
 
 		if (isFolderResource()) {
 			List<KBFolder> kbFolders =
