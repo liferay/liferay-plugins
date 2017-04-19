@@ -80,7 +80,7 @@ public class KBNavigationDisplayContext {
 		throws PortalException, SystemException {
 
 		if ((parentResourcePrimKey == getResourcePrimKey()) && (level == 0) &&
-				!isFolderResource()) {
+			!isFolderResource()) {
 
 			KBArticle kbArticle = KBArticleServiceUtil.getLatestKBArticle(
 				getResourcePrimKey(), WorkflowConstants.STATUS_APPROVED);
@@ -177,7 +177,7 @@ public class KBNavigationDisplayContext {
 					_kbArticle.getParentResourcePrimKey());
 			}
 			else {
-				_rootResourcePrimKey = KBUtil.getRootResourcePrimKey(
+				_rootResourcePrimKey = KnowledgeBaseUtil.getRootResourcePrimKey(
 					_portletRequest,
 					PortalUtil.getScopeGroupId(_portletRequest),
 					getResourceClassNameId(), getResourcePrimKey());
@@ -244,7 +244,7 @@ public class KBNavigationDisplayContext {
 
 	public boolean isMaxNestingLevelReached(int level) {
 		int maxNestingLevel = GetterUtil.getInteger(
-			portletPreferences.getValue("maxNestingLevel", null), 3);
+			_portletPreferences.getValue("maxNestingLevel", null), 3);
 
 		boolean maxNestingLevelReached = false;
 
