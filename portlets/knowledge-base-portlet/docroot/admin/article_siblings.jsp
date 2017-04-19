@@ -17,6 +17,16 @@
 <%@ include file="/admin/init.jsp" %>
 
 <%
+long kbFolderClassNameId = PortalUtil.getClassNameId(KBFolderConstants.getClassName());
+
+long resourceClassNameId = GetterUtil.getLong(request.getAttribute("init.jsp-resourceClassNameId"));
+
+if (resourceClassNameId == 0) {
+	resourceClassNameId = kbFolderClassNameId;
+}
+
+long resourcePrimKey = GetterUtil.getLong(request.getAttribute("init.jsp-resourcePrimKey"));
+
 KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_ARTICLE);
 
 KBArticle[] previousAndNextKBArticles = KBArticleLocalServiceUtil.getPreviousAndNextKBArticles(kbArticle.getKbArticleId());
