@@ -155,11 +155,11 @@ public class AssetEntrySetLocalServiceImpl
 	public AssetEntrySet deleteAssetEntrySet(AssetEntrySet assetEntrySet)
 		throws PortalException, SystemException {
 
-		assetEntrySetPersistence.remove(assetEntrySet);
-
 		assetEntryLocalService.deleteEntry(
 			AssetEntrySet.class.getName(), assetEntrySet.getAssetEntrySetId());
-
+		assetEntrySetLikeLocalService.deleteAssetEntrySetLikes(
+			assetEntrySet.getAssetEntrySetId());
+		assetEntrySetPersistence.remove(assetEntrySet);
 		AssetSharingEntryLocalServiceUtil.deleteAssetSharingEntries(
 			AssetEntrySetConstants.ASSET_ENTRY_SET_CLASS_NAME_ID,
 			assetEntrySet.getAssetEntrySetId());
