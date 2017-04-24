@@ -287,6 +287,11 @@ public class AssetEntrySetLikeLocalServiceUtil {
 		return getService().getAssetEntrySetLikeCount(assetEntrySetId);
 	}
 
+	public static void deleteAssetEntrySetLikes(long assetEntrySetId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getService().deleteAssetEntrySetLikes(assetEntrySetId);
+	}
+
 	public static java.util.List<com.liferay.asset.entry.set.model.AssetEntrySetLike> getAssetEntrySetLikes(
 		long assetEntrySetId, long classNameId, long classPK, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
