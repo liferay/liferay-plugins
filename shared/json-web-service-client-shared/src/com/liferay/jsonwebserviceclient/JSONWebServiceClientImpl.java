@@ -186,6 +186,7 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 		}
 	}
 
+	@Override
 	public void destroy() {
 		try {
 			_closeableHttpClient.close();
