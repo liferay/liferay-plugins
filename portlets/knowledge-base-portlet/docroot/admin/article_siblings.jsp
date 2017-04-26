@@ -38,8 +38,10 @@ if (resourceClassNameId != kbFolderClassNameId) {
 	if (resourcePrimKey == kbArticle.getResourcePrimKey()) {
 		previousKBArticle = null;
 	}
+
 	if (nextKBArticle != null) {
 		List<Long> ancestorResourcePrimaryKeys = nextKBArticle.getAncestorResourcePrimaryKeys();
+
 		if (!ancestorResourcePrimaryKeys.contains(resourcePrimKey)) {
 			nextKBArticle = null;
 		}
