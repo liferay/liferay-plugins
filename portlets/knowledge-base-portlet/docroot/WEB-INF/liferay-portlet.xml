@@ -36,6 +36,7 @@
 		<friendly-url-mapper-class>com.liferay.portal.kernel.portlet.DefaultFriendlyURLMapper</friendly-url-mapper-class>
 		<friendly-url-mapping>knowledge_base</friendly-url-mapping>
 		<friendly-url-routes>com/liferay/knowledgebase/display/portlet/display-friendly-url-routes.xml</friendly-url-routes>
+		<portlet-data-handler-class>com.liferay.knowledgebase.admin.lar.KBDisplayPortletDataHandler</portlet-data-handler-class>
 		<scopeable>true</scopeable>
 		<header-portlet-css>/admin/css/common.css</header-portlet-css>
 		<header-portlet-css>/display/css/main.css</header-portlet-css>
@@ -48,6 +49,7 @@
 		<friendly-url-mapper-class>com.liferay.portal.kernel.portlet.DefaultFriendlyURLMapper</friendly-url-mapper-class>
 		<friendly-url-mapping>knowledge_base_article</friendly-url-mapping>
 		<friendly-url-routes>com/liferay/knowledgebase/article/portlet/article-friendly-url-routes.xml</friendly-url-routes>
+		<portlet-data-handler-class>com.liferay.knowledgebase.admin.lar.KBArticlePortletDataHandler</portlet-data-handler-class>
 		<instanceable>true</instanceable>
 		<scopeable>true</scopeable>
 		<header-portlet-css>/admin/css/common.css</header-portlet-css>
