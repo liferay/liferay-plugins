@@ -96,17 +96,15 @@ public class KBDisplayPortletDataHandler extends AdminPortletDataHandler {
 				"resourceClassNameId", resourceClassName);
 		}
 		catch (ReadOnlyException roe) {
-			StringBundler sb = new StringBundler(9);
+			StringBundler sb = new StringBundler(7);
 
 			sb.append("Unable to save converted portlet preference ");
-			sb.append("resourceClassNameId (from ");
+			sb.append("\"resourceClassNameId\" from ");
 			sb.append(resourceClassNameId);
 			sb.append(" to ");
 			sb.append(resourceClassName);
-			sb.append(") while exporting KB Display portlet. ");
-			sb.append("(portletId=");
+			sb.append(" while exporting KB Display portlet ");
 			sb.append(portletId);
-			sb.append(")");
 
 			throw new PortletDataException(sb.toString(), roe);
 		}
@@ -176,17 +174,15 @@ public class KBDisplayPortletDataHandler extends AdminPortletDataHandler {
 				String.valueOf(PortalUtil.getClassNameId(resourceClassName)));
 		}
 		catch (ReadOnlyException roe) {
-			StringBundler sb = new StringBundler(9);
+			StringBundler sb = new StringBundler(7);
 
 			sb.append("Unable to save reconverted portlet preference ");
-			sb.append("resourceClassNameId (from ");
+			sb.append("\"resourceClassNameId\" from ");
 			sb.append(resourceClassName);
 			sb.append(" to ");
 			sb.append(PortalUtil.getClassNameId(resourceClassName));
-			sb.append(") while importing KB Display portlet. ");
-			sb.append("(portletId=");
+			sb.append(" while importing KB Display portlet ");
 			sb.append(portletId);
-			sb.append(")");
 
 			throw new PortletDataException(sb.toString(), roe);
 		}
@@ -215,15 +211,13 @@ public class KBDisplayPortletDataHandler extends AdminPortletDataHandler {
 				"resourcePrimKey", String.valueOf(resourcePrimKey));
 		}
 		catch (ReadOnlyException roe) {
-			StringBundler sb = new StringBundler(7);
+			StringBundler sb = new StringBundler(5);
 
 			sb.append("Unable to save converted portlet preference ");
-			sb.append("resourcePrimKey=");
+			sb.append("\"resourcePrimKey\" ");
 			sb.append(resourcePrimKey);
-			sb.append(" while importing KB Display portlet. ");
-			sb.append("(portletId=");
+			sb.append(" while importing KB Display portlet ");
 			sb.append(portletId);
-			sb.append(")");
 
 			throw new PortletDataException(sb.toString(), roe);
 		}
