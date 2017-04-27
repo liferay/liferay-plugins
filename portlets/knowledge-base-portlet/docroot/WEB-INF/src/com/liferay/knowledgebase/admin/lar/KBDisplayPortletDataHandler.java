@@ -56,6 +56,10 @@ public class KBDisplayPortletDataHandler extends AdminPortletDataHandler {
 			PortletPreferences portletPreferences)
 		throws Exception {
 
+		if (portletPreferences == null) {
+			return portletPreferences;
+		}
+
 		portletPreferences.setValue("resourceClassNameId", StringPool.BLANK);
 		portletPreferences.setValue("resourcePrimKey", StringPool.BLANK);
 
