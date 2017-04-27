@@ -132,6 +132,17 @@ public class KBDisplayPortletDataHandler extends AdminPortletDataHandler {
 				KBFolder rootFolder = KBFolderLocalServiceUtil.fetchKBFolder(
 					resourcePrimKey);
 
+				if (rootFolder == null) {
+					StringBundler sb = new StringBundler(4);
+
+					sb.append("KB Display portlet with ID ");
+					sb.append(portletId);
+					sb.append(" refers to an inexistent root folder: ");
+					sb.append(resourcePrimKey);
+
+					throw new PortletDataException(sb.toString());
+				}
+
 				StagedModelDataHandlerUtil.exportReferenceStagedModel(
 					portletDataContext, portletId, rootFolder);
 			}
