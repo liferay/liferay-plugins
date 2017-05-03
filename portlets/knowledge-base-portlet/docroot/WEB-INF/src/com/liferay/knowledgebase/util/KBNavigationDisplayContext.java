@@ -342,15 +342,20 @@ public class KBNavigationDisplayContext {
 					scopeGroupId, rootResourcePrimKey,
 					WorkflowConstants.STATUS_APPROVED, 0, 1, null);
 
-			KBArticle navigationKBArticle = kbArticles.get(0);
-
-			int navigationKBArticleChildCount =
-				KBArticleLocalServiceUtil.getKBArticlesCount(
-					scopeGroupId, navigationKBArticle.getResourcePrimKey(),
-					WorkflowConstants.STATUS_APPROVED);
-
-			if (navigationKBArticleChildCount == 0) {
+			if (kbArticles.size() < 1) {
 				showNavigation = false;
+			}
+			else {
+				KBArticle navigationKBArticle = kbArticles.get(0);
+
+				int navigationKBArticleChildCount =
+					KBArticleLocalServiceUtil.getKBArticlesCount(
+						scopeGroupId, navigationKBArticle.getResourcePrimKey(),
+						WorkflowConstants.STATUS_APPROVED);
+
+				if (navigationKBArticleChildCount == 0) {
+					showNavigation = false;
+				}
 			}
 		}
 
