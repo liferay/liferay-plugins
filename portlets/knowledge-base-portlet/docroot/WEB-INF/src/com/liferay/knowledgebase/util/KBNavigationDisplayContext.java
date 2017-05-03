@@ -342,7 +342,7 @@ public class KBNavigationDisplayContext {
 					scopeGroupId, rootResourcePrimKey,
 					WorkflowConstants.STATUS_APPROVED, 0, 1, null);
 
-			if (kbArticles.size() < 1) {
+			if (kbArticles.isEmpty()) {
 				showNavigation = false;
 			}
 			else {
