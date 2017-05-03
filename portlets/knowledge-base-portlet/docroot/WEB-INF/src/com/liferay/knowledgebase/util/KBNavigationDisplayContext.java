@@ -321,8 +321,6 @@ public class KBNavigationDisplayContext {
 			}
 		}
 
-		boolean showNavigation = true;
-
 		long rootResourcePrimKey = getRootResourcePrimKey();
 
 		int kbArticlesCount = KBArticleLocalServiceUtil.getKBArticlesCount(
@@ -334,32 +332,34 @@ public class KBNavigationDisplayContext {
 		}
 
 		if (kbArticlesCount == 0) {
-			showNavigation = false;
-		}
-		else if (kbArticlesCount == 1) {
-			List<KBArticle> kbArticles =
-				KBArticleLocalServiceUtil.getKBArticles(
-					scopeGroupId, rootResourcePrimKey,
-					WorkflowConstants.STATUS_APPROVED, 0, 1, null);
-
-			if (kbArticles.isEmpty()) {
-				showNavigation = false;
-			}
-			else {
-				KBArticle navigationKBArticle = kbArticles.get(0);
-
-				int navigationKBArticleChildCount =
-					KBArticleLocalServiceUtil.getKBArticlesCount(
-						scopeGroupId, navigationKBArticle.getResourcePrimKey(),
-						WorkflowConstants.STATUS_APPROVED);
-
-				if (navigationKBArticleChildCount == 0) {
-					showNavigation = false;
-				}
-			}
+			return false;
 		}
 
-		return showNavigation;
+		if (kbArticlesCount != 1) {
+			return true;
+		}
+
+		List<KBArticle> kbArticles =
+			KBArticleLocalServiceUtil.getKBArticles(
+				scopeGroupId, rootResourcePrimKey,
+				WorkflowConstants.STATUS_APPROVED, 0, 1, null);
+
+		if (kbArticles.isEmpty()) {
+			return false;
+		}
+
+		KBArticle navigationKBArticle = kbArticles.get(0);
+
+		int navigationKBArticleChildCount =
+			KBArticleLocalServiceUtil.getKBArticlesCount(
+				scopeGroupId, navigationKBArticle.getResourcePrimKey(),
+				WorkflowConstants.STATUS_APPROVED);
+
+		if (navigationKBArticleChildCount == 0) {
+			return false;
+		}
+
+		return true;
 	}
 
 	private final KBArticle _kbArticle;
