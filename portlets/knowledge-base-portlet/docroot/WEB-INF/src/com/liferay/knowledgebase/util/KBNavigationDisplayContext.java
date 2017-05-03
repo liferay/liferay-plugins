@@ -339,10 +339,9 @@ public class KBNavigationDisplayContext {
 			return true;
 		}
 
-		List<KBArticle> kbArticles =
-			KBArticleLocalServiceUtil.getKBArticles(
-				scopeGroupId, rootResourcePrimKey,
-				WorkflowConstants.STATUS_APPROVED, 0, 1, null);
+		List<KBArticle> kbArticles = KBArticleLocalServiceUtil.getKBArticles(
+			scopeGroupId, rootResourcePrimKey,
+			WorkflowConstants.STATUS_APPROVED, 0, 1, null);
 
 		if (kbArticles.isEmpty()) {
 			return false;
