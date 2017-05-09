@@ -215,41 +215,41 @@ loader.
 				<equals arg1="${app.server.type}" arg2="tomcat" />
 			</or>
 			<then>
-				<copy overwrite="true" todir="${app.server.dir}/lib/global">
+				<copy overwrite="true" todir="${app.server.dir}/lib/ext/global">
 					<fileset dir="docroot/WEB-INF/ext-lib/global" includes="*.jar" />
 				</copy>
 
 				<copy
 					file="docroot/WEB-INF/ext-kernel/ext-kernel.jar"
-					tofile="${app.server.dir}/lib/global/ext-${plugin.name}-kernel.jar"
+					tofile="${app.server.dir}/lib/ext/global/ext-${plugin.name}-kernel.jar"
 					overwrite="true"
 				/>
 
-				<copy overwrite="true" todir="${app.server.dir}/lib/portal">
+				<copy overwrite="true" todir="${app.server.dir}/lib/ext/portal">
 					<fileset dir="docroot/WEB-INF/ext-lib/portal" includes="*.jar" />
 				</copy>
 
 				<copy
 					file="docroot/WEB-INF/ext-impl/ext-impl.jar"
-					tofile="${app.server.dir}/lib/portal/ext-${plugin.name}-impl.jar"
+					tofile="${app.server.dir}/lib/ext/portal/ext-${plugin.name}-impl.jar"
 					overwrite="true"
 				/>
 
 				<copy
 					file="docroot/WEB-INF/ext-util-bridges/ext-util-bridges.jar"
-					tofile="${app.server.dir}/lib/portal/ext-${plugin.name}-util-bridges.jar"
+					tofile="${app.server.dir}/lib/ext/portal/ext-${plugin.name}-util-bridges.jar"
 					overwrite="true"
 				/>
 
 				<copy
 					file="docroot/WEB-INF/ext-util-java/ext-util-java.jar"
-					tofile="${app.server.dir}/lib/portal/ext-${plugin.name}-util-java.jar"
+					tofile="${app.server.dir}/lib/ext/portal/ext-${plugin.name}-util-java.jar"
 					overwrite="true"
 				/>
 
 				<copy
 					file="docroot/WEB-INF/ext-util-taglib/ext-util-taglib.jar"
-					tofile="${app.server.dir}/lib/portal/ext-${plugin.name}-util-taglib.jar"
+					tofile="${app.server.dir}/lib/ext/portal/ext-${plugin.name}-util-taglib.jar"
 					overwrite="true"
 				/>
 			</then>
