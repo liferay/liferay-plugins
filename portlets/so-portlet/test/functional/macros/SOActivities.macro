@@ -1,0 +1,2002 @@
+<definition>
+	<command name="addActivityEntryComment">
+		<if>
+			<isset var="row" />
+			<then>
+				<var name="row" value="${row}" />
+			</then>
+			<else>
+				<var name="row" value="01" />
+			</else>
+		</if>
+
+		<var name="key_row" value="${row}" />
+
+		<if>
+			<isset var="commentCount" />
+			<then>
+				<if>
+					<equals arg1="${commentCount}" arg2="1" />
+					<then>
+						<execute function="AssertClick" locator1="SOActivities#ACTIVITIES_COMMENT" value1="1 Comment" />
+					</then>
+					<else>
+						<execute function="AssertClick" locator1="SOActivities#ACTIVITIES_COMMENT" value1="${commentCount} Comments" />
+					</else>
+				</if>
+			</then>
+			<else>
+				<execute function="AssertClick" locator1="SOActivities#ACTIVITIES_COMMENT" value1="Comment" />
+			</else>
+		</if>
+
+		<execute function="Click" locator1="SOActivities#ACTIVITIES_COMMENT_FIELD" />
+		<execute function="Type" locator1="SOActivities#ACTIVITIES_COMMENT_INPUT_FIELD" value1="${commentContent}" />
+		<execute function="KeyPress" locator1="SOActivities#ACTIVITIES_COMMENT_FIELD" value1="\RETURN" />
+
+		<var name="key_commentContent" value="${commentContent}" />
+
+		<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_COMMENT_CONTENT" value1="${commentContent}" />
+	</command>
+
+	<command name="addSiteContent">
+		<execute macro="Page#gotoPG">
+			<var name="defaultURL" value="${defaultURL}" />
+			<var name="nodePort" value="${nodePort}" />
+			<var name="pageName" value="Calendar" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+			<var name="soDashboard" value="${soDashboard}" />
+			<var name="soPage" value="${soPage}" />
+		</execute>
+
+		<execute macro="CalendarNavigator#gotoAddEvent" />
+
+		<execute macro="CalendarEvent#add">
+			<var name="addRSVPEnabled" value="${addRSVPEnabled}" />
+			<var name="calendarName" value="${calendarName}" />
+			<var name="endDate" value="${endDate}" />
+			<var name="endDateTime" value="${endDateTime}" />
+			<var name="eventComment" value="${eventComment}" />
+			<var name="eventCommentEnabled" value="${eventCommentEnabled}" />
+			<var name="eventDescription" value="${eventDescription}" />
+			<var name="eventTitle" value="${eventTitle}" />
+			<var name="eventType" value="Regular" />
+			<var name="frequency" value="${frequency}" />
+			<var name="optionSet" value="${optionSet}" />
+			<var name="pageName" value="Calendar" />
+			<var name="reminders" value="${reminders}" />
+			<var name="rsvp" value="${rsvp}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+			<var name="startDate" value="${startDate}" />
+			<var name="startDateTime" value="${startDateTime}" />
+			<var name="user" value="${user}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="defaultURL" value="${defaultURL}" />
+			<var name="nodePort" value="${nodePort}" />
+			<var name="pageName" value="Documents" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+			<var name="soDashboard" value="${soDashboard}" />
+			<var name="soPage" value="${soPage}" />
+		</execute>
+
+		<execute macro="DMFolder#addPG">
+			<var name="dmFolder" value="${dmFolder}" />
+			<var name="dmFolderDescription" value="${dmFolderDescription}" />
+			<var name="dmFolderName" value="${dmFolderName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+			<var name="viewableBy" value="${viewableBy}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="defaultURL" value="${defaultURL}" />
+			<var name="nodePort" value="${nodePort}" />
+			<var name="pageName" value="Documents" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+			<var name="soDashboard" value="${soDashboard}" />
+			<var name="soPage" value="${soPage}" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="DMDocument#addPG">
+			<var name="categoryName" value="${categoryName}" />
+			<var name="dmDocument" value="${dmDocument}" />
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentFile" value="${dmDocumentFile}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+			<var name="dmDocumentTypeName" value="${dmDocumentTypeName}" />
+			<var name="dmFolderName" value="${dmFolderName}" />
+			<var name="stagingActivated" value="${stagingActivated}" />
+			<var name="tagName" value="${tagName}" />
+			<var name="tagNameList" value="${tagNameList}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="defaultURL" value="${defaultURL}" />
+			<var name="nodePort" value="${nodePort}" />
+			<var name="pageName" value="Forums" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+			<var name="soDashboard" value="${soDashboard}" />
+			<var name="soPage" value="${soPage}" />
+		</execute>
+
+		<execute macro="MessageboardsCategory#addPG">
+			<var name="categoryDescription" value="${categoryDescription}" />
+			<var name="categoryName" value="${mbCategoryName}" />
+			<var name="displayStyle" value="${displayStyle}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="defaultURL" value="${defaultURL}" />
+			<var name="nodePort" value="${nodePort}" />
+			<var name="pageName" value="Forums" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+			<var name="soDashboard" value="${soDashboard}" />
+			<var name="soPage" value="${soPage}" />
+		</execute>
+
+		<execute macro="MessageboardsCategory#gotoPG">
+			<var name="categoryDescription" value="${categoryDescription}" />
+			<var name="categoryDescriptionEnabled" value="${categoryDescriptionEnabled}" />
+			<var name="categoryName" value="${mbCategoryName}" />
+			<var name="subCategoryEnabled" value="${subCategoryEnabled}" />
+			<var name="subCategoryName" value="${subCategoryName}" />
+		</execute>
+
+		<execute macro="MessageboardsThread#addPG" />
+
+		<execute macro="Page#gotoPG">
+			<var name="defaultURL" value="${defaultURL}" />
+			<var name="nodePort" value="${nodePort}" />
+			<var name="pageName" value="Blogs" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+			<var name="soDashboard" value="${soDashboard}" />
+			<var name="soPage" value="${soPage}" />
+		</execute>
+
+		<execute macro="BlogsEntry#addPG" />
+
+		<execute macro="Page#gotoPG">
+			<var name="defaultURL" value="${defaultURL}" />
+			<var name="nodePort" value="${nodePort}" />
+			<var name="pageName" value="Wiki" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+			<var name="soDashboard" value="${soDashboard}" />
+			<var name="soPage" value="${soPage}" />
+		</execute>
+
+		<if>
+			<not>
+				<isset var="wikiEditOnly" />
+			</not>
+			<then>
+				<execute macro="WikiPage#addFrontPagePG">
+					<var name="creoleSource" value="${creoleSource}" />
+					<var name="htmlSource" value="${htmlSource}" />
+					<var name="pageAddTag" value="${pageAddTag}" />
+					<var name="pageName" value="Wiki" />
+					<var name="tagName" value="${tagName}" />
+					<var name="wikiNodeName" value="${wikiNodeName}" />
+					<var name="wikiPageContent" value="${wikiPageContent}" />
+					<var name="wikiPageTitle" value="${wikiPageTitle}" />
+				</execute>
+			</then>
+		</if>
+
+		<execute macro="WikiPage#editFrontPagePG">
+			<var name="pageName" value="Wiki" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+			<var name="wikiPageContentEdit" value="${wikiPageContentEdit}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="friendlyURL" value="${friendlyURL}" />
+			<var name="pageAccess" value="${pageAccess}" />
+			<var name="pageAccessURL" value="${pageAccessURL}" />
+			<var name="pageStaging" value="${pageStaging}" />
+			<var name="pageStagingURL" value="${pageStagingURL}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteNameURL" value="${siteNameURL}" />
+			<var name="siteURL" value="true" />
+			<var name="specificURL" value="${specificURL}" />
+			<var name="virtualHostsURL" value="${virtualHostsURL}" />
+		</execute>
+
+		<execute macro="SOBookmarks#addBookmarksEntry">
+			<var name="addTag" value="${addTag}" />
+			<var name="bookmarksEntryDescription" value="${bookmarksEntryDescription}" />
+			<var name="bookmarksEntryName" value="${bookmarksEntryName}" />
+			<var name="bookmarksEntryUrl" value="${bookmarksEntryUrl}" />
+			<var name="tagName" value="${tagName}" />
+		</execute>
+	</command>
+
+	<command name="deleteActivityEntryComment">
+		<if>
+			<isset var="row" />
+			<then>
+				<var name="row" value="${row}" />
+			</then>
+			<else>
+				<var name="row" value="01" />
+			</else>
+		</if>
+
+		<var name="key_commentContent" value="${commentContent}" />
+		<var name="key_row" value="${row}" />
+		<var name="key_userFirstName" value="${userFirstName}" />
+		<var name="key_userName" value="${userName}" />
+
+		<if>
+			<equals arg1="${commentCount}" arg2="1" />
+			<then>
+				<execute function="AssertClick" locator1="SOActivities#ACTIVITIES_COMMENT" value1="1 Comment" />
+			</then>
+			<else>
+				<execute function="AssertClick" locator1="SOActivities#ACTIVITIES_COMMENT" value1="${commentCount} Comments" />
+			</else>
+		</if>
+
+		<execute function="AssertClickNoError" locator1="SOActivities#ACTIVITIES_COMMENT_DELETE" value1="Delete" />
+		<execute function="Confirm" value1="Are you sure you want to delete the selected entry?" />
+		<execute function="AssertTextNotPresent" value1="${commentContent}" />
+	</command>
+
+	<command name="deleteSiteContent">
+		<execute macro="Page#gotoPG">
+			<var name="defaultURL" value="${defaultURL}" />
+			<var name="nodePort" value="${nodePort}" />
+			<var name="pageName" value="Calendar" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+			<var name="soDashboard" value="${soDashboard}" />
+			<var name="soPage" value="${soPage}" />
+		</execute>
+
+		<execute macro="CalendarEvent#deleteSpecific">
+			<var name="eventTitle" value="${eventTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="defaultURL" value="${defaultURL}" />
+			<var name="nodePort" value="${nodePort}" />
+			<var name="pageName" value="Documents" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+			<var name="soDashboard" value="${soDashboard}" />
+			<var name="soPage" value="${soPage}" />
+		</execute>
+
+		<execute macro="DMFolder#deletePG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="defaultURL" value="${defaultURL}" />
+			<var name="nodePort" value="${nodePort}" />
+			<var name="pageName" value="Forums" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+			<var name="soDashboard" value="${soDashboard}" />
+			<var name="soPage" value="${soPage}" />
+		</execute>
+
+		<execute macro="MessageboardsCategory#deletePG">
+			<var name="assetType" value="${assetType}" />
+			<var name="categoryName" value="${mbCategoryName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="defaultURL" value="${defaultURL}" />
+			<var name="nodePort" value="${nodePort}" />
+			<var name="pageName" value="Blogs" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+			<var name="soDashboard" value="${soDashboard}" />
+			<var name="soPage" value="${soPage}" />
+		</execute>
+
+		<execute macro="BlogsEntry#moveToRecycleBinPG">
+			<var name="assetType" value="Blogs Entry" />
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="defaultURL" value="${defaultURL}" />
+			<var name="nodePort" value="${nodePort}" />
+			<var name="pageName" value="Wiki" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+			<var name="soDashboard" value="${soDashboard}" />
+			<var name="soPage" value="${soPage}" />
+		</execute>
+
+		<execute macro="WikiPage#deletePG">
+			<var name="assetType" value="${assetType}" />
+			<var name="wikiPageTitle" value="FrontPage" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="friendlyURL" value="${friendlyURL}" />
+			<var name="pageAccess" value="${pageAccess}" />
+			<var name="pageAccessURL" value="${pageAccessURL}" />
+			<var name="pageStaging" value="${pageStaging}" />
+			<var name="pageStagingURL" value="${pageStagingURL}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteNameURL" value="${siteNameURL}" />
+			<var name="siteURL" value="true" />
+			<var name="specificURL" value="${specificURL}" />
+			<var name="virtualHostsURL" value="${virtualHostsURL}" />
+		</execute>
+
+		<execute macro="SOBookmarks#deleteBookmarksEntry">
+			<var name="bookmarksEntryDescription" value="${bookmarksEntryDescription}" />
+			<var name="bookmarksEntryName" value="${bookmarksEntryName}" />
+		</execute>
+	</command>
+
+	<command name="editActivityEntryComment">
+		<if>
+			<isset var="row" />
+			<then>
+				<var name="row" value="${row}" />
+			</then>
+			<else>
+				<var name="row" value="01" />
+			</else>
+		</if>
+
+		<var name="key_commentContent" value="${commentContent}" />
+		<var name="key_row" value="${row}" />
+		<var name="key_userFirstName" value="${userFirstName}" />
+		<var name="key_userName" value="${userName}" />
+
+		<if>
+			<equals arg1="${commentCount}" arg2="1" />
+			<then>
+				<execute function="AssertClick" locator1="SOActivities#ACTIVITIES_COMMENT" value1="1 Comment" />
+			</then>
+			<else>
+				<execute function="AssertClick" locator1="SOActivities#ACTIVITIES_COMMENT" value1="${commentCount} Comments" />
+			</else>
+		</if>
+
+		<execute function="AssertClick" locator1="SOActivities#ACTIVITIES_COMMENT_EDIT" value1="Edit" />
+		<execute function="Pause" value1="1000" />
+		<execute function="Click" locator1="SOActivities#ACTIVITIES_COMMENT_FIELD" />
+		<execute function="Type" locator1="SOActivities#ACTIVITIES_COMMENT_INPUT_FIELD" value1="${commentContentEdit}" />
+		<execute function="KeyPress" locator1="SOActivities#ACTIVITIES_COMMENT_FIELD" value1="\RETURN" />
+
+		<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_COMMENT_CONTENT" value1="${commentContentEdit}" />
+	</command>
+
+	<command name="editSiteContent">
+		<execute macro="Page#gotoPG">
+			<var name="defaultURL" value="${defaultURL}" />
+			<var name="nodePort" value="${nodePort}" />
+			<var name="pageName" value="Calendar" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+			<var name="soDashboard" value="${soDashboard}" />
+			<var name="soPage" value="${soPage}" />
+		</execute>
+
+		<execute macro="CalendarEvent#edit">
+			<var name="calendarName" value="${calendarName}" />
+			<var name="endDateTime" value="${endDateTime}" />
+			<var name="endDateTimeEdit" value="11:59 PM" />
+			<var name="eventTitle" value="${eventTitle}" />
+			<var name="eventTitleEdit" value="${eventTitleEdit}" />
+			<var name="eventType" value="${eventType}" />
+			<var name="inviteResource" value="${inviteResource}" />
+			<var name="optionSet" value="${optionSet}" />
+			<var name="pageName" value="Calendar" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+			<var name="startDateTime" value="${startDateTime}" />
+			<var name="startDateTimeEdit" value="11:00 PM" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="defaultURL" value="${defaultURL}" />
+			<var name="nodePort" value="${nodePort}" />
+			<var name="pageName" value="Documents" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+			<var name="soDashboard" value="${soDashboard}" />
+			<var name="soPage" value="${soPage}" />
+		</execute>
+
+		<execute macro="DMFolder#editPG">
+			<var name="dmFolderDescriptionEdit" value="${dmFolderDescription}" />
+			<var name="dmFolderName" value="${dmFolderName}" />
+			<var name="dmFolderNameEdit" value="${dmFolderNameEdit}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="defaultURL" value="${defaultURL}" />
+			<var name="nodePort" value="${nodePort}" />
+			<var name="pageName" value="Documents" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+			<var name="soDashboard" value="${soDashboard}" />
+			<var name="soPage" value="${soPage}" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderNameEdit}" />
+		</execute>
+
+		<execute macro="DMDocument#editPG">
+			<var name="dmDocumentDescriptionEdit" value="${dmDocumentDescriptionEdit}" />
+			<var name="dmDocumentFileEdit" value="${dmDocumentFileEdit}" />
+			<var name="dmDocumentTagName" value="${dmDocumentTagName}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+			<var name="dmDocumentTitleEdit" value="${dmDocumentTitleEdit}" />
+			<var name="revision" value="${revision}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="defaultURL" value="${defaultURL}" />
+			<var name="nodePort" value="${nodePort}" />
+			<var name="pageName" value="Forums" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+			<var name="soDashboard" value="${soDashboard}" />
+			<var name="soPage" value="${soPage}" />
+		</execute>
+
+		<execute macro="MessageboardsCategory#editPG">
+			<var name="categoryName" value="${mbCategoryName}" />
+			<var name="categoryNameEdit" value="${mbCategoryNameEdit}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="defaultURL" value="${defaultURL}" />
+			<var name="nodePort" value="${nodePort}" />
+			<var name="pageName" value="Forums" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+			<var name="soDashboard" value="${soDashboard}" />
+			<var name="soPage" value="${soPage}" />
+		</execute>
+
+		<execute macro="MessageboardsCategory#gotoPG">
+			<var name="categoryDescription" value="${categoryDescription}" />
+			<var name="categoryDescriptionEnabled" value="${categoryDescriptionEnabled}" />
+			<var name="categoryName" value="${mbCategoryNameEdit}" />
+			<var name="subCategoryEnabled" value="${subCategoryEnabled}" />
+			<var name="subCategoryName" value="${subCategoryName}" />
+		</execute>
+
+		<execute macro="MessageboardsThread#editPG">
+			<var name="preview" value="${preview}" />
+			<var name="saveAsDraft" value="${saveAsDraft}" />
+			<var name="threadBody" value="${threadBody}" />
+			<var name="threadBodyEdit" value="${threadBodyEdit}" />
+			<var name="threadSubject" value="${threadSubject}" />
+			<var name="threadSubjectEdit" value="${threadSubjectEdit}" />
+			<var name="userName" value="${userName}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="defaultURL" value="${defaultURL}" />
+			<var name="nodePort" value="${nodePort}" />
+			<var name="pageName" value="Blogs" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+			<var name="soDashboard" value="${soDashboard}" />
+			<var name="soPage" value="${soPage}" />
+		</execute>
+
+		<execute macro="BlogsEntry#editPG">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entryContentEdit" value="${entryContentEdit}" />
+			<var name="entryTitle" value="${entryTitle}" />
+			<var name="entryTitleEdit" value="${entryTitleEdit}" />
+			<var name="saveAsDraft" value="${saveAsDraft}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="defaultURL" value="${defaultURL}" />
+			<var name="nodePort" value="${nodePort}" />
+			<var name="pageName" value="Wiki" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="true" />
+			<var name="soDashboard" value="${soDashboard}" />
+			<var name="soPage" value="${soPage}" />
+		</execute>
+
+		<execute macro="WikiPage#editFrontPagePG">
+			<var name="wikiPageContentEdit" value="${wikiPageContentEdit}" />
+		</execute>
+
+		<execute macro="Page#openURL">
+			<var name="friendlyURL" value="${friendlyURL}" />
+			<var name="pageAccess" value="${pageAccess}" />
+			<var name="pageAccessURL" value="${pageAccessURL}" />
+			<var name="pageStaging" value="${pageStaging}" />
+			<var name="pageStagingURL" value="${pageStagingURL}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteNameURL" value="${siteNameURL}" />
+			<var name="siteURL" value="true" />
+			<var name="specificURL" value="${specificURL}" />
+			<var name="virtualHostsURL" value="${virtualHostsURL}" />
+		</execute>
+
+		<execute macro="SOBookmarks#editBookmarksEntry">
+			<var name="bookmarksEntryDescriptionEdit" value="${bookmarksEntryDescriptionEdit}" />
+			<var name="bookmarksEntryName" value="${bookmarksEntryName}" />
+			<var name="bookmarksEntryNameEdit" value="${bookmarksEntryNameEdit}" />
+			<var name="bookmarksEntryUrl" value="${bookmarksEntryUrl}" />
+			<var name="bookmarksEntryUrlEdit" value="${bookmarksEntryUrlEdit}" />
+		</execute>
+	</command>
+
+	<command name="repostMicroblogsEntry">
+		<if>
+			<isset var="row" />
+			<then>
+				<var name="key_row" value="${row}" />
+			</then>
+			<else>
+				<var name="key_row" value="01" />
+			</else>
+		</if>
+
+		<if>
+			<isset var="profileScreenName" />
+			<then>
+				<var name="key_profileScreenName" value="${profileScreenName}" />
+
+				<execute function="Open" locator1="SOProfile#PROFILE_URL" />
+			</then>
+			<else>
+				<execute function="Click" locator1="Dockbar#USER_NAME" />
+				<execute function="Click" locator1="Dockbar#USER_MY_PROFILE" value1="My Profile" />
+			</else>
+		</if>
+
+		<var name="key_userName" value="${microblogsEntryAuthorName}" />
+
+		<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_USER" value1="${microblogsEntryAuthorName}" />
+		<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_ACTION" value1="${microblogsEntryContent}" />
+		<execute function="AssertClick" locator1="SOActivities#ACTIVITIES_REPOST" value1="Repost" />
+
+		<execute function="SelectFrame" locator1="SOActivitiesRepost#REPOST_IFRAME" />
+		<execute function="AssertTextEquals" locator1="SOActivitiesRepost#HEADER" value1="Do you want to repost this entry?" />
+		<execute function="AssertTextEquals" locator1="SOActivitiesRepost#MICROBLOGS_ENTRY_AUTHOR_NAME" value1="${microblogsEntryAuthorName}" />
+		<execute function="AssertTextEquals" locator1="SOActivitiesRepost#MICROBLOGS_ENTRY_CONTENT" value1="${microblogsEntryContent}" />
+		<execute function="AssertClick" locator1="SOActivitiesRepost#REPOST_BUTTON" value1="Repost" />
+		<execute function="SelectFrame" value1="relative=top" />
+	</command>
+
+	<command name="viewActivityEntryComment">
+		<if>
+			<isset var="row" />
+			<then>
+				<var name="row" value="${row}" />
+			</then>
+			<else>
+				<var name="row" value="01" />
+			</else>
+		</if>
+
+		<var locator="Dockbar#USER_NAME" name="currentUser" />
+		<var name="key_commentContent" value="${commentContent}" />
+		<var name="key_row" value="${row}" />
+		<var name="key_userFirstName" value="${userFirstName}" />
+		<var name="key_userName" value="${userName}" />
+
+		<if>
+			<condition function="IsElementNotPresent" locator1="SOActivities#ACTIVITIES_COMMENT_CONTENT" />
+			<then>
+				<if>
+					<equals arg1="${commentCount}" arg2="1" />
+					<then>
+						<execute function="AssertClick" locator1="SOActivities#ACTIVITIES_COMMENT" value1="1 Comment" />
+					</then>
+					<else>
+						<execute function="AssertClick" locator1="SOActivities#ACTIVITIES_COMMENT" value1="${commentCount} Comments" />
+					</else>
+				</if>
+			</then>
+			<elseif>
+				<condition function="IsNotVisible" locator1="SOActivities#ACTIVITIES_COMMENT_CONTENT" />
+				<then>
+					<if>
+						<equals arg1="${commentCount}" arg2="1" />
+						<then>
+							<execute function="AssertClick" locator1="SOActivities#ACTIVITIES_COMMENT" value1="1 Comment" />
+						</then>
+						<else>
+							<execute function="AssertClick" locator1="SOActivities#ACTIVITIES_COMMENT" value1="${commentCount} Comments" />
+						</else>
+					</if>
+				</then>
+			</elseif>
+			<else>
+				<if>
+					<equals arg1="${commentCount}" arg2="1" />
+					<then>
+						<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_COMMENT" value1="1 Comment" />
+					</then>
+					<else>
+						<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_COMMENT" value1="${commentCount} Comments" />
+					</else>
+				</if>
+			</else>
+		</if>
+
+		<execute function="AssertElementPresent" locator1="SOActivities#ACTIVITIES_COMMENT_USER_PICTURE" />
+		<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_COMMENT_USER_NAME" value1="${userName}" />
+		<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_COMMENT_CONTENT" value1="${commentContent}" />
+
+		<if>
+			<equals arg1="${userName}" arg2="${currentUser}" />
+			<then>
+				<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_COMMENT_EDIT" value1="Edit" />
+				<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_COMMENT_DELETE" value1="Delete" />
+			</then>
+			<else>
+				<execute function="AssertElementNotPresent#assertNotVisible" locator1="SOActivities#ACTIVITIES_COMMENT_EDIT" />
+				<execute function="AssertElementNotPresent#assertNotVisible" locator1="SOActivities#ACTIVITIES_COMMENT_DELETE" />
+			</else>
+		</if>
+
+		<execute function="AssertElementPresent" locator1="SOActivities#ACTIVITIES_COMMENT_FIELD" />
+	</command>
+
+	<command name="viewActivityEntryTimeStamp">
+		<if>
+			<isset var="row" />
+			<then>
+				<var name="row" value="${row}" />
+			</then>
+			<else>
+				<var name="row" value="01" />
+			</else>
+		</if>
+
+		<var name="key_row" value="${row}" />
+
+		<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_TIME_STAMP" value1="${timeStampValue}" />
+	</command>
+
+	<command name="viewActivityEntryUser">
+		<if>
+			<not>
+				<contains string="${numberOfOtherCommenters}" substring="{numberOfOtherCommenters}" />
+			</not>
+			<then>
+				<if>
+					<or>
+						<equals arg1="${dashboardView}" arg2="true" />
+						<equals arg1="${profileView}" arg2="true" />
+					</or>
+					<then>
+						<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_USER" value1="${userName} and ${numberOfOtherCommenters} others in ${siteName}." />
+					</then>
+					<else>
+						<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_USER" value1="${userName} and ${numberOfOtherCommenters} others." />
+					</else>
+				</if>
+			</then>
+			<else>
+				<if>
+					<or>
+						<equals arg1="${dashboardView}" arg2="true" />
+						<equals arg1="${profileView}" arg2="true" />
+					</or>
+					<then>
+						<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_USER" value1="${userName} in ${siteName}" />
+					</then>
+					<else>
+						<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_USER" value1="${userName}" />
+					</else>
+				</if>
+			</else>
+		</if>
+	</command>
+
+	<command name="viewBlogsActivityEntry">
+		<if>
+			<isset var="row" />
+			<then>
+				<var name="row" value="${row}" />
+			</then>
+			<else>
+				<var name="row" value="01" />
+			</else>
+		</if>
+
+		<var name="key_row" value="${row}" />
+		<var name="key_userName" value="${userName}" />
+
+		<execute function="AssertElementPresent" locator1="SOActivities#ACTIVITIES_USER_PICTURE" />
+
+		<execute macro="SOActivities#viewActivityEntryUser">
+			<var name="dashboardView" value="${dashboardView}" />
+			<var name="numberOfOtherCommenters" value="${numberOfOtherCommenters}" />
+			<var name="profileView" value="${profileView}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="userName" value="${userName}" />
+		</execute>
+
+		<execute function="AssertElementPresent" locator1="SOActivities#ACTIVITIES_TIME_STAMP" />
+		<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_ACTION" value1="${action}" />
+		<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_TITLE" value1="${entryTitle}" />
+		<execute function="AssertTextEquals#assertPartialText" locator1="SOActivities#ACTIVITIES_CONTENT" value1="${entryContent}" />
+
+		<if>
+			<isset var="commentCount" />
+			<then>
+				<if>
+					<equals arg1="${commentCount}" arg2="1" />
+					<then>
+						<execute function="AssertClick" locator1="SOActivities#ACTIVITIES_COMMENT" value1="1 Comment" />
+					</then>
+					<else>
+						<execute function="AssertClick" locator1="SOActivities#ACTIVITIES_COMMENT" value1="${commentCount} Comments" />
+					</else>
+				</if>
+			</then>
+			<else>
+				<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_COMMENT" value1="Comment" />
+			</else>
+		</if>
+
+		<execute function="AssertElementPresent" locator1="SOActivities#ACTIVITIES_COMMENT_FIELD" />
+	</command>
+
+	<command name="viewBookmarksActivityEntry">
+		<if>
+			<isset var="row" />
+			<then>
+				<var name="row" value="${row}" />
+			</then>
+			<else>
+				<var name="row" value="01" />
+			</else>
+		</if>
+
+		<var name="key_row" value="${row}" />
+		<var name="key_userName" value="${userName}" />
+
+		<execute function="AssertElementPresent" locator1="SOActivities#ACTIVITIES_USER_PICTURE" />
+
+		<execute macro="SOActivities#viewActivityEntryUser">
+			<var name="dashboardView" value="${dashboardView}" />
+			<var name="numberOfOtherCommenters" value="${numberOfOtherCommenters}" />
+			<var name="profileView" value="${profileView}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="userName" value="${userName}" />
+		</execute>
+
+		<execute function="AssertElementPresent" locator1="SOActivities#ACTIVITIES_TIME_STAMP" />
+		<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_ACTION" value1="${action}" />
+		<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_TITLE" value1="${bookmarksEntryName}" />
+		<execute function="AssertTextEquals#assertPartialText" locator1="SOActivities#ACTIVITIES_CONTENT" value1="${bookmarksEntryDescription}" />
+
+		<if>
+			<isset var="commentCount" />
+			<then>
+				<if>
+					<equals arg1="${commentCount}" arg2="1" />
+					<then>
+						<execute function="AssertClick" locator1="SOActivities#ACTIVITIES_COMMENT" value1="1 Comment" />
+					</then>
+					<else>
+						<execute function="AssertClick" locator1="SOActivities#ACTIVITIES_COMMENT" value1="${commentCount} Comments" />
+					</else>
+				</if>
+			</then>
+			<else>
+				<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_COMMENT" value1="Comment" />
+			</else>
+		</if>
+
+		<execute function="AssertElementPresent" locator1="SOActivities#ACTIVITIES_COMMENT_FIELD" />
+	</command>
+
+	<command name="viewCalendarActivityEntry">
+		<if>
+			<isset var="row" />
+			<then>
+				<var name="row" value="${row}" />
+			</then>
+			<else>
+				<var name="row" value="01" />
+			</else>
+		</if>
+
+		<var name="key_row" value="${row}" />
+		<var name="key_userName" value="${userName}" />
+
+		<execute function="AssertElementPresent" locator1="SOActivities#ACTIVITIES_USER_PICTURE" />
+
+		<execute macro="SOActivities#viewActivityEntryUser">
+			<var name="dashboardView" value="${dashboardView}" />
+			<var name="numberOfOtherCommenters" value="${numberOfOtherCommenters}" />
+			<var name="profileView" value="${profileView}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="userName" value="${userName}" />
+		</execute>
+
+		<execute function="AssertElementPresent" locator1="SOActivities#ACTIVITIES_TIME_STAMP" />
+		<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_ACTION" value1="${action}" />
+		<execute function="AssertElementPresent" locator1="SOActivities#ACTIVITIES_EVENT_DATE" />
+
+		<if>
+			<isset var="commentCount" />
+			<then>
+				<if>
+					<equals arg1="${commentCount}" arg2="1" />
+					<then>
+						<execute function="AssertClick" locator1="SOActivities#ACTIVITIES_COMMENT" value1="1 Comment" />
+					</then>
+					<else>
+						<execute function="AssertClick" locator1="SOActivities#ACTIVITIES_COMMENT" value1="${commentCount} Comments" />
+					</else>
+				</if>
+			</then>
+			<else>
+				<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_COMMENT" value1="Comment" />
+			</else>
+		</if>
+
+		<execute function="AssertElementPresent" locator1="SOActivities#ACTIVITIES_COMMENT_FIELD" />
+	</command>
+
+	<command name="viewDocumentsActivityEntry">
+		<if>
+			<isset var="row" />
+			<then>
+				<var name="row" value="${row}" />
+			</then>
+			<else>
+				<var name="row" value="01" />
+			</else>
+		</if>
+
+		<var name="key_row" value="${row}" />
+		<var name="key_userName" value="${userName}" />
+
+		<execute function="AssertElementPresent" locator1="SOActivities#ACTIVITIES_USER_PICTURE" />
+
+		<execute macro="SOActivities#viewActivityEntryUser">
+			<var name="dashboardView" value="${dashboardView}" />
+			<var name="numberOfOtherCommenters" value="${numberOfOtherCommenters}" />
+			<var name="profileView" value="${profileView}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="userName" value="${userName}" />
+		</execute>
+
+		<execute function="AssertElementPresent" locator1="SOActivities#ACTIVITIES_TIME_STAMP" />
+		<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_ACTION" value1="${action}" />
+		<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_TITLE" value1="${dmDocumentTitle}" />
+		<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_DOCUMENT_VERSION" value1="Version ${dmDocumentVersionNumber}" />
+		<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_DOCUMENT_DESCRIPTION_SINGLE" value1="${dmDocumentDescription}" />
+
+		<if>
+			<not>
+				<equals arg1="${documentUpdateActivity}" arg2="true" />
+			</not>
+			<then>
+				<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_DOWNLOAD" value1="Download" />
+			</then>
+		</if>
+
+		<if>
+			<isset var="commentCount" />
+			<then>
+				<if>
+					<equals arg1="${commentCount}" arg2="1" />
+					<then>
+						<execute function="AssertClick" locator1="SOActivities#ACTIVITIES_COMMENT" value1="1 Comment" />
+					</then>
+					<else>
+						<execute function="AssertClick" locator1="SOActivities#ACTIVITIES_COMMENT" value1="${commentCount} Comments" />
+					</else>
+				</if>
+			</then>
+			<else>
+				<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_COMMENT" value1="Comment" />
+			</else>
+		</if>
+
+		<execute function="AssertElementPresent" locator1="SOActivities#ACTIVITIES_COMMENT_FIELD" />
+	</command>
+
+	<command name="viewForumsActivityEntry">
+		<if>
+			<isset var="row" />
+			<then>
+				<var name="row" value="${row}" />
+			</then>
+			<else>
+				<var name="row" value="01" />
+			</else>
+		</if>
+
+		<var name="key_row" value="${row}" />
+		<var name="key_userName" value="${userName}" />
+
+		<execute function="AssertElementPresent" locator1="SOActivities#ACTIVITIES_USER_PICTURE" />
+
+		<execute macro="SOActivities#viewActivityEntryUser">
+			<var name="dashboardView" value="${dashboardView}" />
+			<var name="numberOfOtherCommenters" value="${numberOfOtherCommenters}" />
+			<var name="profileView" value="${profileView}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="userName" value="${userName}" />
+		</execute>
+
+		<execute function="AssertElementPresent" locator1="SOActivities#ACTIVITIES_TIME_STAMP" />
+		<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_ACTION" value1="${action}" />
+		<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_TITLE" value1="${threadSubject}" />
+		<execute function="AssertTextEquals#assertPartialText" locator1="SOActivities#ACTIVITIES_CONTENT" value1="${threadBody}" />
+		<execute function="AssertElementNotPresent" locator1="SOActivities#ACTIVITIES_COMMENT" />
+	</command>
+
+	<command name="viewMicroblogsActivityEntry">
+		<if>
+			<isset var="row" />
+			<then>
+				<var name="key_row" value="${row}" />
+			</then>
+			<else>
+				<var name="key_row" value="01" />
+			</else>
+		</if>
+
+		<var locator="Dockbar#USER_NAME" name="currentUser" />
+
+		<var name="key_userName" value="${microblogsEntryAuthorName}" />
+
+		<execute function="AssertElementPresent" locator1="SOActivities#ACTIVITIES_USER_PICTURE" />
+
+		<if>
+			<equals arg1="${currentUser}" arg2="${microblogsEntryAuthorName}" />
+			<then>
+				<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_USER" value1="${microblogsEntryAuthorFirstName}" />
+			</then>
+			<else>
+				<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_USER" value1="${microblogsEntryAuthorName}" />
+			</else>
+		</if>
+
+		<execute function="AssertElementPresent" locator1="SOActivities#ACTIVITIES_TIME_STAMP" />
+		<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_ACTION" value1="${microblogsEntryContent}" />
+		<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_VIEW_MICROBLOGS" value1="View Microblogs" />
+
+		<if>
+			<not>
+				<equals arg1="${microblogsEntryAuthorName}" arg2="${currentUser}" />
+			</not>
+			<then>
+				<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_REPOST" value1="Repost" />
+			</then>
+		</if>
+
+		<if>
+			<isset var="commentCount" />
+			<then>
+				<if>
+					<equals arg1="${commentCount}" arg2="1" />
+					<then>
+						<execute function="AssertClick" locator1="SOActivities#ACTIVITIES_COMMENT" value1="1 Comment" />
+					</then>
+					<else>
+						<execute function="AssertClick" locator1="SOActivities#ACTIVITIES_COMMENT" value1="${commentCount} Comments" />
+					</else>
+				</if>
+			</then>
+			<else>
+				<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_COMMENT" value1="Comment" />
+			</else>
+		</if>
+
+		<execute function="AssertElementPresent" locator1="SOActivities#ACTIVITIES_COMMENT_FIELD" />
+	</command>
+
+	<command name="viewMicroblogsActivityEntryProfile">
+		<if>
+			<isset var="row" />
+			<then>
+				<var name="key_row" value="${row}" />
+			</then>
+			<else>
+				<var name="key_row" value="01" />
+			</else>
+		</if>
+
+		<var locator="Dockbar#USER_NAME" name="currentUser" />
+
+		<if>
+			<isset var="profileScreenName" />
+			<then>
+				<var name="key_profileScreenName" value="${profileScreenName}" />
+
+				<execute function="Open" locator1="SOProfile#PROFILE_URL" />
+			</then>
+			<else>
+				<execute function="Click" locator1="Dockbar#USER_NAME" />
+				<execute function="Click" locator1="Dockbar#USER_MY_PROFILE" value1="My Profile" />
+			</else>
+		</if>
+
+		<var name="key_userName" value="${microblogsEntryAuthorName}" />
+
+		<execute function="AssertElementPresent" locator1="SOActivities#ACTIVITIES_USER_PICTURE" />
+
+		<if>
+			<equals arg1="${microblogsEntryAuthorName}" arg2="${currentUser}" />
+			<then>
+				<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_USER" value1="${microblogsEntryAuthorFirstName}" />
+			</then>
+			<else>
+				<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_USER" value1="${microblogsEntryAuthorName}" />
+			</else>
+		</if>
+
+		<execute function="AssertElementPresent" locator1="SOActivities#ACTIVITIES_TIME_STAMP" />
+		<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_ACTION" value1="${microblogsEntryContent}" />
+		<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_VIEW_MICROBLOGS" value1="View Microblogs" />
+
+		<if>
+			<not>
+				<equals arg1="${microblogsEntryAuthorName}" arg2="${currentUser}" />
+			</not>
+			<then>
+				<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_REPOST" value1="Repost" />
+			</then>
+		</if>
+
+		<if>
+			<isset var="commentCount" />
+			<then>
+				<if>
+					<equals arg1="${commentCount}" arg2="1" />
+					<then>
+						<execute function="AssertClick" locator1="SOActivities#ACTIVITIES_COMMENT" value1="1 Comment" />
+					</then>
+					<else>
+						<execute function="AssertClick" locator1="SOActivities#ACTIVITIES_COMMENT" value1="${commentCount} Comments" />
+					</else>
+				</if>
+			</then>
+			<else>
+				<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_COMMENT" value1="Comment" />
+			</else>
+		</if>
+
+		<execute function="AssertElementPresent" locator1="SOActivities#ACTIVITIES_COMMENT_FIELD" />
+	</command>
+
+	<command name="viewMicroblogsCommentActivityEntry">
+		<if>
+			<isset var="row" />
+			<then>
+				<var name="key_row" value="${row}" />
+			</then>
+			<else>
+				<var name="key_row" value="01" />
+			</else>
+		</if>
+
+		<var locator="Dockbar#USER_NAME" name="currentUser" />
+
+		<var name="key_commentContent" value="${microblogsEntryCommentContent}" />
+
+		<if>
+			<isset var="mostRecentMicroblogsEntryCommentAuthorName" />
+			<then>
+				<var name="key_userName" value="${mostRecentMicroblogsEntryCommentAuthorName}" />
+			</then>
+			<else>
+				<var name="key_userName" value="${microblogsEntryCommentAuthorName}" />
+			</else>
+		</if>
+
+		<execute function="AssertElementPresent" locator1="SOActivities#ACTIVITIES_USER_PICTURE" />
+
+		<if>
+			<equals arg1="${microblogsEntryCommentAuthorName}" arg2="${currentUser}" />
+			<then>
+				<if>
+					<and>
+						<isset var="numberOfOtherCommenters" />
+						<isset var="mostRecentMicroblogsEntryCommentAuthorFirstName" />
+					</and>
+					<then>
+						<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_USER" value1="${mostRecentMicroblogsEntryCommentAuthorFirstName} and ${numberOfOtherCommenters} others." />
+					</then>
+					<else>
+						<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_USER" value1="${microblogsEntryCommentAuthorFirstName}" />
+					</else>
+				</if>
+			</then>
+			<else>
+				<if>
+					<and>
+						<isset var="numberOfOtherCommenters" />
+						<isset var="mostRecentMicroblogsEntryCommentAuthorName" />
+					</and>
+					<then>
+						<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_USER" value1="${mostRecentMicroblogsEntryCommentAuthorName} and ${numberOfOtherCommenters} others." />
+					</then>
+					<else>
+						<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_USER" value1="${microblogsEntryCommentAuthorName}" />
+					</else>
+				</if>
+			</else>
+		</if>
+
+		<execute function="AssertElementPresent" locator1="SOActivities#ACTIVITIES_TIME_STAMP" />
+		<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_ACTION" value1="Commented on a microblog entry." />
+
+		<var name="key_userName" value="${microblogsEntryAuthorName}" />
+
+		<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_ORIGINAL_MICROBLOGS_CONTENT" value1="${microblogsEntryContent}" />
+		<execute function="AssertElementPresent" locator1="SOActivities#ACTIVITIES_ORIGINAL_MICROBLOGS_AUTHOR_PICTURE" />
+		<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_VIEW_MICROBLOGS" value1="View Microblogs" />
+
+		<if>
+			<not>
+				<or>
+					<equals arg1="${microblogsEntryCommentAuthorName}" arg2="${currentUser}" />
+					<equals arg1="${notViewableByEveryone}" arg2="true" />
+				</or>
+			</not>
+			<then>
+				<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_REPOST" value1="Repost" />
+			</then>
+		</if>
+
+		<if>
+			<equals arg1="${commentCount}" arg2="1" />
+			<then>
+				<execute function="AssertClick" locator1="SOActivities#ACTIVITIES_COMMENT" value1="1 Comment" />
+			</then>
+			<else>
+				<execute function="AssertClick" locator1="SOActivities#ACTIVITIES_COMMENT" value1="${commentCount} Comments" />
+			</else>
+		</if>
+
+		<var name="key_userFirstName" value="${microblogsEntryCommentAuthorFirstName}" />
+
+		<execute function="AssertElementPresent" locator1="SOActivities#ACTIVITIES_COMMENT_USER_PICTURE" value1="${microblogsEntryCommentAuthorName}" />
+		<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_COMMENT_USER_NAME" value1="${microblogsEntryCommentAuthorName}" />
+		<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_COMMENT_CONTENT" value1="${microblogsEntryCommentContent}" />
+
+		<execute function="AssertElementPresent" locator1="SOActivities#ACTIVITIES_COMMENT_FIELD" />
+	</command>
+
+	<command name="viewMicroblogsEntry">
+		<if>
+			<isset var="row" />
+			<then>
+				<var name="key_row" value="${row}" />
+			</then>
+			<else>
+				<var name="key_row" value="01" />
+			</else>
+		</if>
+
+		<var locator="Dockbar#USER_NAME" name="currentUser" />
+		<var name="key_microblogsEntryContent" value="${microblogsEntryContent}" />
+		<var name="key_userName" value="${microblogsEntryAuthorName}" />
+
+		<if>
+			<equals arg1="${currentUser}" arg2="${microblogsEntryAuthorName}" />
+			<then>
+				<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_USER" value1="${microblogsEntryAuthorFirstName}" />
+			</then>
+			<else>
+				<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_USER" value1="${microblogsEntryAuthorName}" />
+			</else>
+		</if>
+
+		<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_ACTION" value1="${microblogsEntryContent}" />
+		<execute function="AssertClick" locator1="SOActivities#ACTIVITIES_VIEW_MICROBLOGS" value1="View Microblogs" />
+
+		<execute macro="SOMicroblogs#viewMicroblogsEntryAuthor">
+			<var name="microblogsEntryAuthorName" value="${microblogsEntryAuthorName}" />
+			<var name="microblogsEntryContent" value="${microblogsEntryContent}" />
+			<var name="microblogsEntryPartialContent" value="${microblogsEntryPartialContent}" />
+			<var name="microblogsEntryRepostAuthorName" value="${microblogsEntryAuthorName}" />
+		</execute>
+
+		<var name="key_microblogsEntryContent" value="${microblogsEntryContent}" />
+
+		<execute function="AssertTextEquals" locator1="SOMicroblogs#MICROBLOGS_ENTRY_CONTENT" value1="${microblogsEntryContent}" />
+	</command>
+
+	<command name="viewMicroblogsEntryMention">
+		<if>
+			<isset var="row" />
+			<then>
+				<var name="key_row" value="${row}" />
+			</then>
+			<else>
+				<var name="key_row" value="01" />
+			</else>
+		</if>
+
+		<var locator="Dockbar#USER_NAME" name="currentUser" />
+		<var name="key_userName" value="${microblogsEntryAuthorName}" />
+
+		<if>
+			<equals arg1="${currentUser}" arg2="${microblogsEntryAuthorName}" />
+			<then>
+				<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_USER" value1="${microblogsEntryAuthorFirstName}" />
+			</then>
+			<else>
+				<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_USER" value1="${microblogsEntryAuthorName}" />
+			</else>
+		</if>
+
+		<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_ACTION" value1="${microblogsEntryContent}" />
+		<execute function="AssertClick" locator1="SOActivities#ACTIVITIES_ACTION_LINK" value1="${mentionUserName}" />
+
+		<execute function="AssertTextEquals" locator1="SOProfile#USER_NAME" value1="${mentionUserName}" />
+		<execute function="AssertTextEquals" locator1="SOProfile#USER_EMAIL" value1="${mentionUserEmailAddress}" />
+	</command>
+
+	<command name="viewMicroblogsEntryTag">
+		<if>
+			<isset var="row" />
+			<then>
+				<var name="key_row" value="${row}" />
+			</then>
+			<else>
+				<var name="key_row" value="01" />
+			</else>
+		</if>
+
+		<var locator="Dockbar#USER_NAME" name="currentUser" />
+		<var name="key_microblogsEntryContent" value="${microblogsEntryContent}" />
+		<var name="key_microblogsEntryTagValue" value="${microblogsEntryTagValue}" />
+		<var name="key_userName" value="${microblogsEntryAuthorName}" />
+
+		<if>
+			<equals arg1="${currentUser}" arg2="${microblogsEntryAuthorName}" />
+			<then>
+				<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_USER" value1="${microblogsEntryAuthorFirstName}" />
+			</then>
+			<else>
+				<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_USER" value1="${microblogsEntryAuthorName}" />
+			</else>
+		</if>
+
+		<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_ACTION" value1="${microblogsEntryContent}" />
+		<execute function="AssertClick" locator1="SOActivities#ACTIVITIES_ACTION_LINK" value1="${microblogsEntryTagValue}" />
+
+		<execute macro="SOMicroblogs#viewMicroblogsEntryAuthor">
+			<var name="microblogsEntryAuthorName" value="${microblogsEntryAuthorName}" />
+			<var name="microblogsEntryContent" value="${microblogsEntryContent}" />
+			<var name="microblogsEntryPartialContent" value="${microblogsEntryPartialContent}" />
+			<var name="microblogsEntryRepostAuthorName" value="${microblogsEntryAuthorName}" />
+		</execute>
+
+		<execute function="AssertTextEquals" locator1="SOMicroblogs#TAB_TAG_VALUE" value1="${microblogsEntryTagValue}" />
+		<execute function="AssertTextEquals" locator1="SOMicroblogs#MICROBLOGS_ENTRY_CONTENT" value1="${microblogsEntryContent}" />
+		<execute function="AssertTextEquals" locator1="SOMicroblogs#MICROBLOGS_ENTRY_CONTENT_TAG" value1="${microblogsEntryTagValue}" />
+		<execute function="AssertClick#assertTextClickAtAndWait" locator1="SOMicroblogs#TAB_TAG_VALUE" value1="${microblogsEntryTagValue}" />
+
+		<execute macro="SOMicroblogs#viewMicroblogsEntryAuthor">
+			<var name="microblogsEntryAuthorName" value="${microblogsEntryAuthorName}" />
+			<var name="microblogsEntryContent" value="${microblogsEntryContent}" />
+			<var name="microblogsEntryPartialContent" value="${microblogsEntryPartialContent}" />
+			<var name="microblogsEntryRepostAuthorName" value="${microblogsEntryAuthorName}" />
+		</execute>
+
+		<execute function="AssertTextEquals" locator1="SOMicroblogs#TAB_TAG_VALUE" value1="${microblogsEntryTagValue}" />
+		<execute function="AssertTextEquals" locator1="SOMicroblogs#MICROBLOGS_ENTRY_CONTENT" value1="${microblogsEntryContent}" />
+		<execute function="AssertTextEquals" locator1="SOMicroblogs#MICROBLOGS_ENTRY_CONTENT_TAG" value1="${microblogsEntryTagValue}" />
+	</command>
+
+	<command name="viewMicroblogsNotViewableByEveryoneActivityEntry">
+		<if>
+			<isset var="row" />
+			<then>
+				<var name="key_row" value="${row}" />
+			</then>
+			<else>
+				<var name="key_row" value="01" />
+			</else>
+		</if>
+
+		<var locator="Dockbar#USER_NAME" name="currentUser" />
+
+		<var name="key_userName" value="${microblogsEntryAuthorName}" />
+
+		<execute function="AssertElementPresent" locator1="SOActivities#ACTIVITIES_USER_PICTURE" />
+
+		<if>
+			<equals arg1="${currentUser}" arg2="${microblogsEntryAuthorName}" />
+			<then>
+				<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_USER" value1="${microblogsEntryAuthorFirstName}" />
+			</then>
+			<else>
+				<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_USER" value1="${microblogsEntryAuthorName}" />
+			</else>
+		</if>
+
+		<execute function="AssertElementPresent" locator1="SOActivities#ACTIVITIES_TIME_STAMP" />
+		<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_ACTION" value1="${microblogsEntryContent}" />
+		<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_VIEW_MICROBLOGS" value1="View Microblogs" />
+
+		<if>
+			<isset var="commentCount" />
+			<then>
+				<if>
+					<equals arg1="${commentCount}" arg2="1" />
+					<then>
+						<execute function="AssertClick" locator1="SOActivities#ACTIVITIES_COMMENT" value1="1 Comment" />
+					</then>
+					<else>
+						<execute function="AssertClick" locator1="SOActivities#ACTIVITIES_COMMENT" value1="${commentCount} Comments" />
+					</else>
+				</if>
+			</then>
+			<else>
+				<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_COMMENT" value1="Comment" />
+			</else>
+		</if>
+
+		<execute function="AssertElementPresent" locator1="SOActivities#ACTIVITIES_COMMENT_FIELD" />
+	</command>
+
+	<command name="viewMicroblogsRepostActivityEntry">
+		<if>
+			<isset var="row" />
+			<then>
+				<var name="key_row" value="${row}" />
+			</then>
+			<else>
+				<var name="key_row" value="01" />
+			</else>
+		</if>
+
+		<var name="key_userName" value="${microblogsEntryRepostAuthorName}" />
+
+		<var locator="Dockbar#USER_NAME" name="currentUser" />
+
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<var name="key_userName" value="${microblogsEntryRepostAuthorName}" />
+
+		<execute function="AssertElementPresent" locator1="SOActivities#ACTIVITIES_USER_PICTURE" />
+
+		<if>
+			<equals arg1="${microblogsEntryRepostAuthorName}" arg2="${currentUser}" />
+			<then>
+				<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_USER" value1="${microblogsEntryRepostAuthorFirstName}" />
+			</then>
+			<else>
+				<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_USER" value1="${microblogsEntryRepostAuthorName}" />
+			</else>
+		</if>
+
+		<execute function="AssertElementPresent" locator1="SOActivities#ACTIVITIES_TIME_STAMP" />
+
+		<if>
+			<equals arg1="${microblogsEntryRepostAuthorName}" arg2="${currentUser}" />
+			<then>
+				<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_ACTION" value1="Reposted a microblog entry from ${microblogsEntryAuthorName}." />
+			</then>
+			<elseif>
+				<equals arg1="${microblogsEntryAuthorName}" arg2="${currentUser}" />
+				<then>
+					<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_ACTION" value1="Reposted a microblog entry from ${microblogsEntryAuthorFirstName}." />
+				</then>
+			</elseif>
+			<else>
+				<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_ACTION" value1="Reposted a microblog entry from ${microblogsEntryAuthorName}." />
+			</else>
+		</if>
+
+		<execute function="AssertTextEquals#assertPartialText" locator1="SOActivities#ACTIVITIES_CONTENT" value1="${microblogsEntryContent}" />
+		<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_VIEW_MICROBLOGS" value1="View Microblogs" />
+
+		<if>
+			<not>
+				<equals arg1="${microblogsEntryRepostAuthorName}" arg2="${currentUser}" />
+			</not>
+			<then>
+				<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_REPOST" value1="Repost" />
+			</then>
+		</if>
+
+		<if>
+			<isset var="commentCount" />
+			<then>
+				<if>
+					<equals arg1="${commentCount}" arg2="1" />
+					<then>
+						<execute function="AssertClick" locator1="SOActivities#ACTIVITIES_COMMENT" value1="1 Comment" />
+					</then>
+					<else>
+						<execute function="AssertClick" locator1="SOActivities#ACTIVITIES_COMMENT" value1="${commentCount} Comments" />
+					</else>
+				</if>
+			</then>
+			<else>
+				<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_COMMENT" value1="Comment" />
+			</else>
+		</if>
+
+		<execute function="AssertElementPresent" locator1="SOActivities#ACTIVITIES_COMMENT_FIELD" />
+	</command>
+
+	<command name="viewMicroblogsRepostActivityEntryProfile">
+		<if>
+			<isset var="row" />
+			<then>
+				<var name="key_row" value="${row}" />
+			</then>
+			<else>
+				<var name="key_row" value="01" />
+			</else>
+		</if>
+
+		<var locator="Dockbar#USER_NAME" name="currentUser" />
+
+		<if>
+			<isset var="profileScreenName" />
+			<then>
+				<var name="key_profileScreenName" value="${profileScreenName}" />
+
+				<execute function="Open" locator1="SOProfile#PROFILE_URL" />
+			</then>
+			<else>
+				<execute function="Click" locator1="Dockbar#USER_NAME" />
+				<execute function="Click" locator1="Dockbar#USER_MY_PROFILE" value1="My Profile" />
+			</else>
+		</if>
+
+		<var name="key_userName" value="${microblogsEntryRepostAuthorName}" />
+
+		<execute function="AssertElementPresent" locator1="SOActivities#ACTIVITIES_USER_PICTURE" />
+
+		<if>
+			<equals arg1="${microblogsEntryRepostAuthorName}" arg2="${currentUser}" />
+			<then>
+				<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_USER" value1="${microblogsEntryRepostAuthorFirstName}" />
+			</then>
+			<else>
+				<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_USER" value1="${microblogsEntryRepostAuthorName}" />
+			</else>
+		</if>
+
+		<execute function="AssertElementPresent" locator1="SOActivities#ACTIVITIES_TIME_STAMP" />
+
+		<if>
+			<equals arg1="${microblogsEntryAuthorName}" arg2="${currentUser}" />
+			<then>
+				<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_ACTION" value1="Reposted a microblog entry from ${microblogsEntryAuthorFirstName}." />
+			</then>
+			<else>
+				<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_ACTION" value1="Reposted a microblog entry from ${microblogsEntryAuthorName}." />
+			</else>
+		</if>
+
+		<execute function="AssertTextEquals#assertPartialText" locator1="SOActivities#ACTIVITIES_CONTENT" value1="${microblogsEntryContent}" />
+		<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_VIEW_MICROBLOGS" value1="View Microblogs" />
+
+		<if>
+			<equals arg1="${microblogsEntryRepostAuthor}" arg2="${currentUser}" />
+			<then>
+				<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_REPOST" value1="Repost" />
+			</then>
+		</if>
+
+		<if>
+			<isset var="commentCount" />
+			<then>
+				<if>
+					<equals arg1="${commentCount}" arg2="1" />
+					<then>
+						<execute function="AssertClick" locator1="SOActivities#ACTIVITIES_COMMENT" value1="1 Comment" />
+					</then>
+					<else>
+						<execute function="AssertClick" locator1="SOActivities#ACTIVITIES_COMMENT" value1="${commentCount} Comments" />
+					</else>
+				</if>
+			</then>
+			<else>
+				<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_COMMENT" value1="Comment" />
+			</else>
+		</if>
+
+		<execute function="AssertElementPresent" locator1="SOActivities#ACTIVITIES_COMMENT_FIELD" />
+	</command>
+
+	<command name="viewMultipleDocumentsActivityEntry">
+		<if>
+			<isset var="row" />
+			<then>
+				<var name="row" value="${row}" />
+			</then>
+			<else>
+				<var name="row" value="01" />
+			</else>
+		</if>
+
+		<var name="key_row" value="${row}" />
+		<var name="key_userName" value="${userName}" />
+
+		<execute function="AssertElementPresent" locator1="SOActivities#ACTIVITIES_USER_PICTURE" />
+
+		<execute macro="SOActivities#viewActivityEntryUser">
+			<var name="dashboardView" value="${dashboardView}" />
+			<var name="numberOfOtherCommenters" value="${numberOfOtherCommenters}" />
+			<var name="profileView" value="${profileView}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="userName" value="${userName}" />
+		</execute>
+
+		<execute function="AssertElementPresent" locator1="SOActivities#ACTIVITIES_TIME_STAMP" />
+		<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_ACTION" value1="${documentsAction}" />
+
+		<var name="key_documentTitleRow" value="1" />
+
+		<for list="${dmDocumentTitleList}" param="dmDocumentTitle">
+			<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_DOCUMENT_TITLE_MULTIPLE" value1="${dmDocumentTitle}" />
+
+			<var method="MathUtil#sum('${key_documentTitleRow}', '1')" name="key_documentTitleRow" />
+		</for>
+
+		<var name="key_documentTitleRow" value="1" />
+
+		<for list="${dmDocumentDescriptionList}" param="dmDocumentDescription">
+			<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_DOCUMENT_DESCRIPTION_MULTIPLE" value1="${dmDocumentDescription}" />
+
+			<var method="MathUtil#sum('${key_documentTitleRow}', '1')" name="key_documentTitleRow" />
+		</for>
+
+		<var name="key_documentTitleRow" value="1" />
+
+		<for list="${dmDocumentTitleList}" param="dmDocumentTitle">
+			<execute function="AssertElementPresent" locator1="SOActivities#ACTIVITIES_DOCUMENT_DOWNLOAD_LINK_MULTIPLE" />
+
+			<var method="MathUtil#sum('${key_documentTitleRow}', '1')" name="key_documentTitleRow" />
+		</for>
+
+		<if>
+			<isset var="commentCount" />
+			<then>
+				<if>
+					<equals arg1="${commentCount}" arg2="1" />
+					<then>
+						<execute function="AssertClick" locator1="SOActivities#ACTIVITIES_COMMENT" value1="1 Comment" />
+					</then>
+					<else>
+						<execute function="AssertClick" locator1="SOActivities#ACTIVITIES_COMMENT" value1="${commentCount} Comments" />
+					</else>
+				</if>
+			</then>
+			<else>
+				<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_COMMENT" value1="Comment" />
+			</else>
+		</if>
+
+		<execute function="AssertElementPresent" locator1="SOActivities#ACTIVITIES_COMMENT_FIELD" />
+	</command>
+
+	<command name="viewSiteContent">
+		<execute macro="SOActivities#viewBookmarksActivityEntry">
+			<var name="action" value="${bookmarkAction}" />
+			<var name="bookmarksEntryDescription" value="${bookmarksEntryDescription}" />
+			<var name="bookmarksEntryName" value="${bookmarksEntryName}" />
+			<var name="commentCount" value="${commentCount}" />
+			<var name="dashboardView" value="${dashboardView}" />
+			<var name="numberOfOtherCommenters" value="${numberOfOtherCommenters}" />
+			<var name="profileView" value="${profileView}" />
+			<var name="row" value="${row}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="userName" value="${userName}" />
+		</execute>
+
+		<execute macro="SOActivities#viewWikiActivityEntry">
+			<var name="action" value="${wikiAction}" />
+			<var name="commentCount" value="${commentCount}" />
+			<var name="dashboardView" value="${dashboardView}" />
+			<var name="numberOfOtherCommenters" value="${numberOfOtherCommenters}" />
+			<var name="profileView" value="${profileView}" />
+			<var name="row" value="02" />
+			<var name="siteName" value="${siteName}" />
+			<var name="userName" value="${userName}" />
+			<var name="wikiPageContent" value="${wikiPageContent}" />
+			<var name="wikiPageTitle" value="${wikiPageTitle}" />
+		</execute>
+
+		<execute macro="SOActivities#viewBlogsActivityEntry">
+			<var name="action" value="${blogsAction}" />
+			<var name="commentCount" value="${commentCount}" />
+			<var name="dashboardView" value="${dashboardView}" />
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entryTitle" value="${entryTitle}" />
+			<var name="numberOfOtherCommenters" value="${numberOfOtherCommenters}" />
+			<var name="profileView" value="${profileView}" />
+			<var name="row" value="03" />
+			<var name="siteName" value="${siteName}" />
+			<var name="userName" value="${userName}" />
+		</execute>
+
+		<execute macro="SOActivities#viewForumsActivityEntry">
+			<var name="action" value="${forumsAction}" />
+			<var name="dashboardView" value="${dashboardView}" />
+			<var name="numberOfOtherCommenters" value="${numberOfOtherCommenters}" />
+			<var name="profileView" value="${profileView}" />
+			<var name="row" value="04" />
+			<var name="siteName" value="${siteName}" />
+			<var name="threadBody" value="${threadBody}" />
+			<var name="threadSubject" value="${threadSubject}" />
+			<var name="userName" value="${userName}" />
+		</execute>
+
+		<execute macro="SOActivities#viewDocumentsActivityEntry">
+			<var name="action" value="${documentsAction}" />
+			<var name="commentCount" value="${commentCount}" />
+			<var name="dashboardView" value="${dashboardView}" />
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+			<var name="dmDocumentVersionNumber" value="${dmDocumentVersionNumber}" />
+			<var name="documentUpdateActivity" value="${documentUpdateActivity}" />
+			<var name="numberOfOtherCommenters" value="${numberOfOtherCommenters}" />
+			<var name="profileView" value="${profileView}" />
+			<var name="row" value="05" />
+			<var name="siteName" value="${siteName}" />
+			<var name="userName" value="${userName}" />
+		</execute>
+
+		<execute macro="SOActivities#viewCalendarActivityEntry">
+			<var name="action" value="${calendarAction}" />
+			<var name="commentCount" value="${commentCount}" />
+			<var name="dashboardView" value="${dashboardView}" />
+			<var name="numberOfOtherCommenters" value="${numberOfOtherCommenters}" />
+			<var name="profileView" value="${profileView}" />
+			<var name="row" value="06" />
+			<var name="siteName" value="${siteName}" />
+			<var name="userName" value="${userName}" />
+		</execute>
+	</command>
+
+	<command name="viewSiteContentEdited">
+		<execute macro="SOActivities#viewBookmarksActivityEntry">
+			<var name="action" value="${bookmarkEditAction}" />
+			<var name="bookmarksEntryDescription" value="${bookmarksEntryDescription}" />
+			<var name="bookmarksEntryName" value="${bookmarksEntryName}" />
+			<var name="commentCount" value="${commentCount}" />
+			<var name="dashboardView" value="${dashboardView}" />
+			<var name="numberOfOtherCommenters" value="${numberOfOtherCommenters}" />
+			<var name="profileView" value="${profileView}" />
+			<var name="row" value="${row}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="userName" value="${userName}" />
+		</execute>
+
+		<execute macro="SOActivities#viewWikiActivityEntry">
+			<var name="action" value="${wikiAction}" />
+			<var name="commentCount" value="${commentCount}" />
+			<var name="dashboardView" value="${dashboardView}" />
+			<var name="numberOfOtherCommenters" value="${numberOfOtherCommenters}" />
+			<var name="profileView" value="${profileView}" />
+			<var name="row" value="02" />
+			<var name="siteName" value="${siteName}" />
+			<var name="userName" value="${userName}" />
+			<var name="wikiPageContent" value="${wikiPageContent}" />
+			<var name="wikiPageTitle" value="${wikiPageTitle}" />
+		</execute>
+
+		<execute macro="SOActivities#viewBlogsActivityEntry">
+			<var name="action" value="${blogsEditAction}" />
+			<var name="commentCount" value="${commentCount}" />
+			<var name="dashboardView" value="${dashboardView}" />
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entryTitle" value="${entryTitle}" />
+			<var name="numberOfOtherCommenters" value="${numberOfOtherCommenters}" />
+			<var name="profileView" value="${profileView}" />
+			<var name="row" value="03" />
+			<var name="siteName" value="${siteName}" />
+			<var name="userName" value="${userName}" />
+		</execute>
+
+		<execute macro="SOActivities#viewDocumentsActivityEntry">
+			<var name="action" value="${documentsEditAction}" />
+			<var name="commentCount" value="${commentCount}" />
+			<var name="dashboardView" value="${dashboardView}" />
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+			<var name="dmDocumentVersionNumber" value="${dmDocumentVersionNumber}" />
+			<var name="documentUpdateActivity" value="${documentUpdateActivity}" />
+			<var name="numberOfOtherCommenters" value="${numberOfOtherCommenters}" />
+			<var name="profileView" value="${profileView}" />
+			<var name="row" value="04" />
+			<var name="siteName" value="${siteName}" />
+			<var name="userName" value="${userName}" />
+		</execute>
+
+		<execute macro="SOActivities#viewCalendarActivityEntry">
+			<var name="action" value="${calendarEditAction}" />
+			<var name="commentCount" value="${commentCount}" />
+			<var name="dashboardView" value="${dashboardView}" />
+			<var name="numberOfOtherCommenters" value="${numberOfOtherCommenters}" />
+			<var name="profileView" value="${profileView}" />
+			<var name="row" value="05" />
+			<var name="siteName" value="${siteName}" />
+			<var name="userName" value="${userName}" />
+		</execute>
+
+		<execute function="KeyPress" locator1="SOActivities#ACTIVITIES_PORTLET_TITLE" value1="\SPACE" />
+
+		<execute macro="SOActivities#viewBookmarksActivityEntry">
+			<var name="action" value="${bookmarkAction}" />
+			<var name="bookmarksEntryDescription" value="${bookmarksEntryDescription}" />
+			<var name="bookmarksEntryName" value="${bookmarksEntryName}" />
+			<var name="commentCount" value="${commentCount}" />
+			<var name="dashboardView" value="${dashboardView}" />
+			<var name="numberOfOtherCommenters" value="${numberOfOtherCommenters}" />
+			<var name="profileView" value="${profileView}" />
+			<var name="row" value="06" />
+			<var name="siteName" value="${siteName}" />
+			<var name="userName" value="${userName}" />
+		</execute>
+
+		<execute macro="SOActivities#viewBlogsActivityEntry">
+			<var name="action" value="${blogsAction}" />
+			<var name="commentCount" value="${commentCount}" />
+			<var name="dashboardView" value="${dashboardView}" />
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entryTitle" value="${entryTitle}" />
+			<var name="numberOfOtherCommenters" value="${numberOfOtherCommenters}" />
+			<var name="profileView" value="${profileView}" />
+			<var name="row" value="07" />
+			<var name="siteName" value="${siteName}" />
+			<var name="userName" value="${userName}" />
+		</execute>
+
+		<execute macro="SOActivities#viewForumsActivityEntry">
+			<var name="action" value="${forumsAction}" />
+			<var name="dashboardView" value="${dashboardView}" />
+			<var name="numberOfOtherCommenters" value="${numberOfOtherCommenters}" />
+			<var name="profileView" value="${profileView}" />
+			<var name="row" value="08" />
+			<var name="siteName" value="${siteName}" />
+			<var name="threadBody" value="${threadBody}" />
+			<var name="threadSubject" value="${threadSubject}" />
+			<var name="userName" value="${userName}" />
+		</execute>
+
+		<execute macro="SOActivities#viewDocumentsActivityEntry">
+			<var name="action" value="${documentsAction}" />
+			<var name="commentCount" value="${commentCount}" />
+			<var name="dashboardView" value="${dashboardView}" />
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+			<var name="dmDocumentVersionNumber" value="${dmDocumentVersionNumber}" />
+			<var name="documentUpdateActivity" value="${documentUpdateActivity}" />
+			<var name="numberOfOtherCommenters" value="${numberOfOtherCommenters}" />
+			<var name="profileView" value="${profileView}" />
+			<var name="row" value="09" />
+			<var name="siteName" value="${siteName}" />
+			<var name="userName" value="${userName}" />
+		</execute>
+
+		<execute macro="SOActivities#viewCalendarActivityEntry">
+			<var name="action" value="${calendarAction}" />
+			<var name="commentCount" value="${commentCount}" />
+			<var name="dashboardView" value="${dashboardView}" />
+			<var name="numberOfOtherCommenters" value="${numberOfOtherCommenters}" />
+			<var name="profileView" value="${profileView}" />
+			<var name="row" value="10" />
+			<var name="siteName" value="${siteName}" />
+			<var name="userName" value="${userName}" />
+		</execute>
+	</command>
+
+	<command name="viewTasksActivityEntry">
+		<if>
+			<isset var="row" />
+			<then>
+				<var name="row" value="${row}" />
+			</then>
+			<else>
+				<var name="row" value="01" />
+			</else>
+		</if>
+
+		<var name="key_row" value="${row}" />
+		<var name="key_userName" value="${userName}" />
+
+		<execute function="AssertElementPresent" locator1="SOActivities#ACTIVITIES_USER_PICTURE" />
+
+		<execute macro="SOActivities#viewActivityEntryUser">
+			<var name="dashboardView" value="${dashboardView}" />
+			<var name="numberOfOtherCommenters" value="${numberOfOtherCommenters}" />
+			<var name="profileView" value="${profileView}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="userName" value="${userName}" />
+		</execute>
+
+		<execute function="AssertElementPresent" locator1="SOActivities#ACTIVITIES_TIME_STAMP" />
+		<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_ACTION" value1="${action}" />
+		<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_TITLE" value1="${taskDescription}" />
+		<execute function="AssertTextEquals#assertPartialText" locator1="SOActivities#ACTIVITIES_CONTENT" value1="Assigned to: ${taskAssignee}" />
+
+		<if>
+			<equals arg1="${dueDate}" arg2="true" />
+			<then>
+				<execute function="AssertTextEquals#assertPartialText" locator1="SOActivities#ACTIVITIES_CONTENT" value1="Due Date: 3/16/16" />
+			</then>
+			<elseif>
+				<equals arg1="${dueDateEdit}" arg2="true" />
+				<then>
+					<execute function="AssertTextEquals#assertPartialText" locator1="SOActivities#ACTIVITIES_CONTENT" value1="Due Date: 4/17/17" />
+				</then>
+			</elseif>
+			<else>
+				<execute function="AssertTextEquals#assertPartialText" locator1="SOActivities#ACTIVITIES_CONTENT" value1="Due Date: None" />
+			</else>
+		</if>
+
+		<if>
+			<isset var="commentCount" />
+			<then>
+				<if>
+					<equals arg1="${commentCount}" arg2="1" />
+					<then>
+						<execute function="AssertClick" locator1="SOActivities#ACTIVITIES_COMMENT" value1="1 Comment" />
+					</then>
+					<else>
+						<execute function="AssertClick" locator1="SOActivities#ACTIVITIES_COMMENT" value1="${commentCount} Comments" />
+					</else>
+				</if>
+			</then>
+			<else>
+				<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_COMMENT" value1="Comment" />
+			</else>
+		</if>
+
+		<execute function="AssertElementPresent" locator1="SOActivities#ACTIVITIES_COMMENT_FIELD" />
+	</command>
+
+	<command name="viewWikiActivityEntry">
+		<if>
+			<isset var="row" />
+			<then>
+				<var name="row" value="${row}" />
+			</then>
+			<else>
+				<var name="row" value="01" />
+			</else>
+		</if>
+
+		<var name="key_row" value="${row}" />
+		<var name="key_userName" value="${userName}" />
+
+		<execute function="AssertElementPresent" locator1="SOActivities#ACTIVITIES_USER_PICTURE" />
+
+		<execute macro="SOActivities#viewActivityEntryUser">
+			<var name="dashboardView" value="${dashboardView}" />
+			<var name="numberOfOtherCommenters" value="${numberOfOtherCommenters}" />
+			<var name="profileView" value="${profileView}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="userName" value="${userName}" />
+		</execute>
+
+		<execute function="AssertElementPresent" locator1="SOActivities#ACTIVITIES_TIME_STAMP" />
+		<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_ACTION" value1="${action}" />
+		<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_TITLE" value1="${wikiPageTitle}" />
+		<execute function="AssertTextEquals#assertPartialText" locator1="SOActivities#ACTIVITIES_CONTENT" value1="${wikiPageContent}" />
+
+		<if>
+			<not>
+				<or>
+					<contains string="${action}" substring="Commented" />
+					<contains string="${action}" substring="Created" />
+					<contains string="${action}" substring="attachment" />
+				</or>
+			</not>
+			<then>
+				<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_VIEW_CHANGES" value1="View Changes" />
+			</then>
+		</if>
+
+		<if>
+			<isset var="commentCount" />
+			<then>
+				<if>
+					<equals arg1="${commentCount}" arg2="1" />
+					<then>
+						<execute function="AssertClick" locator1="SOActivities#ACTIVITIES_COMMENT" value1="1 Comment" />
+					</then>
+					<else>
+						<execute function="AssertClick" locator1="SOActivities#ACTIVITIES_COMMENT" value1="${commentCount} Comments" />
+					</else>
+				</if>
+			</then>
+			<else>
+				<execute function="AssertTextEquals" locator1="SOActivities#ACTIVITIES_COMMENT" value1="Comment" />
+			</else>
+		</if>
+
+		<execute function="AssertElementPresent" locator1="SOActivities#ACTIVITIES_COMMENT_FIELD" />
+	</command>
+
+	<command name="viewWikiChangesActivities">
+		<if>
+			<isset var="row" />
+			<then>
+				<var name="row" value="${row}" />
+			</then>
+			<else>
+				<var name="row" value="01" />
+			</else>
+		</if>
+
+		<var name="key_row" value="${row}" />
+
+		<execute function="AssertClick" locator1="SOActivities#ACTIVITIES_VIEW_CHANGES" value1="View Changes" />
+
+		<if>
+			<equals arg1="${wikiPageCompareContentDetails}" arg2="true" />
+			<then>
+				<var name="key_wikiPageContentCompareAdded" value="${wikiPageContentCompareAdded}" />
+				<var name="key_wikiPageContentCompareFull" value="${wikiPageContentCompareFull}" />
+				<var name="key_wikiPageContentCompareRemoved" value="${wikiPageContentCompareRemoved}" />
+
+				<execute function="AssertTextEquals" locator1="PGWikiWikipageHistory#COMPARE_VERSIONS_DIFF_ADDED" value1="${wikiPageContentCompareAdded}" />
+				<execute function="AssertTextEquals" locator1="PGWikiWikipageHistory#COMPARE_VERSIONS_DIFF_REMOVED" value1="${wikiPageContentCompareRemoved}" />
+				<execute function="AssertTextEquals" locator1="PGWikiWikipageHistory#COMPARE_VERSIONS_PARAGRAPH_FULL" value1="${wikiPageContentCompareFull}" />
+				<execute function="AssertClick" locator1="PGWikiWikipageHistory#COMPARE_ACTIVITIES_NAVIGATION_TEXT_MODE_LINK" value1="Text Mode" />
+				<execute function="AssertTextEquals" locator1="PGWikiWikipageHistory#COMPARE_VERSIONS_TEXT_MODE_TABLE_TITLE_VERSION_OLD" value1="${wikiPageTitle} ${wikiPageVersionOld}" />
+				<execute function="AssertTextEquals" locator1="PGWikiWikipageHistory#COMPARE_VERSIONS_TEXT_MODE_TABLE_TITLE_VERSION_NEW" value1="${wikiPageTitle} ${wikiPageVersionNew}" />
+
+				<if>
+					<isset var="compareLineNumberOld" />
+					<then>
+						<execute function="AssertTextEquals" locator1="PGWikiWikipageHistory#COMPARE_VERSIONS_TEXT_MODE_TABLE_LINE_NUMBER_OLD_1" value1="Line ${compareLineNumberOld}" />
+					</then>
+					<else>
+						<execute function="AssertTextEquals" locator1="PGWikiWikipageHistory#COMPARE_VERSIONS_TEXT_MODE_TABLE_LINE_NUMBER_OLD_1" value1="Line 1" />
+					</else>
+				</if>
+
+				<if>
+					<isset var="compareLineNumberNew" />
+					<then>
+						<execute function="AssertTextEquals" locator1="PGWikiWikipageHistory#COMPARE_VERSIONS_TEXT_MODE_TABLE_LINE_NUMBER_NEW_1" value1="Line ${compareLineNumberNew}" />
+					</then>
+					<else>
+						<execute function="AssertTextEquals" locator1="PGWikiWikipageHistory#COMPARE_VERSIONS_TEXT_MODE_TABLE_LINE_NUMBER_NEW_1" value1="Line 1" />
+					</else>
+				</if>
+
+				<execute function="AssertTextEquals" locator1="PGWikiWikipageHistory#COMPARE_VERSIONS_TEXT_MODE_TABLE_CONTENT_OLD_1" value1="${wikiPageContentCompareOld}" />
+				<execute function="AssertTextEquals" locator1="PGWikiWikipageHistory#COMPARE_VERSIONS_TEXT_MODE_TABLE_CONTENT_NEW_1" value1="${wikiPageContentCompareNew}" />
+			</then>
+			<else>
+				<execute function="AssertTextEquals" locator1="PGWikiWikipageHistory#COMPARE_VERSIONS_DIFF" value1="${wikiPageVersionDiff}" />
+			</else>
+		</if>
+	</command>
+</definition>

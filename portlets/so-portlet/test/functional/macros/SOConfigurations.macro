@@ -1,0 +1,190 @@
+<definition>
+	<command name="assignOrganizationRoleCP">
+		<var name="key_orgName" value="${orgName}" />
+
+		<execute macro="Page#gotoCP">
+			<var name="portletName" value="Social Office Configurations" />
+		</execute>
+
+		<execute function="Click" locator1="SOConfigurations#ORGANIZATIONS" />
+		<execute function="Click" locator1="SOConfigurations#STATUS_AVAILABLE" />
+		<execute function="Type" locator1="SOConfigurations#SEARCH_FIELD" value1="${orgName}" />
+		<execute function="Click" locator1="SOConfigurations#SEARCH_BUTTON" />
+		<execute function="AssertTextEquals" locator1="SOConfigurations#ORGANIZATION_TABLE_NAME" value1="${orgName}" />
+		<execute function="AssertTextEquals" locator1="SOConfigurations#ORGANIZATION_TABLE_TYPE" value1="${orgType}" />
+		<execute function="Check" locator1="SOConfigurations#ORGANIZATION_TABLE_CHECKBOX" />
+		<execute function="Click" locator1="SOConfigurations#SAVE_BUTTON" />
+		<execute function="AssertTextEquals" locator1="SOConfigurations#SUCCESS_MESSAGE_1" value1="Your request completed successfully." />
+	</command>
+
+	<command name="assignUserGroupRoleCP">
+		<var name="key_userGroupName" value="${userGroupName}" />
+
+		<execute macro="Page#gotoCP">
+			<var name="portletName" value="Social Office Configurations" />
+		</execute>
+
+		<execute function="Click" locator1="SOConfigurations#USER_GROUPS" />
+		<execute function="Click" locator1="SOConfigurations#STATUS_AVAILABLE" />
+		<execute function="Type" locator1="SOConfigurations#SEARCH_FIELD" value1="${userGroupName}" />
+		<execute function="Click" locator1="SOConfigurations#SEARCH_BUTTON" />
+		<execute function="AssertTextEquals" locator1="SOConfigurations#USER_GROUP_TABLE_NAME" value1="${userGroupName}" />
+		<execute function="Check" locator1="SOConfigurations#USER_GROUP_TABLE_CHECKBOX" />
+		<execute function="Click" locator1="SOConfigurations#SAVE_BUTTON" />
+		<execute function="AssertTextEquals" locator1="SOConfigurations#SUCCESS_MESSAGE_1" value1="Your request completed successfully." />
+	</command>
+
+	<command name="assignUserRoleCP">
+		<var name="key_userScreenName" value="${userScreenName}" />
+
+		<execute macro="Page#gotoCP">
+			<var name="portletName" value="Social Office Configurations" />
+		</execute>
+
+		<execute function="Click" locator1="SOConfigurations#STATUS_AVAILABLE" />
+		<execute function="Type" locator1="SOConfigurations#SEARCH_FIELD" value1="${userScreenName}" />
+		<execute function="Click" locator1="SOConfigurations#SEARCH_BUTTON" />
+		<execute function="AssertTextEquals" locator1="SOConfigurations#USER_TABLE_SCREEN_NAME" value1="${userScreenName}" />
+		<execute function="Check" locator1="SOConfigurations#USER_TABLE_CHECKBOX" />
+		<execute function="Click" locator1="SOConfigurations#SAVE_BUTTON" />
+		<execute function="AssertTextEquals" locator1="SOConfigurations#SUCCESS_MESSAGE_1" value1="Your request completed successfully." />
+	</command>
+
+	<command name="disableAddSOSiteCP">
+		<execute macro="Page#gotoCP">
+			<var name="portletName" value="Social Office Configurations" />
+		</execute>
+
+		<execute function="AssertClick" locator1="SOConfigurations#NAVIGATION_GENERAL" value1="General" />
+
+		<execute function="Uncheck" locator1="SOConfigurationsGeneral#SOCIAL_OFFICE_ROLE_ADD_SITE_PERMISSION_CHECKBOX" />
+		<execute function="Click" locator1="SOConfigurationsGeneral#SAVE_BUTTON" />
+		<execute function="AssertTextEquals" locator1="SOConfigurationsGeneral#SUCCESS_MESSAGE" value1="Your request completed successfully." />
+	</command>
+
+	<command name="disableSOSiteTypeCP">
+		<execute macro="Page#gotoCP">
+			<var name="portletName" value="Social Office Configurations" />
+		</execute>
+
+		<execute function="AssertClick" locator1="SOConfigurations#NAVIGATION_GENERAL" value1="General" />
+
+		<if>
+			<isset var="siteTypeList" />
+			<then>
+				<for list="${siteTypeList}" param="siteType">
+					<var method="StringUtil#replace('${siteType}', ' ', '')" name="key_siteType" />
+
+					<execute function="Uncheck" locator1="SOConfigurationsGeneral#SOCIAL_OFFICE_SITE_ENABLE_SITE_TYPE_CHECKBOX" />
+				</for>
+			</then>
+			<else>
+				<var method="StringUtil#replace('${siteType}', ' ', '')" name="key_siteType" />
+
+				<execute function="Uncheck" locator1="SOConfigurationsGeneral#SOCIAL_OFFICE_SITE_ENABLE_SITE_TYPE_CHECKBOX" />
+			</else>
+		</if>
+
+		<execute function="Click" locator1="SOConfigurationsGeneral#SAVE_BUTTON" />
+		<execute function="AssertTextEquals" locator1="SOConfigurationsGeneral#SUCCESS_MESSAGE" value1="Your request completed successfully." />
+	</command>
+
+	<command name="enableAddSOSiteCP">
+		<execute macro="Page#gotoCP">
+			<var name="portletName" value="Social Office Configurations" />
+		</execute>
+
+		<execute function="AssertClick" locator1="SOConfigurations#NAVIGATION_GENERAL" value1="General" />
+
+		<execute function="Check" locator1="SOConfigurationsGeneral#SOCIAL_OFFICE_ROLE_ADD_SITE_PERMISSION_CHECKBOX" />
+		<execute function="Click" locator1="SOConfigurationsGeneral#SAVE_BUTTON" />
+		<execute function="AssertTextEquals" locator1="SOConfigurationsGeneral#SUCCESS_MESSAGE" value1="Your request completed successfully." />
+	</command>
+
+	<command name="enableSOSiteTypeCP">
+		<execute macro="Page#gotoCP">
+			<var name="portletName" value="Social Office Configurations" />
+		</execute>
+
+		<execute function="AssertClick" locator1="SOConfigurations#NAVIGATION_GENERAL" value1="General" />
+
+		<if>
+			<isset var="siteTypeList" />
+			<then>
+				<for list="${siteTypeList}" param="siteType">
+					<var method="StringUtil#replace('${siteType}', ' ', '')" name="key_siteType" />
+
+					<execute function="Check" locator1="SOConfigurationsGeneral#SOCIAL_OFFICE_SITE_ENABLE_SITE_TYPE_CHECKBOX" />
+				</for>
+			</then>
+			<else>
+				<var method="StringUtil#replace('${siteType}', ' ', '')" name="key_siteType" />
+
+				<execute function="Check" locator1="SOConfigurationsGeneral#SOCIAL_OFFICE_SITE_ENABLE_SITE_TYPE_CHECKBOX" />
+			</else>
+		</if>
+
+		<execute function="Click" locator1="SOConfigurationsGeneral#SAVE_BUTTON" />
+		<execute function="AssertTextEquals" locator1="SOConfigurationsGeneral#SUCCESS_MESSAGE" value1="Your request completed successfully." />
+	</command>
+
+	<command name="tearDownConfigurationsCP">
+		<execute macro="SOConfigurations#enableAddSOSiteCP" />
+
+		<execute macro="SOConfigurations#enableSOSiteTypeCP">
+			<var name="siteType" value="${siteType}" />
+			<var name="siteTypeList" value="Open,Private Restricted,Private,Private Restricted" />
+		</execute>
+	</command>
+
+	<command name="unassignOrganizationRoleCP">
+		<var name="key_orgName" value="${orgName}" />
+
+		<execute macro="Page#gotoCP">
+			<var name="portletName" value="Social Office Configurations" />
+		</execute>
+
+		<execute function="Click" locator1="SOConfigurations#ORGANIZATIONS" />
+		<execute function="Click" locator1="SOConfigurations#STATUS_CURRENT" />
+		<execute function="Type" locator1="SOConfigurations#SEARCH_FIELD" value1="${orgName}" />
+		<execute function="Click" locator1="SOConfigurations#SEARCH_BUTTON" />
+		<execute function="AssertTextEquals" locator1="SOConfigurations#ORGANIZATION_TABLE_NAME" value1="${orgName}" />
+		<execute function="AssertTextEquals" locator1="SOConfigurations#ORGANIZATION_TABLE_TYPE" value1="${orgType}" />
+		<execute function="Uncheck" locator1="SOConfigurations#ORGANIZATION_TABLE_CHECKBOX" />
+		<execute function="Click" locator1="SOConfigurations#SAVE_BUTTON" />
+		<execute function="AssertTextEquals" locator1="SOConfigurations#SUCCESS_MESSAGE_1" value1="Your request completed successfully." />
+	</command>
+
+	<command name="unassignUserGroupRoleCP">
+		<var name="key_userGroupName" value="${userGroupName}" />
+
+		<execute macro="Page#gotoCP">
+			<var name="portletName" value="Social Office Configurations" />
+		</execute>
+
+		<execute function="Click" locator1="SOConfigurations#USER_GROUPS" />
+		<execute function="Click" locator1="SOConfigurations#STATUS_CURRENT" />
+		<execute function="Type" locator1="SOConfigurations#SEARCH_FIELD" value1="${userGroupName}" />
+		<execute function="Click" locator1="SOConfigurations#SEARCH_BUTTON" />
+		<execute function="AssertTextEquals" locator1="SOConfigurations#USER_GROUP_TABLE_NAME" value1="${userGroupName}" />
+		<execute function="Uncheck" locator1="SOConfigurations#USER_GROUP_TABLE_CHECKBOX" />
+		<execute function="Click" locator1="SOConfigurations#SAVE_BUTTON" />
+		<execute function="AssertTextEquals" locator1="SOConfigurations#SUCCESS_MESSAGE_1" value1="Your request completed successfully." />
+	</command>
+
+	<command name="unassignUserRoleCP">
+		<var name="key_userScreenName" value="${userScreenName}" />
+
+		<execute macro="Page#gotoCP">
+			<var name="portletName" value="Social Office Configurations" />
+		</execute>
+
+		<execute function="Click" locator1="SOConfigurations#STATUS_CURRENT" />
+		<execute function="Type" locator1="SOConfigurations#SEARCH_FIELD" value1="${userScreenName}" />
+		<execute function="Click" locator1="SOConfigurations#SEARCH_BUTTON" />
+		<execute function="AssertTextEquals" locator1="SOConfigurations#USER_TABLE_SCREEN_NAME" value1="${userScreenName}" />
+		<execute function="Uncheck" locator1="SOConfigurations#USER_TABLE_CHECKBOX" />
+		<execute function="Click" locator1="SOConfigurations#SAVE_BUTTON" />
+		<execute function="AssertTextEquals" locator1="SOConfigurations#SUCCESS_MESSAGE_1" value1="Your request completed successfully." />
+	</command>
+</definition>

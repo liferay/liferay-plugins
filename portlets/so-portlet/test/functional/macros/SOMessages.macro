@@ -1,0 +1,496 @@
+<definition>
+	<var name="password" value="test" />
+
+	<command name="sendMessage">
+		<execute function="AssertClick#assertTextClickAt" locator1="SOMessages#NEW_MESSAGE_BUTTON" value1="New Message" />
+
+		<execute function="SelectFrame" locator1="SOMessagesAdd#NEW_MESSAGE_IFRAME" />
+
+		<if>
+			<isset var="recipientNameList" />
+			<then>
+				<for list="${recipientNameList}" param="recipientName">
+					<var name="key_recipientName" value="${recipientName}" />
+
+					<execute function="Type#sendKeys" locator1="SOMessagesAdd#TO_FIELD" value1="${recipientName}" />
+					<execute function="AssertClick#pauseAssertPartialTextClickAt" locator1="SOMessagesAdd#TO_FIELD_DROPDOWN_LIST" value1="${recipientName}" />
+				</for>
+			</then>
+			<else>
+				<var name="key_recipientName" value="${recipientName}" />
+
+				<execute function="Type#sendKeys" locator1="SOMessagesAdd#TO_FIELD" value1="${recipientName}" />
+				<execute function="AssertClick#pauseAssertPartialTextClickAt" locator1="SOMessagesAdd#TO_FIELD_DROPDOWN_LIST" value1="${recipientName}" />
+				<execute function="AssertTextEquals" locator1="SOMessagesAdd#TO_FIELD" value1="${recipientName} &lt;${recipientScreenName}&gt;, " />
+			</else>
+		</if>
+
+		<execute function="Type" locator1="SOMessagesAdd#SUBJECT_FIELD" value1="${messageSubject}" />
+		<execute function="Type" locator1="SOMessagesAdd#BODY_FIELD" value1="${messageBody}" />
+
+		<if>
+			<isset var="messageAttachmentFile" />
+			<then>
+				<execute function="UploadCommonFile" locator1="SOMessagesAdd#ATTACHMENTS_FIELD" value1="${messageAttachmentFile}" />
+			</then>
+		</if>
+
+		<execute function="Click" locator1="SOMessagesAdd#SEND_BUTTON" />
+		<execute function="Pause" locator1="1000" />
+
+		<execute function="SelectFrame" value1="relative=top" />
+
+		<if>
+			<isset var="partialMessageBody" />
+			<then>
+				<var name="key_messageBody" value="${partialMessageBody}" />
+			</then>
+			<else>
+				<var name="key_messageBody" value="${messageBody}" />
+			</else>
+		</if>
+
+		<execute function="AssertElementPresent" locator1="SOMessages#MESSAGE_SENDER" />
+		<execute function="AssertElementPresent" locator1="SOMessages#MESSAGE_SUBJECT" />
+		<execute function="AssertElementPresent" locator1="SOMessages#MESSAGE_BODY" />
+	</command>
+
+	<command name="sendReplyMessage">
+		<execute function="Type" locator1="SOMessagesMessage#PRIVATE_MESSAGE_REPLY_BODY_FIELD" value1="${messageReplyBody}" />
+
+		<if>
+			<isset var="messageReplyAttachmentFile" />
+			<then>
+				<execute function="UploadCommonFile" locator1="SOMessagesMessage#PRIVATE_MESSAGE_REPLY_ATTACHMENT_FIELD" value1="${messageReplyAttachmentFile}" />
+			</then>
+		</if>
+
+		<execute function="Click" locator1="SOMessagesMessage#PRIVATE_MESSAGE_SEND_BUTTON" />
+
+		<var name="key_messageReplyBody" value="${messageReplyBody}" />
+
+		<if>
+			<isset var="pageNumber" />
+			<then>
+				<var name="key_pageNumber" value="${pageNumber}" />
+
+				<execute function="Click" locator1="SOMessagesMessage#PAGE_NUMBER_DROPDOWN_BUTTON" />
+				<execute function="Click" locator1="SOMessagesMessage#PAGE_NUMBER_DROPDOWN_MENU_ITEM" />
+			</then>
+		</if>
+
+		<execute function="AssertElementPresent" locator1="SOMessagesMessage#PRIVATE_MESSAGE_REPLY_SENDER" />
+		<execute function="AssertElementPresent" locator1="SOMessagesMessage#PRIVATE_MESSAGE_REPLY_BODY" />
+	</command>
+
+	<command name="tearDownPG">
+		<execute macro="SOUser#firstLoginPG" />
+
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute function="Click" locator1="SODashboard#NAVIGATION_MESSAGES" />
+
+		<if>
+			<condition function="IsElementNotPresent" locator1="SOMessages#INFO_MESSAGE" />
+			<then>
+				<execute function="Check" locator1="SOMessages#SELECT_ALL_CHECKBOX" />
+				<execute function="ClickNoError" locator1="SOMessages#DELETE_BUTTON" />
+				<execute function="Confirm" value1="Are you sure you want to delete the selected messages?" />
+				<execute function="AssertTextEquals" locator1="SOMessages#INFO_MESSAGE" value1="No messages found." />
+			</then>
+		</if>
+	</command>
+
+	<command name="viewAutocompleteMenuNull">
+		<execute function="AssertClick#assertTextClickAt" locator1="SOMessages#NEW_MESSAGE_BUTTON" value1="New Message" />
+
+		<execute function="SelectFrame" locator1="SOMessagesAdd#NEW_MESSAGE_IFRAME" />
+
+		<if>
+			<isset var="recipientNameList" />
+			<then>
+				<for list="${recipientNameList}" param="recipientName">
+					<var name="key_recipientName" value="${recipientName}" />
+
+					<execute function="Type#sendKeys" locator1="SOMessagesAdd#TO_FIELD" value1="${recipientName}" />
+					<execute function="AssertElementNotPresent" locator1="SOMessagesAdd#TO_FIELD_DROPDOWN_LIST" />
+				</for>
+			</then>
+			<elseif>
+				<isset var="userInformation" />
+				<then>
+					<var name="key_recipientName" value="${recipientName}" />
+
+					<execute function="Type#sendKeys" locator1="SOMessagesAdd#TO_FIELD" value1="${userInformation}" />
+					<execute function="AssertElementNotPresent" locator1="SOMessagesAdd#TO_FIELD_DROPDOWN_LIST" />
+				</then>
+			</elseif>
+			<else>
+				<var name="key_recipientName" value="${recipientName}" />
+
+				<execute function="Type#sendKeys" locator1="SOMessagesAdd#TO_FIELD" value1="${recipientName}" />
+				<execute function="AssertElementNotPresent" locator1="SOMessagesAdd#TO_FIELD_DROPDOWN_LIST" />
+			</else>
+		</if>
+	</command>
+
+	<command name="viewMessage">
+		<execute macro="SOMessages#viewMessageList">
+			<var name="connectionName" value="${connectionName}" />
+			<var name="connectionNameList" value="${connectionNameList}" />
+			<var name="connectionUserDeleted" value="${connectionUserDeleted}" />
+			<var name="messageBody" value="${messageBody}" />
+			<var name="messageSubject" value="${messageSubject}" />
+			<var name="partialMessageBody" value="${partialMessageBody}" />
+		</execute>
+
+		<if>
+			<isset var="partialMessageBody" />
+			<then>
+				<var name="key_messageBody" value="${partialMessageBody}" />
+			</then>
+			<else>
+				<var name="key_messageBody" value="${messageBody}" />
+			</else>
+		</if>
+
+		<execute function="Click" locator1="SOMessages#MESSAGE_SUBJECT" />
+
+		<execute function="AssertTextEquals" locator1="SOMessagesMessage#PRIVATE_MESSAGE_SUBJECT" value1="${messageSubject}" />
+
+		<if>
+			<isset var="connectionNameList" />
+			<then>
+				<var name="connectionNumber" value="0" />
+
+				<for list="${connectionNameList}" param="connectionName">
+					<var method="MathUtil#sum('${connectionNumber}', '1')" name="connectionNumber" />
+
+					<execute function="AssertTextEquals#assertPartialText" locator1="SOMessagesMessage#PRIVATE_MESSAGE_USERS" value1="${connectionName}" />
+				</for>
+
+				<var name="connectionNumberLast" value="${connectionNumber}" />
+
+				<var name="connectionNumber" value="0" />
+
+				<for list="${connectionNameList}" param="connectionName">
+					<var method="MathUtil#sum('${connectionNumber}', '1')" name="connectionNumber" />
+
+					<if>
+						<equals arg1="${connectionNumber}" arg2="1" />
+						<then>
+							<execute function="AssertTextEquals#assertPartialText" locator1="SOMessagesMessage#PRIVATE_MESSAGE_USERS" value1="Between ${connectionName} ," />
+						</then>
+						<elseif>
+							<equals arg1="${connectionNumber}" arg2="${connectionNumberLast}" />
+							<then>
+								<execute function="AssertTextEquals#assertPartialText" locator1="SOMessagesMessage#PRIVATE_MESSAGE_USERS" value1=", ${connectionName} and You" />
+							</then>
+						</elseif>
+						<else>
+							<execute function="AssertTextEquals#assertPartialText" locator1="SOMessagesMessage#PRIVATE_MESSAGE_USERS" value1=", ${connectionName} ," />
+						</else>
+					</if>
+				</for>
+			</then>
+			<elseif>
+				<equals arg1="${connectionUserDeleted}" arg2="true" />
+				<then>
+					<execute function="AssertTextEquals" locator1="SOMessagesMessage#PRIVATE_MESSAGE_USERS_DELETED_USERS" value1="${connectionName}" />
+					<execute function="AssertTextEquals" locator1="SOMessagesMessage#PRIVATE_MESSAGE_USERS_DELETED_USERS_QUESTION_ICON" value1="Deleted User" />
+				</then>
+			</elseif>
+			<else>
+				<execute function="AssertTextEquals#assertPartialText" locator1="SOMessagesMessage#PRIVATE_MESSAGE_USERS" value1="Between ${connectionName} and You" />
+			</else>
+		</if>
+
+		<if>
+			<equals arg1="${senderUserDeleted}" arg2="true" />
+			<then>
+				<execute function="AssertTextEquals" locator1="SOMessagesMessage#PRIVATE_MESSAGE_SENDER_DELETED_USER" value1="${senderName} Deleted User" />
+			</then>
+			<else>
+				<execute function="AssertTextEquals" locator1="SOMessagesMessage#PRIVATE_MESSAGE_SENDER" value1="${senderName}" />
+			</else>
+		</if>
+
+		<execute function="AssertTextEquals#assertPartialText" locator1="SOMessagesMessage#PRIVATE_MESSAGE_BODY" value1="${messageBody}" />
+
+		<if>
+			<isset var="messageAttachmentFile" />
+			<then>
+				<execute function="AssertElementPresent" locator1="SOMessagesMessage#PRIVATE_MESSAGE_ATTACHMENT" />
+				<execute function="AssertTextEquals#assertPartialText" locator1="SOMessagesMessage#PRIVATE_MESSAGE_ATTACHMENT_LINK" value1="${messageAttachmentFile}" />
+			</then>
+		</if>
+	</command>
+
+	<command name="viewMessageList">
+		<if>
+			<and>
+				<isset var="partialMessageBody" />
+				<not>
+					<contains string="${partialMessageBody}" substring="{partialMessageBody}" />
+				</not>
+			</and>
+			<then>
+				<var name="key_messageBody" value="${partialMessageBody}" />
+			</then>
+			<else>
+				<var name="key_messageBody" value="${messageBody}" />
+			</else>
+		</if>
+
+		<if>
+			<and>
+				<isset var="connectionNameList" />
+				<not>
+					<contains string="${connectionNameList}" substring="{connectionNameList}" />
+				</not>
+			</and>
+			<then>
+				<var name="connectionNumber" value="0" />
+
+				<for list="${connectionNameList}" param="connectionName">
+					<var method="MathUtil#sum('${connectionNumber}', '1')" name="connectionNumber" />
+
+					<execute function="AssertTextEquals#assertPartialText" locator1="SOMessages#MESSAGE" value1="${connectionName}" />
+				</for>
+
+				<var name="connectionNumberLast" value="${connectionNumber}" />
+
+				<var name="connectionNumber" value="0" />
+
+				<for list="${connectionNameList}" param="connectionName">
+					<var method="MathUtil#sum('${connectionNumber}', '1')" name="connectionNumber" />
+
+					<if>
+						<not>
+							<equals arg1="${connectionNumber}" arg2="${connectionNumberLast}" />
+						</not>
+						<then>
+							<execute function="AssertTextEquals#assertPartialText" locator1="SOMessages#MESSAGE" value1="${connectionName} ," />
+						</then>
+					</if>
+				</for>
+			</then>
+			<elseif>
+				<equals arg1="${connectionUserDeleted}" arg2="true" />
+				<then>
+					<execute function="AssertTextEquals" locator1="SOMessages#MESSAGE_SENDER" value1="${connectionName} Deleted User" />
+				</then>
+			</elseif>
+			<else>
+				<execute function="AssertTextEquals" locator1="SOMessages#MESSAGE_SENDER" value1="${connectionName}" />
+			</else>
+		</if>
+
+		<execute function="AssertTextEquals" locator1="SOMessages#MESSAGE_SUBJECT" value1="${messageSubject}" />
+		<execute function="AssertTextEquals" locator1="SOMessages#MESSAGE_BODY" value1="${messageBody}" />
+	</command>
+
+	<command name="viewMessageNotification">
+		<execute function="AssertElementPresent" locator1="SOUserBar#NOTIFICATION" />
+
+		<if>
+			<isset var="numberOfNotifications" />
+			<then>
+				<execute function="AssertTextEquals" locator1="SOUserBar#NOTIFICATION_MENU_COUNT" value1="${numberOfNotifications}" />
+			</then>
+			<else>
+				<execute function="AssertTextEquals" locator1="SOUserBar#NOTIFICATION_MENU_COUNT" value1="1" />
+			</else>
+		</if>
+
+		<execute function="Click" locator1="SOUserBar#NOTIFICATION" />
+		<execute function="AssertTextEquals#assertPartialText" locator1="SOUserBar#NOTIFICATION_MENU_NOTIFICATION_ENTRY_CONTENT" value1="${senderName} sent you a message." />
+		<execute function="AssertTextEquals" locator1="SOUserBar#NOTIFICATION_MENU_NOTIFICATION_ENTRY_SUBCONTENT" value1="${messageBody}" />
+		<execute function="AssertClick" locator1="SOUserBar#NOTIFICATION_MENU_NOTIFICATION_ENTRY_CONTENT" value1="${senderName} sent you a message." />
+
+		<if>
+			<isset var="numberOfNotifications" />
+			<then>
+				<execute function="AssertTextNotEquals" locator1="SOUserBar#NOTIFICATION_MENU_COUNT" value1="${numberOfNotifications}" />
+			</then>
+			<else>
+				<execute function="AssertTextEquals" locator1="SOUserBar#NOTIFICATION_MENU_COUNT" value1="0" />
+			</else>
+		</if>
+	</command>
+
+	<command name="viewReplyMessage">
+		<execute macro="SOMessages#viewReplyMessageList">
+			<var name="connectionName" value="${connectionName}" />
+			<var name="connectionNameList" value="${connectionNameList}" />
+			<var name="connectionUserDeleted" value="${connectionUserDeleted}" />
+			<var name="messageReplyBody" value="${messageReplyBody}" />
+			<var name="messageReplyBodyListView" value="${messageReplyBodyListView}" />
+			<var name="messageSubject" value="${messageSubject}" />
+		</execute>
+
+		<if>
+			<isset var="messageReplyBodyListView" />
+			<then>
+				<var name="key_messageBody" value="${messageReplyBodyListView}" />
+			</then>
+			<else>
+				<var name="key_messageBody" value="${messageReplyBody}" />
+			</else>
+		</if>
+
+		<execute function="Click" locator1="SOMessages#MESSAGE_SUBJECT" />
+
+		<var name="key_messageBody" value="${messageBody}" />
+		<var name="key_messageReplyBody" value="${messageReplyBody}" />
+
+		<execute function="AssertTextEquals" locator1="SOMessagesMessage#PRIVATE_MESSAGE_SUBJECT" value1="${messageSubject}" />
+
+		<if>
+			<and>
+				<isset var="connectionNameList" />
+				<not>
+					<contains string="${connectionNameList}" substring="{connectionNameList}" />
+				</not>
+			</and>
+			<then>
+				<var name="connectionNumber" value="0" />
+
+				<for list="${connectionNameList}" param="connectionName">
+					<var method="MathUtil#sum('${connectionNumber}', '1')" name="connectionNumber" />
+
+					<execute function="AssertTextEquals#assertPartialText" locator1="SOMessagesMessage#PRIVATE_MESSAGE_USERS" value1="${connectionName}" />
+				</for>
+
+				<var name="connectionNumberLast" value="${connectionNumber}" />
+
+				<var name="connectionNumber" value="0" />
+
+				<for list="${connectionNameList}" param="connectionName">
+					<var method="MathUtil#sum('${connectionNumber}', '1')" name="connectionNumber" />
+
+					<if>
+						<equals arg1="${connectionNumber}" arg2="1" />
+						<then>
+							<execute function="AssertTextEquals#assertPartialText" locator1="SOMessagesMessage#PRIVATE_MESSAGE_USERS" value1="Between ${connectionName} ," />
+						</then>
+						<elseif>
+							<equals arg1="${connectionNumber}" arg2="${connectionNumberLast}" />
+							<then>
+								<execute function="AssertTextEquals#assertPartialText" locator1="SOMessagesMessage#PRIVATE_MESSAGE_USERS" value1=", ${connectionName} and You" />
+							</then>
+						</elseif>
+						<else>
+							<execute function="AssertTextEquals#assertPartialText" locator1="SOMessagesMessage#PRIVATE_MESSAGE_USERS" value1=", ${connectionName} ," />
+						</else>
+					</if>
+				</for>
+			</then>
+			<elseif>
+				<equals arg1="${connectionUserDeleted}" arg2="true" />
+				<then>
+					<execute function="AssertTextEquals" locator1="SOMessagesMessage#PRIVATE_MESSAGE_USERS_DELETED_USERS" value1="${connectionName}" />
+					<execute function="AssertTextEquals" locator1="SOMessagesMessage#PRIVATE_MESSAGE_USERS_DELETED_USERS_QUESTION_ICON" value1="Deleted User" />
+				</then>
+			</elseif>
+			<else>
+				<execute function="AssertTextEquals#assertPartialText" locator1="SOMessagesMessage#PRIVATE_MESSAGE_USERS" value1="Between ${connectionName} and You" />
+			</else>
+		</if>
+
+		<execute function="AssertTextEquals" locator1="SOMessagesMessage#PRIVATE_MESSAGE_SENDER" value1="${senderName}" />
+		<execute function="AssertTextEquals#assertPartialText" locator1="SOMessagesMessage#PRIVATE_MESSAGE_BODY" value1="${messageBody}" />
+
+		<if>
+			<isset var="messageAttachmentFile" />
+			<then>
+				<execute function="AssertElementPresent" locator1="SOMessagesMessage#PRIVATE_MESSAGE_ATTACHMENT" />
+				<execute function="AssertTextEquals#assertPartialText" locator1="SOMessagesMessage#PRIVATE_MESSAGE_ATTACHMENT_LINK" value1="${messageAttachmentFile}" />
+			</then>
+		</if>
+
+		<if>
+			<isset var="pageNumber" />
+			<then>
+				<var name="key_pageNumber" value="${pageNumber}" />
+
+				<execute function="Click" locator1="SOMessagesMessage#PAGE_NUMBER_DROPDOWN_BUTTON" />
+				<execute function="Click" locator1="SOMessagesMessage#PAGE_NUMBER_DROPDOWN_MENU_ITEM" />
+			</then>
+		</if>
+
+		<execute function="AssertTextEquals" locator1="SOMessagesMessage#PRIVATE_MESSAGE_REPLY_SENDER" value1="${replySenderName}" />
+		<execute function="AssertTextEquals#assertPartialText" locator1="SOMessagesMessage#PRIVATE_MESSAGE_REPLY_BODY" value1="${messageReplyBody}" />
+
+		<if>
+			<isset var="messageReplyAttachmentFile" />
+			<then>
+				<execute function="AssertElementPresent" locator1="SOMessagesMessage#PRIVATE_MESSAGE_REPLY_ATTACHMENT" />
+				<execute function="AssertTextEquals#assertPartialText" locator1="SOMessagesMessage#PRIVATE_MESSAGE_REPLY_ATTACHMENT_LINK" value1="${messageReplyAttachmentFile}" />
+			</then>
+		</if>
+	</command>
+
+	<command name="viewReplyMessageList">
+		<if>
+			<isset var="messageReplyBodyListView" />
+			<then>
+				<var name="key_messageBody" value="${messageReplyBodyListView}" />
+			</then>
+			<else>
+				<var name="key_messageBody" value="${messageReplyBody}" />
+			</else>
+		</if>
+
+		<if>
+			<isset var="connectionNameList" />
+			<then>
+				<var name="connectionNumber" value="0" />
+
+				<for list="${connectionNameList}" param="connectionName">
+					<var method="MathUtil#sum('${connectionNumber}', '1')" name="connectionNumber" />
+
+					<execute function="AssertTextEquals#assertPartialText" locator1="SOMessages#MESSAGE" value1="${connectionName}" />
+				</for>
+
+				<var name="connectionNumberLast" value="${connectionNumber}" />
+
+				<var name="connectionNumber" value="0" />
+
+				<for list="${connectionNameList}" param="connectionName">
+					<var method="MathUtil#sum('${connectionNumber}', '1')" name="connectionNumber" />
+
+					<if>
+						<not>
+							<equals arg1="${connectionNumber}" arg2="${connectionNumberLast}" />
+						</not>
+						<then>
+							<execute function="AssertTextEquals#assertPartialText" locator1="SOMessages#MESSAGE" value1="${connectionName} ," />
+						</then>
+					</if>
+				</for>
+			</then>
+			<elseif>
+				<equals arg1="${connectionUserDeleted}" arg2="true" />
+				<then>
+					<execute function="AssertTextEquals" locator1="SOMessages#MESSAGE_SENDER" value1="${connectionName} Deleted User" />
+				</then>
+			</elseif>
+			<else>
+				<execute function="AssertTextEquals" locator1="SOMessages#MESSAGE_SENDER" value1="${connectionName}" />
+			</else>
+		</if>
+
+		<execute function="AssertTextEquals" locator1="SOMessages#MESSAGE_SUBJECT" value1="${messageSubject}" />
+
+		<if>
+			<isset var="messageReplyBodyListView" />
+			<then>
+				<execute function="AssertTextEquals" locator1="SOMessages#MESSAGE_BODY" value1="${messageReplyBodyListView}" />
+			</then>
+			<else>
+				<execute function="AssertTextEquals" locator1="SOMessages#MESSAGE_BODY" value1="${messageReplyBody}" />
+			</else>
+		</if>
+	</command>
+</definition>

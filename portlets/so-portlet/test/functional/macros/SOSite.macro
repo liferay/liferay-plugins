@@ -1,0 +1,609 @@
+<definition>
+	<command name="gotoPG">
+		<execute macro="Page#openURL">
+			<var name="friendlyURL" value="${friendlyURL}" />
+			<var name="pageAccess" value="${pageAccess}" />
+			<var name="pageAccessURL" value="${pageAccessURL}" />
+			<var name="pageStaging" value="${pageStaging}" />
+			<var name="pageStagingURL" value="${pageStagingURL}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteNameURL" value="${siteNameURL}" />
+			<var name="siteURL" value="true" />
+			<var name="specificURL" value="${specificURL}" />
+			<var name="virtualHostsURL" value="${virtualHostsURL}" />
+		</execute>
+
+		<var name="key_pageName" value="${pageName}" />
+
+		<execute function="Click" locator1="SOSite#NAVIGATION_PAGE" />
+	</command>
+
+	<command name="joinSitePG">
+		<execute function="AssertTextEquals" locator1="SOSite#SITE_NAME" value1="${siteName}" />
+		<execute function="AssertClick" locator1="SOSite#JOIN_SITE_BUTTON" value1="Join Site" />
+		<execute function="AssertElementNotPresent" locator1="SOSite#JOIN_SITE_BUTTON" />
+	</command>
+
+	<command name="requestMembershipPG">
+		<execute function="AssertTextEquals" locator1="SOSite#SITE_NAME" value1="${siteName}" />
+		<execute function="AssertClick" locator1="SOSite#REQUEST_MEMBERSHIP_BUTTON" value1="Request Membership" />
+		<execute function="AssertTextEquals" locator1="SOSite#MEMBERSHIP_REQUESTED_BUTTON" value1="Membership Requested" />
+	</command>
+
+	<command name="tearDownCP">
+		<execute macro="SOUser#firstLoginPG" />
+
+		<execute macro="Site#tearDownCP" />
+	</command>
+
+	<command name="viewLocalizedPG">
+		<execute macro="Page#openURL">
+			<var name="friendlyURL" value="${friendlyURL}" />
+			<var name="pageAccess" value="${pageAccess}" />
+			<var name="pageAccessURL" value="${pageAccessURL}" />
+			<var name="pageStaging" value="${pageStaging}" />
+			<var name="pageStagingURL" value="${pageStagingURL}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteNameURL" value="${siteNameURL}" />
+			<var name="siteURL" value="true" />
+			<var name="specificURL" value="${specificURL}" />
+			<var name="virtualHostsURL" value="${virtualHostsURL}" />
+		</execute>
+
+		<execute macro="SOUserBar#showEditControls" />
+
+		<var name="key_pageName" value="${homePageLocalized}" />
+
+		<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_PAGE" value1="${homePageLocalized}" />
+		<execute function="AssertTextNotPresent" value1="-" />
+
+		<var name="key_portletName" value="${announcementsPortletLocalized}" />
+
+		<execute function="AssertTextEquals#assertPartialText" locator1="SOSite#PORTLET_TITLE" value1="${announcementsPortletLocalized}" />
+
+		<var name="key_portletName" value="${activitiesPortletLocalized}" />
+
+		<execute function="AssertTextEquals#assertPartialText" locator1="SOSite#PORTLET_TITLE" value1="${activitiesPortletLocalized}" />
+
+		<var name="key_portletName" value="${welcomePortletLocalized}" />
+
+		<execute function="AssertTextEquals#assertPartialText" locator1="SOSite#PORTLET_TITLE" value1="${welcomePortletLocalized}" />
+
+		<var name="key_portletName" value="${bookmarksPortletLocalized}" />
+
+		<execute function="AssertTextEquals#assertPartialText" locator1="SOSite#PORTLET_TITLE" value1="${bookmarksPortletLocalized}" />
+
+		<var name="key_portletName" value="${rssPortletLocalized}" />
+
+		<execute function="AssertTextEquals#assertPartialText" locator1="SOSite#PORTLET_TITLE" value1="${rssPortletLocalized}" />
+
+		<var name="key_portletName" value="${recentDownloadsPortletLocalized}" />
+
+		<execute function="AssertTextEquals#assertPartialText" locator1="SOSite#PORTLET_TITLE" value1="${recentDownloadsPortletLocalized}" />
+
+		<var name="key_portletName" value="${eventsPortletLocalized}" />
+
+		<execute function="AssertTextEquals#assertPartialText" locator1="SOSite#PORTLET_TITLE" value1="${eventsPortletLocalized}" />
+
+		<var name="key_pageName" value="${calendarPageLocalized}" />
+
+		<execute function="AssertClick" locator1="SOSite#NAVIGATION_PAGE" value1="${calendarPageLocalized}" />
+
+		<var method="StringUtil#upperCase('${calendarPortletLocalized}')" name="calendarPortletLocalizedUpperCase" />
+		<var name="key_portletName" value="${calendarPortletLocalized}" />
+
+		<execute function="AssertTextEquals" locator1="Home#PORTLET_BORDERLESS" value1="${calendarPortletLocalizedUpperCase}" />
+
+		<var name="key_pageName" value="${documentsPageLocalized}" />
+
+		<execute function="AssertClick" locator1="SOSite#NAVIGATION_PAGE" value1="${documentsPageLocalized}" />
+
+		<var method="StringUtil#upperCase('${documentsAndMediaPortletLocalized}')" name="documentsAndMediaPortletLocalizedUpperCase" />
+		<var name="key_portletName" value="${documentsAndMediaPortletLocalized}" />
+
+		<execute function="AssertTextEquals" locator1="Home#PORTLET_BORDERLESS" value1="${documentsAndMediaPortletLocalizedUpperCase}" />
+
+		<var name="key_pageName" value="${forumsPageLocalized}" />
+
+		<execute function="AssertClick" locator1="SOSite#NAVIGATION_PAGE" value1="${forumsPageLocalized}" />
+
+		<var method="StringUtil#upperCase('${breadcrumbPortletLocalized}')" name="breadcrumbPortletLocalizedUpperCase" />
+		<var name="key_portletName" value="${breadcrumbPortletLocalized}" />
+
+		<execute function="AssertTextEquals" locator1="Home#PORTLET_BORDERLESS" value1="${breadcrumbPortletLocalizedUpperCase}" />
+
+		<var method="StringUtil#upperCase('${messageBoardsPortletLocalized}')" name="messageBoardsPortletLocalizedUpperCase" />
+
+		<var name="key_portletName" value="${messageBoardsPortletLocalized}" />
+
+		<execute function="AssertTextEquals" locator1="Home#PORTLET_BORDERLESS" value1="${messageBoardsPortletLocalizedUpperCase}" />
+
+		<var name="key_pageName" value="${blogsPageLocalized}" />
+
+		<execute function="AssertClick" locator1="SOSite#NAVIGATION_PAGE" value1="${blogsPageLocalized}" />
+
+		<var method="StringUtil#upperCase('${blogsPortletLocalized}')" name="blogsPortletLocalizedUpperCase" />
+		<var name="key_portletName" value="${blogsPortletLocalized}" />
+
+		<execute function="AssertTextEquals" locator1="Home#PORTLET_BORDERLESS" value1="${blogsPortletLocalizedUpperCase}" />
+
+		<var name="key_portletName" value="${recentBlogsPortletLocalized}" />
+
+		<execute function="AssertTextEquals#assertPartialText" locator1="SOSite#PORTLET_TITLE" value1="${recentBlogsPortletLocalized}" />
+
+		<var name="key_pageName" value="${wikiPageLocalized}" />
+
+		<execute function="AssertClick" locator1="SOSite#NAVIGATION_PAGE" value1="${wikiPageLocalized}" />
+
+		<var method="StringUtil#upperCase('${wikiPortletLocalized}')" name="wikiPortletLocalizedUpperCase" />
+
+		<var name="key_portletName" value="${wikiPortletLocalized}" />
+
+		<execute function="AssertTextEquals" locator1="Home#PORTLET_BORDERLESS" value1="${wikiPortletLocalizedUpperCase}" />
+
+		<var name="key_pageName" value="${membersPageLocalized}" />
+
+		<execute function="AssertClick" locator1="SOSite#NAVIGATION_PAGE" value1="${membersPageLocalized}" />
+
+		<var method="StringUtil#upperCase('${inviteMembersPortletLocalized}')" name="inviteMembersPortletLocalizedUpperCase" />
+
+		<var method="StringUtil#upperCase('${membersPortletLocalized}')" name="membersPortletLocalizedUpperCase" />
+
+		<var name="key_portletName" value="${inviteMembersPortletLocalized}" />
+
+		<execute function="AssertTextEquals" locator1="Home#PORTLET_BORDERLESS" value1="${inviteMembersPortletLocalizedUpperCase}" />
+
+		<execute function="AssertTextEquals" locator1="//div[contains(@class,'portlet-borderless')]/span[@class='portlet-title-default' and .='${membersPortletLocalized}']" value1="${membersPortletLocalizedUpperCase}" />
+	</command>
+
+	<command name="viewSOSite">
+		<var name="key_siteName" value="${siteName}" />
+
+		<execute macro="SOUserBar#searchSOSite" />
+
+		<execute function="Click" locator1="SOUserBar#GO_TO_SITE_NAME_LINK" />
+
+		<if>
+			<equals arg1="${defaultPages}" arg2="Social Office User Home" />
+			<then>
+				<execute function="AssertTextEquals" locator1="SOSite#SITE_NAME" value1="${siteName}" />
+				<execute function="AssertTextEquals" locator1="SOSite#USER_HOME_SITE_NAVIGATION_DASHBOARD" value1="Dashboard" />
+				<execute function="AssertTextEquals" locator1="SOSite#USER_HOME_SITE_NAVIGATION_CONTACTS_CENTER" value1="Contacts Center" />
+				<execute function="AssertTextEquals" locator1="SOSite#USER_HOME_SITE_NAVIGATION_MICROBLOGS" value1="Microblogs" />
+				<execute function="AssertTextEquals" locator1="SOSite#USER_HOME_SITE_NAVIGATION_MESSAGES" value1="Messages" />
+				<execute function="AssertTextEquals" locator1="SOSite#USER_HOME_SITE_NAVIGATION_MY_DOCUMENTS" value1="My Documents" />
+				<execute function="AssertTextEquals" locator1="SOSite#USER_HOME_SITE_NAVIGATION_TASKS" value1="Tasks" />
+			</then>
+			<elseif>
+				<equals arg1="${defaultPages}" arg2="Social Office User Profile" />
+				<then>
+					<execute function="AssertTextEquals" locator1="SOSite#SITE_NAME" value1="${siteName}" />
+					<execute function="AssertTextEquals" locator1="SOSite#USER_PROFILE_SITE_NAVIGATION_PROFILE" value1="Profile" />
+					<execute function="AssertTextEquals" locator1="SOSite#USER_PROFILE_SITE_NAVIGATION_CONTACTS" value1="Contacts" />
+					<execute function="AssertTextEquals" locator1="SOSite#USER_PROFILE_SITE_NAVIGATION_MICROBLOGS" value1="Microblogs" />
+				</then>
+			</elseif>
+			<else>
+				<execute function="AssertTextEquals" locator1="SOSite#SITE_NAME" value1="${siteName}" />
+				<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_HOME" value1="Home" />
+				<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_CALENDAR" value1="Calendar" />
+				<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_DOCUMENTS" value1="Documents" />
+				<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_FORUMS" value1="Forums" />
+				<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_BLOGS" value1="Blogs" />
+				<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_WIKI" value1="Wiki" />
+				<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_MEMBERS" value1="Members" />
+			</else>
+		</if>
+
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute function="SelectFrameTop" />
+		<execute function="Click#pauseClickAt" locator1="SOUserBar#GO_TO" />
+		<execute function="Click#pauseClickAt" locator1="SOUserBar#GO_TO_SITES_DIRECTORY_BUTTON" />
+
+		<if>
+			<equals arg1="${siteType}" arg2="Private" />
+			<then>
+				<execute function="Select" locator1="SOUserBarSitesDirectory#SITE_CATEGORY_SELECT" value1="My Sites" />
+			</then>
+			<else>
+				<execute function="Select" locator1="SOUserBarSitesDirectory#SITE_CATEGORY_SELECT" value1="All Sites" />
+			</else>
+		</if>
+
+		<execute function="Type" locator1="SOUserBarSitesDirectory#SITE_SEARCH_FIELD" value1="${siteName}" />
+		<execute function="Pause" locator1="1000" />
+		<execute function="AssertTextEquals" locator1="SOUserBarSitesDirectory#SITE_NAME_LINK" value1="${siteName}" />
+		<execute function="AssertTextEquals" locator1="SOUserBarSitesDirectory#SITE_DESCRIPTION" value1="${siteDescription}" />
+		<execute function="Click" locator1="SOUserBarSitesDirectory#SITE_NAME_LINK" value1="${siteName}" />
+
+		<if>
+			<equals arg1="${defaultPages}" arg2="Social Office User Home" />
+			<then>
+				<execute function="AssertTextEquals" locator1="SOSite#SITE_NAME" value1="${siteName}" />
+				<execute function="AssertTextEquals" locator1="SOSite#USER_HOME_SITE_NAVIGATION_DASHBOARD" value1="Dashboard" />
+				<execute function="AssertTextEquals" locator1="SOSite#USER_HOME_SITE_NAVIGATION_CONTACTS_CENTER" value1="Contacts Center" />
+				<execute function="AssertTextEquals" locator1="SOSite#USER_HOME_SITE_NAVIGATION_MICROBLOGS" value1="Microblogs" />
+				<execute function="AssertTextEquals" locator1="SOSite#USER_HOME_SITE_NAVIGATION_MESSAGES" value1="Messages" />
+				<execute function="AssertTextEquals" locator1="SOSite#USER_HOME_SITE_NAVIGATION_MY_DOCUMENTS" value1="My Documents" />
+				<execute function="AssertTextEquals" locator1="SOSite#USER_HOME_SITE_NAVIGATION_TASKS" value1="Tasks" />
+			</then>
+			<elseif>
+				<equals arg1="${defaultPages}" arg2="Social Office User Profile" />
+				<then>
+					<execute function="AssertTextEquals" locator1="SOSite#SITE_NAME" value1="${siteName}" />
+					<execute function="AssertTextEquals" locator1="SOSite#USER_PROFILE_SITE_NAVIGATION_PROFILE" value1="Profile" />
+					<execute function="AssertTextEquals" locator1="SOSite#USER_PROFILE_SITE_NAVIGATION_CONTACTS" value1="Contacts" />
+					<execute function="AssertTextEquals" locator1="SOSite#USER_PROFILE_SITE_NAVIGATION_MICROBLOGS" value1="Microblogs" />
+				</then>
+			</elseif>
+			<else>
+				<execute function="AssertTextEquals" locator1="SOSite#SITE_NAME" value1="${siteName}" />
+				<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_HOME" value1="Home" />
+				<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_CALENDAR" value1="Calendar" />
+				<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_DOCUMENTS" value1="Documents" />
+				<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_FORUMS" value1="Forums" />
+				<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_BLOGS" value1="Blogs" />
+				<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_WIKI" value1="Wiki" />
+				<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_MEMBERS" value1="Members" />
+			</else>
+		</if>
+
+		<execute macro="Page#gotoConfigurationCP">
+			<var name="portletName" value="Site Settings" />
+			<var name="siteScopeName" value="${siteName}" />
+		</execute>
+
+		<if>
+			<contains string="${siteType}" substring="Private" />
+			<then>
+				<execute function="AssertChecked" locator1="CPSitesettings#PRIVATE_PAGE_PROPAGATION_CHECKBOX" />
+			</then>
+			<else>
+				<execute function="AssertChecked" locator1="CPSitesettings#PUBLIC_PAGE_PROPAGATION_CHECKBOX" />
+			</else>
+		</if>
+
+		<execute function="AssertSelectedLabel" locator1="CPSitesettings#APPLICATION_ADAPTER_SELECT" value1="Social Office EE Hook" />
+	</command>
+
+	<command name="viewSOSiteDeleted">
+		<var name="key_siteName" value="${siteName}" />
+
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute function="SelectFrameTop" />
+		<execute function="Click#pauseClickAt" locator1="SOUserBar#GO_TO" />
+		<execute function="Select" locator1="SOUserBar#GO_TO_SITE_CATEGORY_SELECT" value1="All Sites" />
+		<execute function="SelectFrameTop" />
+		<execute function="Click#pauseClickAt" locator1="SOUserBar#GO_TO" />
+		<execute function="Type" locator1="SOUserBar#GO_TO_SEARCH_FIELD" value1="${siteName}" />
+		<execute function="AssertTextEquals" locator1="SOUserBar#GO_TO_SITE_EMPTY" value1="There are no results." />
+		<execute function="AssertTextNotPresent" value1="${siteName}" />
+		<execute function="Select" locator1="SOUserBar#GO_TO_SITE_CATEGORY_SELECT" value1="My Sites" />
+		<execute function="SelectFrameTop" />
+		<execute function="Click#pauseClickAt" locator1="SOUserBar#GO_TO" />
+		<execute function="Type" locator1="SOUserBar#GO_TO_SEARCH_FIELD" value1="${siteName}" />
+		<execute function="AssertTextEquals" locator1="SOUserBar#GO_TO_SITE_EMPTY" value1="There are no results." />
+		<execute function="AssertTextNotPresent" value1="${siteName}" />
+		<execute function="Click#pauseClickAt" locator1="SOUserBar#GO_TO_SITES_DIRECTORY_BUTTON" />
+
+		<execute function="Select" locator1="SOUserBarSitesDirectory#SITE_CATEGORY_SELECT" value1="My Sites" />
+		<execute function="Type" locator1="SOUserBarSitesDirectory#SITE_SEARCH_FIELD" value1="${siteName}" />
+		<execute function="AssertTextEquals" locator1="SOUserBarSitesDirectory#EMPTY_INFO_MESSAGE" value1="There are no results." />
+		<execute function="AssertTextNotPresent" value1="${siteName}" />
+		<execute function="Select" locator1="SOUserBarSitesDirectory#SITE_CATEGORY_SELECT" value1="All Sites" />
+		<execute function="Type" locator1="SOUserBarSitesDirectory#SITE_SEARCH_FIELD" value1="${siteName}" />
+		<execute function="AssertTextEquals" locator1="SOUserBarSitesDirectory#EMPTY_INFO_MESSAGE" value1="There are no results." />
+		<execute function="AssertTextNotPresent" value1="${siteName}" />
+	</command>
+
+	<command name="viewSOSiteFavorite">
+		<var name="key_siteName" value="${siteName}" />
+
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute function="SelectFrameTop" />
+		<execute function="Click#pauseClickAt" locator1="SOUserBar#GO_TO" />
+		<execute function="Select" locator1="SOUserBar#GO_TO_SITE_CATEGORY_SELECT" value1="My Favorites" />
+		<execute function="SelectFrameTop" />
+		<execute function="Click#pauseClickAt" locator1="SOUserBar#GO_TO" />
+		<execute function="Type" locator1="SOUserBar#GO_TO_SEARCH_FIELD" value1="${siteName}" />
+		<execute function="Pause" locator1="1000" />
+		<execute function="AssertTextEquals" locator1="SOUserBar#GO_TO_SITE_NAME_LINK" value1="${siteName}" />
+		<execute function="AssertElementPresent" locator1="SOUserBar#GO_TO_UNFAVORITE_SITE_ICON" />
+		<execute function="AssertElementNotPresent" locator1="SOUserBar#GO_TO_FAVORITE_SITE_ICON" />
+		<execute function="Click" locator1="SOUserBar#GO_TO_SITE_NAME_LINK" />
+
+		<execute function="AssertTextEquals" locator1="SOSite#SITE_NAME" value1="${siteName}" />
+		<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_HOME" value1="Home" />
+		<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_CALENDAR" value1="Calendar" />
+		<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_DOCUMENTS" value1="Documents" />
+		<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_FORUMS" value1="Forums" />
+		<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_BLOGS" value1="Blogs" />
+		<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_WIKI" value1="Wiki" />
+		<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_MEMBERS" value1="Members" />
+
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute function="SelectFrameTop" />
+		<execute function="Click#pauseClickAt" locator1="SOUserBar#GO_TO" />
+		<execute function="Click#pauseClickAt" locator1="SOUserBar#GO_TO_SITES_DIRECTORY_BUTTON" />
+
+		<var name="key_siteName" value="${siteName}" />
+
+		<execute function="Select" locator1="SOUserBarSitesDirectory#SITE_CATEGORY_SELECT" value1="My Favorites" />
+		<execute function="Type" locator1="SOUserBarSitesDirectory#SITE_SEARCH_FIELD" value1="${siteName}" />
+		<execute function="Pause" locator1="1000" />
+		<execute function="AssertTextEquals" locator1="SOUserBarSitesDirectory#SITE_NAME_LINK" value1="${siteName}" />
+		<execute function="AssertTextEquals" locator1="SOUserBarSitesDirectory#SITE_DESCRIPTION" value1="${siteDescription}" />
+		<execute function="AssertElementPresent" locator1="SOUserBarSitesDirectory#UNFAVORITE_SITE_ICON" />
+		<execute function="AssertElementNotPresent" locator1="SOUserBarSitesDirectory#FAVORITE_SITE_ICON" />
+		<execute function="Click" locator1="SOUserBarSitesDirectory#SITE_NAME_LINK" value1="${siteName}" />
+
+		<execute function="AssertTextEquals" locator1="SOSite#SITE_NAME" value1="${siteName}" />
+		<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_HOME" value1="Home" />
+		<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_CALENDAR" value1="Calendar" />
+		<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_DOCUMENTS" value1="Documents" />
+		<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_FORUMS" value1="Forums" />
+		<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_BLOGS" value1="Blogs" />
+		<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_WIKI" value1="Wiki" />
+	</command>
+
+	<command name="viewSOSiteMembership">
+		<var name="key_siteName" value="${siteName}" />
+
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute function="SelectFrameTop" />
+		<execute function="Click#pauseClickAt" locator1="SOUserBar#GO_TO" />
+		<execute function="Select" locator1="SOUserBar#GO_TO_SITE_CATEGORY_SELECT" value1="My Sites" />
+		<execute function="SelectFrameTop" />
+		<execute function="Click#pauseClickAt" locator1="SOUserBar#GO_TO" />
+		<execute function="Type" locator1="SOUserBar#GO_TO_SEARCH_FIELD" value1="${siteName}" />
+		<execute function="Pause" locator1="1000" />
+		<execute function="AssertTextEquals" locator1="SOUserBar#GO_TO_SITE_NAME_LINK" value1="${siteName}" />
+
+		<execute function="Click" locator1="SOUserBar#GO_TO_SITE_NAME_LINK" />
+
+		<execute function="AssertTextEquals" locator1="SOSite#SITE_NAME" value1="${siteName}" />
+		<execute function="AssertElementNotPresent" locator1="SOSite#JOIN_SITE_BUTTON" />
+		<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_HOME" value1="Home" />
+		<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_CALENDAR" value1="Calendar" />
+		<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_DOCUMENTS" value1="Documents" />
+		<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_FORUMS" value1="Forums" />
+		<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_BLOGS" value1="Blogs" />
+		<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_WIKI" value1="Wiki" />
+		<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_MEMBERS" value1="Members" />
+
+		<if>
+			<equals arg1="${siteAdmin}" arg2="true" />
+			<then>
+				<if>
+					<condition function="IsElementNotPresent" locator1="SOUserBar#VISIBLE_PAGE_CONTROLS" />
+					<then>
+						<execute function="Click" locator1="SOUserBar#TOGGLE_DOCKBAR" />
+					</then>
+				</if>
+
+				<if>
+					<condition function="IsElementPresent" locator1="SOUserBar#EDIT_CONTROLS_NOT_FLAGGED" />
+					<then>
+						<execute function="MouseOver" locator1="Dockbar#EDIT_CONTROLS" />
+						<execute function="Click" locator1="Dockbar#EDIT_CONTROLS" />
+					</then>
+				</if>
+
+				<execute function="AssertElementPresent" locator1="SOAnnouncements#ANNOUNCEMENTS_OPTIONS" />
+				<execute function="AssertElementPresent" locator1="SOActivities#ACTIVITIES_OPTIONS" />
+				<execute function="AssertElementPresent" locator1="SOWelcome#WELCOME_OPTIONS" />
+				<execute function="AssertElementPresent" locator1="SOBookmarks#BOOKMARKS_OPTIONS" />
+				<execute function="AssertElementPresent" locator1="SORss#RSS_OPTIONS" />
+				<execute function="AssertElementPresent" locator1="SORecentDownloads#RECENT_DOWNLOADS_OPTIONS" />
+				<execute function="AssertElementPresent" locator1="SOEvents#EVENTS_DISPLAY_OPTIONS" />
+			</then>
+			<else>
+				<execute function="AssertElementNotPresent" locator1="SOUserBar#TOGGLE_DOCKBAR" />
+
+				<execute function="AssertElementNotPresent" locator1="Dockbar#EDIT_CONTROLS" />
+
+				<execute function="AssertElementNotPresent" locator1="SOAnnouncements#ANNOUNCEMENTS_OPTIONS" />
+				<execute function="AssertElementNotPresent" locator1="SOActivities#ACTIVITIES_OPTIONS" />
+				<execute function="AssertElementNotPresent" locator1="SOWelcome#WELCOME_OPTIONS" />
+				<execute function="AssertElementNotPresent" locator1="SOBookmarks#BOOKMARKS_OPTIONS" />
+				<execute function="AssertElementNotPresent#assertNotVisible" locator1="SORss#RSS_OPTIONS" />
+				<execute function="AssertElementNotPresent" locator1="SORecentDownloads#RECENT_DOWNLOADS_OPTIONS" />
+				<execute function="AssertElementNotPresent" locator1="SOEvents#EVENTS_DISPLAY_OPTIONS" />
+			</else>
+		</if>
+
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute function="SelectFrameTop" />
+		<execute function="Click#pauseClickAt" locator1="SOUserBar#GO_TO" />
+		<execute function="Click#pauseClickAt" locator1="SOUserBar#GO_TO_SITES_DIRECTORY_BUTTON" />
+
+		<var name="key_siteName" value="${siteName}" />
+
+		<execute function="Select" locator1="SOUserBarSitesDirectory#SITE_CATEGORY_SELECT" value1="My Sites" />
+		<execute function="Type" locator1="SOUserBarSitesDirectory#SITE_SEARCH_FIELD" value1="${siteName}" />
+		<execute function="Pause" locator1="1000" />
+		<execute function="AssertTextEquals" locator1="SOUserBarSitesDirectory#SITE_NAME_LINK" value1="${siteName}" />
+		<execute function="AssertTextEquals" locator1="SOUserBarSitesDirectory#SITE_DESCRIPTION" value1="${siteDescription}" />
+
+		<if>
+			<equals arg1="${siteAdmin}" arg2="true" />
+			<then>
+				<execute function="AssertElementPresent" locator1="SOUserBarSitesDirectory#DELETE_SITE_ICON" />
+			</then>
+			<else>
+				<execute function="AssertElementNotPresent" locator1="SOUserBarSitesDirectory#DELETE_SITE_ICON" />
+			</else>
+		</if>
+
+		<execute function="Click" locator1="SOUserBarSitesDirectory#SITE_NAME_LINK" value1="${siteName}" />
+
+		<execute function="AssertTextEquals" locator1="SOSite#SITE_NAME" value1="${siteName}" />
+		<execute function="AssertElementNotPresent" locator1="SOSite#JOIN_SITE_BUTTON" />
+		<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_HOME" value1="Home" />
+		<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_CALENDAR" value1="Calendar" />
+		<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_DOCUMENTS" value1="Documents" />
+		<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_FORUMS" value1="Forums" />
+		<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_BLOGS" value1="Blogs" />
+		<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_WIKI" value1="Wiki" />
+		<execute function="Click" locator1="SOSite#NAVIGATION_MEMBERS" value1="Members" />
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute function="AssertClick" locator1="SOProfile#PROFILE_INFO_SITES" value1="${siteName}" />
+
+		<execute function="AssertTextEquals" locator1="SOSite#SITE_NAME" value1="${siteName}" />
+		<execute function="AssertElementNotPresent" locator1="SOSite#JOIN_SITE_BUTTON" />
+		<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_HOME" value1="Home" />
+		<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_CALENDAR" value1="Calendar" />
+		<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_DOCUMENTS" value1="Documents" />
+		<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_FORUMS" value1="Forums" />
+		<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_BLOGS" value1="Blogs" />
+		<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_WIKI" value1="Wiki" />
+		<execute function="Click" locator1="SOSite#NAVIGATION_MEMBERS" value1="Members" />
+
+		<execute macro="SOMembersPortlet#viewMember" />
+	</command>
+
+	<command name="viewSOSiteNonMembership">
+		<var name="key_siteName" value="${siteName}" />
+
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute function="SelectFrameTop" />
+		<execute function="Click#pauseClickAt" locator1="SOUserBar#GO_TO" />
+		<execute function="Select" locator1="SOUserBar#GO_TO_SITE_CATEGORY_SELECT" value1="All Sites" />
+		<execute function="SelectFrameTop" />
+		<execute function="Click#pauseClickAt" locator1="SOUserBar#GO_TO" />
+		<execute function="Type" locator1="SOUserBar#GO_TO_SEARCH_FIELD" value1="${siteName}" />
+
+		<if>
+			<equals arg1="${siteType}" arg2="Private" />
+			<then>
+				<execute function="AssertTextEquals" locator1="SOUserBar#GO_TO_SITE_EMPTY" value1="There are no results." />
+				<execute function="AssertElementNotPresent" locator1="SOUserBar#GO_TO_SITE_NAME_LINK" />
+			</then>
+			<elseif>
+				<equals arg1="${siteType}" arg2="Private Restricted" />
+				<then>
+					<execute function="AssertElementPresent" locator1="SOUserBar#GO_TO_SITE_NAME" />
+					<execute function="AssertElementNotPresent" locator1="SOUserBar#GO_TO_SITE_NAME_LINK" />
+				</then>
+			</elseif>
+			<else>
+				<execute function="AssertElementPresent" locator1="SOUserBar#GO_TO_SITE_NAME_LINK" />
+			</else>
+		</if>
+
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute function="SelectFrameTop" />
+		<execute function="Click#pauseClickAt" locator1="SOUserBar#GO_TO" />
+		<execute function="Select" locator1="SOUserBar#GO_TO_SITE_CATEGORY_SELECT" value1="My Sites" />
+		<execute function="SelectFrameTop" />
+		<execute function="Click#pauseClickAt" locator1="SOUserBar#GO_TO" />
+		<execute function="Type" locator1="SOUserBar#GO_TO_SEARCH_FIELD" value1="${siteName}" />
+		<execute function="AssertTextEquals" locator1="SOUserBar#GO_TO_SITE_EMPTY" value1="There are no results." />
+		<execute function="AssertElementNotPresent" locator1="SOUserBar#GO_TO_SITE_NAME_LINK" />
+		<execute function="AssertTextNotPresent" value1="${siteName}" />
+		<execute function="Click#pauseClickAt" locator1="SOUserBar#GO_TO_SITES_DIRECTORY_BUTTON" />
+
+		<var name="key_siteName" value="${siteName}" />
+
+		<execute function="Select" locator1="SOUserBarSitesDirectory#SITE_CATEGORY_SELECT" value1="My Sites" />
+		<execute function="Type" locator1="SOUserBarSitesDirectory#SITE_SEARCH_FIELD" value1="${siteName}" />
+		<execute function="AssertTextEquals" locator1="SOUserBarSitesDirectory#EMPTY_INFO_MESSAGE" value1="There are no results." />
+		<execute function="AssertTextNotPresent" value1="${siteName}" />
+		<execute function="Select" locator1="SOUserBarSitesDirectory#SITE_CATEGORY_SELECT" value1="All Sites" />
+		<execute function="Type" locator1="SOUserBarSitesDirectory#SITE_SEARCH_FIELD" value1="${siteName}" />
+
+		<if>
+			<equals arg1="${siteType}" arg2="Private Restricted" />
+			<then>
+				<execute function="AssertTextEquals" locator1="SOUserBarSitesDirectory#SITE_NAME" value1="${siteName}" />
+				<execute function="AssertElementNotPresent" locator1="SOUserBarSitesDirectory#SITE_NAME_LINK" />
+				<execute function="AssertTextEquals" locator1="SOUserBarSitesDirectory#SITE_DESCRIPTION" value1="${siteDescription}" />
+			</then>
+			<elseif>
+				<equals arg1="${siteType}" arg2="Private" />
+				<then>
+					<execute function="AssertTextEquals" locator1="SOUserBarSitesDirectory#EMPTY_INFO_MESSAGE" value1="There are no results." />
+					<execute function="AssertTextNotPresent" value1="${siteName}" />
+				</then>
+			</elseif>
+			<else>
+				<execute function="AssertTextEquals" locator1="SOUserBarSitesDirectory#SITE_NAME_LINK" value1="${siteName}" />
+				<execute function="AssertTextEquals" locator1="SOUserBarSitesDirectory#SITE_DESCRIPTION" value1="${siteDescription}" />
+			</else>
+		</if>
+
+		<if>
+			<not>
+				<equals arg1="${siteType}" arg2="Private" />
+			</not>
+			<then>
+				<if>
+					<equals arg1="${siteType}" arg2="Open" />
+					<then>
+						<execute function="AssertElementPresent" locator1="SOUserBarSitesDirectory#JOIN_SITE_ICON" />
+					</then>
+					<else>
+						<execute function="AssertElementPresent" locator1="SOUserBarSitesDirectory#REQUEST_MEMBERSHIP_ICON" />
+					</else>
+				</if>
+			</then>
+		</if>
+
+		<if>
+			<not>
+				<contains string="${siteType}" substring="Private" />
+			</not>
+			<then>
+				<execute function="Click" locator1="SOUserBarSitesDirectory#SITE_NAME_LINK" value1="${siteName}" />
+
+				<execute function="AssertTextEquals" locator1="SOSite#SITE_NAME" value1="${siteName}" />
+
+				<if>
+					<equals arg1="${siteType}" arg2="Open" />
+					<then>
+						<execute function="AssertTextEquals" locator1="SOSite#JOIN_SITE_BUTTON" value1="Join Site" />
+					</then>
+					<else>
+						<execute function="AssertTextEquals" locator1="SOSite#REQUEST_MEMBERSHIP_BUTTON" value1="Request Membership" />
+					</else>
+				</if>
+
+				<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_HOME" value1="Home" />
+				<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_CALENDAR" value1="Calendar" />
+				<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_DOCUMENTS" value1="Documents" />
+				<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_FORUMS" value1="Forums" />
+				<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_BLOGS" value1="Blogs" />
+				<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_WIKI" value1="Wiki" />
+				<execute function="Click" locator1="SOSite#NAVIGATION_MEMBERS" value1="Members" />
+
+				<if>
+					<isset var="numberOfMembers" />
+					<then>
+						<execute function="AssertTextEquals" locator1="SOMembersPortlet#MEMBERS_LINK_ALL" value1="View all ${numberOfMembers} users." />
+					</then>
+					<else>
+						<execute function="AssertTextEquals" locator1="SOMembersPortlet#MEMBERS_LINK_ALL" value1="View all 1 users." />
+					</else>
+				</if>
+
+				<execute function="Type#typePause" locator1="SOMembersPortlet#MEMBERS_LIST_SEARCH" value1="${userEmailAddress}" />
+				<execute function="AssertTextEquals" locator1="SOMembersPortlet#MEMBERS_LIST_EMPTY" value1="There are no results." />
+				<execute function="AssertTextNotPresent" value1="${userListName}" />
+			</then>
+		</if>
+
+		<execute macro="Page#gotoMyProfile" />
+
+		<execute function="AssertTextNotPresent" value1="${siteName}" />
+	</command>
+</definition>

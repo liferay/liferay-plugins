@@ -1,0 +1,147 @@
+<definition>
+	<command name="addBookmarksEntry">
+		<execute function="Click" locator1="SOBookmarks#BOOKMARKS_ADD_ENTRY_LINK" />
+
+		<execute function="Type" locator1="SOBookmarksAdd#NAME_FIELD" value1="${bookmarksEntryName}" />
+		<execute function="Type" locator1="SOBookmarksAdd#URL_FIELD" value1="${bookmarksEntryUrl}" />
+		<execute function="Type" locator1="SOBookmarksAdd#DESCRIPTION_FIELD" value1="${bookmarksEntryDescription}" />
+
+		<if>
+			<equals arg1="${addTag}" arg2="true" />
+			<then>
+				<execute function="Type" locator1="SOBookmarksAdd#TAGS_FIELD" value1="${tagName}" />
+				<execute function="AssertClick" locator1="SOBookmarksAdd#ADD_TAGS_BUTTON" value1="Add" />
+
+				<var name="key_tagName" value="${tagName}" />
+
+				<execute function="AssertTextEquals" locator1="SOBookmarksAdd#TAG" value1="${tagName}" />
+			</then>
+		</if>
+
+		<execute function="Click" locator1="SOBookmarksAdd#SAVE_BUTTON"  />
+
+		<execute function="AssertTextEquals" locator1="SOBookmarks#SUCCESS_MESSAGE" value1="Your request completed successfully." />
+
+		<var name="key_bookmarksEntryName" value="${bookmarksEntryName}" />
+
+		<execute function="AssertTextEquals" locator1="SOBookmarks#BOOKMARKS_ENTRY_LINK" value1="${bookmarksEntryName}" />
+	</command>
+
+	<command name="deleteBookmarksEntry">
+		<var name="key_bookmarksEntryName" value="${bookmarksEntryName}" />
+
+		<execute function="AssertClick" locator1="SOBookmarks#BOOKMARKS_ENTRY_ACTIONS" value1="Actions" />
+		<execute function="AssertClick" locator1="SOBookmarks#BOOKMARKS_ACTIONS_MENULIST_MOVE_TO_THE_RECYCLE_BIN" value1="Move to the Recycle Bin" />
+		<execute function="AssertTextEquals#assertPartialText" locator1="SOBookmarks#BOOKMARKS_NO_ENTRIES_MESSAGE" value1="There are no entries." />
+		<execute function="AssertElementNotPresent" locator1="SOBookmarks#BOOKMARKS_ENTRY_LINK" />
+	</command>
+
+	<command name="editBookmarksEntry">
+		<var name="key_bookmarksEntryName" value="${bookmarksEntryName}" />
+
+		<execute function="AssertClick" locator1="SOBookmarks#BOOKMARKS_ENTRY_ACTIONS" value1="Actions" />
+		<execute function="AssertClick" locator1="SOBookmarks#BOOKMARKS_ACTIONS_MENULIST_EDIT" value1="Edit" />
+
+		<execute function="Type" locator1="SOBookmarksAdd#NAME_FIELD" value1="${bookmarksEntryNameEdit}" />
+		<execute function="Type" locator1="SOBookmarksAdd#URL_FIELD" value1="${bookmarksEntryUrlEdit}" />
+		<execute function="Type" locator1="SOBookmarksAdd#DESCRIPTION_FIELD" value1="${bookmarksEntryDescriptionEdit}" />
+		<execute function="Click" locator1="SOBookmarksAdd#SAVE_BUTTON"  />
+
+		<execute function="AssertTextEquals" locator1="SOBookmarks#SUCCESS_MESSAGE" value1="Your request completed successfully." />
+
+		<var name="key_bookmarksEntryName" value="${bookmarksEntryNameEdit}" />
+
+		<execute function="AssertTextEquals" locator1="SOBookmarks#BOOKMARKS_ENTRY_LINK" value1="${bookmarksEntryNameEdit}" />
+	</command>
+
+	<command name="removeViewPermissionsBookmarksEntry">
+		<var name="key_bookmarksEntryName" value="${bookmarksEntryName}" />
+
+		<execute function="AssertClick" locator1="SOBookmarks#BOOKMARKS_ENTRY_ACTIONS" value1="Actions" />
+		<execute function="AssertClick" locator1="SOBookmarks#BOOKMARKS_ACTIONS_MENULIST_PERMISSIONS" value1="Permissions" />
+
+		<var method="StringUtil#replace('${roleName}', ' ', '-')" name="key_roleName" />
+		<var method="StringUtil#lowerCase('${key_roleName}')" name="key_roleName" />
+
+		<execute function="SelectFrame" locator1="Permissions#PERMISSIONS_IFRAME" />
+		<execute function="AssertTextEquals" locator1="Permissions#HEADER_TITLE" value1="${bookmarksEntryName}" />
+		<execute function="Uncheck" locator1="Permissions#CONTENT_PERMISSIONS_VIEW_CHECKBOX" value1="${roleName}" />
+		<execute function="AssertClick" locator1="Permissions#SAVE_BUTTON" value1="Save" />
+		<execute function="SelectFrame" value1="relative=top" />
+	</command>
+
+	<command name="viewBookmarksEntry">
+		<var name="key_bookmarksEntryName" value="${bookmarksEntryName}" />
+
+		<execute macro="SOBookmarks#viewBookmarksEntryPopUp">
+			<var name="bookmarksEntryName" value="${bookmarksEntryName}" />
+			<var name="bookmarksEntryUrl" value="${bookmarksEntryUrl}" />
+		</execute>
+
+		<execute function="AssertClick" locator1="SOBookmarks#BOOKMARKS_ENTRY_ACTIONS" value1="Actions" />
+		<execute function="AssertClick" locator1="SOBookmarks#BOOKMARKS_ACTIONS_MENULIST_EDIT" value1="Edit" />
+
+		<execute function="AssertTextEquals" locator1="SOBookmarksAdd#NAME_FIELD" value1="${bookmarksEntryName}" />
+		<execute function="AssertTextEquals" locator1="SOBookmarksAdd#URL_FIELD" value1="${bookmarksEntryUrl}" />
+		<execute function="AssertTextEquals" locator1="SOBookmarksAdd#DESCRIPTION_FIELD" value1="${bookmarksEntryDescription}" />
+	</command>
+
+	<command name="viewBookmarksEntryPopUp">
+		<var name="key_bookmarksEntryName" value="${bookmarksEntryName}" />
+
+		<execute function="Click" locator1="SOBookmarks#BOOKMARKS_ENTRY_LINK" />
+
+		<if>
+			<equals arg1="${bookmarksEntryUrl}" arg2="http://www.google.com" />
+			<then>
+				<execute function="SelectWindow" locator1="SOBookmarks#BOOKMARKS_POP_UP_GOOGLE" />
+				<execute function="AssertElementPresent" locator1="SOBookmarks#BOOKMARKS_POP_UP_IMAGE_GOOGLE" />
+				<execute function="Close#closeWindow" locator1="SOBookmarks#BOOKMARKS_POP_UP_GOOGLE" />
+			</then>
+			<elseif>
+				<equals arg1="${bookmarksEntryUrl}" arg2="http://www.bing.com" />
+				<then>
+					<execute function="SelectWindow" locator1="SOBookmarks#BOOKMARKS_POP_UP_BING" />
+					<execute function="AssertElementPresent" locator1="SOBookmarks#BOOKMARKS_POP_UP_IMAGE_BING" />
+					<execute function="Close#closeWindow" locator1="SOBookmarks#BOOKMARKS_POP_UP_BING" />
+				</then>
+			</elseif>
+			<else>
+				<execute function="SelectWindow" locator1="SOBookmarks#BOOKMARKS_POP_UP_WIRED" />
+				<execute function="AssertElementPresent" locator1="SOBookmarks#BOOKMARKS_POP_UP_IMAGE_WIRED" />
+				<execute function="Close#closeWindow" locator1="SOBookmarks#BOOKMARKS_POP_UP_WIRED" />
+			</else>
+		</if>
+	</command>
+
+	<command name="viewViewPermissionsPG">
+		<var name="key_bookmarksEntryName" value="${bookmarksEntryName}" />
+
+		<execute function="AssertClick" locator1="SOBookmarks#BOOKMARKS_ENTRY_ACTIONS" value1="Actions" />
+		<execute function="AssertClick" locator1="SOBookmarks#BOOKMARKS_ACTIONS_MENULIST_PERMISSIONS" value1="Permissions" />
+
+		<var method="StringUtil#replace('${roleName}', ' ', '-')" name="key_roleName" />
+		<var method="StringUtil#lowerCase('${key_roleName}')" name="key_roleName" />
+
+		<execute function="SelectFrame" locator1="Permissions#PERMISSIONS_IFRAME" />
+		<execute function="AssertTextEquals" locator1="Permissions#HEADER_TITLE" value1="${bookmarksEntryName}" />
+
+		<if>
+			<equals arg1="${viewPermissionValue}" arg2="checked" />
+			<then>
+				<execute function="AssertChecked" locator1="Permissions#CONTENT_PERMISSIONS_VIEW_CHECKBOX" value1="${roleName}" />
+			</then>
+			<elseif>
+				<equals arg1="${viewPermissionValue}" arg2="unchecked" />
+				<then>
+					<execute function="AssertNotChecked" locator1="Permissions#CONTENT_PERMISSIONS_VIEW_CHECKBOX" value1="${roleName}" />
+				</then>
+			</elseif>
+			<else>
+				<execute function="AssertChecked" locator1="Permissions#CONTENT_PERMISSIONS_VIEW_CHECKBOX" value1="${roleName}" />
+			</else>
+		</if>
+
+		<execute function="SelectFrame" value1="relative=top" />
+	</command>
+</definition>

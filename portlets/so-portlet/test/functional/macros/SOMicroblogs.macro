@@ -1,0 +1,1483 @@
+<definition>
+	<command name="addMicroblogsEntry">
+		<if>
+			<condition function="IsElementNotPresent" locator1="SOMicroblogs#MICROBLOGS_ENTRY_CONTENT_GENERAL" />
+			<then>
+				<execute function="AssertTextEquals" locator1="SOMicroblogs#INFO_MESSAGE" value1="You do not have any microblog entries." />
+			</then>
+		</if>
+
+		<execute function="Click" locator1="SOMicroblogs#MICROBLOGS_CONTENT_FIELD" />
+		<execute function="SelectFrameTop" />
+
+		<execute macro="SOMicroblogs#selectViewableByCmd">
+			<var name="editInDashboard" value="${editInDashboard}" />
+			<var name="microblogsEntryViewableBy" value="${microblogsEntryViewableBy}" />
+		</execute>
+
+		<execute function="Click" locator1="SOMicroblogs#MICROBLOGS_CONTENT_INPUT_FIELD" />
+		<execute function="Type#sendKeys" locator1="SOMicroblogs#MICROBLOGS_CONTENT_INPUT_FIELD" value1="${microblogsEntryContent}" />
+
+		<execute macro="SOMicroblogs#viewCharacterCountdownCmd" />
+
+		<execute function="Click" locator1="SOMicroblogs#POST_BUTTON" />
+
+		<if>
+			<isset var="microblogsEntryPartialContent" />
+			<then>
+				<var name="key_microblogsEntryContent" value="${microblogsEntryPartialContent}" />
+			</then>
+			<else>
+				<var name="key_microblogsEntryContent" value="${microblogsEntryContent}" />
+			</else>
+		</if>
+
+		<execute function="AssertTextEquals" locator1="SOMicroblogs#MICROBLOGS_ENTRY_CONTENT" value1="${microblogsEntryContent}" />
+	</command>
+
+	<command name="addMicroblogsEntryComment">
+		<execute macro="SOMicroblogs#viewMicroblogsEntryAuthor">
+			<var name="microblogsEntryAuthorName" value="${microblogsEntryAuthorName}" />
+			<var name="microblogsEntryContent" value="${microblogsEntryContent}" />
+			<var name="microblogsEntryPartialContent" value="${microblogsEntryPartialContent}" />
+			<var name="microblogsEntryRepostAuthorName" value="${microblogsEntryRepostAuthorName}" />
+		</execute>
+
+		<var name="key_microblogsEntryContent" value="${microblogsEntryContent}" />
+
+		<execute function="AssertTextEquals" locator1="SOMicroblogs#MICROBLOGS_ENTRY_CONTENT" value1="${microblogsEntryContent}" />
+
+		<if>
+			<condition function="IsElementPresent" locator1="SOMicroblogs#MICROBLOGS_CONTENT_FIELD" />
+			<then>
+				<execute macro="SOMicroblogs#displayMicroblogsCommentTextFieldCmd">
+					<var name="commentCount" value="${commentCount}" />
+					<var name="microblogsEntryContent" value="${microblogsEntryContent}" />
+				</execute>
+
+				<execute function="Click" locator1="SOMicroblogs#MICROBLOGS_ENTRY_COMMENT_CONTENT_FIELD" />
+				<execute function="Click" locator1="SOMicroblogs#MICROBLOGS_CONTENT_INPUT_FIELD" />
+				<execute function="Type#sendKeys" locator1="SOMicroblogs#MICROBLOGS_CONTENT_INPUT_FIELD" value1="${microblogsEntryCommentContent}" />
+
+				<execute macro="SOMicroblogs#viewCharacterCountdownCmd">
+					<var name="characterCountdown" value="${characterCountdown}" />
+					<var name="commentInDashboard" value="true" />
+					<var name="editInDashboard" value="${editInDashboard}" />
+					<var name="textFieldContent?length()" value="${textFieldContent?length()}" />
+					<var name="textFieldContentLength" value="${textFieldContentLength}" />
+				</execute>
+
+				<execute function="Click" locator1="SOMicroblogs#MICROBLOGS_ENTRY_COMMENT_POST_BUTTON" />
+
+				<var name="key_microblogsEntryCommentContent" value="${microblogsEntryCommentContent}" />
+
+				<execute function="AssertTextEquals" locator1="SOMicroblogs#MICROBLOGS_ENTRY_COMMENT_CONTENT" value1="${microblogsEntryCommentContent}" />
+			</then>
+			<else>
+				<execute macro="SOMicroblogs#displayMicroblogsCommentTextFieldCmd">
+					<var name="commentCount" value="${commentCount}" />
+					<var name="microblogsEntryContent" value="${microblogsEntryContent}" />
+				</execute>
+
+				<execute function="Click" locator1="SOMicroblogs#MICROBLOGS_CONTENT_FIELD" />
+				<execute function="Click" locator1="SOMicroblogs#MICROBLOGS_CONTENT_INPUT_FIELD" />
+				<execute function="Type#sendKeys" locator1="SOMicroblogs#MICROBLOGS_CONTENT_INPUT_FIELD" value1="${microblogsEntryCommentContent}" />
+
+				<execute macro="SOMicroblogs#viewCharacterCountdownCmd" />
+
+				<execute function="Click" locator1="SOMicroblogs#POST_BUTTON" />
+
+				<var name="key_microblogsEntryCommentContent" value="${microblogsEntryCommentContent}" />
+
+				<execute function="AssertTextEquals" locator1="SOMicroblogs#MICROBLOGS_ENTRY_COMMENT_CONTENT" value1="${microblogsEntryCommentContent}" />
+			</else>
+		</if>
+	</command>
+
+	<command name="addMicroblogsEntryCommentMention">
+		<execute macro="SOMicroblogs#viewMicroblogsEntryAuthor">
+			<var name="microblogsEntryAuthorName" value="${microblogsEntryAuthorName}" />
+			<var name="microblogsEntryContent" value="${microblogsEntryContent}" />
+			<var name="microblogsEntryPartialContent" value="${microblogsEntryPartialContent}" />
+			<var name="microblogsEntryRepostAuthorName" value="${microblogsEntryRepostAuthorName}" />
+		</execute>
+
+		<var name="key_microblogsEntryContent" value="${microblogsEntryContent}" />
+
+		<execute function="AssertTextEquals" locator1="SOMicroblogs#MICROBLOGS_ENTRY_CONTENT" value1="${microblogsEntryContent}" />
+
+		<execute macro="SOMicroblogs#displayMicroblogsCommentTextFieldCmd">
+			<var name="commentCount" value="${commentCount}" />
+			<var name="microblogsEntryContent" value="${microblogsEntryContent}" />
+		</execute>
+
+		<if>
+			<condition function="IsElementPresent" locator1="SOMicroblogs#MICROBLOGS_ENTRY_COMMENT_CONTENT_FIELD" />
+			<then>
+				<execute function="Click" locator1="SOMicroblogs#MICROBLOGS_ENTRY_COMMENT_CONTENT_FIELD" />
+				<execute function="Click" locator1="SOMicroblogs#MICROBLOGS_CONTENT_INPUT_FIELD" />
+				<execute function="Type#sendKeys" locator1="SOMicroblogs#MICROBLOGS_CONTENT_INPUT_FIELD" value1="${microblogsEntryCommentContent} @${mentionUserFirstName}" />
+
+				<execute macro="SOMicroblogs#viewCharacterCountdownCmd">
+					<var name="characterCountdown" value="${characterCountdown}" />
+					<var name="commentInDashboard" value="true" />
+					<var name="editInDashboard" value="${editInDashboard}" />
+					<var name="textFieldContent?length()" value="${textFieldContent?length()}" />
+					<var name="textFieldContentLength" value="${textFieldContentLength}" />
+				</execute>
+
+				<execute function="AssertTextEquals" locator1="SOMicroblogs#MICROBLOGS_CONTENT_AUTOCOMPLETE_USERNAME" value1="${mentionUserName}" />
+				<execute function="AssertTextEquals" locator1="SOMicroblogs#MICROBLOGS_CONTENT_AUTOCOMPLETE_EMAIL" value1="${mentionUserEmailAddress}" />
+				<execute function="Click" locator1="SOMicroblogs#MICROBLOGS_CONTENT_AUTOCOMPLETE_USERNAME" value1="${mentionUserEmailAddress}" />
+				<execute function="Click" locator1="SOMicroblogs#MICROBLOGS_ENTRY_COMMENT_POST_BUTTON" />
+
+				<var name="key_microblogsEntryCommentContent" value="${microblogsEntryCommentContent}" />
+
+				<execute function="AssertTextEquals" locator1="SOMicroblogs#MICROBLOGS_ENTRY_COMMENT_CONTENT" value1="${microblogsEntryCommentContent} ${mentionUserName}" />
+			</then>
+			<else>
+				<execute function="Click" locator1="SOMicroblogs#MICROBLOGS_CONTENT_FIELD" />
+				<execute function="Click" locator1="SOMicroblogs#MICROBLOGS_CONTENT_INPUT_FIELD" />
+				<execute function="Type#sendKeys" locator1="SOMicroblogs#MICROBLOGS_CONTENT_INPUT_FIELD" value1="${microblogsEntryCommentContent} @${mentionUserFirstName}" />
+
+				<execute macro="SOMicroblogs#viewCharacterCountdownCmd" />
+
+				<execute function="AssertTextEquals" locator1="SOMicroblogs#MICROBLOGS_CONTENT_AUTOCOMPLETE_USERNAME" value1="${mentionUserName}" />
+				<execute function="AssertTextEquals" locator1="SOMicroblogs#MICROBLOGS_CONTENT_AUTOCOMPLETE_EMAIL" value1="${mentionUserEmailAddress}" />
+				<execute function="Click" locator1="SOMicroblogs#MICROBLOGS_CONTENT_AUTOCOMPLETE_USERNAME" value1="${mentionUserEmailAddress}" />
+				<execute function="Click" locator1="SOMicroblogs#POST_BUTTON" />
+
+				<var name="key_microblogsEntryCommentContent" value="${microblogsEntryCommentContent}" />
+
+				<execute function="AssertTextEquals" locator1="SOMicroblogs#MICROBLOGS_ENTRY_COMMENT_CONTENT" value1="${microblogsEntryCommentContent} ${mentionUserName}" />
+			</else>
+		</if>
+	</command>
+
+	<command name="addMicroblogsEntryCommentViaProfile">
+		<execute macro="Page#gotoPG">
+			<var name="defaultURL" value="${defaultURL}" />
+			<var name="nodePort" value="${nodePort}" />
+			<var name="pageName" value="Contacts Center" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute function="Type#typePause" locator1="SOContactscenter#CONTACTS_LIST_SEARCH" value1="${microblogsEntryAuthorScreenName}" />
+		<execute function="AssertClick#pauseAssertTextClickAt" locator1="SOContactscenter#CONTACTS_LIST_NAME" value1="${microblogsEntryAuthorLastName}, ${microblogsEntryAuthorFirstName}" />
+		<execute function="AssertClick" locator1="SOContactscenter#USER_DETAILS_NAME" value1="${microblogsEntryAuthorName}" />
+
+		<execute function="Click" locator1="SOProfile#NAVIGATION_MICROBLOGS" value1="Microblogs" />
+
+		<var name="key_microblogsEntryContent" value="${microblogsEntryContent}" />
+
+		<execute function="AssertTextEquals" locator1="SOMicroblogsProfile#MICROBLOGS_ENTRY_CONTENT" value1="${microblogsEntryContent}" />
+
+		<execute macro="SOMicroblogs#displayMicroblogsCommentTextFieldCmd">
+			<var name="commentCount" value="${commentCount}" />
+			<var name="microblogsEntryContent" value="${microblogsEntryContent}" />
+		</execute>
+
+		<execute function="Click" locator1="SOMicroblogsProfile#MICROBLOGS_ENTRY_COMMENT_CONTENT_FIELD" />
+		<execute function="Click" locator1="SOMicroblogsProfile#MICROBLOGS_ENTRY_COMMENT_CONTENT_INPUT_FIELD" />
+		<execute function="Type#sendKeys" locator1="SOMicroblogsProfile#MICROBLOGS_ENTRY_COMMENT_CONTENT_INPUT_FIELD" value1="${microblogsEntryCommentContent}" />
+
+		<execute macro="SOMicroblogs#viewCharacterCountdownCmd" />
+
+		<execute function="Click" locator1="SOMicroblogsProfile#MICROBLOGS_ENTRY_COMMENT_POST_BUTTON" />
+
+		<var name="key_microblogsEntryCommentContent" value="${microblogsEntryCommentContent}" />
+
+		<execute function="AssertTextEquals" locator1="SOMicroblogsProfile#MICROBLOGS_ENTRY_COMMENT_CONTENT" value1="${microblogsEntryCommentContent}" />
+	</command>
+
+	<command name="addMicroblogsEntryInvalid">
+		<if>
+			<condition function="IsElementNotPresent" locator1="SOMicroblogs#MICROBLOGS_ENTRY_CONTENT_GENERAL" />
+			<then>
+				<execute function="AssertTextEquals" locator1="SOMicroblogs#INFO_MESSAGE" value1="You do not have any microblog entries." />
+			</then>
+		</if>
+
+		<execute function="Click" locator1="SOMicroblogs#MICROBLOGS_CONTENT_FIELD" />
+		<execute function="Click" locator1="SOMicroblogs#MICROBLOGS_CONTENT_INPUT_FIELD" />
+		<execute function="Type#sendKeys" locator1="SOMicroblogs#MICROBLOGS_CONTENT_INPUT_FIELD" value1="${microblogsEntryContent}" />
+
+		<execute macro="SOMicroblogs#viewCharacterCountdownCmd" />
+
+		<execute function="Click" locator1="SOMicroblogs#POST_BUTTON" />
+		<execute function="Pause" value1="1000" />
+
+		<execute macro="Page#gotoPG">
+			<var name="defaultURL" value="${defaultURL}" />
+			<var name="nodePort" value="${nodePort}" />
+			<var name="pageName" value="Microblogs" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute function="AssertTextNotPresent" value1="${microblogsEntryContent}" />
+	</command>
+
+	<command name="addMicroblogsEntryMention">
+		<if>
+			<condition function="IsElementNotPresent" locator1="SOMicroblogs#MICROBLOGS_ENTRY_CONTENT_GENERAL" />
+			<then>
+				<execute function="AssertTextEquals" locator1="SOMicroblogs#INFO_MESSAGE" value1="You do not have any microblog entries." />
+			</then>
+		</if>
+
+		<execute function="Click" locator1="SOMicroblogs#MICROBLOGS_CONTENT_FIELD" />
+		<execute function="SelectFrameTop" />
+
+		<execute macro="SOMicroblogs#selectViewableByCmd">
+			<var name="editInDashboard" value="${editInDashboard}" />
+			<var name="microblogsEntryViewableBy" value="${microblogsEntryViewableBy}" />
+		</execute>
+
+		<execute function="Click" locator1="SOMicroblogs#MICROBLOGS_CONTENT_INPUT_FIELD" />
+
+		<execute function="Type#sendKeys" locator1="SOMicroblogs#MICROBLOGS_CONTENT_INPUT_FIELD" value1="${microblogsEntryContent} @${mentionUserFirstName}" />
+
+		<execute macro="SOMicroblogs#viewCharacterCountdownCmd" />
+
+		<execute function="AssertTextEquals" locator1="SOMicroblogs#MICROBLOGS_CONTENT_AUTOCOMPLETE_USERNAME" value1="${mentionUserName}" />
+		<execute function="AssertTextEquals" locator1="SOMicroblogs#MICROBLOGS_CONTENT_AUTOCOMPLETE_EMAIL" value1="${mentionUserEmailAddress}" />
+		<execute function="Click" locator1="SOMicroblogs#MICROBLOGS_CONTENT_AUTOCOMPLETE_USERNAME" value1="${mentionUserName}" />
+		<execute function="Click" locator1="SOMicroblogs#POST_BUTTON" />
+
+		<var name="key_microblogsEntryContent" value="${microblogsEntryContent} ${mentionUserName}" />
+
+		<execute function="AssertTextEquals" locator1="SOMicroblogs#MICROBLOGS_ENTRY_CONTENT" value1="${microblogsEntryContent} ${mentionUserName}" />
+	</command>
+
+	<command name="addMicroblogsEntryMentions">
+		<if>
+			<condition function="IsElementNotPresent" locator1="SOMicroblogs#MICROBLOGS_ENTRY_CONTENT_GENERAL" />
+			<then>
+				<execute function="AssertTextEquals" locator1="SOMicroblogs#INFO_MESSAGE" value1="You do not have any microblog entries." />
+			</then>
+		</if>
+
+		<execute function="Click" locator1="SOMicroblogs#MICROBLOGS_CONTENT_FIELD" />
+		<execute function="SelectFrameTop" />
+
+		<execute macro="SOMicroblogs#selectViewableByCmd">
+			<var name="editInDashboard" value="${editInDashboard}" />
+			<var name="microblogsEntryViewableBy" value="${microblogsEntryViewableBy}" />
+		</execute>
+
+		<execute function="Click" locator1="SOMicroblogs#MICROBLOGS_CONTENT_INPUT_FIELD" />
+		<execute function="Type#sendKeys" locator1="SOMicroblogs#MICROBLOGS_CONTENT_INPUT_FIELD" value1="${microblogsEntryContent} " />
+
+		<for list="${mentionUserNameList}" param="mentionUserName">
+			<execute function="Type#sendKeys" locator1="SOMicroblogs#MICROBLOGS_CONTENT_INPUT_FIELD" value1=" @${mentionUserName}" />
+			<execute function="Click" locator1="SOMicroblogs#MICROBLOGS_CONTENT_AUTOCOMPLETE_USERNAME" value1="${mentionUserName}" />
+			<execute function="Type#sendKeys" locator1="SOMicroblogs#MICROBLOGS_CONTENT_INPUT_FIELD" value1=" " />
+		</for>
+
+		<execute function="Click" locator1="SOMicroblogs#POST_BUTTON" />
+	</command>
+
+	<command name="deleteAndEditMicroblogsEntry">
+		<execute function="MakeVisible" locator1="SOMicroblogs#MICROBLOGS_ENTRY_EDIT" />
+		<execute function="Click#makeVisibleClickAt" locator1="SOMicroblogs#MICROBLOGS_ENTRY_EDIT_LINK" />
+		<execute function="Click" locator1="SOMicroblogs#MICROBLOGS_ENTRY_CONTENT_EDIT_FIELD" />
+		<execute function="SelectFrameTop" />
+
+		<execute macro="SOMicroblogs#selectViewableByCmd">
+			<var name="editInDashboard" value="true" />
+			<var name="microblogsEntryViewableBy" value="${microblogsEntryViewableBy}" />
+		</execute>
+
+		<execute function="Click" locator1="SOMicroblogs#MICROBLOGS_CONTENT_INPUT_FIELD" />
+
+		<execute macro="SOMicroblogs#deleteMicroblogsTextFieldCmd" />
+
+		<execute function="Type#sendKeys" locator1="SOMicroblogs#MICROBLOGS_CONTENT_INPUT_FIELD" value1="${microblogsEntryContentEdit}" />
+
+		<execute macro="SOMicroblogs#viewCharacterCountdownCmd">
+			<var name="characterCountdown" value="${characterCountdown}" />
+			<var name="editInDashboard" value="true" />
+			<var name="textFieldContent?length()" value="${textFieldContent?length()}" />
+			<var name="textFieldContentLength" value="${textFieldContentLength}" />
+		</execute>
+
+		<execute function="Click" locator1="SOMicroblogs#MICROBLOGS_ENTRY_CONTENT_EDIT_POST_BUTTON" />
+
+		<var name="key_microblogsEntryContent" value="${microblogsEntryContentEdit}" />
+
+		<execute function="AssertTextEquals" locator1="SOMicroblogs#MICROBLOGS_ENTRY_CONTENT" value1="${microblogsEntryContentEdit}" />
+	</command>
+
+	<command name="deleteAndEditMicroblogsEntryMention">
+		<execute function="MakeVisible" locator1="SOMicroblogs#MICROBLOGS_ENTRY_EDIT" />
+		<execute function="Click#makeVisibleClickAt" locator1="SOMicroblogs#MICROBLOGS_ENTRY_EDIT_LINK" />
+		<execute function="Click" locator1="SOMicroblogs#MICROBLOGS_ENTRY_CONTENT_EDIT_FIELD" />
+		<execute function="SelectFrameTop" />
+
+		<execute macro="SOMicroblogs#selectViewableByCmd">
+			<var name="editInDashboard" value="true" />
+			<var name="microblogsEntryViewableBy" value="${microblogsEntryViewableBy}" />
+		</execute>
+
+		<execute function="Click" locator1="SOMicroblogs#MICROBLOGS_CONTENT_INPUT_FIELD" />
+
+		<execute macro="SOMicroblogs#deleteMicroblogsTextFieldCmd" />
+
+		<execute function="Type#sendKeys" locator1="SOMicroblogs#MICROBLOGS_CONTENT_INPUT_FIELD" value1="${microblogsEntryContentEdit} @${mentionUserFirstName}" />
+
+		<execute macro="SOMicroblogs#viewCharacterCountdownCmd">
+			<var name="characterCountdown" value="${characterCountdown}" />
+			<var name="editInDashboard" value="true" />
+			<var name="textFieldContent?length()" value="${textFieldContent?length()}" />
+			<var name="textFieldContentLength" value="${textFieldContentLength}" />
+		</execute>
+
+		<execute function="AssertTextEquals" locator1="SOMicroblogs#MICROBLOGS_CONTENT_AUTOCOMPLETE_USERNAME" value1="${mentionUserName}" />
+		<execute function="AssertTextEquals" locator1="SOMicroblogs#MICROBLOGS_CONTENT_AUTOCOMPLETE_EMAIL" value1="${mentionUserEmailAddress}" />
+		<execute function="Click" locator1="SOMicroblogs#MICROBLOGS_CONTENT_AUTOCOMPLETE_USERNAME" value1="${mentionUserName}" />
+		<execute function="Click" locator1="SOMicroblogs#MICROBLOGS_ENTRY_CONTENT_EDIT_POST_BUTTON" />
+
+		<var name="key_microblogsEntryContent" value="${microblogsEntryContentEdit} ${mentionUserName}" />
+
+		<execute function="AssertTextEquals" locator1="SOMicroblogs#MICROBLOGS_ENTRY_CONTENT" value1="${microblogsEntryContentEdit} ${mentionUserName}" />
+	</command>
+
+	<command name="deleteMicroblogsEntry">
+		<execute function="MakeVisible" locator1="SOMicroblogs#MICROBLOGS_ENTRY_DELETE" />
+		<execute function="ClickNoError#makeVisibleClick" locator1="SOMicroblogs#MICROBLOGS_ENTRY_DELETE_LINK" value1="Delete" />
+		<execute function="Confirm" value1="Are you sure you want to delete this post?" />
+	</command>
+
+	<command name="deleteMicroblogsEntryComment">
+		<var name="key_microblogsEntryCommentContent" value="${microblogsEntryCommentContent}" />
+		<var name="key_microblogsEntryContent" value="${microblogsEntryContent}" />
+
+		<if>
+			<isset var="commentCount" />
+			<then>
+				<execute function="AssertClick" locator1="SOMicroblogs#MICROBLOGS_ENTRY_COMMENT_LINK" value1="${commentCount} Comments" />
+			</then>
+			<else>
+				<execute function="AssertClick" locator1="SOMicroblogs#MICROBLOGS_ENTRY_COMMENT_LINK" value1="1 Comment" />
+			</else>
+		</if>
+
+		<execute function="MakeVisible" locator1="SOMicroblogs#MICROBLOGS_ENTRY_COMMENT_DELETE" />
+		<execute function="ClickNoError" locator1="SOMicroblogs#MICROBLOGS_ENTRY_COMMENT_DELETE_LINK" value1="Delete" />
+		<execute function="Confirm" value1="Are you sure you want to delete this post?" />
+	</command>
+
+	<command name="deleteMicroblogsEntryCommentViaProfile">
+		<var name="key_microblogsEntryCommentContent" value="${microblogsEntryCommentContent}" />
+		<var name="key_microblogsEntryContent" value="${microblogsEntryContent}" />
+
+		<execute function="Click" locator1="Dockbar#USER_NAME" />
+		<execute function="Click" locator1="Dockbar#USER_MY_PROFILE" value1="My Profile" />
+
+		<execute function="Click" locator1="SOProfile#NAVIGATION_MICROBLOGS" value1="Microblogs" />
+
+		<if>
+			<isset var="commentCount" />
+			<then>
+				<execute function="AssertClick" locator1="SOMicroblogsProfile#MICROBLOGS_ENTRY_COMMENT_LINK" value1="${commentCount} Comments" />
+			</then>
+			<else>
+				<execute function="AssertClick" locator1="SOMicroblogsProfile#MICROBLOGS_ENTRY_COMMENT_LINK" value1="1 Comment" />
+			</else>
+		</if>
+
+		<execute function="MakeVisible" locator1="SOMicroblogsProfile#MICROBLOGS_ENTRY_COMMENT_DELETE" />
+		<execute function="ClickNoError" locator1="SOMicroblogsProfile#MICROBLOGS_ENTRY_COMMENT_DELETE_LINK" value1="Delete" />
+		<execute function="Confirm" value1="Are you sure you want to delete this post?" />
+	</command>
+
+	<command name="deleteMicroblogsEntryViaProfile">
+		<execute function="Click" locator1="Dockbar#USER_NAME" />
+		<execute function="Click" locator1="Dockbar#USER_MY_PROFILE" value1="My Profile" />
+
+		<execute function="Click" locator1="SOProfile#NAVIGATION_MICROBLOGS" value1="Microblogs" />
+
+		<execute function="MakeVisible" locator1="SOMicroblogsProfile#MICROBLOGS_ENTRY_DELETE" />
+		<execute function="ClickNoError#makeVisibleClick" locator1="SOMicroblogsProfile#MICROBLOGS_ENTRY_DELETE_LINK" value1="Delete" />
+		<execute function="Confirm" value1="Are you sure you want to delete this post?" />
+	</command>
+
+	<command name="deleteMicroblogsTextFieldCmd">
+		<while>
+			<condition function="IsElementNotPresent" locator1="SOMicroblogs#MICROBLOGS_ENTRY_CONTENT_EDIT_COUNTDOWN_WARNING" />
+			<then>
+				<execute function="KeyPress" locator1="SOMicroblogs#MICROBLOGS_CONTENT_INPUT_FIELD" value1="\BACK_SPACE" />
+				<execute function="KeyPress" locator1="SOMicroblogs#MICROBLOGS_CONTENT_INPUT_FIELD" value1="\BACK_SPACE" />
+				<execute function="KeyPress" locator1="SOMicroblogs#MICROBLOGS_CONTENT_INPUT_FIELD" value1="\BACK_SPACE" />
+				<execute function="KeyPress" locator1="SOMicroblogs#MICROBLOGS_CONTENT_INPUT_FIELD" value1="\BACK_SPACE" />
+				<execute function="KeyPress" locator1="SOMicroblogs#MICROBLOGS_CONTENT_INPUT_FIELD" value1="\BACK_SPACE" />
+				<execute function="KeyPress" locator1="SOMicroblogs#MICROBLOGS_CONTENT_INPUT_FIELD" value1="\BACK_SPACE" />
+				<execute function="KeyPress" locator1="SOMicroblogs#MICROBLOGS_CONTENT_INPUT_FIELD" value1="\BACK_SPACE" />
+				<execute function="KeyPress" locator1="SOMicroblogs#MICROBLOGS_CONTENT_INPUT_FIELD" value1="\BACK_SPACE" />
+				<execute function="KeyPress" locator1="SOMicroblogs#MICROBLOGS_CONTENT_INPUT_FIELD" value1="\BACK_SPACE" />
+				<execute function="KeyPress" locator1="SOMicroblogs#MICROBLOGS_CONTENT_INPUT_FIELD" value1="\BACK_SPACE" />
+			</then>
+		</while>
+	</command>
+
+	<command name="displayMicroblogsCommentTextFieldCmd">
+		<var name="key_microblogsEntryContent" value="${microblogsEntryContent}" />
+
+		<if>
+			<not>
+				<contains string="${commentCount}" substring="{commentCount}" />
+			</not>
+			<then>
+				<if>
+					<equals arg1="${commentCount}" arg2="1" />
+					<then>
+						<execute function="AssertClick" locator1="SOMicroblogs#MICROBLOGS_ENTRY_COMMENT_LINK" value1="1 Comment" />
+					</then>
+					<else>
+						<execute function="AssertClick" locator1="SOMicroblogs#MICROBLOGS_ENTRY_COMMENT_LINK" value1="${commentCount} Comments" />
+					</else>
+				</if>
+			</then>
+			<else>
+				<execute function="AssertClick" locator1="SOMicroblogs#MICROBLOGS_ENTRY_COMMENT_LINK" value1="Comment" />
+			</else>
+		</if>
+	</command>
+
+	<command name="editMicroblogsEntry">
+		<execute function="MakeVisible" locator1="SOMicroblogs#MICROBLOGS_ENTRY_EDIT" />
+		<execute function="Click#makeVisibleClickAt" locator1="SOMicroblogs#MICROBLOGS_ENTRY_EDIT_LINK" />
+
+		<execute function="Click" locator1="SOMicroblogs#MICROBLOGS_ENTRY_CONTENT_EDIT_FIELD" />
+		<execute function="SelectFrameTop" />
+
+		<execute macro="SOMicroblogs#selectViewableByCmd">
+			<var name="editInDashboard" value="true" />
+			<var name="microblogsEntryViewableBy" value="${microblogsEntryViewableBy}" />
+		</execute>
+
+		<execute function="Click" locator1="SOMicroblogs#MICROBLOGS_CONTENT_INPUT_FIELD" />
+
+		<execute function="Type#sendKeys" locator1="SOMicroblogs#MICROBLOGS_CONTENT_INPUT_FIELD" value1=" Edit" />
+
+		<execute macro="SOMicroblogs#viewCharacterCountdownCmd">
+			<var name="characterCountdown" value="${characterCountdown}" />
+			<var name="editInDashboard" value="true" />
+			<var name="textFieldContent?length()" value="${textFieldContent?length()}" />
+			<var name="textFieldContentLength" value="${textFieldContentLength}" />
+		</execute>
+
+		<execute function="Click" locator1="SOMicroblogs#MICROBLOGS_ENTRY_CONTENT_EDIT_POST_BUTTON" />
+
+		<var name="key_microblogsEntryContent" value="${microblogsEntryContent} Edit" />
+
+		<execute function="AssertTextEquals" locator1="SOMicroblogs#MICROBLOGS_ENTRY_CONTENT" value1="${microblogsEntryContent} Edit" />
+	</command>
+
+	<command name="editMicroblogsEntryViaProfile">
+		<execute function="Click" locator1="Dockbar#USER_NAME" />
+		<execute function="Click" locator1="Dockbar#USER_MY_PROFILE" value1="My Profile" />
+
+		<execute function="Click" locator1="SOProfile#NAVIGATION_MICROBLOGS" value1="Microblogs" />
+
+		<execute function="AssertTextEquals" locator1="SOMicroblogsProfile#MICROBLOGS_ENTRY_CONTENT" value1="${microblogsEntryContent}" />
+		<execute function="MakeVisible" locator1="SOMicroblogsProfile#MICROBLOGS_ENTRY_EDIT" />
+		<execute function="Click#makeVisibleClickAt" locator1="SOMicroblogsProfile#MICROBLOGS_ENTRY_EDIT_LINK" />
+
+		<execute function="Click" locator1="SOMicroblogsProfile#MICROBLOGS_ENTRY_CONTENT_EDIT_FIELD" />
+		<execute function="SelectFrameTop" />
+
+		<execute macro="SOMicroblogs#selectViewableByCmd">
+			<var name="editInDashboard" value="${editInDashboard}" />
+			<var name="microblogsEntryViewableBy" value="${microblogsEntryViewableBy}" />
+		</execute>
+
+		<execute function="Click" locator1="SOMicroblogsProfile#MICROBLOGS_ENTRY_CONTENT_EDIT_INPUT_FIELD" />
+		<execute function="Type#sendKeys" locator1="SOMicroblogsProfile#MICROBLOGS_ENTRY_CONTENT_EDIT_INPUT_FIELD" value1=" Edit" />
+
+		<execute macro="SOMicroblogs#viewCharacterCountdownCmd" />
+
+		<execute function="Click" locator1="SOMicroblogsProfile#MICROBLOGS_ENTRY_CONTENT_EDIT_POST_BUTTON" />
+
+		<var name="key_microblogsEntryContent" value="${microblogsEntryContent} Edit" />
+
+		<execute function="AssertTextEquals" locator1="SOMicroblogsProfile#MICROBLOGS_ENTRY_CONTENT" value1="${microblogsEntryContent} Edit" />
+	</command>
+
+	<command name="repostMicroblogsEntry">
+		<execute macro="SOMicroblogs#viewMicroblogsEntryViewableByEveryone" />
+
+		<execute function="AssertClick" locator1="SOMicroblogsProfile#MICROBLOGS_ENTRY_REPOST_LINK" value1="Repost" />
+
+		<execute function="AssertTextEquals" locator1="SOMicroblogsProfileRepost#HEADER" value1="Do you want to repost this entry?" />
+		<execute function="AssertTextEquals" locator1="SOMicroblogsProfile#MICROBLOGS_ENTRY_AUTHOR" value1="${microblogsEntryAuthorName}" />
+		<execute function="AssertTextEquals" locator1="SOMicroblogsProfileRepost#MICROBLOGS_ENTRY_CONTENT" value1="${microblogsEntryContent}" />
+		<execute function="AssertClick" locator1="SOMicroblogsProfileRepost#POST_BUTTON" value1="Post" />
+
+		<execute function="AssertElementPresent" locator1="SOProfile#USER_NAME" />
+	</command>
+
+	<command name="selectViewableByCmd">
+		<if>
+			<equals arg1="${editInDashboard}" arg2="true" />
+			<then>
+				<if>
+					<not>
+						<contains string="${microblogsEntryViewableBy}" substring="{microblogsEntryViewableBy}" />
+					</not>
+					<then>
+						<execute function="Select" locator1="SOMicroblogs#MICROBLOGS_ENTRY_CONTENT_EDIT_VIEW_FILTER" value1="${microblogsEntryViewableBy}" />
+					</then>
+					<else>
+						<execute function="Select" locator1="SOMicroblogs#MICROBLOGS_ENTRY_CONTENT_EDIT_VIEW_FILTER" value1="Everyone" />
+					</else>
+				</if>
+			</then>
+			<else>
+				<if>
+					<not>
+						<contains string="${microblogsEntryViewableBy}" substring="{microblogsEntryViewableBy}" />
+					</not>
+					<then>
+						<execute function="Select" locator1="SOMicroblogs#MICROBLOGS_CONTENT_VIEW_FILTER" value1="${microblogsEntryViewableBy}" />
+					</then>
+					<else>
+						<execute function="Select" locator1="SOMicroblogs#MICROBLOGS_CONTENT_VIEW_FILTER" value1="Everyone" />
+					</else>
+				</if>
+			</else>
+		</if>
+	</command>
+
+	<command name="tearDownMicroblogsEntry">
+		<execute macro="SOUser#firstLoginPG" />
+
+		<execute macro="Page#gotoPG">
+			<var name="defaultURL" value="${defaultURL}" />
+			<var name="nodePort" value="${nodePort}" />
+			<var name="pageName" value="Microblogs" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<while>
+			<condition function="IsElementPresent#pauseIsElementPresent" locator1="SOMicroblogs#MICROBLOGS_ENTRY_DELETE_LINK" value1="Delete" />
+			<then>
+				<execute function="MakeVisible" locator1="SOMicroblogs#MICROBLOGS_ENTRY_DELETE" />
+				<execute function="ClickNoError#makeVisibleClick" locator1="SOMicroblogs#MICROBLOGS_ENTRY_DELETE_LINK" value1="Delete" />
+				<execute function="Confirm" value1="Are you sure you want to delete this post?" />
+			</then>
+		</while>
+	</command>
+
+	<command name="unsubscribeFromMicroblogsEntryNotifications">
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute function="AssertElementPresent" locator1="SOUserBar#NOTIFICATION" />
+		<execute function="AssertTextEquals" locator1="SOUserBar#NOTIFICATION_MENU_COUNT" value1="1" />
+		<execute function="Click" locator1="SOUserBar#NOTIFICATION" />
+		<execute function="Click#makeVisibleClickAt" locator1="SOUserBar#NOTIFICATION_MENU_NOTIFICATION_DROPDOWN_BUTTON" />
+		<execute function="Click" locator1="SOUserBar#NOTIFICATION_MENU_NOTIFICATION_UNSUBSCRIBE" />
+		<execute function="AssertTextEquals" locator1="SOUserBar#NOTIFICATION_MENU_COUNT" value1="0" />
+	</command>
+
+	<command name="viewCharacterCountdownCmd">
+		<var attribute="value" locator="//textarea[contains(@name,'contentInput')]" name="textFieldContent" />
+		<var name="textFieldContentLength" value="${textFieldContent?length()}" />
+
+		<var method="MathUtil#difference('150', '${textFieldContentLength}')" name="characterCountdown" />
+
+		<if>
+			<equals arg1="${commentInDashboard}" arg2="true" />
+			<then>
+				<execute function="AssertTextEquals" locator1="SOMicroblogs#MICROBLOGS_ENTRY_COMMENT_CONTENT_COUNTDOWN" value1="${characterCountdown}" />
+			</then>
+			<elseif>
+				<equals arg1="${editInDashboard}" arg2="true" />
+				<then>
+					<execute function="AssertTextEquals" locator1="SOMicroblogs#MICROBLOGS_ENTRY_CONTENT_EDIT_COUNTDOWN" value1="${characterCountdown}" />
+				</then>
+			</elseif>
+			<else>
+				<execute function="AssertTextEquals" locator1="SOMicroblogs#MICROBLOGS_CONTENT_COUNTDOWN" value1="${characterCountdown}" />
+			</else>
+		</if>
+	</command>
+
+	<command name="viewMicroblogsEntryAuthor">
+		<if>
+			<and>
+				<isset var="microblogsEntryPartialContent" />
+				<not>
+					<contains string="${microblogsEntryPartialContent}" substring="{microblogsEntryPartialContent}" />
+				</not>
+			</and>
+			<then>
+				<var name="key_microblogsEntryContent" value="${microblogsEntryPartialContent}" />
+			</then>
+			<else>
+				<var name="key_microblogsEntryContent" value="${microblogsEntryContent}" />
+			</else>
+		</if>
+
+		<if>
+			<and>
+				<isset var="microblogsEntryRepostAuthorName" />
+				<not>
+					<contains string="${microblogsEntryRepostAuthorName}" substring="{microblogsEntryRepostAuthorName}" />
+				</not>
+			</and>
+			<then>
+				<execute function="AssertTextEquals" locator1="SOMicroblogs#MICROBLOGS_ENTRY_AUTHOR" value1="${microblogsEntryRepostAuthorName} Reposted From ${microblogsEntryAuthorName}" />
+			</then>
+			<else>
+				<execute function="AssertTextEquals" locator1="SOMicroblogs#MICROBLOGS_ENTRY_AUTHOR" value1="${microblogsEntryAuthorName}" />
+			</else>
+		</if>
+	</command>
+
+	<command name="viewMicroblogsEntryComment">
+		<var name="key_microblogsEntryCommentContent" value="${microblogsEntryCommentContent}" />
+		<var name="key_microblogsEntryContent" value="${microblogsEntryContent}" />
+
+		<if>
+			<equals arg1="${commentCount}" arg2="1" />
+			<then>
+				<execute function="AssertClick" locator1="SOMicroblogs#MICROBLOGS_ENTRY_COMMENT_LINK" value1="1 Comment" />
+			</then>
+			<else>
+				<execute function="AssertClick" locator1="SOMicroblogs#MICROBLOGS_ENTRY_COMMENT_LINK" value1="${commentCount} Comments" />
+			</else>
+		</if>
+
+		<execute function="AssertTextEquals" locator1="SOMicroblogs#MICROBLOGS_ENTRY_COMMENT_AUTHOR" value1="${microblogsEntryCommentAuthorName}" />
+		<execute function="AssertTextEquals" locator1="SOMicroblogs#MICROBLOGS_ENTRY_COMMENT_CONTENT" value1="${microblogsEntryCommentContent}" />
+	</command>
+
+	<command name="viewMicroblogsEntryCommentLink">
+		<var name="key_microblogsEntryCommentContent" value="${microblogsEntryCommentContent}" />
+
+		<if>
+			<and>
+				<isset var="microblogsEntryPartialContent" />
+				<not>
+					<contains string="${microblogsEntryPartialContent}" substring="{microblogsEntryPartialContent}" />
+				</not>
+			</and>
+			<then>
+				<var name="key_microblogsEntryContent" value="${microblogsEntryPartialContent}" />
+			</then>
+			<else>
+				<var name="key_microblogsEntryContent" value="${microblogsEntryContent}" />
+			</else>
+		</if>
+
+		<execute macro="SOMicroblogs#viewMicroblogsEntryCommentLinkCmd">
+			<var name="commentCount" value="${commentCount}" />
+			<var name="microblogsEntryContent" value="${microblogsEntryContent}" />
+			<var name="microblogsEntryPartialContent" value="${microblogsEntryPartialContent}" />
+		</execute>
+	</command>
+
+	<command name="viewMicroblogsEntryCommentLinkCmd">
+		<if>
+			<and>
+				<isset var="microblogsEntryPartialContent" />
+				<not>
+					<contains string="${microblogsEntryPartialContent}" substring="{microblogsEntryPartialContent}" />
+				</not>
+			</and>
+			<then>
+				<var name="key_microblogsEntryContent" value="${microblogsEntryPartialContent}" />
+			</then>
+			<else>
+				<var name="key_microblogsEntryContent" value="${microblogsEntryContent}" />
+			</else>
+		</if>
+
+		<if>
+			<not>
+				<contains string="${commentCount}" substring="{commentCount}" />
+			</not>
+			<then>
+				<if>
+					<equals arg1="${commentCount}" arg2="1" />
+					<then>
+						<execute function="AssertTextEquals" locator1="SOMicroblogs#MICROBLOGS_ENTRY_COMMENT_LINK" value1="1 Comment" />
+					</then>
+					<else>
+						<execute function="AssertTextEquals" locator1="SOMicroblogs#MICROBLOGS_ENTRY_COMMENT_LINK" value1="${commentCount} Comments" />
+					</else>
+				</if>
+			</then>
+			<else>
+				<execute function="AssertTextEquals" locator1="SOMicroblogs#MICROBLOGS_ENTRY_COMMENT_LINK" value1="Comment" />
+			</else>
+		</if>
+	</command>
+
+	<command name="viewMicroblogsEntryCommentNotification">
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute function="AssertElementPresent" locator1="SOUserBar#NOTIFICATION" />
+		<execute function="AssertTextEquals" locator1="SOUserBar#NOTIFICATION_MENU_COUNT" value1="1" />
+		<execute function="Click" locator1="SOUserBar#NOTIFICATION" />
+
+		<if>
+			<equals arg1="${ownMicroblogsEntry}" arg2="false" />
+			<then>
+				<execute function="AssertTextEquals#assertPartialText" locator1="SOUserBar#NOTIFICATION_MENU_NOTIFICATION_ENTRY_CONTENT" value1="${microblogsEntryCommentAuthorName} also commented on ${microblogsEntryAuthorName}&apos;s post." />
+			</then>
+			<elseif>
+				<equals arg1="${mentionedInMicroblogsEntry}" arg2="true" />
+				<then>
+					<execute function="AssertTextEquals#assertPartialText" locator1="SOUserBar#NOTIFICATION_MENU_NOTIFICATION_ENTRY_CONTENT" value1="${microblogsEntryCommentAuthorName} commented on a post you are tagged in." />
+				</then>
+			</elseif>
+			<else>
+				<execute function="AssertTextEquals#assertPartialText" locator1="SOUserBar#NOTIFICATION_MENU_NOTIFICATION_ENTRY_CONTENT" value1="${microblogsEntryCommentAuthorName} commented on your post." />
+			</else>
+		</if>
+
+		<execute function="AssertTextEquals" locator1="SOUserBar#NOTIFICATION_MENU_NOTIFICATION_ENTRY_SUBCONTENT" value1="${microblogsEntryCommentContent}" />
+
+		<if>
+			<and>
+				<equals arg1="${mention}" arg2="true" />
+				<equals arg1="${tag}" arg2="true" />
+			</and>
+			<then>
+				<execute macro="SOMicroblogs#viewMicroblogsEntryCommentNotificationMentionCmd">
+					<var name="mentionUserEmailAddress" value="${mentionUserEmailAddress}" />
+					<var name="mentionUserName" value="${mentionUserName}" />
+					<var name="microblogsEntryCommentContent" value="${microblogsEntryCommentContent}" />
+				</execute>
+
+				<execute function="Click" locator1="SOUserBar#NOTIFICATION" />
+
+				<execute macro="SOMicroblogs#viewMicroblogsEntryCommentNotificationTagCmd">
+					<var name="microblogsEntryCommentAuthorName" value="${microblogsEntryCommentAuthorName}" />
+					<var name="microblogsEntryCommentContent" value="${microblogsEntryCommentContent}" />
+					<var name="microblogsEntryCommentTagValue" value="${microblogsEntryCommentTagValue}" />
+				</execute>
+
+				<execute function="Click" locator1="SOUserBar#NOTIFICATION" />
+			</then>
+			<elseif>
+				<equals arg1="${mention}" arg2="true" />
+				<then>
+					<execute macro="SOMicroblogs#viewMicroblogsEntryCommentNotificationMentionCmd">
+						<var name="mentionUserEmailAddress" value="${mentionUserEmailAddress}" />
+						<var name="mentionUserName" value="${mentionUserName}" />
+						<var name="microblogsEntryCommentContent" value="${microblogsEntryCommentContent}" />
+					</execute>
+
+					<execute function="Click" locator1="SOUserBar#NOTIFICATION" />
+				</then>
+			</elseif>
+			<elseif>
+				<equals arg1="${tag}" arg2="true" />
+				<then>
+					<execute macro="SOMicroblogs#viewMicroblogsEntryCommentNotificationTagCmd">
+						<var name="microblogsEntryCommentAuthorName" value="${microblogsEntryCommentAuthorName}" />
+						<var name="microblogsEntryCommentContent" value="${microblogsEntryCommentContent}" />
+						<var name="microblogsEntryCommentTagValue" value="${microblogsEntryCommentTagValue}" />
+					</execute>
+
+					<execute function="Click" locator1="SOUserBar#NOTIFICATION" />
+				</then>
+			</elseif>
+		</if>
+
+		<execute function="Click" locator1="SOUserBar#NOTIFICATION_MENU_NOTIFICATION_ENTRY_CONTENT" />
+		<execute function="AssertTextEquals" locator1="SOUserBar#NOTIFICATION_MENU_COUNT" value1="0" />
+	</command>
+
+	<command name="viewMicroblogsEntryCommentNotificationMentionCmd">
+		<var name="key_mentionUserName" value="${mentionUserName}" />
+		<var name="key_microblogsEntryCommentContent" value="${microblogsEntryCommentContent}" />
+
+		<execute function="AssertClick" locator1="SOUserBar#NOTIFICATION_MENU_NOTIFICATION_ENTRY_SUBCONTENT_MICROBLOGS_COMMENT_MENTION_LINK" value1="${mentionUserName}" />
+
+		<execute function="AssertTextEquals" locator1="SOProfile#USER_NAME" value1="${mentionUserName}" />
+		<execute function="AssertTextEquals" locator1="SOProfile#USER_EMAIL" value1="${mentionUserEmailAddress}" />
+	</command>
+
+	<command name="viewMicroblogsEntryCommentNotificationTagCmd">
+		<var name="key_microblogsEntryCommentContent" value="${microblogsEntryCommentContent}" />
+		<var name="key_microblogsEntryCommentTagValue" value="${microblogsEntryCommentTagValue}" />
+
+		<execute function="AssertClick" locator1="SOUserBar#NOTIFICATION_MENU_NOTIFICATION_ENTRY_SUBCONTENT_MICROBLOGS_COMMENT_TAG_LINK" value1="${microblogsEntryCommentTagValue}" />
+
+		<execute function="AssertTextEquals" locator1="SOMicroblogs#MICROBLOGS_ENTRY_COMMENT_AUTHOR" value1="${microblogsEntryCommentAuthorName}" />
+
+		<var name="key_microblogsEntryTagValue" value="${microblogsEntryCommentTagValue}" />
+
+		<execute function="AssertTextEquals" locator1="SOMicroblogs#TAB_TAG_VALUE" value1="${microblogsEntryCommentTagValue}" />
+		<execute function="AssertTextEquals" locator1="SOMicroblogs#MICROBLOGS_ENTRY_COMMENT_CONTENT" value1="${microblogsEntryCommentContent}" />
+		<execute function="AssertTextEquals" locator1="SOMicroblogs#MICROBLOGS_ENTRY_COMMENT_CONTENT_TAG" value1="${microblogsEntryCommentTagValue}" />
+	</command>
+
+	<command name="viewMicroblogsEntryCommentTag">
+		<execute macro="SOMicroblogs#viewMicroblogsEntryComment" />
+
+		<var name="key_microblogsEntryCommentContent" value="${microblogsEntryCommentContent}" />
+		<var name="key_microblogsEntryCommentTagValue" value="${microblogsEntryCommentTagValue}" />
+		<var name="key_microblogsEntryContent" value="${microblogsEntryContent}" />
+		<var name="key_microblogsEntryTagValue" value="${microblogsEntryCommentTagValue}" />
+
+		<execute function="AssertClick" locator1="SOMicroblogs#MICROBLOGS_ENTRY_COMMENT_CONTENT_TAG" value1="${microblogsEntryCommentTagValue}" />
+		<execute function="AssertTextEquals" locator1="SOMicroblogs#MICROBLOGS_ENTRY_COMMENT_AUTHOR" value1="${microblogsEntryCommentAuthorName}" />
+		<execute function="AssertTextEquals" locator1="SOMicroblogs#TAB_TAG_VALUE" value1="${microblogsEntryCommentTagValue}" />
+		<execute function="AssertTextEquals" locator1="SOMicroblogs#MICROBLOGS_ENTRY_COMMENT_CONTENT" value1="${microblogsEntryCommentContent}" />
+		<execute function="AssertTextEquals" locator1="SOMicroblogs#MICROBLOGS_ENTRY_COMMENT_CONTENT_TAG" value1="${microblogsEntryCommentTagValue}" />
+		<execute function="AssertClick#assertTextClickAtAndWait" locator1="SOMicroblogs#TAB_TAG_VALUE" value1="${microblogsEntryCommentTagValue}" />
+		<execute function="AssertTextEquals" locator1="SOMicroblogs#MICROBLOGS_ENTRY_COMMENT_AUTHOR" value1="${microblogsEntryCommentAuthorName}" />
+		<execute function="AssertTextEquals" locator1="SOMicroblogs#TAB_TAG_VALUE" value1="${microblogsEntryCommentTagValue}" />
+		<execute function="AssertTextEquals" locator1="SOMicroblogs#MICROBLOGS_ENTRY_COMMENT_CONTENT" value1="${microblogsEntryCommentContent}" />
+		<execute function="AssertTextEquals" locator1="SOMicroblogs#MICROBLOGS_ENTRY_COMMENT_CONTENT_TAG" value1="${microblogsEntryCommentTagValue}" />
+		<execute function="AssertClick#assertTextClickAtAndWait" locator1="SOMicroblogs#TAB_TAG_VALUE" value1="${microblogsEntryCommentTagValue}" />
+	</command>
+
+	<command name="viewMicroblogsEntryMention">
+		<var name="microblogsEntryContent" value="${microblogsEntryContent} ${mentionUserName}" />
+
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute macro="SOStatusUpdate#configureStatusUpdateDisplayPG" />
+
+		<if>
+			<condition function="IsElementNotPresent" locator1="SOStatusUpdate#STATUS_UPDATE_ENTRY_CONTENT" />
+			<then>
+				<execute function="AssertTextEquals" locator1="SOStatusUpdate#STATUS_UPDATE_INFO_MESSAGE" value1="You do not have any microblog entries." />
+			</then>
+		</if>
+
+		<execute function="Click" locator1="SODashboard#NAVIGATION_MICROBLOGS" />
+
+		<execute macro="SOMicroblogs#viewMicroblogsEntryAuthor">
+			<var name="microblogsEntryAuthorName" value="${microblogsEntryAuthorName}" />
+			<var name="microblogsEntryContent" value="${microblogsEntryContent}" />
+			<var name="microblogsEntryPartialContent" value="${microblogsEntryPartialContent}" />
+			<var name="microblogsEntryRepostAuthorName" value="${microblogsEntryRepostAuthorName}" />
+		</execute>
+
+		<var name="key_microblogsEntryContent" value="${microblogsEntryContent}" />
+
+		<execute function="AssertTextEquals" locator1="SOMicroblogs#MICROBLOGS_ENTRY_CONTENT" value1="${microblogsEntryContent}" />
+
+		<execute macro="SOMicroblogs#viewMicroblogsEntryCommentLink">
+			<var name="commentCount" value="${commentCount}" />
+			<var name="microblogsEntryAuthorName" value="${microblogsEntryAuthorName}" />
+			<var name="microblogsEntryContent" value="${microblogsEntryContent}" />
+			<var name="microblogsEntryPartialContent" value="${microblogsEntryPartialContent}" />
+			<var name="microblogsEntryRepostAuthorName" value="${microblogsEntryRepostAuthorName}" />
+		</execute>
+
+		<execute function="AssertClick#assertTextClickAtAndWait" locator1="SOMicroblogs#TAB_MENTIONS" value1="Mentions" />
+
+		<execute macro="SOMicroblogs#viewMicroblogsEntryAuthor">
+			<var name="microblogsEntryAuthorName" value="${microblogsEntryAuthorName}" />
+			<var name="microblogsEntryContent" value="${microblogsEntryContent}" />
+			<var name="microblogsEntryPartialContent" value="${microblogsEntryPartialContent}" />
+			<var name="microblogsEntryRepostAuthorName" value="${microblogsEntryRepostAuthorName}" />
+		</execute>
+
+		<execute function="AssertTextEquals" locator1="SOMicroblogs#MICROBLOGS_ENTRY_CONTENT" value1="${microblogsEntryContent}" />
+
+		<execute macro="SOMicroblogs#viewMicroblogsEntryCommentLink">
+			<var name="commentCount" value="${commentCount}" />
+			<var name="microblogsEntryAuthorName" value="${microblogsEntryAuthorName}" />
+			<var name="microblogsEntryContent" value="${microblogsEntryContent}" />
+			<var name="microblogsEntryPartialContent" value="${microblogsEntryPartialContent}" />
+			<var name="microblogsEntryRepostAuthorName" value="${microblogsEntryRepostAuthorName}" />
+		</execute>
+
+		<var name="key_mentionUserName" value="${mentionUserName}" />
+
+		<execute function="AssertClick" locator1="SOMicroblogs#MICROBLOGS_ENTRY_CONTENT_MENTION" value1="${mentionUserName}" />
+
+		<execute function="AssertTextEquals" locator1="SOProfile#USER_NAME" value1="${mentionUserName}" />
+		<execute function="AssertTextEquals" locator1="SOProfile#USER_EMAIL" value1="${mentionUserEmailAddress}" />
+	</command>
+
+	<command name="viewMicroblogsEntryMentionNotification">
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute function="AssertElementPresent" locator1="SOUserBar#NOTIFICATION" />
+		<execute function="AssertTextEquals" locator1="SOUserBar#NOTIFICATION_MENU_COUNT" value1="1" />
+		<execute function="Click" locator1="SOUserBar#NOTIFICATION" />
+		<execute function="AssertTextEquals#assertPartialText" locator1="SOUserBar#NOTIFICATION_MENU_NOTIFICATION_ENTRY_CONTENT" value1="${microblogsEntryAuthorName} tagged you in a post." />
+		<execute function="AssertTextEquals" locator1="SOUserBar#NOTIFICATION_MENU_NOTIFICATION_ENTRY_SUBCONTENT" value1="${microblogsEntryContent}" />
+		<execute function="Click" locator1="SOUserBar#NOTIFICATION_MENU_NOTIFICATION_ENTRY_CONTENT" />
+		<execute function="AssertTextEquals" locator1="SOUserBar#NOTIFICATION_MENU_COUNT" value1="0" />
+	</command>
+
+	<command name="viewMicroblogsEntryMentions">
+		<var name="microblogsEntryContent" value="${microblogsEntryContent}" />
+
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute macro="SOStatusUpdate#configureStatusUpdateDisplayPG" />
+
+		<if>
+			<condition function="IsElementNotPresent" locator1="SOStatusUpdate#STATUS_UPDATE_ENTRY_CONTENT" />
+			<then>
+				<execute function="AssertTextEquals" locator1="SOStatusUpdate#STATUS_UPDATE_INFO_MESSAGE" value1="You do not have any microblog entries." />
+			</then>
+		</if>
+
+		<execute function="Click" locator1="SODashboard#NAVIGATION_MICROBLOGS" />
+
+		<execute macro="SOMicroblogs#viewMicroblogsEntryAuthor">
+			<var name="microblogsEntryAuthorName" value="${microblogsEntryAuthorName}" />
+			<var name="microblogsEntryContent" value="${microblogsEntryContent}" />
+			<var name="microblogsEntryPartialContent" value="${microblogsEntryPartialContent}" />
+			<var name="microblogsEntryRepostAuthorName" value="${microblogsEntryRepostAuthorName}" />
+		</execute>
+
+		<var name="key_microblogsEntryContent" value="${microblogsEntryContent}" />
+
+		<execute function="AssertTextEquals" locator1="SOMicroblogs#MICROBLOGS_ENTRY_CONTENT" value1="${microblogsEntryContent}" />
+
+		<execute macro="SOMicroblogs#viewMicroblogsEntryCommentLink">
+			<var name="commentCount" value="${commentCount}" />
+			<var name="microblogsEntryAuthorName" value="${microblogsEntryAuthorName}" />
+			<var name="microblogsEntryContent" value="${microblogsEntryContent}" />
+			<var name="microblogsEntryPartialContent" value="${microblogsEntryPartialContent}" />
+			<var name="microblogsEntryRepostAuthorName" value="${microblogsEntryRepostAuthorName}" />
+		</execute>
+
+		<execute function="AssertClick#assertTextClickAtAndWait" locator1="SOMicroblogs#TAB_MENTIONS" value1="Mentions" />
+
+		<execute macro="SOMicroblogs#viewMicroblogsEntryAuthor">
+			<var name="microblogsEntryAuthorName" value="${microblogsEntryAuthorName}" />
+			<var name="microblogsEntryContent" value="${microblogsEntryContent}" />
+			<var name="microblogsEntryPartialContent" value="${microblogsEntryPartialContent}" />
+			<var name="microblogsEntryRepostAuthorName" value="${microblogsEntryRepostAuthorName}" />
+		</execute>
+
+		<execute function="AssertTextEquals" locator1="SOMicroblogs#MICROBLOGS_ENTRY_CONTENT" value1="${microblogsEntryContent}" />
+
+		<execute macro="SOMicroblogs#viewMicroblogsEntryCommentLink">
+			<var name="commentCount" value="${commentCount}" />
+			<var name="microblogsEntryAuthorName" value="${microblogsEntryAuthorName}" />
+			<var name="microblogsEntryContent" value="${microblogsEntryContent}" />
+			<var name="microblogsEntryPartialContent" value="${microblogsEntryPartialContent}" />
+			<var name="microblogsEntryRepostAuthorName" value="${microblogsEntryRepostAuthorName}" />
+		</execute>
+
+		<var name="key_mentionUserName" value="${mentionUserName}" />
+
+		<execute function="AssertClick" locator1="SOMicroblogs#MICROBLOGS_ENTRY_CONTENT_MENTION" value1="${mentionUserName}" />
+
+		<execute function="AssertTextEquals" locator1="SOProfile#USER_NAME" value1="${mentionUserName}" />
+		<execute function="AssertTextEquals" locator1="SOProfile#USER_EMAIL" value1="${mentionUserEmailAddress}" />
+	</command>
+
+	<command name="viewMicroblogsEntryMentionViaProfile">
+		<var name="microblogsEntryContent" value="${microblogsEntryContent} ${mentionUserName}" />
+
+		<execute function="Click" locator1="Dockbar#USER_NAME" />
+		<execute function="Click" locator1="Dockbar#USER_MY_PROFILE" value1="My Profile" />
+
+		<execute function="Click" locator1="SOProfile#NAVIGATION_MICROBLOGS" value1="Microblogs" />
+
+		<execute macro="SOMicroblogs#viewMicroblogsEntryAuthor">
+			<var name="microblogsEntryAuthorName" value="${microblogsEntryAuthorName}" />
+			<var name="microblogsEntryContent" value="${microblogsEntryContent}" />
+			<var name="microblogsEntryPartialContent" value="${microblogsEntryPartialContent}" />
+			<var name="microblogsEntryRepostAuthorName" value="${microblogsEntryRepostAuthorName}" />
+		</execute>
+
+		<var name="key_microblogsEntryContent" value="${microblogsEntryContent}" />
+
+		<execute function="AssertTextEquals" locator1="SOMicroblogsProfile#MICROBLOGS_ENTRY_CONTENT" value1="${microblogsEntryContent}" />
+
+		<execute macro="SOMicroblogs#viewMicroblogsEntryCommentLink">
+			<var name="commentCount" value="${commentCount}" />
+			<var name="microblogsEntryAuthorName" value="${microblogsEntryAuthorName}" />
+			<var name="microblogsEntryContent" value="${microblogsEntryContent}" />
+			<var name="microblogsEntryPartialContent" value="${microblogsEntryPartialContent}" />
+			<var name="microblogsEntryRepostAuthorName" value="${microblogsEntryRepostAuthorName}" />
+		</execute>
+
+		<var name="key_mentionUserName" value="${mentionUserName}" />
+
+		<execute function="AssertClick" locator1="SOMicroblogsProfile#MICROBLOGS_ENTRY_CONTENT_MENTION" value1="${mentionUserName}" />
+
+		<execute function="AssertTextEquals" locator1="SOProfile#USER_NAME" value1="${mentionUserName}" />
+		<execute function="AssertTextEquals" locator1="SOProfile#USER_EMAIL" value1="${mentionUserEmailAddress}" />
+		<execute function="Click" locator1="SOProfile#NAVIGATION_MICROBLOGS" value1="Microblogs" />
+
+		<execute function="Click" locator1="Dockbar#USER_NAME" />
+		<execute function="Click" locator1="Dockbar#USER_MY_PROFILE" value1="My Profile" />
+
+		<execute function="Click" locator1="SOProfile#NAVIGATION_MICROBLOGS" value1="Microblogs" />
+
+		<execute function="AssertClick" locator1="SOMicroblogsProfile#TAB_MENTIONS" value1="Mentions" />
+
+		<execute function="AssertElementNotPresent" locator1="SOMicroblogsProfile#MICROBLOGS_ENTRY_CONTENT" value1="${microblogsEntryContent}" />
+	</command>
+
+	<command name="viewMicroblogsEntryNone">
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute macro="SOStatusUpdate#configureStatusUpdateDisplayPG" />
+
+		<if>
+			<condition function="IsElementNotPresent" locator1="SOStatusUpdate#STATUS_UPDATE_ENTRY_CONTENT" />
+			<then>
+				<execute function="AssertTextEquals" locator1="SOStatusUpdate#STATUS_UPDATE_INFO_MESSAGE" value1="You do not have any microblog entries." />
+			</then>
+		</if>
+
+		<execute function="AssertTextNotPresent" value1="${microblogsEntryContent}" />
+
+		<execute function="AssertClick" locator1="SOActivities#NAVIGATION_CONNECTIONS" value1="Connections" />
+		<execute function="AssertTextEquals" locator1="SOActivities#NO_ACTIVITIES" value1="There are no activities." />
+		<execute function="AssertTextNotPresent" value1="${microblogsEntryContent}" />
+		<execute function="AssertClick" locator1="SOActivities#NAVIGATION_FOLLOWING" value1="Following" />
+		<execute function="AssertTextEquals" locator1="SOActivities#NO_ACTIVITIES" value1="There are no activities." />
+		<execute function="AssertTextNotPresent" value1="${microblogsEntryContent}" />
+
+		<execute function="Click" locator1="SODashboard#NAVIGATION_MICROBLOGS" />
+
+		<if>
+			<condition function="IsElementNotPresent" locator1="SOMicroblogs#MICROBLOGS_ENTRY_CONTENT_GENERAL" />
+			<then>
+				<execute function="AssertTextEquals" locator1="SOMicroblogs#INFO_MESSAGE" value1="You do not have any microblog entries." />
+			</then>
+		</if>
+
+		<execute function="AssertTextNotPresent" value1="${microblogsEntryContent}" />
+	</command>
+
+	<command name="viewMicroblogsEntryNoTagLink">
+		<var name="key_microblogsEntryContent" value="${microblogsEntryContent}" />
+
+		<execute function="AssertElementNotPresent" locator1="SOMicroblogs#MICROBLOGS_ENTRY_CONTENT_GENERIC_LINK" />
+	</command>
+
+	<command name="viewMicroblogsEntryNotViewableByEveryone">
+		<var name="key_microblogsEntryContent" value="${microblogsEntryContent}" />
+
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute macro="SOStatusUpdate#configureStatusUpdateDisplayPG" />
+
+		<execute function="AssertTextEquals" locator1="SOStatusUpdate#STATUS_UPDATE_INFO_MESSAGE" value1="You do not have any microblog entries." />
+
+		<execute function="Click" locator1="SODashboard#NAVIGATION_MICROBLOGS" />
+
+		<execute macro="SOMicroblogs#viewMicroblogsEntryAuthor">
+			<var name="microblogsEntryAuthorName" value="${microblogsEntryAuthorName}" />
+			<var name="microblogsEntryContent" value="${microblogsEntryContent}" />
+			<var name="microblogsEntryPartialContent" value="${microblogsEntryPartialContent}" />
+			<var name="microblogsEntryRepostAuthorName" value="${microblogsEntryRepostAuthorName}" />
+		</execute>
+
+		<execute function="AssertTextEquals" locator1="SOMicroblogs#MICROBLOGS_ENTRY_CONTENT" value1="${microblogsEntryContent}" />
+
+		<execute macro="SOMicroblogs#viewMicroblogsEntryCommentLink">
+			<var name="commentCount" value="${commentCount}" />
+			<var name="microblogsEntryAuthorName" value="${microblogsEntryAuthorName}" />
+			<var name="microblogsEntryContent" value="${microblogsEntryContent}" />
+			<var name="microblogsEntryPartialContent" value="${microblogsEntryPartialContent}" />
+			<var name="microblogsEntryRepostAuthorName" value="${microblogsEntryRepostAuthorName}" />
+		</execute>
+
+		<execute function="AssertElementNotPresent" locator1="SOMicroblogs#MICROBLOGS_ENTRY_REPOST_LINK" />
+		<execute function="AssertElementNotPresent" locator1="SOMicroblogs#MICROBLOGS_ENTRY_EDIT_LINK" />
+		<execute function="AssertElementNotPresent" locator1="SOMicroblogs#MICROBLOGS_ENTRY_DELETE_LINK" />
+	</command>
+
+	<command name="viewMicroblogsEntryNotViewableByEveryoneTag">
+		<var name="key_microblogsEntryContent" value="${microblogsEntryContent}" />
+
+		<execute macro="SOMicroblogs#viewMicroblogsEntryNotViewableByEveryone" />
+
+		<var name="key_microblogsEntryTagValue" value="${microblogsEntryTagValue}" />
+
+		<execute function="AssertClick" locator1="SOMicroblogs#MICROBLOGS_ENTRY_CONTENT_TAG" value1="${microblogsEntryTagValue}" />
+
+		<execute macro="SOMicroblogs#viewMicroblogsEntryAuthor">
+			<var name="microblogsEntryAuthorName" value="${microblogsEntryAuthorName}" />
+			<var name="microblogsEntryContent" value="${microblogsEntryContent}" />
+			<var name="microblogsEntryPartialContent" value="${microblogsEntryPartialContent}" />
+			<var name="microblogsEntryRepostAuthorName" value="${microblogsEntryRepostAuthorName}" />
+		</execute>
+
+		<execute function="AssertTextEquals" locator1="SOMicroblogs#TAB_TAG_VALUE" value1="${microblogsEntryTagValue}" />
+		<execute function="AssertTextEquals" locator1="SOMicroblogs#MICROBLOGS_ENTRY_CONTENT" value1="${microblogsEntryContent}" />
+		<execute function="AssertTextEquals" locator1="SOMicroblogs#MICROBLOGS_ENTRY_CONTENT_TAG" value1="${microblogsEntryTagValue}" />
+		<execute function="AssertClick#assertTextClickAtAndWait" locator1="SOMicroblogs#TAB_TAG_VALUE" value1="${microblogsEntryTagValue}" />
+
+		<execute macro="SOMicroblogs#viewMicroblogsEntryAuthor">
+			<var name="microblogsEntryAuthorName" value="${microblogsEntryAuthorName}" />
+			<var name="microblogsEntryContent" value="${microblogsEntryContent}" />
+			<var name="microblogsEntryPartialContent" value="${microblogsEntryPartialContent}" />
+			<var name="microblogsEntryRepostAuthorName" value="${microblogsEntryRepostAuthorName}" />
+		</execute>
+
+		<execute function="AssertTextEquals" locator1="SOMicroblogs#TAB_TAG_VALUE" value1="${microblogsEntryTagValue}" />
+		<execute function="AssertTextEquals" locator1="SOMicroblogs#MICROBLOGS_ENTRY_CONTENT" value1="${microblogsEntryContent}" />
+		<execute function="AssertTextEquals" locator1="SOMicroblogs#MICROBLOGS_ENTRY_CONTENT_TAG" value1="${microblogsEntryTagValue}" />
+	</command>
+
+	<command name="viewMicroblogsEntryOwnMentionViaProfile">
+		<var name="microblogsEntryContent" value="${microblogsEntryContent} ${mentionUserName}" />
+
+		<execute function="Click" locator1="Dockbar#USER_NAME" />
+		<execute function="Click" locator1="Dockbar#USER_MY_PROFILE" value1="My Profile" />
+
+		<execute function="Click" locator1="SOProfile#NAVIGATION_MICROBLOGS" value1="Microblogs" />
+
+		<execute function="AssertElementNotPresent" locator1="SOMicroblogsProfile#MICROBLOGS_ENTRY_CONTENT" value1="${microblogsEntryContent}" />
+
+		<execute function="AssertClick" locator1="SOMicroblogsProfile#TAB_MENTIONS" value1="Mentions" />
+
+		<execute macro="SOMicroblogs#viewMicroblogsEntryAuthor">
+			<var name="microblogsEntryAuthorName" value="${microblogsEntryAuthorName}" />
+			<var name="microblogsEntryContent" value="${microblogsEntryContent}" />
+			<var name="microblogsEntryPartialContent" value="${microblogsEntryPartialContent}" />
+			<var name="microblogsEntryRepostAuthorName" value="${microblogsEntryRepostAuthorName}" />
+		</execute>
+
+		<var name="key_microblogsEntryContent" value="${microblogsEntryContent}" />
+
+		<execute function="AssertTextEquals" locator1="SOMicroblogsProfile#MICROBLOGS_ENTRY_CONTENT" value1="${microblogsEntryContent}" />
+
+		<execute macro="SOMicroblogs#viewMicroblogsEntryCommentLink">
+			<var name="commentCount" value="${commentCount}" />
+			<var name="microblogsEntryAuthorName" value="${microblogsEntryAuthorName}" />
+			<var name="microblogsEntryContent" value="${microblogsEntryContent}" />
+			<var name="microblogsEntryPartialContent" value="${microblogsEntryPartialContent}" />
+			<var name="microblogsEntryRepostAuthorName" value="${microblogsEntryRepostAuthorName}" />
+		</execute>
+
+		<var name="key_mentionUserName" value="${mentionUserName}" />
+
+		<execute function="AssertClick" locator1="SOMicroblogsProfile#MICROBLOGS_ENTRY_CONTENT_MENTION" value1="${mentionUserName}" />
+
+		<execute function="AssertTextEquals" locator1="SOProfile#USER_NAME" value1="${mentionUserName}" />
+		<execute function="AssertTextEquals" locator1="SOProfile#USER_EMAIL" value1="${mentionUserEmailAddress}" />
+	</command>
+
+	<command name="viewMicroblogsEntryTagViaProfile">
+		<var name="key_microblogsEntryContent" value="${microblogsEntryContent}" />
+		<var name="key_microblogsEntryTagValue" value="${microblogsEntryTagValue}" />
+
+		<execute function="AssertClick" locator1="SOMicroblogsProfile#MICROBLOGS_ENTRY_CONTENT_TAG" value1="${microblogsEntryTagValue}" />
+
+		<execute macro="SOMicroblogs#viewMicroblogsEntryAuthor">
+			<var name="microblogsEntryAuthorName" value="${microblogsEntryAuthorName}" />
+			<var name="microblogsEntryContent" value="${microblogsEntryContent}" />
+			<var name="microblogsEntryPartialContent" value="${microblogsEntryPartialContent}" />
+			<var name="microblogsEntryRepostAuthorName" value="${microblogsEntryRepostAuthorName}" />
+		</execute>
+
+		<execute function="AssertTextEquals" locator1="SOMicroblogsProfile#TAB_TAG_VALUE" value1="${microblogsEntryTagValue}" />
+		<execute function="AssertTextEquals" locator1="SOMicroblogs#MICROBLOGS_ENTRY_CONTENT" value1="${microblogsEntryContent}" />
+		<execute function="AssertTextEquals" locator1="SOMicroblogsProfile#MICROBLOGS_ENTRY_CONTENT_TAG" value1="${microblogsEntryTagValue}" />
+		<execute function="AssertClick" locator1="SOMicroblogsProfile#TAB_TAG_VALUE" value1="${microblogsEntryTagValue}" />
+
+		<execute macro="SOMicroblogs#viewMicroblogsEntryAuthor">
+			<var name="microblogsEntryAuthorName" value="${microblogsEntryAuthorName}" />
+			<var name="microblogsEntryContent" value="${microblogsEntryContent}" />
+			<var name="microblogsEntryPartialContent" value="${microblogsEntryPartialContent}" />
+			<var name="microblogsEntryRepostAuthorName" value="${microblogsEntryRepostAuthorName}" />
+		</execute>
+
+		<execute function="AssertTextEquals" locator1="SOMicroblogsProfile#TAB_TAG_VALUE" value1="${microblogsEntryTagValue}" />
+		<execute function="AssertTextEquals" locator1="SOMicroblogsProfile#MICROBLOGS_ENTRY_CONTENT" value1="${microblogsEntryContent}" />
+		<execute function="AssertTextEquals" locator1="SOMicroblogsProfile#MICROBLOGS_ENTRY_CONTENT_TAG" value1="${microblogsEntryTagValue}" />
+	</command>
+
+	<command name="viewMicroblogsEntryViewableByEveryone">
+		<if>
+			<isset var="microblogsEntryPartialContent" />
+			<then>
+				<var name="key_microblogsEntryContent" value="${microblogsEntryPartialContent}" />
+			</then>
+			<else>
+				<var name="key_microblogsEntryContent" value="${microblogsEntryContent}" />
+			</else>
+		</if>
+
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute function="Click" locator1="SODashboard#NAVIGATION_CONTACTS_CENTER" />
+
+		<execute function="Type#typePause" locator1="SOContactscenter#CONTACTS_LIST_SEARCH" value1="${microblogsEntryAuthorScreenName}" />
+		<execute function="AssertClick#pauseAssertTextClickAt" locator1="SOContactscenter#CONTACTS_LIST_NAME" value1="${microblogsEntryAuthorLastName}, ${microblogsEntryAuthorFirstName}" />
+		<execute function="AssertClick" locator1="SOContactscenter#USER_DETAILS_NAME" value1="${microblogsEntryAuthorName}" />
+
+		<execute function="AssertTextEquals" locator1="SOStatusUpdate#STATUS_UPDATE_ENTRY_CONTENT" value1="${microblogsEntryContent}" />
+
+		<execute function="Click" locator1="SOProfile#NAVIGATION_MICROBLOGS" value1="Microblogs" />
+
+		<execute macro="SOMicroblogs#viewMicroblogsEntryAuthor">
+			<var name="microblogsEntryAuthorName" value="${microblogsEntryAuthorName}" />
+			<var name="microblogsEntryContent" value="${microblogsEntryContent}" />
+			<var name="microblogsEntryPartialContent" value="${microblogsEntryPartialContent}" />
+			<var name="microblogsEntryRepostAuthorName" value="${microblogsEntryRepostAuthorName}" />
+		</execute>
+
+		<execute function="AssertTextEquals" locator1="SOMicroblogsProfile#MICROBLOGS_ENTRY_CONTENT" value1="${microblogsEntryContent}" />
+
+		<execute macro="SOMicroblogs#viewMicroblogsEntryCommentLinkCmd">
+			<var name="commentCount" value="${commentCount}" />
+			<var name="microblogsEntryContent" value="${microblogsEntryContent}" />
+			<var name="microblogsEntryPartialContent" value="${microblogsEntryPartialContent}" />
+		</execute>
+
+		<execute function="AssertTextEquals" locator1="SOMicroblogsProfile#MICROBLOGS_ENTRY_REPOST_LINK" value1="Repost" />
+		<execute function="AssertElementNotPresent" locator1="SOMicroblogsProfile#MICROBLOGS_ENTRY_EDIT_LINK" value1="Edit" />
+		<execute function="AssertElementNotPresent" locator1="SOMicroblogsProfile#MICROBLOGS_ENTRY_DELETE_LINK" value1="Delete" />
+	</command>
+
+	<command name="viewMicroblogsEntryViewableByEveryoneMicroblogsPage">
+		<var name="key_microblogsEntryContent" value="${microblogsEntryContent}" />
+
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute macro="SOStatusUpdate#configureStatusUpdateDisplayPG" />
+
+		<execute function="AssertTextEquals" locator1="SOStatusUpdate#STATUS_UPDATE_INFO_MESSAGE" value1="You do not have any microblog entries." />
+
+		<execute function="Click" locator1="SODashboard#NAVIGATION_MICROBLOGS" />
+
+		<execute macro="SOMicroblogs#viewMicroblogsEntryAuthor">
+			<var name="microblogsEntryAuthorName" value="${microblogsEntryAuthorName}" />
+			<var name="microblogsEntryContent" value="${microblogsEntryContent}" />
+			<var name="microblogsEntryPartialContent" value="${microblogsEntryPartialContent}" />
+			<var name="microblogsEntryRepostAuthorName" value="${microblogsEntryRepostAuthorName}" />
+		</execute>
+
+		<execute function="AssertTextEquals" locator1="SOMicroblogs#MICROBLOGS_ENTRY_CONTENT" value1="${microblogsEntryContent}" />
+
+		<execute macro="SOMicroblogs#viewMicroblogsEntryCommentLink">
+			<var name="commentCount" value="${commentCount}" />
+			<var name="microblogsEntryAuthorName" value="${microblogsEntryAuthorName}" />
+			<var name="microblogsEntryContent" value="${microblogsEntryContent}" />
+			<var name="microblogsEntryPartialContent" value="${microblogsEntryPartialContent}" />
+			<var name="microblogsEntryRepostAuthorName" value="${microblogsEntryRepostAuthorName}" />
+		</execute>
+	</command>
+
+	<command name="viewMicroblogsEntryViewableByEveryoneTag">
+		<var name="key_microblogsEntryContent" value="${microblogsEntryContent}" />
+
+		<execute macro="SOMicroblogs#viewMicroblogsEntryViewableByEveryoneMicroblogsPage" />
+
+		<var name="key_microblogsEntryTagValue" value="${microblogsEntryTagValue}" />
+
+		<execute function="AssertClick" locator1="SOMicroblogs#MICROBLOGS_ENTRY_CONTENT_TAG" value1="${microblogsEntryTagValue}" />
+
+		<execute macro="SOMicroblogs#viewMicroblogsEntryAuthor">
+			<var name="microblogsEntryAuthorName" value="${microblogsEntryAuthorName}" />
+			<var name="microblogsEntryContent" value="${microblogsEntryContent}" />
+			<var name="microblogsEntryPartialContent" value="${microblogsEntryPartialContent}" />
+			<var name="microblogsEntryRepostAuthorName" value="${microblogsEntryRepostAuthorName}" />
+		</execute>
+
+		<execute function="AssertTextEquals" locator1="SOMicroblogs#TAB_TAG_VALUE" value1="${microblogsEntryTagValue}" />
+		<execute function="AssertTextEquals" locator1="SOMicroblogs#MICROBLOGS_ENTRY_CONTENT" value1="${microblogsEntryContent}" />
+		<execute function="AssertTextEquals" locator1="SOMicroblogs#MICROBLOGS_ENTRY_CONTENT_TAG" value1="${microblogsEntryTagValue}" />
+		<execute function="AssertClick#assertTextClickAtAndWait" locator1="SOMicroblogs#TAB_TAG_VALUE" value1="${microblogsEntryTagValue}" />
+
+		<execute macro="SOMicroblogs#viewMicroblogsEntryAuthor">
+			<var name="microblogsEntryAuthorName" value="${microblogsEntryAuthorName}" />
+			<var name="microblogsEntryContent" value="${microblogsEntryContent}" />
+			<var name="microblogsEntryPartialContent" value="${microblogsEntryPartialContent}" />
+			<var name="microblogsEntryRepostAuthorName" value="${microblogsEntryRepostAuthorName}" />
+		</execute>
+
+		<execute function="AssertTextEquals" locator1="SOMicroblogs#TAB_TAG_VALUE" value1="${microblogsEntryTagValue}" />
+		<execute function="AssertTextEquals" locator1="SOMicroblogs#MICROBLOGS_ENTRY_CONTENT" value1="${microblogsEntryContent}" />
+		<execute function="AssertTextEquals" locator1="SOMicroblogs#MICROBLOGS_ENTRY_CONTENT_TAG" value1="${microblogsEntryTagValue}" />
+	</command>
+
+	<command name="viewNonViewableMicroblogsEntryViaProfile">
+		<if>
+			<isset var="microblogsEntryPartialContent" />
+			<then>
+				<var name="key_microblogsEntryContent" value="${microblogsEntryPartialContent}" />
+			</then>
+			<else>
+				<var name="key_microblogsEntryContent" value="${microblogsEntryContent}" />
+			</else>
+		</if>
+
+		<execute macro="Page#gotoPG">
+			<var name="defaultURL" value="${defaultURL}" />
+			<var name="nodePort" value="${nodePort}" />
+			<var name="pageName" value="Contacts Center" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute function="Type#typePause" locator1="SOContactscenter#CONTACTS_LIST_SEARCH" value1="${microblogsEntryAuthorScreenName}" />
+		<execute function="AssertClick#pauseAssertTextClickAt" locator1="SOContactscenter#CONTACTS_LIST_NAME" value1="${microblogsEntryAuthorLastName}, ${microblogsEntryAuthorFirstName}" />
+		<execute function="AssertClick" locator1="SOContactscenter#USER_DETAILS_NAME" value1="${microblogsEntryAuthorName}" />
+
+		<execute function="AssertTextNotPresent" value1="${microblogsEntryContent}" />
+
+		<execute function="Click" locator1="SOProfile#NAVIGATION_MICROBLOGS" value1="Microblogs" />
+
+		<execute function="AssertTextNotPresent" value1="${microblogsEntryContent}" />
+	</command>
+
+	<command name="viewOwnMicroblogsEntry">
+		<if>
+			<and>
+				<isset var="microblogsEntryPartialContent" />
+				<not>
+					<contains string="${microblogsEntryPartialContent}" substring="{microblogsEntryPartialContent}" />
+				</not>
+			</and>
+			<then>
+				<var name="key_microblogsEntryContent" value="${microblogsEntryPartialContent}" />
+			</then>
+			<else>
+				<var name="key_microblogsEntryContent" value="${microblogsEntryContent}" />
+			</else>
+		</if>
+
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute macro="SOStatusUpdate#configureStatusUpdateDisplayPG" />
+
+		<execute function="AssertTextEquals" locator1="SOStatusUpdate#STATUS_UPDATE_ENTRY_CONTENT" value1="${statusUpdateEntryContent}" />
+		<execute function="Click" locator1="SODashboard#NAVIGATION_MICROBLOGS" />
+
+		<execute macro="SOMicroblogs#viewMicroblogsEntryAuthor">
+			<var name="microblogsEntryAuthorName" value="${microblogsEntryAuthorName}" />
+			<var name="microblogsEntryContent" value="${microblogsEntryContent}" />
+			<var name="microblogsEntryPartialContent" value="${microblogsEntryPartialContent}" />
+			<var name="microblogsEntryRepostAuthorName" value="${microblogsEntryRepostAuthorName}" />
+		</execute>
+
+		<execute function="AssertTextEquals" locator1="SOMicroblogs#MICROBLOGS_ENTRY_CONTENT" value1="${microblogsEntryContent}" />
+
+		<execute macro="SOMicroblogs#viewMicroblogsEntryCommentLink">
+			<var name="commentCount" value="${commentCount}" />
+			<var name="microblogsEntryAuthorName" value="${microblogsEntryAuthorName}" />
+			<var name="microblogsEntryContent" value="${microblogsEntryContent}" />
+			<var name="microblogsEntryPartialContent" value="${microblogsEntryPartialContent}" />
+			<var name="microblogsEntryRepostAuthorName" value="${microblogsEntryRepostAuthorName}" />
+		</execute>
+
+		<execute function="AssertElementNotPresent" locator1="SOMicroblogs#MICROBLOGS_ENTRY_REPOST_LINK" value1="Repost" />
+	</command>
+
+	<command name="viewOwnMicroblogsEntryMention">
+		<var name="microblogsEntryContent" value="${microblogsEntryContent} ${mentionUserName}" />
+		<var name="statusUpdateEntryContent" value="${microblogsEntryContent}" />
+
+		<var name="key_mentionUserName" value="${mentionUserName}" />
+		<var name="key_microblogsEntryContent" value="${microblogsEntryContent}" />
+
+		<execute macro="SOMicroblogs#viewOwnMicroblogsEntry">
+			<var name="microblogsEntryAuthorName" value="${microblogsEntryAuthorName}" />
+			<var name="microblogsEntryContent" value="${microblogsEntryContent}" />
+			<var name="microblogsEntryPartialContent" value="${microblogsEntryPartialContent}" />
+			<var name="statusUpdateEntryContent" value="${statusUpdateEntryContent}" />
+		</execute>
+
+		<execute function="AssertClick" locator1="SOMicroblogs#MICROBLOGS_ENTRY_CONTENT_MENTION" value1="${mentionUserName}" />
+
+		<execute function="AssertTextEquals" locator1="SOProfile#USER_NAME" value1="${mentionUserName}" />
+		<execute function="AssertTextEquals" locator1="SOProfile#USER_EMAIL" value1="${mentionUserEmailAddress}" />
+	</command>
+
+	<command name="viewOwnMicroblogsEntryMentions">
+		<var name="statusUpdateEntryContent" value="${microblogsEntryContent}" />
+
+		<var name="key_mentionUserName" value="${mentionUserName}" />
+		<var name="key_microblogsEntryContent" value="${microblogsEntryContent}" />
+
+		<execute macro="SOMicroblogs#viewOwnMicroblogsEntry">
+			<var name="microblogsEntryAuthorName" value="${microblogsEntryAuthorName}" />
+			<var name="microblogsEntryContent" value="${microblogsEntryContent}" />
+			<var name="microblogsEntryPartialContent" value="${microblogsEntryPartialContent}" />
+			<var name="statusUpdateEntryContent" value="${statusUpdateEntryContent}" />
+		</execute>
+
+		<execute function="AssertClick" locator1="SOMicroblogs#MICROBLOGS_ENTRY_CONTENT_MENTION" value1="${mentionUserName}" />
+
+		<execute function="AssertTextEquals" locator1="SOProfile#USER_NAME" value1="${mentionUserName}" />
+		<execute function="AssertTextEquals" locator1="SOProfile#USER_EMAIL" value1="${mentionUserEmailAddress}" />
+	</command>
+
+	<command name="viewOwnMicroblogsEntryTag">
+		<var name="key_microblogsEntryContent" value="${microblogsEntryContent}" />
+		<var name="key_microblogsEntryTagValue" value="${microblogsEntryTagValue}" />
+
+		<execute macro="SOMicroblogs#viewOwnMicroblogsEntry">
+			<var name="microblogsEntryAuthorName" value="${microblogsEntryAuthorName}" />
+			<var name="microblogsEntryContent" value="${microblogsEntryContent}" />
+			<var name="microblogsEntryPartialContent" value="${microblogsEntryPartialContent}" />
+			<var name="statusUpdateEntryContent" value="${statusUpdateEntryContent}" />
+		</execute>
+
+		<execute function="AssertClick" locator1="SOMicroblogs#MICROBLOGS_ENTRY_CONTENT_TAG" value1="${microblogsEntryTagValue}" />
+
+		<execute macro="SOMicroblogs#viewMicroblogsEntryAuthor">
+			<var name="microblogsEntryAuthorName" value="${microblogsEntryAuthorName}" />
+			<var name="microblogsEntryContent" value="${microblogsEntryContent}" />
+			<var name="microblogsEntryPartialContent" value="${microblogsEntryPartialContent}" />
+			<var name="microblogsEntryRepostAuthorName" value="${microblogsEntryRepostAuthorName}" />
+		</execute>
+
+		<execute function="AssertTextEquals" locator1="SOMicroblogs#TAB_TAG_VALUE" value1="${microblogsEntryTagValue}" />
+		<execute function="AssertTextEquals" locator1="SOMicroblogs#MICROBLOGS_ENTRY_CONTENT" value1="${microblogsEntryContent}" />
+		<execute function="AssertTextEquals" locator1="SOMicroblogs#MICROBLOGS_ENTRY_CONTENT_TAG" value1="${microblogsEntryTagValue}" />
+		<execute function="AssertClick#assertTextClickAtAndWait" locator1="SOMicroblogs#TAB_TAG_VALUE" value1="${microblogsEntryTagValue}" />
+
+		<execute macro="SOMicroblogs#viewMicroblogsEntryAuthor">
+			<var name="microblogsEntryAuthorName" value="${microblogsEntryAuthorName}" />
+			<var name="microblogsEntryContent" value="${microblogsEntryContent}" />
+			<var name="microblogsEntryPartialContent" value="${microblogsEntryPartialContent}" />
+			<var name="microblogsEntryRepostAuthorName" value="${microblogsEntryRepostAuthorName}" />
+		</execute>
+
+		<execute function="AssertTextEquals" locator1="SOMicroblogs#TAB_TAG_VALUE" value1="${microblogsEntryTagValue}" />
+		<execute function="AssertTextEquals" locator1="SOMicroblogs#MICROBLOGS_ENTRY_CONTENT" value1="${microblogsEntryContent}" />
+		<execute function="AssertTextEquals" locator1="SOMicroblogs#MICROBLOGS_ENTRY_CONTENT_TAG" value1="${microblogsEntryTagValue}" />
+	</command>
+
+	<command name="viewOwnMicroblogsRepost">
+		<var name="key_microblogsEntryContent" value="${microblogsEntryContent}" />
+
+		<execute macro="Page#gotoPG">
+			<var name="defaultURL" value="${defaultURL}" />
+			<var name="nodePort" value="${nodePort}" />
+			<var name="pageName" value="Microblogs" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="SOMicroblogs#viewMicroblogsEntryAuthor">
+			<var name="microblogsEntryAuthorName" value="${microblogsEntryAuthorName}" />
+			<var name="microblogsEntryContent" value="${microblogsEntryContent}" />
+			<var name="microblogsEntryPartialContent" value="${microblogsEntryPartialContent}" />
+			<var name="microblogsEntryRepostAuthorName" value="${microblogsEntryRepostAuthorName}" />
+		</execute>
+
+		<execute function="AssertTextEquals" locator1="SOMicroblogs#MICROBLOGS_ENTRY_CONTENT" value1="${microblogsEntryContent}" />
+
+		<execute macro="SOMicroblogs#viewMicroblogsEntryCommentLink">
+			<var name="commentCount" value="${commentCount}" />
+			<var name="microblogsEntryAuthorName" value="${microblogsEntryAuthorName}" />
+			<var name="microblogsEntryContent" value="${microblogsEntryContent}" />
+			<var name="microblogsEntryPartialContent" value="${microblogsEntryPartialContent}" />
+			<var name="microblogsEntryRepostAuthorName" value="${microblogsEntryRepostAuthorName}" />
+		</execute>
+
+		<execute function="AssertElementNotPresent" locator1="SOMicroblogs#MICROBLOGS_ENTRY_REPOST_LINK" value1="Repost" />
+	</command>
+</definition>

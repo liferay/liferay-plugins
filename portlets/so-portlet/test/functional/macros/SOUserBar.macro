@@ -1,0 +1,616 @@
+<definition>
+	<command name="addPage">
+		<if>
+			<condition function="IsElementNotPresent" locator1="SOUserBar#VISIBLE_PAGE_CONTROLS" />
+			<then>
+				<execute function="Click" locator1="SOUserBar#TOGGLE_DOCKBAR" />
+			</then>
+		</if>
+
+		<execute function="Click#clickAtSidebarClickAt" locator1="Dockbar#ADD" value1="Add" />
+		<execute function="AssertClick#assertTextClickAtAddApplication" locator1="Dockbar#ADD_PAGE_LINK" value1="Page" />
+		<execute function="Type" locator1="Dockbar#ADD_PAGE_NAME_FIELD" value1="${pageName}" />
+
+		<if>
+			<isset var="pageType" />
+			<then>
+				<execute macro="Page#selectPageTypeRadioPG">
+					<var name="pageType" value="${pageType}" />
+					<var name="portletNameList" value="${portletNameList}" />
+				</execute>
+			</then>
+		</if>
+
+		<execute function="AssertClick#pauseAssertTextClickAt" locator1="Dockbar#ADD_PAGE_BUTTON" value1="Add Page" />
+		<execute function="Pause" locator1="1000" />
+
+		<var name="key_pageName" value="${pageName}" />
+
+		<execute function="AssertClick" locator1="SODashboard#NAVIGATION_PAGE" value1="${pageName}" />
+	</command>
+
+	<command name="addPortlet">
+		<var name="portletTypeKey" value="PORTLET" />
+
+		<if>
+			<equals arg1="${portletName}" arg2="Map" />
+			<then>
+				<var name="portletName" value="Where are the Liferay members?" />
+			</then>
+			<elseif>
+				<equals arg1="${portletName}" arg2="Requests" />
+				<then>
+					<var name="portletTypeKey" value="PORTLET_BORDERLESS" />
+				</then>
+			</elseif>
+		</if>
+
+		<var name="i" value="1" />
+
+		<while>
+			<not>
+				<equals arg1="${i}" arg2="5" />
+			</not>
+			<then>
+				<var method="MathUtil#sum('${i}', '1')" name="i" />
+				<var name="key_portletName" value="${portletName}" />
+
+				<execute function="Refresh" />
+
+				<execute function="Pause" locator1="1000" />
+
+				<if>
+					<condition function="IsElementNotPresent" locator1="Home#${portletTypeKey}" />
+					<then>
+						<if>
+							<condition function="IsElementNotPresent" locator1="SOUserBar#VISIBLE_PAGE_CONTROLS" />
+							<then>
+								<execute function="Click" locator1="SOUserBar#TOGGLE_DOCKBAR" />
+							</then>
+						</if>
+
+						<execute macro="Portlet#addPGCmd">
+							<var name="portletLocator" value="${portletLocator}" />
+							<var name="portletName" value="${portletName}" />
+						</execute>
+					</then>
+					<else>
+						<var name="i" value="5" />
+					</else>
+				</if>
+			</then>
+		</while>
+
+		<execute function="AssertElementPresent" locator1="Home#${portletTypeKey}" />
+	</command>
+
+	<command name="addSOSite">
+		<if>
+			<condition function="IsElementPresent" locator1="SOUserBar#GO_TO_ADD_SITE_BUTTON" />
+			<then>
+				<var name="gotoMenuClickAttemptNumber" value="0" />
+
+				<while>
+					<not>
+						<or>
+							<condition function="IsVisible" locator1="SOUserBar#GO_TO_ADD_SITE_BUTTON" />
+							<equals arg1="${gotoMenuClickAttemptNumber}" arg2="5" />
+						</or>
+					</not>
+					<then>
+						<var method="MathUtil#sum('${gotoMenuClickAttemptNumber}', '1')" name="gotoMenuClickAttemptNumber" />
+
+						<execute function="SelectFrameTop" />
+						<execute function="Click#pauseClickAt" locator1="SOUserBar#GO_TO" />
+					</then>
+				</while>
+
+				<if>
+					<and>
+						<condition function="IsNotVisible" locator1="SOUserBar#GO_TO_ADD_SITE_BUTTON" />
+						<equals arg1="${gotoMenuClickAttemptNumber}" arg2="5" />
+					</and>
+					<then>
+						<fail message="Exceeded number of attempts to click on Go To menu successfully" />
+					</then>
+				</if>
+			</then>
+			<else>
+				<fail message="Add Site Button is either missing or using a different path from what the test is currently using.  Please investigate." />
+			</else>
+		</if>
+
+		<execute function="Click#pauseClickAt" locator1="SOUserBar#GO_TO_ADD_SITE_BUTTON" />
+
+		<execute function="SelectFrameTop" />
+		<execute function="Type#clickAtSendKeys" locator1="SOUserBarAddSite#NAME_FIELD" value1="${siteName}" />
+		<execute function="Type" locator1="SOUserBarAddSite#DESCRIPTION_FIELD" value1="${siteDescription}" />
+		<execute function="Click" locator1="SOUserBarAddSite#NEXT_BUTTON" />
+
+		<if>
+			<isset var="defaultPages" />
+			<then>
+				<execute function="Select" locator1="SOUserBarAddSite#DEFAULT_PAGES_SELECT" value1="${defaultPages}" />
+
+				<if>
+					<equals arg1="$[defaultPages}" arg2="None" />
+					<then>
+						<execute function="AssertElementNotPresent" locator1="SOUserBarAddSite#HOME_CHECKBOX" />
+						<execute function="AssertElementNotPresent" locator1="SOUserBarAddSite#CALENDAR_CHECKBOX" />
+						<execute function="AssertElementNotPresent" locator1="SOUserBarAddSite#DOCUMENTS_CHECKBOX" />
+						<execute function="AssertElementNotPresent" locator1="SOUserBarAddSite#FORUMS_CHECKBOX" />
+						<execute function="AssertElementNotPresent" locator1="SOUserBarAddSite#BLOGS_CHECKBOX" />
+						<execute function="AssertElementNotPresent" locator1="SOUserBarAddSite#WIKI_CHECKBOX" />
+						<execute function="AssertElementNotPresent" locator1="SOUserBarAddSite#MEMBERS_CHECKBOX" />
+					</then>
+				</if>
+			</then>
+			<else>
+				<execute function="Select" locator1="SOUserBarAddSite#DEFAULT_PAGES_SELECT" value1="Default Social Office Site" />
+				<execute function="Check" locator1="SOUserBarAddSite#HOME_CHECKBOX" />
+				<execute function="Check" locator1="SOUserBarAddSite#CALENDAR_CHECKBOX" />
+				<execute function="Check" locator1="SOUserBarAddSite#DOCUMENTS_CHECKBOX" />
+				<execute function="Check" locator1="SOUserBarAddSite#FORUMS_CHECKBOX" />
+				<execute function="Check" locator1="SOUserBarAddSite#BLOGS_CHECKBOX" />
+				<execute function="Check" locator1="SOUserBarAddSite#WIKI_CHECKBOX" />
+				<execute function="Check" locator1="SOUserBarAddSite#MEMBERS_CHECKBOX" />
+			</else>
+		</if>
+
+		<execute function="Select" locator1="SOUserBarAddSite#TYPE_SELECT" value1="${siteType}" />
+		<execute function="Click" locator1="SOUserBarAddSite#SAVE_BUTTON" />
+
+		<if>
+			<condition function="IsElementPresent" locator1="SOUserBarAddSite#ERROR_MESSAGE" />
+			<then>
+				<execute function="Type#clickAtSendKeys" locator1="SOUserBarAddSite#NAME_FIELD" value1="${siteName}" />
+				<execute function="Click" locator1="SOUserBarAddSite#SAVE_BUTTON" />
+			</then>
+		</if>
+
+		<execute function="AssertElementNotPresent#assertNotVisible" locator1="SOUserBarAddSite#SAVE_BUTTON" />
+	</command>
+
+	<command name="confirmRequestToConnectCmd">
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<if>
+			<not>
+				<or>
+					<contains string="${numberOfNotifications}" substring="{numberOfNotifications}" />
+					<equals arg1="${numberOfNotifications}" arg2="1" />
+				</or>
+			</not>
+			<then>
+				<execute function="AssertClick" locator1="SOUserBar#NOTIFICATION_MENU_COUNT" value1="${numberOfNotifications}" />
+			</then>
+			<else>
+				<execute function="AssertClick" locator1="SOUserBar#NOTIFICATION_MENU_COUNT" value1="1" />
+			</else>
+		</if>
+
+		<if>
+			<isset var="senderNameList" />
+			<then>
+				<for list="${senderNameList}" param="senderName">
+					<execute function="AssertTextEquals" locator1="SOUserBar#NOTIFICATION_MENU_REQUEST_ENTRY_SENDER" value1="${senderName}" />
+					<execute function="AssertTextEquals#assertPartialText" locator1="SOUserBar#NOTIFICATION_MENU_REQUEST_ENTRY_CONTENT" value1="would like to add you as a connection." />
+					<execute function="AssertTextEquals" locator1="SOUserBar#NOTIFICATION_MENU_REQUEST_CONFIRM" value1="Confirm" />
+					<execute function="Click" locator1="SOUserBar#NOTIFICATION_MENU_REQUEST_CONFIRM" />
+				</for>
+			</then>
+			<else>
+				<execute function="AssertTextEquals" locator1="SOUserBar#NOTIFICATION_MENU_REQUEST_ENTRY_SENDER" value1="${senderName}" />
+				<execute function="AssertTextEquals#assertPartialText" locator1="SOUserBar#NOTIFICATION_MENU_REQUEST_ENTRY_CONTENT" value1="would like to add you as a connection." />
+				<execute function="AssertTextEquals" locator1="SOUserBar#NOTIFICATION_MENU_REQUEST_CONFIRM" value1="Confirm" />
+				<execute function="Click" locator1="SOUserBar#NOTIFICATION_MENU_REQUEST_CONFIRM" />
+
+				<if>
+					<or>
+						<contains string="${numberOfNotifications}" substring="{numberOfNotifications}" />
+						<equals arg1="${numberOfNotifications}" arg2="1" />
+					</or>
+					<then>
+						<execute function="AssertTextEquals" locator1="SOUserBar#NOTIFICATION_MENU_COUNT" value1="0" />
+					</then>
+				</if>
+			</else>
+		</if>
+	</command>
+
+	<command name="deleteSOSite">
+		<var name="key_siteName" value="${siteName}" />
+
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute function="SelectFrameTop" />
+		<execute function="Click#pauseClickAt" locator1="SOUserBar#GO_TO" />
+		<execute function="Click#pauseClickAt" locator1="SOUserBar#GO_TO_SITES_DIRECTORY_BUTTON" />
+
+		<if>
+			<equals arg1="${siteType}" arg2="Private" />
+			<then>
+				<execute function="SelectFrameTop" />
+				<execute function="Click#pauseClickAt" locator1="SOUserBar#GO_TO" />
+				<execute function="Select" locator1="SOUserBar#GO_TO_SITE_CATEGORY_SELECT" value1="My Sites" />
+			</then>
+			<else>
+				<execute function="SelectFrameTop" />
+				<execute function="Click#pauseClickAt" locator1="SOUserBar#GO_TO" />
+				<execute function="Select" locator1="SOUserBar#GO_TO_SITE_CATEGORY_SELECT" value1="All Sites" />
+			</else>
+		</if>
+
+		<execute function="Type" locator1="SOUserBarSitesDirectory#SITE_SEARCH_FIELD" value1="${siteName}" />
+		<execute function="Pause" locator1="1000" />
+		<execute function="AssertTextEquals" locator1="SOUserBarSitesDirectory#SITE_NAME_LINK" value1="${siteName}" />
+		<execute function="ClickNoError#pauseClick" locator1="SOUserBarSitesDirectory#DELETE_SITE_ICON" />
+		<execute function="Confirm" value1="Are you sure you want to delete ${siteName}?" />
+		<execute function="AssertElementNotPresent" locator1="SOUserBarSitesDirectory#SITE_NAME_LINK" />
+	</command>
+
+	<command name="favoriteSOSite">
+		<var name="key_siteName" value="${siteName}" />
+
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute function="SelectFrameTop" />
+		<execute function="Click#pauseClickAt" locator1="SOUserBar#GO_TO" />
+		<execute function="Select" locator1="SOUserBar#GO_TO_SITE_CATEGORY_SELECT" value1="My Sites" />
+		<execute function="SelectFrameTop" />
+		<execute function="Click#pauseClickAt" locator1="SOUserBar#GO_TO" />
+		<execute function="Type" locator1="SOUserBar#GO_TO_SEARCH_FIELD" value1="${siteName}" />
+		<execute function="Pause" locator1="1000" />
+		<execute function="AssertTextEquals" locator1="SOUserBar#GO_TO_SITE_NAME_LINK" value1="${siteName}" />
+		<execute function="Click" locator1="SOUserBar#GO_TO_FAVORITE_SITE_ICON" />
+		<execute function="AssertElementPresent" locator1="SOUserBar#GO_TO_UNFAVORITE_SITE_ICON" />
+	</command>
+
+	<command name="gotoDashboardPG">
+		<execute function="AssertClick" locator1="SOUserBar#DASHBOARD" value1="Dashboard" />
+		<execute function="Pause" locator1="1000" />
+
+		<execute function="AssertElementPresent" locator1="SOActivities#ACTIVITIES_PORTLET_LOADED" />
+
+		<execute function="AssertElementPresent" locator1="SOStatusUpdate#STATUS_UPDATE_CONTENT_FIELD" />
+	</command>
+
+	<command name="hideEditControls">
+		<if>
+			<condition function="IsElementNotPresent" locator1="SOUserBar#VISIBLE_PAGE_CONTROLS" />
+			<then>
+				<execute function="Click" locator1="SOUserBar#TOGGLE_DOCKBAR" />
+			</then>
+		</if>
+
+		<if>
+			<condition function="IsElementNotPresent" locator1="SOUserBar#EDIT_CONTROLS_NOT_FLAGGED" />
+			<then>
+				<execute function="MouseOver" locator1="Dockbar#EDIT_CONTROLS" />
+				<execute function="Click" locator1="Dockbar#EDIT_CONTROLS" />
+			</then>
+		</if>
+	</command>
+
+	<command name="joinSOSite">
+		<var name="key_siteName" value="${siteName}" />
+
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute function="SelectFrameTop" />
+		<execute function="Click#pauseClickAt" locator1="SOUserBar#GO_TO" />
+		<execute function="Click#pauseClickAt" locator1="SOUserBar#GO_TO_SITES_DIRECTORY_BUTTON" />
+
+		<execute function="Type" locator1="SOUserBarSitesDirectory#SITE_SEARCH_FIELD" value1="${siteName}" />
+		<execute function="Pause" locator1="1000" />
+		<execute function="AssertTextEquals" locator1="SOUserBarSitesDirectory#SITE_NAME_LINK" value1="${siteName}" />
+		<execute function="ClickNoError" locator1="SOUserBarSitesDirectory#JOIN_SITE_ICON" />
+		<execute function="Confirm" value1="Are you sure you want to join ${siteName}?" />
+		<execute function="AssertElementPresent" locator1="SOUserBarSitesDirectory#LEAVE_SITE_ICON" />
+	</command>
+
+	<command name="leaveSOSite">
+		<var name="key_siteName" value="${siteName}" />
+
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute function="SelectFrameTop" />
+		<execute function="Click#pauseClickAt" locator1="SOUserBar#GO_TO" />
+		<execute function="Click#pauseClickAt" locator1="SOUserBar#GO_TO_SITES_DIRECTORY_BUTTON" />
+
+		<execute function="Type" locator1="SOUserBarSitesDirectory#SITE_SEARCH_FIELD" value1="${siteName}" />
+		<execute function="Pause" locator1="1000" />
+		<execute function="AssertTextEquals" locator1="SOUserBarSitesDirectory#SITE_NAME_LINK" value1="${siteName}" />
+		<execute function="ClickNoError" locator1="SOUserBarSitesDirectory#LEAVE_SITE_ICON" />
+		<execute function="Confirm" value1="Are you sure you want to leave ${siteName}?" />
+
+		<if>
+			<equals arg1="${siteType}" arg2="Open" />
+			<then>
+				<execute function="AssertElementPresent" locator1="SOUserBarSitesDirectory#JOIN_SITE_ICON" />
+			</then>
+			<else>
+				<execute function="AssertElementPresent" locator1="SOUserBarSitesDirectory#REQUEST_MEMBERSHIP_ICON" />
+			</else>
+		</if>
+	</command>
+
+	<command name="markNotificationsAsRead">
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute function="AssertElementPresent" locator1="SOUserBar#NOTIFICATION" />
+
+		<if>
+			<isset var="numberOfNotifications" />
+			<then>
+				<if>
+					<isset var="numberOfNonActionableNotifications" />
+					<then>
+						<if>
+							<or>
+								<equals arg1="${numberOfNonActionableNotifications}" arg2="1" />
+								<equals arg1="${numberOfNonActionableNotifications}" arg2="2" />
+								<equals arg1="${numberOfNonActionableNotifications}" arg2="3" />
+							</or>
+							<then>
+								<execute function="AssertTextEquals" locator1="SOUserBar#NOTIFICATION_MENU_COUNT" value1="${numberOfNotifications}" />
+								<execute function="Click" locator1="SOUserBar#NOTIFICATION" />
+								<execute function="AssertTextEquals" locator1="SOUserBar#NOTIFICATION_MENU_VIEW_NOTIFICATIONS_LINK" value1="Notifications (${numberOfNonActionableNotifications})" />
+								<execute function="AssertClick" locator1="SOUserBar#NOTIFICATION_MENU_MARK_AS_READ_NOTIFICATIONS_LINK" value1="Mark as Read" />
+								<execute function="AssertTextEquals" locator1="SOUserBar#NOTIFICATION_MENU_NOTIFICATION_NONE_MESSAGE" value1="You do not have any notifications." />
+								<execute function="AssertTextEquals" locator1="SOUserBar#NOTIFICATION_MENU_VIEW_NOTIFICATIONS_LINK" value1="Notifications (0)" />
+								<execute function="AssertNotVisible" locator1="SOUserBar#NOTIFICATION_MENU_MARK_AS_READ_NOTIFICATIONS_LINK" />
+							</then>
+							<else>
+								<execute function="AssertTextEquals" locator1="SOUserBar#NOTIFICATION_MENU_COUNT" value1="${numberOfNotifications}" />
+								<execute function="Click" locator1="SOUserBar#NOTIFICATION" />
+								<execute function="AssertTextEquals" locator1="SOUserBar#NOTIFICATION_MENU_VIEW_NOTIFICATIONS_LINK" value1="Notifications (${numberOfNonActionableNotifications})" />
+								<execute function="AssertClick" locator1="SOUserBar#NOTIFICATION_MENU_MARK_AS_READ_NOTIFICATIONS_LINK" value1="Mark as Read" />
+							</else>
+						</if>
+					</then>
+					<else>
+						<if>
+							<or>
+								<equals arg1="${numberOfNotifications}" arg2="1" />
+								<equals arg1="${numberOfNotifications}" arg2="2" />
+								<equals arg1="${numberOfNotifications}" arg2="3" />
+							</or>
+							<then>
+								<execute function="AssertTextEquals" locator1="SOUserBar#NOTIFICATION_MENU_COUNT" value1="${numberOfNotifications}" />
+								<execute function="Click" locator1="SOUserBar#NOTIFICATION" />
+								<execute function="AssertTextEquals" locator1="SOUserBar#NOTIFICATION_MENU_VIEW_NOTIFICATIONS_LINK" value1="Notifications (${numberOfNotifications})" />
+								<execute function="AssertClick" locator1="SOUserBar#NOTIFICATION_MENU_MARK_AS_READ_NOTIFICATIONS_LINK" value1="Mark as Read" />
+								<execute function="AssertTextEquals" locator1="SOUserBar#NOTIFICATION_MENU_COUNT" value1="0" />
+
+								<execute macro="SOUserBar#viewNoNotifications" />
+							</then>
+							<else>
+								<execute function="AssertTextEquals" locator1="SOUserBar#NOTIFICATION_MENU_COUNT" value1="${numberOfNotifications}" />
+								<execute function="Click" locator1="SOUserBar#NOTIFICATION" />
+								<execute function="AssertTextEquals" locator1="SOUserBar#NOTIFICATION_MENU_VIEW_NOTIFICATIONS_LINK" value1="Notifications (${numberOfNotifications})" />
+								<execute function="AssertClick" locator1="SOUserBar#NOTIFICATION_MENU_MARK_AS_READ_NOTIFICATIONS_LINK" value1="Mark as Read" />
+							</else>
+						</if>
+					</else>
+				</if>
+			</then>
+			<else>
+				<execute function="AssertTextEquals" locator1="SOUserBar#NOTIFICATION_MENU_COUNT" value1="1" />
+				<execute function="Click" locator1="SOUserBar#NOTIFICATION" />
+				<execute function="AssertTextEquals" locator1="SOUserBar#NOTIFICATION_MENU_VIEW_NOTIFICATIONS_LINK" value1="Notifications (1)" />
+				<execute function="AssertClick" locator1="SOUserBar#NOTIFICATION_MENU_MARK_AS_READ_NOTIFICATIONS_LINK" value1="Mark as Read" />
+				<execute function="AssertTextEquals" locator1="SOUserBar#NOTIFICATION_MENU_COUNT" value1="0" />
+
+				<execute macro="SOUserBar#viewNoNotifications" />
+			</else>
+		</if>
+	</command>
+
+	<command name="requestMembershipSOSite">
+		<var name="key_siteName" value="${siteName}" />
+
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute function="SelectFrameTop" />
+		<execute function="Click#pauseClickAt" locator1="SOUserBar#GO_TO" />
+		<execute function="Click#pauseClickAt" locator1="SOUserBar#GO_TO_SITES_DIRECTORY_BUTTON" />
+
+		<execute function="Type" locator1="SOUserBarSitesDirectory#SITE_SEARCH_FIELD" value1="${siteName}" />
+
+		<if>
+			<equals arg1="${siteType}" arg2="Private Restricted" />
+			<then>
+				<execute function="AssertTextEquals" locator1="SOUserBarSitesDirectory#SITE_NAME" value1="${siteName}" />
+			</then>
+			<else>
+				<execute function="AssertTextEquals" locator1="SOUserBarSitesDirectory#SITE_NAME_LINK" value1="${siteName}" />
+			</else>
+		</if>
+
+		<execute function="ClickNoError" locator1="SOUserBarSitesDirectory#REQUEST_MEMBERSHIP_ICON" />
+		<execute function="Confirm" value1="This is a restricted site. Do you want to send a membership request to ${siteName}?" />
+		<execute function="AssertElementPresent" locator1="SOUserBarSitesDirectory#MEMBERSHIP_REQUESTED_ICON" />
+	</command>
+
+	<command name="resetChanges">
+		<execute macro="SOUserBar#showEditControls" />
+
+		<execute function="SikuliAssertElementPresent" locator1="SOUserBar#SCREENSHOTS_USERBAR_RESET_CHANGES_MESSAGE_PNG" />
+		<execute function="AssertTextEquals" locator1="SOUserBar#RESET_CHANGES_MESSAGE" value1="This page has been changed since the last update from the site template." />
+		<execute function="AssertClick" locator1="SOUserBar#RESET_CHANGES_BUTTON" value1="Reset Changes" />
+		<execute function="AssertElementNotPresent" locator1="SOUserBar#RESET_CHANGES_MESSAGE" />
+		<execute function="AssertElementNotPresent" locator1="SOUserBar#RESET_CHANGES_BUTTON" />
+	</command>
+
+	<command name="searchSOSite">
+		<var name="key_siteName" value="${siteName}" />
+
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute function="SelectFrameTop" />
+		<execute function="Click#pauseClickAt" locator1="SOUserBar#GO_TO" />
+
+		<if>
+			<equals arg1="${siteType}" arg2="Private" />
+			<then>
+				<execute function="Select" locator1="SOUserBar#GO_TO_SITE_CATEGORY_SELECT" value1="My Sites" />
+			</then>
+			<else>
+				<execute function="Select" locator1="SOUserBar#GO_TO_SITE_CATEGORY_SELECT" value1="All Sites" />
+			</else>
+		</if>
+
+		<execute function="SelectFrameTop" />
+		<execute function="Click#pauseClickAt" locator1="SOUserBar#GO_TO" />
+		<execute function="Type" locator1="SOUserBar#GO_TO_SEARCH_FIELD" value1="${siteName}" />
+		<execute function="Pause" locator1="1000" />
+		<execute function="AssertTextEquals" locator1="SOUserBar#GO_TO_SITE_NAME_LINK" value1="${siteName}" />
+	</command>
+
+	<command name="showEditControls">
+		<if>
+			<condition function="IsElementNotPresent" locator1="SOUserBar#VISIBLE_PAGE_CONTROLS" />
+			<then>
+				<execute function="Click" locator1="SOUserBar#TOGGLE_DOCKBAR" />
+			</then>
+		</if>
+
+		<if>
+			<condition function="IsElementPresent" locator1="SOUserBar#EDIT_CONTROLS_NOT_FLAGGED" />
+			<then>
+				<execute function="MouseOver" locator1="Dockbar#EDIT_CONTROLS" />
+				<execute function="Click" locator1="Dockbar#EDIT_CONTROLS" />
+			</then>
+		</if>
+	</command>
+
+	<command name="tearDownNotifications">
+		<execute macro="SOUser#firstLoginPG" />
+
+		<execute function="Click" locator1="SOUserBar#NOTIFICATION_MENU_COUNT" />
+		<execute function="Pause" locator1="1000" />
+
+		<while>
+			<condition function="IsElementPresent" locator1="SOUserBar#NOTIFICATION_MENU_REQUEST_IGNORE" />
+			<then>
+				<execute function="Click" locator1="SOUserBar#NOTIFICATION_MENU_REQUEST_IGNORE" />
+			</then>
+		</while>
+
+		<execute function="Pause" locator1="1000" />
+
+		<while>
+			<condition function="IsTextNotEqual" locator1="SOUserBar#NOTIFICATION_MENU_VIEW_NOTIFICATIONS_LINK" value1="Notifications (0)" />
+			<then>
+				<execute function="Click" locator1="SOUserBar#NOTIFICATION_MENU_MARK_AS_READ_NOTIFICATIONS_LINK" />
+			</then>
+		</while>
+	</command>
+
+	<command name="viewConnectionRequest">
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute function="AssertClick" locator1="SOUserBar#NOTIFICATION_MENU_COUNT" value1="1" />
+		<execute function="SikuliAssertElementPresent" locator1="SOUserBar#SCREENSHOTS_USERBAR_NOTIFICATION_MENU_CONNECTION_REQUEST_PNG" />
+	</command>
+
+	<command name="viewDisabledSOSiteTypes">
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute function="SelectFrameTop" />
+		<execute function="Click#pauseClickAt" locator1="SOUserBar#GO_TO" />
+		<execute function="Click#pauseClickAt" locator1="SOUserBar#GO_TO_ADD_SITE_BUTTON" />
+
+		<execute function="SelectFrameTop" />
+		<execute function="Click" locator1="SOUserBarAddSite#NEXT_BUTTON" />
+
+		<if>
+			<isset var="siteTypeList" />
+			<then>
+				<for list="${siteTypeList}" param="siteType">
+					<if>
+						<equals arg1="${siteType}" arg2="Open" />
+						<then>
+							<execute function="AssertElementNotPresent" locator1="SOUserBarAddSite#OPEN_SELECT_OPTION" />
+						</then>
+						<elseif>
+							<equals arg1="${siteType}" arg2="Public Restricted" />
+							<then>
+								<execute function="AssertElementNotPresent" locator1="SOUserBarAddSite#PUBLIC_RESTRICTED_SELECT_OPTION" />
+							</then>
+						</elseif>
+						<elseif>
+							<equals arg1="${siteType}" arg2="Private Restricted" />
+							<then>
+								<execute function="AssertElementNotPresent" locator1="SOUserBarAddSite#PRIVATE_RESTRICTED_SELECT_OPTION" />
+							</then>
+						</elseif>
+						<else>
+							<execute function="AssertElementNotPresent" locator1="SOUserBarAddSite#PRIVATE_SELECT_OPTION" />
+						</else>
+					</if>
+				</for>
+			</then>
+			<else>
+				<if>
+					<equals arg1="${siteType}" arg2="Open" />
+					<then>
+						<execute function="AssertElementNotPresent" locator1="SOUserBarAddSite#OPEN_SELECT_OPTION" />
+					</then>
+					<elseif>
+						<equals arg1="${siteType}" arg2="Public Restricted" />
+						<then>
+							<execute function="AssertElementNotPresent" locator1="SOUserBarAddSite#PUBLIC_RESTRICTED_SELECT_OPTION" />
+						</then>
+					</elseif>
+					<elseif>
+						<equals arg1="${siteType}" arg2="Private Restricted" />
+						<then>
+							<execute function="AssertElementNotPresent" locator1="SOUserBarAddSite#PRIVATE_RESTRICTED_SELECT_OPTION" />
+						</then>
+					</elseif>
+					<else>
+						<execute function="AssertElementNotPresent" locator1="SOUserBarAddSite#PRIVATE_SELECT_OPTION" />
+					</else>
+				</if>
+			</else>
+		</if>
+	</command>
+
+	<command name="viewEnabledSOSiteTypes">
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute function="SelectFrameTop" />
+		<execute function="Click#pauseClickAt" locator1="SOUserBar#GO_TO" />
+		<execute function="Click#pauseClickAt" locator1="SOUserBar#GO_TO_ADD_SITE_BUTTON" />
+
+		<execute function="SelectFrameTop" />
+		<execute function="Click" locator1="SOUserBarAddSite#NEXT_BUTTON" />
+
+		<if>
+			<isset var="siteTypeList" />
+			<then>
+				<for list="${siteTypeList}" param="siteType">
+					<execute function="Select" locator1="SOUserBarAddSite#TYPE_SELECT" value1="${siteType}" />
+					<execute function="AssertSelectedLabel" locator1="SOUserBarAddSite#TYPE_SELECT" value1="${siteType}" />
+				</for>
+			</then>
+			<else>
+				<execute function="Select" locator1="SOUserBarAddSite#TYPE_SELECT" value1="${siteType}" />
+				<execute function="AssertSelectedLabel" locator1="SOUserBarAddSite#TYPE_SELECT" value1="${siteType}" />
+			</else>
+		</if>
+	</command>
+
+	<command name="viewNoNotifications">
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute function="AssertElementPresent" locator1="SOUserBar#NOTIFICATION" />
+		<execute function="AssertTextEquals" locator1="SOUserBar#NOTIFICATION_MENU_COUNT" value1="0" />
+		<execute function="Click" locator1="SOUserBar#NOTIFICATION" />
+		<execute function="AssertTextEquals" locator1="SOUserBar#NOTIFICATION_MENU_NOTIFICATION_NONE_MESSAGE" value1="You do not have any notifications." />
+		<execute function="AssertTextEquals" locator1="SOUserBar#NOTIFICATION_MENU_REQUEST_NONE_MESSAGE" value1="You do not have any requests." />
+		<execute function="AssertNotVisible" locator1="SOUserBar#NOTIFICATION_MENU_MARK_AS_READ_NOTIFICATIONS_LINK" />
+	</command>
+</definition>

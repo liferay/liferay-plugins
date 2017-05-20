@@ -1,0 +1,388 @@
+<definition>
+	<command name="acceptMemberRequestSOSite">
+		<execute macro="Page#gotoCP">
+			<var name="portletName" value="Sites" />
+		</execute>
+
+		<execute macro="Page#gotoUsersCP">
+			<var name="portletName" value="Site Memberships" />
+			<var name="siteScopeName" value="${siteName}" />
+		</execute>
+
+		<var name="key_userScreenName" value="${userScreenName}" />
+
+		<execute function="AssertTextEquals" locator1="CPSitememberships#MEMBERSHIP_TYPE" value1="Membership Type: Restricted" />
+		<execute function="AssertTextEquals" locator1="CPSitememberships#REQUEST_MESSAGE" value1="There are 1 membership requests pending." />
+		<execute function="AssertClick" locator1="CPSitememberships#TOOLBAR_VIEW_MEMBERSHIP_REQUESTS" value1="View Membership Requests" />
+
+		<execute function="AssertTextEquals" locator1="CPSitemembershipsViewmembershiprequestsPending#REQUESTS_TABLE_USER_NAME" value1="${userName} (${userEmailAddress})" />
+		<execute function="AssertTextEquals" locator1="CPSitemembershipsViewmembershiprequestsPending#REQUESTS_TABLE_USER_COMMENTS" value1="${userName} wishes to join ${siteName}." />
+		<execute function="AssertClick" locator1="CPSitemembershipsViewmembershiprequestsPending#REQUESTS_TABLE_REPLY" value1="Reply" />
+
+		<execute function="Select" locator1="CPSitemembershipsViewmembershiprequestsPendingReply#STATUS" value1="Approve" />
+		<execute function="Type" locator1="CPSitemembershipsViewmembershiprequestsPendingReply#REPLY_COMMENTS" value1="${siteName} Membership Approved" />
+		<execute function="AssertClick#assertTextClickAtAndWait" locator1="CPSitemembershipsViewmembershiprequestsPendingReply#SAVE_BUTTON" value1="Save" />
+
+		<execute function="AssertTextEquals" locator1="CPSitemembershipsViewmembershiprequestsPending#SUCCESS_MESSAGE" value1="Your request completed successfully." />
+		<execute function="AssertTextEquals" locator1="CPSitemembershipsViewmembershiprequestsPending#SUCCESS_MESSAGE_2" value1="Your reply will be sent to the user by email." />
+		<execute function="AssertClick" locator1="CPSitemembershipsViewmembershiprequestsPending#VIEW_MEMBERSHIP_NAVIGATION_APPROVED" value1="Approved" />
+
+		<execute function="AssertTextEquals" locator1="CPSitemembershipsViewmembershiprequestsApproved#APPROVED_TABLE_USER_NAME" value1="${userName} (${userEmailAddress})" />
+		<execute function="AssertTextEquals" locator1="CPSitemembershipsViewmembershiprequestsApproved#APPROVED_TABLE_USER_COMMENTS" value1="${userName} wishes to join ${siteName}." />
+		<execute function="AssertTextEquals" locator1="CPSitemembershipsViewmembershiprequestsApproved#APPROVED_TABLE_REPLIER_NAME" value1="Test Test" />
+		<execute function="AssertTextEquals" locator1="CPSitemembershipsViewmembershiprequestsApproved#APPROVED_TABLE_REPLY_COMMENTS" value1="${siteName} Membership Approved" />
+	</command>
+
+	<command name="confirmMemberInvite">
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute function="AssertTextEquals" locator1="SOUserBar#NOTIFICATION_MENU_COUNT" value1="1" />
+		<execute function="Click" locator1="SOUserBar#NOTIFICATION_MENU_COUNT" />
+		<execute function="AssertTextEquals" locator1="SOUserBar#NOTIFICATION_MENU_REQUEST_ENTRY_SENDER" value1="${senderName}" />
+		<execute function="AssertTextEquals#assertPartialText" locator1="SOUserBar#NOTIFICATION_MENU_REQUEST_ENTRY_CONTENT" value1="invited you to join ${siteName}" />
+		<execute function="AssertTextEquals" locator1="SOUserBar#NOTIFICATION_MENU_REQUEST_CONFIRM" value1="Confirm" />
+		<execute function="Click" locator1="SOUserBar#NOTIFICATION_MENU_REQUEST_CONFIRM" />
+		<execute function="AssertTextEquals" locator1="SOUserBar#NOTIFICATION_MENU_COUNT" value1="0" />
+	</command>
+
+	<command name="confirmMemberInviteByEmail">
+		<execute macro="Gmail#login">
+			<var name="userEmailAddress" value="${userEmailAddress}" />
+			<var name="userPassword" value="${userPassword}" />
+		</execute>
+
+		<execute macro="Gmail#gotoHtmlMode" />
+
+		<execute macro="Gmail#viewMail">
+			<var name="emailFromUserName" value="Joe Bloggs" />
+			<var name="gmailAssetType" value="${siteName}" />
+			<var name="gmailMessageBody" value="View Invitation" />
+			<var name="gmailMessageTitle" value="${adminName} has invited you to join ${siteName}" />
+		</execute>
+
+		<var name="key_gmailAssetType" value="${siteName}" />
+
+		<if>
+			<equals arg1="${nonUserInvite}" arg2="true" />
+			<then>
+				<execute function="AssertTextEquals#assertPartialText" locator1="Gmail#GMAIL_HTML_MODE_MESSAGE_BODY" value1="Once your account is created, follow the link below to confirm or ignore this invitation:" />
+			</then>
+			<else>
+				<execute function="AssertTextEquals#assertPartialText" locator1="Gmail#GMAIL_HTML_MODE_MESSAGE_BODY" value1="Follow the link below to confirm or ignore this invitation:" />
+			</else>
+		</if>
+
+		<execute function="AssertClick" locator1="Gmail#GMAIL_HTML_MODE_MESSAGE_BODY_SOCIAL_OFFICE_SITE_INVITE_CONFIRMATION_LINK" value1="View Invitation" />
+
+		<execute function="SelectWindow" locator1="SOMembersPortlet#MEMBERS_POP_UP_WINDOW" />
+
+		<execute function="AssertTextEquals" locator1="SONotifications#NOTIFICATIONS_ENTRY" value1="${adminName} invited you to join ${siteName}." />
+		<execute function="AssertClick" locator1="SONotifications#CONFIRM_BUTTON" value1="Confirm" />
+		<execute function="AssertTextEquals" locator1="SONotifications#REQUESTS_NONE_MESSAGE" value1="You do not have any requests." />
+
+		<execute function="Close#closeWindow" locator1="SOMembersPortlet#MEMBERS_POP_UP_WINDOW" />
+
+		<execute macro="Gmail#gotoHtmlMode" />
+
+		<execute macro="Gmail#deleteSpecificMail">
+			<var name="gmailMessageTitleList" value="${adminName} has invited you to join ${siteName}" />
+		</execute>
+
+		<execute function="Open" locator1="http://localhost:8080" />
+	</command>
+
+	<command name="confirmMemberNonUserInviteByEmail">
+		<execute macro="SOMembersAdministration#createAccountViaSiteInviteEmail">
+			<var name="adminEmailAddress" value="${adminEmailAddress}" />
+			<var name="adminName" value="${adminName}" />
+			<var name="singleApproverWorkflow" value="${singleApproverWorkflow}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="userEmailAddress" value="${userEmailAddress}" />
+			<var name="userFirstName" value="${userFirstName}" />
+			<var name="userLastName" value="${userLastName}" />
+			<var name="userMiddleName" value="${userMiddleName}" />
+			<var name="userName" value="${userName}" />
+			<var name="userPassword" value="${userPassword}" />
+			<var name="userScreenName" value="${userScreenName}" />
+		</execute>
+
+		<execute macro="SOMembersAdministration#confirmMemberInviteByEmail">
+			<var name="adminEmailAddress" value="${adminEmailAddress}" />
+			<var name="adminName" value="${adminName}" />
+			<var name="nonUserInvite" value="true" />
+			<var name="siteName" value="${siteName}" />
+			<var name="userEmailAddress" value="${userEmailAddress}" />
+			<var name="userName" value="${userName}" />
+			<var name="userPassword" value="${userPassword}" />
+		</execute>
+	</command>
+
+	<command name="createAccountViaSiteInviteEmail">
+		<execute function="Pause" locator1="30000" />
+
+		<execute macro="User#logoutPG" />
+
+		<execute macro="Gmail#login">
+			<var name="userEmailAddress" value="${userEmailAddress}" />
+			<var name="userPassword" value="${userPassword}" />
+		</execute>
+
+		<execute macro="Gmail#gotoHtmlMode" />
+
+		<execute macro="Gmail#viewMail">
+			<var name="emailFromUserName" value="Joe Bloggs" />
+			<var name="gmailAssetType" value="${siteName}" />
+			<var name="gmailMessageBody" value="Follow the link below to create an account:" />
+			<var name="gmailMessageTitle" value="${adminName} has invited you to join ${siteName}" />
+		</execute>
+
+		<execute function="AssertClick" locator1="Gmail#GMAIL_HTML_MODE_MESSAGE_BODY_SOCIAL_OFFICE_SITE_INVITE_CREATE_ACCOUNT_LINK" value1="Create Account" />
+
+		<execute function="SelectWindow" locator1="PGLoginCreateAccount#CREATE_ACCOUNT_POP_UP_WINDOW" />
+		<execute function="Type" locator1="PGLoginCreateAccount#FIRST_NAME_FIELD" value1="${userFirstName}" />
+		<execute function="Type" locator1="PGLoginCreateAccount#MIDDLE_NAME_FIELD" value1="${userMiddleName}" />
+		<execute function="Type" locator1="PGLoginCreateAccount#LAST_NAME_FIELD" value1="${userLastName}" />
+		<execute function="Type" locator1="PGLoginCreateAccount#SCREEN_NAME_FIELD" value1="${userScreenName}" />
+		<execute function="Type" locator1="PGLoginCreateAccount#EMAIL_ADDRESS_FIELD" value1="${userEmailAddress}" />
+		<execute function="AssertClick" locator1="PGLoginCreateAccount#SAVE_BUTTON" value1="Save" />
+
+		<if>
+			<equals arg1="${singleApproverWorkflow}" arg2="true" />
+			<then>
+				<execute function="AssertTextEquals" locator1="PGLoginCreateAccount#SUCCESS_MESSAGE" value1="Thank you for creating an account. You will be notified via email at ${userEmailAddress} when your account has been approved." />
+				<execute function="Close#closeWindow" locator1="PGLoginCreateAccount#CREATE_ACCOUNT_POP_UP_WINDOW" />
+			</then>
+			<else>
+				<execute function="Type" locator1="PGLoginNewpassword#PASSWORD_FIELD" value1="test" />
+				<execute function="Type" locator1="PGLoginNewpassword#ENTER_AGAIN_FIELD" value1="test" />
+				<execute function="AssertClick#assertTextClickAtAndWait" locator1="PGLoginNewpassword#SAVE_BUTTON" value1="Save" />
+
+				<execute function="Type#pauseType" locator1="PGLoginPasswordreminder#ANSWER_FIELD" value1="test" />
+				<execute function="AssertClick#pauseAssertTextClickAt" locator1="PGLoginPasswordreminder#SAVE_BUTTON" value1="Save" />
+
+				<execute function="Close#closeWindow" locator1="PGLoginCreateAccount#CREATE_ACCOUNT_POP_UP_WINDOW" />
+			</else>
+		</if>
+	</command>
+
+	<command name="denyMemberRequestSOSite">
+		<execute macro="Page#gotoCP">
+			<var name="portletName" value="Sites" />
+		</execute>
+
+		<execute macro="Page#gotoUsersCP">
+			<var name="portletName" value="Site Memberships" />
+			<var name="siteScopeName" value="${siteName}" />
+		</execute>
+
+		<var name="key_userScreenName" value="${userScreenName}" />
+
+		<execute function="AssertTextEquals" locator1="CPSitememberships#MEMBERSHIP_TYPE" value1="Membership Type: Restricted" />
+		<execute function="AssertTextEquals" locator1="CPSitememberships#REQUEST_MESSAGE" value1="There are 1 membership requests pending." />
+		<execute function="AssertClick" locator1="CPSitememberships#TOOLBAR_VIEW_MEMBERSHIP_REQUESTS" value1="View Membership Requests" />
+
+		<execute function="AssertTextEquals" locator1="CPSitemembershipsViewmembershiprequestsPending#REQUESTS_TABLE_USER_NAME" value1="${userName} (${userEmailAddress})" />
+		<execute function="AssertTextEquals" locator1="CPSitemembershipsViewmembershiprequestsPending#REQUESTS_TABLE_USER_COMMENTS" value1="${userName} wishes to join ${siteName}." />
+		<execute function="AssertClick" locator1="CPSitemembershipsViewmembershiprequestsPending#REQUESTS_TABLE_REPLY" value1="Reply" />
+
+		<execute function="Select" locator1="CPSitemembershipsViewmembershiprequestsPendingReply#STATUS" value1="Deny" />
+		<execute function="Type" locator1="CPSitemembershipsViewmembershiprequestsPendingReply#REPLY_COMMENTS" value1="${siteName} Membership Denied" />
+		<execute function="AssertClick#assertTextClickAtAndWait" locator1="CPSitemembershipsViewmembershiprequestsPendingReply#SAVE_BUTTON" value1="Save" />
+
+		<execute function="AssertTextEquals" locator1="CPSitemembershipsViewmembershiprequestsPending#SUCCESS_MESSAGE" value1="Your request completed successfully." />
+		<execute function="AssertTextEquals" locator1="CPSitemembershipsViewmembershiprequestsPending#SUCCESS_MESSAGE_2" value1="Your reply will be sent to the user by email." />
+		<execute function="AssertClick" locator1="CPSitemembershipsViewmembershiprequestsPending#VIEW_MEMBERSHIP_NAVIGATION_DENIED" value1="Denied" />
+
+		<execute function="AssertTextEquals" locator1="CPSitemembershipsViewmembershiprequestsDenied#DENIED_TABLE_USER_NAME" value1="${userName} (${userEmailAddress})" />
+		<execute function="AssertTextEquals" locator1="CPSitemembershipsViewmembershiprequestsDenied#DENIED_TABLE_USER_COMMENTS" value1="${userName} wishes to join ${siteName}." />
+		<execute function="AssertTextEquals" locator1="CPSitemembershipsViewmembershiprequestsDenied#DENIED_TABLE_REPLIER_NAME" value1="Test Test" />
+		<execute function="AssertTextEquals" locator1="CPSitemembershipsViewmembershiprequestsDenied#DENIED_TABLE_REPLY_COMMENTS" value1="${siteName} Membership Denied" />
+	</command>
+
+	<command name="ignoreMemberInvite">
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute function="AssertTextEquals" locator1="SOUserBar#NOTIFICATION_MENU_COUNT" value1="1" />
+		<execute function="Click" locator1="SOUserBar#NOTIFICATION_MENU_COUNT" />
+		<execute function="AssertTextEquals" locator1="SOUserBar#NOTIFICATION_MENU_REQUEST_ENTRY_SENDER" value1="${senderName}" />
+		<execute function="AssertTextEquals#assertPartialText" locator1="SOUserBar#NOTIFICATION_MENU_REQUEST_ENTRY_CONTENT" value1="invited you to join ${siteName}" />
+		<execute function="AssertTextEquals" locator1="SOUserBar#NOTIFICATION_MENU_REQUEST_IGNORE" value1="Ignore" />
+		<execute function="Click" locator1="SOUserBar#NOTIFICATION_MENU_REQUEST_IGNORE" />
+		<execute function="AssertTextEquals" locator1="SOUserBar#NOTIFICATION_MENU_COUNT" value1="0" />
+	</command>
+
+	<command name="viewConfirmMemberInvite">
+		<var name="key_siteName" value="${siteName}" />
+
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute function="SelectFrameTop" />
+		<execute function="Click#pauseClickAt" locator1="SOUserBar#GO_TO" />
+		<execute function="Select" locator1="SOUserBar#GO_TO_SITE_CATEGORY_SELECT" value1="My Sites" />
+		<execute function="AssertTextNotEquals#assertNotPartialText" locator1="SOUserBar#GO_TO_SITE_LIST" value1="Liferay" />
+		<execute function="SelectFrameTop" />
+		<execute function="Click#pauseClickAt" locator1="SOUserBar#GO_TO" />
+		<execute function="Type" locator1="SOUserBar#GO_TO_SEARCH_FIELD" value1="${siteName}" />
+		<execute function="Pause" locator1="1000" />
+		<execute function="AssertTextEquals" locator1="SOUserBar#GO_TO_SITE_NAME_LINK" value1="${siteName}" />
+		<execute function="Click#pauseClickAt" locator1="SOUserBar#GO_TO_SITES_DIRECTORY_BUTTON" />
+
+		<execute function="Select" locator1="SOUserBarSitesDirectory#SITE_CATEGORY_SELECT" value1="My Sites" />
+		<execute function="AssertTextNotEquals#assertNotPartialText" locator1="SOUserBarSitesDirectory#SITE_LIST" value1="Liferay" />
+		<execute function="Type" locator1="SOUserBarSitesDirectory#SITE_SEARCH_FIELD" value1="${siteName}" />
+		<execute function="Pause" locator1="1000" />
+		<execute function="AssertTextEquals" locator1="SOUserBarSitesDirectory#SITE_NAME_LINK" value1="${siteName}" />
+		<execute function="AssertTextEquals" locator1="SOUserBarSitesDirectory#SITE_DESCRIPTION" value1="${siteDescription}" />
+		<execute function="AssertElementPresent" locator1="SOUserBarSitesDirectory#LEAVE_SITE_ICON" />
+		<execute function="Click" locator1="SOUserBarSitesDirectory#SITE_NAME_LINK" value1="${siteName}" />
+
+		<execute function="AssertTextEquals" locator1="SOSite#SITE_NAME" value1="${siteName}" />
+		<execute function="AssertElementNotPresent" locator1="SOSite#JOIN_SITE_BUTTON" />
+		<execute function="AssertElementNotPresent" locator1="SOSite#REQUEST_MEMBERSHIP_BUTTON" />
+		<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_HOME" value1="Home" />
+		<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_CALENDAR" value1="Calendar" />
+		<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_DOCUMENTS" value1="Documents" />
+		<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_FORUMS" value1="Forums" />
+		<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_BLOGS" value1="Blogs" />
+		<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_WIKI" value1="Wiki" />
+		<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_MEMBERS" value1="Members" />
+
+		<if>
+			<isset var="siteRoleInvite" />
+			<then>
+				<if>
+					<condition function="IsElementNotPresent" locator1="SOUserBar#VISIBLE_PAGE_CONTROLS" />
+					<then>
+						<execute function="Click" locator1="SOUserBar#TOGGLE_DOCKBAR" />
+					</then>
+				</if>
+
+				<if>
+					<condition function="IsElementPresent" locator1="SOUserBar#EDIT_CONTROLS_NOT_FLAGGED" />
+					<then>
+						<execute function="MouseOver" locator1="Dockbar#EDIT_CONTROLS" />
+						<execute function="Click" locator1="Dockbar#EDIT_CONTROLS" />
+					</then>
+				</if>
+
+				<execute function="AssertElementPresent" locator1="SOAnnouncements#ANNOUNCEMENTS_OPTIONS" />
+				<execute function="AssertElementPresent" locator1="SOActivities#ACTIVITIES_OPTIONS" />
+				<execute function="AssertElementPresent" locator1="SOWelcome#WELCOME_OPTIONS" />
+				<execute function="AssertElementPresent" locator1="SOBookmarks#BOOKMARKS_OPTIONS" />
+				<execute function="AssertElementPresent" locator1="SORss#RSS_OPTIONS" />
+				<execute function="AssertElementPresent" locator1="SORecentDownloads#RECENT_DOWNLOADS_OPTIONS" />
+				<execute function="AssertElementPresent" locator1="SOEvents#EVENTS_DISPLAY_OPTIONS" />
+				<execute function="Click" locator1="SOSite#NAVIGATION_MEMBERS" value1="Members" />
+
+				<var name="key_userEmailAddress" value="${userEmailAddress}" />
+
+				<execute function="Type#typePause" locator1="SOMembersPortlet#MEMBERS_LIST_SEARCH" value1="${userEmailAddress}" />
+				<execute function="AssertTextEquals" locator1="SOMembersPortlet#MEMBERS_LIST_NAME" value1="${userLastName}, ${userFirstName}" />
+				<execute function="AssertTextEquals" locator1="SOMembersPortlet#MEMBERS_LIST_EMAIL" value1="${userEmailAddress}" />
+				<execute function="Click#pauseTextClickAt" locator1="SOMembersPortlet#MEMBERS_LIST_NAME" value1="${userLastName}, ${userFirstName}" />
+				<execute function="AssertTextEquals" locator1="SOMembersPortlet#USER_DETAILS_NAME" value1="${userName}" />
+				<execute function="AssertTextEquals" locator1="SOMembersPortlet#USER_DETAILS_EMAIL" value1="${userEmailAddress}" />
+
+				<execute macro="Page#openURL">
+					<var name="friendlyURL" value="${friendlyURL}" />
+					<var name="pageAccess" value="${pageAccess}" />
+					<var name="pageAccessURL" value="${pageAccessURL}" />
+					<var name="pageStaging" value="${pageStaging}" />
+					<var name="pageStagingURL" value="${pageStagingURL}" />
+					<var name="siteName" value="${siteName}" />
+					<var name="siteNameURL" value="${siteNameURL}" />
+					<var name="siteURL" value="true" />
+					<var name="specificURL" value="${specificURL}" />
+				</execute>
+
+				<execute function="AssertClick#assertTextClickAtClickDockbar" locator1="Dockbar#ADMIN" value1="Admin" />
+				<execute function="AssertClick" locator1="Dockbar#ADMIN_SITE_ADMINISTRATION_USERS" value1="Users" />
+
+				<var name="key_userScreenName" value="${userScreenName}" />
+
+				<execute function="Type" locator1="CPSitememberships#USER_SEARCH_FIELD" value1="${userScreenName}" />
+				<execute function="AssertClick#assertTextClickAtAndWait" locator1="CPSitememberships#USER_SEARCH_BUTTON" value1="Search" />
+				<execute function="AssertTextEquals#assertPartialText" locator1="CPSitememberships#USER_TABLE_NAME" value1="${userName}" />
+				<execute function="AssertTextEquals" locator1="CPSitememberships#USER_TABLE_SCREEN_NAME" value1="${userScreenName}" />
+				<execute function="AssertTextEquals" locator1="CPSitememberships#USER_TABLE_SITE_ROLES_AND_TEAMS" value1="${siteRoleInvite}" />
+			</then>
+			<else>
+				<execute function="Click" locator1="SOSite#NAVIGATION_MEMBERS" value1="Members" />
+
+				<execute macro="SOMembersPortlet#viewMember" />
+			</else>
+		</if>
+	</command>
+
+	<command name="viewIgnoreMemberInvite">
+		<var name="key_siteName" value="${siteName}" />
+
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute function="SelectFrameTop" />
+		<execute function="Click#pauseClickAt" locator1="SOUserBar#GO_TO" />
+		<execute function="Select" locator1="SOUserBar#GO_TO_SITE_CATEGORY_SELECT" value1="My Sites" />
+		<execute function="AssertTextNotEquals#assertNotPartialText" locator1="SOUserBar#GO_TO_SITE_LIST" value1="Liferay" />
+		<execute function="SelectFrameTop" />
+		<execute function="Click#pauseClickAt" locator1="SOUserBar#GO_TO" />
+		<execute function="Type" locator1="SOUserBar#GO_TO_SEARCH_FIELD" value1="${siteName}" />
+		<execute function="AssertTextEquals" locator1="SOUserBar#GO_TO_SITE_EMPTY" value1="There are no results." />
+		<execute function="Click#pauseClickAt" locator1="SOUserBar#GO_TO_SITES_DIRECTORY_BUTTON" />
+
+		<execute function="Select" locator1="SOUserBarSitesDirectory#SITE_CATEGORY_SELECT" value1="My Sites" />
+		<execute function="AssertTextNotEquals#assertNotPartialText" locator1="SOUserBarSitesDirectory#SITE_LIST" value1="Liferay" />
+		<execute function="Type" locator1="SOUserBarSitesDirectory#SITE_SEARCH_FIELD" value1="${siteName}" />
+		<execute function="AssertTextEquals" locator1="SOUserBarSitesDirectory#EMPTY_INFO_MESSAGE" value1="There are no results." />
+		<execute function="Select" locator1="SOUserBarSitesDirectory#SITE_CATEGORY_SELECT" value1="All Sites" />
+		<execute function="Type" locator1="SOUserBarSitesDirectory#SITE_SEARCH_FIELD" value1="${siteName}" />
+		<execute function="Pause" locator1="1000" />
+		<execute function="AssertTextEquals" locator1="SOUserBarSitesDirectory#SITE_NAME_LINK" value1="${siteName}" />
+		<execute function="AssertTextEquals" locator1="SOUserBarSitesDirectory#SITE_DESCRIPTION" value1="${siteDescription}" />
+		<execute function="AssertElementPresent" locator1="SOUserBarSitesDirectory#JOIN_SITE_ICON" />
+		<execute function="Click" locator1="SOUserBarSitesDirectory#SITE_NAME_LINK" value1="${siteName}" />
+
+		<execute function="AssertTextEquals" locator1="SOSite#SITE_NAME" value1="${siteName}" />
+		<execute function="AssertElementPresent" locator1="SOSite#JOIN_SITE_BUTTON" />
+		<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_HOME" value1="Home" />
+		<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_CALENDAR" value1="Calendar" />
+		<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_DOCUMENTS" value1="Documents" />
+		<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_FORUMS" value1="Forums" />
+		<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_BLOGS" value1="Blogs" />
+		<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_WIKI" value1="Wiki" />
+		<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_MEMBERS" value1="Members" />
+		<execute function="Click" locator1="SOSite#NAVIGATION_MEMBERS" value1="Members" />
+
+		<execute macro="SOMembersPortlet#viewNonMember" />
+	</command>
+
+	<command name="viewSiteLinkViaSiteRequestNotification">
+		<var name="key_siteName" value="${siteName}" />
+
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute function="Click" locator1="SOUserBar#NOTIFICATION_MENU_COUNT" />
+		<execute function="AssertTextEquals" locator1="SOUserBar#NOTIFICATION_MENU_REQUEST_ENTRY_SENDER" value1="${senderName}" />
+		<execute function="AssertTextEquals#assertPartialText" locator1="SOUserBar#NOTIFICATION_MENU_REQUEST_ENTRY_CONTENT" value1="invited you to join ${siteName}" />
+		<execute function="AssertClick" locator1="SOUserBar#NOTIFICATION_MENU_REQUEST_ENTRY_SITE_LINK" value1="${siteName}" />
+
+		<execute function="AssertTextEquals" locator1="SOSite#SITE_NAME" value1="${siteName}" />
+		<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_HOME" value1="Home" />
+		<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_CALENDAR" value1="Calendar" />
+		<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_DOCUMENTS" value1="Documents" />
+		<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_FORUMS" value1="Forums" />
+		<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_BLOGS" value1="Blogs" />
+		<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_WIKI" value1="Wiki" />
+		<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_MEMBERS" value1="Members" />
+	</command>
+
+	<command name="viewUserLinkViaSiteRequestNotification">
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute function="Click" locator1="SOUserBar#NOTIFICATION_MENU_COUNT" />
+		<execute function="AssertTextEquals#assertPartialText" locator1="SOUserBar#NOTIFICATION_MENU_REQUEST_ENTRY_CONTENT" value1="invited you to join ${siteName}" />
+		<execute function="AssertClick" locator1="SOUserBar#NOTIFICATION_MENU_REQUEST_ENTRY_SENDER" value1="${senderName}" />
+
+		<execute function="AssertTextEquals" locator1="SOProfile#USER_NAME" value1="${senderName}" />
+		<execute function="AssertTextEquals" locator1="SOProfile#USER_EMAIL" value1="${senderEmailAddress}" />
+	</command>
+</definition>

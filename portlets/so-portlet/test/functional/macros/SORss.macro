@@ -1,0 +1,250 @@
+<definition>
+	<command name="addRssFeed">
+		<if>
+			<condition function="IsElementNotPresent" locator1="SOUserBar#VISIBLE_PAGE_CONTROLS" />
+			<then>
+				<execute function="Click" locator1="SOUserBar#TOGGLE_DOCKBAR" />
+			</then>
+		</if>
+
+		<if>
+			<condition function="IsElementPresent" locator1="SOUserBar#EDIT_CONTROLS_NOT_FLAGGED" />
+			<then>
+				<execute function="MouseOver" locator1="Dockbar#EDIT_CONTROLS" />
+				<execute function="Click" locator1="Dockbar#EDIT_CONTROLS" />
+			</then>
+		</if>
+
+		<execute function="Click" locator1="SORss#RSS_OPTIONS" />
+
+		<execute function="Click" locator1="BasePortlet#OPTIONS_MENULIST_CONFIGURATION" />
+
+		<execute function="SelectFrame" locator1="SORssConfiguration#CONFIGURATION_IFRAME" />
+		<execute function="Click" locator1="SORssConfiguration#FEEDS_ADD_ROW_BUTTON" />
+
+		<if>
+			<equals arg1="${feedRow}" arg2="1" />
+			<then>
+				<execute function="Type" locator1="SORssConfiguration#FEEDS_TITLE_FIELD_1" value1="${feedTitle}" />
+				<execute function="Type" locator1="SORssConfiguration#FEEDS_URL_FIELD_1" value1="${feedUrl}" />
+			</then>
+			<elseif>
+				<equals arg1="${feedRow}" arg2="2" />
+				<then>
+					<execute function="Type" locator1="SORssConfiguration#FEEDS_TITLE_FIELD_2" value1="${feedTitle}" />
+					<execute function="Type" locator1="SORssConfiguration#FEEDS_URL_FIELD_2" value1="${feedUrl}" />
+				</then>
+			</elseif>
+			<elseif>
+				<equals arg1="${feedRow}" arg2="3" />
+				<then>
+					<execute function="Type" locator1="SORssConfiguration#FEEDS_TITLE_FIELD_3" value1="${feedTitle}" />
+					<execute function="Type" locator1="SORssConfiguration#FEEDS_URL_FIELD_3" value1="${feedUrl}" />
+				</then>
+			</elseif>
+			<else>
+				<execute function="Type" locator1="SORssConfiguration#FEEDS_TITLE_FIELD_2" value1="${feedTitle}" />
+				<execute function="Type" locator1="SORssConfiguration#FEEDS_URL_FIELD_2" value1="${feedUrl}" />
+			</else>
+		</if>
+
+		<execute function="Check" locator1="SORssConfiguration#DISPLAY_SETTINGS_SHOW_FEED_TITLE_CHECKBOX" />
+		<execute function="Check" locator1="SORssConfiguration#DISPLAY_SETTINGS_SHOW_FEED_PUBLISHED_DATE_CHECKBOX" />
+		<execute function="Check" locator1="SORssConfiguration#DISPLAY_SETTINGS_SHOW_FEED_DESCRIPTION_CHECKBOX" />
+		<execute function="Check" locator1="SORssConfiguration#DISPLAY_SETTINGS_SHOW_FEED_IMAGE_CHECKBOX" />
+		<execute function="Check" locator1="SORssConfiguration#DISPLAY_SETTINGS_SHOW_FEED_ITEM_AUTHOR_CHECKBOX" />
+		<execute function="Select" locator1="SORssConfiguration#DISPLAY_SETTINGS_ENTRIES_PER_FEED_SELECT" value1="${entriesPerFeed}" />
+		<execute function="Select" locator1="SORssConfiguration#DISPLAY_SETTINGS_EXPANDED_ENTRIES_PER_FEED_SELECT" value1="${expandedEntriesPerFeed}" />
+		<execute function="Click" locator1="SORssConfiguration#SAVE_BUTTON" value1="Save" />
+		<execute function="AssertTextEquals" locator1="SORssConfiguration#SUCCESS_MESSAGE" value1="You have successfully updated the setup." />
+		<execute function="SelectFrameTop" />
+	</command>
+
+	<command name="deleteRssFeed">
+		<if>
+			<condition function="IsElementNotPresent" locator1="SOUserBar#VISIBLE_PAGE_CONTROLS" />
+			<then>
+				<execute function="Click" locator1="SOUserBar#TOGGLE_DOCKBAR" />
+			</then>
+		</if>
+
+		<if>
+			<condition function="IsElementPresent" locator1="SOUserBar#EDIT_CONTROLS_NOT_FLAGGED" />
+			<then>
+				<execute function="MouseOver" locator1="Dockbar#EDIT_CONTROLS" />
+				<execute function="Click" locator1="Dockbar#EDIT_CONTROLS" />
+			</then>
+		</if>
+
+		<execute function="Click" locator1="SORss#RSS_OPTIONS" />
+
+		<execute function="Click" locator1="BasePortlet#OPTIONS_MENULIST_CONFIGURATION" />
+
+		<execute function="SelectFrame" locator1="SORssConfiguration#CONFIGURATION_IFRAME" />
+
+		<if>
+			<equals arg1="${feedRow}" arg2="1" />
+			<then>
+				<execute function="Click" locator1="SORssConfiguration#FEEDS_DELETE_ROW_BUTTON_1" />
+			</then>
+			<elseif>
+				<equals arg1="${feedRow}" arg2="2" />
+				<then>
+					<execute function="Click" locator1="SORssConfiguration#FEEDS_DELETE_ROW_BUTTON_2" />
+				</then>
+			</elseif>
+			<elseif>
+				<equals arg1="${feedRow}" arg2="3" />
+				<then>
+					<execute function="Click" locator1="SORssConfiguration#FEEDS_DELETE_ROW_BUTTON_3" />
+				</then>
+			</elseif>
+			<else>
+				<execute function="Click" locator1="SORssConfiguration#FEEDS_DELETE_ROW_BUTTON_2" />
+			</else>
+		</if>
+
+		<execute function="Click" locator1="SORssConfiguration#SAVE_BUTTON" value1="Save" />
+		<execute function="AssertTextEquals" locator1="SORssConfiguration#SUCCESS_MESSAGE" value1="You have successfully updated the setup." />
+		<execute function="SelectFrameTop" />
+	</command>
+
+	<command name="editRssFeed">
+		<if>
+			<condition function="IsElementNotPresent" locator1="SOUserBar#VISIBLE_PAGE_CONTROLS" />
+			<then>
+				<execute function="Click" locator1="SOUserBar#TOGGLE_DOCKBAR" />
+			</then>
+		</if>
+
+		<if>
+			<condition function="IsElementPresent" locator1="SOUserBar#EDIT_CONTROLS_NOT_FLAGGED" />
+			<then>
+				<execute function="MouseOver" locator1="Dockbar#EDIT_CONTROLS" />
+				<execute function="Click" locator1="Dockbar#EDIT_CONTROLS" />
+			</then>
+		</if>
+
+		<execute function="Click" locator1="SORss#RSS_OPTIONS" />
+
+		<execute function="Click" locator1="BasePortlet#OPTIONS_MENULIST_CONFIGURATION" />
+
+		<execute function="SelectFrame" locator1="SORssConfiguration#CONFIGURATION_IFRAME" />
+
+		<if>
+			<equals arg1="${feedRow}" arg2="1" />
+			<then>
+				<execute function="Type" locator1="SORssConfiguration#FEEDS_TITLE_FIELD_1" value1="${feedTitle}" />
+				<execute function="Type" locator1="SORssConfiguration#FEEDS_URL_FIELD_1" value1="${feedUrl}" />
+			</then>
+			<elseif>
+				<equals arg1="${feedRow}" arg2="2" />
+				<then>
+					<execute function="Type" locator1="SORssConfiguration#FEEDS_TITLE_FIELD_2" value1="${feedTitle}" />
+					<execute function="Type" locator1="SORssConfiguration#FEEDS_URL_FIELD_2" value1="${feedUrl}" />
+				</then>
+			</elseif>
+			<elseif>
+				<equals arg1="${feedRow}" arg2="3" />
+				<then>
+					<execute function="Type" locator1="SORssConfiguration#FEEDS_TITLE_FIELD_3" value1="${feedTitle}" />
+					<execute function="Type" locator1="SORssConfiguration#FEEDS_URL_FIELD_3" value1="${feedUrl}" />
+				</then>
+			</elseif>
+			<else>
+				<execute function="Type" locator1="SORssConfiguration#FEEDS_TITLE_FIELD_2" value1="${feedTitle}" />
+				<execute function="Type" locator1="SORssConfiguration#FEEDS_URL_FIELD_2" value1="${feedUrl}" />
+			</else>
+		</if>
+
+		<execute function="Check" locator1="SORssConfiguration#DISPLAY_SETTINGS_SHOW_FEED_TITLE_CHECKBOX" />
+		<execute function="Check" locator1="SORssConfiguration#DISPLAY_SETTINGS_SHOW_FEED_PUBLISHED_DATE_CHECKBOX" />
+		<execute function="Check" locator1="SORssConfiguration#DISPLAY_SETTINGS_SHOW_FEED_DESCRIPTION_CHECKBOX" />
+		<execute function="Check" locator1="SORssConfiguration#DISPLAY_SETTINGS_SHOW_FEED_IMAGE_CHECKBOX" />
+		<execute function="Check" locator1="SORssConfiguration#DISPLAY_SETTINGS_SHOW_FEED_ITEM_AUTHOR_CHECKBOX" />
+		<execute function="Select" locator1="SORssConfiguration#DISPLAY_SETTINGS_ENTRIES_PER_FEED_SELECT" value1="${entriesPerFeed}" />
+		<execute function="Select" locator1="SORssConfiguration#DISPLAY_SETTINGS_EXPANDED_ENTRIES_PER_FEED_SELECT" value1="${expandedEntriesPerFeed}" />
+		<execute function="Click" locator1="SORssConfiguration#SAVE_BUTTON" value1="Save" />
+		<execute function="AssertTextEquals" locator1="SORssConfiguration#SUCCESS_MESSAGE" value1="You have successfully updated the setup." />
+		<execute function="SelectFrameTop" />
+	</command>
+
+	<command name="viewRssFeed">
+		<var name="key_feedTitle" value="${feedTitle}" />
+
+		<execute function="AssertTextEquals#assertPartialText" locator1="SORss#RSS_FEED_TITLE" value1="${feedTitle}" />
+		<execute function="AssertElementPresent" locator1="SORss#RSS_FEED_PUBLISHED_DATE" />
+		<execute function="AssertElementPresent" locator1="SORss#RSS_FEED_DESCRIPTION" />
+		<execute function="AssertElementPresent" locator1="SORss#RSS_FEED_IMAGE" />
+
+		<var name="expandedFeedEntryNumber" value="0" />
+		<var name="feedEntryNumber" value="0" />
+
+		<while>
+			<not>
+				<equals arg1="${feedEntryNumber}" arg2="${entriesPerFeed}" />
+			</not>
+			<then>
+				<var method="MathUtil#sum('${feedEntryNumber}', '1')" name="feedEntryNumber" />
+
+				<if>
+					<not>
+						<equals arg1="${expandedFeedEntryNumber}" arg2="${expandedEntriesPerFeed}" />
+					</not>
+					<then>
+						<var method="MathUtil#sum('${expandedFeedEntryNumber}', '1')" name="expandedFeedEntryNumber" />
+					</then>
+				</if>
+
+				<var name="key_feedEntryNumber" value="${feedEntryNumber}" />
+
+				<execute function="AssertElementPresent" locator1="SORss#RSS_FEED_ENTRY_TITLE_INCREMENT" />
+
+				<if>
+					<not>
+						<equals arg1="${expandedFeedEntryNumber}" arg2="${feedEntryNumber}" />
+					</not>
+					<then>
+						<execute function="Click" locator1="SORss#RSS_FEED_ENTRY_EXPAND_BUTTON_INCREMENT" />
+					</then>
+				</if>
+
+				<execute function="AssertElementPresent" locator1="SORss#RSS_FEED_ENTRY_DATE_AND_TIME_INCREMENT" />
+				<execute function="AssertElementPresent" locator1="SORss#RSS_FEED_ENTRY_AUTHOR_INCREMENT" />
+				<execute function="AssertElementPresent" locator1="SORss#RSS_FEED_ENTRY_CONTENT_INCREMENT" />
+				<execute function="AssertElementPresent" locator1="SORss#RSS_FEED_ENTRY_CONTENT_READ_MORE_INCREMENT" />
+			</then>
+		</while>
+	</command>
+
+	<command name="viewRssFeedConfiguration">
+		<if>
+			<condition function="IsElementNotPresent" locator1="SOUserBar#VISIBLE_PAGE_CONTROLS" />
+			<then>
+				<execute function="Click" locator1="SOUserBar#TOGGLE_DOCKBAR" />
+			</then>
+		</if>
+
+		<if>
+			<condition function="IsElementPresent" locator1="SOUserBar#EDIT_CONTROLS_NOT_FLAGGED" />
+			<then>
+				<execute function="MouseOver" locator1="Dockbar#EDIT_CONTROLS" />
+				<execute function="Click" locator1="Dockbar#EDIT_CONTROLS" />
+			</then>
+		</if>
+
+		<execute function="Click" locator1="SORss#RSS_OPTIONS" />
+
+		<execute function="Click" locator1="BasePortlet#OPTIONS_MENULIST_CONFIGURATION" />
+
+		<execute function="SelectFrame" locator1="SORssConfiguration#CONFIGURATION_IFRAME" />
+		<execute function="AssertChecked" locator1="SORssConfiguration#DISPLAY_SETTINGS_SHOW_FEED_TITLE_CHECKBOX" />
+		<execute function="AssertChecked" locator1="SORssConfiguration#DISPLAY_SETTINGS_SHOW_FEED_PUBLISHED_DATE_CHECKBOX" />
+		<execute function="AssertChecked" locator1="SORssConfiguration#DISPLAY_SETTINGS_SHOW_FEED_DESCRIPTION_CHECKBOX" />
+		<execute function="AssertChecked" locator1="SORssConfiguration#DISPLAY_SETTINGS_SHOW_FEED_IMAGE_CHECKBOX" />
+		<execute function="AssertChecked" locator1="SORssConfiguration#DISPLAY_SETTINGS_SHOW_FEED_ITEM_AUTHOR_CHECKBOX" />
+		<execute function="AssertSelectedLabel" locator1="SORssConfiguration#DISPLAY_SETTINGS_ENTRIES_PER_FEED_SELECT" value1="${entriesPerFeed}" />
+		<execute function="AssertSelectedLabel" locator1="SORssConfiguration#DISPLAY_SETTINGS_EXPANDED_ENTRIES_PER_FEED_SELECT" value1="${expandedEntriesPerFeed}" />
+		<execute function="SelectFrameTop" />
+	</command>
+</definition>

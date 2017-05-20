@@ -1,0 +1,78 @@
+<definition>
+	<command name="disablePortletBorders">
+		<execute macro="SOPortlet#gotoPortletOptions">
+			<var name="portletName" value="${portletName}" />
+			<var name="portletOption" value="Look and Feel" />
+		</execute>
+
+		<execute function="Select" locator1="BasePortlet#PORTLET_CONFIGURATION_SHOW_BORDERS_SELECT" value1="No" />
+		<execute function="AssertClick" locator1="BasePortlet#PORTLET_CONFIGURATION_SAVE_BUTTON" value1="Save" />
+		<execute function="AssertTextEquals" locator1="BasePortlet#PORTLET_CONFIGURATION_SUCCESS_MESSAGE" value1="Your request processed successfully." />
+		<execute function="SelectFrameTop" />
+	</command>
+
+	<command name="enablePortletBorders">
+		<execute macro="SOPortlet#gotoPortletOptions">
+			<var name="portletName" value="${portletName}" />
+			<var name="portletOption" value="Look and Feel" />
+		</execute>
+
+		<execute function="Select" locator1="BasePortlet#PORTLET_CONFIGURATION_SHOW_BORDERS_SELECT" value1="Yes" />
+		<execute function="AssertClick" locator1="BasePortlet#PORTLET_CONFIGURATION_SAVE_BUTTON" value1="Save" />
+		<execute function="AssertTextEquals" locator1="BasePortlet#PORTLET_CONFIGURATION_SUCCESS_MESSAGE" value1="Your request processed successfully." />
+		<execute function="SelectFrameTop" />
+	</command>
+
+	<command name="gotoPortletOptions">
+		<execute macro="SOUserBar#showEditControls" />
+
+		<var name="key_portletName" value="${portletName}" />
+
+		<if>
+			<equals arg1="${portletName}" arg2="Blogs" />
+			<then>
+				<execute function="MakeVisible" locator1="SOBlogs#BLOGS_PORTLET_CONFIGURATION_BAR" />
+				<execute function="Click" locator1="SOBlogs#BLOGS_PORTLET_OPTIONS_ICON" />
+			</then>
+			<elseif>
+				<equals arg1="${portletName}" arg2="Members" />
+				<then>
+					<execute function="MakeVisible" locator1="SOMembersPortlet#MEMBERS_PORTLET_CONFIGURATION_BAR" />
+					<execute function="Click" locator1="SOMembersPortlet#MEMBERS_PORTLET_OPTIONS_ICON" />
+				</then>
+			</elseif>
+			<elseif>
+				<condition function="IsElementPresent" locator1="BasePortlet#SPECIFIC_PORTLET_BORDERLESS_BAR" />
+				<then>
+					<execute function="MakeVisible" locator1="BasePortlet#SPECIFIC_PORTLET_BORDERLESS_BAR" />
+					<execute function="Click" locator1="BasePortlet#SPECIFIC_PORTLET_BORDERLESS_OPTIONS_ICON" />
+				</then>
+			</elseif>
+			<else>
+				<execute function="AssertClick" locator1="BasePortlet#SPECIFIC_PORTLET_OPTIONS_ICON" value1="Options" />
+			</else>
+		</if>
+
+		<if>
+			<equals arg1="${portletOption}" arg2="Look and Feel" />
+			<then>
+				<execute function="AssertClick" locator1="BasePortlet#OPTIONS_MENULIST_LOOK_AND_FEEL" value1="Look and Feel" />
+			</then>
+			<elseif>
+				<equals arg1="${portletOption}" arg2="Configuration" />
+				<then>
+					<execute function="AssertClick#assertTextClickAndWait" locator1="BasePortlet#OPTIONS_MENULIST_CONFIGURATION" value1="Configuration" />
+				</then>
+			</elseif>
+			<elseif>
+				<equals arg1="${portletOption}" arg2="Export / Import" />
+				<then>
+					<execute function="AssertClick" locator1="BasePortlet#OPTIONS_MENULIST_EXPORT_IMPORT" value1="Export / Import" />
+				</then>
+			</elseif>
+			<else>
+				<fail message="Invalid var portletOption. Must be (Look and Feel|Configuration|Export / Import)." />
+			</else>
+		</if>
+	</command>
+</definition>

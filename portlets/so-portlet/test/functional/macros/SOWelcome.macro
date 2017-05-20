@@ -1,0 +1,13 @@
+<definition>
+	<command name="editContent">
+		<execute macro="SOPortlet#gotoPortletOptions">
+			<var name="portletName" value="Welcome" />
+			<var name="portletOption" value="Configuration" />
+		</execute>
+
+		<execute function="SelectFrame" locator1="SOWelcomeConfiguration#CONFIGURATION_IFRAME" />
+		<execute function="Type#typeCKEditorWaitForCKEditor" locator1="SOWelcomeConfiguration#CONTENT_FIELD" value1="${welcomeContent}" />
+		<execute function="AssertClick" locator1="SOWelcomeConfiguration#SAVE_BUTTON" value1="Save" />
+		<execute function="AssertTextEquals" locator1="SOWelcomeConfiguration#SUCCESS_MESSAGE" value1="You have successfully updated the setup." />
+	</command>
+</definition>

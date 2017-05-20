@@ -1,0 +1,254 @@
+<definition>
+	<var name="password" value="test" />
+	<var name="userEmailAddress" value="test@liferay.com" />
+
+	<command name="addUserWithSORole">
+		<execute macro="Page#gotoCP">
+			<var name="portletName" value="Users and Organizations" />
+		</execute>
+
+		<execute macro="User#addCP">
+			<var name="userBirthday" value="${userBirthday}" />
+			<var name="userEmailAddress" value="${userEmailAddress}" />
+			<var name="userEmailAddressVariation" value="${userEmailAddressVariation}" />
+			<var name="userFirstName" value="${userFirstName}" />
+			<var name="userGender" value="${userGender}" />
+			<var name="userLastName" value="${userLastName}" />
+			<var name="userMiddleName" value="${userMiddleName}" />
+			<var name="userScreenName" value="${userScreenName}" />
+			<var name="userScreenNameVariation" value="${userScreenNameVariation}" />
+		</execute>
+
+		<execute macro="Page#gotoCP">
+			<var name="portletName" value="Users and Organizations" />
+		</execute>
+
+		<execute macro="User#editPasswordCP">
+			<var name="userEmailAddress" value="${userEmailAddress}" />
+			<var name="userScreenName" value="${userScreenName}" />
+		</execute>
+
+		<execute macro="Page#gotoCP">
+			<var name="portletName" value="Roles" />
+		</execute>
+
+		<execute macro="Role#assignRegRoleCP">
+			<var name="roleName" value="Social Office" />
+			<var name="userScreenName" value="${userScreenName}" />
+		</execute>
+	</command>
+
+	<command name="firstLoginPG">
+		<execute function="SelectFrame" value1="relative=top" />
+
+		<if>
+			<and>
+				<equals arg1="${fullDatabase}" arg2="true" />
+				<condition function="IsElementPresent" locator1="Setupwizard#PORTAL_PORTAL_NAME_FIELD" />
+			</and>
+			<then>
+				<execute macro="SetupWizard#configureDefaultPG">
+					<var name="administratorEmail" value="${administratorEmail}" />
+					<var name="administratorFirstName" value="${administratorFirstName}" />
+					<var name="administratorLastName" value="${administratorLastName}" />
+					<var name="setupWizardAddSampleData" value="true" />
+				</execute>
+			</then>
+			<elseif>
+				<and>
+					<equals arg1="${fullDatabase}" arg2="true" />
+					<condition function="IsElementPresent" locator1="Dockbar#USER_NAME" />
+				</and>
+				<then>
+					<execute macro="User#logoutAndLoginPG">
+						<var name="userLoginEmailAddress" value="test@liferay.com" />
+						<var name="userLoginFullName" value="Joe Bloggs" />
+					</execute>
+				</then>
+			</elseif>
+			<elseif>
+				<condition function="IsElementPresent" locator1="Dockbar#USER_NAME" />
+				<then>
+					<execute macro="User#logoutAndLoginPG">
+						<var name="userLoginEmailAddress" value="test@liferay.com" />
+						<var name="userLoginFullName" value="Test Test" />
+					</execute>
+				</then>
+			</elseif>
+			<else>
+				<execute macro="User#loginPG">
+					<var name="authenticationMethod" value="${authenticationMethod}" />
+					<var name="nodePort" value="${nodePort}" />
+					<var name="password" value="test" />
+					<var name="userEmailAddress" value="test@liferay.com" />
+					<var name="userScreenName" value="${userScreenName}" />
+				</execute>
+			</else>
+		</if>
+
+		<if>
+			<condition function="IsElementNotPresent" locator1="SOUserBar#USER_BAR" />
+			<then>
+				<execute macro="Page#gotoCP">
+					<var name="portletName" value="Roles" />
+				</execute>
+
+				<if>
+					<equals arg1="${fullDatabase}" arg2="true" />
+					<then>
+						<execute macro="Role#assignRegRoleCP">
+							<var name="roleName" value="Social Office" />
+							<var name="userScreenName" value="joebloggs" />
+						</execute>
+					</then>
+					<else>
+						<execute macro="Role#assignRegRoleCP">
+							<var name="roleName" value="Social Office" />
+							<var name="userScreenName" value="test" />
+						</execute>
+					</else>
+				</if>
+			</then>
+		</if>
+	</command>
+
+	<command name="tearDownCP">
+		<var name="userFirstName" value="social*" />
+
+		<execute macro="SOUser#firstLoginPG" />
+
+		<execute macro="Page#gotoCP">
+			<var name="portletName" value="Users and Organizations" />
+		</execute>
+
+		<execute macro="User#deactivateCP" />
+
+		<execute macro="Page#gotoCP">
+			<var name="portletName" value="Users and Organizations" />
+		</execute>
+
+		<execute macro="User#deleteCP" />
+	</command>
+
+	<command name="viewNonSORole">
+		<execute macro="Page#openURL">
+			<var name="friendlyURL" value="${friendlyURL}" />
+			<var name="pageAccess" value="${pageAccess}" />
+			<var name="pageStaging" value="${pageStaging}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteNameURL" value="${siteNameURL}" />
+			<var name="siteURL" value="${siteURL}" />
+			<var name="specificURL" value="${specificURL}" />
+			<var name="virtualHostsURL" value="${virtualHostsURL}" />
+		</execute>
+
+		<execute function="AssertElementNotPresent" locator1="SOUserBar#USER_BAR" />
+		<execute function="AssertTextNotPresent" value1="Dashboard" />
+
+		<execute function="AssertClick#assertTextClickAtAndWait" locator1="Dockbar#USER_NAME" value1="${userName}" />
+		<execute function="AssertClick#assertTextClickAtAndWait" locator1="Dockbar#USER_MY_DASHBOARD" value1="My Dashboard" />
+
+		<execute function="AssertElementNotPresent" locator1="SODashboard#NAVIGATION_DASHBOARD" />
+		<execute function="AssertElementNotPresent" locator1="SODashboard#NAVIGATION_CONTACTS_CENTER" />
+		<execute function="AssertElementNotPresent" locator1="SODashboard#NAVIGATION_MICROBLOGS" />
+		<execute function="AssertElementNotPresent" locator1="SODashboard#NAVIGATION_MESSAGES" />
+		<execute function="AssertElementNotPresent" locator1="SODashboard#NAVIGATION_MY_DOCUMENTS" />
+		<execute function="AssertElementNotPresent" locator1="SODashboard#NAVIGATION_TASKS" />
+
+		<execute function="AssertClick#assertTextClickAtAndWait" locator1="Dockbar#USER_NAME" value1="${userName}" />
+		<execute function="AssertClick" locator1="Dockbar#USER_MY_PROFILE" value1="My Profile" />
+
+		<execute function="AssertElementNotPresent" locator1="SOProfile#USER_NAME" />
+		<execute function="AssertElementNotPresent" locator1="SOProfile#USER_EMAIL" />
+		<execute function="AssertElementNotPresent" locator1="SOProfile#ADD_INTRODUCTION" />
+		<execute function="AssertElementNotPresent" locator1="SOProfile#ADD_TAGS" />
+		<execute function="AssertElementNotPresent" locator1="SOProfile#ADD_PHONES" />
+		<execute function="AssertElementNotPresent" locator1="SOProfile#ADD_EMAIL_ADDRESS" />
+		<execute function="AssertElementNotPresent" locator1="SOProfile#ADD_INSTANT_MESSENGER" />
+		<execute function="AssertElementNotPresent" locator1="SOProfile#ADD_ADDRESSES" />
+		<execute function="AssertElementNotPresent" locator1="SOProfile#ADD_WEBSITES" />
+		<execute function="AssertElementNotPresent" locator1="SOProfile#ADD_SOCIAL_NETWORK" />
+		<execute function="AssertElementNotPresent" locator1="SOProfile#ADD_SMS" />
+		<execute function="AssertElementNotPresent" locator1="SOProfile#ADD_PROJECTS" />
+		<execute function="AssertElementNotPresent" locator1="SOProfile#NAVIGATION_PROFILE" />
+		<execute function="AssertElementNotPresent" locator1="SOProfile#NAVIGATION_CONTACTS" />
+		<execute function="AssertElementNotPresent" locator1="SOProfile#NAVIGATION_MICROBLOGS" />
+	</command>
+
+	<command name="viewSORole">
+		<execute macro="Page#openURL">
+			<var name="friendlyURL" value="${friendlyURL}" />
+			<var name="pageAccess" value="${pageAccess}" />
+			<var name="pageStaging" value="${pageStaging}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteNameURL" value="${siteNameURL}" />
+			<var name="siteURL" value="${siteURL}" />
+			<var name="specificURL" value="${specificURL}" />
+			<var name="virtualHostsURL" value="${virtualHostsURL}" />
+		</execute>
+
+		<execute function="AssertElementPresent" locator1="SOUserBar#USER_BAR" />
+		<execute function="AssertTextEquals" locator1="SOUserBar#DASHBOARD" value1="Dashboard" />
+		<execute function="AssertTextEquals" locator1="SOUserBar#CONTACT_CENTER" value1="Contacts Center" />
+		<execute function="AssertTextEquals" locator1="SOUserBar#MICROBLOGS" value1="Microblogs" />
+		<execute function="AssertTextEquals" locator1="SOUserBar#MESSAGES" value1="Messages" />
+		<execute function="AssertTextEquals" locator1="SOUserBar#MY_DOCUMENTS" value1="My Documents" />
+		<execute function="AssertTextEquals" locator1="SOUserBar#TASKS" value1="Tasks" />
+		<execute function="Click" locator1="SOUserBar#USER_BAR" />
+		<execute function="SelectFrameTop" />
+		<execute function="Click#pauseClickAt" locator1="SOUserBar#GO_TO" />
+		<execute function="AssertElementPresent" locator1="SOUserBar#GO_TO_SEARCH_FIELD" />
+		<execute function="AssertElementPresent" locator1="SOUserBar#GO_TO_SITE_LIST" />
+		<execute function="Select" locator1="SOUserBar#GO_TO_SITE_CATEGORY_SELECT" value1="All Sites" />
+		<execute function="Type" locator1="SOUserBar#GO_TO_SEARCH_FIELD" value1="Liferay" />
+
+		<var name="key_siteName" value="Liferay" />
+
+		<execute function="Pause" locator1="1000" />
+		<execute function="AssertTextEquals" locator1="SOUserBar#GO_TO_SITE_NAME_LINK" value1="Liferay" />
+		<execute function="AssertElementPresent" locator1="SOUserBar#GO_TO_ADD_SITE_BUTTON" />
+		<execute function="AssertElementPresent" locator1="SOUserBar#GO_TO_SITES_DIRECTORY_BUTTON" />
+
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute function="AssertTextEquals" locator1="SODashboard#NAVIGATION_DASHBOARD" value1="Dashboard" />
+		<execute function="AssertTextEquals" locator1="SODashboard#NAVIGATION_CONTACTS_CENTER" value1="Contacts Center" />
+		<execute function="AssertTextEquals" locator1="SODashboard#NAVIGATION_MICROBLOGS" value1="Microblogs" />
+		<execute function="AssertTextEquals" locator1="SODashboard#NAVIGATION_MESSAGES" value1="Messages" />
+		<execute function="AssertTextEquals" locator1="SODashboard#NAVIGATION_MY_DOCUMENTS" value1="My Documents" />
+		<execute function="AssertTextEquals" locator1="SODashboard#NAVIGATION_TASKS" value1="Tasks" />
+
+		<execute function="AssertElementPresent" locator1="SOUserBar#USER_BAR" />
+		<execute function="AssertTextEquals" locator1="SOUserBar#DASHBOARD" value1="Dashboard" />
+		<execute function="AssertTextEquals" locator1="SOUserBar#CONTACT_CENTER" value1="Contacts Center" />
+		<execute function="AssertTextEquals" locator1="SOUserBar#MICROBLOGS" value1="Microblogs" />
+		<execute function="AssertTextEquals" locator1="SOUserBar#MESSAGES" value1="Messages" />
+		<execute function="AssertTextEquals" locator1="SOUserBar#MY_DOCUMENTS" value1="My Documents" />
+		<execute function="AssertTextEquals" locator1="SOUserBar#TASKS" value1="Tasks" />
+		<execute function="Click" locator1="SOUserBar#USER_BAR" />
+		<execute function="SelectFrameTop" />
+		<execute function="Click#pauseClickAt" locator1="SOUserBar#GO_TO" />
+		<execute function="AssertElementPresent" locator1="SOUserBar#GO_TO_SEARCH_FIELD" />
+		<execute function="AssertElementPresent" locator1="SOUserBar#GO_TO_SITE_CATEGORY_SELECT" />
+		<execute function="AssertElementPresent" locator1="SOUserBar#GO_TO_SITE_LIST" />
+
+		<execute function="AssertClick#assertTextClickAtAndWait" locator1="Dockbar#USER_NAME" value1="${userName}" />
+		<execute function="AssertClick" locator1="Dockbar#USER_MY_PROFILE" value1="My Profile" />
+
+		<execute function="AssertTextEquals" locator1="SOProfile#USER_NAME" value1="${userName}" />
+		<execute function="AssertTextEquals" locator1="SOProfile#USER_EMAIL" value1="${userEmailAddress}" />
+		<execute function="AssertTextEquals" locator1="SOProfile#ADD_INTRODUCTION" value1="Introduction" />
+		<execute function="AssertTextEquals" locator1="SOProfile#ADD_TAGS" value1="Tags" />
+		<execute function="AssertTextEquals" locator1="SOProfile#ADD_PHONES" value1="Phones" />
+		<execute function="AssertTextEquals" locator1="SOProfile#ADD_EMAIL_ADDRESS" value1="Email Address" />
+		<execute function="AssertTextEquals" locator1="SOProfile#ADD_INSTANT_MESSENGER" value1="Instant Messenger" />
+		<execute function="AssertTextEquals" locator1="SOProfile#ADD_ADDRESSES" value1="Addresses" />
+		<execute function="AssertTextEquals" locator1="SOProfile#ADD_WEBSITES" value1="Websites" />
+		<execute function="AssertTextEquals" locator1="SOProfile#ADD_SOCIAL_NETWORK" value1="Social Network" />
+		<execute function="AssertTextEquals" locator1="SOProfile#ADD_SMS" value1="SMS" />
+		<execute function="AssertTextEquals" locator1="SOProfile#ADD_PROJECTS" value1="Add" />
+		<execute function="AssertTextEquals" locator1="SOProfile#NAVIGATION_PROFILE" value1="Profile" />
+		<execute function="AssertTextEquals" locator1="SOProfile#NAVIGATION_CONTACTS" value1="Contacts" />
+		<execute function="AssertTextEquals" locator1="SOProfile#NAVIGATION_MICROBLOGS" value1="Microblogs" />
+	</command>
+</definition>
