@@ -2,7 +2,7 @@
 	<command name="assignOrganizationRoleCP">
 		<var name="key_orgName" value="${orgName}" />
 
-		<execute macro="Page#gotoCP">
+		<execute macro="SOPage#gotoCP">
 			<var name="portletName" value="Social Office Configurations" />
 		</execute>
 
@@ -20,7 +20,7 @@
 	<command name="assignUserGroupRoleCP">
 		<var name="key_userGroupName" value="${userGroupName}" />
 
-		<execute macro="Page#gotoCP">
+		<execute macro="SOPage#gotoCP">
 			<var name="portletName" value="Social Office Configurations" />
 		</execute>
 
@@ -37,7 +37,7 @@
 	<command name="assignUserRoleCP">
 		<var name="key_userScreenName" value="${userScreenName}" />
 
-		<execute macro="Page#gotoCP">
+		<execute macro="SOPage#gotoCP">
 			<var name="portletName" value="Social Office Configurations" />
 		</execute>
 
@@ -51,7 +51,7 @@
 	</command>
 
 	<command name="disableAddSOSiteCP">
-		<execute macro="Page#gotoCP">
+		<execute macro="SOPage#gotoCP">
 			<var name="portletName" value="Social Office Configurations" />
 		</execute>
 
@@ -63,7 +63,7 @@
 	</command>
 
 	<command name="disableSOSiteTypeCP">
-		<execute macro="Page#gotoCP">
+		<execute macro="SOPage#gotoCP">
 			<var name="portletName" value="Social Office Configurations" />
 		</execute>
 
@@ -90,7 +90,7 @@
 	</command>
 
 	<command name="enableAddSOSiteCP">
-		<execute macro="Page#gotoCP">
+		<execute macro="SOPage#gotoCP">
 			<var name="portletName" value="Social Office Configurations" />
 		</execute>
 
@@ -102,7 +102,7 @@
 	</command>
 
 	<command name="enableSOSiteTypeCP">
-		<execute macro="Page#gotoCP">
+		<execute macro="SOPage#gotoCP">
 			<var name="portletName" value="Social Office Configurations" />
 		</execute>
 
@@ -140,7 +140,7 @@
 	<command name="unassignOrganizationRoleCP">
 		<var name="key_orgName" value="${orgName}" />
 
-		<execute macro="Page#gotoCP">
+		<execute macro="SOPage#gotoCP">
 			<var name="portletName" value="Social Office Configurations" />
 		</execute>
 
@@ -158,7 +158,7 @@
 	<command name="unassignUserGroupRoleCP">
 		<var name="key_userGroupName" value="${userGroupName}" />
 
-		<execute macro="Page#gotoCP">
+		<execute macro="SOPage#gotoCP">
 			<var name="portletName" value="Social Office Configurations" />
 		</execute>
 
@@ -175,7 +175,7 @@
 	<command name="unassignUserRoleCP">
 		<var name="key_userScreenName" value="${userScreenName}" />
 
-		<execute macro="Page#gotoCP">
+		<execute macro="SOPage#gotoCP">
 			<var name="portletName" value="Social Office Configurations" />
 		</execute>
 

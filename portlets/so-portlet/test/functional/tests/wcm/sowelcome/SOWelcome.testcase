@@ -32,7 +32,7 @@
 			<var name="siteType" value="${siteType}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -41,7 +41,7 @@
 			<var name="welcomeContent" value="${welcomeContent}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>

@@ -42,7 +42,7 @@
 			<var name="siteType" value="${siteType}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -54,7 +54,7 @@
 			<var name="entryURL" value="${entryURL}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -79,7 +79,7 @@
 			<var name="siteType" value="${siteType}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -101,7 +101,7 @@
 		<execute function="Click" locator1="SOAnnouncementsAdd#SAVE_BUTTON" value1="Save" />
 		<execute function="SelectFrameTop" />
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -126,7 +126,7 @@
 			<var name="siteType" value="${siteType}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -138,7 +138,7 @@
 			<var name="entryURL" value="${entryURL}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -151,7 +151,7 @@
 			<var name="entryURL" value="${entryURL}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -176,7 +176,7 @@
 			<var name="siteType" value="${siteType}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -189,7 +189,7 @@
 			<var name="textFormat" value="Bold" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -255,7 +255,7 @@
 			<var name="siteType" value="${siteType}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -268,7 +268,7 @@
 			<var name="priority" value="Important" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -323,7 +323,7 @@
 			<var name="siteType" value="${siteType}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -336,7 +336,7 @@
 			<var name="textFormat" value="Italic" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -394,7 +394,7 @@
 			<var name="siteType" value="${siteType}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -405,7 +405,7 @@
 			<var name="entryTitle" value="${entryTitle}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -456,7 +456,7 @@
 			<var name="siteType" value="${siteType}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -472,7 +472,7 @@
 
 		<execute function="Pause" locator1="120000" />
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -541,7 +541,7 @@
 			<var name="siteType" value="${siteType2}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName1}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -553,7 +553,7 @@
 			<var name="entryURL" value="${entryURL}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName1}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -566,7 +566,7 @@
 			<var name="entryURL" value="${entryURL}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName2}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -600,7 +600,7 @@
 			<var name="siteType" value="${siteType}" />
 		</execute>
 
-		<execute macro="Page#gotoCP">
+		<execute macro="SOPage#gotoCP">
 			<var name="portletName" value="Users and Organizations" />
 		</execute>
 
@@ -609,7 +609,7 @@
 			<var name="orgType" value="${orgType}" />
 		</execute>
 
-		<execute macro="Page#gotoCP">
+		<execute macro="SOPage#gotoCP">
 			<var name="portletName" value="Users and Organizations" />
 		</execute>
 
@@ -620,7 +620,7 @@
 			<var name="userScreenName" value="${userScreenName}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -661,7 +661,7 @@
 		<execute function="AssertElementPresent" locator1="//optgroup[@label='Organizations']/option[contains(.,'Organization Name')]" />
 		<execute function="SelectFrameTop" />
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -699,7 +699,7 @@
 			<var name="siteType" value="${siteType2}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageAccess" value="Private" />
 			<var name="pageName" value="Home" />
 			<var name="siteName" value="${siteName1}" />
@@ -713,7 +713,7 @@
 			<var name="entryURL" value="${entryURL}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageAccess" value="Private" />
 			<var name="pageName" value="Home" />
 			<var name="siteName" value="${siteName1}" />
@@ -728,7 +728,7 @@
 			<var name="entryURL" value="${entryURL}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageAccess" value="Private" />
 			<var name="pageName" value="Home" />
 			<var name="siteName" value="${siteName2}" />
@@ -768,7 +768,7 @@
 			<var name="siteType" value="${siteType2}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageAccess" value="Private" />
 			<var name="pageName" value="Home" />
 			<var name="siteName" value="${siteName1}" />
@@ -782,7 +782,7 @@
 			<var name="entryURL" value="${entryURL}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageAccess" value="Private" />
 			<var name="pageName" value="Home" />
 			<var name="siteName" value="${siteName1}" />
@@ -797,7 +797,7 @@
 			<var name="entryURL" value="${entryURL}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageAccess" value="Private" />
 			<var name="pageName" value="Home" />
 			<var name="siteName" value="${siteName2}" />
@@ -837,7 +837,7 @@
 			<var name="siteType" value="${siteType2}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName1}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -849,7 +849,7 @@
 			<var name="entryURL" value="${entryURL}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName1}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -862,7 +862,7 @@
 			<var name="entryURL" value="${entryURL}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName2}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -907,7 +907,7 @@
 			<var name="userScreenName" value="${userScreenName1}" />
 		</execute>
 
-		<execute macro="Page#gotoCP">
+		<execute macro="SOPage#gotoCP">
 			<var name="portletName" value="Roles" />
 		</execute>
 
@@ -916,7 +916,7 @@
 			<var name="roleType" value="${roleType}" />
 		</execute>
 
-		<execute macro="Page#gotoCP">
+		<execute macro="SOPage#gotoCP">
 			<var name="portletName" value="Roles" />
 		</execute>
 
@@ -1011,7 +1011,7 @@
 			<var name="siteType" value="${siteType}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -1023,7 +1023,7 @@
 			<var name="entryURL" value="${entryURL}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -1048,7 +1048,7 @@
 			<var name="siteType" value="${siteType}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -1061,7 +1061,7 @@
 			<var name="textFormat" value="Strike Through" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -1120,7 +1120,7 @@
 			<var name="siteType" value="${siteType}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -1133,7 +1133,7 @@
 			<var name="textFormat" value="Underline" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -1189,7 +1189,7 @@
 			<var name="siteType" value="${siteType}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -1202,7 +1202,7 @@
 			<var name="entryURL" value="${entryURL}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -1254,7 +1254,7 @@
 			<var name="siteType" value="${siteType}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -1266,7 +1266,7 @@
 			<var name="entryURL" value="${entryURL}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -1307,7 +1307,7 @@
 			<var name="siteType" value="${siteType}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -1319,7 +1319,7 @@
 			<var name="entryURL" value="${entryURL}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -1360,7 +1360,7 @@
 			<var name="siteType" value="${siteType}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -1372,7 +1372,7 @@
 			<var name="entryURL" value="${entryURL}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -1458,7 +1458,7 @@
 			<var name="siteType" value="${siteType}" />
 		</execute>
 
-		<execute macro="Page#gotoCP">
+		<execute macro="SOPage#gotoCP">
 			<var name="portletName" value="Roles" />
 		</execute>
 
@@ -1472,7 +1472,7 @@
 			<var name="userScreenName" value="${userScreenName}" />
 		</execute>
 
-		<execute macro="Page#gotoCP">
+		<execute macro="SOPage#gotoCP">
 			<var name="portletName" value="Roles" />
 		</execute>
 
@@ -1484,7 +1484,7 @@
 			<var name="roleName" value="${roleName}" />
 		</execute>
 
-		<execute macro="Page#gotoCP">
+		<execute macro="SOPage#gotoCP">
 			<var name="portletName" value="Roles" />
 		</execute>
 
@@ -1496,7 +1496,7 @@
 			<var name="roleName" value="${roleName}" />
 		</execute>
 
-		<execute macro="Page#gotoCP">
+		<execute macro="SOPage#gotoCP">
 			<var name="portletName" value="Roles" />
 		</execute>
 
@@ -1517,7 +1517,7 @@
 			<var name="siteName" value="${siteName}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -1529,7 +1529,7 @@
 			<var name="entryURL" value="${entryURL}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -1543,7 +1543,7 @@
 			<var name="entryURL" value="${entryURL}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -1556,7 +1556,7 @@
 			<var name="entryURL" value="${entryURL}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -1577,7 +1577,7 @@
 			<var name="siteType" value="${siteType}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -1589,7 +1589,7 @@
 			<var name="entryURL" value="${entryURL}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -1603,7 +1603,7 @@
 			<var name="entryURL" value="${entryURL}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -1652,7 +1652,7 @@
 			<var name="siteType" value="${siteType}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -1664,7 +1664,7 @@
 			<var name="entryURL" value="${entryURL}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -1678,7 +1678,7 @@
 			<var name="entryURL" value="${entryURL}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -1745,7 +1745,7 @@
 			<var name="siteType" value="${siteType}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -1757,7 +1757,7 @@
 			<var name="entryURL" value="${entryURL}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -1772,7 +1772,7 @@
 			<var name="entryURL" value="${entryURL}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -1838,7 +1838,7 @@
 			<var name="siteType" value="${siteType}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -1850,7 +1850,7 @@
 			<var name="entryURL" value="${entryURL}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -1875,7 +1875,7 @@
 			<var name="siteType" value="${siteType}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -1887,7 +1887,7 @@
 			<var name="entryURL" value="${entryURL}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -1900,7 +1900,7 @@
 			<var name="entryURL" value="${entryURL}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -1950,7 +1950,7 @@
 			<var name="siteType" value="${siteType}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -1962,7 +1962,7 @@
 			<var name="entryURL" value="${entryURL}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -2019,7 +2019,7 @@
 			<var name="siteType" value="${siteType}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -2031,7 +2031,7 @@
 			<var name="entryURL" value="${entryURL}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -2044,7 +2044,7 @@
 			<var name="entryURL" value="${entryURL}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -2091,7 +2091,7 @@
 			<var name="siteType" value="${siteType}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -2103,7 +2103,7 @@
 			<var name="entryURL" value="${entryURL}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -2118,7 +2118,7 @@
 			<var name="entryURL" value="${entryURL}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -2185,7 +2185,7 @@
 			<var name="siteType" value="${siteType}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -2197,7 +2197,7 @@
 			<var name="entryURL" value="${entryURL}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -2212,7 +2212,7 @@
 			<var name="entryURL" value="${entryURL}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -2278,7 +2278,7 @@
 			<var name="siteType" value="${siteType}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -2291,7 +2291,7 @@
 			<var name="entryURL" value="${entryURL}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -2347,7 +2347,7 @@
 		<var name="userMiddleName" value="Office01" />
 		<var name="userScreenName" value="socialoffice01" />
 
-		<execute macro="Page#gotoCP">
+		<execute macro="SOPage#gotoCP">
 			<var name="portletName" value="Server Administration" />
 		</execute>
 
@@ -2369,7 +2369,7 @@
 			<var name="userLoginFullName" value="${userName}" />
 		</execute>
 
-		<execute macro="Page#gotoMyAccount">
+		<execute macro="SOPage#gotoMyAccount">
 			<var name="portletName" value="Account Settings" />
 		</execute>
 
@@ -2394,14 +2394,14 @@
 
 		<execute function="Pause" locator1="60000" />
 
-		<execute macro="Gmail#login">
+		<execute macro="SOGmail#login">
 			<var name="userEmailAddress" property-value="email.address.2" />
 			<var name="userPassword" property-value="email.password.2" />
 		</execute>
 
-		<execute macro="Gmail#gotoHtmlMode" />
+		<execute macro="SOGmail#gotoHtmlMode" />
 
-		<execute macro="Gmail#viewMail">
+		<execute macro="SOGmail#viewMail">
 			<var name="emailFromUserName" value="Joe Bloggs" />
 			<var name="gmailAssetType" value="Announcements" />
 			<var name="gmailMailTableMessageTitle" value="[General announcement] ${entryTitle}" />
@@ -2411,7 +2411,7 @@
 			<var name="gmailMessageTitle" value="[General announcement] ${entryTitle}" />
 		</execute>
 
-		<execute macro="Gmail#tearDown">
+		<execute macro="SOGmail#tearDown">
 			<var name="userEmailAddress" property-value="email.address.2" />
 			<var name="userPassword" property-value="email.password.2" />
 		</execute>
@@ -2435,7 +2435,7 @@
 		<var name="userMiddleName" value="Office01" />
 		<var name="userScreenName" value="socialoffice01" />
 
-		<execute macro="Page#gotoCP">
+		<execute macro="SOPage#gotoCP">
 			<var name="portletName" value="Server Administration" />
 		</execute>
 
@@ -2463,7 +2463,7 @@
 			<var name="userLoginFullName" value="${userName}" />
 		</execute>
 
-		<execute macro="Page#gotoMyAccount">
+		<execute macro="SOPage#gotoMyAccount">
 			<var name="portletName" value="Account Settings" />
 		</execute>
 
@@ -2481,7 +2481,7 @@
 			<var name="userLoginFullName" value="${adminName}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -2495,14 +2495,14 @@
 
 		<execute function="Pause" locator1="60000" />
 
-		<execute macro="Gmail#login">
+		<execute macro="SOGmail#login">
 			<var name="userEmailAddress" property-value="email.address.2" />
 			<var name="userPassword" property-value="email.password.2" />
 		</execute>
 
-		<execute macro="Gmail#gotoHtmlMode" />
+		<execute macro="SOGmail#gotoHtmlMode" />
 
-		<execute macro="Gmail#viewMail">
+		<execute macro="SOGmail#viewMail">
 			<var name="emailFromUserName" value="Joe Bloggs" />
 			<var name="gmailAssetType" value="Announcements" />
 			<var name="gmailMailTableMessageTitle" value="[General announcement] ${entryTitle}" />
@@ -2512,7 +2512,7 @@
 			<var name="gmailMessageTitle" value="[General announcement] ${entryTitle}" />
 		</execute>
 
-		<execute macro="Gmail#tearDown">
+		<execute macro="SOGmail#tearDown">
 			<var name="userEmailAddress" property-value="email.address.2" />
 			<var name="userPassword" property-value="email.address.2" />
 		</execute>
@@ -2577,7 +2577,7 @@
 			<var name="siteType" value="${siteType}" />
 		</execute>
 
-		<execute macro="Page#gotoUsersCP">
+		<execute macro="SOPage#gotoUsersCP">
 			<var name="portletName" value="Site Teams" />
 			<var name="siteScopeName" value="${siteName1}" />
 		</execute>
@@ -2588,7 +2588,7 @@
 			<var name="teamName" value="${teamName1}" />
 		</execute>
 
-		<execute macro="Page#gotoUsersCP">
+		<execute macro="SOPage#gotoUsersCP">
 			<var name="portletName" value="Site Teams" />
 			<var name="siteScopeName" value="${siteName1}" />
 		</execute>
@@ -2599,7 +2599,7 @@
 			<var name="teamName" value="${teamName2}" />
 		</execute>
 
-		<execute macro="Page#gotoUsersCP">
+		<execute macro="SOPage#gotoUsersCP">
 			<var name="portletName" value="Site Teams" />
 			<var name="siteScopeName" value="${siteName2}" />
 		</execute>
@@ -2610,7 +2610,7 @@
 			<var name="teamName" value="${teamName3}" />
 		</execute>
 
-		<execute macro="Page#gotoUsersCP">
+		<execute macro="SOPage#gotoUsersCP">
 			<var name="portletName" value="Site Teams" />
 			<var name="siteScopeName" value="${siteName2}" />
 		</execute>
@@ -2621,7 +2621,7 @@
 			<var name="teamName" value="${teamName4}" />
 		</execute>
 
-		<execute macro="Page#gotoCP">
+		<execute macro="SOPage#gotoCP">
 			<var name="portletName" value="Roles" />
 		</execute>
 
@@ -2638,7 +2638,7 @@
 			<var name="roleName" value="${roleName}" />
 		</execute>
 
-		<execute macro="Page#gotoCP">
+		<execute macro="SOPage#gotoCP">
 			<var name="portletName" value="Roles" />
 		</execute>
 
@@ -2650,7 +2650,7 @@
 			<var name="roleName" value="Site Member" />
 		</execute>
 
-		<execute macro="Page#gotoCP">
+		<execute macro="SOPage#gotoCP">
 			<var name="portletName" value="Roles" />
 		</execute>
 
@@ -2662,7 +2662,7 @@
 			<var name="roleName" value="Site Member" />
 		</execute>
 
-		<execute macro="Page#gotoCP">
+		<execute macro="SOPage#gotoCP">
 			<var name="portletName" value="Roles" />
 		</execute>
 
@@ -2674,7 +2674,7 @@
 			<var name="roleName" value="Site Member" />
 		</execute>
 
-		<execute macro="Page#gotoUsersCP">
+		<execute macro="SOPage#gotoUsersCP">
 			<var name="portletName" value="Site Memberships" />
 			<var name="siteScopeName" value="${siteName1}" />
 		</execute>
@@ -2688,7 +2688,7 @@
 			<var name="userScreenName" value="${userScreenName1}" />
 		</execute>
 
-		<execute macro="Page#gotoUsersCP">
+		<execute macro="SOPage#gotoUsersCP">
 			<var name="portletName" value="Site Memberships" />
 			<var name="siteScopeName" value="${siteName2}" />
 		</execute>
@@ -2702,7 +2702,7 @@
 			<var name="userScreenName" value="${userScreenName2}" />
 		</execute>
 
-		<execute macro="Page#gotoUsersCP">
+		<execute macro="SOPage#gotoUsersCP">
 			<var name="portletName" value="Site Teams" />
 			<var name="siteScopeName" value="${siteName1}" />
 		</execute>
@@ -2712,7 +2712,7 @@
 			<var name="userScreenName" value="${userScreenName1}" />
 		</execute>
 
-		<execute macro="Page#gotoUsersCP">
+		<execute macro="SOPage#gotoUsersCP">
 			<var name="portletName" value="Site Teams" />
 			<var name="siteScopeName" value="${siteName1}" />
 		</execute>
@@ -2722,7 +2722,7 @@
 			<var name="userScreenName" value="${userScreenName1}" />
 		</execute>
 
-		<execute macro="Page#gotoUsersCP">
+		<execute macro="SOPage#gotoUsersCP">
 			<var name="portletName" value="Site Teams" />
 			<var name="siteScopeName" value="${siteName2}" />
 		</execute>
@@ -2732,7 +2732,7 @@
 			<var name="userScreenName" value="${userScreenName2}" />
 		</execute>
 
-		<execute macro="Page#gotoUsersCP">
+		<execute macro="SOPage#gotoUsersCP">
 			<var name="portletName" value="Site Teams" />
 			<var name="siteScopeName" value="${siteName2}" />
 		</execute>
@@ -2742,7 +2742,7 @@
 			<var name="userScreenName" value="${userScreenName2}" />
 		</execute>
 
-		<execute macro="Page#gotoUsersCP">
+		<execute macro="SOPage#gotoUsersCP">
 			<var name="portletName" value="Site Memberships" />
 			<var name="siteScopeName" value="${siteName1}" />
 		</execute>
@@ -2756,7 +2756,7 @@
 			<var name="userScreenName" value="${userScreenName1}" />
 		</execute>
 
-		<execute macro="Page#gotoUsersCP">
+		<execute macro="SOPage#gotoUsersCP">
 			<var name="portletName" value="Site Memberships" />
 			<var name="siteScopeName" value="${siteName2}" />
 		</execute>
@@ -2775,7 +2775,7 @@
 			<var name="userLoginFullName" value="${userName1}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName1}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -2794,7 +2794,7 @@
 			<var name="userLoginFullName" value="${userName2}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName2}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -2860,7 +2860,7 @@
 			<var name="siteType" value="${siteType}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -2873,7 +2873,7 @@
 			<var name="entryURL" value="${entryURL}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -2886,7 +2886,7 @@
 			<var name="entryURL" value="${entryURL}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -2899,7 +2899,7 @@
 			<var name="entryURL" value="${entryURL}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -2912,7 +2912,7 @@
 			<var name="entryURL" value="${entryURL}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -2925,7 +2925,7 @@
 			<var name="entryURL" value="${entryURL}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -2938,7 +2938,7 @@
 			<var name="entryURL" value="${entryURL}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -2951,7 +2951,7 @@
 			<var name="entryURL" value="${entryURL}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -2964,7 +2964,7 @@
 			<var name="entryURL" value="${entryURL}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -2977,7 +2977,7 @@
 			<var name="entryURL" value="${entryURL}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -2990,7 +2990,7 @@
 			<var name="entryURL" value="${entryURL}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -3003,7 +3003,7 @@
 			<var name="entryURL" value="${entryURL}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -3016,7 +3016,7 @@
 			<var name="entryURL" value="${entryURL}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -3029,7 +3029,7 @@
 			<var name="entryURL" value="${entryURL}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -3042,7 +3042,7 @@
 			<var name="entryURL" value="${entryURL}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -3055,7 +3055,7 @@
 			<var name="entryURL" value="${entryURL}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -3068,7 +3068,7 @@
 			<var name="entryURL" value="${entryURL}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -3081,7 +3081,7 @@
 			<var name="entryURL" value="${entryURL}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -3094,7 +3094,7 @@
 			<var name="entryURL" value="${entryURL}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -3107,7 +3107,7 @@
 			<var name="entryURL" value="${entryURL}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -3120,7 +3120,7 @@
 			<var name="entryURL" value="${entryURL}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -3133,7 +3133,7 @@
 			<var name="entryURL" value="${entryURL}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -3142,7 +3142,7 @@
 			<var name="entriesPerPage" value="5" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -3330,7 +3330,7 @@
 			<var name="entriesPerPage" value="10" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -3899,7 +3899,7 @@
 			<var name="siteType" value="${siteType}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -3918,7 +3918,7 @@
 
 		<execute macro="SOUser#tearDownCP" />
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -4218,7 +4218,7 @@
 			<var name="siteType" value="${siteType}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName1}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -4230,7 +4230,7 @@
 			<var name="entryURL" value="${entryURL}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName2}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -4242,7 +4242,7 @@
 			<var name="entryURL" value="${entryURL}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName3}" />
 			<var name="siteURL" value="true" />
 		</execute>

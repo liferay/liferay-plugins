@@ -106,7 +106,7 @@
 			<var name="userLoginFullName" value="${adminName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -128,7 +128,7 @@
 			<var name="microblogsEntryContent" value="${microblogsEntryContent1}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -150,7 +150,7 @@
 			<var name="microblogsEntryContent" value="${microblogsEntryContent2}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -172,7 +172,7 @@
 			<var name="microblogsEntryContent" value="${microblogsEntryContent3}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -230,7 +230,7 @@
 		<var name="microblogsEntryContent3" value="#Microblogs Post3" />
 		<var name="microblogsEntryTagValue" value="Microblogs" />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -240,7 +240,7 @@
 			<var name="microblogsEntryContent" value="${microblogsEntryContent1}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -250,7 +250,7 @@
 			<var name="microblogsEntryContent" value="${microblogsEntryContent2}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -289,7 +289,7 @@
 		<var name="microblogsEntryTagValue1" value="Microblogs1" />
 		<var name="microblogsEntryTagValue2" value="Microblogs2" />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -299,7 +299,7 @@
 			<var name="microblogsEntryContent" value="${microblogsEntryContent1}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -309,7 +309,7 @@
 			<var name="microblogsEntryContent" value="${microblogsEntryContent2}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -456,7 +456,7 @@
 			<var name="userLoginFullName" value="${userName1}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -478,7 +478,7 @@
 			<var name="userLoginFullName" value="${userName2}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -500,7 +500,7 @@
 			<var name="userLoginFullName" value="${userName3}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -522,7 +522,7 @@
 			<var name="userLoginFullName" value="${userName4}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -606,7 +606,7 @@
 		<var name="microblogsEntryAuthorScreenName" value="${adminScreenName}" />
 		<var name="microblogsEntryContent" value="|||||||||1|||||||||2|||||||||3|||||||||4|||||||||5|||||||||6|||||||||7|||||||||8|||||||||9||||||||10||||||||11||||||||12||||||||13||||||||14||||||||15" />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -628,7 +628,7 @@
 		<var name="microblogsEntryAuthorScreenName" value="${adminScreenName}" />
 		<var name="microblogsEntryContent" value="|||||||||1|||||||||2|||||||||3|||||||||4|||||||||5|||||||||6|||||||||7|||||||||8|||||||||9||||||||10||||||||11||||||||12||||||||13||||||||14||||||||15|" />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -647,7 +647,7 @@
 		<var name="microblogsEntryCommentContent" value="Microblogs Post Comment" />
 		<var name="microblogsEntryContent" value="Microblogs Post" />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -657,7 +657,7 @@
 			<var name="microblogsEntryContent" value="${microblogsEntryContent}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -683,7 +683,7 @@
 	<command name="AddMicroblogsEntryHashtagWithNumber" priority="3">
 		<var name="microblogsEntryContent" value="#1Microblogs Post" />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -740,7 +740,7 @@
 			<var name="userLoginFullName" value="${adminName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -806,7 +806,7 @@
 			<var name="userLoginFullName" value="${adminName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -936,7 +936,7 @@
 			<var name="userLoginFullName" value="${adminName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -1092,7 +1092,7 @@
 			<var name="userLoginFullName" value="${adminName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -1292,7 +1292,7 @@
 			<var name="userLoginFullName" value="${userName1}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -1319,7 +1319,7 @@
 			<var name="userLoginFullName" value="${userName2}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -1346,7 +1346,7 @@
 			<var name="userLoginFullName" value="${userName3}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -1394,7 +1394,7 @@
 			<var name="microblogsEntryContent" value="${microblogsEntryContent3}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -1437,7 +1437,7 @@
 		<var name="microblogsEntryContent" value="#Microblogs Post" />
 		<var name="microblogsEntryTagValue" value="Microblogs" />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -1461,7 +1461,7 @@
 		<var name="microblogsEntryTagValue2" value="Microblogs2" />
 		<var name="microblogsEntryTagValue3" value="Microblogs3" />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -1511,7 +1511,7 @@
 			<var name="userScreenName" value="${userScreenName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -1605,7 +1605,7 @@
 			<var name="userLoginFullName" value="${adminName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -1702,7 +1702,7 @@
 			<var name="userLoginFullName" value="${adminName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -1789,7 +1789,7 @@
 			<var name="userScreenName" value="${userScreenName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -1813,7 +1813,7 @@
 			<var name="statusUpdateEntryContent" value="${microblogsEntryContent}" />
 		</execute>
 
-		<execute macro="Page#gotoMyProfile" />
+		<execute macro="SOPage#gotoMyProfile" />
 
 		<execute macro="SOStatusUpdate#configureStatusUpdateDisplayPG" />
 
@@ -1850,7 +1850,7 @@
 			<var name="userScreenName" value="${userScreenName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -1894,7 +1894,7 @@
 			<var name="userLoginFullName" value="${adminName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -1940,7 +1940,7 @@
 			<var name="userLoginFullName" value="${adminName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -2026,7 +2026,7 @@
 			<var name="userScreenName" value="${userScreenName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="Microblogs" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -2036,7 +2036,7 @@
 			<var name="microblogsEntryContent" value="${microblogsEntryContent}" />
 		</execute>
 
-		<execute macro="Page#gotoMyProfile" />
+		<execute macro="SOPage#gotoMyProfile" />
 
 		<execute macro="SOStatusUpdate#configureStatusUpdateDisplayPG" />
 
@@ -2096,7 +2096,7 @@
 			<var name="userScreenName" value="${userScreenName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -2122,7 +2122,7 @@
 			<var name="statusUpdateEntryContent" value="${microblogsEntryContent}" />
 		</execute>
 
-		<execute macro="Page#gotoMyProfile" />
+		<execute macro="SOPage#gotoMyProfile" />
 
 		<execute macro="SOStatusUpdate#configureStatusUpdateDisplayPG" />
 
@@ -2159,7 +2159,7 @@
 			<var name="userScreenName" value="${userScreenName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -2237,7 +2237,7 @@
 			<var name="userLoginFullName" value="${adminName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -2312,7 +2312,7 @@
 	<command name="DeleteMicroblogsEntry" priority="5">
 		<var name="microblogsEntryContent" value="Microblogs Post" />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -2363,7 +2363,7 @@
 			<var name="userLoginFullName" value="${adminName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -2378,7 +2378,7 @@
 			<var name="microblogsEntryContent" value="${microblogsEntryContent1}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -2393,7 +2393,7 @@
 			<var name="microblogsEntryContent" value="${microblogsEntryContent2}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -2410,7 +2410,7 @@
 			<var name="userLoginFullName" value="${userName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -2427,7 +2427,7 @@
 		<var name="microblogsEntryContent3" value="#Microblogs Post3" />
 		<var name="microblogsEntryTagValue" value="Microblogs" />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -2437,7 +2437,7 @@
 			<var name="microblogsEntryContent" value="${microblogsEntryContent1}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -2447,7 +2447,7 @@
 			<var name="microblogsEntryContent" value="${microblogsEntryContent2}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -2457,7 +2457,7 @@
 			<var name="microblogsEntryContent" value="${microblogsEntryContent3}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -2491,7 +2491,7 @@
 	<command name="DeleteMicroblogsEntryViaProfile" priority="4">
 		<var name="microblogsEntryContent" value="Microblogs Post" />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="Microblogs" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -2512,7 +2512,7 @@
 		<execute function="AssertTextEquals" locator1="SOMicroblogsProfile#INFO_MESSAGE" value1="You do not have any microblog entries." />
 		<execute function="AssertElementNotPresent" locator1="SOMicroblogsProfile#MICROBLOGS_ENTRY_CONTENT" value1="${microblogsEntryContent}" />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="Microblogs" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -2541,7 +2541,7 @@
 			<var name="userScreenName" value="${userScreenName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -2626,7 +2626,7 @@
 			<var name="userScreenName" value="${userScreenName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -2636,7 +2636,7 @@
 			<var name="microblogsEntryContent" value="${microblogsEntryContent}" />
 		</execute>
 
-		<execute macro="Page#gotoMyProfile" />
+		<execute macro="SOPage#gotoMyProfile" />
 
 		<execute macro="SOStatusUpdate#configureStatusUpdateDisplayPG" />
 
@@ -2653,7 +2653,7 @@
 			<var name="microblogsEntryContent" value="${microblogsEntryContent}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -2724,7 +2724,7 @@
 			<var name="userLoginFullName" value="${adminName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -2739,7 +2739,7 @@
 			<var name="microblogsEntryContent" value="${microblogsEntryContent1}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -2754,7 +2754,7 @@
 			<var name="microblogsEntryContent" value="${microblogsEntryContent2}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -2774,7 +2774,7 @@
 			<var name="userLoginFullName" value="${userName1}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -2789,7 +2789,7 @@
 			<var name="userLoginFullName" value="${userName2}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -2808,7 +2808,7 @@
 		<var name="microblogsEntryTagValue" value="Microblogs" />
 		<var name="microblogsEntryTagValueEdit" value="Microblogs1" />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -2818,7 +2818,7 @@
 			<var name="microblogsEntryContent" value="${microblogsEntryContent1}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -2828,7 +2828,7 @@
 			<var name="microblogsEntryContent" value="${microblogsEntryContent2}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -2838,7 +2838,7 @@
 			<var name="microblogsEntryContent" value="${microblogsEntryContent3}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -2898,7 +2898,7 @@
 			<var name="userScreenName" value="${userScreenName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -2987,7 +2987,7 @@
 			<var name="userScreenName" value="${userScreenName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -2997,7 +2997,7 @@
 			<var name="microblogsEntryContent" value="${microblogsEntryContent}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -3013,7 +3013,7 @@
 			<var name="statusUpdateEntryContent" value="${microblogsEntryContentEdit}" />
 		</execute>
 
-		<execute macro="Page#gotoMyProfile" />
+		<execute macro="SOPage#gotoMyProfile" />
 
 		<execute macro="SOStatusUpdate#configureStatusUpdateDisplayPG" />
 
@@ -3052,7 +3052,7 @@
 			<var name="userScreenName" value="${userScreenName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="Microblogs" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -3072,7 +3072,7 @@
 			<var name="statusUpdateEntryContent" value="${microblogsEntryContentEdit}" />
 		</execute>
 
-		<execute macro="Page#gotoMyProfile" />
+		<execute macro="SOPage#gotoMyProfile" />
 
 		<execute macro="SOStatusUpdate#configureStatusUpdateDisplayPG" />
 
@@ -3109,7 +3109,7 @@
 			<var name="userScreenName" value="${userScreenName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -3181,7 +3181,7 @@
 			<var name="userScreenName" value="${userScreenName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -3197,7 +3197,7 @@
 			<var name="statusUpdateEntryContent" value="${microblogsEntryContent}" />
 		</execute>
 
-		<execute macro="Page#gotoMyProfile" />
+		<execute macro="SOPage#gotoMyProfile" />
 
 		<execute macro="SOStatusUpdate#configureStatusUpdateDisplayPG" />
 
@@ -3336,7 +3336,7 @@
 			<var name="userScreenName" value="${userScreenName3}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -3347,7 +3347,7 @@
 			<var name="microblogsEntryViewableBy" value="Connections" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -3358,7 +3358,7 @@
 			<var name="microblogsEntryViewableBy" value="Followers" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -3368,7 +3368,7 @@
 			<var name="microblogsEntryContent" value="${microblogsEntryContent3}" />
 		</execute>
 
-		<execute macro="Page#gotoMyProfile" />
+		<execute macro="SOPage#gotoMyProfile" />
 
 		<execute macro="SOStatusUpdate#configureStatusUpdateDisplayPG" />
 
@@ -3513,7 +3513,7 @@
 			<var name="userScreenName" value="${userScreenName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -3570,7 +3570,7 @@
 			<var name="userLoginFullName" value="${adminName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -3586,7 +3586,7 @@
 			<var name="microblogsEntryContent" value="${microblogsEntryContent1}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -3602,7 +3602,7 @@
 			<var name="microblogsEntryContent" value="${microblogsEntryContent2}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -3656,7 +3656,7 @@
 			<var name="userLoginFullName" value="${adminName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -3700,7 +3700,7 @@
 			<var name="userLoginFullName" value="${adminName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="Microblogs" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -3770,7 +3770,7 @@
 			<var name="userLoginFullName" value="${adminName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -3800,7 +3800,7 @@
 		<var name="microblogsEntryContent" value="#Microblogs Post" />
 		<var name="microblogsEntryTagValue" value="Microblogs" />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="Microblogs" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -3842,7 +3842,7 @@
 			<var name="userScreenName" value="${userScreenName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="Microblogs" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -3853,7 +3853,7 @@
 			<var name="microblogsEntryViewableBy" value="Connections" />
 		</execute>
 
-		<execute macro="Page#gotoMyProfile" />
+		<execute macro="SOPage#gotoMyProfile" />
 
 		<execute macro="SOStatusUpdate#configureStatusUpdateDisplayPG" />
 
@@ -3891,7 +3891,7 @@
 			<var name="userScreenName" value="${userScreenName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="Microblogs" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -3902,7 +3902,7 @@
 			<var name="microblogsEntryViewableBy" value="Followers" />
 		</execute>
 
-		<execute macro="Page#gotoMyProfile" />
+		<execute macro="SOPage#gotoMyProfile" />
 
 		<execute macro="SOStatusUpdate#configureStatusUpdateDisplayPG" />
 
@@ -3925,7 +3925,7 @@
 		<var name="microblogsEntryContent2" value="Microblogs Post2" />
 		<var name="microblogsEntryContent3" value="Microblogs Post3" />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -3936,7 +3936,7 @@
 			<var name="microblogsEntryViewableBy" value="Connections" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -3947,7 +3947,7 @@
 			<var name="microblogsEntryViewableBy" value="Followers" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -4009,7 +4009,7 @@
 			<var name="userLoginFullName" value="${userName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -4020,7 +4020,7 @@
 			<var name="microblogsEntryViewableBy" value="Connections" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -4031,7 +4031,7 @@
 			<var name="microblogsEntryViewableBy" value="Followers" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -4046,7 +4046,7 @@
 			<var name="userLoginFullName" value="${adminName}" />
 		</execute>
 
-		<execute macro="Page#gotoCP">
+		<execute macro="SOPage#gotoCP">
 			<var name="portletName" value="Portal Settings" />
 		</execute>
 
@@ -4054,7 +4054,7 @@
 			<var name="currentPortalLanguages" value="English (United States),Dutch (Netherlands)" />
 		</execute>
 
-		<execute macro="Page#gotoCP">
+		<execute macro="SOPage#gotoCP">
 			<var name="portletName" value="Users and Organizations" />
 		</execute>
 
@@ -4068,7 +4068,7 @@
 			<var name="userLoginFullName" value="${userName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />

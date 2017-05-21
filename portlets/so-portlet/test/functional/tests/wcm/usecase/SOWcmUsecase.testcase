@@ -92,18 +92,18 @@
 	<command name="ResetChangesViaProfile" priority="4">
 		<var name="portletName" value="Hello World" />
 
-		<execute macro="Page#gotoMyProfile" />
+		<execute macro="SOPage#gotoMyProfile" />
 
 		<execute macro="SOUserBar#addPortlet">
 			<var name="pageName" value="Profile" />
 			<var name="portletName" value="${portletName}" />
 		</execute>
 
-		<execute macro="Page#gotoMyProfile" />
+		<execute macro="SOPage#gotoMyProfile" />
 
 		<execute macro="SOUserBar#resetChanges" />
 
-		<execute macro="Page#gotoMyProfile" />
+		<execute macro="SOPage#gotoMyProfile" />
 
 		<var name="key_portletName" value="${portletName}" />
 
@@ -134,18 +134,18 @@
 			<var name="userLoginFullName" value="${userName}" />
 		</execute>
 
-		<execute macro="Page#gotoMyProfile" />
+		<execute macro="SOPage#gotoMyProfile" />
 
 		<execute macro="SOUserBar#addPortlet">
 			<var name="pageName" value="Profile" />
 			<var name="portletName" value="${portletName}" />
 		</execute>
 
-		<execute macro="Page#gotoMyProfile" />
+		<execute macro="SOPage#gotoMyProfile" />
 
 		<execute macro="SOUserBar#resetChanges" />
 
-		<execute macro="Page#gotoMyProfile" />
+		<execute macro="SOPage#gotoMyProfile" />
 
 		<var name="key_portletName" value="${portletName}" />
 
@@ -166,7 +166,7 @@
 			<var name="siteType" value="${siteType}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -176,14 +176,14 @@
 			<var name="portletName" value="${portletName}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
 
 		<execute macro="SOUserBar#resetChanges" />
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -227,7 +227,7 @@
 			<var name="siteType" value="${siteType}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -237,14 +237,14 @@
 			<var name="portletName" value="${portletName}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
 
 		<execute macro="SOUserBar#resetChanges" />
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>

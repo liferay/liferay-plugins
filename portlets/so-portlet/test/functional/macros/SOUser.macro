@@ -3,7 +3,7 @@
 	<var name="userEmailAddress" value="test@liferay.com" />
 
 	<command name="addUserWithSORole">
-		<execute macro="Page#gotoCP">
+		<execute macro="SOPage#gotoCP">
 			<var name="portletName" value="Users and Organizations" />
 		</execute>
 
@@ -19,7 +19,7 @@
 			<var name="userScreenNameVariation" value="${userScreenNameVariation}" />
 		</execute>
 
-		<execute macro="Page#gotoCP">
+		<execute macro="SOPage#gotoCP">
 			<var name="portletName" value="Users and Organizations" />
 		</execute>
 
@@ -28,7 +28,7 @@
 			<var name="userScreenName" value="${userScreenName}" />
 		</execute>
 
-		<execute macro="Page#gotoCP">
+		<execute macro="SOPage#gotoCP">
 			<var name="portletName" value="Roles" />
 		</execute>
 
@@ -89,7 +89,7 @@
 		<if>
 			<condition function="IsElementNotPresent" locator1="SOUserBar#USER_BAR" />
 			<then>
-				<execute macro="Page#gotoCP">
+				<execute macro="SOPage#gotoCP">
 					<var name="portletName" value="Roles" />
 				</execute>
 
@@ -117,13 +117,13 @@
 
 		<execute macro="SOUser#firstLoginPG" />
 
-		<execute macro="Page#gotoCP">
+		<execute macro="SOPage#gotoCP">
 			<var name="portletName" value="Users and Organizations" />
 		</execute>
 
 		<execute macro="User#deactivateCP" />
 
-		<execute macro="Page#gotoCP">
+		<execute macro="SOPage#gotoCP">
 			<var name="portletName" value="Users and Organizations" />
 		</execute>
 
@@ -131,7 +131,7 @@
 	</command>
 
 	<command name="viewNonSORole">
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="friendlyURL" value="${friendlyURL}" />
 			<var name="pageAccess" value="${pageAccess}" />
 			<var name="pageStaging" value="${pageStaging}" />
@@ -176,7 +176,7 @@
 	</command>
 
 	<command name="viewSORole">
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="friendlyURL" value="${friendlyURL}" />
 			<var name="pageAccess" value="${pageAccess}" />
 			<var name="pageStaging" value="${pageStaging}" />

@@ -64,7 +64,7 @@
 			</then>
 		</if>
 
-		<execute macro="Page#gotoContentCP">
+		<execute macro="SOPage#gotoContentCP">
 			<var name="pageAccess" value="Private" />
 			<var name="portletName" value="Recycle Bin" />
 			<var name="siteName" value="test" />
@@ -414,7 +414,7 @@
 				<execute function="AssertTextEquals" locator1="PGDocumentsandmediaDocument#COMMENTS_BODY" value1="${commentBody}" />
 			</then>
 			<else>
-				<execute macro="DMDocument#viewDocumentNoCommentsCmdPG" />
+				<execute macro="SODMDocument#viewDocumentNoCommentsCmdPG" />
 			</else>
 		</if>
 

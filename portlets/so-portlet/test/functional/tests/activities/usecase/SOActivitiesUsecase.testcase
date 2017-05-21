@@ -222,7 +222,7 @@
 			<var name="wikiPageContentEdit" value="${wikiPageContentEdit4}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName1}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -297,7 +297,7 @@
 		<execute function="AssertTextNotPresent" value1="${threadSubject4}" />
 		<execute function="AssertTextNotPresent" value1="${wikiPageContentEdit4}" />
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName2}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -372,7 +372,7 @@
 		<execute function="AssertTextNotPresent" value1="${threadSubject4}" />
 		<execute function="AssertTextNotPresent" value1="${wikiPageContentEdit4}" />
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="pageAccess" value="Private" />
 			<var name="siteName" value="${siteName3}" />
 			<var name="siteURL" value="true" />
@@ -448,7 +448,7 @@
 		<execute function="AssertTextNotPresent" value1="${threadSubject4}" />
 		<execute function="AssertTextNotPresent" value1="${wikiPageContentEdit4}" />
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="pageAccess" value="Private" />
 			<var name="siteName" value="${siteName4}" />
 			<var name="siteURL" value="true" />
@@ -692,7 +692,7 @@
 			<var name="siteType" value="${siteType4}" />
 		</execute>
 
-		<execute macro="Page#gotoUsersCP">
+		<execute macro="SOPage#gotoUsersCP">
 			<var name="portletName" value="Site Memberships" />
 			<var name="siteScopeName" value="${siteName1}" />
 		</execute>
@@ -706,7 +706,7 @@
 			<var name="userScreenName" value="${userScreenName1}" />
 		</execute>
 
-		<execute macro="Page#gotoUsersCP">
+		<execute macro="SOPage#gotoUsersCP">
 			<var name="portletName" value="Site Memberships" />
 			<var name="siteScopeName" value="${siteName2}" />
 		</execute>
@@ -720,7 +720,7 @@
 			<var name="userScreenName" value="${userScreenName2}" />
 		</execute>
 
-		<execute macro="Page#gotoUsersCP">
+		<execute macro="SOPage#gotoUsersCP">
 			<var name="portletName" value="Site Memberships" />
 			<var name="siteScopeName" value="${siteName3}" />
 		</execute>
@@ -734,7 +734,7 @@
 			<var name="userScreenName" value="${userScreenName3}" />
 		</execute>
 
-		<execute macro="Page#gotoUsersCP">
+		<execute macro="SOPage#gotoUsersCP">
 			<var name="portletName" value="Site Memberships" />
 			<var name="siteScopeName" value="${siteName4}" />
 		</execute>
@@ -748,7 +748,7 @@
 			<var name="userScreenName" value="${userScreenName4}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="Calendar" />
 			<var name="siteName" value="${siteName1}" />
 			<var name="siteURL" value="true" />
@@ -761,7 +761,7 @@
 			<var name="site" value="${siteName1}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="Calendar" />
 			<var name="siteName" value="${siteName2}" />
 			<var name="siteURL" value="true" />
@@ -774,7 +774,7 @@
 			<var name="site" value="${siteName2}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageAccess" value="Private" />
 			<var name="pageName" value="Calendar" />
 			<var name="siteName" value="${siteName3}" />
@@ -788,7 +788,7 @@
 			<var name="site" value="${siteName3}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageAccess" value="Private" />
 			<var name="pageName" value="Calendar" />
 			<var name="siteName" value="${siteName4}" />
@@ -1246,7 +1246,7 @@
 			<var name="userScreenName" value="${userScreenName1}" />
 		</execute>
 
-		<execute macro="Page#gotoCP">
+		<execute macro="SOPage#gotoCP">
 			<var name="portletName" value="Roles" />
 		</execute>
 
@@ -1263,7 +1263,7 @@
 			<var name="userScreenName" value="${userScreenName2}" />
 		</execute>
 
-		<execute macro="Page#gotoCP">
+		<execute macro="SOPage#gotoCP">
 			<var name="portletName" value="Roles" />
 		</execute>
 
@@ -1286,7 +1286,7 @@
 			<var name="siteType" value="${siteType}" />
 		</execute>
 
-		<execute macro="Page#gotoUsersCP">
+		<execute macro="SOPage#gotoUsersCP">
 			<var name="portletName" value="Site Memberships" />
 			<var name="siteScopeName" value="${siteName}" />
 		</execute>
@@ -1326,7 +1326,7 @@
 			<var name="userName" value="${userName3}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="Microblogs" />
 			<var name="soDashboard" value="true" />
 		</execute>
@@ -1335,7 +1335,7 @@
 			<var name="microblogsEntryContent" value="${microblogsEntryContent1}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="Forums" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -1415,7 +1415,7 @@
 			<var name="userLoginFullName" value="${userName3}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="Microblogs" />
 			<var name="soDashboard" value="true" />
 		</execute>
@@ -1424,7 +1424,7 @@
 			<var name="microblogsEntryContent" value="${microblogsEntryContent2}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="Forums" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -1533,7 +1533,7 @@
 			<var name="siteType" value="${siteType}" />
 		</execute>
 
-		<execute macro="Page#gotoUsersCP">
+		<execute macro="SOPage#gotoUsersCP">
 			<var name="portletName" value="Site Memberships" />
 			<var name="siteScopeName" value="${siteName}" />
 		</execute>
@@ -1573,7 +1573,7 @@
 			<var name="userName" value="${userName3}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="Microblogs" />
 			<var name="soDashboard" value="true" />
 		</execute>
@@ -1582,7 +1582,7 @@
 			<var name="microblogsEntryContent" value="${microblogsEntryContent1}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="Forums" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -1662,7 +1662,7 @@
 			<var name="userLoginFullName" value="${userName3}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="Microblogs" />
 			<var name="soDashboard" value="true" />
 		</execute>
@@ -1671,7 +1671,7 @@
 			<var name="microblogsEntryContent" value="${microblogsEntryContent2}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="Forums" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -1786,7 +1786,7 @@
 			<var name="siteType" value="${siteType}" />
 		</execute>
 
-		<execute macro="Page#gotoUsersCP">
+		<execute macro="SOPage#gotoUsersCP">
 			<var name="portletName" value="Site Memberships" />
 			<var name="siteScopeName" value="${siteName}" />
 		</execute>
@@ -1821,7 +1821,7 @@
 			<var name="userName" value="${userName1}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="Microblogs" />
 			<var name="soDashboard" value="true" />
 		</execute>
@@ -1830,7 +1830,7 @@
 			<var name="microblogsEntryContent" value="${microblogsEntryContent1}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="Forums" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -1883,7 +1883,7 @@
 			<var name="userLoginFullName" value="${userName2}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="Microblogs" />
 			<var name="soDashboard" value="true" />
 		</execute>
@@ -1892,7 +1892,7 @@
 			<var name="microblogsEntryContent" value="${microblogsEntryContent2}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="Forums" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -1945,7 +1945,7 @@
 			<var name="userLoginFullName" value="${userName1}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="Microblogs" />
 			<var name="soDashboard" value="true" />
 		</execute>
@@ -1954,7 +1954,7 @@
 			<var name="microblogsEntryContent" value="${microblogsEntryContent3}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="Forums" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -1970,7 +1970,7 @@
 			<var name="userLoginFullName" value="${userName2}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="Microblogs" />
 			<var name="soDashboard" value="true" />
 		</execute>
@@ -1979,7 +1979,7 @@
 			<var name="microblogsEntryContent" value="${microblogsEntryContent4}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="Forums" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -2127,7 +2127,7 @@
 		<execute function="AssertTextNotPresent" value1="${wikiPageContentEdit}" />
 		<execute function="AssertTextNotPresent" value1="FrontPage" />
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -2151,7 +2151,7 @@
 		<execute function="AssertTextNotPresent" value1="${wikiPageContentEdit}" />
 		<execute function="AssertTextNotPresent" value1="FrontPage" />
 
-		<execute macro="Page#gotoMyProfile" />
+		<execute macro="SOPage#gotoMyProfile" />
 
 		<execute function="AssertTextEquals" locator1="SOActivities#NO_ACTIVITIES" value1="There are no activities." />
 		<execute function="AssertTextNotPresent" value1="${bookmarksEntryDescription}" />
@@ -2306,7 +2306,7 @@
 			<var name="wikiPageTitle" value="FrontPage" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -2340,7 +2340,7 @@
 			<var name="wikiPageTitle" value="FrontPage" />
 		</execute>
 
-		<execute macro="Page#gotoMyProfile" />
+		<execute macro="SOPage#gotoMyProfile" />
 
 		<execute macro="SOActivities#viewSiteContentEdited">
 			<var name="blogsAction" value="Wrote a new blog entry." />
@@ -2460,7 +2460,7 @@
 			<var name="userLoginFullName" value="${userName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="Contacts Center" />
 			<var name="soDashboard" value="true" />
 		</execute>
@@ -2576,7 +2576,7 @@
 			<var name="userLoginFullName" value="${userName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="Contacts Center" />
 			<var name="soDashboard" value="true" />
 		</execute>
@@ -2653,7 +2653,7 @@
 			<var name="userLoginFullName" value="${adminName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="Microblogs" />
 			<var name="soDashboard" value="true" />
 		</execute>
@@ -2662,7 +2662,7 @@
 			<var name="microblogsEntryContent" value="${microblogsEntryContent}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="Forums" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -2672,7 +2672,7 @@
 			<var name="categoryName" value="${categoryName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="Forums" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -2688,13 +2688,13 @@
 			<var name="userName" value="${userName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="Blogs" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
 
-		<execute macro="BlogsEntry#addPG">
+		<execute macro="SOBlogsEntry#addPG">
 			<var name="categoryName" value="${categoryName}" />
 			<var name="entryContent" value="${entryContent}" />
 			<var name="entryTitle" value="${entryTitle}" />
@@ -2722,7 +2722,7 @@
 			<var name="microblogsEntryContent" value="${microblogsEntryContent}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="Forums" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -2738,7 +2738,7 @@
 			<var name="threadSubject" value="${threadSubject}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="Blogs" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -2874,7 +2874,7 @@
 			<var name="row" value="03" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -2933,7 +2933,7 @@
 			<var name="userName" value="${adminName}" />
 		</execute>
 
-		<execute macro="Page#gotoMyProfile" />
+		<execute macro="SOPage#gotoMyProfile" />
 
 		<execute macro="SOActivities#viewBlogsActivityEntry">
 			<var name="action" value="Commented on a blog entry." />
@@ -3098,7 +3098,7 @@
 			<var name="row" value="03" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -3157,7 +3157,7 @@
 			<var name="userName" value="${adminFirstName}" />
 		</execute>
 
-		<execute macro="Page#gotoMyProfile" />
+		<execute macro="SOPage#gotoMyProfile" />
 
 		<execute macro="SOActivities#viewBlogsActivityEntry">
 			<var name="action" value="Wrote a new blog entry." />
@@ -3277,7 +3277,7 @@
 			<var name="wikiPageTitle" value="FrontPage" />
 		</execute>
 
-		<execute macro="Page#gotoMyProfile" />
+		<execute macro="SOPage#gotoMyProfile" />
 
 		<execute macro="SOActivities#viewSiteContent">
 			<var name="blogsAction" value="Wrote a new blog entry." />
@@ -3294,7 +3294,7 @@
 			<var name="wikiPageTitle" value="FrontPage" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -3442,7 +3442,7 @@
 			<var name="userName" value="${adminName}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -3456,7 +3456,7 @@
 			<var name="userLoginFullName" value="${adminName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="Calendar" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -3587,7 +3587,7 @@
 			<var name="userScreenName" value="${userScreenName}" />
 		</execute>
 
-		<execute macro="Page#gotoUsersCP">
+		<execute macro="SOPage#gotoUsersCP">
 			<var name="portletName" value="Site Memberships" />
 			<var name="siteScopeName" value="${siteName}" />
 		</execute>
@@ -3600,7 +3600,7 @@
 			<var name="userScreenName" value="${userScreenName}" />
 		</execute>
 
-		<execute macro="Page#gotoUsersCP">
+		<execute macro="SOPage#gotoUsersCP">
 			<var name="portletName" value="Site Memberships" />
 			<var name="siteScopeName" value="${siteName}" />
 		</execute>
@@ -3642,7 +3642,7 @@
 			<var name="userLoginFullName" value="${userName}" />
 		</execute>
 
-		<execute macro="Page#gotoMyProfile" />
+		<execute macro="SOPage#gotoMyProfile" />
 
 		<execute function="AssertTextEquals" locator1="SOActivities#NO_ACTIVITIES" value1="There are no activities." />
 
@@ -3668,7 +3668,7 @@
 			<var name="wikiPageContentEdit" value="${wikiPageContentEdit2}" />
 		</execute>
 
-		<execute macro="Page#gotoMyProfile" />
+		<execute macro="SOPage#gotoMyProfile" />
 
 		<execute macro="SOActivities#viewSiteContent">
 			<var name="blogsAction" value="Wrote a new blog entry." />
@@ -3700,7 +3700,7 @@
 			<var name="userLoginFullName" value="${adminName}" />
 		</execute>
 
-		<execute macro="Page#gotoMyProfile" />
+		<execute macro="SOPage#gotoMyProfile" />
 
 		<execute macro="SOActivities#viewSiteContent">
 			<var name="blogsAction" value="Wrote a new blog entry." />
@@ -3782,7 +3782,7 @@
 			<var name="wikiPageContentEdit" value="${wikiPageContentEdit}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>

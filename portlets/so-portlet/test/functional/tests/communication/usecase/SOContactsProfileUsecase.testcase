@@ -164,7 +164,7 @@
 			<var name="userScreenName" value="${userScreenName6}" />
 		</execute>
 
-		<execute macro="Page#gotoMyProfile" />
+		<execute macro="SOPage#gotoMyProfile" />
 
 		<execute macro="SOUserBar#addPortlet">
 			<var name="pageName" value="Profile" />
@@ -192,7 +192,7 @@
 		<execute function="AssertTextNotPresent" value1="${userListName5}" />
 		<execute function="AssertTextNotPresent" value1="${userListName6}" />
 
-		<execute macro="Page#gotoMyProfile" />
+		<execute macro="SOPage#gotoMyProfile" />
 
 		<execute macro="SOUserBar#showEditControls" />
 
@@ -504,7 +504,7 @@
 			<var name="userLoginFullName" value="${adminName}" />
 		</execute>
 
-		<execute macro="Page#gotoMyProfile" />
+		<execute macro="SOPage#gotoMyProfile" />
 
 		<execute macro="SOUserBar#addPortlet">
 			<var name="pageName" value="Profile" />
@@ -571,7 +571,7 @@
 		<execute function="AssertTextPresent" value1="${userListName11}" />
 		<execute function="AssertTextPresent" value1="${userListName12}" />
 
-		<execute macro="Page#gotoMyProfile" />
+		<execute macro="SOPage#gotoMyProfile" />
 
 		<execute macro="SOUserBar#showEditControls" />
 

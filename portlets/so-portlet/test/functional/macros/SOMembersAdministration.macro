@@ -1,10 +1,10 @@
 <definition>
 	<command name="acceptMemberRequestSOSite">
-		<execute macro="Page#gotoCP">
+		<execute macro="SOPage#gotoCP">
 			<var name="portletName" value="Sites" />
 		</execute>
 
-		<execute macro="Page#gotoUsersCP">
+		<execute macro="SOPage#gotoUsersCP">
 			<var name="portletName" value="Site Memberships" />
 			<var name="siteScopeName" value="${siteName}" />
 		</execute>
@@ -46,14 +46,14 @@
 	</command>
 
 	<command name="confirmMemberInviteByEmail">
-		<execute macro="Gmail#login">
+		<execute macro="SOGmail#login">
 			<var name="userEmailAddress" value="${userEmailAddress}" />
 			<var name="userPassword" value="${userPassword}" />
 		</execute>
 
-		<execute macro="Gmail#gotoHtmlMode" />
+		<execute macro="SOGmail#gotoHtmlMode" />
 
-		<execute macro="Gmail#viewMail">
+		<execute macro="SOGmail#viewMail">
 			<var name="emailFromUserName" value="Joe Bloggs" />
 			<var name="gmailAssetType" value="${siteName}" />
 			<var name="gmailMessageBody" value="View Invitation" />
@@ -65,14 +65,14 @@
 		<if>
 			<equals arg1="${nonUserInvite}" arg2="true" />
 			<then>
-				<execute function="AssertTextEquals#assertPartialText" locator1="Gmail#GMAIL_HTML_MODE_MESSAGE_BODY" value1="Once your account is created, follow the link below to confirm or ignore this invitation:" />
+				<execute function="AssertTextEquals#assertPartialText" locator1="SOGmail#GMAIL_HTML_MODE_MESSAGE_BODY" value1="Once your account is created, follow the link below to confirm or ignore this invitation:" />
 			</then>
 			<else>
-				<execute function="AssertTextEquals#assertPartialText" locator1="Gmail#GMAIL_HTML_MODE_MESSAGE_BODY" value1="Follow the link below to confirm or ignore this invitation:" />
+				<execute function="AssertTextEquals#assertPartialText" locator1="SOGmail#GMAIL_HTML_MODE_MESSAGE_BODY" value1="Follow the link below to confirm or ignore this invitation:" />
 			</else>
 		</if>
 
-		<execute function="AssertClick" locator1="Gmail#GMAIL_HTML_MODE_MESSAGE_BODY_SOCIAL_OFFICE_SITE_INVITE_CONFIRMATION_LINK" value1="View Invitation" />
+		<execute function="AssertClick" locator1="SOGmail#GMAIL_HTML_MODE_MESSAGE_BODY_SOCIAL_OFFICE_SITE_INVITE_CONFIRMATION_LINK" value1="View Invitation" />
 
 		<execute function="SelectWindow" locator1="SOMembersPortlet#MEMBERS_POP_UP_WINDOW" />
 
@@ -82,9 +82,9 @@
 
 		<execute function="Close#closeWindow" locator1="SOMembersPortlet#MEMBERS_POP_UP_WINDOW" />
 
-		<execute macro="Gmail#gotoHtmlMode" />
+		<execute macro="SOGmail#gotoHtmlMode" />
 
-		<execute macro="Gmail#deleteSpecificMail">
+		<execute macro="SOGmail#deleteSpecificMail">
 			<var name="gmailMessageTitleList" value="${adminName} has invited you to join ${siteName}" />
 		</execute>
 
@@ -122,21 +122,21 @@
 
 		<execute macro="User#logoutPG" />
 
-		<execute macro="Gmail#login">
+		<execute macro="SOGmail#login">
 			<var name="userEmailAddress" value="${userEmailAddress}" />
 			<var name="userPassword" value="${userPassword}" />
 		</execute>
 
-		<execute macro="Gmail#gotoHtmlMode" />
+		<execute macro="SOGmail#gotoHtmlMode" />
 
-		<execute macro="Gmail#viewMail">
+		<execute macro="SOGmail#viewMail">
 			<var name="emailFromUserName" value="Joe Bloggs" />
 			<var name="gmailAssetType" value="${siteName}" />
 			<var name="gmailMessageBody" value="Follow the link below to create an account:" />
 			<var name="gmailMessageTitle" value="${adminName} has invited you to join ${siteName}" />
 		</execute>
 
-		<execute function="AssertClick" locator1="Gmail#GMAIL_HTML_MODE_MESSAGE_BODY_SOCIAL_OFFICE_SITE_INVITE_CREATE_ACCOUNT_LINK" value1="Create Account" />
+		<execute function="AssertClick" locator1="SOGmail#GMAIL_HTML_MODE_MESSAGE_BODY_SOCIAL_OFFICE_SITE_INVITE_CREATE_ACCOUNT_LINK" value1="Create Account" />
 
 		<execute function="SelectWindow" locator1="PGLoginCreateAccount#CREATE_ACCOUNT_POP_UP_WINDOW" />
 		<execute function="Type" locator1="PGLoginCreateAccount#FIRST_NAME_FIELD" value1="${userFirstName}" />
@@ -166,11 +166,11 @@
 	</command>
 
 	<command name="denyMemberRequestSOSite">
-		<execute macro="Page#gotoCP">
+		<execute macro="SOPage#gotoCP">
 			<var name="portletName" value="Sites" />
 		</execute>
 
-		<execute macro="Page#gotoUsersCP">
+		<execute macro="SOPage#gotoUsersCP">
 			<var name="portletName" value="Site Memberships" />
 			<var name="siteScopeName" value="${siteName}" />
 		</execute>
@@ -283,7 +283,7 @@
 				<execute function="AssertTextEquals" locator1="SOMembersPortlet#USER_DETAILS_NAME" value1="${userName}" />
 				<execute function="AssertTextEquals" locator1="SOMembersPortlet#USER_DETAILS_EMAIL" value1="${userEmailAddress}" />
 
-				<execute macro="Page#openURL">
+				<execute macro="SOPage#openURL">
 					<var name="friendlyURL" value="${friendlyURL}" />
 					<var name="pageAccess" value="${pageAccess}" />
 					<var name="pageAccessURL" value="${pageAccessURL}" />

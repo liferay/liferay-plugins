@@ -33,7 +33,7 @@
 		<var name="eventTitle" value="Calendar Event Title" />
 		<var name="eventType" value="Regular" />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -49,7 +49,7 @@
 			<var name="siteURL" value="true" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -59,7 +59,7 @@
 			<var name="schedulerEventDialogBox" value="true" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -76,7 +76,7 @@
 		<var name="setEndDateTime" value="11:00 AM" />
 		<var name="setStartDateTime" value="8:00 AM" />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -94,7 +94,7 @@
 			<var name="siteURL" value="true" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -109,7 +109,7 @@
 		<var name="eventTitle" value="Calendar Event Title" />
 		<var name="eventType" value="All Day" />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -125,7 +125,7 @@
 			<var name="siteURL" value="true" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -136,7 +136,7 @@
 			<var name="schedulerEventDialogBox" value="true" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -153,7 +153,7 @@
 		<var name="eventType" value="Regular" />
 		<var name="user" value="Test Test" />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -166,7 +166,7 @@
 			<var name="user" value="${user}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -186,7 +186,7 @@
 			<var name="user" value="${adminName}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -198,7 +198,7 @@
 			<var name="user" value="${user}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -234,7 +234,7 @@
 			<var name="userScreenName" value="${userScreenName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -247,7 +247,7 @@
 			<var name="user" value="${user}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -261,7 +261,7 @@
 			<var name="user" value="${user}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -289,7 +289,7 @@
 			<var name="siteName" value="${siteName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -303,7 +303,7 @@
 			<var name="user" value="${userName}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -315,7 +315,7 @@
 			<var name="user" value="${userName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -342,7 +342,7 @@
 			<var name="siteType" value="${siteType}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -353,7 +353,7 @@
 			<var name="calendarType" value="Other Calendars" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -370,14 +370,14 @@
 			<var name="siteURL" value="true" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
 
 		<execute function="AssertTextEquals" locator1="SOEvents#EVENTS_DISPLAY_NO_EVENTS" value1="There are no more events today." />
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName2}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -387,7 +387,7 @@
 			<var name="schedulerEventDialogBox" value="true" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="siteName" value="${siteName2}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -401,7 +401,7 @@
 		<var name="eventTitle" value="Calendar Event Title" />
 		<var name="eventType" value="Repeating" />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -419,7 +419,7 @@
 			<var name="siteURL" value="true" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -429,7 +429,7 @@
 			<var name="schedulerEventDialogBox" value="true" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -446,7 +446,7 @@
 		<var name="eventTitle3" value="Calendar Event3 Title" />
 		<var name="eventType" value="Regular" />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -462,7 +462,7 @@
 			<var name="siteURL" value="true" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -478,7 +478,7 @@
 			<var name="siteURL" value="true" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -494,7 +494,7 @@
 			<var name="siteURL" value="true" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -504,7 +504,7 @@
 			<var name="schedulerEventDialogBox" value="true" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -514,7 +514,7 @@
 			<var name="schedulerEventDialogBox" value="true" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -524,7 +524,7 @@
 			<var name="schedulerEventDialogBox" value="true" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -534,7 +534,7 @@
 			<var name="eventTitle" value="${eventTitle1}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -544,7 +544,7 @@
 			<var name="eventTitle" value="${eventTitle2}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -560,7 +560,7 @@
 		<var name="eventType" value="Regular" />
 		<var name="tagText" value="tag1" />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -579,7 +579,7 @@
 			<var name="tagText" value="${tagText}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -589,7 +589,7 @@
 			<var name="schedulerEventDialogBox" value="true" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -610,7 +610,7 @@
 		<var name="eventTitle" value="Calendar Event Title" />
 		<var name="eventType" value="Regular" />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -621,7 +621,7 @@
 			<var name="eventTitle" value="${eventTitle}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -632,7 +632,7 @@
 			<var name="schedulerEventDialogBox" value="true" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -642,7 +642,7 @@
 			<var name="eventTitle" value="${eventTitle}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -664,7 +664,7 @@
 		<var name="eventType" value="Regular" />
 		<var name="portletName" value="Calendar" />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -686,7 +686,7 @@
 			<var name="siteURL" value="true" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -704,7 +704,7 @@
 	<command name="AddCalendarResource" priority="4">
 		<var name="calendarResourceName" value="Calendar Resource Name" />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -714,7 +714,7 @@
 			<var name="calendarResourceName" value="${calendarResourceName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -733,7 +733,7 @@
 		<var name="eventType" value="Regular" />
 		<var name="siteCalendarColor" value="668CD9" />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -749,7 +749,7 @@
 			<var name="siteURL" value="true" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -761,7 +761,7 @@
 			<var name="siteCalendarColor" value="${siteCalendarColor}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -783,7 +783,7 @@
 		<var name="eventTitle" value="Calendar Event Title" />
 		<var name="eventType" value="Regular" />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -799,7 +799,7 @@
 			<var name="siteURL" value="true" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -833,7 +833,7 @@
 			<var name="userScreenName" value="${userScreenName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -845,7 +845,7 @@
 			<var name="site" value="${siteName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -858,7 +858,7 @@
 			<var name="site" value="${siteName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -890,7 +890,7 @@
 			<var name="siteName" value="${siteName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -904,7 +904,7 @@
 			<var name="user" value="${userName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -931,7 +931,7 @@
 	<command name="DeleteCalendarResource" priority="5">
 		<var name="calendarResourceName" value="Calendar Resource Name" />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -941,7 +941,7 @@
 			<var name="calendarResourceName" value="${calendarResourceName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -951,7 +951,7 @@
 			<var name="calendarResourceName" value="${calendarResourceName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -967,7 +967,7 @@
 		<var name="eventTitleEdit" value="Calendar Event Title Edit" />
 		<var name="eventType" value="Regular" />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -983,7 +983,7 @@
 			<var name="siteURL" value="true" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -999,7 +999,7 @@
 			<var name="startDateTimeEdit" value="11:00 PM" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -1009,7 +1009,7 @@
 			<var name="schedulerEventDialogBox" value="true" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -1033,7 +1033,7 @@
 			<var name="siteType" value="${siteType}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -1049,7 +1049,7 @@
 			<var name="siteURL" value="true" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -1060,7 +1060,7 @@
 			<var name="calendarType" value="Other Calendars" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -1073,14 +1073,14 @@
 			<var name="eventType" value="${eventType}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
 
 		<execute function="AssertTextEquals" locator1="SOEvents#EVENTS_DISPLAY_NO_EVENTS" value1="There are no more events today." />
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName2}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -1090,7 +1090,7 @@
 			<var name="schedulerEventDialogBox" value="true" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="siteName" value="${siteName2}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -1125,7 +1125,7 @@
 			<var name="userScreenName" value="${userScreenName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -1138,7 +1138,7 @@
 			<var name="user" value="${user}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -1152,7 +1152,7 @@
 			<var name="user" value="${user}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -1184,7 +1184,7 @@
 			<var name="siteName" value="${siteName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -1198,7 +1198,7 @@
 			<var name="user" value="${userName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -1213,7 +1213,7 @@
 			<var name="user" value="${userName}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -1225,7 +1225,7 @@
 			<var name="user" value="${userName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -1245,7 +1245,7 @@
 		<var name="eventTitleEdit" value="Calendar Event Title Edit" />
 		<var name="eventType" value="Regular" />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -1256,7 +1256,7 @@
 			<var name="eventTitle" value="${eventTitle}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -1268,7 +1268,7 @@
 			<var name="eventTitleEdit" value="${eventTitleEdit}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -1279,7 +1279,7 @@
 			<var name="schedulerEventDialogBox" value="true" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -1289,7 +1289,7 @@
 			<var name="eventTitle" value="${eventTitleEdit}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -1310,7 +1310,7 @@
 		<var name="calendarResourceName" value="Calendar Resource Name" />
 		<var name="calendarResourceNameEdit" value="Calendar Resource Name Edit" />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -1320,7 +1320,7 @@
 			<var name="calendarResourceName" value="${calendarResourceName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -1331,7 +1331,7 @@
 			<var name="calendarResourceNameEdit" value="${calendarResourceNameEdit}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -1370,7 +1370,7 @@
 			<var name="userScreenName" value="${userScreenName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -1382,7 +1382,7 @@
 			<var name="site" value="${siteName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -1395,7 +1395,7 @@
 			<var name="site" value="${siteName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -1407,7 +1407,7 @@
 			<var name="site" value="${siteName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -1427,7 +1427,7 @@
 			<var name="user" value="${adminName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -1442,7 +1442,7 @@
 			<var name="user" value="${adminName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -1458,7 +1458,7 @@
 			<var name="startDateTimeEdit" value="11:00 PM" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -1479,7 +1479,7 @@
 			<var name="user" value="${adminName}" />
 		</execute>
 
-		<execute macro="Page#gotoPagesCP">
+		<execute macro="SOPage#gotoPagesCP">
 			<var name="portletName" value="Site Pages" />
 			<var name="siteScopeName" value="${siteName}" />
 		</execute>
@@ -1499,7 +1499,7 @@
 			<var name="siteType" value="${siteType}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -1512,7 +1512,7 @@
 			<var name="siteURL" value="true" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -1522,7 +1522,7 @@
 			<var name="eventTitle" value="${eventTitle1Edit}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -1534,7 +1534,7 @@
 			<var name="user" value="${adminName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -1547,7 +1547,7 @@
 			<var name="user" value="${adminName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -1558,7 +1558,7 @@
 			<var name="eventTitle" value="${eventTitle2}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -1568,7 +1568,7 @@
 			<var name="eventTitle" value="${eventTitle2}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -1578,7 +1578,7 @@
 			<var name="schedulerEventDialogBox" value="true" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -1599,7 +1599,7 @@
 			<var name="userLoginFullName" value="${userName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -1638,7 +1638,7 @@
 			<var name="userScreenName" value="${userScreenName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -1673,7 +1673,7 @@
 			<var name="portletName" value="Calendar" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -1691,7 +1691,7 @@
 			<var name="userName" value="${userName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -1706,7 +1706,7 @@
 		<var name="eventTitle" value="Calendar Event Title" />
 		<var name="eventType" value="Regular" />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -1718,7 +1718,7 @@
 			<var name="site" value="${siteName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -1736,7 +1736,7 @@
 			<var name="user" value="${adminName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -1751,7 +1751,7 @@
 			<var name="user" value="${adminName}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -1761,7 +1761,7 @@
 			<var name="schedulerEventDialogBox" value="true" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -1809,7 +1809,7 @@
 			<var name="userScreenName" value="${userScreenName2}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -1822,7 +1822,7 @@
 			<var name="site" value="${siteName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -1835,7 +1835,7 @@
 			<var name="site" value="${siteName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -1851,7 +1851,7 @@
 			<var name="siteURL" value="true" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -1861,7 +1861,7 @@
 			<var name="schedulerEventDialogBox" value="true" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -1880,7 +1880,7 @@
 			<var name="siteName" value="${siteName}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -1889,7 +1889,7 @@
 			<var name="eventTitle" value="${eventTitle}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -1904,7 +1904,7 @@
 			<var name="userLoginFullName" value="${userName2}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -1914,7 +1914,7 @@
 		<execute function="AssertElementNotPresent" locator1="SOEvents#EVENTS_DISPLAY_UPCOMING_EVENTS_EVENT_TITLE_GENERIC" />
 		<execute function="AssertTextNotPresent" value1="${eventTitle}" />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -1956,7 +1956,7 @@
 		<var name="userName" value="Social01 Office01 User01" />
 		<var name="userScreenName" value="socialoffice01" />
 
-		<execute macro="Page#gotoCP">
+		<execute macro="SOPage#gotoCP">
 			<var name="portletName" value="Server Administration" />
 		</execute>
 
@@ -1973,7 +1973,7 @@
 			<var name="userScreenName" value="${userScreenName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -1994,14 +1994,14 @@
 
 		<execute function="Pause" locator1="30000" />
 
-		<execute macro="Gmail#login">
+		<execute macro="SOGmail#login">
 			<var name="userEmailAddress" property-value="email.address.2" />
 			<var name="userPassword" property-value="email.password.2" />
 		</execute>
 
-		<execute macro="Gmail#gotoHtmlMode" />
+		<execute macro="SOGmail#gotoHtmlMode" />
 
-		<execute macro="Gmail#viewMail">
+		<execute macro="SOGmail#viewMail">
 			<var name="emailFromUserName" value="${adminName}" />
 			<var name="gmailAssetType" value="Event" />
 			<var name="gmailMailTableMessageTitle" value="Calendar: Event Notification for &quot;${eventTitle}&quot;" />
@@ -2011,7 +2011,7 @@
 			<var name="gmailMessageTitle" value="Calendar: Event Notification for &quot;${eventTitle}&quot;" />
 		</execute>
 
-		<execute macro="Gmail#tearDown">
+		<execute macro="SOGmail#tearDown">
 			<var name="userEmailAddress" property-value="email.address.2" />
 			<var name="userPassword" value="email.password.2" />
 		</execute>

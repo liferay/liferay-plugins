@@ -54,7 +54,7 @@
 	</command>
 
 	<command name="configureScopeCP">
-		<execute macro="Page#gotoContentCP">
+		<execute macro="SOPage#gotoContentCP">
 			<var name="portletName" value="Blogs" />
 		</execute>
 
@@ -104,7 +104,7 @@
 	</command>
 
 	<command name="disableSocialBookmarkSites">
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="Blogs Page" />
@@ -118,10 +118,10 @@
 
 		<execute function="SelectFrame" locator1="IFrame#CONFIGURATION_IFRAME" />
 
-		<execute macro="BlogsPortlet#checkSocialBookmarks" />
+		<execute macro="SOBlogsPortlet#checkSocialBookmarks" />
 
 		<for list="${socialBookmarkSites}" param="socialBookmarkSite">
-			<execute macro="BlogsPortlet#disableSocialBookmarkSite">
+			<execute macro="SOBlogsPortlet#disableSocialBookmarkSite">
 				<var name="socialBookmarkSite" value="${socialBookmarkSite}" />
 				<var name="socialBookmarkSites" value="${socialBookmarkSite}" />
 			</execute>
@@ -137,7 +137,7 @@
 	</command>
 
 	<command name="enableSocialBookmarkSites">
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="Blogs Page" />
@@ -151,10 +151,10 @@
 
 		<execute function="SelectFrame" locator1="IFrame#CONFIGURATION_IFRAME" />
 
-		<execute macro="BlogsPortlet#checkSocialBookmarks" />
+		<execute macro="SOBlogsPortlet#checkSocialBookmarks" />
 
 		<for list="${socialBookmarkSites}" param="socialBookmarkSite">
-			<execute macro="BlogsPortlet#enableSocialBookmarkSite">
+			<execute macro="SOBlogsPortlet#enableSocialBookmarkSite">
 				<var name="socialBookmarkSite" value="${socialBookmarkSite}" />
 				<var name="socialBookmarkSites" value="${socialBookmarkSite}" />
 			</execute>
@@ -170,7 +170,7 @@
 	</command>
 
 	<command name="tearDownConfigurationDisplaySettingsPG">
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="${pageName}" />
@@ -203,7 +203,7 @@
 	</command>
 
 	<command name="tearDownConfigurationScopePG">
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="${pageName}" />
@@ -211,14 +211,14 @@
 			<var name="soPage" value="${soPage}" />
 		</execute>
 
-		<execute macro="BlogsPortlet#configureScopePG">
+		<execute macro="SOBlogsPortlet#configureScopePG">
 			<var name="scopeSelection" value="Liferay" />
 			<var name="soPage" value="${soPage}" />
 		</execute>
 	</command>
 
 	<command name="tearDownSubscribePG">
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="${pageName}" />
@@ -258,7 +258,7 @@
 	</command>
 
 	<command name="viewScopeCP">
-		<execute macro="Page#gotoContentCP">
+		<execute macro="SOPage#gotoContentCP">
 			<var name="portletName" value="Blogs" />
 		</execute>
 
@@ -269,7 +269,7 @@
 	</command>
 
 	<command name="viewScopeDefaultNoEntryCP">
-		<execute macro="Page#gotoContentCP">
+		<execute macro="SOPage#gotoContentCP">
 			<var name="portletName" value="Blogs" />
 		</execute>
 

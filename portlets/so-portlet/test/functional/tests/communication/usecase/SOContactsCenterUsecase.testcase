@@ -29,7 +29,7 @@
 	</tear-down>
 
 	<command name="ViewMoreContacts" priority="3">
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="Contacts Center" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />

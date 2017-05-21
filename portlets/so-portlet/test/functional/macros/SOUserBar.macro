@@ -14,7 +14,7 @@
 		<if>
 			<isset var="pageType" />
 			<then>
-				<execute macro="Page#selectPageTypeRadioPG">
+				<execute macro="SOPage#selectPageTypeRadioPG">
 					<var name="pageType" value="${pageType}" />
 					<var name="portletNameList" value="${portletNameList}" />
 				</execute>

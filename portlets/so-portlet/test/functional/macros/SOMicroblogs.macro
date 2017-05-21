@@ -155,7 +155,7 @@
 	</command>
 
 	<command name="addMicroblogsEntryCommentViaProfile">
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="Contacts Center" />
@@ -208,7 +208,7 @@
 		<execute function="Click" locator1="SOMicroblogs#POST_BUTTON" />
 		<execute function="Pause" value1="1000" />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="Microblogs" />
@@ -554,7 +554,7 @@
 	<command name="tearDownMicroblogsEntry">
 		<execute macro="SOUser#firstLoginPG" />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="Microblogs" />
@@ -1312,7 +1312,7 @@
 			</else>
 		</if>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="Contacts Center" />
@@ -1453,7 +1453,7 @@
 	<command name="viewOwnMicroblogsRepost">
 		<var name="key_microblogsEntryContent" value="${microblogsEntryContent}" />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="Microblogs" />

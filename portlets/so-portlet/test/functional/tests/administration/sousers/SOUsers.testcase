@@ -55,7 +55,7 @@
 			<var name="userScreenName" value="${userScreenName}" />
 		</execute>
 
-		<execute macro="Page#gotoCP">
+		<execute macro="SOPage#gotoCP">
 			<var name="portletName" value="Roles" />
 		</execute>
 
@@ -87,7 +87,7 @@
 			<var name="userScreenName" value="${userScreenName}" />
 		</execute>
 
-		<execute macro="Page#gotoCP">
+		<execute macro="SOPage#gotoCP">
 			<var name="portletName" value="Roles" />
 		</execute>
 
@@ -202,7 +202,7 @@
 			<var name="siteType" value="${siteType}" />
 		</execute>
 
-		<execute macro="Page#gotoUsersCP">
+		<execute macro="SOPage#gotoUsersCP">
 			<var name="portletName" value="Site Memberships" />
 			<var name="siteScopeName" value="${siteName}" />
 		</execute>
@@ -216,7 +216,7 @@
 			<var name="userScreenName" value="${userScreenName}" />
 		</execute>
 
-		<execute macro="Page#gotoUsersCP">
+		<execute macro="SOPage#gotoUsersCP">
 			<var name="portletName" value="Site Memberships" />
 			<var name="siteScopeName" value="${siteName}" />
 		</execute>
@@ -274,7 +274,7 @@
 			<var name="siteType" value="${siteType}" />
 		</execute>
 
-		<execute macro="Page#gotoUsersCP">
+		<execute macro="SOPage#gotoUsersCP">
 			<var name="portletName" value="Site Memberships" />
 			<var name="siteScopeName" value="${siteName}" />
 		</execute>
@@ -288,7 +288,7 @@
 			<var name="userScreenName" value="${userScreenName}" />
 		</execute>
 
-		<execute macro="Page#gotoUsersCP">
+		<execute macro="SOPage#gotoUsersCP">
 			<var name="portletName" value="Site Memberships" />
 			<var name="siteScopeName" value="${siteName}" />
 		</execute>
@@ -368,7 +368,7 @@
 			<var name="userScreenName" value="${userScreenName2}" />
 		</execute>
 
-		<execute macro="Page#gotoUsersCP">
+		<execute macro="SOPage#gotoUsersCP">
 			<var name="portletName" value="Site Memberships" />
 			<var name="siteScopeName" value="${siteName1}" />
 		</execute>
@@ -382,7 +382,7 @@
 			<var name="userScreenName" value="${userScreenName1}" />
 		</execute>
 
-		<execute macro="Page#gotoUsersCP">
+		<execute macro="SOPage#gotoUsersCP">
 			<var name="portletName" value="Site Memberships" />
 			<var name="siteScopeName" value="${siteName1}" />
 		</execute>
@@ -396,7 +396,7 @@
 			<var name="userScreenName" value="${userScreenName2}" />
 		</execute>
 
-		<execute macro="Page#gotoUsersCP">
+		<execute macro="SOPage#gotoUsersCP">
 			<var name="portletName" value="Site Teams" />
 			<var name="siteScopeName" value="${siteName1}" />
 		</execute>
@@ -407,7 +407,7 @@
 			<var name="teamName" value="${teamName}" />
 		</execute>
 
-		<execute macro="Page#gotoCP">
+		<execute macro="SOPage#gotoCP">
 			<var name="portletName" value="Sites" />
 		</execute>
 
@@ -415,7 +415,7 @@
 			<var name="siteName" value="${siteName2}" />
 		</execute>
 
-		<execute macro="Page#gotoUsersCP">
+		<execute macro="SOPage#gotoUsersCP">
 			<var name="portletName" value="Site Teams" />
 			<var name="siteScopeName" value="${siteName1}" />
 		</execute>
@@ -425,7 +425,7 @@
 			<var name="teamName" value="${teamName}" />
 		</execute>
 
-		<execute macro="Page#gotoUsersCP">
+		<execute macro="SOPage#gotoUsersCP">
 			<var name="portletName" value="Site Teams" />
 			<var name="siteScopeName" value="${siteName2}" />
 		</execute>
@@ -438,7 +438,7 @@
 		<execute function="AssertTextNotPresent" value1="${teamName}" />
 		<execute function="AssertTextNotPresent" value1="${teamDescription}" />
 
-		<execute macro="Page#gotoUsersCP">
+		<execute macro="SOPage#gotoUsersCP">
 			<var name="portletName" value="Site Teams" />
 			<var name="siteScopeName" value="${siteName1}" />
 		</execute>
@@ -449,7 +449,7 @@
 			<var name="userScreenName" value="${userScreenName1}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName1}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -459,7 +459,7 @@
 			<var name="pageType" value="Blog" />
 		</execute>
 
-		<execute macro="PermissionsInline#gotoPagePG">
+		<execute macro="SOPermissionsInline#gotoPagePG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName1}" />
 			<var name="siteURLTemp" value="true" />
@@ -473,7 +473,7 @@
 			</execute>
 		</for>
 
-		<execute macro="PermissionsInline#gotoPagePG">
+		<execute macro="SOPermissionsInline#gotoPagePG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName1}" />
 			<var name="siteURLTemp" value="true" />
@@ -487,7 +487,7 @@
 			</execute>
 		</for>
 
-		<execute macro="PermissionsInline#gotoPagePG">
+		<execute macro="SOPermissionsInline#gotoPagePG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName1}" />
 			<var name="siteURLTemp" value="true" />
@@ -506,7 +506,7 @@
 			<var name="userLoginFullName" value="${userName1}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName1}" />
 			<var name="siteURL" value="true" />
@@ -521,7 +521,7 @@
 			<var name="userLoginFullName" value="${userName2}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName1}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -557,7 +557,7 @@
 			<var name="siteType" value="${siteType}" />
 		</execute>
 
-		<execute macro="Page#gotoCP">
+		<execute macro="SOPage#gotoCP">
 			<var name="portletName" value="Roles" />
 		</execute>
 
@@ -566,7 +566,7 @@
 			<var name="roleType" value="Site" />
 		</execute>
 
-		<execute macro="Page#gotoUsersCP">
+		<execute macro="SOPage#gotoUsersCP">
 			<var name="portletName" value="Site Memberships" />
 			<var name="siteScopeName" value="${siteName}" />
 		</execute>
@@ -580,7 +580,7 @@
 			<var name="userScreenName" value="${userScreenName}" />
 		</execute>
 
-		<execute macro="Page#gotoCP">
+		<execute macro="SOPage#gotoCP">
 			<var name="portletName" value="Users and Organizations" />
 		</execute>
 
@@ -709,7 +709,7 @@
 			<var name="userLoginFullName" value="${adminName}" />
 		</execute>
 
-		<execute macro="Page#gotoUsersCP">
+		<execute macro="SOPage#gotoUsersCP">
 			<var name="portletName" value="Site Memberships" />
 			<var name="siteScopeName" value="${siteName}" />
 		</execute>

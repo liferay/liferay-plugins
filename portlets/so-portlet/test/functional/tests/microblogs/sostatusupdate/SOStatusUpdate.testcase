@@ -169,7 +169,7 @@
 			<var name="statusUpdateEntryContent" value="${statusUpdateEntryContent}" />
 		</execute>
 
-		<execute macro="Page#gotoMyProfile" />
+		<execute macro="SOPage#gotoMyProfile" />
 
 		<execute macro="SOStatusUpdate#configureStatusUpdateDisplayPG" />
 
@@ -283,7 +283,7 @@
 			<var name="userLoginFullName" value="${adminName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="Microblogs" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -322,7 +322,7 @@
 			<var name="microblogsEntryContent" value="${microblogsEntryContent} ${userName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="Microblogs" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />

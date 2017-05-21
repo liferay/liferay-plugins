@@ -48,7 +48,7 @@
 			<var name="siteType" value="${siteType}" />
 		</execute>
 
-		<execute macro="Page#gotoCP">
+		<execute macro="SOPage#gotoCP">
 			<var name="portletName" value="Server Administration" />
 		</execute>
 
@@ -57,7 +57,7 @@
 			<var name="userPassword" property-value="email.password.1" />
 		</execute>
 
-		<execute macro="Page#gotoCP">
+		<execute macro="SOPage#gotoCP">
 			<var name="portletName" value="Workflow" />
 		</execute>
 
@@ -66,7 +66,7 @@
 			<var name="workflowResourceKey" value="RESOURCE_TABLE_USER_SELECT" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
@@ -98,7 +98,7 @@
 			<var name="userScreenName" value="${userScreenName}" />
 		</execute>
 
-		<execute macro="Page#gotoMyAccount">
+		<execute macro="SOPage#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
 		</execute>
 
@@ -108,7 +108,7 @@
 			<var name="workflowTask" value="Review" />
 		</execute>
 
-		<execute macro="Page#gotoMyAccount">
+		<execute macro="SOPage#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
 		</execute>
 
@@ -118,7 +118,7 @@
 			<var name="workflowTask" value="Review" />
 		</execute>
 
-		<execute macro="Page#gotoCP">
+		<execute macro="SOPage#gotoCP">
 			<var name="portletName" value="Users and Organizations" />
 		</execute>
 
@@ -142,7 +142,7 @@
 			<var name="userPassword" value="${userPassword}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -163,7 +163,7 @@
 			<var name="userLoginFullName" value="${adminName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteURL" value="true" />

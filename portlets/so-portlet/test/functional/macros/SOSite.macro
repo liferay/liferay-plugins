@@ -1,6 +1,6 @@
 <definition>
 	<command name="gotoPG">
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="friendlyURL" value="${friendlyURL}" />
 			<var name="pageAccess" value="${pageAccess}" />
 			<var name="pageAccessURL" value="${pageAccessURL}" />
@@ -37,7 +37,7 @@
 	</command>
 
 	<command name="viewLocalizedPG">
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="friendlyURL" value="${friendlyURL}" />
 			<var name="pageAccess" value="${pageAccess}" />
 			<var name="pageAccessURL" value="${pageAccessURL}" />
@@ -249,7 +249,7 @@
 			</else>
 		</if>
 
-		<execute macro="Page#gotoConfigurationCP">
+		<execute macro="SOPage#gotoConfigurationCP">
 			<var name="portletName" value="Site Settings" />
 			<var name="siteScopeName" value="${siteName}" />
 		</execute>
@@ -453,7 +453,7 @@
 		<execute function="AssertTextEquals" locator1="SOSite#NAVIGATION_WIKI" value1="Wiki" />
 		<execute function="Click" locator1="SOSite#NAVIGATION_MEMBERS" value1="Members" />
 
-		<execute macro="Page#gotoMyProfile" />
+		<execute macro="SOPage#gotoMyProfile" />
 
 		<execute function="AssertClick" locator1="SOProfile#PROFILE_INFO_SITES" value1="${siteName}" />
 
@@ -602,7 +602,7 @@
 			</then>
 		</if>
 
-		<execute macro="Page#gotoMyProfile" />
+		<execute macro="SOPage#gotoMyProfile" />
 
 		<execute function="AssertTextNotPresent" value1="${siteName}" />
 	</command>

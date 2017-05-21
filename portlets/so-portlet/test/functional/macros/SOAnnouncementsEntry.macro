@@ -558,7 +558,7 @@
 				<execute function="AssertClick" locator1="SOAnnouncements#ANNOUNCEMENTS_ENTRY_TITLE_LINK" value1="${entryTitle}" />
 				<execute function="AssertElementPresent" locator1="SOAnnouncements#ANNOUNCEMENTS_ENTRY_IMAGE_GOOGLE" />
 
-				<execute macro="Page#openURL">
+				<execute macro="SOPage#openURL">
 					<var name="friendlyURL" value="${friendlyURL}" />
 					<var name="pageAccess" value="${pageAccess}" />
 					<var name="pageStaging" value="${pageStaging}" />
@@ -645,7 +645,7 @@
 				<execute function="AssertClick" locator1="SOAnnouncements#ANNOUNCEMENTS_ENTRY_TITLE_LINK" value1="${entryTitle}" />
 				<execute function="AssertElementPresent" locator1="SOAnnouncements#ANNOUNCEMENTS_ENTRY_IMAGE_GOOGLE" />
 
-				<execute macro="Page#openURL">
+				<execute macro="SOPage#openURL">
 					<var name="friendlyURL" value="${friendlyURL}" />
 					<var name="pageAccess" value="${pageAccess}" />
 					<var name="pageStaging" value="${pageStaging}" />

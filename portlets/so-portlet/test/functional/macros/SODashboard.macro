@@ -53,7 +53,7 @@
 	</command>
 
 	<command name="tearDownSiteTemplateCP">
-		<execute macro="Page#gotoCP">
+		<execute macro="SOPage#gotoCP">
 			<var name="portletName" value="Site Templates" />
 		</execute>
 

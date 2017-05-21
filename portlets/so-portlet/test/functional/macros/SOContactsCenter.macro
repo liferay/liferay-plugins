@@ -40,7 +40,7 @@
 	</command>
 
 	<command name="addContact">
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="Contacts Center" />
@@ -104,7 +104,7 @@
 	</command>
 
 	<command name="blockUser">
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="Contacts Center" />
@@ -175,7 +175,7 @@
 	</command>
 
 	<command name="disconnectFromConnection">
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="Contacts Center" />
@@ -194,7 +194,7 @@
 	</command>
 
 	<command name="disconnectFromConnectionSelectedUsersList">
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="Contacts Center" />
@@ -234,7 +234,7 @@
 	</command>
 
 	<command name="downloadVCard">
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="Contacts Center" />
@@ -251,7 +251,7 @@
 	</command>
 
 	<command name="downloadVCardAllUsers">
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="Contacts Center" />
@@ -271,7 +271,7 @@
 	</command>
 
 	<command name="editContact">
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="Contacts Center" />
@@ -293,7 +293,7 @@
 	</command>
 
 	<command name="followUser">
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="Contacts Center" />
@@ -342,7 +342,7 @@
 	</command>
 
 	<command name="gotoProfile">
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="Contacts Center" />
@@ -372,7 +372,7 @@
 	</command>
 
 	<command name="requestToConnect">
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="Contacts Center" />
@@ -422,7 +422,7 @@
 	</command>
 
 	<command name="selectUsers">
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="Contacts Center" />
@@ -459,7 +459,7 @@
 		<var name="recipientName" value="${userName}" />
 		<var name="recipientScreenName" value="${userScreenName}" />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="Contacts Center" />
@@ -515,7 +515,7 @@
 	<command name="tearDownContacts">
 		<execute macro="SOUser#firstLoginPG" />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="Contacts Center" />
@@ -542,7 +542,7 @@
 	</command>
 
 	<command name="unblockUser">
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="Contacts Center" />
@@ -593,7 +593,7 @@
 	</command>
 
 	<command name="unfollowUser">
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="Contacts Center" />
@@ -642,7 +642,7 @@
 	</command>
 
 	<command name="viewBlockedUser">
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="Contacts Center" />
@@ -663,7 +663,7 @@
 	</command>
 
 	<command name="viewBlockingUser">
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="Contacts Center" />
@@ -683,7 +683,7 @@
 	</command>
 
 	<command name="viewConnection">
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="Contacts Center" />
@@ -714,7 +714,7 @@
 	</command>
 
 	<command name="viewContact">
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="Contacts Center" />
@@ -752,7 +752,7 @@
 	</command>
 
 	<command name="viewFollower">
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="Contacts Center" />
@@ -782,7 +782,7 @@
 	</command>
 
 	<command name="viewFollowing">
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="Contacts Center" />
@@ -812,7 +812,7 @@
 	</command>
 
 	<command name="viewNoContact">
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="Contacts Center" />
@@ -826,7 +826,7 @@
 	</command>
 
 	<command name="viewNonConnection">
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="Contacts Center" />
@@ -850,7 +850,7 @@
 	</command>
 
 	<command name="viewNonFollower">
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="Contacts Center" />
@@ -873,7 +873,7 @@
 	</command>
 
 	<command name="viewNonFollowing">
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="Contacts Center" />
@@ -896,7 +896,7 @@
 	</command>
 
 	<command name="viewPendingConnection">
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="Contacts Center" />
@@ -921,7 +921,7 @@
 	</command>
 
 	<command name="viewSiteMember">
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="Contacts Center" />
@@ -942,7 +942,7 @@
 	</command>
 
 	<command name="viewUser">
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="Contacts Center" />
@@ -963,7 +963,7 @@
 	</command>
 
 	<command name="viewUserDetailsAdditionalEmailAddress">
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="Contacts Center" />
@@ -981,7 +981,7 @@
 	</command>
 
 	<command name="viewUserDetailsAddress">
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="Contacts Center" />
@@ -999,7 +999,7 @@
 	</command>
 
 	<command name="viewUserDetailsInstantMessenger">
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="Contacts Center" />
@@ -1022,7 +1022,7 @@
 	</command>
 
 	<command name="viewUserDetailsIntroduction">
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="Contacts Center" />
@@ -1040,7 +1040,7 @@
 	</command>
 
 	<command name="viewUserDetailsPhoneNumbers">
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="Contacts Center" />
@@ -1067,7 +1067,7 @@
 	</command>
 
 	<command name="viewUserDetailsProfilePicture">
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="Contacts Center" />
@@ -1088,7 +1088,7 @@
 	</command>
 
 	<command name="viewUserDetailsProjects">
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="Contacts Center" />
@@ -1113,7 +1113,7 @@
 	</command>
 
 	<command name="viewUserDetailsProjectsEdit">
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="Contacts Center" />
@@ -1138,7 +1138,7 @@
 	</command>
 
 	<command name="viewUserDetailsSMS">
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="Contacts Center" />
@@ -1156,7 +1156,7 @@
 	</command>
 
 	<command name="viewUserDetailsSocialNetwork">
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="Contacts Center" />
@@ -1175,7 +1175,7 @@
 	</command>
 
 	<command name="viewUserDetailsWebsite">
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="Contacts Center" />

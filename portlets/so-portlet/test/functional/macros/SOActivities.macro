@@ -40,7 +40,7 @@
 	</command>
 
 	<command name="addSiteContent">
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="Calendar" />
@@ -74,7 +74,7 @@
 			<var name="user" value="${user}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="Documents" />
@@ -93,7 +93,7 @@
 			<var name="viewableBy" value="${viewableBy}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="Documents" />
@@ -107,7 +107,7 @@
 			<var name="dmFolderName" value="${dmFolderName}" />
 		</execute>
 
-		<execute macro="DMDocument#addPG">
+		<execute macro="SODMDocument#addPG">
 			<var name="categoryName" value="${categoryName}" />
 			<var name="dmDocument" value="${dmDocument}" />
 			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
@@ -120,7 +120,7 @@
 			<var name="tagNameList" value="${tagNameList}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="Forums" />
@@ -136,7 +136,7 @@
 			<var name="displayStyle" value="${displayStyle}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="Forums" />
@@ -156,7 +156,7 @@
 
 		<execute macro="MessageboardsThread#addPG" />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="Blogs" />
@@ -166,9 +166,9 @@
 			<var name="soPage" value="${soPage}" />
 		</execute>
 
-		<execute macro="BlogsEntry#addPG" />
+		<execute macro="SOBlogsEntry#addPG" />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="Wiki" />
@@ -203,7 +203,7 @@
 			<var name="wikiPageContentEdit" value="${wikiPageContentEdit}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="friendlyURL" value="${friendlyURL}" />
 			<var name="pageAccess" value="${pageAccess}" />
 			<var name="pageAccessURL" value="${pageAccessURL}" />
@@ -257,7 +257,7 @@
 	</command>
 
 	<command name="deleteSiteContent">
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="Calendar" />
@@ -271,7 +271,7 @@
 			<var name="eventTitle" value="${eventTitle}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="Documents" />
@@ -285,7 +285,7 @@
 			<var name="dmFolderName" value="${dmFolderName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="Forums" />
@@ -300,7 +300,7 @@
 			<var name="categoryName" value="${mbCategoryName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="Blogs" />
@@ -310,13 +310,13 @@
 			<var name="soPage" value="${soPage}" />
 		</execute>
 
-		<execute macro="BlogsEntry#moveToRecycleBinPG">
+		<execute macro="SOBlogsEntry#moveToRecycleBinPG">
 			<var name="assetType" value="Blogs Entry" />
 			<var name="entryContent" value="${entryContent}" />
 			<var name="entryTitle" value="${entryTitle}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="Wiki" />
@@ -331,7 +331,7 @@
 			<var name="wikiPageTitle" value="FrontPage" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="friendlyURL" value="${friendlyURL}" />
 			<var name="pageAccess" value="${pageAccess}" />
 			<var name="pageAccessURL" value="${pageAccessURL}" />
@@ -386,7 +386,7 @@
 	</command>
 
 	<command name="editSiteContent">
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="Calendar" />
@@ -412,7 +412,7 @@
 			<var name="startDateTimeEdit" value="11:00 PM" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="Documents" />
@@ -428,7 +428,7 @@
 			<var name="dmFolderNameEdit" value="${dmFolderNameEdit}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="Documents" />
@@ -442,7 +442,7 @@
 			<var name="dmFolderName" value="${dmFolderNameEdit}" />
 		</execute>
 
-		<execute macro="DMDocument#editPG">
+		<execute macro="SODMDocument#editPG">
 			<var name="dmDocumentDescriptionEdit" value="${dmDocumentDescriptionEdit}" />
 			<var name="dmDocumentFileEdit" value="${dmDocumentFileEdit}" />
 			<var name="dmDocumentTagName" value="${dmDocumentTagName}" />
@@ -451,7 +451,7 @@
 			<var name="revision" value="${revision}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="Forums" />
@@ -466,7 +466,7 @@
 			<var name="categoryNameEdit" value="${mbCategoryNameEdit}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="Forums" />
@@ -494,7 +494,7 @@
 			<var name="userName" value="${userName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="Blogs" />
@@ -504,7 +504,7 @@
 			<var name="soPage" value="${soPage}" />
 		</execute>
 
-		<execute macro="BlogsEntry#editPG">
+		<execute macro="SOBlogsEntry#editPG">
 			<var name="entryContent" value="${entryContent}" />
 			<var name="entryContentEdit" value="${entryContentEdit}" />
 			<var name="entryTitle" value="${entryTitle}" />
@@ -512,7 +512,7 @@
 			<var name="saveAsDraft" value="${saveAsDraft}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="Wiki" />
@@ -526,7 +526,7 @@
 			<var name="wikiPageContentEdit" value="${wikiPageContentEdit}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="friendlyURL" value="${friendlyURL}" />
 			<var name="pageAccess" value="${pageAccess}" />
 			<var name="pageAccessURL" value="${pageAccessURL}" />

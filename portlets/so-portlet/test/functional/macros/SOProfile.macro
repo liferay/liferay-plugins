@@ -1161,7 +1161,7 @@
 		<execute function="Pause" value1="1000" />
 		<execute function="SelectFrame" value1="relative=top" />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="Messages" />
@@ -1345,7 +1345,7 @@
 	</command>
 
 	<command name="viewLocalizedPG">
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="friendlyURL" value="${friendlyURL}" />
 			<var name="pageAccess" value="${pageAccess}" />
 			<var name="pageStaging" value="${pageStaging}" />

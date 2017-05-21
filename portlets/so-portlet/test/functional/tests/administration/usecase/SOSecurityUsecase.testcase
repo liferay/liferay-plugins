@@ -29,13 +29,13 @@
 
 		<execute macro="SOSite#tearDownCP" />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="Calendar Test Page" />
 		</execute>
 
 		<execute macro="CalendarEvent#tearDown" />
 
-		<execute macro="Page#tearDownPG" />
+		<execute macro="SOPage#tearDownPG" />
 	</tear-down>
 
 	<command name="DashboardXSSDemo" priority="5">
@@ -83,7 +83,7 @@
 		<var name="userScreenName2" value="socialoffice02" />
 		<var name="userScreenName3" value="socialoffice03" />
 
-		<execute macro="Page#gotoCP">
+		<execute macro="SOPage#gotoCP">
 			<var name="portletName" value="Users and Organizations" />
 		</execute>
 
@@ -177,7 +177,7 @@
 			<var name="userScreenName" value="${userScreenName3}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="Microblogs" />
 			<var name="soDashboard" value="true" />
 		</execute>
@@ -272,7 +272,7 @@
 		<execute function="AssertClick" locator1="SOActivities#ACTIVITIES_COMMENT" value1="1 Comment" />
 		<execute function="AssertAlertNotPresent" />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="Messages" />
 			<var name="soDashboard" value="true" />
 		</execute>
@@ -298,7 +298,7 @@
 			<var name="senderName" value="${adminName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="Messages" />
 			<var name="soDashboard" value="true" />
 		</execute>
@@ -320,7 +320,7 @@
 
 		<execute function="AssertAlertNotPresent" />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="Messages" />
 			<var name="soDashboard" value="true" />
 		</execute>
@@ -345,7 +345,7 @@
 
 		<execute function="AssertAlertNotPresent" />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="Messages" />
 			<var name="soDashboard" value="true" />
 		</execute>
@@ -368,7 +368,7 @@
 			<var name="senderName" value="${userName3}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="Messages" />
 			<var name="soDashboard" value="true" />
 		</execute>
@@ -380,7 +380,7 @@
 		<execute function="Confirm" value1="Are you sure you want to delete the selected messages?" />
 		<execute function="AssertTextEquals" locator1="SOMessages#INFO_MESSAGE" value1="No messages found." />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="My Documents" />
 			<var name="soDashboard" value="true" />
 		</execute>
@@ -392,7 +392,7 @@
 
 		<execute function="AssertAlertNotPresent" />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="My Documents" />
 			<var name="soDashboard" value="true" />
 		</execute>
@@ -407,7 +407,7 @@
 
 		<execute function="AssertAlertNotPresent" />
 
-		<execute macro="DMDocument#addPG">
+		<execute macro="SODMDocument#addPG">
 			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
 			<var name="dmDocumentFile" value="${dmDocumentFile}" />
 			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
@@ -415,7 +415,7 @@
 
 		<execute function="AssertAlertNotPresent" />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="My Documents" />
 			<var name="soDashboard" value="true" />
 		</execute>
@@ -435,7 +435,7 @@
 
 		<execute function="AssertAlertNotPresent" />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="My Documents" />
 			<var name="soDashboard" value="true" />
 		</execute>
@@ -452,7 +452,7 @@
 
 		<execute function="AssertTextEquals" locator1="PGDocumentsandmedia#BREADCRUMB_FOLDER_NAME" value1="${dmFolderName}" />
 
-		<execute macro="DMDocument#viewAllPG">
+		<execute macro="SODMDocument#viewAllPG">
 			<var name="commentBody" value="${commentBody}" />
 			<var name="dmDocumentAuthor" value="${adminName}" />
 			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
@@ -462,7 +462,7 @@
 
 		<execute function="AssertAlertNotPresent" />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="Tasks" />
 			<var name="soDashboard" value="true" />
 		</execute>
@@ -477,7 +477,7 @@
 
 		<execute function="AssertAlertNotPresent" />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="Tasks" />
 			<var name="soDashboard" value="true" />
 		</execute>
@@ -491,7 +491,7 @@
 
 		<execute function="AssertAlertNotPresent" />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="Tasks" />
 			<var name="soDashboard" value="true" />
 		</execute>
@@ -507,7 +507,7 @@
 
 		<execute function="AssertAlertNotPresent" />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="Tasks" />
 			<var name="soDashboard" value="true" />
 		</execute>
@@ -524,7 +524,7 @@
 
 		<execute function="AssertAlertNotPresent" />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="Tasks" />
 			<var name="soDashboard" value="true" />
 		</execute>
@@ -540,7 +540,7 @@
 
 		<execute function="AssertAlertNotPresent" />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="Tasks" />
 			<var name="soDashboard" value="true" />
 		</execute>
@@ -575,7 +575,7 @@
 		<execute function="Click" locator1="SOUserBar#NOTIFICATION_MENU_NOTIFICATION_ENTRY_SUBCONTENT" />
 		<execute function="AssertAlertNotPresent" />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="Tasks" />
 			<var name="soDashboard" value="true" />
 		</execute>
@@ -590,7 +590,7 @@
 
 		<execute function="AssertAlertNotPresent" />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="Tasks" />
 			<var name="soDashboard" value="true" />
 		</execute>
@@ -616,7 +616,7 @@
 		<execute function="Click" locator1="SOUserBar#NOTIFICATION_MENU_NOTIFICATION_ENTRY_SUBCONTENT" />
 		<execute function="AssertAlertNotPresent" />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="Tasks" />
 			<var name="soDashboard" value="true" />
 		</execute>
@@ -823,7 +823,7 @@
 		<var name="userSocialNetworkTwitter" value="&lt;script&gt;alert(&quot;socialoffice01&quot;);&lt;/script&gt;" />
 		<var name="userTag" value="tag1" />
 
-		<execute macro="Page#gotoCP">
+		<execute macro="SOPage#gotoCP">
 			<var name="portletName" value="Users and Organizations" />
 		</execute>
 
@@ -920,7 +920,7 @@
 
 		<execute function="AssertAlertNotPresent" />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="Microblogs" />
 			<var name="soDashboard" value="true" />
 		</execute>
@@ -934,7 +934,7 @@
 			<var name="userLoginFullName" value="${adminName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="Microblogs" />
 			<var name="soDashboard" value="true" />
 		</execute>
@@ -1015,7 +1015,7 @@
 		<var name="userScreenName3" value="socialoffice03" />
 		<var name="wikiPageContent" value="Wiki FrontPage Content" />
 
-		<execute macro="Page#gotoCP">
+		<execute macro="SOPage#gotoCP">
 			<var name="portletName" value="Users and Organizations" />
 		</execute>
 
@@ -1063,7 +1063,7 @@
 			<var name="siteType" value="${siteType}" />
 		</execute>
 
-		<execute macro="Page#gotoConfigurationCP">
+		<execute macro="SOPage#gotoConfigurationCP">
 			<var name="portletName" value="Site Settings" />
 			<var name="siteScopeName" value="${siteName}" />
 		</execute>
@@ -1072,7 +1072,7 @@
 			<var name="siteFriendlyURLEdit" value="${siteNameFriendly}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="Calendar" />
 			<var name="siteName" value="${siteNameFriendly}" />
 			<var name="siteURL" value="true" />
@@ -1094,7 +1094,7 @@
 
 		<execute function="AssertAlertNotPresent" />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="Documents" />
 			<var name="siteName" value="${siteNameFriendly}" />
 			<var name="siteURL" value="true" />
@@ -1108,7 +1108,7 @@
 
 		<execute function="AssertAlertNotPresent" />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="Documents" />
 			<var name="siteName" value="${siteNameFriendly}" />
 			<var name="siteURL" value="true" />
@@ -1125,7 +1125,7 @@
 
 		<execute function="AssertAlertNotPresent" />
 
-		<execute macro="DMDocument#addPG">
+		<execute macro="SODMDocument#addPG">
 			<var name="categoryName" value="${categoryName}" />
 			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
 			<var name="dmDocumentFile" value="${dmDocumentFile}" />
@@ -1134,7 +1134,7 @@
 
 		<execute function="AssertAlertNotPresent" />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="Documents" />
 			<var name="siteName" value="${siteNameFriendly}" />
 			<var name="siteURL" value="true" />
@@ -1153,7 +1153,7 @@
 
 		<execute function="AssertTextEquals" locator1="PGDocumentsandmedia#BREADCRUMB_FOLDER_NAME" value1="${dmFolderName}" />
 
-		<execute macro="DMDocument#viewAllPG">
+		<execute macro="SODMDocument#viewAllPG">
 			<var name="dmDocumentAuthor" value="${adminName}" />
 			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
 			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
@@ -1162,7 +1162,7 @@
 
 		<execute function="AssertAlertNotPresent" />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="Forums" />
 			<var name="siteName" value="${siteNameFriendly}" />
 			<var name="siteURL" value="true" />
@@ -1175,7 +1175,7 @@
 
 		<execute function="AssertAlertNotPresent" />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="Forums" />
 			<var name="siteName" value="${siteNameFriendly}" />
 			<var name="siteURL" value="true" />
@@ -1197,7 +1197,7 @@
 
 		<execute function="AssertAlertNotPresent" />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="Forums" />
 			<var name="siteName" value="${siteNameFriendly}" />
 			<var name="siteURL" value="true" />
@@ -1216,14 +1216,14 @@
 			<var name="userName" value="${adminName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="Blogs" />
 			<var name="siteName" value="${siteNameFriendly}" />
 			<var name="siteURL" value="true" />
 			<var name="soPage" value="true" />
 		</execute>
 
-		<execute macro="BlogsEntry#addPG">
+		<execute macro="SOBlogsEntry#addPG">
 			<var name="categoryName" value="${categoryName}" />
 			<var name="entryContent" value="${entryContent}" />
 			<var name="entryTitle" value="${entryTitle}" />
@@ -1231,14 +1231,14 @@
 
 		<execute function="AssertAlertNotPresent" />
 
-		<execute macro="BlogsEntry#viewPG">
+		<execute macro="SOBlogsEntry#viewPG">
 			<var name="entryContent" value="${entryContent}" />
 			<var name="entryTitle" value="${entryTitle}" />
 		</execute>
 
 		<execute function="AssertAlertNotPresent" />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="Blogs" />
 			<var name="siteName" value="${siteNameFriendly}" />
 			<var name="siteURL" value="true" />
@@ -1247,7 +1247,7 @@
 
 		<execute function="AssertAlertNotPresent" />
 
-		<execute macro="BlogsEntry#viewDetailsPG">
+		<execute macro="SOBlogsEntry#viewDetailsPG">
 			<var name="entryAuthorFirstName" value="${adminFirstName}" />
 			<var name="entryAuthorLastName" value="${adminLastName}" />
 			<var name="entryContent" value="${entryContent}" />
@@ -1257,7 +1257,7 @@
 
 		<execute function="AssertAlertNotPresent" />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="Wiki" />
 			<var name="siteName" value="${siteNameFriendly}" />
 			<var name="siteURL" value="true" />
@@ -1270,7 +1270,7 @@
 
 		<execute function="AssertAlertNotPresent" />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="Members" />
 			<var name="siteName" value="${siteNameFriendly}" />
 			<var name="siteURL" value="true" />
@@ -1320,7 +1320,7 @@
 			<var name="userLoginFullName" value="${adminName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="Members" />
 			<var name="siteName" value="${siteNameFriendly}" />
 			<var name="siteURL" value="true" />
@@ -1340,7 +1340,7 @@
 
 		<execute function="AssertAlertNotPresent" />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="Members" />
 			<var name="siteName" value="${siteNameFriendly}" />
 			<var name="siteURL" value="true" />
@@ -1387,7 +1387,7 @@
 			<var name="userLoginFullName" value="${adminName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="Members" />
 			<var name="siteName" value="${siteNameFriendly}" />
 			<var name="siteURL" value="true" />
@@ -1435,7 +1435,7 @@
 			<var name="userLoginFullName" value="${admin}" />
 		</execute>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteNameFriendly}" />
 			<var name="siteURL" value="true" />
 			<var name="soPage" value="true" />
@@ -1450,7 +1450,7 @@
 
 		<execute function="AssertAlertNotPresent" />
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteNameFriendly}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -1465,7 +1465,7 @@
 
 		<execute function="AssertAlertNotPresent" />
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteNameFriendly}" />
 			<var name="siteURL" value="true" />
 		</execute>
@@ -1480,7 +1480,7 @@
 
 		<execute function="AssertAlertNotPresent" />
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="siteName" value="${siteNameFriendly}" />
 			<var name="siteURL" value="true" />
 		</execute>

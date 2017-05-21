@@ -140,7 +140,7 @@
 			<var name="siteType" value="${siteType4}" />
 		</execute>
 
-		<execute macro="Page#gotoUsersCP">
+		<execute macro="SOPage#gotoUsersCP">
 			<var name="portletName" value="Site Memberships" />
 			<var name="siteScopeName" value="${siteName1}" />
 		</execute>
@@ -154,7 +154,7 @@
 			<var name="userScreenName" value="${userScreenName1}" />
 		</execute>
 
-		<execute macro="Page#gotoUsersCP">
+		<execute macro="SOPage#gotoUsersCP">
 			<var name="portletName" value="Site Memberships" />
 			<var name="siteScopeName" value="${siteName2}" />
 		</execute>
@@ -168,7 +168,7 @@
 			<var name="userScreenName" value="${userScreenName2}" />
 		</execute>
 
-		<execute macro="Page#gotoUsersCP">
+		<execute macro="SOPage#gotoUsersCP">
 			<var name="portletName" value="Site Memberships" />
 			<var name="siteScopeName" value="${siteName3}" />
 		</execute>
@@ -182,7 +182,7 @@
 			<var name="userScreenName" value="${userScreenName3}" />
 		</execute>
 
-		<execute macro="Page#gotoUsersCP">
+		<execute macro="SOPage#gotoUsersCP">
 			<var name="portletName" value="Site Memberships" />
 			<var name="siteScopeName" value="${siteName4}" />
 		</execute>
@@ -201,7 +201,7 @@
 			<var name="userLoginFullName" value="${userName1}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="My Documents" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -212,7 +212,7 @@
 			<var name="dmFolderName" value="${dmFolderName1}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="My Documents" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -222,7 +222,7 @@
 			<var name="dmFolderName" value="${dmFolderName1}" />
 		</execute>
 
-		<execute macro="DMDocument#addPG">
+		<execute macro="SODMDocument#addPG">
 			<var name="dmDocumentDescription" value="${dmDocumentDescription1}" />
 			<var name="dmDocumentFile" value="${dmDocumentFile1}" />
 			<var name="dmDocumentTitle" value="${dmDocumentTitle1}" />
@@ -233,7 +233,7 @@
 			<var name="userLoginFullName" value="${userName2}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="My Documents" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -244,7 +244,7 @@
 			<var name="dmFolderName" value="${dmFolderName2}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="My Documents" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -254,7 +254,7 @@
 			<var name="dmFolderName" value="${dmFolderName2}" />
 		</execute>
 
-		<execute macro="DMDocument#addPG">
+		<execute macro="SODMDocument#addPG">
 			<var name="dmDocumentDescription" value="${dmDocumentDescription2}" />
 			<var name="dmDocumentFile" value="${dmDocumentFile2}" />
 			<var name="dmDocumentTitle" value="${dmDocumentTitle2}" />
@@ -265,7 +265,7 @@
 			<var name="userLoginFullName" value="${userName3}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="My Documents" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -276,7 +276,7 @@
 			<var name="dmFolderName" value="${dmFolderName3}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="My Documents" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -286,7 +286,7 @@
 			<var name="dmFolderName" value="${dmFolderName3}" />
 		</execute>
 
-		<execute macro="DMDocument#addPG">
+		<execute macro="SODMDocument#addPG">
 			<var name="dmDocumentDescription" value="${dmDocumentDescription3}" />
 			<var name="dmDocumentFile" value="${dmDocumentFile3}" />
 			<var name="dmDocumentTitle" value="${dmDocumentTitle3}" />
@@ -297,7 +297,7 @@
 			<var name="userLoginFullName" value="${userName4}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="My Documents" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -308,7 +308,7 @@
 			<var name="dmFolderName" value="${dmFolderName4}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="My Documents" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -318,7 +318,7 @@
 			<var name="dmFolderName" value="${dmFolderName4}" />
 		</execute>
 
-		<execute macro="DMDocument#addPG">
+		<execute macro="SODMDocument#addPG">
 			<var name="dmDocumentDescription" value="${dmDocumentDescription4}" />
 			<var name="dmDocumentFile" value="${dmDocumentFile4}" />
 			<var name="dmDocumentTitle" value="${dmDocumentTitle4}" />
@@ -329,7 +329,7 @@
 			<var name="userLoginFullName" value="${userName1}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="My Documents" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -353,14 +353,14 @@
 		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle3}" />
 		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle4}" />
 
-		<execute macro="DMDocument#viewAllPG">
+		<execute macro="SODMDocument#viewAllPG">
 			<var name="dmDocumentAuthor" value="${userName1}" />
 			<var name="dmDocumentDescription" value="${dmDocumentDescription1}" />
 			<var name="dmDocumentTitle" value="${dmDocumentTitle1}" />
 			<var name="dmDocumentVersionNumber" value="${dmDocumentVersionNumber}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="Documents" />
 			<var name="siteName" value="${siteName1}" />
 			<var name="siteURL" value="true" />
@@ -381,7 +381,7 @@
 			<var name="userLoginFullName" value="${userName2}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="My Documents" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -405,14 +405,14 @@
 		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle3}" />
 		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle4}" />
 
-		<execute macro="DMDocument#viewAllPG">
+		<execute macro="SODMDocument#viewAllPG">
 			<var name="dmDocumentAuthor" value="${userName2}" />
 			<var name="dmDocumentDescription" value="${dmDocumentDescription2}" />
 			<var name="dmDocumentTitle" value="${dmDocumentTitle2}" />
 			<var name="dmDocumentVersionNumber" value="${dmDocumentVersionNumber}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="Documents" />
 			<var name="siteName" value="${siteName2}" />
 			<var name="siteURL" value="true" />
@@ -433,7 +433,7 @@
 			<var name="userLoginFullName" value="${userName3}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="My Documents" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -457,14 +457,14 @@
 		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle2}" />
 		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle4}" />
 
-		<execute macro="DMDocument#viewAllPG">
+		<execute macro="SODMDocument#viewAllPG">
 			<var name="dmDocumentAuthor" value="${userName3}" />
 			<var name="dmDocumentDescription" value="${dmDocumentDescription3}" />
 			<var name="dmDocumentTitle" value="${dmDocumentTitle3}" />
 			<var name="dmDocumentVersionNumber" value="${dmDocumentVersionNumber}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageAccess" value="Private" />
 			<var name="pageName" value="Documents" />
 			<var name="siteName" value="${siteName3}" />
@@ -486,7 +486,7 @@
 			<var name="userLoginFullName" value="${userName4}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="My Documents" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -510,14 +510,14 @@
 		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle2}" />
 		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle3}" />
 
-		<execute macro="DMDocument#viewAllPG">
+		<execute macro="SODMDocument#viewAllPG">
 			<var name="dmDocumentAuthor" value="${userName4}" />
 			<var name="dmDocumentDescription" value="${dmDocumentDescription4}" />
 			<var name="dmDocumentTitle" value="${dmDocumentTitle4}" />
 			<var name="dmDocumentVersionNumber" value="${dmDocumentVersionNumber}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageAccess" value="Private" />
 			<var name="pageName" value="Documents" />
 			<var name="siteName" value="${siteName4}" />
@@ -539,7 +539,7 @@
 			<var name="userLoginFullName" value="${adminName}" />
 		</execute>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="My Documents" />
 			<var name="soDashboard" value="true" />
 			<var name="soPage" value="true" />
@@ -555,7 +555,7 @@
 		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle3}" />
 		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle4}" />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="Documents" />
 			<var name="siteName" value="${siteName1}" />
 			<var name="siteURL" value="true" />
@@ -571,7 +571,7 @@
 		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle3}" />
 		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle4}" />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="Documents" />
 			<var name="siteName" value="${siteName2}" />
 			<var name="siteURL" value="true" />
@@ -587,7 +587,7 @@
 		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle3}" />
 		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle4}" />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageAccess" value="Private" />
 			<var name="pageName" value="Documents" />
 			<var name="siteName" value="${siteName3}" />
@@ -604,7 +604,7 @@
 		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle3}" />
 		<execute function="AssertTextNotPresent" value1="${dmDocumentTitle4}" />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="pageAccess" value="Private" />
 			<var name="pageName" value="Documents" />
 			<var name="siteName" value="${siteName4}" />

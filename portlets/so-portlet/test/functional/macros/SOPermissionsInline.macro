@@ -54,7 +54,7 @@
 	</command>
 
 	<command name="gotoBlogsConfiguration">
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="${pageName}" />
@@ -72,7 +72,7 @@
 	</command>
 
 	<command name="gotoBlogsEntryCP">
-		<execute macro="Page#gotoContentCP">
+		<execute macro="SOPage#gotoContentCP">
 			<var name="pageName" value="${pageName}" />
 			<var name="portletName" value="${portletName}" />
 			<var name="siteName" value="${siteName}" />
@@ -89,7 +89,7 @@
 	</command>
 
 	<command name="gotoBlogsEntryPG">
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="${pageName}" />
@@ -107,7 +107,7 @@
 	</command>
 
 	<command name="gotoBlogsPG">
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="${pageName}" />
@@ -134,7 +134,7 @@
 	</command>
 
 	<command name="gotoDMFolderPG">
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="${pageName}" />
@@ -154,7 +154,7 @@
 	</command>
 
 	<command name="gotoDocumentsAndMediaPG">
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="${pageName}" />
@@ -177,7 +177,7 @@
 	</command>
 
 	<command name="gotoPagePG">
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="${pageName}" />

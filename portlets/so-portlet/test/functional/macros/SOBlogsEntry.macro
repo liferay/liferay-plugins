@@ -232,14 +232,14 @@
 		<if>
 			<equals arg1="${entryAddPermissions}" arg2="true" />
 			<then>
-				<execute macro="BlogsEntry#entryAddPermissionsCmd" />
+				<execute macro="SOBlogsEntry#entryAddPermissionsCmd" />
 			</then>
 		</if>
 
 		<if>
 			<equals arg1="${entryAddCategory}" arg2="true" />
 			<then>
-				<execute macro="BlogsEntry#addCategoryPG">
+				<execute macro="SOBlogsEntry#addCategoryPG">
 					<var name="categoryName" value="${categoryName}" />
 					<var name="entryTitle" value="${entryTitle}" />
 					<var name="vocabularyName" value="${vocabularyName}" />
@@ -250,7 +250,7 @@
 		<if>
 			<equals arg1="${entryAddTag}" arg2="true" />
 			<then>
-				<execute macro="BlogsEntry#addTagPG">
+				<execute macro="SOBlogsEntry#addTagPG">
 					<var name="entryTitle" value="${entryTitle}" />
 					<var name="multipleTags" value="${multipleTags}" />
 					<var name="tagName" value="${tagName}" />
@@ -305,7 +305,7 @@
 		<if>
 			<equals arg1="${entryAddCategory}" arg2="true" />
 			<then>
-				<execute macro="BlogsEntry#viewCategoryPG">
+				<execute macro="SOBlogsEntry#viewCategoryPG">
 					<var name="categoryName" value="${categoryName}" />
 					<var name="entryTitle" value="${entryTitle}" />
 					<var name="vocabularyName" value="${vocabularyName}" />
@@ -316,7 +316,7 @@
 		<if>
 			<equals arg1="${entryAddTag}" arg2="true" />
 			<then>
-				<execute macro="BlogsEntry#viewTagPG">
+				<execute macro="SOBlogsEntry#viewTagPG">
 					<var name="entryTitle" value="${entryTitle}" />
 					<var name="tagName" value="${tagName}" />
 					<var name="tagNameList" value="${tagNameList}" />
@@ -486,7 +486,7 @@
 
 		<execute function="Copy" locator1="PGBlogsEntry#COMMENTS_TRACKBACK_URL" />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="${pageName}" />
@@ -635,7 +635,7 @@
 		<execute function="Type" locator1="PGBlogsEdit#TITLE_FIELD" value1="${entryTitle}" />
 		<execute function="Type#typeCKEditorWaitForCKEditor" locator1="PGBlogsEdit#CONTENT_FIELD" value1="${entryContentEdit}" />
 
-		<execute macro="BlogsEntry#_saveOrPublish">
+		<execute macro="SOBlogsEntry#_saveOrPublish">
 			<var name="saveAsDraft" value="${saveAsDraft}" />
 		</execute>
 	</command>
@@ -643,14 +643,14 @@
 	<command name="editDraftPG">
 		<var name="key_entryTitle" value="${entryTitle}" />
 
-		<execute macro="BlogsEntry#gotoDraftEditPG">
+		<execute macro="SOBlogsEntry#gotoDraftEditPG">
 			<var name="entryTitle" value="${entryTitle}" />
 		</execute>
 
 		<execute function="Type" locator1="PGBlogsEdit#TITLE_FIELD" value1="${entryTitleEdit}" />
 		<execute function="Type#typeCKEditorWaitForCKEditor" locator1="PGBlogsEdit#CONTENT_FIELD" value1="${entryContentEdit}" />
 
-		<execute macro="BlogsEntry#_saveOrPublish">
+		<execute macro="SOBlogsEntry#_saveOrPublish">
 			<var name="saveAsDraft" value="${saveAsDraft}" />
 		</execute>
 	</command>
@@ -674,7 +674,7 @@
 		<execute function="Type" locator1="PGBlogsEdit#TITLE_FIELD" value1="${entryTitleEdit}" />
 		<execute function="Type#typeCKEditorWaitForCKEditor" locator1="PGBlogsEdit#CONTENT_FIELD" value1="${entryContentEdit}" />
 
-		<execute macro="BlogsEntry#_saveOrPublish">
+		<execute macro="SOBlogsEntry#_saveOrPublish">
 			<var name="saveAsDraft" value="${saveAsDraft}" />
 		</execute>
 	</command>
@@ -982,7 +982,7 @@
 	</command>
 
 	<command name="tearDownCP">
-		<execute macro="Page#gotoContentCP">
+		<execute macro="SOPage#gotoContentCP">
 			<var name="portletName" value="Blogs" />
 		</execute>
 
@@ -997,7 +997,7 @@
 			</then>
 		</if>
 
-		<execute macro="Page#gotoContentCP">
+		<execute macro="SOPage#gotoContentCP">
 			<var name="portletName" value="Recycle Bin" />
 		</execute>
 
@@ -1399,7 +1399,7 @@
 	</command>
 
 	<command name="viewViewCountPG">
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="${pageName}" />
@@ -1414,7 +1414,7 @@
 		<execute function="AssertTextEquals" locator1="PGBlogsEntry#ENTRY_TITLE" value1="${entryTitle}" />
 		<execute function="Pause" locator1="3000" />
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="${pageName}" />
@@ -1441,7 +1441,7 @@
 			</else>
 		</if>
 
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="defaultURL" value="${defaultURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageName" value="${pageName}" />

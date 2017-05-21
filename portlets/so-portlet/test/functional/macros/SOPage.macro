@@ -27,7 +27,7 @@
 					<equals arg1="${defaultURL}" arg2="false" />
 				</not>
 				<then>
-					<execute macro="Page#openURL">
+					<execute macro="SOPage#openURL">
 						<var name="friendlyURL" value="${friendlyURL}" />
 						<var name="pageAccess" value="${pageAccess}" />
 						<var name="pageStaging" value="${pageStaging}" />
@@ -50,7 +50,7 @@
 		<if>
 			<isset var="pageType" />
 			<then>
-				<execute macro="Page#selectPageTypeRadioPG">
+				<execute macro="SOPage#selectPageTypeRadioPG">
 					<var name="componentName" value="${componentName}" />
 					<var name="pageType" value="${pageType}" />
 					<var name="portletNameList" value="${portletNameList}" />
@@ -81,7 +81,7 @@
 	</command>
 
 	<command name="addWithWorkflowPG">
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="friendlyURL" value="${friendlyURL}" />
 			<var name="pageAccess" value="${pageAccess}" />
 			<var name="pageStaging" value="${pageStaging}" />
@@ -151,7 +151,7 @@
 	</command>
 
 	<command name="gotoChildPagePG">
-		<execute macro="Page#gotoPG">
+		<execute macro="SOPage#gotoPG">
 			<var name="friendlyURL" value="${friendlyURL}" />
 			<var name="pageAccess" value="${pageAccess}" />
 			<var name="pageName" value="${pageName}" />
@@ -179,7 +179,7 @@
 				<execute function="Open" locator1="http://localhost:${nodePort}" />
 			</then>
 			<else>
-				<execute macro="Page#openURL">
+				<execute macro="SOPage#openURL">
 					<var name="friendlyURL" value="${friendlyURL}" />
 					<var name="pageAccess" value="${pageAccess}" />
 					<var name="pageStaging" value="${pageStaging}" />
@@ -233,7 +233,7 @@
 	<command name="gotoConfigurationCP">
 		<description message="Navigate to Site Administration > Configuration > ${portletName}." />
 
-		<execute macro="Page#gotoCmdCP">
+		<execute macro="SOPage#gotoCmdCP">
 			<var name="friendlyURL" value="${friendlyURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageAccess" value="${pageAccess}" />
@@ -251,7 +251,7 @@
 	</command>
 
 	<command name="gotoContentCP" summary="Navigate to Admin > Site Administration > Content > ${portletName}">
-		<execute macro="Page#gotoCmdCP">
+		<execute macro="SOPage#gotoCmdCP">
 			<var name="friendlyURL" value="${friendlyURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageAccess" value="${pageAccess}" />
@@ -290,7 +290,7 @@
 			</else>
 		</if>
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="friendlyURL" value="${friendlyURL}" />
 			<var name="pageAccess" value="${pageAccess}" />
 			<var name="pageStaging" value="${pageStaging}" />
@@ -319,7 +319,7 @@
 	<command name="gotoMyAccount">
 		<description message="Navigate to My Account > ${portletName}." />
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="friendlyURL" value="${friendlyURL}" />
 			<var name="pageAccess" value="${pageAccess}" />
 			<var name="pageStaging" value="${pageStaging}" />
@@ -342,7 +342,7 @@
 	<command name="gotoMyDashboard">
 		<description message="Navigate to My Dashboard." />
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="friendlyURL" value="${friendlyURL}" />
 			<var name="pageAccess" value="${pageAccess}" />
 			<var name="pageStaging" value="${pageStaging}" />
@@ -361,7 +361,7 @@
 	<command name="gotoMyProfile">
 		<description message="Navigate to My Profile." />
 
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="friendlyURL" value="${friendlyURL}" />
 			<var name="pageAccess" value="${pageAccess}" />
 			<var name="pageStaging" value="${pageStaging}" />
@@ -380,7 +380,7 @@
 	<command name="gotoPagesCP">
 		<description message="Navigate to Site Administration > Pages > ${portletName}." />
 
-		<execute macro="Page#gotoCmdCP">
+		<execute macro="SOPage#gotoCmdCP">
 			<var name="friendlyURL" value="${friendlyURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageAccess" value="${pageAccess}" />
@@ -408,7 +408,7 @@
 					<equals arg1="${defaultURL}" arg2="false" />
 				</not>
 				<then>
-					<execute macro="Page#openURL">
+					<execute macro="SOPage#openURL">
 						<var name="friendlyURL" value="${friendlyURL}" />
 						<var name="pageAccess" value="${pageAccess}" />
 						<var name="pageStaging" value="${pageStaging}" />
@@ -459,7 +459,7 @@
 	</command>
 
 	<command name="gotoSALocalizedCP">
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="friendlyURL" value="${friendlyURL}" />
 			<var name="pageAccess" value="${pageAccess}" />
 			<var name="pageStaging" value="${pageStaging}" />
@@ -484,7 +484,7 @@
 	<command name="gotoUsersCP">
 		<description message="Navigate to Site Administration > Users > ${portletName}." />
 
-		<execute macro="Page#gotoCmdCP">
+		<execute macro="SOPage#gotoCmdCP">
 			<var name="friendlyURL" value="${friendlyURL}" />
 			<var name="nodePort" value="${nodePort}" />
 			<var name="pageAccess" value="${pageAccess}" />
@@ -502,7 +502,7 @@
 	</command>
 
 	<command name="isPresent">
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="friendlyURL" value="${friendlyURL}" />
 			<var name="pageAccess" value="${pageAccess}" />
 			<var name="pageStaging" value="${pageStaging}" />
@@ -602,7 +602,7 @@
 		<if>
 			<equals arg1="${pageType}" arg2="Panel" />
 			<then>
-				<execute macro="Page#addPageTypePanelPG">
+				<execute macro="SOPage#addPageTypePanelPG">
 					<var name="componentName" value="${componentName}" />
 					<var name="portletName" value="${portletName}" />
 					<var name="portletNameList" value="${portletNameList}" />
@@ -612,7 +612,7 @@
 	</command>
 
 	<command name="tearDownPG" summary="Delete all pages except the Welcome Page">
-		<execute macro="Page#openURL">
+		<execute macro="SOPage#openURL">
 			<var name="friendlyURL" value="${friendlyURL}" />
 			<var name="pageAccess" value="${pageAccess}" />
 			<var name="pageStaging" value="${pageStaging}" />
