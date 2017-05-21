@@ -1,0 +1,1559 @@
+<definition>
+	<command name="_saveOrPublish">
+		<if>
+			<equals arg1="${saveAsDraft}" arg2="true" />
+			<then>
+				<execute function="AssertClick" locator1="PGBlogsEdit#SAVE_AS_DRAFT_BUTTON" value1="Save as Draft" />
+
+				<execute function="AssertTextEquals" locator1="PGBlogsEdit#SUCCESS_MESSAGE" value1="Your request completed successfully." />
+			</then>
+			<else>
+				<execute function="AssertClick#assertTextClickAtAndWaitCKEditor" locator1="PGBlogsEdit#PUBLISH_BUTTON" value1="Publish" />
+
+				<execute function="AssertTextEquals" locator1="PGBlogs#SUCCESS_MESSAGE" value1="Your request completed successfully." />
+			</else>
+		</if>
+	</command>
+
+	<command name="addAbstractDescriptionPG">
+		<if>
+			<condition function="IsElementPresent" locator1="PGBlogsAdd#ABSTRACT_DROPDOWN_COLLAPSED" />
+			<then>
+				<execute function="AssertClick" locator1="PGBlogsAdd#ABSTRACT_DROPDOWN" value1="Abstract" />
+			</then>
+		</if>
+
+		<execute function="Type" locator1="PGBlogsAdd#ABSTRACT_DESCRIPTION_FIELD" value1="${entryAbstractDescription}" />
+
+		<execute function="AssertClick#assertTextClickAtAndWaitCKEditor" locator1="PGBlogsAdd#PUBLISH_BUTTON" value1="Publish" />
+
+		<execute function="AssertTextEquals" locator1="PGBlogs#SUCCESS_MESSAGE" value1="Your request completed successfully." />
+	</command>
+
+	<command name="addCategoryCP">
+		<var name="key_entryTitle" value="${entryTitle}" />
+
+		<execute function="AssertTextEquals" locator1="CPBlogs#ENTRY_TABLE_TITLE" value1="${entryTitle}" />
+
+		<execute function="AssertClick" locator1="CPBlogs#ENTRY_TABLE_ACTIONS" value1="Actions" />
+
+		<execute function="AssertClick#assertTextClickAtAndWait" locator1="CPBlogs#ENTRY_MENULIST_EDIT" value1="Edit" />
+
+		<var name="key_categoryName" value="${categoryName}" />
+		<var name="key_vocabularyName" value="${vocabularyName}" />
+
+		<execute function="AssertElementPresent" locator1="CPBlogsEdit#CONTENT_FIELD" />
+
+		<if>
+			<condition function="IsElementNotPresent#isNotVisible" locator1="CPBlogsEdit#CATEGORIZATION_TAGS_ADD_BUTTON" />
+			<then>
+				<execute function="AssertClick" locator1="CPBlogsEdit#CATEGORIZATION_TOGGLE" value1="Categorization" />
+
+				<execute function="AssertElementPresent" locator1="CPBlogsEdit#CATEGORIZATION_TAGS_ADD_BUTTON" />
+			</then>
+		</if>
+
+		<execute function="AssertClick" locator1="CPBlogsEdit#CATEGORIZATION_SELECT_BUTTON" value1="Select" />
+
+		<execute function="AssertClick" locator1="CPBlogsEdit#CATEGORIES_CATEGORY_UNSELECTED" value1="${categoryName}" />
+
+		<execute function="AssertElementPresent" locator1="CPBlogsEdit#CATEGORIES_CATEGORY_SELECTED" value1="${categoryName}" />
+
+		<execute function="Click" locator1="CPBlogsEdit#CATEGORIES_CLOSE_BUTTON" />
+
+		<execute function="AssertTextEquals" locator1="CPBlogsEdit#CATEGORIZATION_CATEGORY" value1="${categoryName}" />
+
+		<execute function="AssertClick" locator1="CPBlogsEdit#PUBLISH_BUTTON" value1="Publish" />
+
+		<execute function="AssertTextEquals" locator1="CPBlogs#SUCCESS_MESSAGE" value1="Your request completed successfully." />
+
+		<execute function="AssertClick#assertTextClickAtAndWait" locator1="CPBlogs#ENTRY_TABLE_TITLE" value1="${entryTitle}" />
+
+		<execute function="AssertTextEquals#assertPartialText" locator1="CPBlogsEntry#ENTRY_VOCABULARY" value1="${vocabularyName}" />
+		<execute function="AssertTextEquals" locator1="CPBlogsEntry#ENTRY_CATEGORY" value1="${categoryName}" />
+	</command>
+
+	<command name="addCategoryPG">
+		<var name="key_entryTitle" value="${entryTitle}" />
+
+		<execute function="AssertTextEquals" locator1="PGBlogsAdd#TITLE_FIELD" value1="${entryTitle}" />
+		<execute function="AssertElementPresent" locator1="PGBlogsAdd#CONTENT_FIELD" />
+
+		<if>
+			<condition function="IsElementNotPresent" locator1="PGBlogsAdd#CATEGORIZATION_TAGS_ADD_BUTTON" />
+			<then>
+				<execute function="AssertClick" locator1="PGBlogsAdd#CATEGORIZATION_TOGGLE" value1="Categorization" />
+
+				<execute function="AssertElementPresent" locator1="PGBlogsAdd#CATEGORIZATION_TAGS_ADD_BUTTON" />
+			</then>
+		</if>
+
+		<var name="key_categoryName" value="${categoryName}" />
+		<var name="key_vocabularyName" value="${vocabularyName}" />
+
+		<execute function="AssertClick" locator1="PGBlogsAdd#CATEGORIZATION_SELECT_BUTTON" value1="Select" />
+
+		<execute function="AssertElementPresent" locator1="PGBlogsAdd#SELECT_CATEGORIES_CATEGORY" />
+
+		<execute function="AssertClick" locator1="PGBlogsAdd#SELECT_CATEGORIES_CATEGORY" value1="${categoryName}" />
+
+		<execute function="AssertElementPresent" locator1="PGBlogsAdd#SELECT_CATEGORIES_CATEGORY_CHECKED" />
+
+		<execute function="Click" locator1="PGBlogsAdd#SELECT_CATEGORIES_CLOSE_BUTTON" />
+
+		<execute function="AssertTextEquals" locator1="PGBlogsAdd#CATEGORIZATION_CATEGORY" value1="${categoryName}" />
+	</command>
+
+	<command name="addCP">
+		<execute function="AssertClick#assertTextClickAtAndWait" locator1="CPBlogs#ADD_ENTRY" value1="Add" />
+
+		<execute function="Type" locator1="CPBlogsAdd#TITLE_FIELD" value1="${entryTitle}" />
+		<execute function="Type#typeCKEditorWaitForCKEditor" locator1="CPBlogsAdd#CONTENT_FIELD" value1="${entryContent}" />
+
+		<execute function="AssertClick#assertTextClickAtCKEditor" locator1="CPBlogsAdd#PUBLISH_BUTTON" value1="Publish" />
+
+		<var name="key_entryTitle" value="${entryTitle}" />
+
+		<if>
+			<equals arg1="${entryInvalidTitle}" arg2="true" />
+			<then>
+				<execute function="AssertTextEquals" locator1="CPBlogsAdd#FIELD_REQUIRED" value1="This field is required." />
+			</then>
+			<elseif>
+				<equals arg1="${entryInvalidContent}" arg2="true" />
+				<then>
+					<execute function="AssertTextEquals" locator1="CPBlogsAdd#ERROR_MESSAGE_1" value1="Your request failed to complete." />
+					<execute function="AssertTextEquals" locator1="CPBlogsAdd#ERROR_MESSAGE_2" value1="Please enter valid content." />
+					<execute function="AssertElementNotPresent" locator1="CPBlogs#SUCCESS_MESSAGE" value1="Your request completed successfully." />
+				</then>
+			</elseif>
+			<else>
+				<execute function="AssertTextEquals" locator1="CPBlogs#SUCCESS_MESSAGE" value1="Your request completed successfully." />
+
+				<execute function="AssertClick#assertTextClickAtAndWait" locator1="CPBlogs#ENTRY_TABLE_TITLE" value1="${entryTitle}" />
+
+				<execute function="AssertTextEquals" locator1="CPBlogsEntry#ENTRY_TITLE_HEADER" value1="${entryTitle}" />
+				<execute function="AssertTextEquals" locator1="CPBlogsEntry#ENTRY_CONTENT" value1="${entryContent}" />
+			</else>
+		</if>
+	</command>
+
+	<command name="addDraftAutoCP">
+		<execute function="AssertClick#assertTextClickAtAndWait" locator1="CPBlogs#ADD_ENTRY" value1="Add" />
+
+		<execute function="Type#typeWaitForCKEditor" locator1="CPBlogsAdd#TITLE_FIELD" value1="${entryTitle}" />
+		<execute function="Type#typeCKEditorWaitForCKEditor" locator1="CPBlogsAdd#CONTENT_FIELD" value1="${entryContent}" />
+
+		<execute function="Pause" locator1="30000" />
+
+		<execute function="AssertTextEquals#assertPartialText" locator1="CPBlogsAdd#SAVE_STATUS" value1="Draft saved at" />
+
+		<execute function="AssertTextEquals" locator1="CPBlogsEdit#TITLE_FIELD" value1="${entryTitle}" />
+
+		<execute function="SelectFrame" locator1="CPBlogsEdit#CONTENT_FIELD_IFRAME" />
+
+		<execute function="AssertTextPresent" locator1="CPBlogsEdit#CONTENT_FIELD" value1="${entryContent}" />
+
+		<execute function="SelectFrame" value1="relative=top" />
+	</command>
+
+	<command name="addDraftAutoPG">
+		<execute function="AssertClick" locator1="PGBlogs#ADD_ENTRY_BUTTON" value1="Add Blog Entry" />
+
+		<execute function="Type" locator1="PGBlogsAdd#TITLE_FIELD" value1="${entryTitle}" />
+
+		<execute function="Type#typeCKEditorWaitForCKEditor" locator1="PGBlogsAdd#CONTENT_FIELD" value1="${entryContent}" />
+
+		<execute function="Pause" locator1="30000" />
+
+		<execute function="AssertTextEquals#assertPartialText" locator1="PGBlogsAdd#SAVE_STATUS" value1="Draft saved at" />
+
+		<execute function="AssertTextEquals" locator1="PGBlogsEdit#TITLE_FIELD" value1="${entryTitle}" />
+
+		<execute function="SelectFrame" locator1="PGBlogsEdit#CONTENT_FIELD_IFRAME" />
+
+		<execute function="AssertTextPresent" locator1="PGBlogsEdit#CONTENT_FIELD" value1="${entryContent}" />
+
+		<execute function="SelectFrame" value1="relative=top" />
+	</command>
+
+	<command name="addDraftCP">
+		<execute function="AssertClick#assertTextClickAtAndWait" locator1="CPBlogs#ADD_ENTRY" value1="Add" />
+
+		<execute function="Type#typeWaitForCKEditor" locator1="CPBlogsAdd#TITLE_FIELD" value1="${entryTitle}" />
+
+		<execute function="Type#typeCKEditorWaitForCKEditor" locator1="CPBlogsAdd#CONTENT_FIELD" value1="${entryContent}" />
+
+		<execute function="AssertClick#assertTextClickAtAndWaitCKEditor" locator1="CPBlogsAdd#SAVE_AS_DRAFT_BUTTON" value1="Save as Draft" />
+
+		<var name="key_entryTitle" value="${entryTitle}" />
+
+		<execute function="AssertTextEquals" locator1="CPBlogsAdd#SUCCESS_MESSAGE" value1="Your request completed successfully." />
+
+		<execute function="AssertTextEquals" locator1="CPBlogsEdit#TITLE_FIELD" value1="${entryTitle}" />
+
+		<execute function="SelectFrame" locator1="CPBlogsEdit#CONTENT_FIELD_IFRAME" />
+
+		<execute function="AssertTextPresent" locator1="CPBlogsEdit#CONTENT_FIELD" value1="${entryContent}" />
+
+		<execute function="SelectFrame" value1="relative=top" />
+	</command>
+
+	<command name="addDraftPG">
+		<execute function="AssertClick" locator1="PGBlogs#ADD_ENTRY_BUTTON" value1="Add Blog Entry" />
+
+		<execute function="Type" locator1="PGBlogsAdd#TITLE_FIELD" value1="${entryTitle}" />
+		<execute function="Type#typeCKEditorWaitForCKEditor" locator1="PGBlogsAdd#CONTENT_FIELD" value1="${entryContent}" />
+
+		<execute function="AssertClick" locator1="PGBlogsAdd#SAVE_AS_DRAFT_BUTTON" value1="Save as Draft" />
+
+		<execute function="AssertTextEquals" locator1="PGBlogs#SUCCESS_MESSAGE" value1="Your request completed successfully." />
+
+		<execute function="AssertTextEquals" locator1="PGBlogsEdit#DRAFT_STATUS" value1="Draft" />
+		<execute function="AssertTextEquals" locator1="PGBlogsEdit#TITLE_FIELD" value1="${entryTitle}" />
+
+		<execute function="SelectFrame" locator1="PGBlogsEdit#CONTENT_FIELD_IFRAME" />
+
+		<execute function="AssertTextPresent" locator1="PGBlogsEdit#CONTENT_FIELD" value1="${entryContent}" />
+
+		<execute function="SelectFrame" value1="relative=top" />
+	</command>
+
+	<command name="addNoPermissionPG">
+		<execute function="AssertElementNotPresent" locator1="PGBlogs#ADD_ENTRY_BUTTON" />
+	</command>
+
+	<command name="addPG">
+		<execute function="AssertClick" locator1="PGBlogs#ADD_ENTRY_BUTTON" value1="Add Blog Entry" />
+
+		<execute function="Type" locator1="PGBlogsAdd#TITLE_FIELD" value1="${entryTitle}" />
+		<execute function="Type#typeCKEditorWaitForCKEditor" locator1="PGBlogsAdd#CONTENT_FIELD" value1="${entryContent}" />
+
+		<if>
+			<equals arg1="${entryAddPermissions}" arg2="true" />
+			<then>
+				<execute macro="BlogsEntry#entryAddPermissionsCmd" />
+			</then>
+		</if>
+
+		<if>
+			<equals arg1="${entryAddCategory}" arg2="true" />
+			<then>
+				<execute macro="BlogsEntry#addCategoryPG">
+					<var name="categoryName" value="${categoryName}" />
+					<var name="entryTitle" value="${entryTitle}" />
+					<var name="vocabularyName" value="${vocabularyName}" />
+				</execute>
+			</then>
+		</if>
+
+		<if>
+			<equals arg1="${entryAddTag}" arg2="true" />
+			<then>
+				<execute macro="BlogsEntry#addTagPG">
+					<var name="entryTitle" value="${entryTitle}" />
+					<var name="multipleTags" value="${multipleTags}" />
+					<var name="tagName" value="${tagName}" />
+					<var name="tagNameList" value="${tagNameList}" />
+				</execute>
+			</then>
+		</if>
+
+		<execute function="AssertClick#assertTextClickAtAndWaitCKEditor" locator1="PGBlogsAdd#PUBLISH_BUTTON" value1="Publish" />
+
+		<if>
+			<equals arg1="${entryInvalidTitle}" arg2="true" />
+			<then>
+				<execute function="AssertTextEquals" locator1="PGBlogsAdd#TITLE_REQUIRED" value1="(Required)" />
+				<execute function="AssertTextEquals" locator1="PGBlogsAdd#FIELD_REQUIRED" value1="This field is required." />
+			</then>
+			<elseif>
+				<equals arg1="${entryInvalidContent}" arg2="true" />
+				<then>
+					<execute function="AssertTextEquals" locator1="PGBlogsAdd#ERROR_MESSAGE_1" value1="Your request failed to complete." />
+					<execute function="AssertTextEquals" locator1="PGBlogsAdd#ERROR_MESSAGE_2" value1="Please enter valid content." />
+					<execute function="AssertElementNotPresent" locator1="PGBlogs#SUCCESS_MESSAGE" value1="Your request completed successfully." />
+				</then>
+			</elseif>
+			<elseif>
+				<equals arg1="${entryInvalidTitleLength}" arg2="true" />
+				<then>
+					<execute function="AssertTextEquals" locator1="PGBlogs#SUCCESS_MESSAGE" value1="Your request completed successfully." />
+
+					<var name="key_entryTitle" value="${entryValidTitleLength}" />
+
+					<execute function="AssertTextEquals" locator1="PGBlogs#ENTRY_TITLE" value1="${entryValidTitleLength}" />
+					<execute function="AssertTextEquals" locator1="PGBlogs#ENTRY_CONTENT" value1="${entryContent}" />
+					<execute function="AssertTextNotEquals" locator1="PGBlogs#ENTRY_TITLE" value1="${entryTitle}" />
+
+					<var name="key_entryTitle" value="${entryTitle}" />
+
+					<execute function="AssertElementNotPresent" locator1="PGBlogs#ENTRY_TITLE" />
+					<execute function="AssertElementNotPresent" locator1="PGBlogs#ENTRY_CONTENT" />
+				</then>
+			</elseif>
+			<else>
+				<execute function="AssertTextEquals" locator1="PGBlogs#SUCCESS_MESSAGE" value1="Your request completed successfully." />
+
+				<var name="key_entryTitle" value="${entryTitle}" />
+
+				<execute function="AssertTextEquals" locator1="PGBlogs#ENTRY_TITLE" value1="${entryTitle}" />
+				<execute function="AssertTextEquals" locator1="PGBlogs#ENTRY_CONTENT" value1="${entryContent}" />
+			</else>
+		</if>
+
+		<if>
+			<equals arg1="${entryAddCategory}" arg2="true" />
+			<then>
+				<execute macro="BlogsEntry#viewCategoryPG">
+					<var name="categoryName" value="${categoryName}" />
+					<var name="entryTitle" value="${entryTitle}" />
+					<var name="vocabularyName" value="${vocabularyName}" />
+				</execute>
+			</then>
+		</if>
+
+		<if>
+			<equals arg1="${entryAddTag}" arg2="true" />
+			<then>
+				<execute macro="BlogsEntry#viewTagPG">
+					<var name="entryTitle" value="${entryTitle}" />
+					<var name="tagName" value="${tagName}" />
+					<var name="tagNameList" value="${tagNameList}" />
+				</execute>
+			</then>
+		</if>
+	</command>
+
+	<command name="addPGViaAP">
+		<if>
+			<isset var="siteScope" />
+			<then>
+				<var name="key_siteScope" value="${siteScope}" />
+
+				<execute function="AssertClick" locator1="PGAssetpublisher#ADD_NEW_DROPDOWN_IN_SCOPED_SITE" value1="Add New in ${siteScope}" />
+			</then>
+			<else>
+				<execute function="AssertClick" locator1="PGAssetpublisher#ADD_NEW_DROPDOWN" value1="Add New" />
+			</else>
+		</if>
+
+		<execute function="AssertClick" locator1="PGAssetpublisher#ADD_NEW_MENULIST_BLOGS_ENTRY" value1="Blogs Entry" />
+
+		<execute function="SelectFrame" locator1="PGAssetpublisherAddnewblogsentry#BLOGS_ENTRY_IFRAME" />
+
+		<execute function="Type#typeWaitForCKEditor" locator1="PGAssetpublisherAddnewblogsentry#TITLE_FIELD" value1="${entryTitle}" />
+		<execute function="Type#typeCKEditorWaitForCKEditor" locator1="PGAssetpublisherAddnewblogsentry#CONTENT_FIELD" value1="${entryContent}" />
+
+		<execute function="AssertClick#assertTextClickAtCKEditor" locator1="PGAssetpublisherAddnewblogsentry#PUBLISH_BUTTON" value1="Publish" />
+
+		<execute function="Pause" locator1="5000" />
+
+		<execute function="SelectFrame" value1="relative=top" />
+
+		<var name="key_assetTitle" value="${entryTitle}" />
+
+		<execute function="AssertTextEquals" locator1="PGAssetpublisher#ASSET_ABSTRACT_TITLE" value1="${entryTitle}" />
+		<execute function="AssertTextEquals" locator1="PGAssetpublisher#ASSET_ABSTRACT_SUMMARY" value1="${entryContent}" />
+	</command>
+
+	<command name="addScheduledPG">
+		<execute function="AssertClick" locator1="PGBlogs#ADD_ENTRY_BUTTON" value1="Add Blog Entry" />
+
+		<execute function="Type" locator1="PGBlogsAdd#TITLE_FIELD" value1="${entryTitle}" />
+
+		<var locator="PGBlogsAdd#DISPLAY_DATE_DATE_HOUR" name="displayDateHour" />
+		<var name="displayDateHourLength" value="${displayDateHour?length()}" />
+
+		<if>
+			<equals arg1="${displayDateHourLength}" arg2="1" />
+			<then>
+				<var name="displayDateHour" value="0${displayDateHour}" />
+			</then>
+		</if>
+
+		<var locator="PGBlogsAdd#DISPLAY_DATE_DATE_MINUTE" name="displayDateMinute" />
+		<var method="MathUtil#sum('${displayDateMinute}', '3')" name="displayDateMinuteFuture" />
+		<var name="displayDateMinuteFutureLength" value="${displayDateMinuteFuture?length()}" />
+
+		<if>
+			<equals arg1="${displayDateMinuteFutureLength}" arg2="1" />
+			<then>
+				<var name="displayDateMinuteFuture" value="0${displayDateMinuteFuture}" />
+			</then>
+		</if>
+
+		<var locator="PGBlogsAdd#DISPLAY_DATE_DATE_MERIDIAN" name="displayDateMeridian" />
+		<var method="StringUtil#replace('${displayDateMeridian}', '0', 'AM')" name="displayDateMeridian" />
+		<var method="StringUtil#replace('${displayDateMeridian}', '1', 'PM')" name="displayDateMeridian" />
+
+		<var name="displayDate" value="${displayDateHour}:${displayDateMinuteFuture} ${displayDateMeridian}" />
+
+		<execute function="Type#clickAtSendKeys" locator1="PGBlogsAdd#DISPLAY_DATE_TIME_INPUT" value1="${displayDate}" />
+
+		<execute function="Type#typeCKEditorWaitForCKEditor" locator1="PGBlogsAdd#CONTENT_FIELD" value1="${entryContent}" />
+
+		<execute function="AssertClick#assertTextClickAtAndWaitCKEditor" locator1="PGBlogsAdd#PUBLISH_BUTTON" value1="Publish" />
+
+		<execute function="AssertTextEquals" locator1="PGBlogs#SUCCESS_MESSAGE" value1="Your request completed successfully." />
+	</command>
+
+	<command name="addTagCP">
+		<var name="key_entryTitle" value="${entryTitle}" />
+
+		<execute function="AssertTextEquals" locator1="CPBlogs#ENTRY_TABLE_TITLE" value1="${entryTitle}" />
+
+		<execute function="AssertClick" locator1="CPBlogs#ENTRY_TABLE_ACTIONS" value1="Actions" />
+
+		<execute function="AssertClick#assertTextClickAtAndWait" locator1="CPBlogs#ENTRY_MENULIST_EDIT" value1="Edit" />
+
+		<execute function="AssertElementPresent" locator1="CPBlogsEdit#CONTENT_FIELD" />
+
+		<if>
+			<condition function="IsElementNotPresent#isNotVisible" locator1="CPBlogsEdit#CATEGORIZATION_TAGS_ADD_BUTTON" />
+			<then>
+				<execute function="AssertClick" locator1="CPBlogsEdit#CATEGORIZATION_TOGGLE" value1="Categorization" />
+
+				<execute function="AssertElementPresent" locator1="CPBlogsEdit#CATEGORIZATION_TAGS_ADD_BUTTON" />
+			</then>
+		</if>
+
+		<var name="key_tagName" value="${tagName}" />
+
+		<execute function="Type" locator1="CPBlogsEdit#CATEGORIZATION_TAGS_FIELD" value1="${tagName}" />
+
+		<execute function="AssertClick" locator1="CPBlogsEdit#CATEGORIZATION_TAGS_ADD_BUTTON" value1="Add" />
+
+		<execute function="AssertTextEquals" locator1="CPBlogsEdit#CATEGORIZATION_TAG" value1="${tagName}" />
+
+		<execute function="AssertClick" locator1="CPBlogsEdit#PUBLISH_BUTTON" value1="Publish" />
+
+		<execute function="AssertTextEquals" locator1="CPBlogs#SUCCESS_MESSAGE" value1="Your request completed successfully." />
+
+		<execute function="AssertClick#assertTextClickAtAndWait" locator1="CPBlogs#ENTRY_TABLE_TITLE" value1="${entryTitle}" />
+
+		<execute function="AssertTextEquals" locator1="CPBlogsEntry#ENTRY_TAG" value1="${tagName}" />
+	</command>
+
+	<command name="addTagPG">
+		<var name="key_entryTitle" value="${entryTitle}" />
+
+		<execute function="AssertTextEquals" locator1="PGBlogsAdd#TITLE_FIELD" value1="${entryTitle}" />
+		<execute function="AssertElementPresent" locator1="PGBlogsAdd#CONTENT_FIELD" />
+
+		<if>
+			<condition function="IsElementNotPresent" locator1="PGBlogsAdd#CATEGORIZATION_TAGS_ADD_BUTTON" />
+			<then>
+				<execute function="AssertClick" locator1="PGBlogsAdd#CATEGORIZATION_TOGGLE" value1="Categorization" />
+
+				<execute function="AssertElementPresent" locator1="PGBlogsAdd#CATEGORIZATION_TAGS_ADD_BUTTON" />
+			</then>
+		</if>
+
+		<if>
+			<isset var="tagNameList" />
+			<then>
+				<for list="${tagNameList}" param="tagName">
+					<execute function="Type#clickAtSendKeys" locator1="PGBlogsAdd#CATEGORIZATION_TAGS_FIELD" value1="${tagName}" />
+
+					<execute function="AssertClick" locator1="PGBlogsAdd#CATEGORIZATION_TAGS_ADD_BUTTON" value1="Add" />
+				</for>
+			</then>
+			<else>
+				<var name="key_tagName" value="${tagName}" />
+
+				<execute function="Type#clickAtSendKeys" locator1="PGBlogsAdd#CATEGORIZATION_TAGS_FIELD" value1="${tagName}" />
+
+				<execute function="AssertClick" locator1="PGBlogsAdd#CATEGORIZATION_TAGS_ADD_BUTTON" value1="Add" />
+
+				<execute function="AssertElementPresent" locator1="PGBlogsAdd#CATEGORIZATION_TAG" value1="${tagName}" />
+			</else>
+		</if>
+	</command>
+
+	<command name="addWithTrackbackURLPG">
+		<var name="key_entryTitle" value="${entryTitle}" />
+
+		<execute function="AssertTextEquals" locator1="PGBlogs#ENTRY_TITLE" value1="${entryTitle}" />
+		<execute function="AssertTextEquals" locator1="PGBlogs#ENTRY_CONTENT" value1="${entryContent}" />
+
+		<execute function="AssertClick" locator1="PGBlogs#ENTRY_TITLE" value1="${entryTitle}" />
+
+		<execute function="AssertTextEquals" locator1="PGBlogsEntry#ENTRY_TITLE" value1="${entryTitle}" />
+		<execute function="AssertTextEquals" locator1="PGBlogsEntry#ENTRY_CONTENT" value1="${entryContent}" />
+
+		<execute function="Pause" locator1="3000" />
+
+		<execute function="Copy" locator1="PGBlogsEntry#COMMENTS_TRACKBACK_URL" />
+
+		<execute macro="Page#gotoPG">
+			<var name="defaultURL" value="${defaultURL}" />
+			<var name="nodePort" value="${nodePort}" />
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="${soDashboard}" />
+			<var name="soPage" value="${soPage}" />
+		</execute>
+
+		<execute function="Pause" locator1="1000" />
+
+		<execute function="AssertClick" locator1="PGBlogs#ADD_ENTRY_BUTTON" value1="Add Blog Entry" />
+
+		<execute function="Type" locator1="PGBlogsAdd#TITLE_FIELD" value1="${entryTitle2}" />
+		<execute function="Type#typeCKEditorWaitForCKEditor" locator1="PGBlogsAdd#CONTENT_FIELD" value1="${entryContent2}" />
+
+		<execute function="Pause" locator1="3000" />
+
+		<execute function="Paste" locator1="PGBlogsAdd#TRACKBACKS_TO_SEND_FIELD" />
+
+		<execute function="Pause" locator1="3000" />
+
+		<execute function="AssertClick#assertTextClickAtAndWaitCKEditor" locator1="PGBlogsAdd#PUBLISH_BUTTON" value1="Publish" />
+	</command>
+
+	<command name="addWithWorkflowCP">
+		<execute function="Click" locator1="CPBlogs#ADD_ENTRY" />
+
+		<execute function="Type#typeWaitForCKEditor" locator1="CPBlogsAdd#TITLE_FIELD" value1="${entryTitle}" />
+		<execute function="Type#typeCKEditorWaitForCKEditor" locator1="CPBlogsAdd#CONTENT_FIELD" value1="${entryContent}" />
+
+		<execute function="AssertClick#assertTextClickAtAndWaitCKEditor" locator1="CPBlogsAdd#SUBMIT_FOR_PUBLICATION_BUTTON" value1="Submit for Publication" />
+
+		<var name="key_entryTitle" value="${entryTitle}" />
+
+		<execute function="AssertTextEquals" locator1="CPBlogs#SUCCESS_MESSAGE" value1="Your request completed successfully." />
+		<execute function="AssertTextEquals" locator1="CPBlogs#ENTRY_TABLE_TITLE" value1="${entryTitle}" />
+		<execute function="AssertTextEquals" locator1="CPBlogs#ENTRY_TABLE_STATUS" value1="Pending" />
+
+		<execute function="AssertClick#assertTextClickAtAndWait" locator1="CPBlogs#ENTRY_TABLE_TITLE" value1="${entryTitle}" />
+
+		<execute function="AssertTextEquals" locator1="CPBlogsEntry#ENTRY_TITLE_HEADER" value1="${entryTitle}" />
+		<execute function="AssertTextEquals" locator1="CPBlogsEntry#ENTRY_WORKFLOW_STATUS" value1="Pending Approval" />
+		<execute function="AssertTextEquals" locator1="CPBlogsEntry#ENTRY_TITLE_LINK" value1="${entryTitle}" />
+		<execute function="AssertTextEquals" locator1="CPBlogsEntry#ENTRY_CONTENT" value1="${entryContent}" />
+	</command>
+
+	<command name="addWithWorkflowPG">
+		<execute function="AssertClick" locator1="PGBlogs#ADD_ENTRY_BUTTON" value1="Add Blog Entry" />
+
+		<execute function="Type" locator1="PGBlogsAdd#TITLE_FIELD" value1="${entryTitle}" />
+		<execute function="Type#typeCKEditorWaitForCKEditor" locator1="PGBlogsAdd#CONTENT_FIELD" value1="${entryContent}" />
+
+		<execute function="AssertClick" locator1="PGBlogsAdd#SUBMIT_FOR_PUBLICATION_BUTTON" value1="Submit for Publication" />
+
+		<var name="key_entryTitle" value="${entryTitle}" />
+
+		<execute function="AssertTextEquals" locator1="PGBlogs#SUCCESS_MESSAGE" value1="Your request completed successfully." />
+		<execute function="AssertTextEquals" locator1="PGBlogs#ENTRY_TITLE" value1="${entryTitle}" />
+		<execute function="AssertTextEquals" locator1="PGBlogs#ENTRY_WORKFLOW_STATUS_1" value1="Pending Approval" />
+
+		<execute function="AssertClick" locator1="PGBlogs#ENTRY_TITLE" value1="${entryTitle}" />
+
+		<execute function="AssertTextEquals" locator1="PGBlogsEntry#ENTRY_TITLE" value1="${entryTitle}" />
+		<execute function="AssertTextEquals" locator1="PGBlogsEntry#ENTRY_WORKFLOW_STATUS" value1="Pending Approval" />
+		<execute function="AssertTextEquals" locator1="PGBlogsEntry#ENTRY_CONTENT" value1="${entryContent}" />
+	</command>
+
+	<command name="addWithWorkflowPGViaAP">
+		<execute function="AssertClick" locator1="PGAssetpublisher#ADD_NEW_DROPDOWN" value1="Add New" />
+
+		<execute function="AssertClick" locator1="PGAssetpublisher#ADD_NEW_MENULIST_BLOGS_ENTRY" value1="Blogs Entry" />
+
+		<execute function="SelectFrame" locator1="PGAssetpublisherAddnewblogsentry#BLOGS_ENTRY_IFRAME" />
+
+		<execute function="Type#typeWaitForCKEditor" locator1="PGAssetpublisherAddnewblogsentry#TITLE_FIELD" value1="${entryTitle}" />
+		<execute function="Type#typeCKEditorWaitForCKEditor" locator1="PGAssetpublisherAddnewblogsentry#CONTENT_FIELD" value1="${entryContent}" />
+
+		<execute function="AssertClick#assertTextClickAtCKEditor" locator1="PGAssetpublisherAddnewblogsentry#SUBMIT_FOR_PUBLICATION_BUTTON" value1="Submit for Publication" />
+
+		<execute function="Pause" locator1="5000" />
+
+		<execute function="SelectFrame" value1="relative=top" />
+
+		<var name="key_assetTitle" value="${entryTitle}" />
+
+		<execute function="AssertElementNotPresent" locator1="PGAssetpublisher#ASSET_ABSTRACT_TITLE" value1="${entryTitle}" />
+	</command>
+
+	<command name="editContentCP">
+		<var name="key_entryTitle" value="${entryTitle}" />
+
+		<execute function="AssertTextEquals" locator1="CPBlogs#ENTRY_TABLE_TITLE" value1="${entryTitle}" />
+
+		<execute function="AssertClick" locator1="CPBlogs#ENTRY_TABLE_ACTIONS" value1="Actions" />
+
+		<execute function="AssertClick#assertTextClickAtAndWait" locator1="CPBlogs#ENTRY_MENULIST_EDIT" value1="Edit" />
+
+		<execute function="Type" locator1="CPBlogsEdit#TITLE_FIELD" value1="${entryTitle}" />
+		<execute function="Type#typeCKEditorWaitForCKEditor" locator1="CPBlogsEdit#CONTENT_FIELD" value1="${entryContentEdit}" />
+
+		<execute function="AssertClick" locator1="CPBlogsEdit#PUBLISH_BUTTON" value1="Publish" />
+
+		<execute function="AssertTextEquals" locator1="CPBlogs#SUCCESS_MESSAGE" value1="Your request completed successfully." />
+
+		<execute function="AssertClick#assertTextClickAtAndWait" locator1="CPBlogs#ENTRY_TABLE_TITLE" value1="${entryTitle}" />
+
+		<execute function="AssertTextEquals" locator1="CPBlogsEntry#ENTRY_TITLE_HEADER" value1="${entryTitle}" />
+		<execute function="AssertTextEquals" locator1="CPBlogsEntry#ENTRY_CONTENT" value1="${entryContentEdit}" />
+	</command>
+
+	<command name="editContentInlinePG">
+		<var name="key_entryContent" value="${entryContent}" />
+
+		<execute function="AssertClick" locator1="PGBlogs#ENTRY_CONTENT_CKE_EDIT_INLINE" value1="${entryContent}" />
+
+		<execute function="AssertElementPresent#pauseAssertVisible" locator1="PGBlogs#ENTRY_CONTENT_CKE_EDIT_INLINE_TOOLBAR" />
+
+		<execute function="Pause" value1="1000" />
+
+		<if>
+			<equals arg1="${useSendKeys}" arg2="true" />
+			<then>
+				<execute function="Type#sendKeys" locator1="PGBlogs#ENTRY_CONTENT_CKE_EDIT_INLINE_SENDKEYS" value1="${entryContentEdit}" />
+			</then>
+			<else>
+				<execute function="Type" locator1="PGBlogs#ENTRY_CONTENT_CKE_EDIT_INLINE" value1="${entryContentEdit}" />
+			</else>
+		</if>
+
+		<execute function="Pause" value1="3000" />
+
+		<var name="key_portletName" value="Blogs" />
+
+		<execute function="Click" locator1="PGBlogs#PORTLET_BODY" />
+
+		<execute function="Pause" value1="1000" />
+	</command>
+
+	<command name="editContentPG">
+		<var name="key_entryTitle" value="${entryTitle}" />
+
+		<execute function="AssertTextEquals" locator1="PGBlogs#ENTRY_TITLE" value1="${entryTitle}" />
+		<execute function="AssertTextEquals" locator1="PGBlogs#ENTRY_CONTENT" value1="${entryContent}" />
+
+		<execute function="AssertClick#assertTextClickAndWait" locator1="PGBlogs#ENTRY_EDIT" value1="Edit" />
+
+		<execute function="Type" locator1="PGBlogsEdit#TITLE_FIELD" value1="${entryTitle}" />
+		<execute function="Type#typeCKEditorWaitForCKEditor" locator1="PGBlogsEdit#CONTENT_FIELD" value1="${entryContentEdit}" />
+
+		<execute macro="BlogsEntry#_saveOrPublish">
+			<var name="saveAsDraft" value="${saveAsDraft}" />
+		</execute>
+	</command>
+
+	<command name="editDraftPG">
+		<var name="key_entryTitle" value="${entryTitle}" />
+
+		<execute macro="BlogsEntry#gotoDraftEditPG">
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+
+		<execute function="Type" locator1="PGBlogsEdit#TITLE_FIELD" value1="${entryTitleEdit}" />
+		<execute function="Type#typeCKEditorWaitForCKEditor" locator1="PGBlogsEdit#CONTENT_FIELD" value1="${entryContentEdit}" />
+
+		<execute macro="BlogsEntry#_saveOrPublish">
+			<var name="saveAsDraft" value="${saveAsDraft}" />
+		</execute>
+	</command>
+
+	<command name="editNoPermissionPG">
+		<var name="key_entryTitle" value="${entryTitle}" />
+
+		<execute function="AssertTextEquals" locator1="PGBlogs#ENTRY_TITLE" value1="${entryTitle}" />
+		<execute function="AssertTextEquals" locator1="PGBlogs#ENTRY_CONTENT" value1="${entryContent}" />
+		<execute function="AssertElementNotPresent" locator1="PGBlogs#ENTRY_EDIT" />
+	</command>
+
+	<command name="editPG">
+		<var name="key_entryTitle" value="${entryTitle}" />
+
+		<execute function="AssertTextEquals" locator1="PGBlogs#ENTRY_TITLE" value1="${entryTitle}" />
+		<execute function="AssertTextEquals" locator1="PGBlogs#ENTRY_CONTENT" value1="${entryContent}" />
+
+		<execute function="AssertClick#assertTextClickAndWait" locator1="PGBlogs#ENTRY_EDIT" value1="Edit" />
+
+		<execute function="Type" locator1="PGBlogsEdit#TITLE_FIELD" value1="${entryTitleEdit}" />
+		<execute function="Type#typeCKEditorWaitForCKEditor" locator1="PGBlogsEdit#CONTENT_FIELD" value1="${entryContentEdit}" />
+
+		<execute macro="BlogsEntry#_saveOrPublish">
+			<var name="saveAsDraft" value="${saveAsDraft}" />
+		</execute>
+	</command>
+
+	<command name="editTitleCP">
+		<var name="key_entryTitle" value="${entryTitle}" />
+
+		<execute function="AssertTextEquals" locator1="CPBlogs#ENTRY_TABLE_TITLE" value1="${entryTitle}" />
+
+		<execute function="AssertClick" locator1="CPBlogs#ENTRY_TABLE_ACTIONS" value1="Actions" />
+
+		<execute function="AssertClick#assertTextClickAtAndWait" locator1="CPBlogs#ENTRY_MENULIST_EDIT" value1="Edit" />
+
+		<execute function="Type#typeWaitForCKEditor" locator1="CPBlogsAdd#TITLE_FIELD" value1="${entryTitleEdit}" />
+		<execute function="Type#typeCKEditorWaitForCKEditor" locator1="CPBlogsAdd#CONTENT_FIELD" value1="${entryContent}" />
+
+		<execute function="AssertClick#assertTextClickAtCKEditor" locator1="CPBlogsAdd#PUBLISH_BUTTON" value1="Publish" />
+
+		<execute function="AssertTextEquals" locator1="CPBlogs#SUCCESS_MESSAGE" value1="Your request completed successfully." />
+
+		<execute function="AssertClick#assertTextClickAtAndWait" locator1="CPBlogs#ENTRY_TABLE_TITLE" value1="${entryTitleEdit}" />
+
+		<execute function="AssertTextEquals" locator1="CPBlogsEntry#ENTRY_TITLE_HEADER" value1="${entryTitleEdit}" />
+		<execute function="AssertTextEquals" locator1="CPBlogsEntry#ENTRY_CONTENT" value1="${entryContent}" />
+	</command>
+
+	<command name="entryAddPermissionsCmd">
+		<if>
+			<isset var="viewableBy" />
+			<then>
+				<execute function="Select" locator1="PGBlogsAdd#PERMISSIONS_VIEWABLE_BY_DROPDOWN" value1="${viewableBy}" />
+			</then>
+		</if>
+
+		<if>
+			<isset var="permissionDefinitionKey" />
+			<then>
+				<if>
+					<condition function="IsNotVisible" locator1="PGBlogsAdd#PERMISSIONS_HIDE_OPTIONS_LINK" />
+					<then>
+						<execute function="AssertClick#assertPartialTextClickAt" locator1="PGBlogsAdd#PERMISSIONS_MORE_OPTIONS_LINK" value1="More Options" />
+					</then>
+				</if>
+
+				<var name="key_permissionDefinitionKey" value="${permissionDefinitionKey}" />
+				<var name="key_roleName" value="${roleName}" />
+
+				<execute function="Check" locator1="PGBlogsAdd#PERMISSIONS_CHECKBOX" />
+			</then>
+		</if>
+	</command>
+
+	<command name="flagPG">
+		<var name="key_entryTitle" value="${entryTitle}" />
+
+		<execute function="AssertClick" locator1="PGBlogs#ENTRY_FLAG" value1="Flag" />
+
+		<execute function="AssertTextEquals" locator1="PGBlogs#REPORT_INAPPROPRIATE_CONTENT_HEADER" value1="Report Inappropriate Content" />
+		<execute function="AssertTextEquals" locator1="PGBlogs#REPORT_INAPPROPRIATE_CONTENT_WARNING" value1="You are about to report a violation of our Terms of Use. All reports are strictly confidential." />
+		<execute function="AssertTextEquals" locator1="PGBlogs#REPORT_INAPPROPRIATE_CONTENT_WARNING_TERMS_OF_USE_LINK" value1="Terms of Use" />
+
+		<execute function="Select" locator1="PGBlogs#REPORT_INAPPROPRIATE_CONTENT_REASON_SELECT" value1="${flagReason}" />
+
+		<execute function="AssertClick" locator1="PGBlogs#REPORT_INAPPROPRIATE_CONTENT_SAVE_BUTTON" value1="Save" />
+
+		<execute function="AssertTextEquals" locator1="PGBlogs#REPORT_INAPPROPRIATE_CONTENT_SUCCESS_MESSAGE" value1="Although we cannot disclose our final decision, we do review every report and appreciate your effort to make sure Liferay is a safe environment for everyone." />
+
+		<execute function="Click" locator1="PGBlogs#REPORT_INAPPROPRIATE_CONTENT_CLOSE_BUTTON" />
+	</command>
+
+	<command name="gotoDraftEditPG">
+		<var name="key_entryTitle" value="${entryTitle}" />
+
+		<execute function="AssertTextEquals" locator1="PGBlogs#DRAFT_ENTRY_TITLE" value1="${entryTitle}" />
+
+		<execute function="AssertClick" locator1="PGBlogs#DRAFT_ENTRY_EDIT" value1="Edit" />
+	</command>
+
+	<command name="gotoEditPG">
+		<var name="key_entryTitle" value="${entryTitle}" />
+
+		<execute function="Pause" locator1="1000" />
+
+		<execute function="AssertTextEquals" locator1="PGBlogs#ENTRY_TITLE" value1="${entryTitle}" />
+
+		<execute function="AssertClick#assertTextClickAndWait" locator1="PGBlogs#ENTRY_EDIT" value1="Edit" />
+	</command>
+
+	<command name="gotoPG">
+		<var name="key_entryContent" value="${entryContent}" />
+		<var name="key_entryTitle" value="${entryTitle}" />
+
+		<execute function="AssertTextEquals" locator1="PGBlogs#ENTRY_TITLE" value1="${entryTitle}" />
+		<execute function="AssertTextEquals" locator1="PGBlogs#ENTRY_CONTENT" value1="${entryContent}" />
+
+		<execute function="AssertClick" locator1="PGBlogs#ENTRY_TITLE" value1="${entryTitle}" />
+	</command>
+
+	<command name="gotoScheduledEditPG">
+		<var name="key_entryTitle" value="${entryTitle}" />
+
+		<execute function="AssertTextEquals" locator1="PGBlogs#SCHEDULED_ENTRY_TITLE" value1="${entryTitle}" />
+
+		<execute function="AssertClick" locator1="PGBlogs#SCHEDULED_ENTRY_EDIT" value1="Edit" />
+	</command>
+
+	<command name="moveToRecycleBinCP">
+		<var name="key_entryTitle" value="${entryTitle}" />
+
+		<execute function="AssertTextEquals" locator1="CPBlogs#ENTRY_TABLE_TITLE" value1="${entryTitle}" />
+
+		<execute function="AssertClick" locator1="CPBlogs#ENTRY_TABLE_ACTIONS" value1="Actions" />
+
+		<execute function="AssertClick#assertTextClickAtAndWait" locator1="CPBlogs#ENTRY_MENULIST_MOVE_TO_THE_RECYCLE_BIN" value1="Move to the Recycle Bin" />
+
+		<execute function="AssertTextEquals#assertPartialText" locator1="CPBlogs#SUCCESS_MESSAGE_RECYCLE_BIN" value1="The ${assetType} ${entryTitle} was moved to the Recycle Bin. Undo" />
+	</command>
+
+	<command name="moveToRecycleBinDraftCP">
+		<var name="key_entryTitle" value="${entryTitle}" />
+
+		<execute function="AssertTextEquals" locator1="CPBlogs#ENTRY_TABLE_TITLE" value1="${entryTitle}" />
+		<execute function="AssertTextEquals" locator1="CPBlogs#ENTRY_TABLE_STATUS" value1="Draft" />
+
+		<execute function="AssertClick" locator1="CPBlogs#ENTRY_TABLE_ACTIONS" value1="Actions" />
+
+		<execute function="AssertClick#assertTextClickAtAndWait" locator1="CPBlogs#ENTRY_MENULIST_MOVE_TO_THE_RECYCLE_BIN" value1="Move to the Recycle Bin" />
+
+		<execute function="AssertTextEquals#assertPartialText" locator1="CPBlogs#SUCCESS_MESSAGE_RECYCLE_BIN" value1="The ${assetType} ${entryTitle} was moved to the Recycle Bin. Undo" />
+	</command>
+
+	<command name="moveToRecycleBinNoPermissionPG">
+		<var name="key_entryTitle" value="${entryTitle}" />
+
+		<execute function="AssertElementNotPresent" locator1="PGBlogs#ENTRY_RECYCLE_BIN" />
+		<execute function="AssertElementNotPresent" locator1="PGBlogs#ENTRY_RECYCLE_BIN" />
+	</command>
+
+	<command name="moveToRecycleBinPG">
+		<var name="key_entryTitle" value="${entryTitle}" />
+
+		<execute function="AssertTextEquals" locator1="PGBlogs#ENTRY_TITLE" value1="${entryTitle}" />
+		<execute function="AssertTextEquals" locator1="PGBlogs#ENTRY_CONTENT" value1="${entryContent}" />
+
+		<execute function="AssertClick" locator1="PGBlogs#ENTRY_RECYCLE_BIN" value1="Move to the Recycle Bin" />
+
+		<execute function="AssertTextEquals#assertPartialText" locator1="PGBlogs#SUCCESS_MESSAGE_RECYCLE_BIN" value1="The ${assetType} ${entryTitle} was moved to the Recycle Bin. Undo" />
+		<execute function="AssertElementNotPresent" locator1="PGBlogs#ENTRY_TITLE" />
+		<execute function="AssertElementNotPresent" locator1="PGBlogs#ENTRY_CONTENT" />
+	</command>
+
+	<command name="previewPG">
+		<execute function="Click" locator1="PGBlogs#ADD_ENTRY_BUTTON" />
+
+		<execute function="Type" locator1="PGBlogsAdd#TITLE_FIELD" value1="${entryTitle}" />
+		<execute function="Type#typeCKEditorWaitForCKEditor" locator1="PGBlogsAdd#CONTENT_FIELD" value1="${entryContent}" />
+
+		<execute function="AssertClick" locator1="PGBlogsAdd#PREVIEW_BUTTON" value1="Preview" />
+
+		<execute function="AssertTextEquals" locator1="PGBlogsEdit#SUCCESS_MESSAGE" value1="Your request completed successfully." />
+		<execute function="AssertTextEquals" locator1="PGBlogsEdit#PREVIEW" value1="${entryContent}" />
+	</command>
+
+	<command name="publishDraftCP">
+		<var name="key_entryTitle" value="${entryTitle}" />
+
+		<execute function="AssertTextEquals" locator1="CPBlogs#ENTRY_TABLE_TITLE" value1="${entryTitle}" />
+		<execute function="AssertTextEquals" locator1="CPBlogs#ENTRY_TABLE_STATUS" value1="Draft" />
+
+		<execute function="AssertClick" locator1="CPBlogs#ENTRY_TABLE_ACTIONS" value1="Actions" />
+
+		<execute function="AssertClick#assertTextClickAtAndWait" locator1="CPBlogs#ENTRY_MENULIST_EDIT" value1="Edit" />
+
+		<execute function="AssertClick" locator1="CPBlogsEdit#PUBLISH_BUTTON" value1="Publish" />
+
+		<execute function="AssertTextEquals" locator1="CPBlogs#SUCCESS_MESSAGE" value1="Your request completed successfully." />
+		<execute function="AssertTextEquals" locator1="CPBlogs#ENTRY_TABLE_TITLE" value1="${entryTitle}" />
+
+		<execute function="AssertClick#assertTextClickAtAndWait" locator1="CPBlogs#ENTRY_TABLE_TITLE" value1="${entryTitle}" />
+
+		<execute function="AssertTextEquals" locator1="CPBlogsEntry#ENTRY_TITLE_HEADER" value1="${entryTitle}" />
+		<execute function="AssertTextEquals" locator1="CPBlogsEntry#ENTRY_CONTENT" value1="${entryContent}" />
+	</command>
+
+	<command name="publishDraftPG">
+		<var name="key_entryTitle" value="${entryTitle}" />
+
+		<execute function="AssertClick" locator1="PGBlogs#DRAFT_ENTRY_EDIT" value1="Edit" />
+
+		<execute function="AssertTextEquals" locator1="PGBlogsEdit#TITLE_FIELD" value1="${entryTitle}" />
+
+		<execute function="AssertClick#assertTextClickAtAndWaitCKEditor" locator1="PGBlogsEdit#PUBLISH_BUTTON" value1="Publish" />
+
+		<execute function="AssertTextEquals" locator1="PGBlogsEdit#SUCCESS_MESSAGE" value1="Your request completed successfully." />
+	</command>
+
+	<command name="rate4StarsCP">
+		<var name="key_entryTitle" value="${entryTitle}" />
+
+		<execute function="AssertClick#assertTextClickAtAndWait" locator1="CPBlogs#ENTRY_TABLE_TITLE" value1="${entryTitle}" />
+
+		<execute function="Click#clickWaitForInlineCKEditorNoMouseOver" locator1="CPBlogsEntry#YOUR_RATING_STAR_EMPTY_4" />
+	</command>
+
+	<command name="rate4StarsPG">
+		<var name="key_entryTitle" value="${entryTitle}" />
+
+		<execute function="AssertClick" locator1="PGBlogs#ENTRY_TITLE" value1="${entryTitle}" />
+
+		<execute function="Click#clickWaitForInlineCKEditorNoMouseOver" locator1="PGBlogsEntry#YOUR_RATING_STAR_EMPTY_4" />
+	</command>
+
+	<command name="removeViewPermissionsPG">
+		<var name="key_entryTitle" value="${entryTitle}" />
+		<var method="StringUtil#replace('${roleName}', ' ', '-')" name="key_roleName" />
+		<var method="StringUtil#lowerCase('${key_roleName}')" name="key_roleName" />
+
+		<execute function="AssertClick" locator1="PGBlogs#ENTRY_PERMISSIONS" value1="Permissions" />
+
+		<execute function="SelectFrame" locator1="Permissions#PERMISSIONS_IFRAME" />
+
+		<execute function="AssertTextEquals" locator1="Permissions#HEADER_TITLE" value1="${entryTitle}" />
+
+		<execute function="Uncheck" locator1="Permissions#CONTENT_PERMISSIONS_VIEW_CHECKBOX" value1="${roleName}" />
+
+		<execute function="AssertClick" locator1="Permissions#SAVE_BUTTON" value1="Save" />
+
+		<execute function="SelectFrame" value1="relative=top" />
+	</command>
+
+	<command name="searchCP">
+		<var name="key_entryContent" value="${entryContent}" />
+		<var name="key_entryTitle" value="${entryTitle}" />
+
+		<execute function="Type" locator1="CPBlogsSearch#SEARCH_FIELD" value1="${entrySearchTerm}" />
+
+		<execute function="AssertClick" locator1="CPBlogsSearch#SEARCH_BUTTON" value1="Search" />
+
+		<execute function="AssertTextEquals" locator1="CPBlogsSearch#SEARCH_RESULTS_ENTRY_TITLE" value1="${entryTitle}" />
+		<execute function="AssertTextEquals" locator1="CPBlogsSearch#SEARCH_RESULTS_ENTRY_DESCRIPTION" value1="${entryContent}" />
+	</command>
+
+	<command name="searchNoCP">
+		<var name="key_entryContent" value="${entryContent}" />
+		<var name="key_entryTitle" value="${entryTitle}" />
+
+		<execute function="Type" locator1="CPBlogsSearch#SEARCH_FIELD" value1="${entrySearchTerm}" />
+
+		<execute function="AssertClick" locator1="CPBlogsSearch#SEARCH_BUTTON" value1="Search" />
+
+		<execute function="AssertTextEquals" locator1="CPBlogsSearch#INFO_MESSAGE" value1="No entries were found that matched the keywords: ${entrySearchTerm}." />
+		<execute function="AssertElementNotPresent" locator1="CPBlogsSearch#SEARCH_RESULTS_ENTRY_TITLE" value1="${entryTitle}" />
+		<execute function="AssertElementNotPresent" locator1="CPBlogsSearch#SEARCH_RESULTS_ENTRY_DESCRIPTION" value1="${entryContent}" />
+	</command>
+
+	<command name="searchNoPG">
+		<var name="key_entryContent" value="${entryContent}" />
+		<var name="key_entryTitle" value="${entryTitle}" />
+
+		<execute function="Type" locator1="PGBlogsSearch#SEARCH_FIELD" value1="${entrySearchTerm}" />
+
+		<execute function="AssertClick" locator1="PGBlogsSearch#SEARCH_BUTTON" value1="Search" />
+
+		<execute function="AssertTextEquals" locator1="PGBlogsSearch#INFO_MESSAGE" value1="No entries were found that matched the keywords: ${entrySearchTerm}." />
+
+		<if>
+			<equals arg1="${soPage}" arg2="true" />
+			<then>
+				<execute function="AssertElementNotPresent" locator1="SOBlogs#SEARCH_RESULTS_ENTRY_TITLE" value1="${entryTitle}" />
+				<execute function="AssertElementNotPresent" locator1="SOBlogs#SEARCH_RESULTS_ENTRY_DESCRIPTION" value1="${entryContent}" />
+			</then>
+			<else>
+				<execute function="AssertElementNotPresent" locator1="PGBlogsSearch#SEARCH_RESULTS_ENTRY_TITLE" value1="${entryTitle}" />
+				<execute function="AssertElementNotPresent" locator1="PGBlogsSearch#SEARCH_RESULTS_ENTRY_DESCRIPTION" value1="${entryContent}" />
+			</else>
+		</if>
+	</command>
+
+	<command name="searchPG">
+		<var name="key_entryContent" value="${entryContent}" />
+		<var name="key_entryTitle" value="${entryTitle}" />
+
+		<execute function="Type" locator1="PGBlogsSearch#SEARCH_FIELD" value1="${entrySearchTerm}" />
+
+		<execute function="AssertClick" locator1="PGBlogsSearch#SEARCH_BUTTON" value1="Search" />
+
+		<if>
+			<equals arg1="${soPage}" arg2="true" />
+			<then>
+				<execute function="AssertTextEquals" locator1="SOBlogs#SEARCH_RESULTS_ENTRY_TITLE" value1="${entryTitle}" />
+				<execute function="AssertTextEquals" locator1="SOBlogs#SEARCH_RESULTS_ENTRY_DESCRIPTION" value1="${entryContent}" />
+			</then>
+			<else>
+				<execute function="AssertTextEquals" locator1="PGBlogsSearch#SEARCH_RESULTS_ENTRY_TITLE" value1="${entryTitle}" />
+				<execute function="AssertTextEquals" locator1="PGBlogsSearch#SEARCH_RESULTS_ENTRY_DESCRIPTION" value1="${entryContent}" />
+			</else>
+		</if>
+	</command>
+
+	<command name="subscribePG">
+		<execute function="AssertClick" locator1="PGBlogs#SUBSCRIBE_LINK" value1="Subscribe" />
+
+		<execute function="AssertTextEquals" locator1="PGBlogs#SUCCESS_MESSAGE" value1="Your request completed successfully." />
+		<execute function="AssertTextEquals" locator1="PGBlogs#UNSUBSCRIBE_LINK" value1="Unsubscribe" />
+	</command>
+
+	<command name="tearDownCP">
+		<execute macro="Page#gotoContentCP">
+			<var name="portletName" value="Blogs" />
+		</execute>
+
+		<if>
+			<condition function="IsElementPresent#isVisible" locator1="CPBlogs#ENTRY_TABLE_ALL_CHECKBOX" />
+			<then>
+				<execute function="Click" locator1="CPBlogs#ENTRY_TABLE_ALL_CHECKBOX" />
+
+				<execute function="AssertClick#assertTextClickAtAndWait" locator1="CPBlogs#RECYCLE_BIN_BUTTON" value1="Move to the Recycle Bin" />
+
+				<execute function="AssertTextEquals#assertPartialText" locator1="CPBlogs#SUCCESS_MESSAGE_RECYCLE_BIN" value1="moved to the Recycle Bin. Undo" />
+			</then>
+		</if>
+
+		<execute macro="Page#gotoContentCP">
+			<var name="portletName" value="Recycle Bin" />
+		</execute>
+
+		<execute macro="RecycleBin#emptyCP" />
+	</command>
+
+	<command name="viewCategoryPG">
+		<var name="key_categoryName" value="${categoryName}" />
+		<var name="key_entryTitle" value="${entryTitle}" />
+		<var name="key_vocabularyName" value="${vocabularyName}" />
+
+		<execute function="AssertTextEquals" locator1="PGBlogs#ENTRY_VOCABULARY_CATEGORIZATION" value1="${vocabularyName}: ${categoryName}" />
+
+		<execute function="AssertClick" locator1="PGBlogs#ENTRY_VOCABULARY_CATEGORIZATION_LINK" value1="${categoryName}" />
+
+		<execute function="AssertTextEquals" locator1="PGBlogs#CATEGORIZATION_FILTER_TITLE" value1="Entries with ${vocabularyName} ${categoryName} ." />
+		<execute function="AssertTextEquals" locator1="PGBlogs#ENTRY_TITLE" value1="${entryTitle}" />
+	</command>
+
+	<command name="viewCP">
+		<var name="key_entryTitle" value="${entryTitle}" />
+
+		<execute function="AssertElementPresent" locator1="CPBlogs#ENTRY_TABLE_CHECKBOX" />
+		<execute function="AssertTextEquals" locator1="CPBlogs#ENTRY_TABLE_TITLE" value1="${entryTitle}" />
+
+		<if>
+			<isset var="entryAuthor" />
+			<then>
+				<execute function="AssertTextEquals" locator1="CPBlogs#ENTRY_TABLE_AUTHOR" value1="${entryAuthor}" />
+			</then>
+			<else>
+				<execute function="AssertTextEquals" locator1="CPBlogs#ENTRY_TABLE_AUTHOR" value1="Test Test" />
+			</else>
+		</if>
+
+		<execute function="AssertElementPresent" locator1="CPBlogs#ENTRY_TABLE_CREATE_DATE" />
+		<execute function="AssertTextEquals" locator1="CPBlogs#ENTRY_TABLE_STATUS" value1="Approved" />
+
+		<execute function="AssertClick#assertTextClickAtAndWait" locator1="CPBlogs#ENTRY_TABLE_TITLE" value1="${entryTitle}" />
+
+		<execute function="AssertTextEquals" locator1="CPBlogsEntry#ENTRY_TITLE_HEADER" value1="${entryTitle}" />
+		<execute function="AssertTextEquals" locator1="CPBlogsEntry#ENTRY_TITLE_LINK" value1="${entryTitle}" />
+		<execute function="AssertTextEquals" locator1="CPBlogsEntry#ENTRY_CONTENT" value1="${entryContent}" />
+		<execute function="AssertElementNotPresent" locator1="CPBlogsEntry#ENTRY_WORKFLOW_STATUS" />
+	</command>
+
+	<command name="viewDefaultCP">
+		<execute function="AssertTextEquals" locator1="CPBlogs#INFO_MESSAGE" value1="No entries were found." />
+		<execute function="AssertTextNotPresent" value1="${entryTitle}" />
+	</command>
+
+	<command name="viewDetailsPG">
+		<execute function="Click" locator1="PGBlogs#ENTRY_TITLE_1" value1="${entryTitle}" />
+
+		<execute function="AssertTextEquals" locator1="PGBlogsEntry#ENTRY_TITLE" value1="${entryTitle}" />
+		<execute function="AssertTextEquals" locator1="PGBlogsEntry#ENTRY_CONTENT" value1="${entryContent}" />
+
+		<if>
+			<not>
+				<and>
+					<isset var="entryAuthorFirstName" />
+					<isset var="entryAuthorLastName" />
+				</and>
+			</not>
+			<then>
+				<execute function="AssertTextEquals" locator1="PGBlogsEntry#ENTRY_AUTHOR" value1="By Test Test" />
+			</then>
+			<else>
+				<if>
+					<isset var="entryAuthorMiddleName" />
+					<then>
+						<execute function="AssertTextEquals" locator1="PGBlogsEntry#ENTRY_AUTHOR" value1="By ${entryAuthorFirstName} ${entryAuthorMiddleName} ${entryAuthorLastName}" />
+					</then>
+					<else>
+						<execute function="AssertTextEquals" locator1="PGBlogsEntry#ENTRY_AUTHOR" value1="By ${entryAuthorFirstName} ${entryAuthorLastName}" />
+					</else>
+				</if>
+			</else>
+		</if>
+
+		<execute function="AssertTextEquals" locator1="PGBlogsEntry#YOUR_RATING" value1="Your Rating" />
+		<execute function="AssertTextEquals" locator1="PGBlogsEntry#PREVIOUS" value1="Previous" />
+		<execute function="AssertTextEquals" locator1="PGBlogsEntry#NEXT" value1="Next" />
+		<execute function="AssertTextEquals#assertTextWaitForInlineCKEditor" locator1="PGBlogsEntry#COMMENTS" value1="Comments" />
+	</command>
+
+	<command name="viewDisabledSocialBookmarkSites">
+		<for list="${socialBookmarkSites}" param="socialBookmarkSite">
+			<var name="key_socialBookmarkSite" value="${socialBookmarkSite}" />
+
+			<execute function="AssertElementNotPresent" locator1="SocialBookmarks#SOCIAL_BOOKMARKS_SITE_LINK" />
+		</for>
+	</command>
+
+	<command name="viewDraftCP">
+		<var name="key_entryTitle" value="${entryTitle}" />
+
+		<execute function="AssertTextEquals" locator1="CPBlogs#ENTRY_TABLE_TITLE" value1="${entryTitle}" />
+		<execute function="AssertTextEquals" locator1="CPBlogs#ENTRY_TABLE_AUTHOR" value1="${entryAuthor}" />
+		<execute function="AssertElementPresent" locator1="CPBlogs#ENTRY_TABLE_CREATE_DATE" />
+		<execute function="AssertTextEquals" locator1="CPBlogs#ENTRY_TABLE_STATUS" value1="Draft" />
+		<execute function="AssertClick#assertTextClickAtAndWait" locator1="CPBlogs#ENTRY_TABLE_TITLE" value1="${entryTitle}" />
+
+		<execute function="AssertTextEquals" locator1="CPBlogsEntry#ENTRY_TITLE_HEADER" value1="${entryTitle}" />
+		<execute function="AssertTextEquals" locator1="CPBlogsEntry#ENTRY_DRAFT_STATUS" value1="Draft" />
+		<execute function="AssertTextEquals" locator1="CPBlogsEntry#ENTRY_TITLE_LINK" value1="${entryTitle}" />
+		<execute function="AssertTextEquals" locator1="CPBlogsEntry#ENTRY_CONTENT" value1="${entryContent}" />
+	</command>
+
+	<command name="viewDraftPG">
+		<var name="key_entryTitle" value="${entryTitle}" />
+
+		<execute function="AssertTextEquals" locator1="PGBlogs#DRAFT_ENTRY_STATUS" value1="Draft" />
+		<execute function="AssertTextEquals" locator1="PGBlogs#DRAFT_ENTRY_TITLE" value1="${entryTitle}" />
+		<execute function="AssertTextEquals" locator1="PGBlogs#DRAFT_ENTRY_CONTENT" value1="${entryContent}" />
+
+		<execute function="AssertClick" locator1="PGBlogs#DRAFT_ENTRY_TITLE" value1="${entryTitle}" />
+
+		<execute function="AssertTextEquals" locator1="PGBlogsEntry#ENTRY_TITLE" value1="${entryTitle}" />
+		<execute function="AssertTextEquals" locator1="PGBlogsEntry#ENTRY_STATUS" value1="Draft" />
+		<execute function="AssertTextEquals" locator1="PGBlogsEntry#ENTRY_CONTENT" value1="${entryContent}" />
+	</command>
+
+	<command name="viewEditLinkPG">
+		<var name="key_entryTitle" value="${entryTitle}" />
+
+		<execute function="AssertTextEquals" locator1="PGBlogs#ENTRY_TITLE" value1="${entryTitle}" />
+		<execute function="AssertTextEquals" locator1="PGBlogs#ENTRY_CONTENT" value1="${entryContent}" />
+		<execute function="AssertElementPresent" locator1="PGBlogs#ENTRY_EDIT" />
+	</command>
+
+	<command name="viewEnabledSocialBookmarkSites">
+		<for list="${socialBookmarkSites}" param="socialBookmarkSite">
+			<var name="key_socialBookmarkSite" value="${socialBookmarkSite}" />
+
+			<execute function="AssertElementPresent" locator1="SocialBookmarks#SOCIAL_BOOKMARKS_SITE_LINK" />
+		</for>
+	</command>
+
+	<command name="viewEntryAsGuestViaBlogsAggregatorPG">
+		<execute function="AssertClick#assertPartialTextClickAt" locator1="PGBlogsAggregator#ENTRY_READ_MORE" value1="Read More" />
+
+		<execute function="AssertTextEquals" locator1="PGBlogs#PORTLET_TITLE" value1="Blogs" />
+		<execute function="AssertElementPresent" locator1="PGBlogsEntry#ENTRY_TITLE" value1="${entryTitle}" />
+		<execute function="AssertElementPresent" locator1="PGBlogsEntry#ENTRY_CONTENT" value1="${entryContent}" />
+	</command>
+
+	<command name="viewEntryViaAPPG">
+		<var name="key_assetTitle" value="${entryTitle}" />
+
+		<execute function="AssertClick" locator1="PGAssetpublisher#ASSET_ABSTRACT_TITLE" value1="${entryTitle}" />
+
+		<execute function="AssertTextEquals" locator1="PGAssetpublisherAsset#ASSET_TITLE" value1="${entryTitle}" />
+		<execute function="AssertTextEquals#assertPartialText" locator1="PGAssetpublisherAsset#ASSET_CONTENT" value1="${entryContent}" />
+	</command>
+
+	<command name="viewEntryViaBlogsAggregatorPG">
+		<execute function="AssertTextEquals" locator1="PGBlogsAggregator#ENTRY_ABSTRACT_DESCRIPTION" value1="${entryAbstractDescription}" />
+
+		<execute function="AssertClick#assertPartialTextClickAt" locator1="PGBlogsAggregator#ENTRY_READ_MORE" value1="Read More" />
+
+		<execute function="AssertTextEquals" locator1="PGBlogs#PORTLET_TITLE" value1="Blogs" />
+		<execute function="AssertTextEquals" locator1="PGBlogsEntry#ENTRY_TITLE" value1="${entryTitle}" />
+		<execute function="AssertTextEquals" locator1="PGBlogsEntry#ENTRY_CONTENT" value1="${entryContent}" />
+	</command>
+
+	<command name="viewNoCP">
+		<var name="key_entryTitle" value="${entryTitle}" />
+
+		<execute function="AssertElementNotPresent" locator1="CPBlogs#ENTRY_TABLE_TITLE" value1="${entryTitle}" />
+	</command>
+
+	<command name="viewNoEditLinkPG">
+		<var name="key_entryTitle" value="${entryTitle}" />
+
+		<execute function="AssertTextEquals" locator1="PGBlogs#ENTRY_TITLE" value1="${entryTitle}" />
+		<execute function="AssertTextEquals" locator1="PGBlogs#ENTRY_CONTENT" value1="${entryContent}" />
+		<execute function="AssertElementNotPresent" locator1="PGBlogs#ENTRY_EDIT" />
+	</command>
+
+	<command name="viewNoEntryAsGuestPG">
+		<var name="key_entryTitle" value="${entryTitle}" />
+
+		<execute function="AssertElementNotPresent" locator1="PGBlogs#ENTRY_TITLE" value1="${entryTitle}" />
+	</command>
+
+	<command name="viewNoEntryAsGuestViaBlogsAggregatorPG">
+		<execute function="AssertElementPresent" locator1="PGBlogsAggregator#NO_ENTRY_MESSAGE" value1="There are no blogs." />
+	</command>
+
+	<command name="viewNoEntryViaAPPG">
+		<var name="key_assetTitle" value="${entryTitle}" />
+
+		<execute function="AssertTextNotPresent" locator1="PGAssetpublisher#ASSET_ABSTRACT_TITLE" value1="${entryTitle}" />
+		<execute function="AssertTextNotPresent" locator1="PGAssetpublisher#ASSET_ABSTRACT_SUMMARY" value1="${entryContent}" />
+	</command>
+
+	<command name="viewNoEntryViaBlogsAggregatorPG">
+		<execute function="AssertElementPresent" locator1="PGBlogsAggregator#NO_ENTRY_MESSAGE" value1="There are no blogs." />
+	</command>
+
+	<command name="viewNoPG">
+		<execute function="AssertTextNotPresent" value1="${entryTitle}" />
+	</command>
+
+	<command name="viewPermissionsNoPermissionPG">
+		<var name="key_entryTitle" value="${entryTitle}" />
+
+		<execute function="AssertElementNotPresent" locator1="PGBlogs#ENTRY_PERMISSIONS" value1="Permissions" />
+	</command>
+
+	<command name="viewPermissionsPG">
+		<var name="key_entryTitle" value="${entryTitle}" />
+
+		<execute function="AssertClick" locator1="PGBlogs#ENTRY_PERMISSIONS" value1="Permissions" />
+
+		<execute function="SelectFrame" locator1="Permissions#PERMISSIONS_IFRAME" />
+
+		<execute function="AssertTextEquals" locator1="Permissions#HEADER_TITLE" value1="${entryTitle}" />
+
+		<execute function="SelectFrame" value1="relative=top" />
+	</command>
+
+	<command name="viewPG">
+		<var name="key_entryTitle" value="${entryTitle}" />
+
+		<execute function="AssertTextEquals" locator1="PGBlogs#ENTRY_TITLE" value1="${entryTitle}" />
+		<execute function="AssertTextEquals" locator1="PGBlogs#ENTRY_CONTENT" value1="${entryContent}" />
+
+		<execute function="AssertClick" locator1="PGBlogs#ENTRY_TITLE" value1="${entryTitle}" />
+
+		<execute function="AssertTextEquals" locator1="PGBlogsEntry#ENTRY_TITLE" value1="${entryTitle}" />
+		<execute function="AssertTextEquals" locator1="PGBlogsEntry#ENTRY_CONTENT" value1="${entryContent}" />
+	</command>
+
+	<command name="viewPGViaAP">
+		<var name="key_assetTitle" value="${entryTitle}" />
+
+		<execute function="AssertTextEquals" locator1="PGAssetpublisher#ASSET_ABSTRACT_TITLE" value1="${entryTitle}" />
+		<execute function="AssertTextEquals" locator1="PGAssetpublisher#ASSET_ABSTRACT_SUMMARY" value1="${entryContent}" />
+
+		<execute function="AssertClick" locator1="PGAssetpublisher#ASSET_ABSTRACT_TITLE" value1="${entryTitle}" />
+
+		<execute function="AssertTextEquals" locator1="PGAssetpublisherAsset#ASSET_TITLE" value1="${entryTitle}" />
+		<execute function="AssertTextEquals#assertPartialText" locator1="PGAssetpublisherAsset#ASSET_CONTENT" value1="${entryContent}" />
+	</command>
+
+	<command name="viewRate4StarsCP">
+		<execute function="AssertTextEquals" locator1="CPBlogsEntry#AVERAGE" value1="Average (1 Vote)" />
+
+		<execute function="AssertElementPresent" locator1="CPBlogsEntry#YOUR_RATING_STAR_1" />
+		<execute function="AssertElementPresent" locator1="CPBlogsEntry#YOUR_RATING_STAR_2" />
+		<execute function="AssertElementPresent" locator1="CPBlogsEntry#YOUR_RATING_STAR_3" />
+		<execute function="AssertElementPresent" locator1="CPBlogsEntry#YOUR_RATING_STAR_4" />
+		<execute function="AssertElementNotPresent" locator1="CPBlogsEntry#YOUR_RATING_STAR_5" />
+		<execute function="AssertElementPresent" locator1="CPBlogsEntry#YOUR_RATING_STAR_EMPTY_1" />
+		<execute function="AssertElementNotPresent" locator1="CPBlogsEntry#YOUR_RATING_STAR_EMPTY_2" />
+
+		<execute function="AssertElementPresent" locator1="CPBlogsEntry#AVERAGE_STAR_1" />
+		<execute function="AssertElementPresent" locator1="CPBlogsEntry#AVERAGE_STAR_2" />
+		<execute function="AssertElementPresent" locator1="CPBlogsEntry#AVERAGE_STAR_3" />
+		<execute function="AssertElementPresent" locator1="CPBlogsEntry#AVERAGE_STAR_4" />
+		<execute function="AssertElementPresent" locator1="CPBlogsEntry#AVERAGE_STAR_4" />
+		<execute function="AssertElementNotPresent" locator1="CPBlogsEntry#AVERAGE_STAR_5" />
+		<execute function="AssertElementPresent" locator1="CPBlogsEntry#AVERAGE_STAR_EMPTY_1" />
+		<execute function="AssertElementNotPresent" locator1="CPBlogsEntry#AVERAGE_STAR_EMPTY_2" />
+	</command>
+
+	<command name="viewRate4StarsPG">
+		<execute function="AssertTextEquals" locator1="PGBlogsEntry#AVERAGE" value1="Average (1 Vote)" />
+
+		<execute function="AssertElementPresent" locator1="PGBlogsEntry#YOUR_RATING_STAR_1" />
+		<execute function="AssertElementPresent" locator1="PGBlogsEntry#YOUR_RATING_STAR_2" />
+		<execute function="AssertElementPresent" locator1="PGBlogsEntry#YOUR_RATING_STAR_3" />
+		<execute function="AssertElementPresent" locator1="PGBlogsEntry#YOUR_RATING_STAR_4" />
+		<execute function="AssertElementNotPresent" locator1="PGBlogsEntry#YOUR_RATING_STAR_5" />
+		<execute function="AssertElementPresent" locator1="PGBlogsEntry#YOUR_RATING_STAR_EMPTY_1" />
+		<execute function="AssertElementNotPresent" locator1="PGBlogsEntry#YOUR_RATING_STAR_EMPTY_2" />
+
+		<execute function="AssertElementPresent" locator1="PGBlogsEntry#AVERAGE_STAR_1" />
+		<execute function="AssertElementPresent" locator1="PGBlogsEntry#AVERAGE_STAR_2" />
+		<execute function="AssertElementPresent" locator1="PGBlogsEntry#AVERAGE_STAR_3" />
+		<execute function="AssertElementPresent" locator1="PGBlogsEntry#AVERAGE_STAR_4" />
+		<execute function="AssertElementPresent" locator1="PGBlogsEntry#AVERAGE_STAR_4" />
+		<execute function="AssertElementNotPresent" locator1="PGBlogsEntry#AVERAGE_STAR_5" />
+		<execute function="AssertElementPresent" locator1="PGBlogsEntry#AVERAGE_STAR_EMPTY_1" />
+		<execute function="AssertElementNotPresent" locator1="PGBlogsEntry#AVERAGE_STAR_EMPTY_2" />
+	</command>
+
+	<command name="viewRate4StarsSpecificEntryPG">
+		<var name="key_entryTitle" value="${entryTitle}" />
+
+		<execute function="AssertTextEquals" locator1="PGBlogsEntry#SPECIFIC_ENTRY_AVERAGE" value1="Average (1 Vote)" />
+
+		<execute function="AssertElementPresent" locator1="PGBlogsEntry#SPECIFIC_ENTRY_YOUR_RATING_STAR_1" />
+		<execute function="AssertElementPresent" locator1="PGBlogsEntry#SPECIFIC_ENTRY_YOUR_RATING_STAR_2" />
+		<execute function="AssertElementPresent" locator1="PGBlogsEntry#SPECIFIC_ENTRY_YOUR_RATING_STAR_3" />
+		<execute function="AssertElementPresent" locator1="PGBlogsEntry#SPECIFIC_ENTRY_YOUR_RATING_STAR_4" />
+		<execute function="AssertElementNotPresent" locator1="PGBlogsEntry#SPECIFIC_ENTRY_YOUR_RATING_STAR_5" />
+		<execute function="AssertElementNotPresent" locator1="PGBlogsEntry#SPECIFIC_ENTRY_AVERAGE_STAR_EMPTY_1" />
+		<execute function="AssertElementPresent" locator1="PGBlogsEntry#SPECIFIC_ENTRY_YOUR_RATING_STAR_EMPTY_5" />
+
+		<execute function="AssertElementPresent" locator1="PGBlogsEntry#SPECIFIC_ENTRY_AVERAGE_STAR_1" />
+		<execute function="AssertElementPresent" locator1="PGBlogsEntry#SPECIFIC_ENTRY_AVERAGE_STAR_2" />
+		<execute function="AssertElementPresent" locator1="PGBlogsEntry#SPECIFIC_ENTRY_AVERAGE_STAR_3" />
+		<execute function="AssertElementPresent" locator1="PGBlogsEntry#SPECIFIC_ENTRY_AVERAGE_STAR_4" />
+		<execute function="AssertElementNotPresent" locator1="PGBlogsEntry#SPECIFIC_ENTRY_AVERAGE_STAR_5" />
+		<execute function="AssertElementNotPresent" locator1="PGBlogsEntry#SPECIFIC_ENTRY_AVERAGE_STAR_EMPTY_1" />
+		<execute function="AssertElementPresent" locator1="PGBlogsEntry#SPECIFIC_ENTRY_AVERAGE_STAR_EMPTY_5" />
+	</command>
+
+	<command name="viewRSS">
+		<execute function="Open" locator1="http://localhost:8080/web/guest/blogs-page/-/blogs/rss" />
+
+		<execute function="AssertTextEquals" locator1="PGBlogsRSS#FEED_TITLE" value1="Liferay" />
+		<execute function="AssertTextEquals" locator1="PGBlogsRSS#FEED_SUBTITLE" value1="Liferay" />
+		<execute function="AssertTextEquals" locator1="PGBlogsRSS#ENTRY_TITLE" value1="${entryTitle}" />
+		<execute function="AssertTextEquals" locator1="PGBlogsRSS#ENTRY_CONTENT" value1="${entryContent}" />
+	</command>
+
+	<command name="viewScheduledPG">
+		<var name="key_entryTitle" value="${entryTitle}" />
+
+		<execute function="AssertTextEquals" locator1="PGBlogs#SCHEDULED_ENTRY_STATUS" value1="Scheduled" />
+		<execute function="AssertTextEquals" locator1="PGBlogs#SCHEDULED_ENTRY_TITLE" value1="${entryTitle}" />
+		<execute function="AssertTextEquals" locator1="PGBlogs#SCHEDULED_ENTRY_CONTENT" value1="${entryContent}" />
+	</command>
+
+	<command name="viewTagPG">
+		<var name="key_entryTitle" value="${entryTitle}" />
+
+		<if>
+			<equals arg1="${multipleTags}" arg2="true" />
+			<then>
+				<for list="${tagNameList}" param="tagName">
+					<var method="StringUtil#lowerCase('${tagName}')" name="tagName" />
+
+					<var name="key_tagName" value="${tagName}" />
+
+					<execute function="AssertTextEquals" locator1="PGBlogs#ENTRY_TAG" value1="${tagName}" />
+
+					<execute function="AssertClick" locator1="PGBlogs#ENTRY_TAG" value1="${tagName}" />
+
+					<execute function="AssertTextEquals" locator1="PGBlogs#TAG_FILTER_TITLE" value1="Entries with tag ${tagName} ." />
+					<execute function="AssertTextEquals" locator1="PGBlogs#ENTRY_TITLE" value1="${entryTitle}" />
+				</for>
+			</then>
+			<else>
+				<var method="StringUtil#lowerCase('${tagName}')" name="tagName" />
+
+				<var name="key_tagName" value="${tagName}" />
+
+				<execute function="AssertTextEquals" locator1="PGBlogs#ENTRY_TAG" value1="${tagName}" />
+
+				<execute function="AssertClick" locator1="PGBlogs#ENTRY_TAG" value1="${tagName}" />
+
+				<execute function="AssertTextEquals" locator1="PGBlogs#TAG_FILTER_TITLE" value1="Entries with tag ${tagName} ." />
+				<execute function="AssertTextEquals" locator1="PGBlogs#ENTRY_TITLE" value1="${entryTitle}" />
+			</else>
+		</if>
+	</command>
+
+	<command name="viewViewCountCP">
+		<var name="key_portletName" value="Blogs" />
+
+		<execute function="Click" locator1="Home#SITE_ADMINISTRATION_NAVIGATION" />
+
+		<var name="key_entryTitle" value="${entryTitle}" />
+
+		<execute function="AssertClick#assertTextClickAtAndWait" locator1="CPBlogs#ENTRY_TABLE_TITLE" value1="${entryTitle}" />
+
+		<execute function="AssertTextEquals" locator1="CPBlogsEntry#ENTRY_TITLE_HEADER" value1="${entryTitle}" />
+		<execute function="Pause" locator1="3000" />
+
+		<var locator="CPBlogsEntry#ENTRY_STATS_VIEW_COUNT" name="entryViewCount" />
+
+		<var method="StringUtil#extractLeadingDigits('${entryViewCount}')" name="entryViewCount" />
+
+		<if>
+			<equals arg1="${entryViewCount}" arg2="1" />
+			<then>
+				<execute function="AssertTextEquals" locator1="CPBlogsEntry#ENTRY_STATS_VIEW_COUNT" value1="${entryViewCount} View," />
+			</then>
+			<else>
+				<execute function="AssertTextEquals" locator1="CPBlogsEntry#ENTRY_STATS_VIEW_COUNT" value1="${entryViewCount} Views," />
+			</else>
+		</if>
+
+		<execute function="Click" locator1="Home#SITE_ADMINISTRATION_NAVIGATION" />
+
+		<execute function="AssertClick#assertTextClickAtAndWait" locator1="CPBlogs#ENTRY_TABLE_TITLE" value1="${entryTitle}" />
+
+		<execute function="AssertTextEquals" locator1="CPBlogsEntry#ENTRY_TITLE_HEADER" value1="${entryTitle}" />
+		<execute function="Pause" locator1="3000" />
+
+		<var method="MathUtil#sum('${entryViewCount}', '1')" name="entryViewCount" />
+
+		<execute function="AssertTextEquals" locator1="CPBlogsEntry#ENTRY_STATS_VIEW_COUNT" value1="${entryViewCount} Views," />
+	</command>
+
+	<command name="viewViewCountPG">
+		<execute macro="Page#gotoPG">
+			<var name="defaultURL" value="${defaultURL}" />
+			<var name="nodePort" value="${nodePort}" />
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="${soDashboard}" />
+			<var name="soPage" value="${soPage}" />
+		</execute>
+
+		<var name="key_entryTitle" value="${entryTitle}" />
+
+		<execute function="AssertClick" locator1="PGBlogs#ENTRY_TITLE" value1="${entryTitle}" />
+
+		<execute function="AssertTextEquals" locator1="PGBlogsEntry#ENTRY_TITLE" value1="${entryTitle}" />
+		<execute function="Pause" locator1="3000" />
+
+		<execute macro="Page#gotoPG">
+			<var name="defaultURL" value="${defaultURL}" />
+			<var name="nodePort" value="${nodePort}" />
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="${soDashboard}" />
+			<var name="soPage" value="${soPage}" />
+		</execute>
+
+		<execute function="AssertClick" locator1="PGBlogs#ENTRY_TITLE" value1="${entryTitle}" />
+
+		<execute function="AssertTextEquals" locator1="PGBlogsEntry#ENTRY_TITLE" value1="${entryTitle}" />
+		<execute function="Pause" locator1="3000" />
+
+		<var locator="PGBlogsEntry#ENTRY_STATS_VIEW_COUNT" name="entryViewCount" />
+
+		<var method="StringUtil#extractLeadingDigits('${entryViewCount}')" name="entryViewCount" />
+
+		<if>
+			<equals arg1="${entryViewCount}" arg2="1" />
+			<then>
+				<execute function="AssertTextEquals" locator1="PGBlogsEntry#ENTRY_STATS_VIEW_COUNT" value1="${entryViewCount} View," />
+			</then>
+			<else>
+				<execute function="AssertTextEquals" locator1="PGBlogsEntry#ENTRY_STATS_VIEW_COUNT" value1="${entryViewCount} Views," />
+			</else>
+		</if>
+
+		<execute macro="Page#gotoPG">
+			<var name="defaultURL" value="${defaultURL}" />
+			<var name="nodePort" value="${nodePort}" />
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="${soDashboard}" />
+			<var name="soPage" value="${soPage}" />
+		</execute>
+
+		<execute function="AssertClick" locator1="PGBlogs#ENTRY_TITLE" value1="${entryTitle}" />
+
+		<execute function="AssertTextEquals" locator1="PGBlogsEntry#ENTRY_TITLE" value1="${entryTitle}" />
+		<execute function="Pause" locator1="3000" />
+
+		<var method="MathUtil#sum('${entryViewCount}', '1')" name="entryViewCount" />
+
+		<execute function="AssertTextEquals" locator1="PGBlogsEntry#ENTRY_STATS_VIEW_COUNT" value1="${entryViewCount} Views," />
+	</command>
+
+	<command name="viewViewPermissionsPG">
+		<var name="key_entryTitle" value="${entryTitle}" />
+		<var method="StringUtil#replace('${roleName}', ' ', '-')" name="key_roleName" />
+		<var method="StringUtil#lowerCase('${key_roleName}')" name="key_roleName" />
+
+		<execute function="AssertClick" locator1="PGBlogs#ENTRY_PERMISSIONS" value1="Permissions" />
+
+		<execute function="SelectFrame" locator1="Permissions#PERMISSIONS_IFRAME" />
+
+		<execute function="AssertTextEquals" locator1="Permissions#HEADER_TITLE" value1="${entryTitle}" />
+
+		<if>
+			<equals arg1="${viewPermissionValue}" arg2="checked" />
+			<then>
+				<execute function="AssertChecked" locator1="Permissions#CONTENT_PERMISSIONS_VIEW_CHECKBOX" value1="${roleName}" />
+			</then>
+			<elseif>
+				<equals arg1="${viewPermissionValue}" arg2="unchecked" />
+				<then>
+					<execute function="AssertNotChecked" locator1="Permissions#CONTENT_PERMISSIONS_VIEW_CHECKBOX" value1="${roleName}" />
+				</then>
+			</elseif>
+			<else>
+				<execute function="AssertChecked" locator1="Permissions#CONTENT_PERMISSIONS_VIEW_CHECKBOX" value1="${roleName}" />
+			</else>
+		</if>
+
+		<execute function="SelectFrame" value1="relative=top" />
+	</command>
+
+	<command name="viewWithAbstractDisplayTemplatePG">
+		<var name="key_entryTitle" value="${entryTitle}" />
+
+		<execute function="AssertTextEquals" locator1="PGBlogs#ENTRY_TITLE" value1="${entryTitle}" />
+		<execute function="AssertTextEquals#assertPartialText" locator1="PGBlogs#ENTRY_CONTENT_ABSTRACT" value1="${entryAbstractDescription}" />
+
+		<execute function="AssertClick#assertPartialTextClickAt" locator1="PGBlogs#ENTRY_CONTENT_READ_MORE" value1="Read More" />
+
+		<execute function="AssertTextEquals" locator1="PGBlogsEntry#ENTRY_TITLE" value1="${entryTitle}" />
+		<execute function="AssertTextEquals" locator1="PGBlogsEntry#ENTRY_CONTENT" value1="${entryContent}" />
+	</command>
+
+	<command name="viewWithTitleDisplayTemplatePG">
+		<var name="key_entryTitle" value="${entryTitle}" />
+
+		<execute function="AssertTextEquals" locator1="PGBlogs#ENTRY_TITLE" value1="${entryTitle}" />
+		<execute function="AssertTextEquals#assertPartialText" locator1="PGBlogs#ENTRY_CONTENT_READ_MORE" value1="Read More" />
+		<execute function="AssertTextNotPresent" locator1="PGBlogs#ENTRY_CONTENT" value1="${entryContent}" />
+
+		<execute function="AssertClick#assertPartialTextClickAt" locator1="PGBlogs#ENTRY_CONTENT_READ_MORE" value1="Read More" />
+
+		<execute function="AssertTextEquals" locator1="PGBlogsEntry#ENTRY_TITLE" value1="${entryTitle}" />
+		<execute function="AssertTextEquals" locator1="PGBlogsEntry#ENTRY_CONTENT" value1="${entryContent}" />
+	</command>
+
+	<command name="viewWithTrackbackURLPG">
+		<var name="key_entryTitle" value="${entryTitle}" />
+
+		<execute function="Pause" locator1="1000" />
+
+		<execute function="AssertTextEquals" locator1="PGBlogs#ENTRY_TITLE" value1="${entryTitle}" />
+		<execute function="AssertTextEquals" locator1="PGBlogs#ENTRY_CONTENT" value1="${entryContent}" />
+		<execute function="AssertTextEquals" locator1="PGBlogs#ENTRY_COMMENT_2" value1="1 Comment" />
+
+		<execute function="AssertClick" locator1="PGBlogs#ENTRY_TITLE" value1="${entryTitle}" />
+
+		<execute function="Pause" locator1="3000" />
+
+		<execute function="AssertTextEquals" locator1="PGBlogsEntry#ENTRY_TITLE" value1="${entryTitle}" />
+		<execute function="AssertTextEquals" locator1="PGBlogsEntry#ENTRY_CONTENT" value1="${entryContent}" />
+		<execute function="AssertTextEquals" locator1="PGBlogsEntry#ENTRY_STATS_COMMENTS" value1="1 Comment" />
+		<execute function="AssertTextEquals#assertTextWaitForInlineCKEditor" locator1="PGBlogsEntry#COMMENT_1" value1="[...] ${entryContent2} [...] Read More" />
+
+		<execute function="AssertClick#assertTextClickAndWait" locator1="PGBlogsEntry#COMMENT_READ_MORE_1" value1="Read More" />
+
+		<execute function="AssertTextEquals" locator1="PGBlogsEntry#ENTRY_TITLE" value1="${entryTitle2}" />
+		<execute function="AssertTextEquals" locator1="PGBlogsEntry#ENTRY_CONTENT" value1="${entryContent2}" />
+	</command>
+
+	<command name="viewWithWorkflowCP">
+		<var name="key_entryTitle" value="${entryTitle}" />
+
+		<execute function="AssertTextEquals" locator1="CPBlogs#ENTRY_TABLE_TITLE" value1="${entryTitle}" />
+
+		<execute function="Click" locator1="CPBlogs#ENTRY_TABLE_TITLE" value1="${entryTitle}" />
+
+		<execute function="AssertTextEquals" locator1="CPBlogsEntry#ENTRY_TITLE_HEADER" value1="${entryTitle}" />
+		<execute function="AssertTextEquals" locator1="CPBlogsEntry#ENTRY_WORKFLOW_STATUS" value1="Pending Approval" />
+		<execute function="AssertTextEquals" locator1="CPBlogsEntry#ENTRY_TITLE_LINK" value1="${entryTitle}" />
+		<execute function="AssertTextEquals" locator1="CPBlogsEntry#ENTRY_CONTENT" value1="${entryContent}" />
+	</command>
+
+	<command name="viewWithWorkflowPGViaAP">
+		<var name="key_assetTitle" value="${entryTitle}" />
+
+		<execute function="AssertElementNotPresent" locator1="PGAssetpublisher#ASSET_ABSTRACT_TITLE" value1="${entryTitle}" />
+	</command>
+</definition>

@@ -1,0 +1,244 @@
+<definition>
+	<command name="assertDefaultPG">
+		<for list="${roleList}" param="roleName" >
+			<var name="roleName" value="${roleName}" />
+
+			<var method="StringUtil#replace('${roleName}', ' ', '-')" name="key_roleName" />
+			<var method="StringUtil#lowerCase('${key_roleName}')" name="key_roleName" />
+
+			<if>
+				<or>
+					<equals arg1="${roleName}" arg2="Guest" />
+					<equals arg1="${roleName}" arg2="Site Member" />
+				</or>
+				<then>
+					<execute function="AssertNotChecked" locator1="Permissions#CONFIGURATION_PERMISSIONS_ADD_TO_PAGE_CHECKBOX" />
+				</then>
+				<else>
+					<execute function="AssertChecked" locator1="Permissions#CONFIGURATION_PERMISSIONS_ADD_TO_PAGE_CHECKBOX" />
+				</else>
+			</if>
+
+			<if>
+				<or>
+					<equals arg1="${roleName}" arg2="Guest" />
+					<equals arg1="${roleName}" arg2="Power User" />
+					<equals arg1="${roleName}" arg2="Site Member" />
+					<equals arg1="${roleName}" arg2="User" />
+				</or>
+				<then>
+					<execute function="AssertNotChecked" locator1="Permissions#CONFIGURATION_PERMISSIONS_CONFIGURATION_CHECKBOX" />
+					<execute function="AssertNotChecked" locator1="Permissions#CONFIGURATION_PERMISSIONS_PERMISSIONS_CHECKBOX" />
+					<execute function="AssertNotChecked" locator1="Permissions#CONFIGURATION_PERMISSIONS_ACCESS_IN_CONTROL_PANEL_CHECKBOX" />
+				</then>
+				<else>
+					<execute function="AssertChecked" locator1="Permissions#CONFIGURATION_PERMISSIONS_CONFIGURATION_CHECKBOX" />
+					<execute function="AssertChecked" locator1="Permissions#CONFIGURATION_PERMISSIONS_PERMISSIONS_CHECKBOX" />
+					<execute function="AssertChecked" locator1="Permissions#CONFIGURATION_PERMISSIONS_ACCESS_IN_CONTROL_PANEL_CHECKBOX" />
+				</else>
+			</if>
+
+			<if>
+				<or>
+					<equals arg1="${roleName}" arg2="Power User" />
+					<equals arg1="${roleName}" arg2="User" />
+				</or>
+				<then>
+					<execute function="AssertNotChecked" locator1="Permissions#CONFIGURATION_PERMISSIONS_VIEW_CHECKBOX" />
+				</then>
+				<else>
+					<execute function="AssertChecked" locator1="Permissions#CONFIGURATION_PERMISSIONS_VIEW_CHECKBOX" />
+				</else>
+			</if>
+		</for>
+	</command>
+
+	<command name="gotoBlogsConfiguration">
+		<execute macro="Page#gotoPG">
+			<var name="defaultURL" value="${defaultURL}" />
+			<var name="nodePort" value="${nodePort}" />
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="${soDashboard}" />
+			<var name="soPage" value="${soPage}" />
+		</execute>
+
+		<execute function="Click" locator1="PGBlogs#OPTIONS" />
+
+		<execute function="AssertClick" locator1="PGBlogs#OPTIONS_MENULIST_CONFIGURATION" value1="Configuration" />
+
+		<execute function="SelectFrame" locator1="PGBlogsConfiguration#CONFIGURATION_IFRAME" />
+
+		<execute function="AssertClick" locator1="PGBlogsConfiguration#NAVIGATION_PERMISSIONS" value1="Permissions" />
+	</command>
+
+	<command name="gotoBlogsEntryCP">
+		<execute macro="Page#gotoContentCP">
+			<var name="pageName" value="${pageName}" />
+			<var name="portletName" value="${portletName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="${siteURLTemp}" />
+		</execute>
+
+		<var name="key_entryTitle" value="${entryTitle}" />
+
+		<execute function="AssertClick" locator1="CPBlogs#ENTRY_TABLE_ACTIONS" value1="Actions" />
+
+		<execute function="AssertClick" locator1="CPBlogs#ENTRY_MENULIST_PERMISSIONS" value1="Permissions" />
+
+		<execute function="SelectFrame" locator1="Permissions#PERMISSIONS_IFRAME" />
+	</command>
+
+	<command name="gotoBlogsEntryPG">
+		<execute macro="Page#gotoPG">
+			<var name="defaultURL" value="${defaultURL}" />
+			<var name="nodePort" value="${nodePort}" />
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="${siteURLTemp}" />
+			<var name="soDashboard" value="${soDashboard}" />
+			<var name="soPage" value="${soPage}" />
+		</execute>
+
+		<var name="key_entryTitle" value="${entryTitle}" />
+
+		<execute function="AssertClick" locator1="PGBlogs#ENTRY_PERMISSIONS" value1="Permissions" />
+
+		<execute function="SelectFrame" locator1="Permissions#PERMISSIONS_IFRAME" />
+	</command>
+
+	<command name="gotoBlogsPG">
+		<execute macro="Page#gotoPG">
+			<var name="defaultURL" value="${defaultURL}" />
+			<var name="nodePort" value="${nodePort}" />
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="${siteURLTemp}" />
+			<var name="soDashboard" value="${soDashboard}" />
+			<var name="soPage" value="${soPage}" />
+		</execute>
+
+		<execute function="AssertClick" locator1="PGBlogs#PERMISSIONS_BUTTON" value1="Permissions" />
+
+		<execute function="SelectFrame" locator1="Permissions#PERMISSIONS_IFRAME" />
+	</command>
+
+	<command name="gotoConfigurationPG">
+		<execute macro="Portlet#gotoPortletOptions">
+			<var name="portletName" value="${portletName}" />
+			<var name="portletOption" value="Configuration" />
+		</execute>
+
+		<execute function="SelectFrame" locator1="BasePortletConfiguration#CONFIGURATION_IFRAME" />
+
+		<execute function="AssertClick" locator1="BasePortletConfiguration#NAVIGATION_PERMISSIONS" value1="Permissions" />
+	</command>
+
+	<command name="gotoDMFolderPG">
+		<execute macro="Page#gotoPG">
+			<var name="defaultURL" value="${defaultURL}" />
+			<var name="nodePort" value="${nodePort}" />
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="${siteURLTemp}" />
+			<var name="soDashboard" value="${soDashboard}" />
+			<var name="soPage" value="${soPage}" />
+		</execute>
+
+		<var name="key_dmFolderName" value="${dmFolderName}" />
+
+		<execute function="Click" locator1="PGDocumentsandmedia#ENTRY_ICON_FOLDER_ACTIONS" />
+
+		<execute function="AssertClick" locator1="PGDocumentsandmedia#FOLDER_MENULIST_PERMISSIONS" value1="Permissions" />
+
+		<execute function="SelectFrame" locator1="Permissions#PERMISSIONS_IFRAME" />
+	</command>
+
+	<command name="gotoDocumentsAndMediaPG">
+		<execute macro="Page#gotoPG">
+			<var name="defaultURL" value="${defaultURL}" />
+			<var name="nodePort" value="${nodePort}" />
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="${siteURLTemp}" />
+			<var name="soDashboard" value="${soDashboard}" />
+			<var name="soPage" value="${soPage}" />
+		</execute>
+
+		<execute function="Click" locator1="PGDocumentsandmedia#FILTER_HOME_ACTIONS" />
+
+		<execute function="AssertClick" locator1="PGDocumentsandmedia#HOME_MENULIST_PERMISSIONS" value1="Permissions" />
+
+		<if>
+			<condition function="IsElementPresent" locator1="Permissions#PERMISSIONS_IFRAME" />
+			<then>
+				<execute function="SelectFrame" locator1="Permissions#PERMISSIONS_IFRAME" />
+			</then>
+		</if>
+	</command>
+
+	<command name="gotoPagePG">
+		<execute macro="Page#gotoPG">
+			<var name="defaultURL" value="${defaultURL}" />
+			<var name="nodePort" value="${nodePort}" />
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+			<var name="siteURL" value="${siteURLTemp}" />
+			<var name="soDashboard" value="${soDashboard}" />
+			<var name="soPage" value="${soPage}" />
+		</execute>
+
+		<if>
+			<condition function="IsElementPresent" locator1="SOUserBar#USER_BAR" />
+			<then>
+				<if>
+					<condition function="IsElementNotPresent" locator1="SOUserBar#VISIBLE_PAGE_CONTROLS" />
+					<then>
+						<execute function="Click" locator1="SOUserBar#TOGGLE_DOCKBAR" />
+					</then>
+				</if>
+			</then>
+		</if>
+
+		<execute function="Click#clickAtSidebarClickAt" locator1="Dockbar#EDIT" />
+
+		<execute function="Click" locator1="Dockbar#EDIT_PERMISSIONS" />
+
+		<execute function="SelectFrame" locator1="Permissions#PERMISSIONS_IFRAME" />
+	</command>
+
+	<command name="gotoWCArticle">
+		<var name="key_webContentTitle" value="${webContentTitle}" />
+
+		<execute function="MouseOver" locator1="CPWebcontent#ENTRY_DESCRIPTIVE_THUMBNAIL" />
+
+		<execute function="Click" locator1="CPWebcontent#ENTRY_DESCRIPTIVE_MENULIST_ARROW" />
+
+		<execute function="AssertClick" locator1="CPWebcontent#ENTRY_MENULIST_PERMISSIONS" value1="Permissions" />
+
+		<execute function="SelectFrame" locator1="Permissions#PERMISSIONS_IFRAME" />
+
+		<execute function="AssertTextEquals" locator1="Permissions#HEADER_TITLE" value1="${webContentTitle}" />
+	</command>
+
+	<command name="removeViewPermissionFromAllRoles">
+		<for list="${roleList}" param="roleName" >
+			<var name="roleName" value="${roleName}" />
+
+			<var method="StringUtil#replace('${roleName}', ' ', '-')" name="key_roleName" />
+			<var method="StringUtil#lowerCase('${key_roleName}')" name="key_roleName" />
+
+			<execute function="Uncheck" locator1="Permissions#CONFIGURATION_PERMISSIONS_VIEW_CHECKBOX" />
+		</for>
+
+		<execute function="AssertClick" locator1="Permissions#SAVE_BUTTON" value1="Save" />
+
+		<execute function="AssertTextEquals" locator1="Permissions#SUCCESS_MESSAGE" value1="Your request completed successfully." />
+	</command>
+
+	<command name="viewPermissionsRemoved">
+		<var method="StringUtil#replace('${roleName}', ' ', '-')" name="key_roleName" />
+		<var method="StringUtil#lowerCase('${key_roleName}')" name="key_roleName" />
+
+		<execute function="AssertNotChecked" locator1="Permissions#${permissionDefinitionKey}" />
+	</command>
+</definition>
