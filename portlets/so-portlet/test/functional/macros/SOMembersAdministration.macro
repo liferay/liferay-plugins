@@ -65,14 +65,14 @@
 		<if>
 			<equals arg1="${nonUserInvite}" arg2="true" />
 			<then>
-				<execute function="AssertTextEquals#assertPartialText" locator1="SOGmail#GMAIL_HTML_MODE_MESSAGE_BODY" value1="Once your account is created, follow the link below to confirm or ignore this invitation:" />
+				<execute function="AssertTextEquals#assertPartialText" locator1="Gmail#GMAIL_HTML_MODE_MESSAGE_BODY" value1="Once your account is created, follow the link below to confirm or ignore this invitation:" />
 			</then>
 			<else>
-				<execute function="AssertTextEquals#assertPartialText" locator1="SOGmail#GMAIL_HTML_MODE_MESSAGE_BODY" value1="Follow the link below to confirm or ignore this invitation:" />
+				<execute function="AssertTextEquals#assertPartialText" locator1="Gmail#GMAIL_HTML_MODE_MESSAGE_BODY" value1="Follow the link below to confirm or ignore this invitation:" />
 			</else>
 		</if>
 
-		<execute function="AssertClick" locator1="SOGmail#GMAIL_HTML_MODE_MESSAGE_BODY_SOCIAL_OFFICE_SITE_INVITE_CONFIRMATION_LINK" value1="View Invitation" />
+		<execute function="AssertClick" locator1="Gmail#GMAIL_HTML_MODE_MESSAGE_BODY_SOCIAL_OFFICE_SITE_INVITE_CONFIRMATION_LINK" value1="View Invitation" />
 
 		<execute function="SelectWindow" locator1="SOMembersPortlet#MEMBERS_POP_UP_WINDOW" />
 
@@ -136,7 +136,7 @@
 			<var name="gmailMessageTitle" value="${adminName} has invited you to join ${siteName}" />
 		</execute>
 
-		<execute function="AssertClick" locator1="SOGmail#GMAIL_HTML_MODE_MESSAGE_BODY_SOCIAL_OFFICE_SITE_INVITE_CREATE_ACCOUNT_LINK" value1="Create Account" />
+		<execute function="AssertClick" locator1="Gmail#GMAIL_HTML_MODE_MESSAGE_BODY_SOCIAL_OFFICE_SITE_INVITE_CREATE_ACCOUNT_LINK" value1="Create Account" />
 
 		<execute function="SelectWindow" locator1="PGLoginCreateAccount#CREATE_ACCOUNT_POP_UP_WINDOW" />
 		<execute function="Type" locator1="PGLoginCreateAccount#FIRST_NAME_FIELD" value1="${userFirstName}" />

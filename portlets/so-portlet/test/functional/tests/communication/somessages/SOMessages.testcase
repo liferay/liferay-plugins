@@ -3719,11 +3719,6 @@
 			<var name="senderName" value="${adminName}" />
 		</execute>
 
-		<execute macro="SOGmail#tearDown">
-			<var name="userEmailAddress" property-value="email.address.2" />
-			<var name="userPassword" property-value="email.password.2" />
-		</execute>
-
 		<execute macro="User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="${adminEmailAddress}" />
 			<var name="userLoginFullName" value="${adminName}" />
@@ -4269,11 +4264,6 @@
 			<var name="senderName" value="${adminName}" />
 		</execute>
 
-		<execute macro="SOGmail#tearDown">
-			<var name="userEmailAddress" property-value="email.address.2" />
-			<var name="userPassword" property-value="email.password.2" />
-		</execute>
-
 		<execute macro="User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="${userEmailAddress2}" />
 			<var name="userLoginFullName" value="${userName2}" />
@@ -4293,11 +4283,6 @@
 			<var name="senderName" value="${adminName}" />
 		</execute>
 
-		<execute macro="SOGmail#tearDown">
-			<var name="userEmailAddress" property-value="email.address.3" />
-			<var name="userPassword" property-value="email.password.3" />
-		</execute>
-
 		<execute macro="User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="${userEmailAddress3}" />
 			<var name="userLoginFullName" value="${userName3}" />
@@ -4315,11 +4300,6 @@
 			<var name="messageBody" value="${messageBody}" />
 			<var name="messageSubject" value="${messageSubject}" />
 			<var name="senderName" value="${adminName}" />
-		</execute>
-
-		<execute macro="SOGmail#tearDown">
-			<var name="userEmailAddress" property-value="email.address.4" />
-			<var name="userPassword" property-value="email.password.4" />
 		</execute>
 
 		<execute macro="User#logoutAndLoginPG">

@@ -1,6 +1,6 @@
 <definition>
 	<command name="backtoInbox">
-		<execute function="AssertClick" locator1="SOGmail#GMAIL_HTML_MODE_BACK_TO_INBOX_LINK" value1="« Back to Inbox" />
+		<execute function="AssertClick" locator1="Gmail#GMAIL_HTML_MODE_BACK_TO_INBOX_LINK" value1="« Back to Inbox" />
 	</command>
 
 	<command name="deleteSpecificMail">
@@ -8,11 +8,11 @@
 			<var name="key_gmailMessageTitle" value="${gmailMessageTitle}" />
 
 			<if>
-				<condition function="IsElementPresent" locator1="SOGmail#GMAIL_HTML_MODE_MAIL_TABLE_SPECIFIC_MESSAGE_TITLE_CHECKBOX" />
+				<condition function="IsElementPresent" locator1="Gmail#GMAIL_HTML_MODE_MAIL_TABLE_SPECIFIC_MESSAGE_TITLE_CHECKBOX" />
 				<then>
-					<execute function="Check" locator1="SOGmail#GMAIL_HTML_MODE_MAIL_TABLE_SPECIFIC_MESSAGE_TITLE_CHECKBOX" />
+					<execute function="Check" locator1="Gmail#GMAIL_HTML_MODE_MAIL_TABLE_SPECIFIC_MESSAGE_TITLE_CHECKBOX" />
 
-					<execute function="Click" locator1="SOGmail#GMAIL_HTML_MODE_MAIL_TABLE_DELETE_BUTTON" />
+					<execute function="Click" locator1="Gmail#GMAIL_HTML_MODE_MAIL_TABLE_DELETE_BUTTON" />
 
 					<execute function="Pause" locator1="3000" />
 				</then>
@@ -24,9 +24,9 @@
 		<execute function="Open" locator1="https://mail.google.com/mail/?ui=html&amp;zy=h" />
 
 		<if>
-			<condition function="IsElementPresent" locator1="SOGmail#GMAIL_HTML_MODE_CONFIRMATION" />
+			<condition function="IsElementPresent" locator1="Gmail#GMAIL_HTML_MODE_CONFIRMATION" />
 			<then>
-				<execute function="Click" locator1="SOGmail#GMAIL_HTML_MODE_CONFIRMATION" />
+				<execute function="Click" locator1="Gmail#GMAIL_HTML_MODE_CONFIRMATION" />
 			</then>
 		</if>
 
@@ -41,59 +41,59 @@
 		<var name="key_userEmailAddress" value="${userEmailAddress}" />
 
 		<if>
-			<condition function="IsElementPresent" locator1="SOGmail#SIGN_IN_LINK" />
+			<condition function="IsElementPresent" locator1="Gmail#SIGN_IN_LINK" />
 
 			<then>
-				<execute function="AssertClick" locator1="SOGmail#SIGN_IN_LINK" value1="Sign in" />
+				<execute function="AssertClick" locator1="Gmail#SIGN_IN_LINK" value1="Sign in" />
 			</then>
 		</if>
 
 		<if>
 			<and>
-				<condition function="IsElementNotPresent" locator1="SOGmail#GMAIL_NORMAL_MODE_USER_SCREENNAME" />
-				<condition function="IsElementNotPresent" locator1="SOGmail#GMAIL_HTML_MODE_USER_SCREENNAME" />
+				<condition function="IsElementNotPresent" locator1="Gmail#GMAIL_NORMAL_MODE_USER_SCREENNAME" />
+				<condition function="IsElementNotPresent" locator1="Gmail#GMAIL_HTML_MODE_USER_SCREENNAME" />
 			</and>
 			<then>
 				<if>
-					<condition function="IsElementPresent" locator1="SOGmail#LOGIN_EMAIL_FIELD" />
+					<condition function="IsElementPresent" locator1="Gmail#LOGIN_EMAIL_FIELD" />
 					<then>
-						<execute function="Type" locator1="SOGmail#LOGIN_EMAIL_FIELD" value1="${userEmailAddress}" />
+						<execute function="Type" locator1="Gmail#LOGIN_EMAIL_FIELD" value1="${userEmailAddress}" />
 
-						<execute function="Click" locator1="SOGmail#LOGIN_NEXT_BUTTON" />
+						<execute function="Click" locator1="Gmail#LOGIN_NEXT_BUTTON" />
 					</then>
 				</if>
 
-				<execute function="Type" locator1="SOGmail#LOGIN_PASSWORD_FIELD" value1="${userPassword}" />
+				<execute function="Type" locator1="Gmail#LOGIN_PASSWORD_FIELD" value1="${userPassword}" />
 
 				<if>
-					<condition function="IsElementPresent" locator1="SOGmail#LOGIN_SIGN_IN_BUTTON" />
+					<condition function="IsElementPresent" locator1="Gmail#LOGIN_SIGN_IN_BUTTON" />
 					<then>
-						<execute function="Check" locator1="SOGmail#LOGIN_STAY_SIGNED_IN_CHECKBOX" />
+						<execute function="Check" locator1="Gmail#LOGIN_STAY_SIGNED_IN_CHECKBOX" />
 
-						<execute function="Click" locator1="SOGmail#LOGIN_SIGN_IN_BUTTON" />
+						<execute function="Click" locator1="Gmail#LOGIN_SIGN_IN_BUTTON" />
 					</then>
 					<else>
-						<execute function="Click" locator1="SOGmail#LOGIN_NEXT_BUTTON" />
+						<execute function="Click" locator1="Gmail#LOGIN_NEXT_BUTTON" />
 					</else>
 				</if>
 
 				<if>
-					<condition function="IsElementPresent" locator1="SOGmail#MAIL_NAVIGATION" />
+					<condition function="IsElementPresent" locator1="Gmail#MAIL_NAVIGATION" />
 					<then>
-						<execute function="Click" locator1="SOGmail#MAIL_NAVIGATION" />
+						<execute function="Click" locator1="Gmail#MAIL_NAVIGATION" />
 					</then>
 				</if>
 
 				<execute function="Pause" locator1="5000" />
 			</then>
 			<elseif>
-				<condition function="IsElementPresent" locator1="SOGmail#GMAIL_HTML_MODE_USER_SCREENNAME" />
+				<condition function="IsElementPresent" locator1="Gmail#GMAIL_HTML_MODE_USER_SCREENNAME" />
 				<then>
-					<execute function="AssertElementPresent" locator1="SOGmail#GMAIL_HTML_MODE_USER_SCREENNAME" />
+					<execute function="AssertElementPresent" locator1="Gmail#GMAIL_HTML_MODE_USER_SCREENNAME" />
 				</then>
 			</elseif>
 			<else>
-				<execute function="AssertElementPresent" locator1="SOGmail#GMAIL_NORMAL_MODE_USER_SCREENNAME" />
+				<execute function="AssertElementPresent" locator1="Gmail#GMAIL_NORMAL_MODE_USER_SCREENNAME" />
 			</else>
 		</if>
 	</command>
@@ -105,45 +105,45 @@
 
 		<execute macro="SOGmail#gotoHtmlMode" />
 
-		<execute function="Click" locator1="SOGmail#GMAIL_HTML_MODE_SIGN_OUT" />
+		<execute function="Click" locator1="Gmail#GMAIL_HTML_MODE_SIGN_OUT" />
 
 		<if>
-			<condition function="IsElementPresent" locator1="SOGmail#SIGN_IN_WITH_DIFFERENT_ACCOUNT" />
+			<condition function="IsElementPresent" locator1="Gmail#SIGN_IN_WITH_DIFFERENT_ACCOUNT" />
 			<then>
-				<execute function="Click" locator1="SOGmail#SIGN_IN_WITH_DIFFERENT_ACCOUNT" />
+				<execute function="Click" locator1="Gmail#SIGN_IN_WITH_DIFFERENT_ACCOUNT" />
 
-				<execute function="Click" locator1="SOGmail#ADD_ACCOUNT_BUTTON" />
+				<execute function="Click" locator1="Gmail#ADD_ACCOUNT_BUTTON" />
 			</then>
 			<elseif>
-				<condition function="IsElementPresent" locator1="SOGmail#ADD_ACCOUNT_BUTTON" />
+				<condition function="IsElementPresent" locator1="Gmail#ADD_ACCOUNT_BUTTON" />
 				<then>
-					<execute function="Click" locator1="SOGmail#ADD_ACCOUNT_BUTTON" />
+					<execute function="Click" locator1="Gmail#ADD_ACCOUNT_BUTTON" />
 				</then>
 			</elseif>
 		</if>
 
-		<execute function="Type" locator1="SOGmail#LOGIN_EMAIL_FIELD" value1="${userEmailAddress}" />
+		<execute function="Type" locator1="Gmail#LOGIN_EMAIL_FIELD" value1="${userEmailAddress}" />
 
-		<execute function="Click" locator1="SOGmail#LOGIN_NEXT_BUTTON" />
+		<execute function="Click" locator1="Gmail#LOGIN_NEXT_BUTTON" />
 
-		<execute function="Type" locator1="SOGmail#LOGIN_PASSWORD_FIELD" value1="${userPassword}" />
+		<execute function="Type" locator1="Gmail#LOGIN_PASSWORD_FIELD" value1="${userPassword}" />
 
 		<if>
-			<condition function="IsElementPresent" locator1="SOGmail#LOGIN_SIGN_IN_BUTTON" />
+			<condition function="IsElementPresent" locator1="Gmail#LOGIN_SIGN_IN_BUTTON" />
 			<then>
-				<execute function="Check" locator1="SOGmail#LOGIN_STAY_SIGNED_IN_CHECKBOX" />
+				<execute function="Check" locator1="Gmail#LOGIN_STAY_SIGNED_IN_CHECKBOX" />
 
-				<execute function="Click" locator1="SOGmail#LOGIN_SIGN_IN_BUTTON" />
+				<execute function="Click" locator1="Gmail#LOGIN_SIGN_IN_BUTTON" />
 			</then>
 			<else>
-				<execute function="Click" locator1="SOGmail#LOGIN_NEXT_BUTTON" />
+				<execute function="Click" locator1="Gmail#LOGIN_NEXT_BUTTON" />
 			</else>
 		</if>
 
 		<if>
-			<condition function="IsElementPresent" locator1="SOGmail#MAIL_NAVIGATION" />
+			<condition function="IsElementPresent" locator1="Gmail#MAIL_NAVIGATION" />
 			<then>
-				<execute function="Click" locator1="SOGmail#MAIL_NAVIGATION" />
+				<execute function="Click" locator1="Gmail#MAIL_NAVIGATION" />
 			</then>
 		</if>
 
@@ -153,34 +153,34 @@
 	<command name="viewLiferayConnectedServicesInvitationMail">
 		<var name="key_gmailAssetType" value="Liferay Connected Services" />
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="SOGmail#GMAIL_HTML_MODE_MAIL_TABLE_USER_NAME" value1="Liferay Connected" />
+		<execute function="AssertTextEquals#assertPartialText" locator1="Gmail#GMAIL_HTML_MODE_MAIL_TABLE_USER_NAME" value1="Liferay Connected" />
 
-		<execute function="AssertClick#assertPartialTextClickAt" locator1="SOGmail#GMAIL_HTML_MODE_MAIL_TABLE_MESSAGE_TITLE" value1="[LCS] Membership Invitation" />
+		<execute function="AssertClick#assertPartialTextClickAt" locator1="Gmail#GMAIL_HTML_MODE_MAIL_TABLE_MESSAGE_TITLE" value1="[LCS] Membership Invitation" />
 
 		<execute function="Pause" locator1="3000" />
 
-		<execute function="AssertTextEquals" locator1="SOGmail#GMAIL_HTML_MODE_MESSAGE_TITLE" value1="[LCS] Membership Invitation" />
-		<execute function="AssertTextEquals#assertPartialText" locator1="SOGmail#GMAIL_HTML_MODE_MESSAGE_BODY_GREETING" value1="Dear Sir/Madam," />
-		<execute function="AssertTextEquals#assertPartialText" locator1="SOGmail#GMAIL_HTML_MODE_MESSAGE_BODY" value1="${invitationSenderName} invited you to be part of the Liferay Connected Services project ${projectName}" />
+		<execute function="AssertTextEquals" locator1="Gmail#GMAIL_HTML_MODE_MESSAGE_TITLE" value1="[LCS] Membership Invitation" />
+		<execute function="AssertTextEquals#assertPartialText" locator1="Gmail#GMAIL_HTML_MODE_MESSAGE_BODY_GREETING" value1="Dear Sir/Madam," />
+		<execute function="AssertTextEquals#assertPartialText" locator1="Gmail#GMAIL_HTML_MODE_MESSAGE_BODY" value1="${invitationSenderName} invited you to be part of the Liferay Connected Services project ${projectName}" />
 
 		<if>
 			<isset var="invitationMessage" />
 			<then>
-				<execute function="AssertTextEquals#assertPartialText" locator1="SOGmail#GMAIL_HTML_MODE_MESSAGE_BODY" value1="${invitationMessage}" />
+				<execute function="AssertTextEquals#assertPartialText" locator1="Gmail#GMAIL_HTML_MODE_MESSAGE_BODY" value1="${invitationMessage}" />
 			</then>
 		</if>
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="SOGmail#GMAIL_HTML_MODE_MESSAGE_BODY" value1="Use the link below to accept this invitation and access the Liferay Connected Services site:" />
-		<execute function="AssertElementPresent" locator1="SOGmail#GMAIL_HTML_MODE_MESSAGE_BODY_LCS_INVITATION_LINK" />
-		<execute function="AssertTextEquals#assertPartialText" locator1="SOGmail#GMAIL_HTML_MODE_MESSAGE_BODY_CLOSING" value1="Thank You," />
-		<execute function="AssertTextEquals#assertPartialText" locator1="SOGmail#GMAIL_HTML_MODE_MESSAGE_BODY_CLOSING" value1="The Liferay Connected Services Team" />
+		<execute function="AssertTextEquals#assertPartialText" locator1="Gmail#GMAIL_HTML_MODE_MESSAGE_BODY" value1="Use the link below to accept this invitation and access the Liferay Connected Services site:" />
+		<execute function="AssertElementPresent" locator1="Gmail#GMAIL_HTML_MODE_MESSAGE_BODY_LCS_INVITATION_LINK" />
+		<execute function="AssertTextEquals#assertPartialText" locator1="Gmail#GMAIL_HTML_MODE_MESSAGE_BODY_CLOSING" value1="Thank You," />
+		<execute function="AssertTextEquals#assertPartialText" locator1="Gmail#GMAIL_HTML_MODE_MESSAGE_BODY_CLOSING" value1="The Liferay Connected Services Team" />
 
 		<if>
 			<equals arg1="${useInvitationLink}" arg2="true" />
 			<then>
-				<execute function="AssertElementPresent" locator1="SOGmail#GMAIL_HTML_MODE_MESSAGE_BODY_LCS_INVITATION_LINK" />
+				<execute function="AssertElementPresent" locator1="Gmail#GMAIL_HTML_MODE_MESSAGE_BODY_LCS_INVITATION_LINK" />
 
-				<execute function="Click" locator1="SOGmail#GMAIL_HTML_MODE_MESSAGE_BODY_LCS_INVITATION_LINK" />
+				<execute function="Click" locator1="Gmail#GMAIL_HTML_MODE_MESSAGE_BODY_LCS_INVITATION_LINK" />
 			</then>
 		</if>
 	</command>
@@ -188,23 +188,23 @@
 	<command name="viewMail">
 		<var name="key_gmailAssetType" value="${gmailAssetType}" />
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="SOGmail#GMAIL_HTML_MODE_MAIL_TABLE_USER_NAME" value1="${emailFromUserName}" />
+		<execute function="AssertTextEquals#assertPartialText" locator1="Gmail#GMAIL_HTML_MODE_MAIL_TABLE_USER_NAME" value1="${emailFromUserName}" />
 
-		<execute function="AssertClick#assertPartialTextClickAt" locator1="SOGmail#GMAIL_HTML_MODE_MAIL_TABLE_MESSAGE_TITLE" value1="${gmailMessageTitle}" />
+		<execute function="AssertClick#assertPartialTextClickAt" locator1="Gmail#GMAIL_HTML_MODE_MAIL_TABLE_MESSAGE_TITLE" value1="${gmailMessageTitle}" />
 
 		<execute function="Pause" locator1="3000" />
 
-		<execute function="AssertTextEquals" locator1="SOGmail#GMAIL_HTML_MODE_MESSAGE_TITLE" value1="${gmailMessageTitle}" />
-		<execute function="AssertTextEquals#assertPartialText" locator1="SOGmail#GMAIL_HTML_MODE_MESSAGE_BODY_GREETING" value1="${gmailMessageBody}" />
-		<execute function="AssertTextEquals#assertPartialText" locator1="SOGmail#GMAIL_HTML_MODE_MESSAGE_BODY" value1="${gmailMessageBody}" />
-		<execute function="AssertTextEquals#assertPartialText" locator1="SOGmail#GMAIL_HTML_MODE_MESSAGE_BODY_CLOSING" value1="${gmailMessageBody}" />
+		<execute function="AssertTextEquals" locator1="Gmail#GMAIL_HTML_MODE_MESSAGE_TITLE" value1="${gmailMessageTitle}" />
+		<execute function="AssertTextEquals#assertPartialText" locator1="Gmail#GMAIL_HTML_MODE_MESSAGE_BODY_GREETING" value1="${gmailMessageBody}" />
+		<execute function="AssertTextEquals#assertPartialText" locator1="Gmail#GMAIL_HTML_MODE_MESSAGE_BODY" value1="${gmailMessageBody}" />
+		<execute function="AssertTextEquals#assertPartialText" locator1="Gmail#GMAIL_HTML_MODE_MESSAGE_BODY_CLOSING" value1="${gmailMessageBody}" />
 
 		<if>
 			<isset var="gmailMesssageAttachment" />
 			<then>
 				<var name="key_gmailMesssageAttachment" value="${gmailMesssageAttachment}" />
 
-				<execute function="AssertTextEquals" locator1="SOGmail#GMAIL_HTML_MODE_MESSAGE_BODY_ATTACHMENT" value1="${gmailMesssageAttachment}" />
+				<execute function="AssertTextEquals" locator1="Gmail#GMAIL_HTML_MODE_MESSAGE_BODY_ATTACHMENT" value1="${gmailMesssageAttachment}" />
 			</then>
 		</if>
 	</command>
@@ -212,18 +212,18 @@
 	<command name="viewMailNotPresent">
 		<var name="key_gmailAssetType" value="${gmailAssetType}" />
 
-		<execute function="AssertElementNotPresent" locator1="SOGmail#GMAIL_HTML_MODE_MAIL_TABLE_MESSAGE_TITLE" />
+		<execute function="AssertElementNotPresent" locator1="Gmail#GMAIL_HTML_MODE_MAIL_TABLE_MESSAGE_TITLE" />
 	</command>
 
 	<command name="viewSocialOfficeMessageMail">
-		<execute function="AssertClick#assertPartialTextClickAt" locator1="SOGmail#GMAIL_HTML_MODE_MAIL_TABLE_MESSAGE_TITLE_SOCIAL_OFFICE_MESSAGE" value1="${senderName} sent you a message on Liferay" />
+		<execute function="AssertClick#assertPartialTextClickAt" locator1="Gmail#GMAIL_HTML_MODE_MAIL_TABLE_MESSAGE_TITLE_SOCIAL_OFFICE_MESSAGE" value1="${senderName} sent you a message on Liferay" />
 		<execute function="Pause" locator1="3000" />
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="SOGmail#GMAIL_HTML_MODE_MESSAGE_BODY_SOCIAL_OFFICE_MESSAGE_SUMMARY" value1="${senderName} sent you a message." />
-		<execute function="AssertTextEquals#assertPartialText" locator1="SOGmail#GMAIL_HTML_MODE_MESSAGE_BODY_SOCIAL_OFFICE_MESSAGE_SUBJECT" value1="${messageSubject}" />
-		<execute function="AssertTextEquals#assertPartialText" locator1="SOGmail#GMAIL_HTML_MODE_MESSAGE_BODY_SOCIAL_OFFICE_MESSAGE_BODY" value1="${messageBody}" />
+		<execute function="AssertTextEquals#assertPartialText" locator1="Gmail#GMAIL_HTML_MODE_MESSAGE_BODY_SOCIAL_OFFICE_MESSAGE_SUMMARY" value1="${senderName} sent you a message." />
+		<execute function="AssertTextEquals#assertPartialText" locator1="Gmail#GMAIL_HTML_MODE_MESSAGE_BODY_SOCIAL_OFFICE_MESSAGE_SUBJECT" value1="${messageSubject}" />
+		<execute function="AssertTextEquals#assertPartialText" locator1="Gmail#GMAIL_HTML_MODE_MESSAGE_BODY_SOCIAL_OFFICE_MESSAGE_BODY" value1="${messageBody}" />
 
-		<execute function="Click" locator1="SOGmail#GMAIL_HTML_MODE_MESSAGE_BODY_SOCIAL_OFFICE_MESSAGE_LINK" />
+		<execute function="Click" locator1="Gmail#GMAIL_HTML_MODE_MESSAGE_BODY_SOCIAL_OFFICE_MESSAGE_LINK" />
 
 		<execute function="SelectWindow" locator1="SOMessages#MESSAGES_POP_UP_WINDOW" />
 

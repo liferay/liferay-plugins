@@ -2011,11 +2011,6 @@
 			<var name="gmailMessageTitle" value="Calendar: Event Notification for &quot;${eventTitle}&quot;" />
 		</execute>
 
-		<execute macro="SOGmail#tearDown">
-			<var name="userEmailAddress" property-value="email.address.2" />
-			<var name="userPassword" value="email.password.2" />
-		</execute>
-
 		<execute function="Open" locator1="http://localhost:8080" />
 	</command>
 </definition>

@@ -2357,11 +2357,6 @@
 
 		<var locator="SOGmail#GMAIL_HTML_MODE_MESSAGE_BODY_LINK_1" name="blogEntryURL" />
 
-		<execute macro="SOGmail#tearDown">
-			<var name="userEmailAddress" property-value="email.address.2" />
-			<var name="userPassword" property-value="email.address.2" />
-		</execute>
-
 		<execute function="Open" locator1="${blogEntryURL}" />
 
 		<execute function="Pause" locator1="1000" />
@@ -2469,11 +2464,6 @@
 			<var name="gmailMessageBodyClosing" value="Sincerely" />
 			<var name="gmailMessageBodyGreeting" value="Dear {adminName}," />
 			<var name="gmailMessageTitle" value="Inappropriate Content Flagged in ${siteName}" />
-		</execute>
-
-		<execute macro="SOGmail#tearDown">
-			<var name="userEmailAddress" property-value="email.address.2" />
-			<var name="userPassword" value="email.password.2" />
 		</execute>
 
 		<execute function="Open" locator1="http://localhost:8080" />

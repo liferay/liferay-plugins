@@ -2623,11 +2623,6 @@
 			<var name="gmailMessageTitle" value="[Wiki ${wikiNodeName}] Updated Page: ${wikiFrontPageTitle}" />
 		</execute>
 
-		<execute macro="SOGmail#tearDown">
-			<var name="userEmailAddress" property-value="email.address.2" />
-			<var name="userPassword" property-value="email.address.2" />
-		</execute>
-
 		<execute function="Open" locator1="http://localhost:8080" />
 	</command>
 

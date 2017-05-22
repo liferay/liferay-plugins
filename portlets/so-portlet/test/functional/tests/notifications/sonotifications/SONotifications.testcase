@@ -5334,10 +5334,6 @@
 
 		<execute function="AssertTextNotPresent" value1="${userName1} sent you a message on Liferay" />
 
-		<execute macro="SOGmail#tearDown">
-			<var name="userEmailAddress" property-value="email.address.3" />
-			<var name="userPassword" property-value="email.password.3" />
-		</execute>
 
 		<execute macro="SOPage#gotoPG">
 			<var name="pageName" value="${pageName}" />
@@ -5371,11 +5367,6 @@
 		<execute macro="SOGmail#gotoHtmlMode" />
 
 		<execute function="AssertTextNotPresent" value1="${userName2} sent you a message on Liferay" />
-
-		<execute macro="SOGmail#tearDown">
-			<var name="userEmailAddress" property-value="email.address.2" />
-			<var name="userPassword" property-value="email.password.2" />
-		</execute>
 	</command>
 
 	<command name="ViewNoMessageNotificationViaWebsite" priority="4">
