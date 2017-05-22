@@ -1,0 +1,81 @@
+<html>
+<head>
+<title>SORss</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">SORss</td></tr>
+</thead>
+<tbody>
+<tr>
+	<td>SUCCESS_MESSAGE</td>
+	<td>//div[@class='alert alert-success']</td>
+	<td></td>
+</tr>
+<!---->
+<!--RSS-->
+<tr>
+	<td>RSS_PORTLET_TITLE</td>
+	<td>//header[contains(.,'RSS')]//h1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>RSS_OPTIONS</td>
+	<td>//header[contains(.,'RSS')]//menu//a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>RSS_FEED_TITLE</td>
+	<td>//div[contains(.,'${key_feedTitle}')]/div[@class='feed-title']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>RSS_FEED_PUBLISHED_DATE</td>
+	<td>//div[contains(.,'${key_feedTitle}')]/div[contains(@class,'feed-published-date')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>RSS_FEED_DESCRIPTION</td>
+	<td>//div[contains(.,'${key_feedTitle}')]/div[@class='feed-description']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>RSS_FEED_IMAGE</td>
+	<td>//a[contains(@title,'${key_feedTitle}')]/img</td>
+	<td></td>
+</tr>
+<tr>
+	<td>RSS_FEED_ENTRY_TITLE_INCREMENT</td>
+	<td>xPath=(//div[contains(.,'${key_feedTitle}')]/div[@class='feed-entries']/div[@class='feed-entry']/span[@class='feed-entry-title'])[${key_feedEntryNumber}]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>RSS_FEED_ENTRY_EXPAND_BUTTON_INCREMENT</td>
+	<td>xPath=(//div[contains(.,'${key_feedTitle}')]/div[@class='feed-entries']/div[@class='feed-entry']/img)[${key_feedEntryNumber}]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>RSS_FEED_ENTRY_DATE_AND_TIME_INCREMENT</td>
+	<td>xPath=(//div[contains(.,'${key_feedTitle}')]/div[@class='feed-entries']/div[@class='feed-entry']/div[contains(@class,'feed-entry-content')]/div[@class='feed-date'])[${key_feedEntryNumber}]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>RSS_FEED_ENTRY_AUTHOR_INCREMENT</td>
+	<td>xPath=(//div[contains(.,'${key_feedTitle}')]/div[@class='feed-entries']/div[@class='feed-entry']/div[contains(@class,'feed-entry-content')]/span[@class='feed-entry-author'])[${key_feedEntryNumber}]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>RSS_FEED_ENTRY_CONTENT_INCREMENT</td>
+	<td>xPath=(//div[contains(.,'${key_feedTitle}')]/div[@class='feed-entries']/div[@class='feed-entry']/div[contains(@class,'feed-entry-content')])[${key_feedEntryNumber}]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>RSS_FEED_ENTRY_CONTENT_READ_MORE_INCREMENT</td>
+	<td>xPath=(//div[contains(.,'${key_feedTitle}')]/div[@class='feed-entries']/div[@class='feed-entry']/div[contains(@class,'feed-entry-content')]/a)[${key_feedEntryNumber}]</td>
+	<td></td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

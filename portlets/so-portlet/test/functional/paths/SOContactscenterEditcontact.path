@@ -1,0 +1,34 @@
+<html>
+<head>
+<title>SOContactscenterEditcontact</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">SOContactscenterEditcontact</td></tr>
+</thead>
+<tbody>
+<tr>
+	<td>NAME_FIELD</td>
+	<td>//input[contains(@id,'fullName')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>EMAIL_ADDRESS_FIELD</td>
+	<td>//input[contains(@id,'emailAddress')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>COMMENTS_FIELD</td>
+	<td>//textarea[contains(@id,'comments')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SAVE_BUTTON</td>
+	<td>//button[contains(.,'Save')]</td>
+	<td></td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

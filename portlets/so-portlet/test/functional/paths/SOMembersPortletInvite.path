@@ -1,0 +1,82 @@
+<html>
+<head>
+<title>SOMembersPortletInvite</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">SOMembersPortletInvite</td></tr>
+</thead>
+<tbody>
+<tr>
+	<td>SEND_INVITATIONS_BUTTON</td>
+	<td>//button[contains(.,'Send Invitations')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SUCCESS_MESSAGE</td>
+	<td>//div[@class='portlet-msg-success']</td>
+	<td></td>
+</tr>
+<!---->
+<!--FIND_MEMBERS-->
+<tr>
+	<td>FIND_MEMBERS_SEARCH_FIELD</td>
+	<td>//input[contains(@class,'invite-user-search')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>FIND_MEMBERS_SEARCH</td>
+	<td>//div[@class='search']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>FIND_MEMBERS_USER</td>
+	<td>//div[contains(@class,'user') and contains(.,'${key_userName}')]/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>FIND_MEMBERS_USER_PENDING</td>
+	<td>//div[contains(@class,'pending-member-request')]/span[contains(.,'${key_userName}')]</td>
+	<td></td>
+</tr>
+<!---->
+<!--MEMBERS_INVITE-->
+<tr>
+	<td>MEMBERS_INVITE_LIST</td>
+	<td>//div[@class='user-invited']/div/div[contains(.,'${key_userName}')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>MEMBERS_INVITE_VIEW_MORE_LINK</td>
+	<td>//div[@class='more-results']/a</td>
+	<td></td>
+</tr>
+<!---->
+<!--INVITE_BY_EMAIL-->
+<tr>
+	<td>INVITE_BY_EMAIL_FIELD</td>
+	<td>//input[@id='new-member-email-address']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>INVITE_BY_EMAIL_ADD_EMAIL_ADDRESS_BUTTON</td>
+	<td>//input[@value='Add Email Address']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>INVITE_BY_EMAIL_EMAIL_ADDRESS</td>
+	<td>//div[@data-emailaddress='${key_userEmailAddress}']</td>
+	<td></td>
+</tr>
+<!---->
+<!--INVITE_TO_ROLE-->
+<tr>
+	<td>INVITE_TO_ROLE_SELECT</td>
+	<td>//select[contains(@name,'roleId')]</td>
+	<td></td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

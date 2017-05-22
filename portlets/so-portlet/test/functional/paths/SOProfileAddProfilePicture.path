@@ -1,0 +1,24 @@
+<html>
+<head>
+<title>SOProfileAddProfilePicture</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">SOProfileAddProfilePicture</td></tr>
+</thead>
+<tbody>
+<tr>
+	<td>UPLOAD_IMAGE_FIELD</td>
+	<td>//input[@id='_2_fileName']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SAVE_BUTTON</td>
+	<td>//button[contains(.,'Save')]</td>
+	<td></td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

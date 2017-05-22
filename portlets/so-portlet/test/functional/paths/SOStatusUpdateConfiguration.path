@@ -1,0 +1,41 @@
+<html>
+<head>
+<title>SOStatusUpdateConfiguration</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">SOStatusUpdateConfiguration</td></tr>
+</thead>
+<tbody>
+<tr>
+	<td>CLOSE_BUTTON</td>
+	<td>//button[contains(@class,'btn close')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>CONFIGURATION_IFRAME</td>
+	<td>//iframe[contains(@id,'_configurationIframeDialog')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SUCCESS_MESSAGE</td>
+	<td>//div[contains(@class,'alert alert-success')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SAVE_BUTTON</td>
+	<td>//button[contains(.,'Save')]</td>
+	<td>Save</td>
+</tr>
+<!---->
+<!--DISPLAY_SETTINGS-->
+<tr>
+	<td>DISPLAY_SETTINGS_DISPLAY_MOST_RECENT_STATUS_CHECKBOX</td>
+	<td>//input[@id='_86_showStatusCheckbox']</td>
+	<td></td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

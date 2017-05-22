@@ -1,0 +1,29 @@
+<html>
+<head>
+<title>SOProfileAddSocialNetwork</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">SOProfileAddSocialNetwork</td></tr>
+</thead>
+<tbody>
+<tr>
+	<td>FACEBOOK_FIELD</td>
+	<td>//input[contains(@id,'facebookSn')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>TWITTER_FIELD</td>
+	<td>//input[contains(@id,'twitterSn')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SAVE_BUTTON</td>
+	<td>//button[contains(.,'Save')]</td>
+	<td></td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

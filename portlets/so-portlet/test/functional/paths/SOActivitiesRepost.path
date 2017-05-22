@@ -1,0 +1,39 @@
+<html>
+<head>
+<title>SOActivitiesRepost</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">SOActivitiesRepost</td></tr>
+</thead>
+<tbody>
+<tr>
+	<td>REPOST_IFRAME</td>
+	<td>//iframe[contains(@id,'soportlet_Dialog_iframe')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>HEADER</td>
+	<td>//div[@class='repost-header']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>MICROBLOGS_ENTRY_AUTHOR_NAME</td>
+	<td>//div[@class='activity-user-name']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>MICROBLOGS_ENTRY_CONTENT</td>
+	<td>//div[@class='activity-action']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>REPOST_BUTTON</td>
+	<td>//button[contains(.,'Repost')]</td>
+	<td></td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

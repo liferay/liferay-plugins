@@ -1,0 +1,103 @@
+<html>
+<head>
+<title>SOAnnouncementsConfiguration</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">SOAnnouncementsConfiguration</td></tr>
+</thead>
+<tbody>
+<tr>
+	<td>CONFIGURATION_IFRAME</td>
+	<td>//iframe[contains(@id,'_configurationIframeDialog')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SUCCESS_MESSAGE</td>
+	<td>//div[contains(@class,'alert alert-success')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SAVE_BUTTON</td>
+	<td>//button[contains(.,'Save')]</td>
+	<td>Save</td>
+</tr>
+<!---->
+<!--DISPLAY_SETTINGS-->
+<tr>
+	<td>DISPLAY_SETTINGS_ENTRIES_TO_DISPLAY_PER_PAGE_SELECT</td>
+	<td>//select[@id='_86_pageDelta']</td>
+	<td></td>
+</tr>
+<!---->
+<!--ANNOUNCEMENTS_DISPLAYED-->
+<tr>
+	<td>ANNOUNCEMENTS_DISPLAYED_CUSTOMIZE_ANNOUNCEMENTS_DISPLAYED_CHECKBOX</td>
+	<td>//input[@id='_86_customizeAnnouncementsDisplayedCheckbox']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ANNOUNCEMENTS_DISPLAYED_SITES_TAB</td>
+	<td>//a[contains(.,'Sites')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ANNOUNCEMENTS_DISPLAYED_ROLES_TAB</td>
+	<td>//a[contains(.,'Roles')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ANNOUNCEMENTS_DISPLAYED_DISPLAYING_SITES_SELECT</td>
+	<td>//select[@id='_86_currentScopeGroupIds']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ANNOUNCEMENTS_DISPLAYED_DISPLAYING_SITES_SELECT_OPTION</td>
+	<td>//select[@id='_86_currentScopeGroupIds']/option</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ANNOUNCEMENTS_DISPLAYED_AVAILABLE_SITES_SELECT</td>
+	<td>//select[@id='_86_availableScopeGroupIds']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ANNOUNCEMENTS_DISPLAYED_DISPLAYING_ROLES_SELECT</td>
+	<td>//select[@id='_86_currentScopeRoleIds']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ANNOUNCEMENTS_DISPLAYED_DISPLAYING_ROLES_SELECT_OPTION</td>
+	<td>//select[@id='_86_currentScopeRoleIds']/option</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ANNOUNCEMENTS_DISPLAYED_AVAILABLE_ROLES_SELECT</td>
+	<td>//select[@id='_86_availableScopeRoleIds']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ANNOUNCEMENTS_DISPLAYED_MOVE_SITES_FROM_DISPLAYING_TO_AVAILABLE_BUTTON</td>
+	<td>//div[@id='_86_scopeGroupIdsBoxes']//button[@title='Move selected items from Displaying to Available.']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ANNOUNCEMENTS_DISPLAYED_MOVE_SITES_FROM_AVAILABLE_TO_DISPLAYING_BUTTON</td>
+	<td>//div[@id='_86_scopeGroupIdsBoxes']//button[@title='Move selected items from Available to Displaying.']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ANNOUNCEMENTS_DISPLAYED_MOVE_ROLES_FROM_DISPLAYING_TO_AVAILABLE_BUTTON</td>
+	<td>//div[@id='_86_scopeRoleIdsBoxes']//button[@title='Move selected items from Displaying to Available.']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ANNOUNCEMENTS_DISPLAYED_MOVE_ROLES_FROM_AVAILABLE_TO_DISPLAYING_BUTTON</td>
+	<td>//div[@id='_86_scopeRoleIdsBoxes']//button[@title='Move selected items from Available to Displaying.']</td>
+	<td></td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

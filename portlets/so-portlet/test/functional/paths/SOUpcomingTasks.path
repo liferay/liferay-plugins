@@ -1,0 +1,39 @@
+<html>
+<head>
+<title>SOUpcomingTasks</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">SOUpcomingTasks</td></tr>
+</thead>
+<tbody>
+<tr>
+	<td>TASK_PORTLET_TITLE</td>
+	<td>//h1[@class='portlet-title'][contains(.,'Upcoming Tasks')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>TASK_DESCRIPTION_NORMAL</td>
+	<td>xpath=(//li[@class='tasks-title normal']/a)[contains(.,'${key_taskDescription}')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>TASK_DESCRIPTION_HIGH</td>
+	<td>xpath=(//li[@class='tasks-title high']/a)[contains(.,'${key_taskDescription}')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>TASK_DESCRIPTION_LOW</td>
+	<td>xpath=(//li[@class='tasks-title low']/a)[contains(.,'${key_taskDescription}')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>VIEW_ALL_TASKS_LINK</td>
+	<td>//div[@class='view-all-tasks']/a</td>
+	<td></td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

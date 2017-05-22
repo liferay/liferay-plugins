@@ -1,0 +1,44 @@
+<html>
+<head>
+<title>SOProfileAddWebsite</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">SOProfileAddWebsite</td></tr>
+</thead>
+<tbody>
+<tr>
+	<td>URL_FIELD</td>
+	<td>xpath=(//input[contains(@id,'websiteUrl')])[${key_row}]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>TYPE_SELECT</td>
+	<td>xpath=(//select[contains(@id,'websiteType')])[${key_row}]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>PRIMARY_RADIO_BUTTON</td>
+	<td>xpath=(//input[contains(@id,'websitePrimary')])[${key_row}]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ADD_ROW_BUTTON</td>
+	<td>xpath=(//button[contains(@class,'add-row')])[${key_row}]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>DELETE_ROW_BUTTON</td>
+	<td>xpath=(//button[contains(@class,'delete-row')])[${key_row}]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SAVE_BUTTON</td>
+	<td>//button[contains(.,'Save')]</td>
+	<td></td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

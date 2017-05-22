@@ -1,0 +1,386 @@
+<html>
+<head>
+<title>SOContactscenter</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">SOContactscenter</td></tr>
+</thead>
+<tbody>
+<tr>
+	<td>SUCCESS_MESSAGE</td>
+	<td>//span[@class='alert alert-success']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>CONNECTION_REQUESTED_MESSAGE</td>
+	<td>//span[contains(@class,'disabled')]/span[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>FOLLOWING_MESSAGE</td>
+	<td>//span[contains(@class,'following')]/span[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>BLOCKED_MESSAGE</td>
+	<td>//span[contains(@class,'block')]/span[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ADD_CONTACT_BUTTON</td>
+	<td>//button[contains(@id,'addContact')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>CONNECT_BUTTON</td>
+	<td>//button[contains(@id,'addConnection')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>FOLLOW_BUTTON</td>
+	<td>//button[contains(@id,'follow')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>BLOCK_BUTTON</td>
+	<td>//button[contains(@id,'block')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>MESSAGE_BUTTON</td>
+	<td>//button[contains(@id,'sendMessage')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>VCARD_BUTTON</td>
+	<td>//button[contains(@id,'export')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>DISCONNECT_BUTTON</td>
+	<td>//button[contains(@id,'removeConnection')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>UNFOLLOW_BUTTON</td>
+	<td>//button[contains(@id,'unfollow')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>UNBLOCK_BUTTON</td>
+	<td>//button[contains(@id,'unblock')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>EDIT_BUTTON</td>
+	<td>//button[contains(@id,'edit')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>DELETE_BUTTON</td>
+	<td>//button[contains(@id,'delete')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>CONNECTIONS_LINK</td>
+	<td>//div[contains(@class,'contacts-count connections')]/div/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>FOLLOWING_LINK</td>
+	<td>//div[contains(@class,'contacts-count followings')]/div/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>FOLLOWERS_LINK</td>
+	<td>//div[contains(@class,'contacts-count followers')]/div/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>CONTACTS_LINK</td>
+	<td>//div[contains(@class,'contacts-count contacts')]/div/a</td>
+	<td></td>
+</tr>
+<!---->
+<!--CONTACTS_LIST-->
+<tr>
+	<td>CONTACTS_LIST_ALL_CHECKBOX</td>
+	<td>//input[contains(@id,'contactsportlet_checkAllCheckbox')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>CONTACTS_LIST_FILTER</td>
+	<td>//select[contains(@id,'contactsportlet_filterBy')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>CONTACTS_LIST_SEARCH</td>
+	<td>//input[contains(@id,'contactsportlet_name')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>CONTACTS_LIST_CHECKBOX</td>
+	<td>//div[contains(.,'${key_userListName}')]/div[@class='lfr-contact-checkbox']/input</td>
+	<td></td>
+</tr>
+<tr>
+	<td>CONTACTS_LIST_NAME</td>
+	<td>//div[contains(@class,'lfr-contact-name')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>CONTACTS_LIST_EMAIL</td>
+	<td>//div[contains(@class,'lfr-contact-extra')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>CONTACTS_LIST_EMPTY</td>
+	<td>//div[@class='empty']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>CONTACTS_LIST_VIEW_MORE</td>
+	<td>//a[contains(.,'View More')]</td>
+	<td></td>
+</tr>
+<!---->
+<!--SELECTED_USERS_LIST-->
+<tr>
+	<td>SELECTED_USERS_LIST_THUMB</td>
+	<td>//div[contains(@id,'selectedUsersView') and contains(.,'${key_userListName}')]//div[contains(@class,'lfr-contact-thumb')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SELECTED_USERS_LIST_NAME</td>
+	<td>//div[contains(@id,'selectedUsersView') and contains(.,'${key_userListName}')]//div[contains(@class,'lfr-contact-name')]/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SELECTED_USERS_LIST_EMAIL</td>
+	<td>//div[contains(@id,'selectedUsersView') and contains(.,'${key_userListName}')]//div[contains(@class,'lfr-contact-extra')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SELECTED_USERS_LIST_CONNECTION_REQUESTED_MESSAGE</td>
+	<td>//div[contains(@id,'selectedUsersView') and contains(.,'${key_userListName}')]//div[contains(@class,'social-relations')]//span[contains(.,'Connection Requested')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SELECTED_USERS_LIST_CONNECTED_MESSAGE</td>
+	<td>//div[contains(@id,'selectedUsersView') and contains(.,'${key_userListName}')]//div[contains(@class,'social-relations')]//span[contains(.,'Connected')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SELECTED_USERS_LIST_FOLLOWING_MESSAGE</td>
+	<td>//div[contains(@id,'selectedUsersView') and contains(.,'${key_userListName}')]//div[contains(@class,'social-relations')]//span[contains(.,'Following')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SELECTED_USERS_LIST_BLOCKED_MESSAGE</td>
+	<td>//div[contains(@id,'selectedUsersView') and contains(.,'${key_userListName}')]//div[contains(@class,'social-relations')]//span[contains(.,'Blocked')]</td>
+	<td></td>
+</tr>
+<!---->
+<!--USER_DETAILS-->
+<tr>
+	<td>USER_DETAILS_PROFILE_PICTURE</td>
+	<td>//img[@alt='${key_userName}']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>USER_DETAILS_DEFAULT_PROFILE_PICTURE</td>
+	<td>//img[contains(@alt,'${key_userName}') and contains(@src,'img_id=0')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>USER_DETAILS_NAME</td>
+	<td>//div[contains(@class,'contacts-profile')]/div/div[2]/div/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>USER_DETAILS_EMAIL</td>
+	<td>//div[contains(@class,'contacts-profile')]/div/div[2]/div[3]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>USER_DETAILS_INTRODUCTION_TITLE</td>
+	<td>//div[@data-title='Introduction']/h3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>USER_DETAILS_INTRODUCTION_CONTENT</td>
+	<td>//div[@data-title='Introduction']/ul/li</td>
+	<td></td>
+</tr>
+<tr>
+	<td>USER_DETAILS_PHONE_NUMBERS_TITLE</td>
+	<td>//div[@data-title='Phone Numbers']/h3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>USER_DETAILS_PHONE_NUMBERS_CONTENT</td>
+	<td>//div[@data-title='Phone Numbers']/ul/li</td>
+	<td></td>
+</tr>
+<tr>
+	<td>USER_DETAILS_EMAIL_ADDRESS_TITLE</td>
+	<td>//div[@data-title='Additional Email Addresses']/h3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>USER_DETAILS_EMAIL_ADDRESS_CONTENT</td>
+	<td>//div[@data-title='Additional Email Addresses']/ul/li</td>
+	<td></td>
+</tr>
+<tr>
+	<td>USER_DETAILS_INSTANT_MESSENGER_TITLE</td>
+	<td>//div[@data-title='Instant Messenger']/h3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>USER_DETAILS_INSTANT_MESSENGER_AIM_CONTENT</td>
+	<td>//div[@data-title='Instant Messenger']/ul/li[contains(.,'AIM')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>USER_DETAILS_INSTANT_MESSENGER_ICQ_CONTENT</td>
+	<td>//div[@data-title='Instant Messenger']/ul/li[contains(.,'ICQ')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>USER_DETAILS_INSTANT_MESSENGER_JABBER_CONTENT</td>
+	<td>//div[@data-title='Instant Messenger']/ul/li[contains(.,'Jabber')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>USER_DETAILS_INSTANT_MESSENGER_MSN_CONTENT</td>
+	<td>//div[@data-title='Instant Messenger']/ul/li[contains(.,'msn')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>USER_DETAILS_INSTANT_MESSENGER_SKYPE_CONTENT</td>
+	<td>//div[@data-title='Instant Messenger']/ul/li[contains(.,'Skype')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>USER_DETAILS_INSTANT_MESSENGER_YM_CONTENT</td>
+	<td>//div[@data-title='Instant Messenger']/ul/li[contains(.,'ym')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>USER_DETAILS_ADDRESS_TITLE</td>
+	<td>//div[@data-title='Addresses']/h3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>USER_DETAILS_ADDRESS_CONTENT</td>
+	<td>//div[@data-title='Addresses']/ul/li</td>
+	<td></td>
+</tr>
+<tr>
+	<td>USER_DETAILS_WEBSITES_TITLE</td>
+	<td>//div[@data-title='Websites']/h3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>USER_DETAILS_WEBSITES_CONTENT</td>
+	<td>//div[@data-title='Websites']/ul/li</td>
+	<td></td>
+</tr>
+<tr>
+	<td>USER_DETAILS_SOCIAL_NETWORK_TITLE</td>
+	<td>//div[@data-title='Social Network']/h3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>USER_DETAILS_SOCIAL_NETWORK_FACEBOOK_CONTENT</td>
+	<td>//div[@data-title='Social Network']/ul/li[contains(.,'Facebook')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>USER_DETAILS_SOCIAL_NETWORK_TWITTER_CONTENT</td>
+	<td>//div[@data-title='Social Network']/ul/li[contains(.,'Twitter')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>USER_DETAILS_SMS_TITLE</td>
+	<td>//div[@data-title='SMS']/h3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>USER_DETAILS_SMS_CONTENT</td>
+	<td>//div[@data-title='SMS']/ul/li</td>
+	<td></td>
+</tr>
+<tr>
+	<td>USER_DETAILS_PROJECTS_TITLE</td>
+	<td>//div[@data-title='Projects']/h3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>USER_DETAILS_PROJECTS_DATES</td>
+	<td>//div[@class='project-date property-list']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>USER_DETAILS_PROJECTS_DESCRIPTION</td>
+	<td>//div[@class='project-description property-list']</td>
+	<td></td>
+</tr>
+<!---->
+<!--CONTACT_DETAILS-->
+<tr>
+	<td>CONTACT_DETAILS_NAME</td>
+	<td>//div[contains(@class,'external-contact')]/div/div[2]/div</td>
+	<td></td>
+</tr>
+<tr>
+	<td>CONTACT_DETAILS_EMAIL</td>
+	<td>//div[contains(@class,'external-contact')]/div/div[2]/div[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>CONTACT_DETAILS_COMMENTS</td>
+	<td>//div[contains(@class,'external-contact')]/div[2]/div</td>
+	<td></td>
+</tr>
+<!---->
+<!--CONTACTS_LINK-->
+<tr>
+	<td>CONTACTS_LINK_TITLE</td>
+	<td>//h3[@class='header-title']/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>CONTACTS_LINK_CONNECTIONS</td>
+	<td>//div[contains(@class,'contacts-count connections')]/div/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>CONTACTS_LINK_FOLLOWING</td>
+	<td>//div[contains(@class,'contacts-count followings')]/div/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>CONTACTS_LINK_FOLLOWERS</td>
+	<td>//div[contains(@class,'contacts-count followers')]/div/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>CONTACTS_LINK_CONTACTS</td>
+	<td>//div[contains(@class,'contacts-count contacts')]/div/a</td>
+	<td></td>
+</tr>
+<!---->
+<!--SCREENSHOTS-->
+<tr>
+	<td>SCREENSHOTS_CONTACTS_CENTER_VIEW_CONTACT_PNG</td>
+	<td>so/screenshots/contacts/contacts_center_view_contact.png</td>
+	<td></td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

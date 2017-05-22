@@ -1,0 +1,49 @@
+<html>
+<head>
+<title>SOProfileAddInstantMessenger</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">SOProfileAddInstantMessenger</td></tr>
+</thead>
+<tbody>
+<tr>
+	<td>AIM_FIELD</td>
+	<td>//input[contains(@id,'aimSn')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ICQ_FIELD</td>
+	<td>//input[contains(@id,'icqSn')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>JABBER_FIELD</td>
+	<td>//input[contains(@id,'jabberSn')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SKYPE_FIELD</td>
+	<td>//input[contains(@id,'skypeSn')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>WINDOWS_LIVE_MESSENGER_FIELD</td>
+	<td>//input[contains(@id,'msnSn')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>YM_FIELD</td>
+	<td>//input[contains(@id,'ymSn')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SAVE_BUTTON</td>
+	<td>//button[contains(.,'Save')]</td>
+	<td></td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

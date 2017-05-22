@@ -1,0 +1,105 @@
+<html>
+<head>
+<title>SOBookmarks</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">SOBookmarks</td></tr>
+</thead>
+<tbody>
+<tr>
+	<td>SUCCESS_MESSAGE</td>
+	<td>//div[@class='alert alert-success']</td>
+	<td></td>
+</tr>
+<!---->
+<!--BOOKMARKS-->
+<tr>
+	<td>BOOKMARKS_PORTLET_TITLE</td>
+	<td>//header[contains(.,'Bookmarks')]//h1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>BOOKMARKS_OPTIONS</td>
+	<td>//header[contains(.,'Bookmarks')]//menu//a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>BOOKMARKS_ADD_ENTRY_LINK</td>
+	<td>//a[contains(.,'Add Entry')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>BOOKMARKS_ENTRY_LINK</td>
+	<td>//tr[contains(.,'${key_bookmarksEntryName}')]/td/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>BOOKMARKS_ENTRY_ACTIONS</td>
+	<td>//tr[contains(.,'${key_bookmarksEntryName}')]//a[@title='Actions']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>BOOKMARKS_NO_ENTRIES_MESSAGE</td>
+	<td>//div[@class='portlet-body']/form[contains(.,'There are no entries')]</td>
+	<td></td>
+</tr>
+<!---->
+<!--BOOKMARKS_ACTIONS_MENULIST-->
+<tr>
+	<td>BOOKMARKS_ACTIONS_MENULIST_EDIT</td>
+	<td>//ul[contains(@class,'dropdown-menu')]/li[1]/a[contains(.,'Edit')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>BOOKMARKS_ACTIONS_MENULIST_PERMISSIONS</td>
+	<td>//ul[contains(@class,'dropdown-menu')]/li[2]/a[contains(.,'Permissions')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>BOOKMARKS_ACTIONS_MENULIST_SUBSCRIBE</td>
+	<td>//ul[contains(@class,'dropdown-menu')]/li[3]/a[contains(.,'Subscribe')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>BOOKMARKS_ACTIONS_MENULIST_MOVE_TO_THE_RECYCLE_BIN</td>
+	<td>//ul[contains(@class,'dropdown-menu')]/li[4]/a[contains(.,'Move to the Recycle Bin')]</td>
+	<td></td>
+</tr>
+<!---->
+<!--BOOKMARKS_POP_UP-->
+<tr>
+	<td>BOOKMARKS_POP_UP_GOOGLE</td>
+	<td>title=Google</td>
+	<td>Google</td>
+</tr>
+<tr>
+	<td>BOOKMARKS_POP_UP_BING</td>
+	<td>title=Bing</td>
+	<td>Bing</td>
+</tr>
+<tr>
+	<td>BOOKMARKS_POP_UP_WIRED</td>
+	<td>title=WIRED</td>
+	<td>WIRED</td>
+</tr>
+<tr>
+	<td>BOOKMARKS_POP_UP_IMAGE_GOOGLE</td>
+	<td>//input[@aria-label='Google Search']</td>
+	<td>Google</td>
+</tr>
+<tr>
+	<td>BOOKMARKS_POP_UP_IMAGE_BING</td>
+	<td>//div[contains(.,'Bing')]</td>
+	<td>Bing</td>
+</tr>
+<tr>
+	<td>BOOKMARKS_POP_UP_IMAGE_WIRED</td>
+	<td>//i[@aria-label='WIRED Logo']</td>
+	<td></td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

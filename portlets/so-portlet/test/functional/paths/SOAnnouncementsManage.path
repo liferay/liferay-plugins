@@ -1,0 +1,76 @@
+<html>
+<head>
+<title>SOAnnouncementsManage</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">SOAnnouncementsManage</td></tr>
+</thead>
+<tbody>
+<tr>
+	<td>MANAGE_ENTRY_IFRAME</td>
+	<td>//iframe[contains(@id,'soannouncementsportlet_Dialog')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>INFO_MESSAGE</td>
+	<td>//div[contains(@class,'alert') and contains(@class,'alert-info')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>DISTRIBUTION_SCOPE_SELECT</td>
+	<td>//select[contains(@id,'distributionScope')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ADD_ENTRY_BUTTON</td>
+	<td>//button[contains(.,'Add Entry')]</td>
+	<td></td>
+</tr>
+<!---->
+<!--ANNOUNCEMENTS_ENTRY-->
+<tr>
+	<td>ANNOUNCEMENTS_ENTRY_TITLE</td>
+	<td>//tbody[@class='table-data' and contains(.,'${key_entryTitle}')]//td[1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ANNOUNCEMENTS_ENTRY_AUTHOR</td>
+	<td>//tbody[@class='table-data' and contains(.,'${key_entryTitle}')]//td[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ANNOUNCEMENTS_ENTRY_TYPE</td>
+	<td>//tbody[@class='table-data' and contains(.,'${key_entryTitle}')]//td[3]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ANNOUNCEMENTS_ENTRY_MODIFIED_DATE</td>
+	<td>//tbody[@class='table-data' and contains(.,'${key_entryTitle}')]//td[4]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ANNOUNCEMENTS_ENTRY_DISPLAY_DATE</td>
+	<td>//tbody[@class='table-data' and contains(.,'${key_entryTitle}')]//td[5]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ANNOUNCEMENTS_ENTRY_EXPIRATION_DATE</td>
+	<td>//tbody[@class='table-data' and contains(.,'${key_entryTitle}')]//td[6]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ANNOUNCEMENTS_ENTRY_EDIT_LINK</td>
+	<td>//span[@class='action edit-entry']/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ANNOUNCEMENTS_ENTRY_DELETE_LINK</td>
+	<td>//span[@class='action delete-entry']/a</td>
+	<td></td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

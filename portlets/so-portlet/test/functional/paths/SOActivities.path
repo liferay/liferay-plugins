@@ -1,0 +1,258 @@
+<html>
+<head>
+<title>SOActivities</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">SOActivities</td></tr>
+</thead>
+<tbody>
+<!--NAVIGATION-->
+<tr>
+	<td>NAVIGATION_ALL</td>
+	<td>//ul[@class='nav nav-tabs']//a[contains(.,'All')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>NAVIGATION_CONNECTIONS</td>
+	<td>//ul[@class='nav nav-tabs']//a[contains(.,'Connections')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>NAVIGATION_FOLLOWING</td>
+	<td>//ul[@class='nav nav-tabs']/li[3]//a[contains(.,'Following')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>NAVIGATION_MY_SITE</td>
+	<td>//ul[@class='nav nav-tabs']//a[contains(.,'My Sites')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>NAVIGATION_ME</td>
+	<td>//ul[@class='nav nav-tabs']//a[contains(.,'Me')]</td>
+	<td></td>
+</tr>
+<!---->
+<!--NO_ACTIVITIES-->
+<tr>
+	<td>NO_ACTIVITIES</td>
+	<td>//div[@class='no-activities']</td>
+	<td></td>
+</tr>
+<!---->
+<!--ACTIVITIES-->
+<tr>
+	<td>ACTIVITIES_PORTLET_TITLE</td>
+	<td>//h1[@class='portlet-title'][contains(.,'Activities')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ACTIVITIES_OPTIONS</td>
+	<td>//header[contains(.,'Activities')]//menu//a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ACTIVITIES_USER_PICTURE</td>
+	<td>//div[contains(@class,'activity-item')][${key_row}]//img[contains(@alt,'${key_userName}')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ACTIVITIES_USER</td>
+	<td>//div[contains(@class,'activity-item')][${key_row}]//div[@class='activity-user-name']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ACTIVITIES_USER_LINK</td>
+	<td>//div[contains(@class,'activity-item')][${key_row}]//div[@class='activity-user-name']/a[@class='user']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ACTIVITIES_SITE</td>
+	<td>//div[contains(@class,'activity-item')][${key_row}]//div[@class='activity-user-name']/a[@class='group']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ACTIVITIES_TIME_STAMP</td>
+	<td>//div[contains(@class,'activity-item')][${key_row}]//div[@class='activity-time']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ACTIVITIES_ACTION</td>
+	<td>//div[contains(@class,'activity-item')][${key_row}]//div[@class='activity-action']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ACTIVITIES_ACTION_LINK</td>
+	<td>//div[contains(@class,'activity-item')][${key_row}]//div[@class='activity-action']/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ACTIVITIES_TITLE</td>
+	<td>//div[contains(@class,'activity-item')][${key_row}]//div[@class='title']/a/span[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ACTIVITIES_CONTENT</td>
+	<td>//div[contains(@class,'activity-item')][${key_row}]//div[contains(@class,'activity-body')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ACTIVITIES_EVENT_DATE</td>
+	<td>//div[contains(@class,'activity-item')][${key_row}]//div[@class='date']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ACTIVITIES_EVENT_LOCATION</td>
+	<td>//div[contains(@class,'activity-item')][${key_row}]//div[@class='location']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ACTIVITIES_EVENT_DESCRIPTION</td>
+	<td>//div[contains(@class,'activity-item')][${key_row}]//div[@class='description']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ACTIVITIES_DOCUMENT_TITLE_MULTIPLE</td>
+	<td>//div[contains(@class,'activity-item')][${key_row}]//div[@class='activity-subentry'][${key_documentTitleRow}]/span[@class='activity-subentry-title']/a/span[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ACTIVITIES_DOCUMENT_DESCRIPTION_MULTIPLE</td>
+	<td>//div[contains(@class,'activity-item')][${key_row}]//div[@class='activity-subentry'][${key_documentTitleRow}]/span[@class='activity-subentry-body']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ACTIVITIES_DOCUMENT_DOWNLOAD_LINK_MULTIPLE</td>
+	<td>//div[contains(@class,'activity-item')][${key_row}]//div[@class='activity-subentry'][${key_documentTitleRow}]/span[@class='activity-subentry-link']/span/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ACTIVITIES_DOCUMENT_DESCRIPTION_SINGLE</td>
+	<td>//div[contains(@class,'activity-item')][${key_row}]//div[@class='document-content']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ACTIVITIES_DOCUMENT_VERSION</td>
+	<td>//div[contains(@class,'activity-item')][${key_row}]//div[@class='version']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ACTIVITIES_ORIGINAL_MICROBLOGS_AUTHOR_PICTURE</td>
+	<td>//div[contains(@class,'activity-item')][${key_row}]//div[@class='activity-body']//img[contains(@alt,'${key_userName}')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ACTIVITIES_ORIGINAL_MICROBLOGS_CONTENT</td>
+	<td>//div[contains(@class,'activity-item')][${key_row}]//span[@class='microblog-content']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ACTIVITIES_VIEW_MICROBLOGS</td>
+	<td>//div[contains(@class,'activity-item')][${key_row}]//a[contains(.,'View Microblogs')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ACTIVITIES_DOWNLOAD</td>
+	<td>//div[contains(@class,'activity-item')][${key_row}]//a[contains(.,'Download')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ACTIVITIES_REPOST</td>
+	<td>//div[contains(@class,'activity-item')][${key_row}]//a[contains(.,'Repost')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ACTIVITIES_VIEW_CHANGES</td>
+	<td>//div[contains(@class,'activity-item')][${key_row}]//a[contains(.,'View Changes')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ACTIVITIES_COMMENT</td>
+	<td>//div[contains(@class,'activity-item')][${key_row}]//span[@class='action view-comments']/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ACTIVITIES_VIEW_MORE</td>
+	<td>//div[contains(@class,'activity-item')][${key_row}]//span[@class='action toggle']/a[contains(.,'View More')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ACTIVITIES_VIEW_LESS</td>
+	<td>//div[contains(@class,'activity-item')][${key_row}]//span[@class='action toggle']/a[contains(.,'View Less')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ACTIVITIES_COMMENT_FIELD</td>
+	<td>//div[contains(@class,'activity-item')][${key_row}]//input[contains(@class,'field comment-form')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ACTIVITIES_COMMENT_INPUT_FIELD</td>
+	<td>//div[contains(@class,'activity-item')][${key_row}]//input[@class='field comment-form focus']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ACTIVITIES_PORTLET_LOADED</td>
+	<td>//div[@class='social-activities']/div</td>
+	<td></td>
+</tr>
+<!---->
+<!--ACTIVITIES_COMMENT-->
+<tr>
+	<td>ACTIVITIES_COMMENT_USER_PICTURE</td>
+	<td>//div[contains(@class,'activity-item')][${key_row}]//div[@class='comment-entry' and contains(.,'${key_commentContent}')]//img[contains(@alt,'${key_userFirstName}')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ACTIVITIES_COMMENT_USER_NAME</td>
+	<td>//div[contains(@class,'activity-item')][${key_row}]//div[@class='comment-entry' and contains(.,'${key_commentContent}')]//span[@class='user-name']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ACTIVITIES_COMMENT_CONTENT</td>
+	<td>//div[contains(@class,'activity-item')][${key_row}]//div[@class='comment-entry' and contains(.,'${key_commentContent}')]//span[@class='message']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ACTIVITIES_COMMENT_EDIT</td>
+	<td>//div[contains(@class,'activity-item')][${key_row}]//div[@class='comment-entry' and contains(.,'${key_commentContent}')]//span[contains(@class,'edit-comment')]/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ACTIVITIES_COMMENT_DELETE</td>
+	<td>//div[contains(@class,'activity-item')][${key_row}]//div[@class='comment-entry' and contains(.,'${key_commentContent}')]//span[contains(@class,'delete-comment')]/a</td>
+	<td></td>
+</tr>
+<!---->
+<!--SCREENSHOTS-->
+<tr>
+	<td>SCREENSHOTS_ACTIVITIES_DOCUMENT_IMAGE_THUMBNAIL_PNG</td>
+	<td>so/screenshots/activities/activities_document_image_thumbnail.png</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SCREENSHOTS_ACTIVITIES_MICROBLOGS_COMMENT_THUMBNAIL_PNG</td>
+	<td>so/screenshots/activities/activities_microblogs_comment_thumbnail.png</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SCREENSHOTS_ACTIVITIES_TASK_ACTIVITY_PRIORITY_HIGH_PNG</td>
+	<td>so/screenshots/activities/activities_task_activity_priority_high.png</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SCREENSHOTS_ACTIVITIES_TASK_ACTIVITY_PRIORITY_LOW_PNG</td>
+	<td>so/screenshots/activities/activities_task_activity_priority_low.png</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SCREENSHOTS_ACTIVITIES_TASK_ACTIVITY_PRIORITY_NORMAL_PNG</td>
+	<td>so/screenshots/activities/activities_task_activity_priority_normal.png</td>
+	<td></td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

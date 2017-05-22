@@ -1,0 +1,73 @@
+<html>
+<head>
+<title>SOContactsProfile</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">SOContactsProfile</td></tr>
+</thead>
+<tbody>
+<tr>
+	<td>SUCCESS_MESSAGE</td>
+	<td>//span[@class='alert alert-success']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>NO_CONTACTS_MESSAGE</td>
+	<td>//h3[@class='header-title']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>CONNECTED_MESSAGE</td>
+	<td>//span[contains(@class,'action connected')]/span[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>FOLLOWING_MESSAGE</td>
+	<td>//span[contains(@class,'following')]/span[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ADD_CONTACT_BUTTON</td>
+	<td>//button[contains(@id,'addContact')]</td>
+	<td></td>
+</tr>
+<!---->
+<!--CONTACTS_LIST-->
+<tr>
+	<td>CONTACTS_LIST_SEARCH</td>
+	<td>//input[contains(@id,'contactsportlet_name')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>CONTACTS_LIST_NAME</td>
+	<td>xpath=(//div[contains(@class,'lfr-contact-name')]/a)[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>CONTACTS_LIST_EMAIL</td>
+	<td>xpath=(//div[contains(@class,'lfr-contact-extra')])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>CONTACTS_LIST_EMPTY</td>
+	<td>//div[@class='empty']</td>
+	<td></td>
+</tr>
+<!---->
+<!--USER_DETAILS-->
+<tr>
+	<td>USER_DETAILS_NAME</td>
+	<td>xpath=(//div[contains(@class,'lfr-contact-name')]/a)[3]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>USER_DETAILS_EMAIL</td>
+	<td>xpath=(//div[contains(@class,'lfr-contact-extra')])[3]</td>
+	<td></td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

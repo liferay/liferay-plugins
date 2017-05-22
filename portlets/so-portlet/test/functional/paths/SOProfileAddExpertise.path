@@ -1,0 +1,44 @@
+<html>
+<head>
+<title>SOProfileAddExpertise</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">SOProfileAddExpertise</td></tr>
+</thead>
+<tbody>
+<tr>
+	<td>TITLE_FIELD</td>
+	<td>//input[contains(@id,'_2_projectsEntryTitle0')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>START_DATE_MONTH_SELECT</td>
+	<td>//select[contains(@id,'_2_projectsEntryStartDateMonth0')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>START_DATE_YEAR_SELECT</td>
+	<td>//select[contains(@id,'_2_projectsEntryStartDateYear0')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>CURRENT_CHECKBOX</td>
+	<td>//input[@id='_2_projectsEntryCurrent0Checkbox']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>DESCRIPTION_FIELD</td>
+	<td>//textarea[@id='_2_projectsEntryDescription0']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SAVE_BUTTON</td>
+	<td>//button[contains(.,'Save')]</td>
+	<td></td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

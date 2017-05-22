@@ -1,0 +1,135 @@
+<html>
+<head>
+<title>SOSite</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">SOSite</td></tr>
+</thead>
+<tbody>
+<tr>
+	<td>SITE_NAME</td>
+	<td>//h1[@class='site-title']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>JOIN_SITE_BUTTON</td>
+	<td>//a[@id='memberButton' and contains(.,'Join Site')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>REQUEST_MEMBERSHIP_BUTTON</td>
+	<td>//a[@id='memberButton' and contains(.,'Request Membership')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>MEMBERSHIP_REQUESTED_BUTTON</td>
+	<td>//a[@id='memberButton' and contains(.,'Membership Requested')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SUCCESS_MESSAGE</td>
+	<td>//div[@class='alert alert-success']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>PORTLET_TITLE</td>
+	<td>//h1[@class='portlet-title'][contains(.,'${key_portletName}')]</td>
+	<td></td>
+</tr>
+<!---->
+<!--NAVIGATION-->
+<tr>
+	<td>NAVIGATION_HOME</td>
+	<td>//div[@id='navigation']/ul/li[contains(.,'Home')]/a/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>NAVIGATION_CALENDAR</td>
+	<td>//div[@id='navigation']/ul/li[contains(.,'Calendar')]/a/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>NAVIGATION_DOCUMENTS</td>
+	<td>//div[@id='navigation']/ul/li[contains(.,' Documents')]/a/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>NAVIGATION_FORUMS</td>
+	<td>//div[@id='navigation']/ul/li[contains(.,'Forums')]/a/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>NAVIGATION_BLOGS</td>
+	<td>//div[@id='navigation']/ul/li[contains(.,'Blogs')]/a/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>NAVIGATION_WIKI</td>
+	<td>//div[@id='navigation']/ul/li[contains(.,'Wiki')]/a/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>NAVIGATION_MEMBERS</td>
+	<td>//div[@id='navigation']/ul/li[contains(.,'Members')]/a/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>NAVIGATION_PAGE</td>
+	<td>//div[@id='navigation']/ul/li[contains(.,'${key_pageName}')]/a/span</td>
+	<td></td>
+</tr>
+<!---->
+<!--USER_HOME_SITE_NAVIGATION-->
+<tr>
+	<td>USER_HOME_SITE_NAVIGATION_DASHBOARD</td>
+	<td>//div[@id='navigation']/ul/li[contains(.,'Dashboard')]/a/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>USER_HOME_SITE_NAVIGATION_CONTACTS_CENTER</td>
+	<td>//div[@id='navigation']/ul/li[contains(.,'Contacts Center')]/a/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>USER_HOME_SITE_NAVIGATION_MICROBLOGS</td>
+	<td>//div[@id='navigation']/ul/li[contains(.,' Microblogs')]/a/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>USER_HOME_SITE_NAVIGATION_MESSAGES</td>
+	<td>//div[@id='navigation']/ul/li[contains(.,'Messages')]/a/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>USER_HOME_SITE_NAVIGATION_MY_DOCUMENTS</td>
+	<td>//div[@id='navigation']/ul/li[contains(.,'My Documents')]/a/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>USER_HOME_SITE_NAVIGATION_TASKS</td>
+	<td>//div[@id='navigation']/ul/li[contains(.,'Tasks')]/a/span</td>
+	<td></td>
+</tr>
+<!---->
+<!--USER_PROFILE_SITE_NAVIGATION-->
+<tr>
+	<td>USER_PROFILE_SITE_NAVIGATION_PROFILE</td>
+	<td>//div[@id='navigation']/ul/li[contains(.,'Profile')]/a/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>USER_PROFILE_SITE_NAVIGATION_CONTACTS</td>
+	<td>//div[@id='navigation']/ul/li[contains(.,'Contacts')]/a/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>USER_PROFILE_SITE_NAVIGATION_MICROBLOGS</td>
+	<td>//div[@id='navigation']/ul/li[contains(.,' Microblogs')]/a/span</td>
+	<td></td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

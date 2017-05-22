@@ -1,0 +1,167 @@
+<html>
+<head>
+<title>SOAnnouncementsAdd</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">SOAnnouncementsAdd</td></tr>
+</thead>
+<tbody>
+<tr>
+	<td>ADD_ENTRY_IFRAME</td>
+	<td>//iframe[contains(@id,'soannouncementsportlet_Dialog')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>DISTRIBUTION_SCOPE_SELECT</td>
+	<td>//select[contains(@id,'distributionScope')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>TYPE_SELECT</td>
+	<td>//select[contains(@id,'type')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>PRIORITY_SELECT</td>
+	<td>//select[contains(@id,'priority')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>TITLE_FIELD</td>
+	<td>//input[contains(@id,'title')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>URL_FIELD</td>
+	<td>//input[contains(@id,'url')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>TEXT_FORMAT_BUTTON</td>
+	<td>//a[@title='${key_textFormat}']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>CONTENT_FIELD</td>
+	<td>//div[contains(@id,'cke__')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>CONTENT_FIELD_FORMATTED_TEXT</td>
+	<td>//body[contains(@class,'so-announcements-portlet')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>CONTENT_FIELD_IFRAME</td>
+	<td>//div[contains(@id,'cke__')]//iframe</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SAVE_BUTTON</td>
+	<td>//button[contains(.,'Save')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>PREVIEW_BUTTON</td>
+	<td>//button[contains(.,'Preview')]</td>
+	<td></td>
+</tr>
+<!---->
+<!--DISPLAY_DATE-->
+<tr>
+	<td>DISPLAY_DATE_DATE_INPUT</td>
+	<td>//input[contains(@id,'displayDate')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>DISPLAY_DATE_DATE_DAY</td>
+	<td>//input[contains(@id,'displaydateday')] | //input[contains(@id,'displayDateDay')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>DISPLAY_DATE_DATE_MONTH</td>
+	<td>//input[contains(@id,'displaydatemonth')] | //input[contains(@id,'displayDateMonth')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>DISPLAY_DATE_DATE_YEAR</td>
+	<td>//input[contains(@id,'displaydateyear')] | //input[contains(@id,'displayDateYear')] </td>
+	<td></td>
+</tr>
+<tr>
+	<td>DISPLAY_DATE_TIME_INPUT</td>
+	<td>//input[contains(@id,'displayDateTime')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>DISPLAY_DATE_DATE_HOUR</td>
+	<td>//input[contains(@id,'displayDateHour')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>DISPLAY_DATE_DATE_MINUTE</td>
+	<td>//input[contains(@id,'displayDateMinute')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>DISPLAY_DATE_DATE_MERIDIAN</td>
+	<td>//input[contains(@id,'displayDateAmPm')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>DISPLAY_DATE_DISPLAY_IMMEDIATELY_CHECKBOX</td>
+	<td>//input[contains(@id,'fmdisplayDateCheckbox')]</td>
+	<td></td>
+</tr>
+<!---->
+<!--EXPIRATION_DATE-->
+<tr>
+	<td>EXPIRATION_DATE_DATE_INPUT</td>
+	<td>//input[contains(@id,'expirationDate')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>EXPIRATION_DATE_TIME_INPUT</td>
+	<td>//input[contains(@id,'expirationDateTime')]</td>
+	<td></td>
+</tr>
+<!---->
+<!--ANNOUNCEMENTS_PREVIEW-->
+<tr>
+	<td>ANNOUNCEMENTS_PREVIEW_ENTRY_ACTION</td>
+	<td>//div[@class='entry-action']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ANNOUNCEMENTS_PREVIEW_ENTRY_AUTHOR</td>
+	<td>//div[@class='entry-action']/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ANNOUNCEMENTS_PREVIEW_ENTRY_TITLE</td>
+	<td>//div[@class='entry-body']/div[@class='title']/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ANNOUNCEMENTS_PREVIEW_ENTRY_CONTENT</td>
+	<td>//div[@class='entry-content']</td>
+	<td></td>
+</tr>
+<!---->
+<!--SCREENSHOTS-->
+<tr>
+	<td>SCREENSHOTS_ANNOUNCEMENTS_ADD_DISTRUBTION_SCOPE_REQUIRED_PNG</td>
+	<td>so/screenshots/announcements/announcements_add_distribution_scope_required.png</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SCREENSHOTS_ANNOUNCEMENTS_ADD_TITLE_REQUIRED_PNG</td>
+	<td>so/screenshots/announcements/announcements_add_title_required.png</td>
+	<td></td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<html>
+<head>
+<title>SOBlogsEdit</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">SOBlogsEdit</td></tr>
+</thead>
+<tbody>
+<!--CATEGORIZATION-->
+<tr>
+	<td>CATEGORIZATION_TOGGLE</td>
+	<td>//div[@class='accordion-toggle' and contains(.,'Categorization')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>CATEGORIZATION_SELECT_BUTTON</td>
+	<td>//div[contains(@class,'categoriesselector-content')]//button[contains(@title,'${key_vocabularyName}')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>CATEGORIZATION_CATEGORY</td>
+	<td>//div[contains(@class,'categoriesselector-content')]//span[contains(.,'${key_categoryName}')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>CATEGORIZATION_TAGS_FIELD</td>
+	<td>//input[contains(@id,'assetTagNames')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>CATEGORIZATION_TAG</td>
+	<td>//div[contains(@class,'lfr-tags-selector-content')]/ul/li/span/span[contains(.,'${key_tagName}')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>CATEGORIZATION_TAGS_ADD_BUTTON</td>
+	<td>//button[@title='Add Tags']</td>
+	<td></td>
+</tr>
+<!---->
+<!--SELECT_CATEGORIES-->
+<tr>
+	<td>SELECT_CATEGORIES_CATEGORY</td>
+	<td>//div[contains(@class,'lfr-tags-selector-list')]//span[contains(.,'${key_categoryName}')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SELECT_CATEGORIES_CATEGORY_CHECKED</td>
+	<td>//li[contains(@id,'category')]/div[contains(@class,'tree-node-checked') and contains(.,'${key_categoryName}')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SELECT_CATEGORIES_CLOSE_BUTTON</td>
+	<td>//button[contains(@class,'btn close')]</td>
+	<td></td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

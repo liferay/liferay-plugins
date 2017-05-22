@@ -1,0 +1,330 @@
+<html>
+<head>
+<title>SOUserBar</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">SOUserBar</td></tr>
+</thead>
+<tbody>
+<tr>
+	<td>USER_BAR</td>
+	<td>//div[@class='so-portlet-user-bar']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>VISIBLE_PAGE_CONTROLS</td>
+	<td>//body[contains(@class,'show-dockbar')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SOCIAL_OFFICE_LOGO</td>
+	<td>//div[@class='so-portlet-user-bar']/a[@class='so-logo']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>DASHBOARD</td>
+	<td>//a[contains(text(),'Dashboard')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>CONTACT_CENTER</td>
+	<td>//a[contains(text(),'Contacts Center')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>MICROBLOGS</td>
+	<td>//a[contains(text(),'Microblogs')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>MESSAGES</td>
+	<td>//a[contains(text(),'Messages')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>MY_DOCUMENTS</td>
+	<td>//a[contains(text(),'My Documents')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>TASKS</td>
+	<td>//a[contains(text(),'Tasks')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>HOME</td>
+	<td>//a[contains(text(),'Home')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>PLUGINS</td>
+	<td>//a[contains(text(),'Plugins')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>WELCOME</td>
+	<td>//a[contains(text(),'Welcome')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>PAGE_NAME</td>
+	<td>//a[contains(text(),'${key_pageName}')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>GO_TO</td>
+	<td>//li[contains(@class,'go-to')]//input[contains(@class,'search-input')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>NOTIFICATION</td>
+	<td>//li[contains(@class,'user-notifications')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>TOGGLE_DOCKBAR</td>
+	<td>//a[contains(@id,'toggleDockbar')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>EDIT_CONTROLS_NOT_FLAGGED</td>
+	<td>//body[contains(@class,'controls-hidden')] 	</td>
+	<td></td>
+</tr>
+<tr>
+	<td>RESET_CHANGES_MESSAGE</td>
+	<td>//span[@class='page-customization-bar-message']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>RESET_CHANGES_BUTTON</td>
+	<td>//button[contains(.,'Reset Changes')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SUCCESS_MESSAGE</td>
+	<td>//span[@class='portlet-msg-success']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>INFO_MESSAGE</td>
+	<td>//div[@class='alert alert-info']</td>
+	<td></td>
+</tr>
+<!---->
+<!--NOTIFICATION_MENU-->
+<tr>
+	<td>NOTIFICATION_MENU_COUNT</td>
+	<td>//span[contains(@class,'user-notifications-count')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>NOTIFICATION_MENU_NOTIFICATION_NONE_MESSAGE</td>
+	<td>//div[@class='non-actionable']//div[contains(@class,'user-notification')]//div[@class='message'] | //div[@class='nonactionable']//div[contains(@class,'user-notification')]//div[@class='message']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>NOTIFICATION_MENU_NOTIFICATION_ENTRY</td>
+	<td>//div[@class='non-actionable']//li[contains(@class,'user-notification')] | //div[@class='nonactionable']//li[contains(@class,'user-notification')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>NOTIFICATION_MENU_NOTIFICATION_ENTRY_CONTENT</td>
+	<td>//div[@class='non-actionable']//li[contains(@class,'user-notification')]//div[@class='title'] | //div[@class='nonactionable']//li[contains(@class,'user-notification')]//div[@class='title']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>NOTIFICATION_MENU_NOTIFICATION_ENTRY_SUBCONTENT</td>
+	<td>//div[@class='non-actionable']//li[contains(@class,'user-notification')]//div[@class='body'] | //div[@class='nonactionable']//li[contains(@class,'user-notification')]//div[@class='body']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>NOTIFICATION_MENU_NOTIFICATION_ENTRY_SUBCONTENT_MICROBLOGS_COMMENT_TAG_LINK</td>
+	<td>//div[@class='non-actionable']//li[contains(@class,'user-notification')]//div[@class='body' and contains(.,'${key_microblogsEntryCommentContent}')]//a[contains(.,'${key_microblogsEntryCommentTagValue}')] | //div[@class='nonactionable']//li[contains(@class,'user-notification')]//div[@class='body' and contains(.,'${key_microblogsEntryCommentContent}')]//a[contains(.,'${key_microblogsEntryCommentTagValue}')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>NOTIFICATION_MENU_NOTIFICATION_ENTRY_SUBCONTENT_MICROBLOGS_COMMENT_MENTION_LINK</td>
+	<td>//div[@class='non-actionable']//li[contains(@class,'user-notification')]//div[@class='body' and contains(.,'${key_microblogsEntryCommentContent}')]//a[contains(.,'${key_mentionUserName}')] | //div[@class='nonactionable']//li[contains(@class,'user-notification')]//div[@class='body' and contains(.,'${key_microblogsEntryCommentContent}')]//a[contains(.,'${key_mentionUserName}')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>NOTIFICATION_MENU_NOTIFICATION_DROPDOWN_BUTTON</td>
+	<td>//a[@class='dropdown-toggle']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>NOTIFICATION_MENU_NOTIFICATION_UNSUBSCRIBE</td>
+	<td>//a[contains(.,'Unsubscribe')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>NOTIFICATION_MENU_MARK_AS_READ_NOTIFICATIONS_LINK</td>
+	<td>//div[@class='non-actionable']//a[contains(.,'Mark as Read')] | //div[@class='nonactionable']//a[contains(.,'Mark as Read')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>NOTIFICATION_MENU_VIEW_NOTIFICATIONS_LINK</td>
+	<td>//div[@class='non-actionable']//a[contains(.,'Notifications')] | //div[@class='nonactionable']//a[contains(.,'Notifications')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>NOTIFICATION_MENU_REQUEST_NONE_MESSAGE</td>
+	<td>//div[@class='actionable']//div[contains(@class,'user-notification')]//div[@class='message']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>NOTIFICATION_MENU_REQUEST_ENTRY</td>
+	<td>//div[@class='actionable']//li[contains(@class,'user-notification')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>NOTIFICATION_MENU_REQUEST_ENTRY_SENDER</td>
+	<td>//div[@class='actionable']//div[contains(@class,'user-notification')]//div[@class='title']//a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>NOTIFICATION_MENU_REQUEST_ENTRY_CONTENT</td>
+	<td>//div[@class='actionable']//div[contains(@class,'user-notification')]//div[@class='title']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>NOTIFICATION_MENU_REQUEST_ENTRY_SITE_LINK</td>
+	<td>//div[@class='actionable']//div[contains(@class,'user-notification')]//div[@class='title']//a[contains(.,'${key_siteName}')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>NOTIFICATION_MENU_REQUEST_CONFIRM</td>
+	<td>//div[@class='actionable']//a[contains(text(),'Confirm')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>NOTIFICATION_MENU_REQUEST_IGNORE</td>
+	<td>//div[@class='actionable']//a[contains(text(),'Ignore')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>NOTIFICATION_MENU_VIEW_REQUESTS_LINK</td>
+	<td>//div[@class='actionable']//a[contains(.,'Requests')]</td>
+	<td></td>
+</tr>
+<!---->
+<!--GO_TO-->
+<tr>
+	<td>GO_TO_SEARCH_FIELD</td>
+	<td>//li[@class='go-to search-focus']//input[contains(@class,'search-input')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>GO_TO_SITE_CATEGORY_SELECT</td>
+	<td>//select[contains(@id,'soportlet_tabs1')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>GO_TO_SITE_LIST</td>
+	<td>//ul[contains(@class,'site-list')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>GO_TO_SITE_EMPTY</td>
+	<td>//li[@class='empty']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>GO_TO_SITE_NAME</td>
+	<td>//ul[@class='site-list']//span[contains(.,'${key_siteName}')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>GO_TO_SITE_NAME_LINK</td>
+	<td>//ul[@class='site-list']//span/a[.='${key_siteName}']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>GO_TO_SITE_NAME_PRIVATE_PAGES_LINK</td>
+	<td>//ul[@class='site-list']//span[contains(.,'${key_siteName}')]/a[@class='private-pages']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>GO_TO_FAVORITE_SITE_ICON</td>
+	<td>//li[contains(@class,'social-office-enabled')]/span[@class='action favorite']/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>GO_TO_UNFAVORITE_SITE_ICON</td>
+	<td>//li[contains(@class,'social-office-enabled')]/span[@class='action unfavorite']/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>GO_TO_VIEW_ALL</td>
+	<td>//li[@class='more']/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>GO_TO_ADD_SITE_BUTTON</td>
+	<td>//button[contains(.,'Add Site')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>GO_TO_SITES_DIRECTORY_BUTTON</td>
+	<td>//button[contains(.,'Sites Directory')]</td>
+	<td></td>
+</tr>
+<!---->
+<!--SCREENSHOTS-->
+<tr>
+	<td>SCREENSHOTS_USERBAR_NOTIFICATION_MENU_CONNECTION_REQUEST_PNG</td>
+	<td>so/screenshots/userbar/userbar_notification_menu_connection_request.png</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SCREENSHOTS_USERBAR_GO_TO_MENU_ADD_SITE_PRESENT_PNG</td>
+	<td>so/screenshots/userbar/userbar_go_to_menu_add_site_present.png</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SCREENSHOTS_USERBAR_GO_TO_MENU_ADD_SITE_NOT_PRESENT_PNG</td>
+	<td>so/screenshots/userbar/userbar_go_to_menu_add_site_not_present.png</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SCREENSHOTS_USERBAR_GO_TO_MENU_ADD_SITE_SITE_NAME_REQUIRED_PNG</td>
+	<td>so/screenshots/userbar/userbar_go_to_menu_add_site_site_name_required.png</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SCREENSHOTS_USERBAR_GO_TO_MENU_VIEW_ALL_LINK_PNG</td>
+	<td>so/screenshots/userbar/userbar_go_to_menu_view_all_link.png</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SCREENSHOTS_USERBAR_RESET_CHANGES_MESSAGE_PNG</td>
+	<td>so/screenshots/userbar/userbar_reset_changes_message.png</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SCREENSHOTS_USERBAR_USER_PROFILE_PICTURE_IMAGE_1_PNG</td>
+	<td>so/screenshots/userbar/userbar_user_profile_picture_image_1.png</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SCREENSHOTS_USERBAR_USER_PROFILE_PICTURE_IMAGE_2_PNG</td>
+	<td>so/screenshots/userbar/userbar_user_profile_picture_image_2.png</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SCREENSHOTS_USERBAR_USER_PROFILE_PICTURE_IMAGE_3_PNG</td>
+	<td>so/screenshots/userbar/userbar_user_profile_picture_image_3.png</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SCREENSHOTS_USERBAR_USER_WITH_LONG_NAME_PNG</td>
+	<td>so/screenshots/userbar/userbar_user_with_long_name.png</td>
+	<td></td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

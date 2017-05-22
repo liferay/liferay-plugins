@@ -1,0 +1,69 @@
+<html>
+<head>
+<title>SOProfileAddAddress</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">SOProfileAddAddress</td></tr>
+</thead>
+<tbody>
+<tr>
+	<td>STREET_1_FIELD</td>
+	<td>xpath=(//input[contains(@id,'addressStreet1')])[${key_row}]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>COUNTRY_SELECT</td>
+	<td>xpath=(//select[contains(@id,'addressCountry')])[${key_row}]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>REGION_SELECT</td>
+	<td>xpath=(//select[contains(@id,'addressRegion')])[${key_row}]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>TYPE_SELECT</td>
+	<td>xpath=(//select[contains(@id,'addressType')])[${key_row}]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>POSTAL_CODE_FIELD</td>
+	<td>xpath=(//input[contains(@id,'addressZip')])[${key_row}]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>CITY_FIELD</td>
+	<td>xpath=(//input[contains(@id,'addressCity')])[${key_row}]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>PRIMARY_RADIO_BUTTON</td>
+	<td>xpath=(//input[contains(@id,'addressPrimary')])[${key_row}]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>MAILING_CHECKBOX</td>
+	<td>xpath=(//input[contains(@id,'addressMailing0Checkbox')])[${key_row}]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ADD_ROW_BUTTON</td>
+	<td>xpath=(//button[contains(@class,'add-row')])[${key_row}]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>DELETE_ROW_BUTTON</td>
+	<td>xpath=(//button[contains(@class,'delete-row')])[${key_row}]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SAVE_BUTTON</td>
+	<td>//button[contains(.,'Save')]</td>
+	<td></td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

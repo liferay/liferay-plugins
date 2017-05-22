@@ -1,0 +1,109 @@
+<html>
+<head>
+<title>SOUserBarSitesDirectory</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">SOUserBarSitesDirectory</td></tr>
+</thead>
+<tbody>
+<tr>
+	<td>SITE_SEARCH_FIELD</td>
+	<td>//input[contains(@id,'soportlet_dialogKeywords')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SITE_CATEGORY_SELECT</td>
+	<td>//span[@class='sites-tabs']//select</td>
+	<td></td>
+</tr>
+<tr>
+	<td>NEXT_BUTTON</td>
+	<td>//button[contains(@class,'next')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>PREVIOUS_BUTTON</td>
+	<td>//button[contains(@class,'previous')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>EMPTY_INFO_MESSAGE</td>
+	<td>//li[@class='empty']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SITE_LIST</td>
+	<td>//ul[@class='directory-list']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SITE_NAME</td>
+	<td>//ul[@class='directory-list']/li[contains(.,'${key_siteName}')]/span[@class='name']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SITE_NAME_LINK</td>
+	<td>//ul[@class='directory-list']/li[contains(.,'${key_siteName}')]/span[@class='name']/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SITE_NAME_PRIVATE_PAGES_LINK</td>
+	<td>//ul[@class='directory-list']/li[contains(.,'${key_siteName}')]/span[@class='name']/a[@class='private-pages']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SITE_DESCRIPTION</td>
+	<td>//ul[@class='directory-list']/li[contains(.,'${key_siteName}')]/span[@class='description']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>DELETE_SITE_ICON</td>
+	<td>//a[@class='delete-site']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>DELETE_SITE_ICON_DISABLED</td>
+	<td>//a[@class='disabled']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>JOIN_SITE_ICON</td>
+	<td>//a[@class='join-site']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>REQUEST_MEMBERSHIP_ICON</td>
+	<td>//a[@class='request-site']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>LEAVE_SITE_ICON</td>
+	<td>//a[@class='leave-site']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>MEMBERSHIP_REQUESTED_ICON</td>
+	<td>//span[@class='action requested']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>FAVORITE_SITE_ICON</td>
+	<td>//li[contains(@class,'social-office-enabled')]/span[@class='action favorite']/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>UNFAVORITE_SITE_ICON</td>
+	<td>//li[contains(@class,'social-office-enabled')]/span[@class='action unfavorite']/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>PAGE_INDICATOR</td>
+	<td>//span[@class='page-indicator']</td>
+	<td></td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

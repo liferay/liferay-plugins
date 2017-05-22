@@ -1,0 +1,63 @@
+<html>
+<head>
+<title>SOMessagesAdd</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">SOMessagesAdd</td></tr>
+</thead>
+<tbody>
+<tr>
+	<td>NEW_MESSAGE_IFRAME</td>
+	<td>//iframe[contains(@class,'dialog-iframe')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ERROR_MESSAGE</td>
+	<td>//span[@class='portlet-msg-error']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>TO_FIELD</td>
+	<td>//input[contains(@id,'privatemessagingportlet_to')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SUBJECT_FIELD</td>
+	<td>//input[contains(@id,'privatemessagingportlet_subject')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>BODY_FIELD</td>
+	<td>//textarea[contains(@id,'privatemessagingportlet_body')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ATTACHMENTS_FIELD</td>
+	<td>//input[contains(@id,'privatemessagingportlet_msgFile1')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SEND_BUTTON</td>
+	<td>//button[contains(.,'Send')]</td>
+	<td></td>
+</tr>
+<!---->
+<!--TO_FIELD_DROPDOWN_LIST-->
+<tr>
+	<td>TO_FIELD_DROPDOWN_LIST</td>
+	<td>//li[contains(@data-text,'${key_recipientName}')]</td>
+	<td></td>
+</tr>
+<!---->
+<!--SCREENSHOTS-->
+<tr>
+	<td>SCREENSHOTS_MESSAGES_MESSAGE_TEXT_FIELDS_PNG</td>
+	<td>so/screenshots/messages/messages_message_text_fields.png</td>
+	<td></td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

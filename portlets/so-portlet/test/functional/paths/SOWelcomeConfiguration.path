@@ -1,0 +1,34 @@
+<html>
+<head>
+<title>SOWelcomeConfiguration</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">SOWelcomeConfiguration</td></tr>
+</thead>
+<tbody>
+<tr>
+	<td>CONFIGURATION_IFRAME</td>
+	<td>//iframe[contains(@name,'wysiwygportlet')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SUCCESS_MESSAGE</td>
+	<td>//div[contains(@class,'alert') and contains(@class,'alert-success')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>CONTENT_FIELD</td>
+	<td>//div[contains(@id,'cke__')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SAVE_BUTTON</td>
+	<td>//button[contains(.,'Save')]</td>
+	<td></td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

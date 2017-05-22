@@ -1,0 +1,36 @@
+<html>
+<head>
+<title>SOWelcome</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">SOWelcome</td></tr>
+</thead>
+<tbody>
+<tr>
+	<td>SUCCESS_MESSAGE</td>
+	<td>//div[@class='alert alert-success']</td>
+	<td></td>
+</tr>
+<!---->
+<!--WELCOME-->
+<tr>
+	<td>WELCOME_PORTLET_TITLE</td>
+	<td>//header[contains(.,'Welcome')]//h1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>WELCOME_PORTLET_CONTENT</td>
+	<td>//div[contains(@class,'wysiwyg-portlet')]//div[contains(@class,'portlet-body')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>WELCOME_OPTIONS</td>
+	<td>//header[contains(.,'Welcome')]//menu//a</td>
+	<td></td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

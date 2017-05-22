@@ -1,0 +1,59 @@
+<html>
+<head>
+<title>SOProfileAddDetails</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">SOProfileAddDetails</td></tr>
+</thead>
+<tbody>
+<tr>
+	<td>SCREEN_NAME_FIELD</td>
+	<td>//input[contains(@name,'screenName')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>EMAIL_ADDRESS_FIELD</td>
+	<td>//input[contains(@name,'emailAddress')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>FIRST_NAME_FIELD</td>
+	<td>//input[contains(@name,'firstName')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>MIDDLE_NAME_FIELD</td>
+	<td>//input[contains(@name,'middleName')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>LAST_NAME_FIELD</td>
+	<td>//input[contains(@name,'lastName')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>JOB_TITLE_FIELD</td>
+	<td>//input[contains(@name,'jobTitle')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>PICTURE_CHANGE_BUTTON</td>
+	<td>//button[contains(@class,'edit-logo')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>PICTURE_DELETE_BUTTON</td>
+	<td>//button[contains(@class,'delete-logo')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SAVE_BUTTON</td>
+	<td>//button[contains(.,'Save')]</td>
+	<td></td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

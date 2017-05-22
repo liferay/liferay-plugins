@@ -1,0 +1,222 @@
+<html>
+<head>
+<title>SOMicroblogs</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">SOMicroblogs</td></tr>
+</thead>
+<tbody>
+<tr>
+	<td>MICROBLOGS_CONTENT_FIELD</td>
+	<td>//div[contains(@id,'_1_WAR_microblogsportlet_autocompleteContent')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>MICROBLOGS_CONTENT_AUTOCOMPLETE_USERNAME</td>
+	<td>//div[@class='microblogs-autocomplete']//span[@class='user-name']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>MICROBLOGS_CONTENT_AUTOCOMPLETE_EMAIL</td>
+	<td>//div[@class='microblogs-autocomplete']//span[@class='small']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>MICROBLOGS_CONTENT_AUTOCOMPLETE_JOB_TITLE</td>
+	<td>//div[@class='microblogs-autocomplete']//span[@class='job-title']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>MICROBLOGS_CONTENT_INPUT_FIELD</td>
+	<td>//textarea[contains(@name,'contentInput')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>MICROBLOGS_CONTENT_COUNTDOWN</td>
+	<td>//span[contains(@class,'microblogs-countdown')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>MICROBLOGS_CONTENT_VIEW_FILTER</td>
+	<td>//select[@id='_1_WAR_microblogsportlet_socialRelationType']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>POST_BUTTON</td>
+	<td>//button[contains(.,'Post')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>INFO_MESSAGE</td>
+	<td>//div[@class='alert alert-info']</td>
+	<td></td>
+</tr>
+<!---->
+<!--MICROBLOGS_ENTRY-->
+<tr>
+	<td>MICROBLOGS_ENTRY_CONTENT_GENERAL</td>
+	<td>//div[@class='content']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>MICROBLOGS_ENTRY_AUTHOR</td>
+	<td>//div[contains(@class,'microblogs-entry') and contains(.,'${key_microblogsEntryContent}')]//div[@class='user-name']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>MICROBLOGS_ENTRY_CONTENT</td>
+	<td>//div[contains(@class,'microblogs-entry') and contains(.,'${key_microblogsEntryContent}')]//div[@class='content']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>MICROBLOGS_ENTRY_CONTENT_MENTION</td>
+	<td>//div[contains(@class,'microblogs-entry') and contains(.,'${key_microblogsEntryContent}')]//div[@class='content']/span/a[contains(.,'${key_mentionUserName}')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>MICROBLOGS_ENTRY_CONTENT_TAG</td>
+	<td>//div[contains(@class,'microblogs-entry') and contains(.,'${key_microblogsEntryContent}')]//div[@class='content']/span/a[contains(.,'${key_microblogsEntryTagValue}')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>MICROBLOGS_ENTRY_CONTENT_GENERIC_LINK</td>
+	<td>//div[contains(@class,'microblogs-entry') and contains(.,'${key_microblogsEntryContent}')]//div[@class='content']/span/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>MICROBLOGS_ENTRY_COMMENT_LINK</td>
+	<td>//div[contains(@class,'microblogs-entry') and contains(.,'${key_microblogsEntryContent}')]//span[@class='action comment']/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>MICROBLOGS_ENTRY_EDIT</td>
+	<td>//span[@class='action edit']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>MICROBLOGS_ENTRY_EDIT_LINK</td>
+	<td>//span[@class='action edit']/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>MICROBLOGS_ENTRY_DELETE</td>
+	<td>//span[@class='action delete']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>MICROBLOGS_ENTRY_DELETE_LINK</td>
+	<td>//span[@class='action delete']/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>MICROBLOGS_ENTRY_REPOST_LINK</td>
+	<td>//div[@class='microblogs-entry' and contains(.,'${key_microblogsEntryContent}')]//span[@class='action repost']/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>MICROBLOGS_ENTRY_CONTENT_EDIT_FIELD</td>
+	<td>xPath=(//div[contains(@id,'_1_WAR_microblogsportlet_autocompleteContent')])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>MICROBLOGS_ENTRY_CONTENT_EDIT_COUNTDOWN</td>
+	<td>xPath=(//span[@class='microblogs-countdown'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>MICROBLOGS_ENTRY_CONTENT_EDIT_COUNTDOWN_WARNING</td>
+	<td>//span[contains(@class,'microblogs-countdown-warned')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>MICROBLOGS_ENTRY_CONTENT_EDIT_VIEW_FILTER</td>
+	<td>xPath=(//select[@id='_1_WAR_microblogsportlet_socialRelationType'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>MICROBLOGS_ENTRY_CONTENT_EDIT_POST_BUTTON</td>
+	<td>xPath=(//button[contains(.,'Post')])[2]</td>
+	<td></td>
+</tr>
+<!---->
+<!--MICROBLOGS_ENTRY_COMMENT-->
+<tr>
+	<td>MICROBLOGS_ENTRY_COMMENT_CONTENT_FIELD</td>
+	<td>xPath=(//div[contains(@id,'_1_WAR_microblogsportlet_autocompleteContent')])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>MICROBLOGS_ENTRY_COMMENT_CONTENT_COUNTDOWN</td>
+	<td>xPath=(//span[@class='microblogs-countdown'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>MICROBLOGS_ENTRY_COMMENT_CONTENT_VIEW_FILTER</td>
+	<td>xPath=(//select[@id='_1_WAR_microblogsportlet_socialRelationType'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>MICROBLOGS_ENTRY_COMMENT_POST_BUTTON</td>
+	<td>xPath=(//button[contains(.,'Post')])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>MICROBLOGS_ENTRY_COMMENT_AUTHOR</td>
+	<td>//div[@class='microblogs-entry' and contains(.,'${key_microblogsEntryCommentContent}')]//div[@class='user-name']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>MICROBLOGS_ENTRY_COMMENT_CONTENT</td>
+	<td>//div[@class='microblogs-entry' and contains(.,'${key_microblogsEntryCommentContent}')]//div[@class='content']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>MICROBLOGS_ENTRY_COMMENT_CONTENT_TAG</td>
+	<td>//div[@class='microblogs-entry' and contains(.,'${key_microblogsEntryCommentContent}')]//div[@class='content']/span/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>MICROBLOGS_ENTRY_COMMENT_DELETE</td>
+	<td>//div[@class='microblogs-entry' and contains(.,'${key_microblogsEntryCommentContent}')]//span[@class='action delete']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>MICROBLOGS_ENTRY_COMMENT_DELETE_LINK</td>
+	<td>//div[@class='microblogs-entry' and contains(.,'${key_microblogsEntryCommentContent}')]//span[@class='action delete']/a</td>
+	<td></td>
+</tr>
+<!---->
+<!--TAB-->
+<tr>
+	<td>TAB_TIMELINE</td>
+	<td>//ul[contains(@class,'nav nav-tabs')]/li[contains(.,'Timeline')]/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>TAB_MENTIONS</td>
+	<td>//ul[contains(@class,'nav nav-tabs')]/li[contains(.,'Mentions')]/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>TAB_TAG_VALUE</td>
+	<td>//ul[contains(@class,'nav nav-tabs')]/li[contains(.,'${key_microblogsEntryTagValue}')]/a</td>
+	<td></td>
+</tr>
+<!---->
+<!--SCREENSHOTS-->
+<tr>
+	<td>SCREENSHOTS_MICROBLOGS_ENTRY_COMMENT_THREADING_PNG</td>
+	<td>so/screenshots/microblogs/microblogs_entry_comment_threading.png</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SCREENSHOTS_MICROBLOGS_MENTION_DROPDOWN_PNG</td>
+	<td>so/screenshots/microblogs/microblogs_mention_dropdown.png</td>
+	<td></td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

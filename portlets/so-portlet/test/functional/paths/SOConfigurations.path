@@ -1,0 +1,137 @@
+<html>
+<head>
+<title>SOConfigurations</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">SOConfigurations</td></tr>
+</thead>
+<tbody>
+<tr>
+	<td>SUCCESS_MESSAGE_1</td>
+	<td>//div[@class='alert alert-success']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SUCCESS_MESSAGE_2</td>
+	<td>//div[@class='portlet-msg-success']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>USERS</td>
+	<td>//li[@class='tab']/a[contains(.,'Users')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ORGANIZATIONS</td>
+	<td>//li[@class='tab']/a[contains(.,'Organizations')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>USER_GROUPS</td>
+	<td>//li[@class='tab']/a[contains(.,'User Groups')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SEARCH_FIELD</td>
+	<td>//input[@id='_1_WAR_soconfigurationsportlet_keywords']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SEARCH_BUTTON</td>
+	<td>//button[contains(.,'Search')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>STATUS_AVAILABLE</td>
+	<td>//input[@value='available']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>STATUS_CURRENT</td>
+	<td>//input[@value='current']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SAVE_BUTTON</td>
+	<td>//button[contains(.,'Save')]</td>
+	<td></td>
+</tr>
+<!---->
+<!--NAVIGATION-->
+<tr>
+	<td>NAVIGATION_ASSIGN_SOCIAL_OFFICE</td>
+	<td>//ul[contains(@class,'nav-tabs')]/li/a[contains(.,'Assign Social Office')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>NAVIGATION_GENERAL</td>
+	<td>//ul[contains(@class,'nav-tabs')]/li/a[contains(.,'General')]</td>
+	<td></td>
+</tr>
+<!---->
+<!--USER_TABLE-->
+<tr>
+	<td>USER_TABLE_ALL_CHECKBOX</td>
+	<td>//input[@name='_1_WAR_soconfigurationsportlet_allRowIds']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>USER_TABLE_CHECKBOX</td>
+	<td>//tr[contains(.,'${key_userScreenName}')]/td[1]/input</td>
+	<td></td>
+</tr>
+<tr>
+	<td>USER_TABLE_NAME</td>
+	<td>//tr[contains(.,'${key_userScreenName}')]/td[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>USER_TABLE_SCREEN_NAME</td>
+	<td>//tr[contains(.,'${key_userScreenName}')]/td[3]</td>
+	<td></td>
+</tr>
+<!---->
+<!--ORGANIZATION_TABLE-->
+<tr>
+	<td>ORGANIZATION_TABLE_ALL_CHECKBOX</td>
+	<td>//input[@name='_1_WAR_soconfigurationsportlet_allRowIds']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ORGANIZATION_TABLE_CHECKBOX</td>
+	<td>//tr[contains(.,'${key_orgName}')]/td[1]/input</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ORGANIZATION_TABLE_NAME</td>
+	<td>//tr[contains(.,'${key_orgName}')]/td[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ORGANIZATION_TABLE_TYPE</td>
+	<td>//tr[contains(.,'${key_orgName}')]/td[4]</td>
+	<td></td>
+</tr>
+<!---->
+<!--USER_GROUP_TABLE-->
+<tr>
+	<td>USER_GROUP_GROUP_ALL_CHECKBOX</td>
+	<td>//input[@name='_1_WAR_soconfigurationsportlet_allRowIds']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>USER_GROUP_TABLE_CHECKBOX</td>
+	<td>//tr[contains(.,'${key_userGroupName}')]/td[1]/input</td>
+	<td></td>
+</tr>
+<tr>
+	<td>USER_GROUP_TABLE_NAME</td>
+	<td>//tr[contains(.,'${key_userGroupName}')]/td[2]</td>
+	<td></td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

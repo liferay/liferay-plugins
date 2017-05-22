@@ -1,0 +1,128 @@
+<html>
+<head>
+<title>SODocuments</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">SODocuments</td></tr>
+</thead>
+<tbody>
+<!--DOCUMENT_BREADCRUMBS-->
+<tr>
+	<td>DOCUMENT_BREADCRUMBS</td>
+	<td>//div[contains(@class,'breadcrumb')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>DOCUMENT_BREADCRUMBS_PAGE_LINK</td>
+	<td>//div[contains(@class,'breadcrumb')]//li[@class='first']</td>
+	<td></td>
+</tr>
+<!---->
+<!--DOCUMENT_INFO-->
+<tr>
+	<td>DOCUMENT_INFO_DESCRIPTION</td>
+	<td>//div[@class='document-header']/span[@class='document-description' and contains(.,'${key_dmDocumentDescription}')]</td>
+	<td>Description</td>
+</tr>
+<!---->
+<!--VERSION_HISTORY-->
+<tr>
+	<td>VERSION_HISTORY_TITLE</td>
+	<td>//div[@class='lfr-document-library-versions']/div/div/div</td>
+	<td></td>
+</tr>
+<tr>
+	<td>VERSION_HISTORY_NUMBER</td>
+	<td>//div[@class='version' and contains(.,'Version ${key_dmDocumentVersionNumber}')]//span[@class='version-number']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>VERSION_HISTORY_ADDITIONAL</td>
+	<td>xpath=(//div[@class='version'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>VERSION_HISTORY_UPLOADER_NAME</td>
+	<td>//div[@class='version' and contains(.,'Version ${key_dmDocumentVersionNumber}')]//span[@class='user-name']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>VERSION_HISTORY_DATE</td>
+	<td>//div[@class='version' and contains(.,'Version ${key_dmDocumentVersionNumber}')]//span[@class='modified-date']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>VERSION_HISTORY_CHANGE_LOG</td>
+	<td>//div[@class='version' and contains(.,'Version ${key_dmDocumentVersionNumber}')]//div[@class='changelog']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>VERSION_HISTORY_DOWNLOAD</td>
+	<td>//div[@class='version' and contains(.,'Version ${key_dmDocumentVersionNumber}')]//span[contains(.,'Download')]/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>VERSION_HISTORY_VIEW</td>
+	<td>//div[@class='version' and contains(.,'Version ${key_dmDocumentVersionNumber}')]//span[contains(.,'View')]/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>VERSION_HISTORY_REVERT</td>
+	<td>//div[@class='version' and contains(.,'Version ${key_dmDocumentVersionNumber}')]//span[contains(.,'Revert')]/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>VERSION_HISTORY_DELETE_VERSION</td>
+	<td>//div[@class='version' and contains(.,'Version ${key_dmDocumentVersionNumber}')]//span[contains(.,'Delete Version')]/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>VERSION_HISTORY_SIZE</td>
+	<td>//div[@class='version' and contains(.,'Version ${key_dmDocumentVersionNumber}')]//span[@class='size']</td>
+	<td></td>
+</tr>
+<!---->
+<!--VERSION_HISTORY_COMMENT-->
+<tr>
+	<td>VERSION_HISTORY_COMMENT_NO_COMMENTS</td>
+	<td>//div[contains(@id,'documentLibraryCommentsPanel')][${key_commentRow}]//div/div[contains(.,'No comments yet.')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>VERSION_HISTORY_COMMENT_BE_THE_FIRST_LINK</td>
+	<td>//div[contains(@id,'documentLibraryCommentsPanel')][${key_commentRow}]//a[contains(.,'Be the first.')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>VERSION_HISTORY_COMMENT_AUTHOR</td>
+	<td>//div[contains(@id,'documentLibraryCommentsPanel')][${key_commentRow}]//div[@class='lfr-discussion first']//span[@class='user-name']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>VERSION_HISTORY_COMMENT_BODY</td>
+	<td>//div[contains(@id,'documentLibraryCommentsPanel')][${key_commentRow}]//div[@class='lfr-discussion first']//div[@class='lfr-discussion-message']</td>
+	<td></td>
+</tr>
+<!---->
+<!--SCREENSHOTS-->
+<tr>
+	<td>SCREENSHOTS_DOCUMENTS_DISPLAY_STYLE_LIST_ALL_DOCUMENTS_SELECTED_PNG</td>
+	<td>so/screenshots/documents/documents_display_style_list_all_documents_selected.png</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SCREENSHOTS_DOCUMENTS_DISPLAY_STYLES_PNG</td>
+	<td>so/screenshots/documents/documents_display_styles.png</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SCREENSHOTS_DOCUMENTS_MULTIPLE_THUMBNAILS_PNG</td>
+	<td>so/screenshots/documents/documents_multiple_thumbnails.png</td>
+	<td></td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

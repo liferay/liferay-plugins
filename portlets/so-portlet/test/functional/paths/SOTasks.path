@@ -1,0 +1,143 @@
+<html>
+<head>
+<title>SOTasks</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">SOTasks</td></tr>
+</thead>
+<tbody>
+<tr>
+	<td>ASSIGNED_TO_ME_LINK</td>
+	<td>//a[contains(.,'Assigned to Me')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>I_HAVE_CREATED_LINK</td>
+	<td>//a[contains(.,'I Have Created')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ADD_TASK_BUTTON</td>
+	<td>//a[@class='add-task']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>PERMISSIONS_BUTTON</td>
+	<td>//a[@data-title='Permissions']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>FILTER_BUTTON</td>
+	<td>//a[@class='filter-tasks']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>INFO_MESSAGE</td>
+	<td>//div[@class='alert alert-info']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SHOW_COMPLETED_TASKS_CHECKBOX</td>
+	<td>//input[@name='all-tasks']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>TASK_IFRAME</td>
+	<td>//iframe[contains(@id,'tasksportlet_Dialog_iframe')]</td>
+	<td></td>
+</tr>
+<!---->
+<!--FILTER-->
+<tr>
+	<td>FILTER_TAG_HEADER</td>
+	<td>//h3[contains(.,'Filter by Tags')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>FILTER_TAG_CHECKBOX</td>
+	<td>//span[contains(@class,'asset-tag')]/a[contains(.,'${key_tagNumber}')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>FILTER_PLACE_HEADER</td>
+	<td>//h3[contains(.,'Filter by Place')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>FILTER_PLACE_SELECT_MENU</td>
+	<td>//div[@class='filter-container group-filter']/select</td>
+	<td></td>
+</tr>
+<!---->
+<!--TASK-->
+<tr>
+	<td>TASK_DESCRIPTION</td>
+	<td>//a[contains(@class,'tasks-title')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>TASK_DESCRIPTION_NORMAL</td>
+	<td>xpath=(//a[@class='tasks-title normal'])[contains(.,'${key_taskDescription}')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>TASK_DESCRIPTION_HIGH</td>
+	<td>xpath=(//a[@class='tasks-title high'])[contains(.,'${key_taskDescription}')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>TASK_DESCRIPTION_LOW</td>
+	<td>xpath=(//a[@class='tasks-title low'])[contains(.,'${key_taskDescription}')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>TASK_REPORTER</td>
+	<td>//tr[contains(.,'${key_taskDescription}')]//div[@class='result-data']/span[contains(.,'Reporter')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>TASK_ASSIGNEE</td>
+	<td>//tr[contains(.,'${key_taskDescription}')]//div[@class='result-data']/span[contains(.,'Assignee')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>TASK_DUE_DATE</td>
+	<td>//tr[contains(.,'${key_taskDescription}')]//div[@class='due-date']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>TASK_DUE_DATE_PAST_DUE</td>
+	<td>//tr[contains(.,'${key_taskDescription}')]//div[@class='due-date past-due']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>TASK_PROGRESS_BAR_VISIBLE</td>
+	<td>//tr[contains(.,'${key_taskDescription}')]//div[contains(@class,'progress-wrapper')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>TASK_PROGRESS_BAR</td>
+	<td>//tr[contains(.,'${key_taskDescription}')]//div[contains(@class,'progress-picker')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>TASK_PROGRESS_BAR_PERCENT_CLICK</td>
+	<td>//tr[contains(.,'${key_taskDescription}')]//div[contains(@class,'progress-picker')]/div[@class='progress-selector']/a[@class='progress-${key_percentCompletion}']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>TASK_PROGRESS_BAR_PERCENT_COMPLETION</td>
+	<td>//tr[contains(.,'${key_taskDescription}')]//div[@class='progress' and contains(@style,'${key_percentCompletion}%')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>FILTER_PLACE_SELECT_MENU</td>
+	<td>//div[@class='filter-container group-filter']/select</td>
+	<td></td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

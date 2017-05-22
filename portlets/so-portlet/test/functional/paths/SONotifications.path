@@ -1,0 +1,86 @@
+<html>
+<head>
+<title>SONotifications</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">SONotifications</td></tr>
+</thead>
+<tbody>
+<tr>
+	<td>NOTIFICATIONS_LIST_LINK</td>
+	<td>//a[contains(@class,'non-actionable') and contains(.,'Notifications')] | //a[contains(@class,'nonactionable') and contains(.,'Notifications')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>REQUESTS_LIST_LINK</td>
+	<td>//a[contains(@class,'actionable') and contains(.,'Requests')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>NOTIFICATION_DELIVERY_LINK</td>
+	<td>//a[contains(@class,'manage') and contains(.,'Notification Delivery')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>CONFIRM_BUTTON</td>
+	<td>//a[contains(.,'Confirm')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>NOTIFICATIONS_NONE_MESSAGE</td>
+	<td>//div[@class='message'][contains(.,'You do not have any notifications.')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>REQUESTS_NONE_MESSAGE</td>
+	<td>//div[@class='message'][contains(.,'You do not have any requests.')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>NOTIFICATIONS_ENTRY</td>
+	<td>//li[contains(@class,'user-notification')]//div[@class='title']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>NOTIFICATIONS_ENTRY_INCREMENT</td>
+	<td>xPath=(//li[contains(@class,'user-notification')]//div[@class='title'])[${key_row}]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SEARCH_RESULTS</td>
+	<td>//span[contains(.,'results')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>NEXT_BUTTON</td>
+	<td>//a[contains(.,'Next')]</td>
+	<td></td>
+</tr>
+<!---->
+<!--SCREENSHOTS-->
+<tr>
+	<td>SCREENSHOTS_NOTIFICATIONS_LONG_MICROBLOGS_COMMENT_PNG</td>
+	<td>so/screenshots/notifications/notifications_long_microblogs_comment.png</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SCREENSHOTS_NOTIFICATIONS_PROFILE_PICTURE_PNG</td>
+	<td>so/screenshots/notifications/notifications_profile_picture.png</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SCREENSHOTS_NOTIFICATIONS_LONG_FORUM_THREAD_SUBJECT_PNG</td>
+	<td>so/screenshots/notifications/notifications_long_forum_thread_subject.png</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SCREENSHOTS_NOTIFICATIONS_LONG_ANNOUNCEMENT_ENTRY_TITLE_PNG</td>
+	<td>so/screenshots/notifications/notifications_long_announcement_entry_title.png</td>
+	<td></td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

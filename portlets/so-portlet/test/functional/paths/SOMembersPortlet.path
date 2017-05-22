@@ -1,0 +1,197 @@
+<html>
+<head>
+<title>SOMembersPortlet</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">SOMembersPortlet</td></tr>
+</thead>
+<tbody>
+<tr>
+	<td>SUCCESS_MESSAGE</td>
+	<td>//span[@class='alert alert-success']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>MEMBERS_PORTLET_CONFIGURATION_BAR</td>
+	<td>//div[contains(@class,'contacts-portlet') and contains(@class,'portlet-borderless')]//span[contains(@class,'portlet-actions')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>MEMBERS_PORTLET_OPTIONS_ICON</td>
+	<td>//div[contains(@class,'contacts-portlet') and contains(@class,'portlet-borderless')]//span[contains(@class,'portlet-actions')]//a[contains(.,'Options')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>MEMBERS_PORTLET_REMOVE_ICON</td>
+	<td>//div[contains(@class,'contacts-portlet') and contains(@class,'portlet-borderless')]//span[contains(@class,'portlet-actions')]//a[contains(.,'Remove')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>CONNECTION_REQUESTED_MESSAGE</td>
+	<td>//span[contains(@class,'disabled')]/span[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>FOLLOWING_MESSAGE</td>
+	<td>//span[contains(@class,'following')]/span[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>BLOCKED_MESSAGE</td>
+	<td>//span[contains(@class,'block')]/span[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ROLE_FILTER_DROPDOWN</td>
+	<td>//select[contains(@class,'contact-group-filter-select')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>CONNECT_BUTTON</td>
+	<td>//button[contains(@id,'addConnection')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>FOLLOW_BUTTON</td>
+	<td>//button[contains(@id,'follow')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>BLOCK_BUTTON</td>
+	<td>//button[contains(@id,'block')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>MESSAGE_BUTTON</td>
+	<td>//button[contains(@id,'sendMessage')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>DISCONNECT_BUTTON</td>
+	<td>//button[contains(@id,'removeConnection')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>UNFOLLOW_BUTTON</td>
+	<td>//button[contains(@id,'unfollow')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>UNBLOCK_BUTTON</td>
+	<td>//button[contains(@id,'unblock')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>INVITE_BUTTON</td>
+	<td>//a[@class='invite-members']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>MEMBERS_POP_UP_WINDOW</td>
+	<td>title=Members - Liferay</td>
+	<td></td>
+</tr>
+<!---->
+<!--SELECTED_USERS_LIST-->
+<tr>
+	<td>SELECTED_USERS_LIST_THUMB</td>
+	<td>//div[contains(@id,'selectedUsersView') and contains(.,'${key_userListName}')]//div[contains(@class,'lfr-contact-thumb')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SELECTED_USERS_LIST_NAME</td>
+	<td>//div[contains(@id,'selectedUsersView') and contains(.,'${key_userListName}')]//div[contains(@class,'lfr-contact-name')]/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SELECTED_USERS_LIST_EMAIL</td>
+	<td>//div[contains(@id,'selectedUsersView') and contains(.,'${key_userListName}')]//div[contains(@class,'lfr-contact-extra')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SELECTED_USERS_LIST_CONNECTION_REQUESTED_MESSAGE</td>
+	<td>//div[contains(@id,'selectedUsersView') and contains(.,'${key_userListName}')]//div[contains(@class,'social-relations')]//span[contains(.,'Connection Requested')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SELECTED_USERS_LIST_CONNECTED_MESSAGE</td>
+	<td>//div[contains(@id,'selectedUsersView') and contains(.,'${key_userListName}')]//div[contains(@class,'social-relations')]//span[contains(.,'Connected')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SELECTED_USERS_LIST_FOLLOWING_MESSAGE</td>
+	<td>//div[contains(@id,'selectedUsersView') and contains(.,'${key_userListName}')]//div[contains(@class,'social-relations')]//span[contains(.,'Following')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SELECTED_USERS_LIST_BLOCKED_MESSAGE</td>
+	<td>//div[contains(@id,'selectedUsersView') and contains(.,'${key_userListName}')]//div[contains(@class,'social-relations')]//span[contains(.,'Blocked')]</td>
+	<td></td>
+</tr>
+<!---->
+<!--MEMBERS_LIST-->
+<tr>
+	<td>MEMBERS_LIST_FILTER</td>
+	<td>//select[contains(@id,'contactsportlet_filterBy')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>MEMBERS_LIST_SEARCH</td>
+	<td>//input[contains(@id,'contactsportlet_name')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>MEMBERS_LIST_CHECKBOX</td>
+	<td>//div[contains(.,'${key_userListName}')]/div[@class='lfr-contact-checkbox']/input</td>
+	<td></td>
+</tr>
+<tr>
+	<td>MEMBERS_LIST_NAME</td>
+	<td>//div[contains(.,'${key_userEmailAddress}')]/div[contains(@class,'lfr-contact-name')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>MEMBERS_LIST_EMAIL</td>
+	<td>//div[contains(.,'${key_userEmailAddress}')]/div[contains(@class,'lfr-contact-extra')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>MEMBERS_LIST_EMPTY</td>
+	<td>//div[@class='empty']</td>
+	<td></td>
+</tr>
+<!---->
+<!--USER_DETAILS-->
+<tr>
+	<td>USER_DETAILS_NAME</td>
+	<td>//div[contains(@class,'contacts-profile')]/div/div[2]/div/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>USER_DETAILS_EMAIL</td>
+	<td>//div[contains(@class,'contacts-profile')]/div/div[2]/div[3]</td>
+	<td></td>
+</tr>
+<!---->
+<!--MEMBERS_LINK-->
+<tr>
+	<td>MEMBERS_LINK_CONNECTIONS</td>
+	<td>//div[contains(@class,'contacts-count connections')]/div/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>MEMBERS_LINK_FOLLOWING</td>
+	<td>//div[contains(@class,'contacts-count followings')]/div/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>MEMBERS_LINK_ALL</td>
+	<td>//div[contains(@class,'contacts-count all')]/div/a</td>
+	<td></td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

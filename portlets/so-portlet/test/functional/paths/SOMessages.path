@@ -1,0 +1,96 @@
+<html>
+<head>
+<title>SOMessages</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">SOMessages</td></tr>
+</thead>
+<tbody>
+<tr>
+	<td>SELECT_ALL_CHECKBOX</td>
+	<td>//input[@class='field check-all']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>MARK_AS_UNREAD_BUTTON</td>
+	<td>//button[contains(.,'Mark as Unread')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>MARK_AS_READ_BUTTON</td>
+	<td>//button[contains(.,'Mark as Read')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>DELETE_BUTTON</td>
+	<td>//button[contains(.,'Delete')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>NEW_MESSAGE_BUTTON</td>
+	<td>//button[contains(.,'New Message')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>INFO_MESSAGE</td>
+	<td>//div[@class='alert alert-info']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SUCCESS_MESSAGE</td>
+	<td>//div[@class='alert alert-success']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>MESSAGES_POP_UP_WINDOW</td>
+	<td>title=Messages - Liferay</td>
+	<td></td>
+</tr>
+<!---->
+<!--FILTER-->
+<tr>
+	<td>MESSAGE</td>
+	<td>//a[@class='message-link' and contains(.,'${key_messageBody}')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>MESSAGE_SENDER</td>
+	<td>//a[@class='message-link' and contains(.,'${key_messageBody}')]//span[@class='author-sender']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>MESSAGE_SUBJECT</td>
+	<td>//a[@class='message-link' and contains(.,'${key_messageBody}')]//div[@class='subject']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>MESSAGE_BODY</td>
+	<td>//a[@class='message-link' and contains(.,'${key_messageBody}')]//div[@class='body']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>MESSAGE_TIMESTAMP</td>
+	<td>//a[@class='message-link' and contains(.,'${key_messageBody}')]//span[@class='date']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>MESSAGE_SEARCH_RESULTS</td>
+	<td>//div[@class='search-results']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>MESSAGE_CHECKBOX</td>
+	<td>//tr[contains(.,'${key_messageBody}')]//input[contains(@name,'ThreadCheckbox')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>MESSAGE_UNREAD</td>
+	<td>xpath=(//tr[contains(@class,'unread')])[contains(.,'${key_messageBody}')]</td>
+	<td></td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

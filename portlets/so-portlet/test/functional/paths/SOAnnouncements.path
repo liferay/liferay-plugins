@@ -1,0 +1,176 @@
+<html>
+<head>
+<title>SOAnnouncements</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">SOAnnouncements</td></tr>
+</thead>
+<tbody>
+<tr>
+	<td>SUCCESS_MESSAGE</td>
+	<td>//div[@class='portlet-msg-success']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ANNOUNCEMENTS_PORTLET_TITLE</td>
+	<td>//h1[@class='portlet-title'][contains(.,'Announcement')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ANNOUNCEMENTS_OPTIONS</td>
+	<td>//header[contains(.,'Announcements')]//menu//a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ANNOUNCEMENTS_ADD_ENTRY_BUTTON</td>
+	<td>//button[contains(.,'Add Entry')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ANNOUNCEMENTS_MANAGE_ENTRIES_BUTTON</td>
+	<td>//button[contains(.,'Manage Entries')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ANNOUNCEMENTS_ENTRY_SECTION</td>
+	<td>//div[@class='unread-entries-container']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ANNOUNCEMENTS_ENTRY_ACTION</td>
+	<td>//div[contains(@class,'entry') and contains(.,'${key_entryTitle}')]//div[@class='entry-action']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ANNOUNCEMENTS_ENTRY_AUTHOR</td>
+	<td>//div[contains(@class,'entry') and contains(.,'${key_entryTitle}')]//div[@class='entry-action']/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ANNOUNCEMENTS_ENTRY_TITLE</td>
+	<td>//div[contains(@class,'entry') and contains(.,'${key_entryTitle}')]//div[@class='entry-body']/div[@class='title']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ANNOUNCEMENTS_ENTRY_TITLE_LINK</td>
+	<td>//div[contains(@class,'entry') and contains(.,'${key_entryTitle}')]//div[@class='entry-body']/div[@class='title']/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ANNOUNCEMENTS_ENTRY_CONTENT</td>
+	<td>//div[contains(@class,'entry') and contains(.,'${key_entryTitle}')]//div[@class='entry-content']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ANNOUNCEMENTS_ENTRY_EDIT_LINK</td>
+	<td>//div[contains(@class,'entry') and contains(.,'${key_entryTitle}')]//span[@class='action edit-entry']/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ANNOUNCEMENTS_ENTRY_DELETE_LINK</td>
+	<td>//div[contains(@class,'entry') and contains(.,'${key_entryTitle}')]//span[@class='action delete-entry']/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ANNOUNCEMENTS_ENTRY_VIEW_MORE_LINK</td>
+	<td>//div[contains(@class,'entry') and contains(.,'${key_entryTitle}')]//span[@class='toggle action']/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ANNOUNCEMENTS_ENTRY_GENERIC_DELETE_LINK</td>
+	<td>//span[@class='action delete-entry']/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ANNOUNCEMENTS_ENTRY_MARK_LINK</td>
+	<td>//div[contains(@class,'entry') and contains(.,'${key_entryTitle}')]//span[@class='action control-entry']/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ANNOUNCEMENTS_ENTRY_READ_ENTRIES_DROPDOWN</td>
+	<td>//div[contains(@class,'header toggler-header')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ANNOUNCEMENTS_ENTRY_COLLAPSED</td>
+	<td>//div[contains(@class,'toggler-header-collapsed')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ANNOUNCEMENTS_ENTRY_EXPANDED</td>
+	<td>//div[contains(@class,'toggler-header-expanded')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ANNOUNCEMENTS_NO_ANNOUNCEMENTS</td>
+	<td>//div[@class='no-announcements']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ANNOUNCEMENTS_NAVIGATION_RESULTS</td>
+	<td>//div[@class='navigation']/span[contains(.,'results')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ANNOUNCEMENTS_NAVIGATION_NEXT</td>
+	<td>//div[@class='navigation']//a[contains(.,'Next')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ANNOUNCEMENTS_NAVIGATION_PREVIOUS</td>
+	<td>//div[@class='navigation']//a[contains(.,'Previous')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ANNOUNCEMENTS_ENTRY_IMAGE_GOOGLE</td>
+	<td>xPath=(//input[@aria-label='Search'])[1]</td>
+	<td>Liferay</td>
+</tr>
+<!---->
+<!--SCREENSHOTS-->
+<tr>
+	<td>SCREENSHOTS_ANNOUNCEMENTS_ENTRY_IMPORTANT_PNG</td>
+	<td>so/screenshots/announcements/announcements_entry_important.png</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SCREENSHOTS_ANNOUNCEMENTS_ENTRY_BOLD_PNG</td>
+	<td>so/screenshots/announcements/announcements_entry_bold.png</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SCREENSHOTS_ANNOUNCEMENTS_ENTRY_ITALIC_PNG</td>
+	<td>so/screenshots/announcements/announcements_entry_italic.png</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SCREENSHOTS_ANNOUNCEMENTS_ENTRY_STRIKE_THROUGH_PNG</td>
+	<td>so/screenshots/announcements/announcements_entry_strike_through.png</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SCREENSHOTS_ANNOUNCEMENTS_ENTRY_UNDERLINE_PNG</td>
+	<td>so/screenshots/announcements/announcements_entry_underline.png</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SCREENSHOTS_ANNOUNCEMENTS_ENTRY_CONTENT_LIPSUM_FULL_PNG</td>
+	<td>so/screenshots/announcements/announcements_entry_content_lipsum_full.png</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SCREENSHOTS_ANNOUNCEMENTS_ENTRY_CONTENT_LIPSUM_PREVIEW_UNREAD_PNG</td>
+	<td>so/screenshots/announcements/announcements_entry_content_lipsum_preview_unread.png</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SCREENSHOTS_ANNOUNCEMENTS_ENTRY_CONTENT_LIPSUM_PREVIEW_READ_PNG</td>
+	<td>so/screenshots/announcements/announcements_entry_content_lipsum_preview_read.png</td>
+	<td></td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

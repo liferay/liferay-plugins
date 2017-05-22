@@ -1,0 +1,69 @@
+<html>
+<head>
+<title>SOStatusUpdate</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">SOStatusUpdate</td></tr>
+</thead>
+<tbody>
+<tr>
+	<td>SUCCESS_MESSAGE</td>
+	<td>//div[@class='portlet-msg-success']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>STATUS_UPDATE</td>
+	<td>//div[contains(@class,'microblogs-status-container')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>STATUS_UPDATE_OPTIONS</td>
+	<td>//div[contains(@id,'microblogsportlet')]//span[contains(@class,'portlet-actions')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>STATUS_UPDATE_OPTIONS_LINK</td>
+	<td>//div[contains(@id,'microblogsportlet')]//span[contains(@class,'portlet-actions')]//a[@title='Options']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>STATUS_UPDATE_CONTENT_FIELD</td>
+	<td>//div[contains(@id,'_2_WAR_microblogsportlet_autocompleteContent')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>STATUS_UPDATE_CONTENT_INPUT_FIELD</td>
+	<td>//textarea[contains(@name,'contentInput')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>STATUS_UPDATE_CONTENT_COUNTDOWN</td>
+	<td>//span[contains(@class,'microblogs-countdown')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>STATUS_UPDATE_CONTENT_VIEW_FILTER</td>
+	<td>//select[@id='_2_WAR_microblogsportlet_socialRelationType']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>STATUS_UPDATE_POST_BUTTON</td>
+	<td>//button[contains(.,'Post')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>STATUS_UPDATE_ENTRY_CONTENT</td>
+	<td>//div[@class='entry-bubble']/div[@class='content']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>STATUS_UPDATE_INFO_MESSAGE</td>
+	<td>//div[@class='alert alert-info']</td>
+	<td></td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

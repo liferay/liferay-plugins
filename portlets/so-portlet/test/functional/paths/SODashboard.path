@@ -1,0 +1,76 @@
+<html>
+<head>
+<title>SODashboard</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">SODashboard</td></tr>
+</thead>
+<tbody>
+<tr>
+	<td>SUCCESS_MESSAGE</td>
+	<td>//div[@class='portlet-msg-success']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>PORTLET_TITLE</td>
+	<td>//h1[@class='portlet-title'][contains(.,'${key_portletName}')]</td>
+	<td></td>
+</tr>
+<!---->
+<!--NAVIGATION-->
+<tr>
+	<td>NAVIGATION_DASHBOARD</td>
+	<td>//div[@id='navigation']//li[contains(.,'Dashboard')]/a/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>NAVIGATION_CONTACTS_CENTER</td>
+	<td>//div[@id='navigation']//li[contains(.,'Contacts Center')]/a/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>NAVIGATION_MICROBLOGS</td>
+	<td>//div[@id='navigation']//li[contains(.,'Microblogs')]/a/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>NAVIGATION_MESSAGES</td>
+	<td>//div[@id='navigation']//li[contains(.,'Messages')]/a/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>NAVIGATION_MY_DOCUMENTS</td>
+	<td>//div[@id='navigation']//li[contains(.,'My Documents')]/a/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>NAVIGATION_TASKS</td>
+	<td>//div[@id='navigation']//li[contains(.,'Tasks')]/a/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>NAVIGATION_WELCOME</td>
+	<td>//div[@id='navigation']//li[contains(.,'Welcome')]/a/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>NAVIGATION_PAGE</td>
+	<td>//div[@id='navigation']//li[contains(.,'${key_pageName}')]/a/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>NAVIGATION_USER_ADDED_PAGE</td>
+	<td>xpath=(//div[@id='content']//li[contains(@class,'lfr-nav-deletable')]/a/span)[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>NAVIGATION_PAGE_DELETE</td>
+	<td>xpath=(//div[@id='content']//li[contains(@class,'lfr-nav-deletable')]/span[contains(@class,'delete')])[2]</td>
+	<td></td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

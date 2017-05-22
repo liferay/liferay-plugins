@@ -1,0 +1,38 @@
+<html>
+<head>
+<title>SOConfigurationsGeneral</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">SOConfigurationsGeneral</td></tr>
+</thead>
+<tbody>
+<tr>
+	<td>SUCCESS_MESSAGE</td>
+	<td>//div[@class='alert alert-success']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SAVE_BUTTON</td>
+	<td>//button[contains(.,'Save')]</td>
+	<td></td>
+</tr>
+<!---->
+<!--SOCIAL_OFFICE_ROLE-->
+<tr>
+	<td>SOCIAL_OFFICE_ROLE_ADD_SITE_PERMISSION_CHECKBOX</td>
+	<td>//input[contains(@id,'addSitePermissionCheckbox')]</td>
+	<td></td>
+</tr>
+<!---->
+<!--SOCIAL_OFFICE_SITE-->
+<tr>
+	<td>SOCIAL_OFFICE_SITE_ENABLE_SITE_TYPE_CHECKBOX</td>
+	<td>//input[contains(@id,'${key_siteType}SitesCheckbox')]</td>
+	<td></td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

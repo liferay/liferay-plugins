@@ -1,0 +1,391 @@
+<html>
+<head>
+<title>SOProfile</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">SOProfile</td></tr>
+</thead>
+<tbody>
+<tr>
+	<td>PROFILE_URL</td>
+	<td>/web/${key_profileScreenName}/so/profile</td>
+	<td></td>
+</tr>
+<tr>
+	<td>USER_DETAILS</td>
+	<td>//div[@data-title='Details']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>USER_NAME</td>
+	<td>//div[@class='no-icon lfr-contact-info']/div/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>USER_EMAIL</td>
+	<td>//div[@class='lfr-contact-extra']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>USER_JOB_TITLE</td>
+	<td>//div[@class='lfr-contact-job-title']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>CONNECTION_REQUESTED_MESSAGE</td>
+	<td>//span[@class='disabled']/span[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>CONNECT_BUTTON</td>
+	<td>//span[@class='action add-connection']/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>DISCONNECT_BUTTON</td>
+	<td>//span[@class='action remove-connection']/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>FOLLOW_BUTTON</td>
+	<td>//span[@class='action follow']/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>UNFOLLOW_BUTTON</td>
+	<td>//span[@class='action unfollow']/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>BLOCK_BUTTON</td>
+	<td>//span[@class='action block']/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>UNBLOCK_BUTTON</td>
+	<td>//span[@class='action unblock']/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>MESSAGE_BUTTON</td>
+	<td>//span[@class='send-message']/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>VCARD_BUTTON</td>
+	<td>//span[contains(.,'vCard')]/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>PROFILE_CONTENT_INFO_MESSAGE</td>
+	<td>//p[@class='portlet-msg alert alert-info']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ADD_CONTENT_IFRAME</td>
+	<td>//iframe[contains(@class,'dialog-iframe')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ADD_CONTENT_IFRAME</td>
+	<td>//iframe[contains(@class,'dialog-iframe')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>DEFAULT_PROFILE_PICTURE</td>
+	<td>//img[@id='_so_WAR_sotheme_avatar' and contains(@src,'img_id=0')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>USER_PROFILE_PICTURE</td>
+	<td>//img[@alt='${key_userName}']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>EDIT_PROFILE_PICTURE_BUTTON</td>
+	<td>//button[contains(@class,'edit-logo')]</td>
+	<td></td>
+</tr>
+<!---->
+<!--NAVIGATION-->
+<tr>
+	<td>NAVIGATION_PROFILE</td>
+	<td>//div[@id='navigation']/ul/li/a/span[contains(.,'Profile')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>NAVIGATION_CONTACTS</td>
+	<td>//div[@id='navigation']/ul/li[contains(.,'Contacts')]/a/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>NAVIGATION_MICROBLOGS</td>
+	<td>//div[@id='navigation']/ul/li[contains(.,'Microblogs')]/a/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>NAVIGATION_PAGE</td>
+	<td>//div[@id='navigation']/ul/li[contains(.,'${key_pageName}')]/a/span</td>
+	<td></td>
+</tr>
+<!---->
+<!--CONTACTS-->
+<tr>
+	<td>CONTACTS_INFO_MESSAGE</td>
+	<td>//div[contains(@id,'contactsportlet')]//div[@class='portlet-msg-info']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>CONTACTS_NAME</td>
+	<td>//div[contains(@id,'contactsportlet')]//div[@class='lfr-contact-name']</td>
+	<td></td>
+</tr>
+<!---->
+<!--ADD-->
+<tr>
+	<td>ADD_ADDRESSES</td>
+	<td>//li[@data-title='Addresses']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ADD_EMAIL_ADDRESS</td>
+	<td>//li[@data-title='Additional Email Addresses']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ADD_INSTANT_MESSENGER</td>
+	<td>//li[@data-title='Instant Messenger']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ADD_INTRODUCTION</td>
+	<td>//li[@data-title='Introduction']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ADD_PHONES</td>
+	<td>//li[@data-title='Phone Numbers']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ADD_PROJECTS</td>
+	<td>//li[@data-title='Projects']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ADD_SMS</td>
+	<td>//li[@data-title='SMS']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ADD_SOCIAL_NETWORK</td>
+	<td>//li[@data-title='Social Network']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ADD_TAGS</td>
+	<td>//li[@data-title='Tags']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ADD_WEBSITES</td>
+	<td>//li[@data-title='Websites']</td>
+	<td></td>
+</tr>
+<!---->
+<!--PROFILE_INFO-->
+<tr>
+	<td>PROFILE_INFO_ADDRESS_TITLE</td>
+	<td>//div[@data-title='Addresses']/h3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>PROFILE_INFO_ADDRESS_CONTENT</td>
+	<td>//div[@data-title='Addresses']/ul</td>
+	<td></td>
+</tr>
+<tr>
+	<td>PROFILE_INFO_EMAIL_ADDRESS_TITLE</td>
+	<td>//div[@data-title='Additional Email Addresses']/h3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>PROFILE_INFO_EMAIL_ADDRESS_CONTENT</td>
+	<td>//div[@data-title='Additional Email Addresses']/ul</td>
+	<td></td>
+</tr>
+<tr>
+	<td>PROFILE_INFO_INSTANT_MESSENGER_TITLE</td>
+	<td>//div[@data-title='Instant Messenger']/h3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>PROFILE_INFO_INSTANT_MESSENGER_AIM_CONTENT</td>
+	<td>//div[@data-title='Instant Messenger']/ul/li[contains(.,'AIM')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>PROFILE_INFO_INSTANT_MESSENGER_ICQ_CONTENT</td>
+	<td>//div[@data-title='Instant Messenger']/ul/li[contains(.,'ICQ')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>PROFILE_INFO_INSTANT_MESSENGER_JABBER_CONTENT</td>
+	<td>//div[@data-title='Instant Messenger']/ul/li[contains(.,'Jabber')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>PROFILE_INFO_INSTANT_MESSENGER_MSN_CONTENT</td>
+	<td>//div[@data-title='Instant Messenger']/ul/li[contains(.,'msn')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>PROFILE_INFO_INSTANT_MESSENGER_SKYPE_CONTENT</td>
+	<td>//div[@data-title='Instant Messenger']/ul/li[contains(.,'Skype')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>PROFILE_INFO_INSTANT_MESSENGER_YM_CONTENT</td>
+	<td>//div[@data-title='Instant Messenger']/ul/li[contains(.,'ym')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>PROFILE_INFO_INTRODUCTION_TITLE</td>
+	<td>//div[@data-title='Introduction']/h3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>PROFILE_INFO_INTRODUCTION_CONTENT</td>
+	<td>//div[@data-title='Introduction']/ul/li</td>
+	<td></td>
+</tr>
+<tr>
+	<td>PROFILE_INFO_PHONE_NUMBERS_TITLE</td>
+	<td>//div[@data-title='Phone Numbers']/h3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>PROFILE_INFO_PHONE_NUMBERS_CONTENT</td>
+	<td>//div[@data-title='Phone Numbers']/ul</td>
+	<td></td>
+</tr>
+<tr>
+	<td>PROFILE_INFO_PROJECTS_TITLE</td>
+	<td>//div[@data-title='Projects']/h3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>PROFILE_INFO_PROJECTS_DATES</td>
+	<td>//div[@class='project-date property-list']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>PROFILE_INFO_PROJECTS_DESCRIPTION</td>
+	<td>//div[@class='project-description property-list']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>PROFILE_INFO_SITES_TITLE</td>
+	<td>//div[@class='user-sites-title']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>PROFILE_INFO_SITES</td>
+	<td>//ul[@class='user-sites']//a[contains(.,'${key_siteName}')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>PROFILE_INFO_SITES_EMPTY</td>
+	<td>//ul[@class='user-sites']//div[@class='empty']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>PROFILE_INFO_SMS_TITLE</td>
+	<td>//div[@data-title='SMS']/h3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>PROFILE_INFO_SMS_CONTENT</td>
+	<td>//div[@data-title='SMS']/ul/li</td>
+	<td></td>
+</tr>
+<tr>
+	<td>PROFILE_INFO_SOCIAL_NETWORK_TITLE</td>
+	<td>//div[@data-title='Social Network']/h3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>PROFILE_INFO_SOCIAL_NETWORK_FACEBOOK_CONTENT</td>
+	<td>//div[@data-title='Social Network']/ul/li[contains(.,'Facebook')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>PROFILE_INFO_SOCIAL_NETWORK_TWITTER_CONTENT</td>
+	<td>//div[@data-title='Social Network']/ul/li[contains(.,'Twitter')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>PROFILE_INFO_TAGS_TITLE</td>
+	<td>//div[@class='user-tags-title']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>PROFILE_INFO_TAGS_EDIT</td>
+	<td>//div[@data-title='Tags']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>PROFILE_INFO_TAGS_CONTENT</td>
+	<td>xpath=(//ul[@class='user-tags']/li/a)[contains(.,'${key_userTag}')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>PROFILE_INFO_TAGS_EMPTY</td>
+	<td>//div[contains(@class,'user-information') and contains(.,'does not have any tags')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>PROFILE_INFO_WEBSITES_TITLE</td>
+	<td>//div[@data-title='Websites']/h3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>PROFILE_INFO_WEBSITES_CONTENT</td>
+	<td>//div[@data-title='Websites']/ul</td>
+	<td></td>
+</tr>
+<!---->
+<!--MY_CONTACTS-->
+<tr>
+	<td>MY_CONTACTS_CONTACT_NAME</td>
+	<td>//div[@class='lfr-contact-name']/a[contains(.,'${key_userName}')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>MY_CONTACTS_VIEW_ALL_LINK</td>
+	<td>//a[contains(.,'View all ${key_userName}')]</td>
+	<td></td>
+</tr>
+<!---->
+<!--SCREENSHOTS-->
+<tr>
+	<td>SCREENSHOTS_PROFILE_PICTURE_PNG</td>
+	<td>so/screenshots/profile/profile_picture.png</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SCREENSHOTS_PROFILE_PICTURE_EDIT_PNG</td>
+	<td>so/screenshots/profile/profile_picture_edit.png</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SCREENSHOTS_PROFILE_PICTURE_DEFAULT_PNG</td>
+	<td>so/screenshots/profile/profile_picture_default.png</td>
+	<td></td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

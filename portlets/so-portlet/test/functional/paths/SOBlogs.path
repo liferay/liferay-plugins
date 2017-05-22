@@ -1,0 +1,120 @@
+<html>
+<head>
+<title>SOBlogs</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">SOBlogs</td></tr>
+</thead>
+<tbody>
+<tr>
+	<td>BLOGS_PORTLET_OPTIONS</td>
+	<td>//div[contains(@class,'portlet-blogs')]//span[contains(@class,'portlet-actions')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>BLOGS_PORTLET_OPTIONS_LINK</td>
+	<td>//div[contains(@class,'portlet-blogs')]//span[contains(@class,'portlet-actions')]//a[@title='Options']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>RECENT_BLOGS_OPTIONS</td>
+	<td>//header[contains(.,'Recent Blogs')]//menu//a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>BLOGS_PORTLET_CONFIGURATION_BAR</td>
+	<td>//div[contains(@class,'portlet-blogs') and contains(@class,'portlet-borderless')]//span[contains(@class,'portlet-actions')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>BLOGS_PORTLET_OPTIONS_ICON</td>
+	<td>//div[contains(@class,'portlet-blogs') and contains(@class,'portlet-borderless')]//span[contains(@class,'portlet-actions')]//a[contains(.,'Options')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>BLOGS_PORTLET_REMOVE_ICON</td>
+	<td>//div[contains(@class,'portlet-blogs') and contains(@class,'portlet-borderless')]//span[contains(@class,'portlet-actions')]//a[contains(.,'Remove')]</td>
+	<td></td>
+</tr>
+<!---->
+<!--RECENT_BLOGS_ENTRY-->
+<tr>
+	<td>RECENT_BLOGS_ENTRY_TITLE</td>
+	<td>//div[@class='entry-info' and contains(.,'${key_entryTitle}')]/span[@class='entry-title']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>RECENT_BLOGS_ENTRY_AUTHOR</td>
+	<td>//div[@class='entry-info' and contains(.,'${key_entryTitle}')]/span[@class='entry-author']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>RECENT_BLOGS_ENTRY_DATE</td>
+	<td>//div[@class='entry-info' and contains(.,'${key_entryTitle}')]/span[@class='entry-date']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>RECENT_BLOGS_ENTRY_ABSTRACT</td>
+	<td>//div[@class='abstract' and contains(.,'${key_entryAbstractDescription}')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>RECENT_BLOGS_ENTRY_AUTHOR_IMAGE</td>
+	<td>//div[@class='abstract' and contains(.,'${key_entryContent}')]//img</td>
+	<td></td>
+</tr>
+<tr>
+	<td>RECENT_BLOGS_ENTRY_READ_MORE_LINK</td>
+	<td>//div[@class='comments']/a[contains(.,'About ${key_entryTitle}')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>RECENT_BLOGS_ENTRY_COMMENTS_LINK</td>
+	<td>//div[contains(.,'${key_entryTitle}')]//div[@class='comments']/a[contains(.,'Comment')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>RECENT_BLOGS_ENTRY_QUOTE</td>
+	<td>//div[contains(.,'${key_entryQuote}')]//span[@class='quote']/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>RECENT_BLOGS_ENTRY_NO_ENTRIES</td>
+	<td>//div[@class='portlet-body' and contains(.,'There are no blogs.')]</td>
+	<td></td>
+</tr>
+<!---->
+<!--SCREENSHOTS-->
+<tr>
+	<td>SCREENSHOTS_BLOG_ENTRY_CONTENT_INLINE_EDIT_PNG</td>
+	<td>so/screenshots/blogs/blog_entry_content_inline_edit.png</td>
+	<td></td>
+</tr>
+<!---->
+<!--SEARCH_RESULTS-->
+<tr>
+	<td>SEARCH_RESULTS_ENTRY_TITLE</td>
+	<td>//div[contains(@class,'search')]//span[@class='entry-title' and contains(.,'${key_entryTitle}')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SEARCH_RESULTS_ENTRY_DESCRIPTION</td>
+	<td>//div[contains(@class,'search')]//span[@class='entry-title' and contains(.,'${key_entryTitle}')]//..//span[@class='entry-description']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SEARCH_RESULTS_ENTRY_COMMENT</td>
+	<td>//div[contains(@class,'search')]//span[@class='entry-title' and contains(.,'${key_entryTitle}')]//..//..//..//div[@class='entry-discussion']/a/span[@class='body']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SEARCH_RESULTS_HIGHLIGHTED</td>
+	<td>//div[contains(@class,'search')]//span[@class='entry-title' and contains(.,'${key_entryTitle}')]//..//..//..//span[@class='highlight']</td>
+	<td></td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

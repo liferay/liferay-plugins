@@ -1,0 +1,49 @@
+<html>
+<head>
+<title>SOBookmarksAdd</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">SOBookmarksAdd</td></tr>
+</thead>
+<tbody>
+<tr>
+	<td>NAME_FIELD</td>
+	<td>//input[@id='_28_name']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>URL_FIELD</td>
+	<td>//input[@id='_28_url']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>DESCRIPTION_FIELD</td>
+	<td>//textarea[@id='_28_description']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>TAG</td>
+	<td>//li/span[contains(.,'${key_tagName}')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>TAGS_FIELD</td>
+	<td>//input[@title='Add Tags']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ADD_TAGS_BUTTON</td>
+	<td>//button[contains(@title,'Add Tags')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SAVE_BUTTON</td>
+	<td>//button[contains(.,'Save')]</td>
+	<td></td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

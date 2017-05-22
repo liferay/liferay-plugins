@@ -1,0 +1,56 @@
+<html>
+<head>
+<title>SOForums</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">SOForums</td></tr>
+</thead>
+<tbody>
+<tr>
+	<td>BREADCRUMB_PORTLET_TITLE</td>
+	<td>xpath=(//span[@class='portlet-title-default'])[contains(.,'Breadcrumb')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>MESSAGE_BOARDS_PORTLET_TITLE</td>
+	<td>xpath=(//span[@class='portlet-title-default'])[contains(.,'Message Boards')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>BREADCRUMB_1</td>
+	<td>xpath=(//ul[contains(@class,'breadcrumb')]/li)[1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>BREADCRUMB_2</td>
+	<td>xpath=(//ul[contains(@class,'breadcrumb')]/li)[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>BREADCRUMB_3</td>
+	<td>xpath=(//ul[contains(@class,'breadcrumb')]/li)[3]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>BREADCRUMB_4</td>
+	<td>xpath=(//ul[contains(@class,'breadcrumb')]/li)[4]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>BREADCRUMB_5</td>
+	<td>xpath=(//ul[contains(@class,'breadcrumb')]/li)[5]</td>
+	<td></td>
+</tr>
+<!---->
+<!--SCREENSHOTS-->
+<tr>
+	<td>SCREENSHOTS_FORUMS_THREAD_BODY_CODE_PNG</td>
+	<td>so/screenshots/forums/forums_thread_body_code.png</td>
+	<td></td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>
