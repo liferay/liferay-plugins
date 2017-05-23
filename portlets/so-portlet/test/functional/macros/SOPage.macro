@@ -310,8 +310,7 @@
 			<then>
 				<var name="key_portletName" value="${portletName}" />
 
-				<execute function=
-"Click" locator1="Home#CONTROL_PANEL_NAVIGATION" />
+				<execute function="Click" locator1="Home#CONTROL_PANEL_NAVIGATION" />
 			</then>
 		</if>
 	</command>

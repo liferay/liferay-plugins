@@ -1048,8 +1048,7 @@
 		<while>
 			<condition function="IsElementPresent" locator1="SOProfileAddTag#DELETE_TAG_BUTTON" />
 			<then>
-				<execute function=
-"Click" locator1="SOProfileAddTag#DELETE_TAG_BUTTON" />
+				<execute function="Click" locator1="SOProfileAddTag#DELETE_TAG_BUTTON" />
 				<execute function="Pause" value1="1000" />
 			</then>
 		</while>

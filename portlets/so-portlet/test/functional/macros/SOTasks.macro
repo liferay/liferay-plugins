@@ -262,8 +262,7 @@
 				</if>
 			</then>
 			<else>
-				<execute function=
-"AssertElementPresent" locator1="SOTasks#TASK_PROGRESS_BAR_PERCENT_COMPLETION" />
+				<execute function="AssertElementPresent" locator1="SOTasks#TASK_PROGRESS_BAR_PERCENT_COMPLETION" />
 
 				<var name="key_taskDescription" value="${taskDescription}" />
 
@@ -646,8 +645,7 @@
 							</then>
 						</if>
 
-						<execute function=
-"AssertElementPresent" locator1="SOTasks#TASK_PROGRESS_BAR_PERCENT_COMPLETION" />
+						<execute function="AssertElementPresent" locator1="SOTasks#TASK_PROGRESS_BAR_PERCENT_COMPLETION" />
 					</then>
 				</if>
 
@@ -728,8 +726,7 @@
 							</then>
 						</if>
 
-						<execute function=
-"AssertElementPresent" locator1="SOTasks#TASK_PROGRESS_BAR_PERCENT_COMPLETION" />
+						<execute function="AssertElementPresent" locator1="SOTasks#TASK_PROGRESS_BAR_PERCENT_COMPLETION" />
 					</then>
 				</if>
 

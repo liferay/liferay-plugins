@@ -9,13 +9,13 @@
 		<execute function="SelectFrame" locator1="PGCalendarAddevent#ADD_EVENT_IFRAME" />
 		<execute function="Type" locator1="PGCalendarAddevent#TITLE_FIELD" value1="${eventTitle}" />
 		<execute function=
-"AssertVisible" locator1="PGCalendarAddevent#START_DATE" />
+		<execute function="AssertVisible" locator1="PGCalendarAddevent#START_DATE" />
 		<execute function=
-"AssertVisible" locator1="PGCalendarAddevent#START_DATE_TIME" />
+		<execute function="AssertVisible" locator1="PGCalendarAddevent#START_DATE_TIME" />
 		<execute function=
-"AssertVisible" locator1="PGCalendarAddevent#END_DATE" />
+		<execute function="AssertVisible" locator1="PGCalendarAddevent#END_DATE" />
 		<execute function=
-"AssertVisible" locator1="PGCalendarAddevent#END_DATE_TIME" />
+		<execute function="AssertVisible" locator1="PGCalendarAddevent#END_DATE_TIME" />
 
 		<var locator="PGCalendarAddevent#END_DATE" name="endDate" />
 		<var locator="PGCalendarAddevent#END_DATE_TIME" name="endDateTime" />
