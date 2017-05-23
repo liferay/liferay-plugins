@@ -52,7 +52,7 @@
 
 		<execute macro="CalendarNavigator#gotoAddEvent" />
 
-		<execute macro="CalendarEvent#add">
+		<execute macro="SOCalendarEvent#add">
 			<var name="addRSVPEnabled" value="${addRSVPEnabled}" />
 			<var name="calendarName" value="${calendarName}" />
 			<var name="endDate" value="${endDate}" />
@@ -396,7 +396,7 @@
 			<var name="soPage" value="${soPage}" />
 		</execute>
 
-		<execute macro="CalendarEvent#edit">
+		<execute macro="SOCalendarEvent#edit">
 			<var name="calendarName" value="${calendarName}" />
 			<var name="endDateTime" value="${endDateTime}" />
 			<var name="endDateTimeEdit" value="11:59 PM" />

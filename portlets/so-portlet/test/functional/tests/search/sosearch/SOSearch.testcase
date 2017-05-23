@@ -2507,7 +2507,7 @@
 
 		<execute macro="CalendarNavigator#gotoAddEvent" />
 
-		<execute macro="CalendarEvent#add">
+		<execute macro="SOCalendarEvent#add">
 			<var name="eventDescription" value="${eventDescription}" />
 			<var name="eventTitle" value="${eventTitle}" />
 			<var name="eventType" value="Regular" />
@@ -2907,7 +2907,7 @@
 
 		<execute macro="CalendarNavigator#gotoAddEvent" />
 
-		<execute macro="CalendarEvent#add">
+		<execute macro="SOCalendarEvent#add">
 			<var name="eventDescription" value="${eventDescription}" />
 			<var name="eventTitle" value="${eventTitle}" />
 			<var name="eventType" value="Regular" />

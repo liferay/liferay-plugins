@@ -954,7 +954,7 @@
 			<var name="siteURL" value="true" />
 		</execute>
 
-		<execute macro="BlogsEntryComment#deletePG">
+		<execute macro="SOBlogsEntryComment#deletePG">
 			<var name="entryComment" value="${entryComment}" />
 			<var name="entryTitle" value="${entryTitle}" />
 			<var name="soPage" value="${soPage}" />

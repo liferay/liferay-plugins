@@ -1,0 +1,29 @@
+<definition>
+	<command name="deleteCommentPG">
+		<execute function="AssertClick" locator1="PGWiki#NAVIGATION_ALL_PAGES" value1="All Pages" />
+
+		<var name="key_wikiPageTitle" value="${wikiPageTitle}" />
+
+		<execute function="AssertClick" locator1="PGWikiAllpages#WIKI_PAGE_TABLE_PAGE" value1="${wikiPageTitle}" />
+
+		<execute function="AssertTextEquals" locator1="PGWiki#WIKI_PAGE_TITLE" value1="${wikiPageTitle}" />
+
+		<var name="key_commentBody" value="${commentBody}" />
+
+		<if>
+			<equals arg1="${soPage}" arg2="true" />
+			<then>
+				<execute function="AssertClickNoError" locator1="PGWiki#COMMENTS_COMMENT_DELETE" value1="Delete" />
+
+				<execute function="Confirm" value1="Are you sure you want to delete the selected comment?" />
+			</then>
+			<else>
+				<execute function="AssertClickNoError" locator1="PGWiki#COMMENTS_COMMENT_DELETE" value1="Delete" />
+
+				<execute function="Confirm" value1="Are you sure you want to delete this? It will be deleted immediately." />
+			</else>
+		</if>
+
+		<execute function="AssertTextEquals" locator1="PGWiki#COMMENTS_SUCCESS" value1="Your request processed successfully." />
+	</command>
+</definition>

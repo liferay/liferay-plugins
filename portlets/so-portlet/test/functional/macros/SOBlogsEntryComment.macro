@@ -1,0 +1,28 @@
+<definition>
+	<command name="deletePG">
+		<var name="key_entryTitle" value="${entryTitle}" />
+
+		<execute function="AssertClick" locator1="PGBlogs#ENTRY_TITLE" value1="${entryTitle}" />
+
+		<var name="key_entryComment" value="${entryComment}" />
+
+		<if>
+			<equals arg1="${soPage}" arg2="true" />
+			<then>
+				<execute function="AssertClickNoError" locator1="PGBlogsEntry#COMMENT_DELETE" value1="Delete" />
+
+				<execute function="Confirm" value1="Are you sure you want to delete the selected comment?" />
+			</then>
+			<else>
+				<execute function="MouseOver" locator1="CPBlogsEntry#COMMENT" />
+
+				<execute function="AssertClickNoError" locator1="PGBlogsEntry#COMMENT_DELETE" value1="Delete" />
+
+				<execute function="Confirm" value1="Are you sure you want to delete this? It will be deleted immediately." />
+			</else>
+		</if>
+
+		<execute function="AssertTextEquals#assertTextWaitForInlineCKEditor" locator1="PGBlogsEntry#COMMENTS_SUCCESS" value1="Your request processed successfully." />
+		<execute function="AssertTextNotPresent" value1="${entryComment}" />
+	</command>
+</definition>
