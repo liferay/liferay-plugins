@@ -84,16 +84,10 @@ public class AssetEntrySetIndexer extends BaseIndexer {
 				searchContext.getUserId());
 
 		for (String membershipSearchTerm : membershipSearchTerms) {
-			booleanQuery.add(
-				getBooleanQuery(
-					searchContext, "sharedTo", membershipSearchTerm),
-				BooleanClauseOccur.SHOULD);
+			booleanQuery.addTerm("sharedTo", membershipSearchTerm);
 		}
 
-		booleanQuery.add(
-			getBooleanQuery(
-				searchContext, "privateAssetEntrySet", StringPool.FALSE),
-			BooleanClauseOccur.SHOULD);
+		booleanQuery.addTerm("privateAssetEntrySet", StringPool.FALSE);
 
 		contextQuery.add(booleanQuery, BooleanClauseOccur.MUST);
 	}
@@ -186,21 +180,6 @@ public class AssetEntrySetIndexer extends BaseIndexer {
 		long companyId = GetterUtil.getLong(ids[0]);
 
 		reindexEntries(companyId);
-	}
-
-	protected BooleanQuery getBooleanQuery(
-			SearchContext searchContext, String field, String value)
-		throws Exception {
-
-		BooleanQuery booleanQuery = BooleanQueryFactoryUtil.create(
-			searchContext);
-
-		TermQuery termQuery = TermQueryFactoryUtil.create(
-			searchContext, field, value);
-
-		booleanQuery.add(termQuery, BooleanClauseOccur.MUST);
-
-		return booleanQuery;
 	}
 
 	@Override
