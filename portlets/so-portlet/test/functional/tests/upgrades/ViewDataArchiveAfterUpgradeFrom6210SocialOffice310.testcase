@@ -1,0 +1,960 @@
+<definition component-name="social-office-upgrades">
+	<property name="data.archive.type" value="data-archive-so-3-1-0" />
+	<property name="hook.plugins.includes" value="deploy-listener-hook,portal-compat-hook,so-activities-hook,so-hook" />
+	<property name="portal.version" value="6.2.10.8" />
+	<property name="portlet.plugins.includes" value="calendar-portlet,chat-portlet,contacts-portlet,events-display-portlet,marketplace-portlet,microblogs-portlet,notifications-portlet,private-messaging-portlet,so-announcements-portlet,so-configurations-portlet,so-portlet,tasks-portlet,wysiwyg-portlet" />
+	<property name="testray.main.component.name" value="Social Office EE" />
+	<property name="theme.plugins.includes" value="so-theme" />
+	<property name="web.plugins.includes" value="resources-importer-web" />
+	<property name="custom.properties" value="dl.store.impl=com.liferay.portlet.documentlibrary.store.DBStore" />
+
+	<var name="adminEmailAddress" value="test@liferay.com" />
+	<var name="adminName" value="Test Test" />
+	<var name="soPage" value="true" />
+
+	<set-up>
+		<execute macro="SOUser#firstLoginPG" />
+	</set-up>
+
+	<command name="ViewSODashboardContactsCenterContent" priority="5">
+		<var name="userEmailAddress1" value="socialoffice01@liferay.com" />
+		<var name="userEmailAddress2" value="socialoffice02@liferay.com" />
+		<var name="userEmailAddress3" value="socialoffice03@liferay.com" />
+		<var name="userEmailAddress4" value="socialoffice04@liferay.com" />
+		<var name="userEmailAddress5" value="socialoffice05@liferay.com" />
+		<var name="userEmailAddress6" value="socialoffice06@liferay.com" />
+		<var name="userEmailAddress7" value="socialoffice07@liferay.com" />
+		<var name="userEmailAddress8" value="socialoffice08@liferay.com" />
+		<var name="userEmailAddress9" value="socialoffice09@liferay.com" />
+		<var name="userFirstName1" value="Social01" />
+		<var name="userFirstName2" value="Social02" />
+		<var name="userFirstName3" value="Social03" />
+		<var name="userFirstName4" value="Social04" />
+		<var name="userFirstName5" value="Social05" />
+		<var name="userFirstName6" value="Social06" />
+		<var name="userFirstName7" value="Social07" />
+		<var name="userFirstName8" value="Social08" />
+		<var name="userFirstName9" value="Social09" />
+		<var name="userLastName1" value="User01" />
+		<var name="userLastName2" value="User02" />
+		<var name="userLastName3" value="User03" />
+		<var name="userLastName4" value="User04" />
+		<var name="userLastName5" value="User05" />
+		<var name="userLastName6" value="User06" />
+		<var name="userLastName7" value="User07" />
+		<var name="userLastName8" value="User08" />
+		<var name="userLastName9" value="User09" />
+		<var name="userListName1" value="User01, Social01" />
+		<var name="userListName2" value="User02, Social02" />
+		<var name="userListName3" value="User03, Social03" />
+		<var name="userListName4" value="User04, Social04" />
+		<var name="userListName5" value="User05, Social05" />
+		<var name="userListName6" value="User06, Social06" />
+		<var name="userListName7" value="User07, Social07" />
+		<var name="userListName8" value="User08, Social08" />
+		<var name="userListName9" value="User09, Social09" />
+		<var name="userMiddleName1" value="Office01" />
+		<var name="userMiddleName2" value="Office02" />
+		<var name="userMiddleName3" value="Office03" />
+		<var name="userMiddleName4" value="Office04" />
+		<var name="userMiddleName5" value="Office05" />
+		<var name="userMiddleName6" value="Office06" />
+		<var name="userMiddleName7" value="Office07" />
+		<var name="userMiddleName8" value="Office08" />
+		<var name="userMiddleName9" value="Office09" />
+		<var name="userName1" value="Social01 Office01 User01" />
+		<var name="userName2" value="Social02 Office02 User02" />
+		<var name="userName3" value="Social03 Office03 User03" />
+		<var name="userName4" value="Social04 Office04 User04" />
+		<var name="userName5" value="Social05 Office05 User05" />
+		<var name="userName6" value="Social06 Office06 User06" />
+		<var name="userName7" value="Social07 Office07 User07" />
+		<var name="userName8" value="Social08 Office08 User08" />
+		<var name="userName9" value="Social09 Office09 User09" />
+		<var name="userScreenName1" value="socialoffice01" />
+		<var name="userScreenName2" value="socialoffice02" />
+		<var name="userScreenName3" value="socialoffice03" />
+		<var name="userScreenName4" value="socialoffice04" />
+		<var name="userScreenName5" value="socialoffice05" />
+		<var name="userScreenName6" value="socialoffice06" />
+		<var name="userScreenName7" value="socialoffice07" />
+		<var name="userScreenName8" value="socialoffice08" />
+		<var name="userScreenName9" value="socialoffice09" />
+
+		<execute macro="SOContactsCenter#viewConnection">
+			<var name="numberOfConnections" value="3" />
+			<var name="userEmailAddress" value="${userEmailAddress1}" />
+			<var name="userFirstName" value="${userFirstName1}" />
+			<var name="userLastName" value="${userLastName1}" />
+			<var name="userListName" value="${userListName1}" />
+			<var name="userName" value="${userName1}" />
+			<var name="userScreenName" value="${userScreenName1}" />
+		</execute>
+
+		<execute macro="SOContactsCenter#viewConnection">
+			<var name="numberOfConnections" value="3" />
+			<var name="userEmailAddress" value="${userEmailAddress2}" />
+			<var name="userFirstName" value="${userFirstName2}" />
+			<var name="userLastName" value="${userLastName2}" />
+			<var name="userListName" value="${userListName2}" />
+			<var name="userName" value="${userName2}" />
+			<var name="userScreenName" value="${userScreenName2}" />
+		</execute>
+
+		<execute macro="SOContactsCenter#viewConnection">
+			<var name="numberOfConnections" value="3" />
+			<var name="userEmailAddress" value="${userEmailAddress3}" />
+			<var name="userFirstName" value="${userFirstName3}" />
+			<var name="userLastName" value="${userLastName3}" />
+			<var name="userListName" value="${userListName3}" />
+			<var name="userName" value="${userName3}" />
+			<var name="userScreenName" value="${userScreenName3}" />
+		</execute>
+
+		<execute macro="SOContactsCenter#viewFollowing">
+			<var name="numberOfUsersFollowing" value="3" />
+			<var name="userEmailAddress" value="${userEmailAddress4}" />
+			<var name="userFirstName" value="${userFirstName4}" />
+			<var name="userLastName" value="${userLastName4}" />
+			<var name="userListName" value="${userListName4}" />
+			<var name="userName" value="${userName4}" />
+			<var name="userScreenName" value="${userScreenName4}" />
+		</execute>
+
+		<execute macro="SOContactsCenter#viewFollowing">
+			<var name="numberOfUsersFollowing" value="3" />
+			<var name="userEmailAddress" value="${userEmailAddress5}" />
+			<var name="userFirstName" value="${userFirstName5}" />
+			<var name="userLastName" value="${userLastName5}" />
+			<var name="userListName" value="${userListName5}" />
+			<var name="userName" value="${userName5}" />
+			<var name="userScreenName" value="${userScreenName5}" />
+		</execute>
+
+		<execute macro="SOContactsCenter#viewFollowing">
+			<var name="numberOfUsersFollowing" value="3" />
+			<var name="userEmailAddress" value="${userEmailAddress6}" />
+			<var name="userFirstName" value="${userFirstName6}" />
+			<var name="userLastName" value="${userLastName6}" />
+			<var name="userListName" value="${userListName6}" />
+			<var name="userName" value="${userName6}" />
+			<var name="userScreenName" value="${userScreenName6}" />
+		</execute>
+
+		<execute macro="SOContactsCenter#viewBlockedUser">
+			<var name="userEmailAddress" value="${userEmailAddress7}" />
+			<var name="userFirstName" value="${userFirstName7}" />
+			<var name="userLastName" value="${userLastName7}" />
+			<var name="userListName" value="${userListName7}" />
+			<var name="userName" value="${userName7}" />
+			<var name="userScreenName" value="${userScreenName7}" />
+		</execute>
+
+		<execute macro="SOContactsCenter#viewBlockedUser">
+			<var name="userEmailAddress" value="${userEmailAddress8}" />
+			<var name="userFirstName" value="${userFirstName8}" />
+			<var name="userLastName" value="${userLastName8}" />
+			<var name="userListName" value="${userListName8}" />
+			<var name="userName" value="${userName8}" />
+			<var name="userScreenName" value="${userScreenName8}" />
+		</execute>
+
+		<execute macro="SOContactsCenter#viewBlockedUser">
+			<var name="userEmailAddress" value="${userEmailAddress9}" />
+			<var name="userFirstName" value="${userFirstName9}" />
+			<var name="userLastName" value="${userLastName9}" />
+			<var name="userListName" value="${userListName9}" />
+			<var name="userName" value="${userName9}" />
+			<var name="userScreenName" value="${userScreenName9}" />
+		</execute>
+	</command>
+
+	<command name="ViewSODashboardContentMicroblogs" priority="5">
+		<var name="microblogsEntryCommentContent" value="#Microblogs Post Comment" />
+		<var name="microblogsEntryCommentTagValue" value="Microblogs" />
+		<var name="microblogsEntryContent" value="Microblogs Post" />
+		<var name="pageName" value="Microblogs" />
+		<var name="userEmailAddress1" value="socialoffice01@liferay.com" />
+		<var name="userFirstName1" value="Social01" />
+		<var name="userLastName1" value="User01" />
+		<var name="userListName1" value="User01, Social01" />
+		<var name="userMiddleName1" value="Office01" />
+		<var name="userName1" value="Social01 Office01 User01" />
+		<var name="userScreenName1" value="socialoffice01" />
+
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute function="Click" locator1="SODashboard#NAVIGATION_MICROBLOGS" />
+
+		<execute macro="SOMicroblogs#viewMicroblogsEntryCommentTag">
+			<var name="commentCount" value="1" />
+			<var name="microblogsEntryAuthorFirstName" value="${adminFirstName}" />
+			<var name="microblogsEntryAuthorLastName" value="${adminLastName}" />
+			<var name="microblogsEntryAuthorName" value="${adminName}" />
+			<var name="microblogsEntryCommentAuthorName" value="${adminName}" />
+			<var name="microblogsEntryCommentContent" value="${microblogsEntryCommentContent}" />
+			<var name="microblogsEntryCommentTagValue" value="${microblogsEntryCommentTagValue}" />
+			<var name="microblogsEntryContent" value="${microblogsEntryContent} ${userName1}" />
+		</execute>
+
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute function="Click" locator1="SODashboard#NAVIGATION_MICROBLOGS" />
+
+		<execute macro="SOMicroblogs#viewOwnMicroblogsEntryMention">
+			<var name="commentCount" value="1" />
+			<var name="mentionUserEmailAddress" value="${userEmailAddress1}" />
+			<var name="mentionUserName" value="${userName1}" />
+			<var name="microblogsEntryAuthorName" value="${adminName}" />
+			<var name="microblogsEntryContent" value="${microblogsEntryContent}" />
+		</execute>
+
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute function="Click" locator1="SODashboard#NAVIGATION_MICROBLOGS" />
+
+		<execute macro="SOMicroblogs#viewMicroblogsEntryCommentTag">
+			<var name="commentCount" value="1" />
+			<var name="microblogsEntryAuthorFirstName" value="${adminFirstName}" />
+			<var name="microblogsEntryAuthorLastName" value="${adminLastName}" />
+			<var name="microblogsEntryAuthorName" value="${adminName}" />
+			<var name="microblogsEntryCommentAuthorName" value="${adminName}" />
+			<var name="microblogsEntryCommentContent" value="${microblogsEntryCommentContent}" />
+			<var name="microblogsEntryCommentTagValue" value="${microblogsEntryCommentTagValue}" />
+			<var name="microblogsEntryContent" value="${microblogsEntryContent}" />
+		</execute>
+	</command>
+
+	<command name="ViewSODashboardHomeAnnouncementsContent" priority="5">
+		<var name="distributionScope" value="General" />
+		<var name="entryContent" value="Announcements Entry Dashboard Content" />
+		<var name="entryTitle" value="Announcements Entry Dashboard Title" />
+
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<var name="key_entryTitle" value="${entryTitle}" />
+
+		<execute function="AssertClick" locator1="SOAnnouncements#ANNOUNCEMENTS_MANAGE_ENTRIES_BUTTON" value1="Manage Entries" />
+
+		<execute function="SelectFrame" locator1="SOAnnouncementsManage#MANAGE_ENTRY_IFRAME" />
+		<execute function="Select" locator1="SOAnnouncementsManage#DISTRIBUTION_SCOPE_SELECT" value1="${distributionScope}" />
+		<execute function="AssertTextEquals" locator1="SOAnnouncementsManage#ANNOUNCEMENTS_ENTRY_TITLE" value1="${entryTitle}" />
+		<execute function="AssertTextEquals" locator1="SOAnnouncementsManage#ANNOUNCEMENTS_ENTRY_AUTHOR" value1="Test Test" />
+		<execute function="AssertTextEquals" locator1="SOAnnouncementsManage#ANNOUNCEMENTS_ENTRY_TYPE" value1="General" />
+		<execute function="AssertElementPresent" locator1="SOAnnouncementsManage#ANNOUNCEMENTS_ENTRY_MODIFIED_DATE" />
+		<execute function="AssertElementPresent" locator1="SOAnnouncementsManage#ANNOUNCEMENTS_ENTRY_DISPLAY_DATE" />
+		<execute function="AssertElementPresent" locator1="SOAnnouncementsManage#ANNOUNCEMENTS_ENTRY_EXPIRATION_DATE" />
+		<execute function="AssertTextEquals" locator1="SOAnnouncementsManage#ANNOUNCEMENTS_ENTRY_EDIT_LINK" value1="Edit"  />
+		<execute function="AssertTextEquals" locator1="SOAnnouncementsManage#ANNOUNCEMENTS_ENTRY_DELETE_LINK" value1="Delete"  />
+		<execute function="SelectFrameTop" />
+	</command>
+
+	<command name="ViewSODashboardMessagesContent" priority="5">
+		<var name="messageAttachmentFile" value="Document_1.jpg" />
+		<var name="messageBody" value="Message Body" />
+		<var name="messageSubject" value="Message Subject" />
+		<var name="pageName" value="Messages" />
+		<var name="soPage" value="true" />
+		<var name="userEmailAddress1" value="socialoffice01@liferay.com" />
+		<var name="userFirstName1" value="Social01" />
+		<var name="userLastName1" value="User01" />
+		<var name="userListName1" value="User01, Social01" />
+		<var name="userMiddleName1" value="Office01" />
+		<var name="userName1" value="Social01 Office01 User01" />
+		<var name="userScreenName1" value="socialoffice01" />
+
+		<execute macro="SOPage#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="SOMessages#viewMessage">
+			<var name="connectionName" value="${userName1}" />
+			<var name="messageAttachmentFile" value="${messageAttachmentFile}" />
+			<var name="messageBody" value="${messageBody}" />
+			<var name="messageSubject" value="${messageSubject}" />
+			<var name="senderName" value="${adminName}" />
+		</execute>
+
+		<execute macro="User#logoutAndLoginPG">
+			<var name="userLoginEmailAddress" value="${userEmailAddress1}" />
+			<var name="userLoginFullName" value="${userName1}" />
+		</execute>
+
+		<execute macro="SOPage#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="SOMessages#viewMessage">
+			<var name="connectionName" value="${adminName}" />
+			<var name="messageAttachmentFile" value="${messageAttachmentFile}" />
+			<var name="messageBody" value="${messageBody}" />
+			<var name="messageSubject" value="${messageSubject}" />
+			<var name="senderName" value="${adminName}" />
+		</execute>
+	</command>
+
+	<command name="ViewSODashboardMyDocumentsContent" priority="5">
+		<var name="commentBody" value="DM Folder Document Comment" />
+		<var name="dmDocumentDescription" value="DM Folder Document Description" />
+		<var name="dmDocumentFile" value="Document_1.doc" />
+		<var name="dmDocumentTitle" value="DM Folder Document Title" />
+		<var name="dmDocumentUploader" value="Test Test" />
+		<var name="dmDocumentVersionNumber" value="1.0" />
+		<var name="dmFolderDescription" value="DM Folder Description" />
+		<var name="dmFolderName" value="DM Folder Name" />
+		<var name="pageName" value="My Documents" />
+		<var name="tagName1" value="tag1" />
+		<var name="tagName2" value="tag2" />
+
+		<execute macro="SOPage#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="SODMDocument#viewAllPG">
+			<var name="commentBody" value="${commentBody}" />
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+			<var name="dmDocumentVersionNumber" value="${dmDocumentVersionNumber}" />
+			<var name="tagNameList" value="${tagName1},${tagName2}" />
+		</execute>
+	</command>
+
+	<command name="ViewSODashboardTasksContent" priority="5">
+		<var name="pageName" value="Tasks" />
+		<var name="taskDescription1" value="Task 1 Description" />
+		<var name="taskDescription2" value="Task 2 Description" />
+		<var name="taskDescription3" value="Task 3 Description" />
+
+		<execute macro="SOPage#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="SOTasks#viewTask">
+			<var name="numberOfTags" value="3" />
+			<var name="taskAssignee" value="${adminName}" />
+			<var name="taskDescription" value="${taskDescription1}" />
+			<var name="taskReporter" value="${adminName}" />
+		</execute>
+
+		<execute macro="SOPage#gotoPG">
+			<var name="pageName" value="${pageName}" />
+			<var name="soDashboard" value="true" />
+			<var name="soPage" value="true" />
+		</execute>
+
+		<execute macro="SOTasks#viewTask">
+			<var name="dueDate" value="true" />
+			<var name="percentCompletion" value="60" />
+			<var name="taskAssignee" value="${adminName}" />
+			<var name="taskDescription" value="${taskDescription2}" />
+			<var name="taskReporter" value="${adminName}" />
+		</execute>
+	</command>
+
+	<command name="ViewSOSite" priority="5">
+		<var name="siteDescription1" value="Open Site1 Description" />
+		<var name="siteDescription2" value="Public Restricted Site2 Description" />
+		<var name="siteDescription3" value="Private Site3 Description" />
+		<var name="siteDescription4" value="Private Restricted Site4 Description" />
+		<var name="siteName1" value="Open Site1 Name" />
+		<var name="siteName2" value="Public Restricted Site2 Name" />
+		<var name="siteName3" value="Private Site3 Name" />
+		<var name="siteName4" value="Private Restricted Site4 Name" />
+		<var name="siteType1" value="Open" />
+		<var name="siteType2" value="Public Restricted" />
+		<var name="siteType3" value="Private" />
+		<var name="siteType4" value="Private Restricted" />
+
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute function="SelectFrameTop" />
+		<execute function="Click#pauseClickAt" locator1="SOUserBar#GO_TO" />
+		<execute function="Click#pauseClickAt" locator1="SOUserBar#GO_TO_SITES_DIRECTORY_BUTTON" />
+
+		<execute function="Select" locator1="SOUserBarSitesDirectory#SITE_CATEGORY_SELECT" value1="All Sites" />
+
+		<var name="key_siteName" value="${siteName1}" />
+
+		<execute function="AssertTextEquals" locator1="SOUserBarSitesDirectory#SITE_NAME_LINK" value1="${siteName1}" />
+		<execute function="AssertTextEquals" locator1="SOUserBarSitesDirectory#SITE_DESCRIPTION" value1="${siteDescription1}" />
+
+		<var name="key_siteName" value="${siteName2}" />
+
+		<execute function="AssertTextEquals" locator1="SOUserBarSitesDirectory#SITE_NAME_LINK" value1="${siteName2}" />
+		<execute function="AssertTextEquals" locator1="SOUserBarSitesDirectory#SITE_DESCRIPTION" value1="${siteDescription2}" />
+
+		<var name="key_siteName" value="${siteName3}" />
+
+		<execute function="AssertElementNotPresent" locator1="SOUserBarSitesDirectory#SITE_NAME_LINK" value1="${siteName3}" />
+		<execute function="AssertElementNotPresent" locator1="SOUserBarSitesDirectory#SITE_DESCRIPTION" value1="${siteDescription3}" />
+
+		<var name="key_siteName" value="${siteName4}" />
+
+		<execute function="AssertTextEquals" locator1="SOUserBarSitesDirectory#SITE_NAME_LINK" value1="${siteName4}" />
+		<execute function="AssertTextEquals" locator1="SOUserBarSitesDirectory#SITE_DESCRIPTION" value1="${siteDescription4}" />
+		<execute function="Select" locator1="SOUserBarSitesDirectory#SITE_CATEGORY_SELECT" value1="My Sites" />
+
+		<var name="key_siteName" value="${siteName1}" />
+
+		<execute function="AssertTextEquals" locator1="SOUserBarSitesDirectory#SITE_NAME_LINK" value1="${siteName1}" />
+		<execute function="AssertTextEquals" locator1="SOUserBarSitesDirectory#SITE_DESCRIPTION" value1="${siteDescription1}" />
+
+		<var name="key_siteName" value="${siteName2}" />
+
+		<execute function="AssertTextEquals" locator1="SOUserBarSitesDirectory#SITE_NAME_LINK" value1="${siteName2}" />
+		<execute function="AssertTextEquals" locator1="SOUserBarSitesDirectory#SITE_DESCRIPTION" value1="${siteDescription2}" />
+
+		<var name="key_siteName" value="${siteName3}" />
+
+		<execute function="AssertTextEquals" locator1="SOUserBarSitesDirectory#SITE_NAME_LINK" value1="${siteName3}" />
+		<execute function="AssertTextEquals" locator1="SOUserBarSitesDirectory#SITE_DESCRIPTION" value1="${siteDescription3}" />
+
+		<var name="key_siteName" value="${siteName4}" />
+		<execute function="AssertTextEquals" locator1="SOUserBarSitesDirectory#SITE_NAME_LINK" value1="${siteName4}" />
+		<execute function="AssertTextEquals" locator1="SOUserBarSitesDirectory#SITE_DESCRIPTION" value1="${siteDescription4}" />
+
+		<var name="key_siteName" value="${siteName1}" />
+
+		<execute function="Type" locator1="SOUserBarSitesDirectory#SITE_SEARCH_FIELD" value1="${siteName1}" />
+		<execute function="AssertTextEquals" locator1="SOUserBarSitesDirectory#SITE_NAME_LINK" value1="${siteName1}" />
+		<execute function="AssertTextEquals" locator1="SOUserBarSitesDirectory#SITE_DESCRIPTION" value1="${siteDescription1}" />
+		<execute function="Click" locator1="SOUserBarSitesDirectory#SITE_NAME_LINK" value1="${siteName1}" />
+
+		<execute function="AssertTextEquals" locator1="SOSite#SITE_NAME" value1="${siteName1}" />
+
+		<var name="key_siteName" value="${siteName2}" />
+
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute function="SelectFrameTop" />
+		<execute function="Click#pauseClickAt" locator1="SOUserBar#GO_TO" />
+		<execute function="Click#pauseClickAt" locator1="SOUserBar#GO_TO_SITES_DIRECTORY_BUTTON" />
+
+		<execute function="Select" locator1="SOUserBarSitesDirectory#SITE_CATEGORY_SELECT" value1="My Sites" />
+		<execute function="Type" locator1="SOUserBarSitesDirectory#SITE_SEARCH_FIELD" value1="${siteName2}" />
+		<execute function="AssertTextEquals" locator1="SOUserBarSitesDirectory#SITE_NAME_LINK" value1="${siteName2}" />
+		<execute function="AssertTextEquals" locator1="SOUserBarSitesDirectory#SITE_DESCRIPTION" value1="${siteDescription2}" />
+		<execute function="Click" locator1="SOUserBarSitesDirectory#SITE_NAME_LINK" value1="${siteName2}" />
+
+		<execute function="AssertTextEquals" locator1="SOSite#SITE_NAME" value1="${siteName2}" />
+
+		<var name="key_siteName" value="${siteName3}" />
+
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute function="SelectFrameTop" />
+		<execute function="Click#pauseClickAt" locator1="SOUserBar#GO_TO" />
+		<execute function="Click#pauseClickAt" locator1="SOUserBar#GO_TO_SITES_DIRECTORY_BUTTON" />
+
+		<execute function="Select" locator1="SOUserBarSitesDirectory#SITE_CATEGORY_SELECT" value1="My Sites" />
+		<execute function="Type" locator1="SOUserBarSitesDirectory#SITE_SEARCH_FIELD" value1="${siteName3}" />
+		<execute function="AssertTextEquals" locator1="SOUserBarSitesDirectory#SITE_NAME_LINK" value1="${siteName3}" />
+		<execute function="AssertTextEquals" locator1="SOUserBarSitesDirectory#SITE_DESCRIPTION" value1="${siteDescription3}" />
+		<execute function="Click" locator1="SOUserBarSitesDirectory#SITE_NAME_LINK" value1="${siteName3}" />
+
+		<execute function="AssertTextEquals" locator1="SOSite#SITE_NAME" value1="${siteName3}" />
+
+		<var name="key_siteName" value="${siteName4}" />
+
+		<execute macro="SOUserBar#gotoDashboardPG" />
+
+		<execute function="SelectFrameTop" />
+		<execute function="Click#pauseClickAt" locator1="SOUserBar#GO_TO" />
+		<execute function="Click#pauseClickAt" locator1="SOUserBar#GO_TO_SITES_DIRECTORY_BUTTON" />
+		<execute function="Select" locator1="SOUserBarSitesDirectory#SITE_CATEGORY_SELECT" value1="My Sites" />
+		<execute function="Type" locator1="SOUserBarSitesDirectory#SITE_SEARCH_FIELD" value1="${siteName4}" />
+		<execute function="AssertTextEquals" locator1="SOUserBarSitesDirectory#SITE_NAME_LINK" value1="${siteName4}" />
+		<execute function="AssertTextEquals" locator1="SOUserBarSitesDirectory#SITE_DESCRIPTION" value1="${siteDescription4}" />
+		<execute function="Click" locator1="SOUserBarSitesDirectory#SITE_NAME_LINK" value1="${siteName4}" />
+		<execute function="AssertTextEquals" locator1="SOSite#SITE_NAME" value1="${siteName4}" />
+	</command>
+
+	<command name="ViewSOSiteContentAnnouncements" priority="5">
+		<var name="entryContent" value="Announcements Entry SO Site Content" />
+		<var name="entryTitle" value="Announcements Entry SO Site Title" />
+		<var name="siteName1" value="Open Site1 Name" />
+
+		<execute macro="SOPage#openURL">
+			<var name="siteName" value="${siteName1}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<var name="key_entryTitle" value="${entryTitle}" />
+
+		<execute function="AssertClick" locator1="SOAnnouncements#ANNOUNCEMENTS_MANAGE_ENTRIES_BUTTON" value1="Manage Entries" />
+
+		<execute function="SelectFrame" locator1="SOAnnouncementsManage#MANAGE_ENTRY_IFRAME" />
+		<execute function="Select" locator1="SOAnnouncementsManage#DISTRIBUTION_SCOPE_SELECT" value1="${siteName1}" />
+		<execute function="AssertTextEquals" locator1="SOAnnouncementsManage#ANNOUNCEMENTS_ENTRY_TITLE" value1="${entryTitle}" />
+		<execute function="AssertTextEquals" locator1="SOAnnouncementsManage#ANNOUNCEMENTS_ENTRY_AUTHOR" value1="Test Test" />
+		<execute function="AssertTextEquals" locator1="SOAnnouncementsManage#ANNOUNCEMENTS_ENTRY_TYPE" value1="General" />
+		<execute function="AssertElementPresent" locator1="SOAnnouncementsManage#ANNOUNCEMENTS_ENTRY_MODIFIED_DATE" />
+		<execute function="AssertElementPresent" locator1="SOAnnouncementsManage#ANNOUNCEMENTS_ENTRY_DISPLAY_DATE" />
+		<execute function="AssertElementPresent" locator1="SOAnnouncementsManage#ANNOUNCEMENTS_ENTRY_EXPIRATION_DATE" />
+		<execute function="AssertTextEquals" locator1="SOAnnouncementsManage#ANNOUNCEMENTS_ENTRY_EDIT_LINK" value1="Edit"  />
+		<execute function="AssertTextEquals" locator1="SOAnnouncementsManage#ANNOUNCEMENTS_ENTRY_DELETE_LINK" value1="Delete"  />
+		<execute function="SelectFrameTop" />
+	</command>
+
+	<command name="ViewSOSiteContentBlogs" priority="5">
+		<var name="categoryName" value="Category Name" />
+		<var name="entryComment" value="Blogs Entry Comment" />
+		<var name="entryContent1" value="Blogs Entry1 Content" />
+		<var name="entryContent2" value="Blogs Entry2 Content" />
+		<var name="entryContent2Edit" value="Blogs Entry2 Content Edit" />
+		<var name="entryTitle1" value="Blogs Entry1 Title" />
+		<var name="entryTitle2" value="Blogs Entry2 Title" />
+		<var name="entryTitle2Edit" value="Blogs Entry2 Title Edit" />
+		<var name="pageName" value="Blogs" />
+		<var name="tagName1" value="tag name 1" />
+		<var name="tagName2" value="tag name 2" />
+		<var name="userFullName" value="Test Test" />
+		<var name="vocabularyName" value="Vocabulary Name" />
+
+		<execute macro="SOPage#gotoPG">
+			<var name="siteName" value="${siteName1}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOBlogsEntry#viewPG">
+			<var name="entryContent" value="${entryContent1}" />
+			<var name="entryTitle" value="${entryTitle1}" />
+		</execute>
+
+		<execute macro="SOPage#gotoPG">
+			<var name="siteName" value="${siteName1}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOBlogsEntry#viewRate4StarsSpecificEntryPG">
+			<var name="entryTitle" value="${entryTitle1}" />
+		</execute>
+
+		<execute macro="SOPage#gotoPG">
+			<var name="siteName" value="${siteName1}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="BlogsEntryComment#viewPG">
+			<var name="entryComment" value="${entryComment}" />
+			<var name="entryTitle" value="${entryTitle1}" />
+			<var name="userFullName" value="${userFullName}" />
+		</execute>
+
+		<execute macro="SOPage#gotoPG">
+			<var name="siteName" value="${siteName1}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOBlogsEntry#viewTagPG">
+			<var name="entryTitle" value="${entryTitle1}" />
+			<var name="tagNameList" value="${tagName1},${tagName2}" />
+		</execute>
+
+		<execute macro="SOPage#gotoPG">
+			<var name="siteName" value="${siteName1}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOBlogsEntry#viewViewPermissionsPG">
+			<var name="entryTitle" value="${entryTitle1}" />
+			<var name="roleName" value="Guest" />
+			<var name="viewPermissionValue" value="unchecked" />
+		</execute>
+
+		<execute macro="SOPage#gotoPG">
+			<var name="siteName" value="${siteName1}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOBlogsEntry#viewPG">
+			<var name="entryContent" value="${entryContent2Edit}" />
+			<var name="entryTitle" value="${entryTitle2Edit}" />
+		</execute>
+
+		<execute macro="SOPage#gotoPG">
+			<var name="siteName" value="${siteName1}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOBlogsEntry#viewCategoryPG">
+			<var name="categoryName" value="${categoryName}" />
+			<var name="entryTitle" value="${entryTitle2Edit}" />
+			<var name="vocabularyName" value="${vocabularyName}" />
+		</execute>
+
+		<execute macro="SOPage#gotoPG">
+			<var name="siteName" value="${siteName1}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOBlogsEntry#viewViewPermissionsPG">
+			<var name="entryTitle" value="${entryTitle2Edit}" />
+			<var name="roleName" value="Guest" />
+			<var name="viewPermissionValue" value="checked" />
+		</execute>
+	</command>
+
+	<command name="ViewSOSiteContentBookmarks" priority="5">
+		<var name="bookmarksEntryDescription" value="Bookmarks Entry Description" />
+		<var name="bookmarksEntryName" value="Bookmarks Entry Name" />
+		<var name="bookmarksEntryUrl" value="http://www.google.com" />
+		<var name="tagName" value="tag" />
+
+		<execute macro="SOPage#openURL">
+			<var name="siteName" value="${siteName1}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOBookmarks#viewBookmarksEntry">
+			<var name="bookmarksEntryDescription" value="${bookmarksEntryDescription}" />
+			<var name="bookmarksEntryName" value="${bookmarksEntryName}" />
+			<var name="bookmarksEntryUrl" value="${bookmarksEntryUrl}" />
+		</execute>
+
+		<execute macro="SOPage#openURL">
+			<var name="siteName" value="${siteName1}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<var name="key_bookmarksEntryName" value="${bookmarksEntryName}" />
+
+		<execute function="AssertClick" locator1="SOBookmarks#BOOKMARKS_ENTRY_ACTIONS" value1="Actions" />
+		<execute function="AssertClick" locator1="SOBookmarks#BOOKMARKS_ACTIONS_MENULIST_EDIT" value1="Edit" />
+
+		<var name="key_tagName" value="${tagName}" />
+
+		<execute function="AssertTextEquals" locator1="SOBookmarksAdd#TAG" value1="${tagName}" />
+	</command>
+
+	<command name="ViewSOSiteContentCalendar" priority="5">
+		<var name="eventEndDate" value="01/01/2016" />
+		<var name="eventStartDate" value="01/01/2016" />
+		<var name="eventTitle" value="Calendar Event Title" />
+		<var name="eventType" value="Regular" />
+		<var name="pageName" value="Calendar" />
+		<var name="siteDescription" value="Open Site Description" />
+		<var name="siteName" value="Open Site Name" />
+		<var name="siteType" value="Open" />
+		<var name="siteURL" value="true" />
+
+		<execute macro="SOPage#gotoPG">
+			<var name="siteName" value="${siteName1}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="CalendarNavigator#gotoView">
+			<var name="viewType" value="Month" />
+		</execute>
+
+		<while>
+			<condition function="IsTextNotEqual" locator1="PGCalendar#VIEW_DATE" value1="January 2016" />
+			<then>
+				<execute function="Click" locator1="PGCalendar#VIEW_NEXT_BUTTON" />
+			</then>
+		</while>
+
+		<execute macro="CalendarNavigator#gotoView">
+			<var name="viewType" value="Day" />
+		</execute>
+
+		<var name="key_eventTitle" value="${eventTitle}" />
+
+		<execute function="Pause" value1="1000" />
+		<execute function="AssertElementPresent" locator1="PGCalendarDayView#SCHEDULER_EVENT_SPECIFIC" />
+		<execute function="AssertTextEquals" locator1="PGCalendarDayView#SCHEDULER_EVENT_SPECIFIC" value1="${eventTitle}" />
+
+		<execute macro="CalendarNavigator#gotoView">
+			<var name="viewType" value="Week" />
+		</execute>
+
+		<var name="key_eventTitle" value="${eventTitle}" />
+
+		<execute function="AssertElementPresent" locator1="PGCalendar#SCHEDULER_EVENT_SPECIFIC" />
+		<execute function="AssertTextEquals" locator1="PGCalendar#SCHEDULER_EVENT_SPECIFIC" value1="${eventTitle}" />
+
+		<execute macro="CalendarNavigator#gotoView">
+			<var name="viewType" value="Month" />
+		</execute>
+
+		<execute function="AssertElementPresent" locator1="PGCalendarMonthView#SCHEDULER_EVENT_MONTH_VIEW_GENERIC" />
+
+		<execute macro="CalendarNavigator#gotoView">
+			<var name="viewType" value="Agenda" />
+		</execute>
+
+		<var name="key_eventTitle" value="${eventTitle}" />
+
+		<execute function="AssertElementPresent" locator1="PGCalendarAgendaView#SCHEDULER_EVENT_SPECIFIC" />
+		<execute function="AssertTextEquals#assertPartialText" locator1="PGCalendarAgendaView#SCHEDULER_EVENT_SPECIFIC" value1="${eventTitle}" />
+		<execute function="AssertTextNotPresent" locator1="PGCalendarAgendaView#EMPTY_MESSAGE" value1="No events." />
+	</command>
+
+	<command name="ViewSOSiteContentDocuments" priority="5">
+		<var name="commentBody" value="DM Folder Document Comment" />
+		<var name="dmDocumentDescription" value="DM Folder Document Description" />
+		<var name="dmDocumentFile" value="Document_1.doc" />
+		<var name="dmDocumentTitle" value="DM Folder Document Title" />
+		<var name="dmDocumentUploader" value="Test Test" />
+		<var name="dmDocumentVersionNumber" value="1.0" />
+		<var name="dmFolderDescription" value="DM Folder Description" />
+		<var name="dmFolderName" value="DM Folder Name" />
+		<var name="pageName" value="Documents" />
+		<var name="tagName1" value="tag1" />
+		<var name="tagName2" value="tag2" />
+
+		<execute macro="SOPage#gotoPG">
+			<var name="pageName" value="Documents" />
+			<var name="siteName" value="${siteName1}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="SODMDocument#downloadPG">
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+		</execute>
+
+		<execute macro="SOPage#gotoPG">
+			<var name="siteName" value="${siteName1}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="DMFolder#gotoPG">
+			<var name="dmFolderName" value="${dmFolderName}" />
+		</execute>
+
+		<execute macro="SODMDocument#viewAllPG">
+			<var name="commentBody" value="${commentBody}" />
+			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
+			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
+			<var name="dmDocumentVersionNumber" value="${dmDocumentVersionNumber}" />
+			<var name="tagNameList" value="${tagName1},${tagName2}" />
+		</execute>
+
+		<execute macro="SOPage#openURL">
+			<var name="siteName" value="${siteName1}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<var name="key_dmDocumentTitle" value="${dmDocumentTitle}" />
+
+		<execute function="AssertTextEquals" locator1="SORecentDownloads#RECENT_DOWNLOADS_DOCUMENT_TITLE_LINK" value1="${dmDocumentTitle}" />
+	</command>
+
+	<command name="ViewSOSiteContentForums" priority="5">
+		<var name="categoryName" value="MB Category Name" />
+		<var name="mbThreadAttachment" value="Document_1.doc" />
+		<var name="mbThreadAttachmentFileSize" value="22k" />
+		<var name="pageName" value="Forums" />
+		<var name="threadBody" value="MB Category Thread Message Body" />
+		<var name="threadReplyBody" value="MB Category Thread Message Reply Body" />
+		<var name="threadSubject" value="MB Category Thread Message Subject" />
+
+		<execute macro="SOPage#gotoPG">
+			<var name="siteName" value="${siteName1}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOForumsCategoryThread#viewPG">
+			<var name="adminName" value="${adminName}" />
+			<var name="attachmentFileName1" value="${attachmentFileName1}" />
+			<var name="attachmentFileSize1" value="${attachmentFileSize1}" />
+			<var name="categoryName" value="${categoryName}" />
+			<var name="categoryPostCount" value="2" />
+			<var name="numberOfAttachments" value="1" />
+			<var name="pageName" value="${pageName}" />
+			<var name="postCount" value="2" />
+			<var name="siteName" value="${siteName1}" />
+			<var name="threadAddAttachment" value="true" />
+			<var name="threadBody" value="${threadBody}" />
+			<var name="threadSubject" value="${threadSubject}" />
+			<var name="userName" value="${adminName}" />
+		</execute>
+
+		<execute macro="SOPage#gotoPG">
+			<var name="siteName" value="${siteName1}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOForumsCategoryThread#viewMyPostsPG">
+			<var name="adminName" value="${adminName}" />
+			<var name="categoryName" value="${categoryName}" />
+			<var name="categoryPostCount" value="2" />
+			<var name="mbThreadAttachment" value="${mbThreadAttachment}" />
+			<var name="mbThreadAttachmentFileSize" value="${mbThreadAttachmentFileSize}" />
+			<var name="pageName" value="${pageName}" />
+			<var name="postCount" value="2" />
+			<var name="siteName" value="${siteName1}" />
+			<var name="threadBody" value="${threadBody}" />
+			<var name="threadSubject" value="${threadSubject}" />
+			<var name="userName" value="${adminName}" />
+		</execute>
+
+		<execute macro="SOPage#gotoPG">
+			<var name="siteName" value="${siteName1}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SOForumsCategoryThread#viewReplyPG">
+			<var name="categoryName" value="${categoryName}" />
+			<var name="categoryPostCount" value="2" />
+			<var name="pageName" value="${pageName}" />
+			<var name="replyContainsQuote" value="true" />
+			<var name="replyNumber" value="2" />
+			<var name="siteName" value="${siteName1}" />
+			<var name="threadBody" value="${threadBody}" />
+			<var name="threadBodyQuote" value="${threadBody}" />
+			<var name="threadReplyBody" value="${threadReplyBody}" />
+			<var name="threadSubject" value="${threadSubject}" />
+			<var name="userName" value="${adminName}" />
+		</execute>
+	</command>
+
+	<command name="ViewSOSiteContentWiki" priority="5">
+		<var name="commentBody" value="Wiki FrontPage Comment Body" />
+		<var name="documentName1" value="Document_1.jpg" />
+		<var name="documentName2" value="Document_2.jpg" />
+		<var name="documentName3" value="Document_3.jpg" />
+		<var name="pageName" value="Wiki" />
+		<var name="wikiChildPageContent1" value="Wiki FrontPage Child Page1 Content" />
+		<var name="wikiChildPageContent2" value="Wiki FrontPage Child Page2 Content" />
+		<var name="wikiChildPageTitle1" value="Wiki FrontPage Child Page1 Title" />
+		<var name="wikiChildPageTitle2" value="Wiki FrontPage Child Page2 Title" />
+		<var name="wikiPageContent" value="Wiki FrontPage Content" />
+		<var name="wikiPageTitle" value="FrontPage" />
+
+		<execute macro="SOPage#gotoPG">
+			<var name="siteName" value="${siteName1}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="WikiPage#viewPG">
+			<var name="wikiPageContent" value="${wikiPageContent}" />
+			<var name="wikiPageRevision" value="1.1" />
+			<var name="wikiPageTitle" value="FrontPage" />
+			<var name="wikiPageUsername" value="${adminName}" />
+		</execute>
+
+		<execute macro="SOPage#gotoPG">
+			<var name="siteName" value="${siteName1}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="WikiPage#viewCommentPG">
+			<var name="commentBody" value="${commentBody}" />
+			<var name="wikiPageTitle" value="FrontPage" />
+		</execute>
+
+		<execute macro="SOPage#gotoPG">
+			<var name="siteName" value="${siteName1}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="WikiPage#viewPG">
+			<var name="wikiPageContent" value="${wikiChildPageContent1}" />
+			<var name="wikiPageRevision" value="1.0" />
+			<var name="wikiPageTitle" value="${wikiChildPageTitle1}" />
+			<var name="wikiPageUsername" value="${adminName}" />
+		</execute>
+
+		<execute macro="SOPage#gotoPG">
+			<var name="siteName" value="${siteName1}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="WikiPage#viewPG">
+			<var name="wikiPageContent" value="${wikiChildPageContent2}" />
+			<var name="wikiPageRevision" value="1.0" />
+			<var name="wikiPageTitle" value="${wikiChildPageTitle2}" />
+			<var name="wikiPageUsername" value="${adminName}" />
+		</execute>
+
+		<execute macro="SOPage#gotoPG">
+			<var name="siteName" value="${siteName1}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="WikiPage#viewAttachmentPG">
+			<var name="attachmentFileName" value="${documentName1}" />
+			<var name="numberOfAttachments" value="2" />
+			<var name="wikiPageTitle" value="FrontPage" />
+		</execute>
+
+		<execute macro="SOPage#gotoPG">
+			<var name="siteName" value="${siteName1}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="WikiPage#viewAttachmentPG">
+			<var name="attachmentFileName" value="${documentName2}" />
+			<var name="numberOfAttachments" value="2" />
+			<var name="wikiPageTitle" value="FrontPage" />
+		</execute>
+
+		<execute macro="SOPage#gotoPG">
+			<var name="siteName" value="${siteName1}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="WikiPage#viewAttachmentPG">
+			<var name="attachmentFileName" value="${documentName3}" />
+			<var name="numberOfAttachments" value="1" />
+			<var name="wikiPageTitle" value="${wikiChildPageTitle1}" />
+		</execute>
+	</command>
+
+	<command name="ViewSOSiteHomeContentRssFeed" priority="5">
+		<var name="entriesPerFeed" value="3" />
+		<var name="expandedEntriesPerFeed" value="1" />
+		<var name="feedTitle" value="CNET" />
+		<var name="feedUrl" value="http://feeds.feedburner.com/cnet/tcoc" />
+		<var name="userEmailAddress" value="socialoffice01@liferay.com" />
+		<var name="userFirstName" value="Social01" />
+		<var name="userLastName" value="User01" />
+		<var name="userListName" value="User01, Social01" />
+		<var name="userMiddleName" value="Office01" />
+		<var name="userName" value="Social01 Office01 User01" />
+		<var name="userScreenName" value="socialoffice01" />
+
+		<execute macro="SOPage#openURL">
+			<var name="siteName" value="${siteName1}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute macro="SORss#viewRssFeed">
+			<var name="entriesPerFeed" value="${entriesPerFeed}" />
+			<var name="expandedEntriesPerFeed" value="${expandedEntriesPerFeed}" />
+			<var name="feedTitle" value="${feedTitle}" />
+			<var name="feedUrl" value="${feedUrl}" />
+		</execute>
+	</command>
+
+	<command name="ViewSOSiteHomeContentWelcomePortlet" priority="5">
+		<var name="siteDescription" value="Open Site Description" />
+		<var name="siteName" value="Open Site Name" />
+		<var name="siteType" value="Open" />
+		<var name="welcomeContent" value="Welcome Content" />
+
+		<execute macro="SOPage#openURL">
+			<var name="siteName" value="${siteName1}" />
+			<var name="siteURL" value="true" />
+		</execute>
+
+		<execute function="AssertTextEquals" locator1="SOWelcome#WELCOME_PORTLET_CONTENT" value1="${welcomeContent}" />
+	</command>
+</definition>
