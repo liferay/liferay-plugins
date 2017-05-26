@@ -163,40 +163,25 @@ ${nodejs.url[osx64]}.
 							<antelope:stringutil property="nodejs.dir.endindex" string="${nodejs.file}">
 								<antelope:lastindexof string=".tar.gz" />
 							</antelope:stringutil>
-
-							<antelope:stringutil property="nodejs.dir" string="${nodejs.file}">
-								<antelope:substring endindex="${nodejs.dir.endindex}" />
-							</antelope:stringutil>
-
-							<delete dir="${sdk.tools.dir}/node-v${nodejs.version}" />
-
-							<move file="${sdk.tools.dir}/${nodejs.dir}" tofile="${sdk.tools.dir}/node-v${nodejs.version}" />
-
-							<mkdir dir="${sdk.tools.dir}/node-v${nodejs.version}/node_modules" />
 						</then>
 						<else>
-							<move file="${sdk.tools.dir}/${nodejs.file}" todir="${sdk.tools.dir}/node-v${nodejs.version}" />
+							<unzip dest="${sdk.tools.dir}" src="${sdk.tools.dir}/${nodejs.file}" />
+
+							<antelope:stringutil property="nodejs.dir.endindex" string="${nodejs.file}">
+								<antelope:lastindexof string=".zip" />
+							</antelope:stringutil>
 						</else>
 					</if>
 
-					<if>
-						<os family="windows" />
-						<then>
-							<if>
-								<not>
-									<available file="${sdk.tools.dir}/npm-${nodejs.npm.version}.zip" />
-								</not>
-								<then>
-									<mirrors-get dest="${sdk.tools.dir}/npm-${nodejs.npm.version}.zip" src="${nodejs.npm.url}" />
-								</then>
-							</if>
+					<antelope:stringutil property="nodejs.dir" string="${nodejs.file}">
+						<antelope:substring endindex="${nodejs.dir.endindex}" />
+					</antelope:stringutil>
 
-							<unzip
-								dest="${sdk.tools.dir}/node-v${nodejs.version}"
-								src="${sdk.tools.dir}/npm-${nodejs.npm.version}.zip"
-							/>
-						</then>
-					</if>
+					<delete dir="${sdk.tools.dir}/node-v${nodejs.version}" />
+
+					<move file="${sdk.tools.dir}/${nodejs.dir}" tofile="${sdk.tools.dir}/node-v${nodejs.version}" />
+
+					<mkdir dir="${sdk.tools.dir}/node-v${nodejs.version}/node_modules" />
 
 					<node-execute
 						node.args="config set cache ${sdk.tools.dir}/node-v${nodejs.version}/.cache --global"
@@ -262,8 +247,18 @@ ${nodejs.url[osx64]}.
 				<else>
 					<download-node />
 
-					<var name="node.executable" value="${nodejs.location}/bin/" />
-					<var name="node.path" value="${env.PATH};${nodejs.location}/bin" />
+					<if>
+						<available file="${nodejs.location}/bin" type="dir" />
+						<then>
+							<var name="node.executable" value="${nodejs.location}/bin/" />
+							<var name="node.path" value="${env.PATH};${nodejs.location}/bin" />
+						</then>
+						<else>
+							<var name="node.executable" value="${nodejs.location}/" />
+							<var name="node.path" value="${env.PATH};${nodejs.location}" />
+						</else>
+					</if>
+
 				</else>
 			</if>
 
