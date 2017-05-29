@@ -127,7 +127,12 @@ portletURL.setWindowState(LiferayWindowState.POP_UP);
 
 			User entryUser = UserLocalServiceUtil.fetchUserById(entry.getUserId());
 
-			row.addText(HtmlUtil.escape(entryUser.getFullName()));
+			if (Validator.isNull(entryUser)) {
+				row.addText(HtmlUtil.escape(entry.getUserName()));
+			}
+			else {
+				row.addText(HtmlUtil.escape(entryUser.getFullName()));
+			}
 
 			// Type
 
