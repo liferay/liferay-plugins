@@ -64,7 +64,7 @@ String backURL = PortalUtil.getCurrentURL(request);
 										<portlet:param name="calendarResourceId" value="{calendarResourceId}" />
 									</portlet:renderURL>
 
-									uri: A.Lang.sub(
+									uri: Liferay.CalendarUtil.fillURLParameters(
 										decodeURIComponent('<%= editCalendarURL %>'),
 										{
 											calendarResourceId: calendarResourceId
@@ -91,7 +91,7 @@ String backURL = PortalUtil.getCurrentURL(request);
 								<portlet:param name="calendarResourceId" value="{calendarResourceId}" />
 							</portlet:renderURL>
 
-							window.location.href = A.Lang.sub(
+							window.location.href = Liferay.CalendarUtil.fillURLParameters(
 								decodeURIComponent('<%= calendarsURL %>'),
 								{
 									calendarResourceId: calendarResourceId
@@ -139,7 +139,7 @@ String backURL = PortalUtil.getCurrentURL(request);
 							},
 							refreshWindow: window,
 							title: '<liferay-ui:message key="new-calendar-booking" />',
-							uri: A.Lang.sub(
+							uri: Liferay.CalendarUtil.fillURLParameters(
 								decodeURIComponent('<%= addCalendarBookingURL %>'),
 								{
 									calendarId: activeCalendar.get('calendarId')
@@ -204,7 +204,7 @@ String backURL = PortalUtil.getCurrentURL(request);
 								<portlet:param name="calendarId" value="{calendarId}" />
 							</portlet:renderURL>
 
-							uri: A.Lang.sub(
+							uri: Liferay.CalendarUtil.fillURLParameters(
 								decodeURIComponent('<%= editCalendarURL %>'),
 								{
 									calendarId: activeCalendar.get('calendarId'),
@@ -249,7 +249,7 @@ String backURL = PortalUtil.getCurrentURL(request);
 								windowState="<%= LiferayWindowState.POP_UP.toString() %>"
 							/>
 
-							uri: A.Lang.sub(
+							uri: Liferay.CalendarUtil.fillURLParameters(
 								decodeURIComponent('<%= permissionsURL %>'),
 								{
 									resourceGroupId: activeCalendar.get('groupId'),
@@ -311,7 +311,7 @@ String backURL = PortalUtil.getCurrentURL(request);
 							<portlet:param name="calendarId" value="{calendarId}" />
 						</liferay-portlet:resourceURL>
 
-						var url = A.Lang.sub(
+						var url = Liferay.CalendarUtil.fillURLParameters(
 							decodeURIComponent('<%= calendarRSSURL %>'),
 							{
 								calendarId: activeCalendar.get('calendarId')
