@@ -248,14 +248,14 @@ ${nodejs.url[osx64]}.
 					<download-node />
 
 					<if>
-						<available file="${nodejs.location}/bin" type="dir" />
+						<available file="${sdk.tools.dir}/node-v${nodejs.version}/bin" type="dir" />
 						<then>
-							<var name="node.executable" value="${nodejs.location}/bin/" />
-							<var name="node.path" value="${env.PATH};${nodejs.location}/bin" />
+							<var name="node.executable" value="${sdk.tools.dir}/node-v${nodejs.version}/bin/" />
+							<var name="node.path" value="${env.PATH};${sdk.tools.dir}/node-v${nodejs.version}/bin" />
 						</then>
 						<else>
-							<var name="node.executable" value="${nodejs.location}/" />
-							<var name="node.path" value="${env.PATH};${nodejs.location}" />
+							<var name="node.executable" value="${sdk.tools.dir}/node-v${nodejs.version}/" />
+							<var name="node.path" value="${env.PATH};${sdk.tools.dir}/node-v${nodejs.version}" />
 						</else>
 					</if>
 
