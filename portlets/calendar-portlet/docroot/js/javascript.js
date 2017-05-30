@@ -34,6 +34,8 @@ AUI.add(
 
 		var ICON_ADD_EVENT_NODE = 'iconAddEventNode';
 
+		var REGEX_UNFILLED_PARAMETER = /\{\s*([^|}]+?)\s*(?:\|([^}]*))?\s*\}/g;
+
 		var STR_BLANK = '';
 
 		var STR_COMMA_SPACE = ', ';
@@ -261,6 +263,14 @@ AUI.add(
 				scheduler.removeEvents(schedulerEvent);
 
 				scheduler.syncEventsUI();
+			},
+
+			fillURLParameters: function(url, data) {
+				var instance = this;
+
+				url = Lang.sub(url, data);
+
+				return url.replace(REGEX_UNFILLED_PARAMETER, '');
 			},
 
 			getCalendarBookingInvitees: function(calendarBookingId, callback) {
