@@ -223,7 +223,7 @@ public class AdminIndexer extends BaseIndexer {
 	}
 
 	protected void reindexAttachments(KBArticle kbArticle)
- 		throws PortalException, SystemException {
+		throws PortalException, SystemException {
 
 		Indexer indexer = IndexerRegistryUtil.nullSafeGetIndexer(
 			DLFileEntry.class);
