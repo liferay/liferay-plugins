@@ -107,7 +107,6 @@ public class UserNotificationMessageSender
 			WorkflowConstants.CONTEXT_USER_ID, String.valueOf(userId));
 
 		jsonObject.put("notificationMessage", notificationMessage);
-
 		jsonObject.put(
 			"workflowInstanceId", kaleoInstanceToken.getKaleoInstanceId());
 
