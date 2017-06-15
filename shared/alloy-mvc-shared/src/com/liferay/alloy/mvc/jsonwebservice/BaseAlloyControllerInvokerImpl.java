@@ -34,6 +34,8 @@ import com.liferay.portlet.PortletURLFactoryUtil;
 
 import java.lang.reflect.Constructor;
 
+import java.util.Locale;
+
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletRequest;
@@ -157,9 +159,23 @@ public abstract class BaseAlloyControllerInvokerImpl
 				"Parameters length is not an even number");
 		}
 
+		PermissionChecker permissionChecker =
+			PermissionThreadLocal.getPermissionChecker();
+
+		final User user = UserLocalServiceUtil.getUser(
+			permissionChecker.getUserId());
+
 		HttpServletRequestWrapper requestWrapper =
 			new HttpServletRequestWrapper(
-				new AlloyMockUtil.MockHttpServletRequest());
+				new AlloyMockUtil.MockHttpServletRequest() {
+
+					@Override
+					public Locale getLocale() {
+						return user.getLocale();
+					}
+
+				}
+			);
 
 		DynamicServletRequest request = new DynamicServletRequest(
 			requestWrapper, false);
@@ -174,11 +190,6 @@ public abstract class BaseAlloyControllerInvokerImpl
 		request.appendParameter("format", "json");
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)_themeDisplay.clone();
-
-		PermissionChecker permissionChecker =
-			PermissionThreadLocal.getPermissionChecker();
-
-		User user = UserLocalServiceUtil.getUser(permissionChecker.getUserId());
 
 		themeDisplay.setUser(user);
 
