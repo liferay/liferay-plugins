@@ -174,8 +174,7 @@ public abstract class BaseAlloyControllerInvokerImpl
 						return user.getLocale();
 					}
 
-				}
-			);
+				});
 
 		DynamicServletRequest request = new DynamicServletRequest(
 			requestWrapper, false);
