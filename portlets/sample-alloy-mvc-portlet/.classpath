@@ -20,10 +20,19 @@
 	<classpathentry kind="lib" path="/portal-master/util-bridges/util-bridges.jar" />
 	<classpathentry kind="lib" path="/portal-master/util-java/util-java.jar" />
 	<classpathentry kind="lib" path="/portal-master/util-taglib/util-taglib.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/alloy-mvc-shared.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/asm-tree.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/asm-util.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/asm.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/ant.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/com.liferay.alloy.mvc.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/commons-codec.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/commons-httpclient.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/core.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/jabsorb.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/jcl104-over-slf4j.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/jsp-2.1.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/jsp-api-2.1.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/portal-compat-shared.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/scribe.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/servlet-api-2.5.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/slf4j-api.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/slf4j-jdk14.jar" />
 	<classpathentry kind="output" path="bin" />
 </classpath>
