@@ -327,9 +327,9 @@
 						<then>
 							<mkdir dir="${compile.jsp.jspc.dir}/classes" />
 
-							<delete file="${sdk.dir}/jspc.javac.output.txt" />
+							<tempfile deleteonexit="true" destdir="${sdk.dir}" prefix="jspc.javac.output." property="jspc.javac.output.txt" suffix=".txt" />
 
-							<record action="start" name="${sdk.dir}/jspc.javac.output.txt" />
+							<record action="start" name="${jspc.javac.output.txt}" />
 
 							<javac
 								classpathref="jspc.classpath"
@@ -344,11 +344,9 @@
 								srcdir="${compile.jsp.jspc.dir}/src"
 							/>
 
-							<record action="stop" name="${sdk.dir}/jspc.javac.output.txt" />
+							<record action="stop" name="${jspc.javac.output.txt}" />
 
-							<loadfile property="jspc.javac.output.txt.content" srcfile="${sdk.dir}/jspc.javac.output.txt" />
-
-							<delete file="${sdk.dir}/jspc.javac.output.txt" />
+							<loadfile property="jspc.javac.output.txt.content" srcfile="${jspc.javac.output.txt}" />
 
 							<if>
 								<matches pattern="error: package .* does not exist" string="${jspc.javac.output.txt.content}" />
