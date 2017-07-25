@@ -327,9 +327,9 @@
 						<then>
 							<mkdir dir="${compile.jsp.jspc.dir}/classes" />
 
-							<tempfile deleteonexit="true" destdir="${sdk.dir}" prefix="jspc.javac.output." property="jspc.javac.output.txt" suffix=".txt" />
+							<tempfile deleteonexit="true" destdir="${sdk.dir}" prefix="jspc.javac.output." property="jspc.javac.output.file" suffix=".txt" />
 
-							<record action="start" name="${jspc.javac.output.txt}" />
+							<record action="start" name="${jspc.javac.output.file}" />
 
 							<javac
 								classpathref="jspc.classpath"
@@ -344,12 +344,12 @@
 								srcdir="${compile.jsp.jspc.dir}/src"
 							/>
 
-							<record action="stop" name="${jspc.javac.output.txt}" />
+							<record action="stop" name="${jspc.javac.output.file}" />
 
-							<loadfile property="jspc.javac.output.txt.content" srcfile="${jspc.javac.output.txt}" />
+							<loadfile property="jspc.javac.output.file.content" srcfile="${jspc.javac.output.file}" />
 
 							<if>
-								<matches pattern="error: package .* does not exist" string="${jspc.javac.output.txt.content}" />
+								<matches pattern="error: package .* does not exist" string="${jspc.javac.output.file.content}" />
 								<then>
 									<fail>JSPs failed to compile. Please check whether all dependencies modules are deployed.</fail>
 								</then>
