@@ -178,6 +178,61 @@ String successURL = portletPreferences.getValue("successURL", StringPool.BLANK);
 		return fieldsMap;
 	}
 
+	var validateField = function(key) {
+		var fieldsMap = getFieldsMap();
+
+		var field = A.one('[name="<portlet:namespace />' + key + '"]');
+
+		var currentFieldValue = fieldsMap[key];
+
+		var optionalFieldError = A.one('#<portlet:namespace />fieldOptionalError' + key);
+		var validationError = A.one('#<portlet:namespace />validationError' + key);
+
+		if (!fieldOptional[key] && currentFieldValue.match(/^\s*$/)) {
+			A.all('.alert-success').hide();
+
+			if (validationError) {
+				validationError.hide();
+			}
+
+			if (optionalFieldError) {
+				optionalFieldError.show();
+				optionalFieldError.replace(optionalFieldError);
+			}
+
+			field.attr('aria-invalid', true);
+		}
+		else if (!fieldValidationFunctions[key](currentFieldValue, fieldsMap)) {
+			A.all('.alert-success').hide();
+
+			if (optionalFieldError) {
+				optionalFieldError.hide();
+			}
+
+			if (validationError) {
+				validationError.show();
+				validationError.replace(validationError);
+			}
+
+			field.attr('aria-invalid', true);
+		}
+		else {
+			if (optionalFieldError) {
+				optionalFieldError.hide();
+			}
+
+			if (validationError) {
+				validationError.hide();
+			}
+
+			field.attr('aria-invalid', false);
+
+			return true;
+		}
+
+		return false;
+	}
+
 	<%
 	int i = 1;
 
@@ -225,58 +280,11 @@ String successURL = portletPreferences.getValue("successURL", StringPool.BLANK);
 		form.on(
 			'submit',
 			function(event) {
-				var fieldsMap = getFieldsMap();
-
 				var validationErrors = false;
 
 				for (var i = 1; i < keys.length; i++) {
-					var key = keys [i];
-
-					var field = A.one('[name="<portlet:namespace />' + key + '"]');
-
-					var currentFieldValue = fieldsMap[key];
-
-					var optionalFieldError = A.one('#<portlet:namespace />fieldOptionalError' + key);
-					var validationError = A.one('#<portlet:namespace />validationError' + key);
-
-					if (!fieldOptional[key] && currentFieldValue.match(/^\s*$/)) {
+					if (!validateField(keys[i])) {
 						validationErrors = true;
-
-						A.all('.alert-success').hide();
-
-						if (optionalFieldError) {
-							optionalFieldError.show();
-							optionalFieldError.replace(optionalFieldError);
-						}
-
-						field.attr('aria-invalid', true);
-					}
-					else if (!fieldValidationFunctions[key](currentFieldValue, fieldsMap)) {
-						validationErrors = true;
-
-						A.all('.alert-success').hide();
-
-						if (optionalFieldError) {
-							optionalFieldError.hide();
-						}
-
-						if (validationError) {
-							validationError.show();
-							validationError.replace(validationError);
-						}
-
-						field.attr('aria-invalid', true);
-					}
-					else {
-						if (optionalFieldError) {
-							optionalFieldError.hide();
-						}
-
-						if (validationError) {
-							validationError.hide();
-						}
-
-						field.attr('aria-invalid', false);
 					}
 				}
 
