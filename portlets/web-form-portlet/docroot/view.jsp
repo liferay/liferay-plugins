@@ -234,7 +234,7 @@ String successURL = portletPreferences.getValue("successURL", StringPool.BLANK);
 				for (var i = 1; i < keys.length; i++) {
 					var key = keys [i];
 
-					var field = A.one('#<portlet:namespace />' + key);
+					var field = A.one('[name="<portlet:namespace />' + key + '"]');
 
 					var currentFieldValue = fieldsMap[key];
 
