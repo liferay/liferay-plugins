@@ -67,14 +67,14 @@ String successURL = portletPreferences.getValue("successURL", StringPool.BLANK);
 				<liferay-ui:error key='<%= "error" + fieldLabel %>' message="<%= fieldValidationErrorMessage %>" />
 
 				<c:if test="<%= Validator.isNotNull(fieldValidationScript) %>">
-					<div class="hide" id="<portlet:namespace />validationError<%= fieldName %>">
+					<div class="hide" id="<portlet:namespace />validationError<%= fieldName %>" role="alert">
 						<span class="alert alert-error"><%= fieldValidationErrorMessage %></span>
 					</div>
 				</c:if>
 			</c:if>
 
 			<c:if test="<%= !fieldOptional %>">
-				<div class="hide" id="<portlet:namespace />fieldOptionalError<%= fieldName %>">
+				<div class="hide" id="<portlet:namespace />fieldOptionalError<%= fieldName %>" role="alert">
 					<span class="alert alert-error"><liferay-ui:message key="this-field-is-mandatory" /></span>
 				</div>
 			</c:if>
@@ -246,6 +246,7 @@ String successURL = portletPreferences.getValue("successURL", StringPool.BLANK);
 
 						if (optionalFieldError) {
 							optionalFieldError.show();
+							optionalFieldError.replace(optionalFieldError);
 						}
 					}
 					else if (!fieldValidationFunctions[key](currentFieldValue, fieldsMap)) {
@@ -259,6 +260,7 @@ String successURL = portletPreferences.getValue("successURL", StringPool.BLANK);
 
 						if (validationError) {
 							validationError.show();
+							validationError.replace(validationError);
 						}
 					}
 					else {
