@@ -161,8 +161,17 @@ String successURL = portletPreferences.getValue("successURL", StringPool.BLANK);
 			function(key) {
 				var field = A.one('[name="<portlet:namespace />' + key + '"]');
 
+				if (field && (field.attr('type') === 'hidden')) {
+					field = A.one('[name="<portlet:namespace />' + key + 'Checkbox"]');
+				}
+
 				if ((field.attr('type') === 'checkbox') || (field.attr('type') === 'radio')) {
-					field = A.one('[name="<portlet:namespace />' + key + '"]:checked');
+					if (field.attr('type') === 'checkbox') {
+						field = A.one('[name="<portlet:namespace />' + key + 'Checkbox"]:checked');
+					}
+					else {
+						field = A.one('[name="<portlet:namespace />' + key + '"]:checked');
+					}
 
 					fieldsMap[key] = '';
 
@@ -182,6 +191,10 @@ String successURL = portletPreferences.getValue("successURL", StringPool.BLANK);
 		var fieldsMap = getFieldsMap();
 
 		var field = A.one('[name="<portlet:namespace />' + key + '"]');
+
+		if (field && (field.attr('type') === 'hidden')) {
+			field = A.one('[name="<portlet:namespace />' + key + 'Checkbox"]');
+		}
 
 		var currentFieldValue = fieldsMap[key];
 
@@ -277,6 +290,10 @@ String successURL = portletPreferences.getValue("successURL", StringPool.BLANK);
 	keys.forEach(
 		function(key) {
 			var field = A.one('[name="<portlet:namespace />' + key + '"]');
+
+			if (field && (field.attr('type') === 'hidden')) {
+				field = A.one('[name="<portlet:namespace />' + key + 'Checkbox"]');
+			}
 
 			field.on(
 				'blur',
