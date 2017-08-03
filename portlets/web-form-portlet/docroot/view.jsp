@@ -195,6 +195,17 @@ String successURL = portletPreferences.getValue("successURL", StringPool.BLANK);
 		if (field && (field.attr('type') === 'hidden')) {
 			field = A.one('[name="<portlet:namespace />' + key + 'Checkbox"]');
 		}
+		else if (field && (field.attr('type') === 'radio')) {
+			var uncheckedOptions = A.all('[name="<portlet:namespace />' + key + '"]:not(:checked)');
+
+			uncheckedOptions.each(
+				function(option) {
+					option.removeAttribute('aria-invalid');
+				}
+			);
+
+			field = A.one('[name="<portlet:namespace />' + key + '"]:checked');
+		}
 
 		var currentFieldValue = fieldsMap[key];
 
