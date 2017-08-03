@@ -289,21 +289,31 @@ String successURL = portletPreferences.getValue("successURL", StringPool.BLANK);
 
 	keys.forEach(
 		function(key) {
-			var field = A.one('[name="<portlet:namespace />' + key + '"]');
+			var fields = A.all('[name="<portlet:namespace />' + key + '"]');
 
-			if (field && (field.attr('type') === 'hidden')) {
-				field = A.one('[name="<portlet:namespace />' + key + 'Checkbox"]');
-			}
+			var addOnBlurFieldValidation = function(field) {
+				if (field && (field.attr('type') === 'hidden')) {
+					field = A.one('[name="<portlet:namespace />' + key + 'Checkbox"]');
 
-			field.on(
-				'blur',
-				function(event) {
-					if (!validateField(key)) {
-						event.halt();
-						event.stopImmediatePropagation();
+					if (!field) {
+						return;
 					}
-				});
-		});
+				}
+
+				field.on(
+					'blur',
+					function(event) {
+						if (!validateField(key)) {
+							event.halt();
+							event.stopImmediatePropagation();
+						}
+					}
+				);
+			};
+
+			fields.each(addOnBlurFieldValidation);
+		}
+	);
 
 	var form = A.one('#<portlet:namespace />fm');
 
