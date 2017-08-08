@@ -311,10 +311,6 @@ String successURL = portletPreferences.getValue("successURL", StringPool.BLANK);
 			var addOnBlurFieldValidation = function(field) {
 				if (field && (field.attr('type') === 'hidden')) {
 					field = A.one('[name="<portlet:namespace />' + key + 'Checkbox"]');
-
-					if (!field) {
-						return;
-					}
 				}
 
 				field.on(
