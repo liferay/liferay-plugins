@@ -275,55 +275,9 @@ public interface AssetEntrySetLocalService extends BaseLocalService,
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getNewAssetEntrySets(
-		long userId, long time, boolean modifiedTime,
-		long parentAssetEntrySetId, boolean privateAssetEntrySet,
-		long stickyTime,
-		com.liferay.portal.kernel.json.JSONArray creatorJSONArray,
-		com.liferay.portal.kernel.json.JSONArray sharedToJSONArray,
-		long[] excludeAssetEntrySetIds, long[] includeAssetEntrySetIds,
-		java.lang.String[] assetTagNames, int start, int end)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getNewAssetEntrySets(
-		long userId, long createTime, long parentAssetEntrySetId,
-		long stickyTime, int type,
-		com.liferay.portal.kernel.json.JSONArray creatorJSONArray,
-		com.liferay.portal.kernel.json.JSONArray sharedToJSONArray,
-		long[] excludeAssetEntrySetIds, long[] includeAssetEntrySetIds,
-		java.lang.String[] assetTagNames, int start, int end)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getNewChildAssetEntrySets(
 		long createTime, long parentAssetEntrySetId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getOldAssetEntrySets(
-		long userId, long time, boolean modifiedTime,
-		long parentAssetEntrySetId, boolean privateAssetEntrySet,
-		long stickyTime,
-		com.liferay.portal.kernel.json.JSONArray creatorJSONArray,
-		com.liferay.portal.kernel.json.JSONArray sharedToJSONArray,
-		long[] excludeAssetEntrySetIds, long[] includeAssetEntrySetIds,
-		java.lang.String[] assetTagNames, int start, int end)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getOldAssetEntrySets(
-		long userId, long createTime, long parentAssetEntrySetId,
-		long stickyTime, int type,
-		com.liferay.portal.kernel.json.JSONArray creatorJSONArray,
-		com.liferay.portal.kernel.json.JSONArray sharedToJSONArray,
-		long[] excludeAssetEntrySetIds, long[] includeAssetEntrySetIds,
-		java.lang.String[] assetTagNames, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 

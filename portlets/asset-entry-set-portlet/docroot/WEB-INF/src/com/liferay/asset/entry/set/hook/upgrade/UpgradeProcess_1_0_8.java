@@ -12,13 +12,24 @@
  * details.
  */
 
-package com.liferay.asset.entry.set.service.persistence;
+package com.liferay.asset.entry.set.hook.upgrade;
+
+import com.liferay.asset.entry.set.hook.upgrade.v1_0_8.UpgradeAssetEntrySet;
+import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 
 /**
- * @author Brian Wing Shun Chan
+ * @author Timothy Bell
  */
-public interface AssetEntrySetFinder {
-	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySetReference> findAssetEntrySetReferenceByPAESI_CNI(
-		long parentAssetEntrySetId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+public class UpgradeProcess_1_0_8 extends UpgradeProcess {
+
+	@Override
+	public int getThreshold() {
+		return 108;
+	}
+
+	@Override
+	protected void doUpgrade() throws Exception {
+		upgrade(UpgradeAssetEntrySet.class);
+	}
+
 }

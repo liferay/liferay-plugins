@@ -122,15 +122,15 @@ public class AssetEntrySetLikeLocalServiceClpInvoker {
 
 		_methodParameterTypes49 = new String[] { "java.lang.String" };
 
-		_methodName54 = "fetchAssetEntrySetLike";
+		_methodName54 = "deleteAssetEntrySetLikes";
 
-		_methodParameterTypes54 = new String[] { "long", "long", "long" };
+		_methodParameterTypes54 = new String[] { "long" };
 
-		_methodName55 = "getAssetEntrySetLikeCount";
+		_methodName55 = "fetchAssetEntrySetLike";
 
-		_methodParameterTypes55 = new String[] { "long" };
+		_methodParameterTypes55 = new String[] { "long", "long", "long" };
 
-		_methodName56 = "deleteAssetEntrySetLikes";
+		_methodName56 = "getAssetEntrySetLikeCount";
 
 		_methodParameterTypes56 = new String[] { "long" };
 
@@ -244,21 +244,21 @@ public class AssetEntrySetLikeLocalServiceClpInvoker {
 
 		if (_methodName54.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes54, parameterTypes)) {
+			AssetEntrySetLikeLocalServiceUtil.deleteAssetEntrySetLikes(((Long)arguments[0]).longValue());
+
+			return null;
+		}
+
+		if (_methodName55.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes55, parameterTypes)) {
 			return AssetEntrySetLikeLocalServiceUtil.fetchAssetEntrySetLike(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Long)arguments[2]).longValue());
 		}
 
-		if (_methodName55.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes55, parameterTypes)) {
-			return AssetEntrySetLikeLocalServiceUtil.getAssetEntrySetLikeCount(((Long)arguments[0]).longValue());
-		}
-
 		if (_methodName56.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes56, parameterTypes)) {
-			AssetEntrySetLikeLocalServiceUtil.deleteAssetEntrySetLikes(((Long)arguments[0]).longValue());
-
-			return null;
+			return AssetEntrySetLikeLocalServiceUtil.getAssetEntrySetLikeCount(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName57.equals(name) &&

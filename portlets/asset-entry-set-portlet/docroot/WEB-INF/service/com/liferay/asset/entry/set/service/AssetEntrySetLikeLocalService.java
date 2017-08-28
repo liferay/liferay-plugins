@@ -254,6 +254,9 @@ public interface AssetEntrySetLikeLocalService extends BaseLocalService,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable;
 
+	public void deleteAssetEntrySetLikes(long assetEntrySetId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.asset.entry.set.model.AssetEntrySetLike fetchAssetEntrySetLike(
 		long assetEntrySetId, long classNameId, long classPK)
@@ -261,9 +264,6 @@ public interface AssetEntrySetLikeLocalService extends BaseLocalService,
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getAssetEntrySetLikeCount(long assetEntrySetId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	public void deleteAssetEntrySetLikes(long assetEntrySetId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
