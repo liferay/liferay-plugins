@@ -107,6 +107,28 @@ public class AssetEntrySetIndexer extends BaseIndexer {
 		addSearchTerm(searchQuery, searchContext, "title", true);
 	}
 
+	protected void addClassNameIdQuery(
+		BooleanQuery filterQuery, SearchContext searchContext) {
+
+		long classNameId = GetterUtil.getLong(
+			searchContext.getAttribute("classNameId"));
+
+		if (classNameId > 0) {
+			filterQuery.addRequiredTerm("classNameId", classNameId);
+		}
+	}
+
+	protected void addClassPKQuery(
+		BooleanQuery filterQuery, SearchContext searchContext) {
+
+		long classPK = GetterUtil.getLong(
+			searchContext.getAttribute("classPK"));
+
+		if (classPK > 0) {
+			filterQuery.addRequiredTerm("classPK", classPK);
+		}
+	}
+
 	protected void addExcludeAssetEntrySetIdsQuery(
 			BooleanQuery filterQuery, SearchContext searchContext)
 		throws Exception {
@@ -144,6 +166,8 @@ public class AssetEntrySetIndexer extends BaseIndexer {
 			filterQuery.add(booleanQuery, BooleanClauseOccur.MUST);
 		}
 
+		addClassNameIdQuery(filterQuery, searchContext);
+		addClassPKQuery(filterQuery, searchContext);
 		addExcludeAssetEntrySetIdsQuery(filterQuery, searchContext);
 		addMembershipQuery(filterQuery, searchContext);
 		addParentAssetEntrySetQuery(filterQuery);
@@ -284,11 +308,9 @@ public class AssetEntrySetIndexer extends BaseIndexer {
 
 		Integer type = (Integer)searchContext.getAttribute("type");
 
-		if (type == null) {
-			return;
+		if (type != null) {
+			filterQuery.addRequiredTerm("type", type.intValue());
 		}
-
-		filterQuery.addRequiredTerm("type", type.intValue());
 	}
 
 	@Override
@@ -310,11 +332,7 @@ public class AssetEntrySetIndexer extends BaseIndexer {
 		document.addKeyword(
 			"assetEntrySetId", assetEntrySet.getAssetEntrySetId());
 		document.addNumber("createTime", assetEntrySet.getCreateTime());
-		document.addText(
-			"creatorName",
-			AssetEntrySetParticipantInfoUtil.getParticipantName(
-				assetEntrySet.getCreatorClassNameId(),
-				assetEntrySet.getCreatorClassPK()));
+		document.addText("creatorName", assetEntrySet.getCreatorName());
 		document.addKeyword(
 			"creator_sortable",
 			AssetEntrySetParticipantInfoUtil.getSearchTerm(
@@ -333,7 +351,7 @@ public class AssetEntrySetIndexer extends BaseIndexer {
 		document.addKeyword(
 			"sharedTo", getSharedTo(assetEntrySet.getAssetEntrySetId()));
 		document.addNumber("stickyTime", assetEntrySet.getStickyTime());
-		document.addText("title", payloadJSONObject.getString("title"));
+		document.addText(Field.TITLE, assetEntrySet.getTitle());
 
 		return document;
 	}

@@ -20,6 +20,8 @@
 
 		<column name="assetEntryId" type="long" />
 		<column name="parentAssetEntrySetId" type="long" />
+		<column name="classNameId" type="long" />
+		<column name="classPK" type="long" />
 		<column name="creatorClassNameId" type="long" />
 		<column name="creatorClassPK" type="long" />
 		<column name="creatorName" type="String" />
@@ -28,7 +30,9 @@
 		<column name="level" type="int" />
 		<column name="payload" type="String" />
 		<column name="privateAssetEntrySet" type="boolean" />
+		<column name="status" type="int" />
 		<column name="stickyTime" type="long" />
+		<column name="title" type="String" />
 		<column name="type" type="int" />
 
 		<!-- Order -->
@@ -54,10 +58,24 @@
 			<finder-column name="parentAssetEntrySetId" />
 			<finder-column name="creatorClassNameId" />
 		</finder>
+		<finder name="CNI_CPK" return-type="Collection">
+			<finder-column name="classNameId"  />
+			<finder-column name="classPK" />
+		</finder>
 		<finder name="PAESI_CCNI_CCPK" return-type="AssetEntrySet">
 			<finder-column name="parentAssetEntrySetId" />
 			<finder-column name="creatorClassNameId" />
 			<finder-column name="creatorClassPK" />
+		</finder>
+		<finder name="CNI_CPK_Title" return-type="AssetEntrySet">
+			<finder-column name="classNameId" />
+			<finder-column name="classPK" />
+			<finder-column name="title" />
+		</finder>
+		<finder name="CNI_CPK_Type" return-type="Collection">
+			<finder-column name="classNameId" />
+			<finder-column name="classPK" />
+			<finder-column name="type" />
 		</finder>
 
 		<!-- References -->

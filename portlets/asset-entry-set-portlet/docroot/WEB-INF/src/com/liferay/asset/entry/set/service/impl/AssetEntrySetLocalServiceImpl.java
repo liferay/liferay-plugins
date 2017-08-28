@@ -70,9 +70,10 @@ public class AssetEntrySetLocalServiceImpl
 
 	@Override
 	public AssetEntrySet addAssetEntrySet(
-			long userId, long parentAssetEntrySetId, long creatorClassNameId,
-			long creatorClassPK, JSONObject payloadJSONObject,
-			boolean privateAssetEntrySet, long stickyTime, int type)
+			long userId, long parentAssetEntrySetId, long classNameId,
+			long classPK, long creatorClassNameId, long creatorClassPK,
+			JSONObject payloadJSONObject, boolean privateAssetEntrySet,
+			long stickyTime, String title, int type)
 		throws PortalException, SystemException {
 
 		long assetEntrySetId = counterLocalService.increment();
@@ -91,6 +92,8 @@ public class AssetEntrySetLocalServiceImpl
 		assetEntrySet.setModifiedTime(currentTime);
 
 		assetEntrySet.setParentAssetEntrySetId(parentAssetEntrySetId);
+		assetEntrySet.setClassNameId(classNameId);
+		assetEntrySet.setClassPK(classPK);
 		assetEntrySet.setCreatorClassNameId(creatorClassNameId);
 		assetEntrySet.setCreatorClassPK(creatorClassPK);
 		assetEntrySet.setCreatorName(
@@ -108,6 +111,7 @@ public class AssetEntrySetLocalServiceImpl
 
 		assetEntrySet.setPrivateAssetEntrySet(privateAssetEntrySet);
 		assetEntrySet.setStickyTime(stickyTime);
+		assetEntrySet.setTitle(title);
 		assetEntrySet.setType(type);
 
 		assetEntrySetPersistence.update(assetEntrySet);
@@ -212,6 +216,30 @@ public class AssetEntrySetLocalServiceImpl
 	}
 
 	@Override
+	public AssetEntrySet fetchAssetEntrySet(
+			long classNameId, long classPK, String title)
+		throws SystemException {
+
+		return assetEntrySetPersistence.fetchByCNI_CPK_Title(
+			classNameId, classPK, title);
+	}
+
+	@Override
+	public List<AssetEntrySet> getAssetEntrySets(long classNameId, long classPK)
+		throws SystemException {
+
+		return assetEntrySetPersistence.findByCNI_CPK(classNameId, classPK);
+	}
+
+	@Override
+	public long getAssetEntrySetsCount(long classNameId, long classPK, int type)
+		throws SystemException {
+
+		return assetEntrySetPersistence.countByCNI_CPK_Type(
+			classNameId, classPK, type);
+	}
+
+	@Override
 	public List<AssetEntrySet> getChildAssetEntrySets(
 			long parentAssetEntrySetId)
 		throws SystemException {
@@ -271,7 +299,8 @@ public class AssetEntrySetLocalServiceImpl
 	@Override
 	public AssetEntrySet updateAssetEntrySet(
 			long assetEntrySetId, JSONObject payloadJSONObject,
-			boolean privateAssetEntrySet, long stickyTime, int type)
+			boolean privateAssetEntrySet, long stickyTime, String title,
+			int type)
 		throws PortalException, SystemException {
 
 		AssetEntrySet assetEntrySet = assetEntrySetPersistence.findByPrimaryKey(
@@ -320,6 +349,7 @@ public class AssetEntrySetLocalServiceImpl
 
 		assetEntrySet.setPrivateAssetEntrySet(privateAssetEntrySet);
 		assetEntrySet.setStickyTime(stickyTime);
+		assetEntrySet.setTitle(title);
 		assetEntrySet.setType(type);
 
 		assetEntrySetPersistence.update(assetEntrySet);

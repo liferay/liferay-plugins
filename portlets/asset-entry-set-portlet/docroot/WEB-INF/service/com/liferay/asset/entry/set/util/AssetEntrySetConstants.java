@@ -47,8 +47,4 @@ public class AssetEntrySetConstants {
 
 	public static final String PAYLOAD_KEY_SHARED_TO = "sharedTo";
 
-	public static final int TYPE_ANNOUNCEMENT = 1;
-
-	public static final int TYPE_POST = 0;
-
 }
