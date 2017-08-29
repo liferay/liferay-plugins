@@ -266,7 +266,7 @@ boolean columnOptionsVisible = GetterUtil.getBoolean(SessionClicks.get(request, 
 		).render();
 	</c:if>
 
-	<c:if test="<%= groupCalendarResource != null %>">
+	<c:if test="<%= showSiteCalendars %>">
 		window.<portlet:namespace />siteCalendarList = new Liferay.CalendarList(
 			{
 				after: {
