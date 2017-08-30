@@ -27,6 +27,7 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.security.auth.AuthTokenUtil;
 import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.portal.util.Portal;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -89,8 +90,9 @@ public class ServicePreAction extends Action {
 		// A guest user that signs in will cause the original portlet
 		// authentication token to become stale. See SessionAuthToken.
 
-		String redirect = HttpUtil.setParameter(
-			themeDisplay.getURLCurrent(), "p_p_auth", actual_p_p_auth);
+		String redirect = _portal.escapeRedirect(themeDisplay.getURLCurrent());
+
+		redirect = HttpUtil.setParameter(redirect, "p_p_auth", actual_p_p_auth);
 
 		response.sendRedirect(redirect);
 	}
@@ -101,5 +103,7 @@ public class ServicePreAction extends Action {
 				PropsKeys.PORTLET_ADD_DEFAULT_RESOURCE_CHECK_ENABLED));
 
 	private static Log _log = LogFactoryUtil.getLog(ServicePreAction.class);
+
+	private Portal _portal;
 
 }
