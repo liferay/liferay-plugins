@@ -14,9 +14,9 @@
 
 package com.liferay.asset.entry.set.hook.upgrade.v1_0_8;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
-
-import com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException;
 
 /**
  * @author Timothy Bell
@@ -29,8 +29,11 @@ public class UpgradeAssetEntrySet extends UpgradeProcess {
 			runSQL("alter table AssetEntrySet drop index IX_116E481");
 			runSQL("alter table AssetEntrySet drop index IX_26CA2F3B");
 		}
-		catch (MySQLSyntaxErrorException mssee) {
+		catch (Exception e) {
+			_log.error(e, e);
 		}
 	}
+
+	private static Log _log = LogFactoryUtil.getLog(UpgradeAssetEntrySet.class);
 
 }
