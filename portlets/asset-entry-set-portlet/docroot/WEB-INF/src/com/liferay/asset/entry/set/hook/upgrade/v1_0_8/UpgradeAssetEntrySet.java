@@ -14,9 +14,13 @@
 
 package com.liferay.asset.entry.set.hook.upgrade.v1_0_8;
 
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.dao.jdbc.DataAccess;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
+import com.liferay.portal.kernel.util.Validator;
+
+import java.sql.Connection;
+import java.sql.DatabaseMetaData;
+import java.sql.ResultSet;
 
 /**
  * @author Timothy Bell
@@ -25,15 +29,41 @@ public class UpgradeAssetEntrySet extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		try {
+		if (hasIndex("AssetEntrySet", "IX_116E481")) {
 			runSQL("alter table AssetEntrySet drop index IX_116E481");
-			runSQL("alter table AssetEntrySet drop index IX_26CA2F3B");
 		}
-		catch (Exception e) {
-			_log.error(e, e);
+
+		if (hasIndex("AssetEntrySet", "IX_26CA2F3B")) {
+			runSQL("alter table AssetEntrySet drop index IX_26CA2F3B");
 		}
 	}
 
-	private static Log _log = LogFactoryUtil.getLog(UpgradeAssetEntrySet.class);
+	protected boolean hasIndex(String tableName, String indexName)
+		throws Exception {
+
+		Connection con = null;
+		ResultSet rs = null;
+
+		try {
+			con = DataAccess.getUpgradeOptimizedConnection();
+
+			DatabaseMetaData metadata = con.getMetaData();
+
+			rs = metadata.getIndexInfo(null, null, tableName, false, false);
+
+			while (rs.next()) {
+				String curIndexName = rs.getString("index_name");
+
+				if (Validator.equals(indexName, curIndexName)) {
+					return true;
+				}
+			}
+		}
+		finally {
+			DataAccess.cleanUp(con, null, rs);
+		}
+
+		return false;
+	}
 
 }
