@@ -170,6 +170,9 @@ public class AssetEntrySetLocalServiceImpl
 			deleteChildAssetEntrySets(assetEntrySet.getAssetEntrySetId());
 		}
 
+		Indexer indexer = IndexerRegistryUtil.nullSafeGetIndexer(
+			AssetEntrySet.class);
+
 		if (assetEntrySet.getParentAssetEntrySetId() > 0) {
 			AssetEntrySet parentAssetEntrySet = fetchAssetEntrySet(
 				assetEntrySet.getParentAssetEntrySetId());
@@ -181,6 +184,8 @@ public class AssetEntrySetLocalServiceImpl
 				updateModifiedTime(
 					parentAssetEntrySet.getAssetEntrySetId(),
 					System.currentTimeMillis());
+
+				indexer.reindex(parentAssetEntrySet);
 			}
 		}
 
@@ -190,9 +195,6 @@ public class AssetEntrySetLocalServiceImpl
 		for (long fileEntryId : fileEntryIds) {
 			DLFileEntryLocalServiceUtil.deleteFileEntry(fileEntryId);
 		}
-
-		Indexer indexer = IndexerRegistryUtil.nullSafeGetIndexer(
-			AssetEntrySet.class);
 
 		indexer.delete(assetEntrySet);
 
