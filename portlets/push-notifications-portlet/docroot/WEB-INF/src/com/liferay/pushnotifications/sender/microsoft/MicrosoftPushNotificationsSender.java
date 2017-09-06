@@ -14,6 +14,7 @@
 
 package com.liferay.pushnotifications.sender.microsoft;
 
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.StringPool;
@@ -65,14 +66,24 @@ public class MicrosoftPushNotificationsSender
 				PushNotificationsConstants.KEY_FROM);
 		}
 
-		payloadJSONObject.remove(PushNotificationsConstants.KEY_FROM);
-
 		String body = payloadJSONObject.getString(
 			PushNotificationsConstants.KEY_BODY);
 
-		payloadJSONObject.remove(PushNotificationsConstants.KEY_BODY);
+		JSONObject newPayloadJSONObject = JSONFactoryUtil.createJSONObject();
 
-		String attributes = getAttributes(payloadJSONObject);
+		Iterator<String> iterator = payloadJSONObject.keys();
+
+		while (iterator.hasNext()) {
+			String key = iterator.next();
+
+			if (!key.equals(PushNotificationsConstants.KEY_FROM) &&
+				!key.equals(PushNotificationsConstants.KEY_BODY)) {
+
+				newPayloadJSONObject.put(key, payloadJSONObject.getString(key));
+			}
+		}
+
+		String attributes = getAttributes(newPayloadJSONObject);
 
 		TileNotification tileNotification = buildTileNotification(
 			from, body, attributes);

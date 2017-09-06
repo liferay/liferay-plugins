@@ -19,6 +19,7 @@ import com.liferay.mobile.fcm.Notification;
 import com.liferay.mobile.fcm.Sender;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONArray;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.PrefsPropsUtil;
@@ -31,6 +32,7 @@ import com.liferay.pushnotifications.util.PushNotificationsConstants;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -94,14 +96,31 @@ public class FirebasePushNotificationsSender
 		builder.notification(buildNotification(payloadJSONObject));
 		builder.to(tokens);
 
-		payloadJSONObject.remove(PushNotificationsConstants.KEY_SILENT);
+		JSONObject newPayloadJSONObject = JSONFactoryUtil.createJSONObject();
 
-		if (payloadJSONObject.length() > 0) {
+		Iterator<String> iterator = payloadJSONObject.keys();
+
+		while (iterator.hasNext()) {
+			String key = iterator.next();
+
+			if (!key.equals(PushNotificationsConstants.KEY_BADGE) &&
+				!key.equals(PushNotificationsConstants.KEY_BODY) &&
+				!key.equals(PushNotificationsConstants.KEY_BODY_LOCALIZED) &&
+				!key.equals(
+					PushNotificationsConstants.KEY_BODY_LOCALIZED_ARGUMENTS) &&
+				!key.equals(PushNotificationsConstants.KEY_SOUND) &&
+				!key.equals(PushNotificationsConstants.KEY_SILENT)) {
+
+				newPayloadJSONObject.put(key, payloadJSONObject.getString(key));
+			}
+		}
+
+		if (newPayloadJSONObject.length() > 0) {
 			Map<String, String> data = new HashMap<String, String>();
 
 			data.put(
 				PushNotificationsConstants.KEY_PAYLOAD,
-				payloadJSONObject.toString());
+				newPayloadJSONObject.toString());
 
 			builder.data(data);
 		}
@@ -152,13 +171,6 @@ public class FirebasePushNotificationsSender
 		if (Validator.isNotNull(sound)) {
 			builder.sound(sound);
 		}
-
-		payloadJSONObject.remove(PushNotificationsConstants.KEY_BADGE);
-		payloadJSONObject.remove(PushNotificationsConstants.KEY_BODY);
-		payloadJSONObject.remove(PushNotificationsConstants.KEY_BODY_LOCALIZED);
-		payloadJSONObject.remove(
-			PushNotificationsConstants.KEY_BODY_LOCALIZED_ARGUMENTS);
-		payloadJSONObject.remove(PushNotificationsConstants.KEY_SOUND);
 
 		return builder.build();
 	}
