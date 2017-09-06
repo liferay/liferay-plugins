@@ -123,13 +123,13 @@ boolean appleSandbox = PrefsPropsUtil.getBoolean(PortletPropsKeys.APPLE_SANDBOX,
 
 				error.hide();
 
-				if (A.Object.hasKey(result, 'exception')) {
+				if (A.Object.isEmpty(result)) {
+					success.show();
+				}
+				else {
 					error.one('p').text(result);
 
 					error.show();
-				}
-				else {
-					success.show();
 				}
 			}
 		</aui:script>
