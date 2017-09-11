@@ -119,8 +119,8 @@ public class AssetEntrySetLocalServiceClp implements AssetEntrySetLocalService {
 
 		_methodParameterTypes19 = new String[] {
 				"long", "long", "long", "long", "long", "long",
-				"com.liferay.portal.kernel.json.JSONObject", "boolean", "int",
-				"long", "java.lang.String", "int"
+				"com.liferay.portal.kernel.json.JSONObject", "boolean", "long",
+				"java.lang.String", "int", "int"
 			};
 
 		_methodName20 = "addFileAttachment";
@@ -175,7 +175,7 @@ public class AssetEntrySetLocalServiceClp implements AssetEntrySetLocalService {
 
 		_methodParameterTypes30 = new String[] {
 				"long", "com.liferay.portal.kernel.json.JSONObject", "boolean",
-				"int", "long", "java.lang.String", "int"
+				"long", "java.lang.String", "int", "int"
 			};
 	}
 
@@ -739,8 +739,8 @@ public class AssetEntrySetLocalServiceClp implements AssetEntrySetLocalService {
 		long userId, long parentAssetEntrySetId, long classNameId,
 		long classPK, long creatorClassNameId, long creatorClassPK,
 		com.liferay.portal.kernel.json.JSONObject payloadJSONObject,
-		boolean privateAssetEntrySet, int status, long stickyTime,
-		java.lang.String title, int type)
+		boolean privateAssetEntrySet, long stickyTime, java.lang.String title,
+		int type, int status)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -765,13 +765,13 @@ public class AssetEntrySetLocalServiceClp implements AssetEntrySetLocalService {
 						
 					privateAssetEntrySet,
 						
-					status,
-						
 					stickyTime,
 						
 					ClpSerializer.translateInput(title),
 						
-					type
+					type,
+						
+					status
 					});
 		}
 		catch (Throwable t) {
@@ -1158,8 +1158,8 @@ public class AssetEntrySetLocalServiceClp implements AssetEntrySetLocalService {
 	public com.liferay.asset.entry.set.model.AssetEntrySet updateAssetEntrySet(
 		long assetEntrySetId,
 		com.liferay.portal.kernel.json.JSONObject payloadJSONObject,
-		boolean privateAssetEntrySet, int status, long stickyTime,
-		java.lang.String title, int type)
+		boolean privateAssetEntrySet, long stickyTime, java.lang.String title,
+		int type, int status)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -1174,13 +1174,13 @@ public class AssetEntrySetLocalServiceClp implements AssetEntrySetLocalService {
 						
 					privateAssetEntrySet,
 						
-					status,
-						
 					stickyTime,
 						
 					ClpSerializer.translateInput(title),
 						
-					type
+					type,
+						
+					status
 					});
 		}
 		catch (Throwable t) {
