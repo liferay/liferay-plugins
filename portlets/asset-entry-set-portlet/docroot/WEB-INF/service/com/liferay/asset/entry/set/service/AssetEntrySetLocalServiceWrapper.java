@@ -292,15 +292,17 @@ public class AssetEntrySetLocalServiceWrapper
 
 	@Override
 	public com.liferay.asset.entry.set.model.AssetEntrySet addAssetEntrySet(
-		long userId, long parentAssetEntrySetId, long creatorClassNameId,
-		long creatorClassPK,
+		long userId, long parentAssetEntrySetId, long classNameId,
+		long classPK, long creatorClassNameId, long creatorClassPK,
 		com.liferay.portal.kernel.json.JSONObject payloadJSONObject,
-		boolean privateAssetEntrySet, long stickyTime, int type)
+		boolean privateAssetEntrySet, int status, long stickyTime,
+		java.lang.String title, int type)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _assetEntrySetLocalService.addAssetEntrySet(userId,
-			parentAssetEntrySetId, creatorClassNameId, creatorClassPK,
-			payloadJSONObject, privateAssetEntrySet, stickyTime, type);
+			parentAssetEntrySetId, classNameId, classPK, creatorClassNameId,
+			creatorClassPK, payloadJSONObject, privateAssetEntrySet, status,
+			stickyTime, title, type);
 	}
 
 	@Override
@@ -309,6 +311,28 @@ public class AssetEntrySetLocalServiceWrapper
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _assetEntrySetLocalService.addFileAttachment(userId, file);
+	}
+
+	@Override
+	public com.liferay.asset.entry.set.model.AssetEntrySet fetchAssetEntrySet(
+		long classNameId, long classPK, java.lang.String title)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _assetEntrySetLocalService.fetchAssetEntrySet(classNameId,
+			classPK, title);
+	}
+
+	@Override
+	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getAssetEntrySets(
+		long classNameId, long classPK)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _assetEntrySetLocalService.getAssetEntrySets(classNameId, classPK);
+	}
+
+	@Override
+	public long getAssetEntrySetsCount(long classNameId, long classPK, int type)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _assetEntrySetLocalService.getAssetEntrySetsCount(classNameId,
+			classPK, type);
 	}
 
 	@Override
@@ -369,11 +393,13 @@ public class AssetEntrySetLocalServiceWrapper
 	public com.liferay.asset.entry.set.model.AssetEntrySet updateAssetEntrySet(
 		long assetEntrySetId,
 		com.liferay.portal.kernel.json.JSONObject payloadJSONObject,
-		boolean privateAssetEntrySet, long stickyTime, int type)
+		boolean privateAssetEntrySet, int status, long stickyTime,
+		java.lang.String title, int type)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _assetEntrySetLocalService.updateAssetEntrySet(assetEntrySetId,
-			payloadJSONObject, privateAssetEntrySet, stickyTime, type);
+			payloadJSONObject, privateAssetEntrySet, status, stickyTime, title,
+			type);
 	}
 
 	/**

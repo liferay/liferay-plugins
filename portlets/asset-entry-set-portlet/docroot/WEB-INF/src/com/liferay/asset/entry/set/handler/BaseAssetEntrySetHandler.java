@@ -93,7 +93,6 @@ public class BaseAssetEntrySetHandler implements AssetEntrySetHandler {
 		jsonObject.put(
 			"sendEmailNotifications",
 			payloadJSONObject.getBoolean("sendEmailNotifications"));
-		jsonObject.put("title", payloadJSONObject.getString("title"));
 		jsonObject.put("truncated", payloadJSONObject.getBoolean("truncated"));
 
 		String truncatedMessage = payloadJSONObject.getString(
@@ -109,22 +108,25 @@ public class BaseAssetEntrySetHandler implements AssetEntrySetHandler {
 		JSONArray sharedToJSONArray = payloadJSONObject.getJSONArray(
 			AssetEntrySetConstants.PAYLOAD_KEY_SHARED_TO);
 
-		String[] assetTagNames = StringUtil.split(
-			payloadJSONObject.getString(
-				AssetEntrySetConstants.PAYLOAD_KEY_ASSET_TAG_NAMES));
+		if (sharedToJSONArray != null) {
+			String[] assetTagNames = StringUtil.split(
+				payloadJSONObject.getString(
+					AssetEntrySetConstants.PAYLOAD_KEY_ASSET_TAG_NAMES));
 
-		JSONArray assetTagsJSONArray =
-			AssetEntrySetParticipantInfoUtil.getAssetTagsJSONArray(
-				userId, assetTagNames);
+			JSONArray assetTagsJSONArray =
+				AssetEntrySetParticipantInfoUtil.getAssetTagsJSONArray(
+					userId, assetTagNames);
 
-		for (int i = 0; i < assetTagsJSONArray.length(); i++) {
-			sharedToJSONArray.put(assetTagsJSONArray.getJSONObject(i));
+			for (int i = 0; i < assetTagsJSONArray.length(); i++) {
+				sharedToJSONArray.put(assetTagsJSONArray.getJSONObject(i));
+			}
+
+			sharedToJSONArray = processSharedToJSONArray(sharedToJSONArray);
+
+			jsonObject.put(
+				AssetEntrySetConstants.PAYLOAD_KEY_SHARED_TO,
+				sharedToJSONArray);
 		}
-
-		sharedToJSONArray = processSharedToJSONArray(sharedToJSONArray);
-
-		jsonObject.put(
-			AssetEntrySetConstants.PAYLOAD_KEY_SHARED_TO, sharedToJSONArray);
 
 		return jsonObject;
 	}

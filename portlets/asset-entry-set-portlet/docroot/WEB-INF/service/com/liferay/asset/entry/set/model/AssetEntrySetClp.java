@@ -21,6 +21,8 @@ import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
@@ -81,6 +83,8 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 		attributes.put("modifiedTime", getModifiedTime());
 		attributes.put("assetEntryId", getAssetEntryId());
 		attributes.put("parentAssetEntrySetId", getParentAssetEntrySetId());
+		attributes.put("classNameId", getClassNameId());
+		attributes.put("classPK", getClassPK());
 		attributes.put("creatorClassNameId", getCreatorClassNameId());
 		attributes.put("creatorClassPK", getCreatorClassPK());
 		attributes.put("creatorName", getCreatorName());
@@ -90,7 +94,9 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 		attributes.put("payload", getPayload());
 		attributes.put("privateAssetEntrySet", getPrivateAssetEntrySet());
 		attributes.put("stickyTime", getStickyTime());
+		attributes.put("title", getTitle());
 		attributes.put("type", getType());
+		attributes.put("status", getStatus());
 
 		return attributes;
 	}
@@ -138,6 +144,18 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 
 		if (parentAssetEntrySetId != null) {
 			setParentAssetEntrySetId(parentAssetEntrySetId);
+		}
+
+		Long classNameId = (Long)attributes.get("classNameId");
+
+		if (classNameId != null) {
+			setClassNameId(classNameId);
+		}
+
+		Long classPK = (Long)attributes.get("classPK");
+
+		if (classPK != null) {
+			setClassPK(classPK);
 		}
 
 		Long creatorClassNameId = (Long)attributes.get("creatorClassNameId");
@@ -197,10 +215,22 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 			setStickyTime(stickyTime);
 		}
 
+		String title = (String)attributes.get("title");
+
+		if (title != null) {
+			setTitle(title);
+		}
+
 		Integer type = (Integer)attributes.get("type");
 
 		if (type != null) {
 			setType(type);
+		}
+
+		Integer status = (Integer)attributes.get("status");
+
+		if (status != null) {
+			setStatus(status);
 		}
 	}
 
@@ -369,6 +399,72 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 						long.class);
 
 				method.invoke(_assetEntrySetRemoteModel, parentAssetEntrySetId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public String getClassName() {
+		if (getClassNameId() <= 0) {
+			return StringPool.BLANK;
+		}
+
+		return PortalUtil.getClassName(getClassNameId());
+	}
+
+	@Override
+	public void setClassName(String className) {
+		long classNameId = 0;
+
+		if (Validator.isNotNull(className)) {
+			classNameId = PortalUtil.getClassNameId(className);
+		}
+
+		setClassNameId(classNameId);
+	}
+
+	@Override
+	public long getClassNameId() {
+		return _classNameId;
+	}
+
+	@Override
+	public void setClassNameId(long classNameId) {
+		_classNameId = classNameId;
+
+		if (_assetEntrySetRemoteModel != null) {
+			try {
+				Class<?> clazz = _assetEntrySetRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setClassNameId", long.class);
+
+				method.invoke(_assetEntrySetRemoteModel, classNameId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public long getClassPK() {
+		return _classPK;
+	}
+
+	@Override
+	public void setClassPK(long classPK) {
+		_classPK = classPK;
+
+		if (_assetEntrySetRemoteModel != null) {
+			try {
+				Class<?> clazz = _assetEntrySetRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setClassPK", long.class);
+
+				method.invoke(_assetEntrySetRemoteModel, classPK);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -594,6 +690,29 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 	}
 
 	@Override
+	public String getTitle() {
+		return _title;
+	}
+
+	@Override
+	public void setTitle(String title) {
+		_title = title;
+
+		if (_assetEntrySetRemoteModel != null) {
+			try {
+				Class<?> clazz = _assetEntrySetRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setTitle", String.class);
+
+				method.invoke(_assetEntrySetRemoteModel, title);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
 	public int getType() {
 		return _type;
 	}
@@ -609,6 +728,29 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 				Method method = clazz.getMethod("setType", int.class);
 
 				method.invoke(_assetEntrySetRemoteModel, type);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public int getStatus() {
+		return _status;
+	}
+
+	@Override
+	public void setStatus(int status) {
+		_status = status;
+
+		if (_assetEntrySetRemoteModel != null) {
+			try {
+				Class<?> clazz = _assetEntrySetRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setStatus", int.class);
+
+				method.invoke(_assetEntrySetRemoteModel, status);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -730,6 +872,8 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 		clone.setModifiedTime(getModifiedTime());
 		clone.setAssetEntryId(getAssetEntryId());
 		clone.setParentAssetEntrySetId(getParentAssetEntrySetId());
+		clone.setClassNameId(getClassNameId());
+		clone.setClassPK(getClassPK());
 		clone.setCreatorClassNameId(getCreatorClassNameId());
 		clone.setCreatorClassPK(getCreatorClassPK());
 		clone.setCreatorName(getCreatorName());
@@ -739,7 +883,9 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 		clone.setPayload(getPayload());
 		clone.setPrivateAssetEntrySet(getPrivateAssetEntrySet());
 		clone.setStickyTime(getStickyTime());
+		clone.setTitle(getTitle());
 		clone.setType(getType());
+		clone.setStatus(getStatus());
 
 		return clone;
 	}
@@ -800,7 +946,7 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(35);
+		StringBundler sb = new StringBundler(43);
 
 		sb.append("{assetEntrySetId=");
 		sb.append(getAssetEntrySetId());
@@ -816,6 +962,10 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 		sb.append(getAssetEntryId());
 		sb.append(", parentAssetEntrySetId=");
 		sb.append(getParentAssetEntrySetId());
+		sb.append(", classNameId=");
+		sb.append(getClassNameId());
+		sb.append(", classPK=");
+		sb.append(getClassPK());
 		sb.append(", creatorClassNameId=");
 		sb.append(getCreatorClassNameId());
 		sb.append(", creatorClassPK=");
@@ -834,8 +984,12 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 		sb.append(getPrivateAssetEntrySet());
 		sb.append(", stickyTime=");
 		sb.append(getStickyTime());
+		sb.append(", title=");
+		sb.append(getTitle());
 		sb.append(", type=");
 		sb.append(getType());
+		sb.append(", status=");
+		sb.append(getStatus());
 		sb.append("}");
 
 		return sb.toString();
@@ -843,7 +997,7 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(55);
+		StringBundler sb = new StringBundler(67);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.asset.entry.set.model.AssetEntrySet");
@@ -876,6 +1030,14 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 		sb.append(
 			"<column><column-name>parentAssetEntrySetId</column-name><column-value><![CDATA[");
 		sb.append(getParentAssetEntrySetId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>classNameId</column-name><column-value><![CDATA[");
+		sb.append(getClassNameId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>classPK</column-name><column-value><![CDATA[");
+		sb.append(getClassPK());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>creatorClassNameId</column-name><column-value><![CDATA[");
@@ -914,8 +1076,16 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 		sb.append(getStickyTime());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>title</column-name><column-value><![CDATA[");
+		sb.append(getTitle());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>type</column-name><column-value><![CDATA[");
 		sb.append(getType());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>status</column-name><column-value><![CDATA[");
+		sb.append(getStatus());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -931,6 +1101,8 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 	private long _modifiedTime;
 	private long _assetEntryId;
 	private long _parentAssetEntrySetId;
+	private long _classNameId;
+	private long _classPK;
 	private long _creatorClassNameId;
 	private long _creatorClassPK;
 	private String _creatorName;
@@ -940,7 +1112,9 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 	private String _payload;
 	private boolean _privateAssetEntrySet;
 	private long _stickyTime;
+	private String _title;
 	private int _type;
+	private int _status;
 	private BaseModel<?> _assetEntrySetRemoteModel;
 	private Class<?> _clpSerializerClass = com.liferay.asset.entry.set.service.ClpSerializer.class;
 }

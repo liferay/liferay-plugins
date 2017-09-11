@@ -129,6 +129,22 @@ public class AssetEntrySetIndexer extends BaseIndexer {
 		}
 	}
 
+	protected void addCreatorQuery(
+			BooleanQuery booleanQuery, SearchContext searchContext)
+		throws Exception {
+
+		List<String> creators = (ArrayList<String>)searchContext.getAttribute(
+			"creators");
+
+		if (ListUtil.isEmpty(creators)) {
+			return;
+		}
+
+		for (String creator : creators) {
+			booleanQuery.addTerm("creator", creator);
+		}
+	}
+
 	protected void addExcludeAssetEntrySetIdsQuery(
 			BooleanQuery filterQuery, SearchContext searchContext)
 		throws Exception {
@@ -151,6 +167,27 @@ public class AssetEntrySetIndexer extends BaseIndexer {
 		filterQuery.add(booleanQuery, BooleanClauseOccur.MUST_NOT);
 	}
 
+	protected void addExcludeTypesQuery(
+			BooleanQuery filterQuery, SearchContext searchContext)
+		throws Exception {
+
+		BooleanQuery booleanQuery = BooleanQueryFactoryUtil.create(
+			searchContext);
+
+		List<Integer> excludeTypes = (List<Integer>)searchContext.getAttribute(
+			"excludeTypes");
+
+		if (ListUtil.isEmpty(excludeTypes)) {
+			return;
+		}
+
+		for (int excludeType : excludeTypes) {
+			booleanQuery.addTerm("type", excludeType);
+		}
+
+		filterQuery.add(booleanQuery, BooleanClauseOccur.MUST_NOT);
+	}
+
 	protected void addFilterQuery(
 			BooleanQuery filterQuery, SearchContext searchContext)
 		throws Exception {
@@ -158,9 +195,9 @@ public class AssetEntrySetIndexer extends BaseIndexer {
 		BooleanQuery booleanQuery = BooleanQueryFactoryUtil.create(
 			searchContext);
 
+		addCreatorQuery(booleanQuery, searchContext);
 		addIncludeAssetEntrySetIdsQuery(booleanQuery, searchContext);
-		addFullyFollowedEntitiesQuery(booleanQuery, searchContext);
-		addPartiallyFollowedEntitiesQuery(booleanQuery, searchContext);
+		addSharedToQuery(booleanQuery, searchContext);
 
 		if (booleanQuery.hasClauses()) {
 			filterQuery.add(booleanQuery, BooleanClauseOccur.MUST);
@@ -169,6 +206,7 @@ public class AssetEntrySetIndexer extends BaseIndexer {
 		addClassNameIdQuery(filterQuery, searchContext);
 		addClassPKQuery(filterQuery, searchContext);
 		addExcludeAssetEntrySetIdsQuery(filterQuery, searchContext);
+		addExcludeTypesQuery(filterQuery, searchContext);
 		addMembershipQuery(filterQuery, searchContext);
 		addParentAssetEntrySetQuery(filterQuery);
 		addPrivateAssetEntrySetQuery(filterQuery, searchContext);
@@ -178,19 +216,6 @@ public class AssetEntrySetIndexer extends BaseIndexer {
 		addTimeQuery(filterQuery, searchContext, "stickyTime_sortable");
 	}
 
-	protected void addFullyFollowedEntitiesQuery(
-			BooleanQuery booleanQuery, SearchContext searchContext)
-		throws Exception {
-
-		List<String> fullyFollowedEntities =
-			(ArrayList<String>)searchContext.getAttribute(
-				"fullyFollowedEntities");
-
-		for (String fullyFollowedEntity : fullyFollowedEntities) {
-			booleanQuery.addTerm("sharedTo", fullyFollowedEntity);
-		}
-	}
-
 	protected void addIncludeAssetEntrySetIdsQuery(
 			BooleanQuery booleanQuery, SearchContext searchContext)
 		throws Exception {
@@ -198,6 +223,10 @@ public class AssetEntrySetIndexer extends BaseIndexer {
 		List<Long> includeAssetEntrySetIds =
 			(ArrayList<Long>)searchContext.getAttribute(
 				"includeAssetEntrySetIds");
+
+		if (ListUtil.isEmpty(includeAssetEntrySetIds)) {
+			return;
+		}
 
 		for (long includeAssetEntrySetId : includeAssetEntrySetIds) {
 			booleanQuery.addTerm("assetEntrySetId", includeAssetEntrySetId);
@@ -230,19 +259,6 @@ public class AssetEntrySetIndexer extends BaseIndexer {
 		filterQuery.addRequiredTerm("parentAssetEntrySetId", 0);
 	}
 
-	protected void addPartiallyFollowedEntitiesQuery(
-			BooleanQuery booleanQuery, SearchContext searchContext)
-		throws Exception {
-
-		List<String> partiallyFollowedEntities =
-			(ArrayList<String>)searchContext.getAttribute(
-				"partiallyFollowedEntities");
-
-		for (String partiallyFollowedEntity : partiallyFollowedEntities) {
-			booleanQuery.addTerm("creator_sortable", partiallyFollowedEntity);
-		}
-	}
-
 	protected void addPrivateAssetEntrySetQuery(
 			BooleanQuery filterQuery, SearchContext searchContext)
 		throws Exception {
@@ -253,6 +269,22 @@ public class AssetEntrySetIndexer extends BaseIndexer {
 		if (privateAssetEntrySet) {
 			filterQuery.addRequiredTerm(
 				"privateAssetEntrySet", privateAssetEntrySet);
+		}
+	}
+
+	protected void addSharedToQuery(
+			BooleanQuery booleanQuery, SearchContext searchContext)
+		throws Exception {
+
+		List<String> sharedToEntities =
+			(ArrayList<String>)searchContext.getAttribute("sharedTo");
+
+		if (ListUtil.isEmpty(sharedToEntities)) {
+			return;
+		}
+
+		for (String sharedToEntity : sharedToEntities) {
+			booleanQuery.addTerm("sharedTo", sharedToEntity);
 		}
 	}
 
@@ -327,6 +359,7 @@ public class AssetEntrySetIndexer extends BaseIndexer {
 
 		Document document = getBaseModelDocument(PORTLET_ID, assetEntrySet);
 
+		document.addText(Field.TITLE, assetEntrySet.getTitle());
 		document.addKeyword(Field.TYPE, assetEntrySet.getType());
 
 		document.addKeyword(
@@ -334,7 +367,7 @@ public class AssetEntrySetIndexer extends BaseIndexer {
 		document.addNumber("createTime", assetEntrySet.getCreateTime());
 		document.addText("creatorName", assetEntrySet.getCreatorName());
 		document.addKeyword(
-			"creator_sortable",
+			"creator",
 			AssetEntrySetParticipantInfoUtil.getSearchTerm(
 				assetEntrySet.getCreatorClassNameId(),
 				assetEntrySet.getCreatorClassPK()));
@@ -351,7 +384,6 @@ public class AssetEntrySetIndexer extends BaseIndexer {
 		document.addKeyword(
 			"sharedTo", getSharedTo(assetEntrySet.getAssetEntrySetId()));
 		document.addNumber("stickyTime", assetEntrySet.getStickyTime());
-		document.addText(Field.TITLE, assetEntrySet.getTitle());
 
 		return document;
 	}

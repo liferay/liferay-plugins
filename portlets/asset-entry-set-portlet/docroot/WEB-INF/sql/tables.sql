@@ -6,6 +6,8 @@ create table AssetEntrySet (
 	modifiedTime LONG,
 	assetEntryId LONG,
 	parentAssetEntrySetId LONG,
+	classNameId LONG,
+	classPK LONG,
 	creatorClassNameId LONG,
 	creatorClassPK LONG,
 	creatorName VARCHAR(75) null,
@@ -15,7 +17,9 @@ create table AssetEntrySet (
 	payload STRING null,
 	privateAssetEntrySet BOOLEAN,
 	stickyTime LONG,
-	type_ INTEGER
+	title VARCHAR(255) null,
+	type_ INTEGER,
+	status INTEGER
 );
 
 create table AssetEntrySetLike (

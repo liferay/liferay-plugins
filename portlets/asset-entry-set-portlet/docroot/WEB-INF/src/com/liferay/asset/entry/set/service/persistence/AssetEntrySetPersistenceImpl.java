@@ -41,6 +41,7 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.UnmodifiableList;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.security.permission.InlineSQLHelperUtil;
@@ -3739,6 +3740,923 @@ public class AssetEntrySetPersistenceImpl extends BasePersistenceImpl<AssetEntry
 	private static final String _FINDER_COLUMN_PAESI_CCNI_PARENTASSETENTRYSETID_2 =
 		"assetEntrySet.parentAssetEntrySetId = ? AND ";
 	private static final String _FINDER_COLUMN_PAESI_CCNI_CREATORCLASSNAMEID_2 = "assetEntrySet.creatorClassNameId = ?";
+	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_CNI_CPK = new FinderPath(AssetEntrySetModelImpl.ENTITY_CACHE_ENABLED,
+			AssetEntrySetModelImpl.FINDER_CACHE_ENABLED,
+			AssetEntrySetImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
+			"findByCNI_CPK",
+			new String[] {
+				Long.class.getName(), Long.class.getName(),
+				
+			Integer.class.getName(), Integer.class.getName(),
+				OrderByComparator.class.getName()
+			});
+	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_CNI_CPK =
+		new FinderPath(AssetEntrySetModelImpl.ENTITY_CACHE_ENABLED,
+			AssetEntrySetModelImpl.FINDER_CACHE_ENABLED,
+			AssetEntrySetImpl.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"findByCNI_CPK",
+			new String[] { Long.class.getName(), Long.class.getName() },
+			AssetEntrySetModelImpl.CLASSNAMEID_COLUMN_BITMASK |
+			AssetEntrySetModelImpl.CLASSPK_COLUMN_BITMASK |
+			AssetEntrySetModelImpl.CREATETIME_COLUMN_BITMASK);
+	public static final FinderPath FINDER_PATH_COUNT_BY_CNI_CPK = new FinderPath(AssetEntrySetModelImpl.ENTITY_CACHE_ENABLED,
+			AssetEntrySetModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByCNI_CPK",
+			new String[] { Long.class.getName(), Long.class.getName() });
+
+	/**
+	 * Returns all the asset entry sets where classNameId = &#63; and classPK = &#63;.
+	 *
+	 * @param classNameId the class name ID
+	 * @param classPK the class p k
+	 * @return the matching asset entry sets
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public List<AssetEntrySet> findByCNI_CPK(long classNameId, long classPK)
+		throws SystemException {
+		return findByCNI_CPK(classNameId, classPK, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Returns a range of all the asset entry sets where classNameId = &#63; and classPK = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.asset.entry.set.model.impl.AssetEntrySetModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param classNameId the class name ID
+	 * @param classPK the class p k
+	 * @param start the lower bound of the range of asset entry sets
+	 * @param end the upper bound of the range of asset entry sets (not inclusive)
+	 * @return the range of matching asset entry sets
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public List<AssetEntrySet> findByCNI_CPK(long classNameId, long classPK,
+		int start, int end) throws SystemException {
+		return findByCNI_CPK(classNameId, classPK, start, end, null);
+	}
+
+	/**
+	 * Returns an ordered range of all the asset entry sets where classNameId = &#63; and classPK = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.asset.entry.set.model.impl.AssetEntrySetModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param classNameId the class name ID
+	 * @param classPK the class p k
+	 * @param start the lower bound of the range of asset entry sets
+	 * @param end the upper bound of the range of asset entry sets (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching asset entry sets
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public List<AssetEntrySet> findByCNI_CPK(long classNameId, long classPK,
+		int start, int end, OrderByComparator orderByComparator)
+		throws SystemException {
+		boolean pagination = true;
+		FinderPath finderPath = null;
+		Object[] finderArgs = null;
+
+		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
+				(orderByComparator == null)) {
+			pagination = false;
+			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_CNI_CPK;
+			finderArgs = new Object[] { classNameId, classPK };
+		}
+		else {
+			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_CNI_CPK;
+			finderArgs = new Object[] {
+					classNameId, classPK,
+					
+					start, end, orderByComparator
+				};
+		}
+
+		List<AssetEntrySet> list = (List<AssetEntrySet>)FinderCacheUtil.getResult(finderPath,
+				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (AssetEntrySet assetEntrySet : list) {
+				if ((classNameId != assetEntrySet.getClassNameId()) ||
+						(classPK != assetEntrySet.getClassPK())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
+		if (list == null) {
+			StringBundler query = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(4 +
+						(orderByComparator.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(4);
+			}
+
+			query.append(_SQL_SELECT_ASSETENTRYSET_WHERE);
+
+			query.append(_FINDER_COLUMN_CNI_CPK_CLASSNAMEID_2);
+
+			query.append(_FINDER_COLUMN_CNI_CPK_CLASSPK_2);
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+			else
+			 if (pagination) {
+				query.append(AssetEntrySetModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(classNameId);
+
+				qPos.add(classPK);
+
+				if (!pagination) {
+					list = (List<AssetEntrySet>)QueryUtil.list(q, getDialect(),
+							start, end, false);
+
+					Collections.sort(list);
+
+					list = new UnmodifiableList<AssetEntrySet>(list);
+				}
+				else {
+					list = (List<AssetEntrySet>)QueryUtil.list(q, getDialect(),
+							start, end);
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+			}
+			catch (Exception e) {
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	/**
+	 * Returns the first asset entry set in the ordered set where classNameId = &#63; and classPK = &#63;.
+	 *
+	 * @param classNameId the class name ID
+	 * @param classPK the class p k
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching asset entry set
+	 * @throws com.liferay.asset.entry.set.NoSuchAssetEntrySetException if a matching asset entry set could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public AssetEntrySet findByCNI_CPK_First(long classNameId, long classPK,
+		OrderByComparator orderByComparator)
+		throws NoSuchAssetEntrySetException, SystemException {
+		AssetEntrySet assetEntrySet = fetchByCNI_CPK_First(classNameId,
+				classPK, orderByComparator);
+
+		if (assetEntrySet != null) {
+			return assetEntrySet;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("classNameId=");
+		msg.append(classNameId);
+
+		msg.append(", classPK=");
+		msg.append(classPK);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchAssetEntrySetException(msg.toString());
+	}
+
+	/**
+	 * Returns the first asset entry set in the ordered set where classNameId = &#63; and classPK = &#63;.
+	 *
+	 * @param classNameId the class name ID
+	 * @param classPK the class p k
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching asset entry set, or <code>null</code> if a matching asset entry set could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public AssetEntrySet fetchByCNI_CPK_First(long classNameId, long classPK,
+		OrderByComparator orderByComparator) throws SystemException {
+		List<AssetEntrySet> list = findByCNI_CPK(classNameId, classPK, 0, 1,
+				orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the last asset entry set in the ordered set where classNameId = &#63; and classPK = &#63;.
+	 *
+	 * @param classNameId the class name ID
+	 * @param classPK the class p k
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching asset entry set
+	 * @throws com.liferay.asset.entry.set.NoSuchAssetEntrySetException if a matching asset entry set could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public AssetEntrySet findByCNI_CPK_Last(long classNameId, long classPK,
+		OrderByComparator orderByComparator)
+		throws NoSuchAssetEntrySetException, SystemException {
+		AssetEntrySet assetEntrySet = fetchByCNI_CPK_Last(classNameId, classPK,
+				orderByComparator);
+
+		if (assetEntrySet != null) {
+			return assetEntrySet;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("classNameId=");
+		msg.append(classNameId);
+
+		msg.append(", classPK=");
+		msg.append(classPK);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchAssetEntrySetException(msg.toString());
+	}
+
+	/**
+	 * Returns the last asset entry set in the ordered set where classNameId = &#63; and classPK = &#63;.
+	 *
+	 * @param classNameId the class name ID
+	 * @param classPK the class p k
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching asset entry set, or <code>null</code> if a matching asset entry set could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public AssetEntrySet fetchByCNI_CPK_Last(long classNameId, long classPK,
+		OrderByComparator orderByComparator) throws SystemException {
+		int count = countByCNI_CPK(classNameId, classPK);
+
+		if (count == 0) {
+			return null;
+		}
+
+		List<AssetEntrySet> list = findByCNI_CPK(classNameId, classPK,
+				count - 1, count, orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the asset entry sets before and after the current asset entry set in the ordered set where classNameId = &#63; and classPK = &#63;.
+	 *
+	 * @param assetEntrySetId the primary key of the current asset entry set
+	 * @param classNameId the class name ID
+	 * @param classPK the class p k
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next asset entry set
+	 * @throws com.liferay.asset.entry.set.NoSuchAssetEntrySetException if a asset entry set with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public AssetEntrySet[] findByCNI_CPK_PrevAndNext(long assetEntrySetId,
+		long classNameId, long classPK, OrderByComparator orderByComparator)
+		throws NoSuchAssetEntrySetException, SystemException {
+		AssetEntrySet assetEntrySet = findByPrimaryKey(assetEntrySetId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			AssetEntrySet[] array = new AssetEntrySetImpl[3];
+
+			array[0] = getByCNI_CPK_PrevAndNext(session, assetEntrySet,
+					classNameId, classPK, orderByComparator, true);
+
+			array[1] = assetEntrySet;
+
+			array[2] = getByCNI_CPK_PrevAndNext(session, assetEntrySet,
+					classNameId, classPK, orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected AssetEntrySet getByCNI_CPK_PrevAndNext(Session session,
+		AssetEntrySet assetEntrySet, long classNameId, long classPK,
+		OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_ASSETENTRYSET_WHERE);
+
+		query.append(_FINDER_COLUMN_CNI_CPK_CLASSNAMEID_2);
+
+		query.append(_FINDER_COLUMN_CNI_CPK_CLASSPK_2);
+
+		if (orderByComparator != null) {
+			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+
+			if (orderByConditionFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByConditionFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByConditionFields[i]);
+
+				if ((i + 1) < orderByConditionFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+		else {
+			query.append(AssetEntrySetModelImpl.ORDER_BY_JPQL);
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(classNameId);
+
+		qPos.add(classPK);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByConditionValues(assetEntrySet);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<AssetEntrySet> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
+	 * Returns all the asset entry sets that the user has permission to view where classNameId = &#63; and classPK = &#63;.
+	 *
+	 * @param classNameId the class name ID
+	 * @param classPK the class p k
+	 * @return the matching asset entry sets that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public List<AssetEntrySet> filterFindByCNI_CPK(long classNameId,
+		long classPK) throws SystemException {
+		return filterFindByCNI_CPK(classNameId, classPK, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Returns a range of all the asset entry sets that the user has permission to view where classNameId = &#63; and classPK = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.asset.entry.set.model.impl.AssetEntrySetModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param classNameId the class name ID
+	 * @param classPK the class p k
+	 * @param start the lower bound of the range of asset entry sets
+	 * @param end the upper bound of the range of asset entry sets (not inclusive)
+	 * @return the range of matching asset entry sets that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public List<AssetEntrySet> filterFindByCNI_CPK(long classNameId,
+		long classPK, int start, int end) throws SystemException {
+		return filterFindByCNI_CPK(classNameId, classPK, start, end, null);
+	}
+
+	/**
+	 * Returns an ordered range of all the asset entry sets that the user has permissions to view where classNameId = &#63; and classPK = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.asset.entry.set.model.impl.AssetEntrySetModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param classNameId the class name ID
+	 * @param classPK the class p k
+	 * @param start the lower bound of the range of asset entry sets
+	 * @param end the upper bound of the range of asset entry sets (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching asset entry sets that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public List<AssetEntrySet> filterFindByCNI_CPK(long classNameId,
+		long classPK, int start, int end, OrderByComparator orderByComparator)
+		throws SystemException {
+		if (!InlineSQLHelperUtil.isEnabled()) {
+			return findByCNI_CPK(classNameId, classPK, start, end,
+				orderByComparator);
+		}
+
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(4 +
+					(orderByComparator.getOrderByFields().length * 3));
+		}
+		else {
+			query = new StringBundler(4);
+		}
+
+		if (getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_ASSETENTRYSET_WHERE);
+		}
+		else {
+			query.append(_FILTER_SQL_SELECT_ASSETENTRYSET_NO_INLINE_DISTINCT_WHERE_1);
+		}
+
+		query.append(_FINDER_COLUMN_CNI_CPK_CLASSNAMEID_2);
+
+		query.append(_FINDER_COLUMN_CNI_CPK_CLASSPK_2);
+
+		if (!getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_ASSETENTRYSET_NO_INLINE_DISTINCT_WHERE_2);
+		}
+
+		if (orderByComparator != null) {
+			if (getDB().isSupportsInlineDistinct()) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator, true);
+			}
+			else {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
+					orderByComparator, true);
+			}
+		}
+		else {
+			if (getDB().isSupportsInlineDistinct()) {
+				query.append(AssetEntrySetModelImpl.ORDER_BY_JPQL);
+			}
+			else {
+				query.append(AssetEntrySetModelImpl.ORDER_BY_SQL);
+			}
+		}
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				AssetEntrySet.class.getName(),
+				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			if (getDB().isSupportsInlineDistinct()) {
+				q.addEntity(_FILTER_ENTITY_ALIAS, AssetEntrySetImpl.class);
+			}
+			else {
+				q.addEntity(_FILTER_ENTITY_TABLE, AssetEntrySetImpl.class);
+			}
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(classNameId);
+
+			qPos.add(classPK);
+
+			return (List<AssetEntrySet>)QueryUtil.list(q, getDialect(), start,
+				end);
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	/**
+	 * Returns the asset entry sets before and after the current asset entry set in the ordered set of asset entry sets that the user has permission to view where classNameId = &#63; and classPK = &#63;.
+	 *
+	 * @param assetEntrySetId the primary key of the current asset entry set
+	 * @param classNameId the class name ID
+	 * @param classPK the class p k
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next asset entry set
+	 * @throws com.liferay.asset.entry.set.NoSuchAssetEntrySetException if a asset entry set with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public AssetEntrySet[] filterFindByCNI_CPK_PrevAndNext(
+		long assetEntrySetId, long classNameId, long classPK,
+		OrderByComparator orderByComparator)
+		throws NoSuchAssetEntrySetException, SystemException {
+		if (!InlineSQLHelperUtil.isEnabled()) {
+			return findByCNI_CPK_PrevAndNext(assetEntrySetId, classNameId,
+				classPK, orderByComparator);
+		}
+
+		AssetEntrySet assetEntrySet = findByPrimaryKey(assetEntrySetId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			AssetEntrySet[] array = new AssetEntrySetImpl[3];
+
+			array[0] = filterGetByCNI_CPK_PrevAndNext(session, assetEntrySet,
+					classNameId, classPK, orderByComparator, true);
+
+			array[1] = assetEntrySet;
+
+			array[2] = filterGetByCNI_CPK_PrevAndNext(session, assetEntrySet,
+					classNameId, classPK, orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected AssetEntrySet filterGetByCNI_CPK_PrevAndNext(Session session,
+		AssetEntrySet assetEntrySet, long classNameId, long classPK,
+		OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		if (getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_ASSETENTRYSET_WHERE);
+		}
+		else {
+			query.append(_FILTER_SQL_SELECT_ASSETENTRYSET_NO_INLINE_DISTINCT_WHERE_1);
+		}
+
+		query.append(_FINDER_COLUMN_CNI_CPK_CLASSNAMEID_2);
+
+		query.append(_FINDER_COLUMN_CNI_CPK_CLASSPK_2);
+
+		if (!getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_ASSETENTRYSET_NO_INLINE_DISTINCT_WHERE_2);
+		}
+
+		if (orderByComparator != null) {
+			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+
+			if (orderByConditionFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByConditionFields.length; i++) {
+				if (getDB().isSupportsInlineDistinct()) {
+					query.append(_ORDER_BY_ENTITY_ALIAS);
+				}
+				else {
+					query.append(_ORDER_BY_ENTITY_TABLE);
+				}
+
+				query.append(orderByConditionFields[i]);
+
+				if ((i + 1) < orderByConditionFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				if (getDB().isSupportsInlineDistinct()) {
+					query.append(_ORDER_BY_ENTITY_ALIAS);
+				}
+				else {
+					query.append(_ORDER_BY_ENTITY_TABLE);
+				}
+
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+		else {
+			if (getDB().isSupportsInlineDistinct()) {
+				query.append(AssetEntrySetModelImpl.ORDER_BY_JPQL);
+			}
+			else {
+				query.append(AssetEntrySetModelImpl.ORDER_BY_SQL);
+			}
+		}
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				AssetEntrySet.class.getName(),
+				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN);
+
+		SQLQuery q = session.createSQLQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		if (getDB().isSupportsInlineDistinct()) {
+			q.addEntity(_FILTER_ENTITY_ALIAS, AssetEntrySetImpl.class);
+		}
+		else {
+			q.addEntity(_FILTER_ENTITY_TABLE, AssetEntrySetImpl.class);
+		}
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(classNameId);
+
+		qPos.add(classPK);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByConditionValues(assetEntrySet);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<AssetEntrySet> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
+	 * Removes all the asset entry sets where classNameId = &#63; and classPK = &#63; from the database.
+	 *
+	 * @param classNameId the class name ID
+	 * @param classPK the class p k
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public void removeByCNI_CPK(long classNameId, long classPK)
+		throws SystemException {
+		for (AssetEntrySet assetEntrySet : findByCNI_CPK(classNameId, classPK,
+				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+			remove(assetEntrySet);
+		}
+	}
+
+	/**
+	 * Returns the number of asset entry sets where classNameId = &#63; and classPK = &#63;.
+	 *
+	 * @param classNameId the class name ID
+	 * @param classPK the class p k
+	 * @return the number of matching asset entry sets
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public int countByCNI_CPK(long classNameId, long classPK)
+		throws SystemException {
+		FinderPath finderPath = FINDER_PATH_COUNT_BY_CNI_CPK;
+
+		Object[] finderArgs = new Object[] { classNameId, classPK };
+
+		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
+				this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(3);
+
+			query.append(_SQL_COUNT_ASSETENTRYSET_WHERE);
+
+			query.append(_FINDER_COLUMN_CNI_CPK_CLASSNAMEID_2);
+
+			query.append(_FINDER_COLUMN_CNI_CPK_CLASSPK_2);
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(classNameId);
+
+				qPos.add(classPK);
+
+				count = (Long)q.uniqueResult();
+
+				FinderCacheUtil.putResult(finderPath, finderArgs, count);
+			}
+			catch (Exception e) {
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	/**
+	 * Returns the number of asset entry sets that the user has permission to view where classNameId = &#63; and classPK = &#63;.
+	 *
+	 * @param classNameId the class name ID
+	 * @param classPK the class p k
+	 * @return the number of matching asset entry sets that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public int filterCountByCNI_CPK(long classNameId, long classPK)
+		throws SystemException {
+		if (!InlineSQLHelperUtil.isEnabled()) {
+			return countByCNI_CPK(classNameId, classPK);
+		}
+
+		StringBundler query = new StringBundler(3);
+
+		query.append(_FILTER_SQL_COUNT_ASSETENTRYSET_WHERE);
+
+		query.append(_FINDER_COLUMN_CNI_CPK_CLASSNAMEID_2);
+
+		query.append(_FINDER_COLUMN_CNI_CPK_CLASSPK_2);
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				AssetEntrySet.class.getName(),
+				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			q.addScalar(COUNT_COLUMN_NAME,
+				com.liferay.portal.kernel.dao.orm.Type.LONG);
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(classNameId);
+
+			qPos.add(classPK);
+
+			Long count = (Long)q.uniqueResult();
+
+			return count.intValue();
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	private static final String _FINDER_COLUMN_CNI_CPK_CLASSNAMEID_2 = "assetEntrySet.classNameId = ? AND ";
+	private static final String _FINDER_COLUMN_CNI_CPK_CLASSPK_2 = "assetEntrySet.classPK = ?";
 	public static final FinderPath FINDER_PATH_FETCH_BY_PAESI_CCNI_CCPK = new FinderPath(AssetEntrySetModelImpl.ENTITY_CACHE_ENABLED,
 			AssetEntrySetModelImpl.FINDER_CACHE_ENABLED,
 			AssetEntrySetImpl.class, FINDER_CLASS_NAME_ENTITY,
@@ -4016,6 +4934,1286 @@ public class AssetEntrySetPersistenceImpl extends BasePersistenceImpl<AssetEntry
 	private static final String _FINDER_COLUMN_PAESI_CCNI_CCPK_CREATORCLASSNAMEID_2 =
 		"assetEntrySet.creatorClassNameId = ? AND ";
 	private static final String _FINDER_COLUMN_PAESI_CCNI_CCPK_CREATORCLASSPK_2 = "assetEntrySet.creatorClassPK = ?";
+	public static final FinderPath FINDER_PATH_FETCH_BY_CNI_CPK_TITLE = new FinderPath(AssetEntrySetModelImpl.ENTITY_CACHE_ENABLED,
+			AssetEntrySetModelImpl.FINDER_CACHE_ENABLED,
+			AssetEntrySetImpl.class, FINDER_CLASS_NAME_ENTITY,
+			"fetchByCNI_CPK_Title",
+			new String[] {
+				Long.class.getName(), Long.class.getName(),
+				String.class.getName()
+			},
+			AssetEntrySetModelImpl.CLASSNAMEID_COLUMN_BITMASK |
+			AssetEntrySetModelImpl.CLASSPK_COLUMN_BITMASK |
+			AssetEntrySetModelImpl.TITLE_COLUMN_BITMASK);
+	public static final FinderPath FINDER_PATH_COUNT_BY_CNI_CPK_TITLE = new FinderPath(AssetEntrySetModelImpl.ENTITY_CACHE_ENABLED,
+			AssetEntrySetModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByCNI_CPK_Title",
+			new String[] {
+				Long.class.getName(), Long.class.getName(),
+				String.class.getName()
+			});
+
+	/**
+	 * Returns the asset entry set where classNameId = &#63; and classPK = &#63; and title = &#63; or throws a {@link com.liferay.asset.entry.set.NoSuchAssetEntrySetException} if it could not be found.
+	 *
+	 * @param classNameId the class name ID
+	 * @param classPK the class p k
+	 * @param title the title
+	 * @return the matching asset entry set
+	 * @throws com.liferay.asset.entry.set.NoSuchAssetEntrySetException if a matching asset entry set could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public AssetEntrySet findByCNI_CPK_Title(long classNameId, long classPK,
+		String title) throws NoSuchAssetEntrySetException, SystemException {
+		AssetEntrySet assetEntrySet = fetchByCNI_CPK_Title(classNameId,
+				classPK, title);
+
+		if (assetEntrySet == null) {
+			StringBundler msg = new StringBundler(8);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("classNameId=");
+			msg.append(classNameId);
+
+			msg.append(", classPK=");
+			msg.append(classPK);
+
+			msg.append(", title=");
+			msg.append(title);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			if (_log.isWarnEnabled()) {
+				_log.warn(msg.toString());
+			}
+
+			throw new NoSuchAssetEntrySetException(msg.toString());
+		}
+
+		return assetEntrySet;
+	}
+
+	/**
+	 * Returns the asset entry set where classNameId = &#63; and classPK = &#63; and title = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 *
+	 * @param classNameId the class name ID
+	 * @param classPK the class p k
+	 * @param title the title
+	 * @return the matching asset entry set, or <code>null</code> if a matching asset entry set could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public AssetEntrySet fetchByCNI_CPK_Title(long classNameId, long classPK,
+		String title) throws SystemException {
+		return fetchByCNI_CPK_Title(classNameId, classPK, title, true);
+	}
+
+	/**
+	 * Returns the asset entry set where classNameId = &#63; and classPK = &#63; and title = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 *
+	 * @param classNameId the class name ID
+	 * @param classPK the class p k
+	 * @param title the title
+	 * @param retrieveFromCache whether to use the finder cache
+	 * @return the matching asset entry set, or <code>null</code> if a matching asset entry set could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public AssetEntrySet fetchByCNI_CPK_Title(long classNameId, long classPK,
+		String title, boolean retrieveFromCache) throws SystemException {
+		Object[] finderArgs = new Object[] { classNameId, classPK, title };
+
+		Object result = null;
+
+		if (retrieveFromCache) {
+			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_CNI_CPK_TITLE,
+					finderArgs, this);
+		}
+
+		if (result instanceof AssetEntrySet) {
+			AssetEntrySet assetEntrySet = (AssetEntrySet)result;
+
+			if ((classNameId != assetEntrySet.getClassNameId()) ||
+					(classPK != assetEntrySet.getClassPK()) ||
+					!Validator.equals(title, assetEntrySet.getTitle())) {
+				result = null;
+			}
+		}
+
+		if (result == null) {
+			StringBundler query = new StringBundler(5);
+
+			query.append(_SQL_SELECT_ASSETENTRYSET_WHERE);
+
+			query.append(_FINDER_COLUMN_CNI_CPK_TITLE_CLASSNAMEID_2);
+
+			query.append(_FINDER_COLUMN_CNI_CPK_TITLE_CLASSPK_2);
+
+			boolean bindTitle = false;
+
+			if (title == null) {
+				query.append(_FINDER_COLUMN_CNI_CPK_TITLE_TITLE_1);
+			}
+			else if (title.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_CNI_CPK_TITLE_TITLE_3);
+			}
+			else {
+				bindTitle = true;
+
+				query.append(_FINDER_COLUMN_CNI_CPK_TITLE_TITLE_2);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(classNameId);
+
+				qPos.add(classPK);
+
+				if (bindTitle) {
+					qPos.add(title);
+				}
+
+				List<AssetEntrySet> list = q.list();
+
+				if (list.isEmpty()) {
+					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_CNI_CPK_TITLE,
+						finderArgs, list);
+				}
+				else {
+					if ((list.size() > 1) && _log.isWarnEnabled()) {
+						_log.warn(
+							"AssetEntrySetPersistenceImpl.fetchByCNI_CPK_Title(long, long, String, boolean) with parameters (" +
+							StringUtil.merge(finderArgs) +
+							") yields a result set with more than 1 result. This violates the logical unique restriction. There is no order guarantee on which result is returned by this finder.");
+					}
+
+					AssetEntrySet assetEntrySet = list.get(0);
+
+					result = assetEntrySet;
+
+					cacheResult(assetEntrySet);
+
+					if ((assetEntrySet.getClassNameId() != classNameId) ||
+							(assetEntrySet.getClassPK() != classPK) ||
+							(assetEntrySet.getTitle() == null) ||
+							!assetEntrySet.getTitle().equals(title)) {
+						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_CNI_CPK_TITLE,
+							finderArgs, assetEntrySet);
+					}
+				}
+			}
+			catch (Exception e) {
+				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_CNI_CPK_TITLE,
+					finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		if (result instanceof List<?>) {
+			return null;
+		}
+		else {
+			return (AssetEntrySet)result;
+		}
+	}
+
+	/**
+	 * Removes the asset entry set where classNameId = &#63; and classPK = &#63; and title = &#63; from the database.
+	 *
+	 * @param classNameId the class name ID
+	 * @param classPK the class p k
+	 * @param title the title
+	 * @return the asset entry set that was removed
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public AssetEntrySet removeByCNI_CPK_Title(long classNameId, long classPK,
+		String title) throws NoSuchAssetEntrySetException, SystemException {
+		AssetEntrySet assetEntrySet = findByCNI_CPK_Title(classNameId, classPK,
+				title);
+
+		return remove(assetEntrySet);
+	}
+
+	/**
+	 * Returns the number of asset entry sets where classNameId = &#63; and classPK = &#63; and title = &#63;.
+	 *
+	 * @param classNameId the class name ID
+	 * @param classPK the class p k
+	 * @param title the title
+	 * @return the number of matching asset entry sets
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public int countByCNI_CPK_Title(long classNameId, long classPK, String title)
+		throws SystemException {
+		FinderPath finderPath = FINDER_PATH_COUNT_BY_CNI_CPK_TITLE;
+
+		Object[] finderArgs = new Object[] { classNameId, classPK, title };
+
+		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
+				this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(4);
+
+			query.append(_SQL_COUNT_ASSETENTRYSET_WHERE);
+
+			query.append(_FINDER_COLUMN_CNI_CPK_TITLE_CLASSNAMEID_2);
+
+			query.append(_FINDER_COLUMN_CNI_CPK_TITLE_CLASSPK_2);
+
+			boolean bindTitle = false;
+
+			if (title == null) {
+				query.append(_FINDER_COLUMN_CNI_CPK_TITLE_TITLE_1);
+			}
+			else if (title.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_CNI_CPK_TITLE_TITLE_3);
+			}
+			else {
+				bindTitle = true;
+
+				query.append(_FINDER_COLUMN_CNI_CPK_TITLE_TITLE_2);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(classNameId);
+
+				qPos.add(classPK);
+
+				if (bindTitle) {
+					qPos.add(title);
+				}
+
+				count = (Long)q.uniqueResult();
+
+				FinderCacheUtil.putResult(finderPath, finderArgs, count);
+			}
+			catch (Exception e) {
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	private static final String _FINDER_COLUMN_CNI_CPK_TITLE_CLASSNAMEID_2 = "assetEntrySet.classNameId = ? AND ";
+	private static final String _FINDER_COLUMN_CNI_CPK_TITLE_CLASSPK_2 = "assetEntrySet.classPK = ? AND ";
+	private static final String _FINDER_COLUMN_CNI_CPK_TITLE_TITLE_1 = "assetEntrySet.title IS NULL";
+	private static final String _FINDER_COLUMN_CNI_CPK_TITLE_TITLE_2 = "assetEntrySet.title = ?";
+	private static final String _FINDER_COLUMN_CNI_CPK_TITLE_TITLE_3 = "(assetEntrySet.title IS NULL OR assetEntrySet.title = '')";
+	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_CNI_CPK_TYPE =
+		new FinderPath(AssetEntrySetModelImpl.ENTITY_CACHE_ENABLED,
+			AssetEntrySetModelImpl.FINDER_CACHE_ENABLED,
+			AssetEntrySetImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
+			"findByCNI_CPK_Type",
+			new String[] {
+				Long.class.getName(), Long.class.getName(),
+				Integer.class.getName(),
+				
+			Integer.class.getName(), Integer.class.getName(),
+				OrderByComparator.class.getName()
+			});
+	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_CNI_CPK_TYPE =
+		new FinderPath(AssetEntrySetModelImpl.ENTITY_CACHE_ENABLED,
+			AssetEntrySetModelImpl.FINDER_CACHE_ENABLED,
+			AssetEntrySetImpl.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"findByCNI_CPK_Type",
+			new String[] {
+				Long.class.getName(), Long.class.getName(),
+				Integer.class.getName()
+			},
+			AssetEntrySetModelImpl.CLASSNAMEID_COLUMN_BITMASK |
+			AssetEntrySetModelImpl.CLASSPK_COLUMN_BITMASK |
+			AssetEntrySetModelImpl.TYPE_COLUMN_BITMASK |
+			AssetEntrySetModelImpl.CREATETIME_COLUMN_BITMASK);
+	public static final FinderPath FINDER_PATH_COUNT_BY_CNI_CPK_TYPE = new FinderPath(AssetEntrySetModelImpl.ENTITY_CACHE_ENABLED,
+			AssetEntrySetModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByCNI_CPK_Type",
+			new String[] {
+				Long.class.getName(), Long.class.getName(),
+				Integer.class.getName()
+			});
+
+	/**
+	 * Returns all the asset entry sets where classNameId = &#63; and classPK = &#63; and type = &#63;.
+	 *
+	 * @param classNameId the class name ID
+	 * @param classPK the class p k
+	 * @param type the type
+	 * @return the matching asset entry sets
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public List<AssetEntrySet> findByCNI_CPK_Type(long classNameId,
+		long classPK, int type) throws SystemException {
+		return findByCNI_CPK_Type(classNameId, classPK, type,
+			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Returns a range of all the asset entry sets where classNameId = &#63; and classPK = &#63; and type = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.asset.entry.set.model.impl.AssetEntrySetModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param classNameId the class name ID
+	 * @param classPK the class p k
+	 * @param type the type
+	 * @param start the lower bound of the range of asset entry sets
+	 * @param end the upper bound of the range of asset entry sets (not inclusive)
+	 * @return the range of matching asset entry sets
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public List<AssetEntrySet> findByCNI_CPK_Type(long classNameId,
+		long classPK, int type, int start, int end) throws SystemException {
+		return findByCNI_CPK_Type(classNameId, classPK, type, start, end, null);
+	}
+
+	/**
+	 * Returns an ordered range of all the asset entry sets where classNameId = &#63; and classPK = &#63; and type = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.asset.entry.set.model.impl.AssetEntrySetModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param classNameId the class name ID
+	 * @param classPK the class p k
+	 * @param type the type
+	 * @param start the lower bound of the range of asset entry sets
+	 * @param end the upper bound of the range of asset entry sets (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching asset entry sets
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public List<AssetEntrySet> findByCNI_CPK_Type(long classNameId,
+		long classPK, int type, int start, int end,
+		OrderByComparator orderByComparator) throws SystemException {
+		boolean pagination = true;
+		FinderPath finderPath = null;
+		Object[] finderArgs = null;
+
+		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
+				(orderByComparator == null)) {
+			pagination = false;
+			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_CNI_CPK_TYPE;
+			finderArgs = new Object[] { classNameId, classPK, type };
+		}
+		else {
+			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_CNI_CPK_TYPE;
+			finderArgs = new Object[] {
+					classNameId, classPK, type,
+					
+					start, end, orderByComparator
+				};
+		}
+
+		List<AssetEntrySet> list = (List<AssetEntrySet>)FinderCacheUtil.getResult(finderPath,
+				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (AssetEntrySet assetEntrySet : list) {
+				if ((classNameId != assetEntrySet.getClassNameId()) ||
+						(classPK != assetEntrySet.getClassPK()) ||
+						(type != assetEntrySet.getType())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
+		if (list == null) {
+			StringBundler query = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(5 +
+						(orderByComparator.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(5);
+			}
+
+			query.append(_SQL_SELECT_ASSETENTRYSET_WHERE);
+
+			query.append(_FINDER_COLUMN_CNI_CPK_TYPE_CLASSNAMEID_2);
+
+			query.append(_FINDER_COLUMN_CNI_CPK_TYPE_CLASSPK_2);
+
+			query.append(_FINDER_COLUMN_CNI_CPK_TYPE_TYPE_2);
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+			else
+			 if (pagination) {
+				query.append(AssetEntrySetModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(classNameId);
+
+				qPos.add(classPK);
+
+				qPos.add(type);
+
+				if (!pagination) {
+					list = (List<AssetEntrySet>)QueryUtil.list(q, getDialect(),
+							start, end, false);
+
+					Collections.sort(list);
+
+					list = new UnmodifiableList<AssetEntrySet>(list);
+				}
+				else {
+					list = (List<AssetEntrySet>)QueryUtil.list(q, getDialect(),
+							start, end);
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+			}
+			catch (Exception e) {
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	/**
+	 * Returns the first asset entry set in the ordered set where classNameId = &#63; and classPK = &#63; and type = &#63;.
+	 *
+	 * @param classNameId the class name ID
+	 * @param classPK the class p k
+	 * @param type the type
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching asset entry set
+	 * @throws com.liferay.asset.entry.set.NoSuchAssetEntrySetException if a matching asset entry set could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public AssetEntrySet findByCNI_CPK_Type_First(long classNameId,
+		long classPK, int type, OrderByComparator orderByComparator)
+		throws NoSuchAssetEntrySetException, SystemException {
+		AssetEntrySet assetEntrySet = fetchByCNI_CPK_Type_First(classNameId,
+				classPK, type, orderByComparator);
+
+		if (assetEntrySet != null) {
+			return assetEntrySet;
+		}
+
+		StringBundler msg = new StringBundler(8);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("classNameId=");
+		msg.append(classNameId);
+
+		msg.append(", classPK=");
+		msg.append(classPK);
+
+		msg.append(", type=");
+		msg.append(type);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchAssetEntrySetException(msg.toString());
+	}
+
+	/**
+	 * Returns the first asset entry set in the ordered set where classNameId = &#63; and classPK = &#63; and type = &#63;.
+	 *
+	 * @param classNameId the class name ID
+	 * @param classPK the class p k
+	 * @param type the type
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching asset entry set, or <code>null</code> if a matching asset entry set could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public AssetEntrySet fetchByCNI_CPK_Type_First(long classNameId,
+		long classPK, int type, OrderByComparator orderByComparator)
+		throws SystemException {
+		List<AssetEntrySet> list = findByCNI_CPK_Type(classNameId, classPK,
+				type, 0, 1, orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the last asset entry set in the ordered set where classNameId = &#63; and classPK = &#63; and type = &#63;.
+	 *
+	 * @param classNameId the class name ID
+	 * @param classPK the class p k
+	 * @param type the type
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching asset entry set
+	 * @throws com.liferay.asset.entry.set.NoSuchAssetEntrySetException if a matching asset entry set could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public AssetEntrySet findByCNI_CPK_Type_Last(long classNameId,
+		long classPK, int type, OrderByComparator orderByComparator)
+		throws NoSuchAssetEntrySetException, SystemException {
+		AssetEntrySet assetEntrySet = fetchByCNI_CPK_Type_Last(classNameId,
+				classPK, type, orderByComparator);
+
+		if (assetEntrySet != null) {
+			return assetEntrySet;
+		}
+
+		StringBundler msg = new StringBundler(8);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("classNameId=");
+		msg.append(classNameId);
+
+		msg.append(", classPK=");
+		msg.append(classPK);
+
+		msg.append(", type=");
+		msg.append(type);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchAssetEntrySetException(msg.toString());
+	}
+
+	/**
+	 * Returns the last asset entry set in the ordered set where classNameId = &#63; and classPK = &#63; and type = &#63;.
+	 *
+	 * @param classNameId the class name ID
+	 * @param classPK the class p k
+	 * @param type the type
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching asset entry set, or <code>null</code> if a matching asset entry set could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public AssetEntrySet fetchByCNI_CPK_Type_Last(long classNameId,
+		long classPK, int type, OrderByComparator orderByComparator)
+		throws SystemException {
+		int count = countByCNI_CPK_Type(classNameId, classPK, type);
+
+		if (count == 0) {
+			return null;
+		}
+
+		List<AssetEntrySet> list = findByCNI_CPK_Type(classNameId, classPK,
+				type, count - 1, count, orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the asset entry sets before and after the current asset entry set in the ordered set where classNameId = &#63; and classPK = &#63; and type = &#63;.
+	 *
+	 * @param assetEntrySetId the primary key of the current asset entry set
+	 * @param classNameId the class name ID
+	 * @param classPK the class p k
+	 * @param type the type
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next asset entry set
+	 * @throws com.liferay.asset.entry.set.NoSuchAssetEntrySetException if a asset entry set with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public AssetEntrySet[] findByCNI_CPK_Type_PrevAndNext(
+		long assetEntrySetId, long classNameId, long classPK, int type,
+		OrderByComparator orderByComparator)
+		throws NoSuchAssetEntrySetException, SystemException {
+		AssetEntrySet assetEntrySet = findByPrimaryKey(assetEntrySetId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			AssetEntrySet[] array = new AssetEntrySetImpl[3];
+
+			array[0] = getByCNI_CPK_Type_PrevAndNext(session, assetEntrySet,
+					classNameId, classPK, type, orderByComparator, true);
+
+			array[1] = assetEntrySet;
+
+			array[2] = getByCNI_CPK_Type_PrevAndNext(session, assetEntrySet,
+					classNameId, classPK, type, orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected AssetEntrySet getByCNI_CPK_Type_PrevAndNext(Session session,
+		AssetEntrySet assetEntrySet, long classNameId, long classPK, int type,
+		OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_ASSETENTRYSET_WHERE);
+
+		query.append(_FINDER_COLUMN_CNI_CPK_TYPE_CLASSNAMEID_2);
+
+		query.append(_FINDER_COLUMN_CNI_CPK_TYPE_CLASSPK_2);
+
+		query.append(_FINDER_COLUMN_CNI_CPK_TYPE_TYPE_2);
+
+		if (orderByComparator != null) {
+			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+
+			if (orderByConditionFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByConditionFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByConditionFields[i]);
+
+				if ((i + 1) < orderByConditionFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+		else {
+			query.append(AssetEntrySetModelImpl.ORDER_BY_JPQL);
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(classNameId);
+
+		qPos.add(classPK);
+
+		qPos.add(type);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByConditionValues(assetEntrySet);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<AssetEntrySet> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
+	 * Returns all the asset entry sets that the user has permission to view where classNameId = &#63; and classPK = &#63; and type = &#63;.
+	 *
+	 * @param classNameId the class name ID
+	 * @param classPK the class p k
+	 * @param type the type
+	 * @return the matching asset entry sets that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public List<AssetEntrySet> filterFindByCNI_CPK_Type(long classNameId,
+		long classPK, int type) throws SystemException {
+		return filterFindByCNI_CPK_Type(classNameId, classPK, type,
+			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Returns a range of all the asset entry sets that the user has permission to view where classNameId = &#63; and classPK = &#63; and type = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.asset.entry.set.model.impl.AssetEntrySetModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param classNameId the class name ID
+	 * @param classPK the class p k
+	 * @param type the type
+	 * @param start the lower bound of the range of asset entry sets
+	 * @param end the upper bound of the range of asset entry sets (not inclusive)
+	 * @return the range of matching asset entry sets that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public List<AssetEntrySet> filterFindByCNI_CPK_Type(long classNameId,
+		long classPK, int type, int start, int end) throws SystemException {
+		return filterFindByCNI_CPK_Type(classNameId, classPK, type, start, end,
+			null);
+	}
+
+	/**
+	 * Returns an ordered range of all the asset entry sets that the user has permissions to view where classNameId = &#63; and classPK = &#63; and type = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.asset.entry.set.model.impl.AssetEntrySetModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param classNameId the class name ID
+	 * @param classPK the class p k
+	 * @param type the type
+	 * @param start the lower bound of the range of asset entry sets
+	 * @param end the upper bound of the range of asset entry sets (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching asset entry sets that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public List<AssetEntrySet> filterFindByCNI_CPK_Type(long classNameId,
+		long classPK, int type, int start, int end,
+		OrderByComparator orderByComparator) throws SystemException {
+		if (!InlineSQLHelperUtil.isEnabled()) {
+			return findByCNI_CPK_Type(classNameId, classPK, type, start, end,
+				orderByComparator);
+		}
+
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(5 +
+					(orderByComparator.getOrderByFields().length * 3));
+		}
+		else {
+			query = new StringBundler(5);
+		}
+
+		if (getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_ASSETENTRYSET_WHERE);
+		}
+		else {
+			query.append(_FILTER_SQL_SELECT_ASSETENTRYSET_NO_INLINE_DISTINCT_WHERE_1);
+		}
+
+		query.append(_FINDER_COLUMN_CNI_CPK_TYPE_CLASSNAMEID_2);
+
+		query.append(_FINDER_COLUMN_CNI_CPK_TYPE_CLASSPK_2);
+
+		query.append(_FINDER_COLUMN_CNI_CPK_TYPE_TYPE_2_SQL);
+
+		if (!getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_ASSETENTRYSET_NO_INLINE_DISTINCT_WHERE_2);
+		}
+
+		if (orderByComparator != null) {
+			if (getDB().isSupportsInlineDistinct()) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator, true);
+			}
+			else {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
+					orderByComparator, true);
+			}
+		}
+		else {
+			if (getDB().isSupportsInlineDistinct()) {
+				query.append(AssetEntrySetModelImpl.ORDER_BY_JPQL);
+			}
+			else {
+				query.append(AssetEntrySetModelImpl.ORDER_BY_SQL);
+			}
+		}
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				AssetEntrySet.class.getName(),
+				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			if (getDB().isSupportsInlineDistinct()) {
+				q.addEntity(_FILTER_ENTITY_ALIAS, AssetEntrySetImpl.class);
+			}
+			else {
+				q.addEntity(_FILTER_ENTITY_TABLE, AssetEntrySetImpl.class);
+			}
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(classNameId);
+
+			qPos.add(classPK);
+
+			qPos.add(type);
+
+			return (List<AssetEntrySet>)QueryUtil.list(q, getDialect(), start,
+				end);
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	/**
+	 * Returns the asset entry sets before and after the current asset entry set in the ordered set of asset entry sets that the user has permission to view where classNameId = &#63; and classPK = &#63; and type = &#63;.
+	 *
+	 * @param assetEntrySetId the primary key of the current asset entry set
+	 * @param classNameId the class name ID
+	 * @param classPK the class p k
+	 * @param type the type
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next asset entry set
+	 * @throws com.liferay.asset.entry.set.NoSuchAssetEntrySetException if a asset entry set with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public AssetEntrySet[] filterFindByCNI_CPK_Type_PrevAndNext(
+		long assetEntrySetId, long classNameId, long classPK, int type,
+		OrderByComparator orderByComparator)
+		throws NoSuchAssetEntrySetException, SystemException {
+		if (!InlineSQLHelperUtil.isEnabled()) {
+			return findByCNI_CPK_Type_PrevAndNext(assetEntrySetId, classNameId,
+				classPK, type, orderByComparator);
+		}
+
+		AssetEntrySet assetEntrySet = findByPrimaryKey(assetEntrySetId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			AssetEntrySet[] array = new AssetEntrySetImpl[3];
+
+			array[0] = filterGetByCNI_CPK_Type_PrevAndNext(session,
+					assetEntrySet, classNameId, classPK, type,
+					orderByComparator, true);
+
+			array[1] = assetEntrySet;
+
+			array[2] = filterGetByCNI_CPK_Type_PrevAndNext(session,
+					assetEntrySet, classNameId, classPK, type,
+					orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected AssetEntrySet filterGetByCNI_CPK_Type_PrevAndNext(
+		Session session, AssetEntrySet assetEntrySet, long classNameId,
+		long classPK, int type, OrderByComparator orderByComparator,
+		boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		if (getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_ASSETENTRYSET_WHERE);
+		}
+		else {
+			query.append(_FILTER_SQL_SELECT_ASSETENTRYSET_NO_INLINE_DISTINCT_WHERE_1);
+		}
+
+		query.append(_FINDER_COLUMN_CNI_CPK_TYPE_CLASSNAMEID_2);
+
+		query.append(_FINDER_COLUMN_CNI_CPK_TYPE_CLASSPK_2);
+
+		query.append(_FINDER_COLUMN_CNI_CPK_TYPE_TYPE_2_SQL);
+
+		if (!getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_ASSETENTRYSET_NO_INLINE_DISTINCT_WHERE_2);
+		}
+
+		if (orderByComparator != null) {
+			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+
+			if (orderByConditionFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByConditionFields.length; i++) {
+				if (getDB().isSupportsInlineDistinct()) {
+					query.append(_ORDER_BY_ENTITY_ALIAS);
+				}
+				else {
+					query.append(_ORDER_BY_ENTITY_TABLE);
+				}
+
+				query.append(orderByConditionFields[i]);
+
+				if ((i + 1) < orderByConditionFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				if (getDB().isSupportsInlineDistinct()) {
+					query.append(_ORDER_BY_ENTITY_ALIAS);
+				}
+				else {
+					query.append(_ORDER_BY_ENTITY_TABLE);
+				}
+
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+		else {
+			if (getDB().isSupportsInlineDistinct()) {
+				query.append(AssetEntrySetModelImpl.ORDER_BY_JPQL);
+			}
+			else {
+				query.append(AssetEntrySetModelImpl.ORDER_BY_SQL);
+			}
+		}
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				AssetEntrySet.class.getName(),
+				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN);
+
+		SQLQuery q = session.createSQLQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		if (getDB().isSupportsInlineDistinct()) {
+			q.addEntity(_FILTER_ENTITY_ALIAS, AssetEntrySetImpl.class);
+		}
+		else {
+			q.addEntity(_FILTER_ENTITY_TABLE, AssetEntrySetImpl.class);
+		}
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(classNameId);
+
+		qPos.add(classPK);
+
+		qPos.add(type);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByConditionValues(assetEntrySet);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<AssetEntrySet> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
+	 * Removes all the asset entry sets where classNameId = &#63; and classPK = &#63; and type = &#63; from the database.
+	 *
+	 * @param classNameId the class name ID
+	 * @param classPK the class p k
+	 * @param type the type
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public void removeByCNI_CPK_Type(long classNameId, long classPK, int type)
+		throws SystemException {
+		for (AssetEntrySet assetEntrySet : findByCNI_CPK_Type(classNameId,
+				classPK, type, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+			remove(assetEntrySet);
+		}
+	}
+
+	/**
+	 * Returns the number of asset entry sets where classNameId = &#63; and classPK = &#63; and type = &#63;.
+	 *
+	 * @param classNameId the class name ID
+	 * @param classPK the class p k
+	 * @param type the type
+	 * @return the number of matching asset entry sets
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public int countByCNI_CPK_Type(long classNameId, long classPK, int type)
+		throws SystemException {
+		FinderPath finderPath = FINDER_PATH_COUNT_BY_CNI_CPK_TYPE;
+
+		Object[] finderArgs = new Object[] { classNameId, classPK, type };
+
+		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
+				this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(4);
+
+			query.append(_SQL_COUNT_ASSETENTRYSET_WHERE);
+
+			query.append(_FINDER_COLUMN_CNI_CPK_TYPE_CLASSNAMEID_2);
+
+			query.append(_FINDER_COLUMN_CNI_CPK_TYPE_CLASSPK_2);
+
+			query.append(_FINDER_COLUMN_CNI_CPK_TYPE_TYPE_2);
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(classNameId);
+
+				qPos.add(classPK);
+
+				qPos.add(type);
+
+				count = (Long)q.uniqueResult();
+
+				FinderCacheUtil.putResult(finderPath, finderArgs, count);
+			}
+			catch (Exception e) {
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	/**
+	 * Returns the number of asset entry sets that the user has permission to view where classNameId = &#63; and classPK = &#63; and type = &#63;.
+	 *
+	 * @param classNameId the class name ID
+	 * @param classPK the class p k
+	 * @param type the type
+	 * @return the number of matching asset entry sets that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public int filterCountByCNI_CPK_Type(long classNameId, long classPK,
+		int type) throws SystemException {
+		if (!InlineSQLHelperUtil.isEnabled()) {
+			return countByCNI_CPK_Type(classNameId, classPK, type);
+		}
+
+		StringBundler query = new StringBundler(4);
+
+		query.append(_FILTER_SQL_COUNT_ASSETENTRYSET_WHERE);
+
+		query.append(_FINDER_COLUMN_CNI_CPK_TYPE_CLASSNAMEID_2);
+
+		query.append(_FINDER_COLUMN_CNI_CPK_TYPE_CLASSPK_2);
+
+		query.append(_FINDER_COLUMN_CNI_CPK_TYPE_TYPE_2_SQL);
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				AssetEntrySet.class.getName(),
+				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			q.addScalar(COUNT_COLUMN_NAME,
+				com.liferay.portal.kernel.dao.orm.Type.LONG);
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(classNameId);
+
+			qPos.add(classPK);
+
+			qPos.add(type);
+
+			Long count = (Long)q.uniqueResult();
+
+			return count.intValue();
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	private static final String _FINDER_COLUMN_CNI_CPK_TYPE_CLASSNAMEID_2 = "assetEntrySet.classNameId = ? AND ";
+	private static final String _FINDER_COLUMN_CNI_CPK_TYPE_CLASSPK_2 = "assetEntrySet.classPK = ? AND ";
+	private static final String _FINDER_COLUMN_CNI_CPK_TYPE_TYPE_2 = "assetEntrySet.type = ?";
+	private static final String _FINDER_COLUMN_CNI_CPK_TYPE_TYPE_2_SQL = "assetEntrySet.type_ = ?";
 
 	public AssetEntrySetPersistenceImpl() {
 		setModelClass(AssetEntrySet.class);
@@ -4037,6 +6235,12 @@ public class AssetEntrySetPersistenceImpl extends BasePersistenceImpl<AssetEntry
 				assetEntrySet.getParentAssetEntrySetId(),
 				assetEntrySet.getCreatorClassNameId(),
 				assetEntrySet.getCreatorClassPK()
+			}, assetEntrySet);
+
+		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_CNI_CPK_TITLE,
+			new Object[] {
+				assetEntrySet.getClassNameId(), assetEntrySet.getClassPK(),
+				assetEntrySet.getTitle()
 			}, assetEntrySet);
 
 		assetEntrySet.resetOriginalValues();
@@ -4124,6 +6328,16 @@ public class AssetEntrySetPersistenceImpl extends BasePersistenceImpl<AssetEntry
 				args, Long.valueOf(1));
 			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_PAESI_CCNI_CCPK,
 				args, assetEntrySet);
+
+			args = new Object[] {
+					assetEntrySet.getClassNameId(), assetEntrySet.getClassPK(),
+					assetEntrySet.getTitle()
+				};
+
+			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_CNI_CPK_TITLE, args,
+				Long.valueOf(1));
+			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_CNI_CPK_TITLE, args,
+				assetEntrySet);
 		}
 		else {
 			AssetEntrySetModelImpl assetEntrySetModelImpl = (AssetEntrySetModelImpl)assetEntrySet;
@@ -4139,6 +6353,19 @@ public class AssetEntrySetPersistenceImpl extends BasePersistenceImpl<AssetEntry
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_PAESI_CCNI_CCPK,
 					args, Long.valueOf(1));
 				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_PAESI_CCNI_CCPK,
+					args, assetEntrySet);
+			}
+
+			if ((assetEntrySetModelImpl.getColumnBitmask() &
+					FINDER_PATH_FETCH_BY_CNI_CPK_TITLE.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						assetEntrySet.getClassNameId(),
+						assetEntrySet.getClassPK(), assetEntrySet.getTitle()
+					};
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_CNI_CPK_TITLE,
+					args, Long.valueOf(1));
+				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_CNI_CPK_TITLE,
 					args, assetEntrySet);
 			}
 		}
@@ -4167,6 +6394,28 @@ public class AssetEntrySetPersistenceImpl extends BasePersistenceImpl<AssetEntry
 			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_PAESI_CCNI_CCPK,
 				args);
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_PAESI_CCNI_CCPK,
+				args);
+		}
+
+		args = new Object[] {
+				assetEntrySet.getClassNameId(), assetEntrySet.getClassPK(),
+				assetEntrySet.getTitle()
+			};
+
+		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_CNI_CPK_TITLE, args);
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_CNI_CPK_TITLE, args);
+
+		if ((assetEntrySetModelImpl.getColumnBitmask() &
+				FINDER_PATH_FETCH_BY_CNI_CPK_TITLE.getColumnBitmask()) != 0) {
+			args = new Object[] {
+					assetEntrySetModelImpl.getOriginalClassNameId(),
+					assetEntrySetModelImpl.getOriginalClassPK(),
+					assetEntrySetModelImpl.getOriginalTitle()
+				};
+
+			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_CNI_CPK_TITLE,
+				args);
+			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_CNI_CPK_TITLE,
 				args);
 		}
 	}
@@ -4356,6 +6605,52 @@ public class AssetEntrySetPersistenceImpl extends BasePersistenceImpl<AssetEntry
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_PAESI_CCNI,
 					args);
 			}
+
+			if ((assetEntrySetModelImpl.getColumnBitmask() &
+					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_CNI_CPK.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						assetEntrySetModelImpl.getOriginalClassNameId(),
+						assetEntrySetModelImpl.getOriginalClassPK()
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_CNI_CPK, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_CNI_CPK,
+					args);
+
+				args = new Object[] {
+						assetEntrySetModelImpl.getClassNameId(),
+						assetEntrySetModelImpl.getClassPK()
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_CNI_CPK, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_CNI_CPK,
+					args);
+			}
+
+			if ((assetEntrySetModelImpl.getColumnBitmask() &
+					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_CNI_CPK_TYPE.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						assetEntrySetModelImpl.getOriginalClassNameId(),
+						assetEntrySetModelImpl.getOriginalClassPK(),
+						assetEntrySetModelImpl.getOriginalType()
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_CNI_CPK_TYPE,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_CNI_CPK_TYPE,
+					args);
+
+				args = new Object[] {
+						assetEntrySetModelImpl.getClassNameId(),
+						assetEntrySetModelImpl.getClassPK(),
+						assetEntrySetModelImpl.getType()
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_CNI_CPK_TYPE,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_CNI_CPK_TYPE,
+					args);
+			}
 		}
 
 		EntityCacheUtil.putResult(AssetEntrySetModelImpl.ENTITY_CACHE_ENABLED,
@@ -4385,6 +6680,8 @@ public class AssetEntrySetPersistenceImpl extends BasePersistenceImpl<AssetEntry
 		assetEntrySetImpl.setModifiedTime(assetEntrySet.getModifiedTime());
 		assetEntrySetImpl.setAssetEntryId(assetEntrySet.getAssetEntryId());
 		assetEntrySetImpl.setParentAssetEntrySetId(assetEntrySet.getParentAssetEntrySetId());
+		assetEntrySetImpl.setClassNameId(assetEntrySet.getClassNameId());
+		assetEntrySetImpl.setClassPK(assetEntrySet.getClassPK());
 		assetEntrySetImpl.setCreatorClassNameId(assetEntrySet.getCreatorClassNameId());
 		assetEntrySetImpl.setCreatorClassPK(assetEntrySet.getCreatorClassPK());
 		assetEntrySetImpl.setCreatorName(assetEntrySet.getCreatorName());
@@ -4394,7 +6691,9 @@ public class AssetEntrySetPersistenceImpl extends BasePersistenceImpl<AssetEntry
 		assetEntrySetImpl.setPayload(assetEntrySet.getPayload());
 		assetEntrySetImpl.setPrivateAssetEntrySet(assetEntrySet.isPrivateAssetEntrySet());
 		assetEntrySetImpl.setStickyTime(assetEntrySet.getStickyTime());
+		assetEntrySetImpl.setTitle(assetEntrySet.getTitle());
 		assetEntrySetImpl.setType(assetEntrySet.getType());
+		assetEntrySetImpl.setStatus(assetEntrySet.getStatus());
 
 		return assetEntrySetImpl;
 	}

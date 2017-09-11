@@ -73,7 +73,7 @@ public class AssetEntrySetLocalServiceImpl
 			long userId, long parentAssetEntrySetId, long classNameId,
 			long classPK, long creatorClassNameId, long creatorClassPK,
 			JSONObject payloadJSONObject, boolean privateAssetEntrySet,
-			long stickyTime, String title, int type)
+			int status, long stickyTime, String title, int type)
 		throws PortalException, SystemException {
 
 		long assetEntrySetId = counterLocalService.increment();
@@ -113,6 +113,7 @@ public class AssetEntrySetLocalServiceImpl
 		assetEntrySet.setStickyTime(stickyTime);
 		assetEntrySet.setTitle(title);
 		assetEntrySet.setType(type);
+		assetEntrySet.setStatus(status);
 
 		assetEntrySetPersistence.update(assetEntrySet);
 
@@ -299,8 +300,8 @@ public class AssetEntrySetLocalServiceImpl
 	@Override
 	public AssetEntrySet updateAssetEntrySet(
 			long assetEntrySetId, JSONObject payloadJSONObject,
-			boolean privateAssetEntrySet, long stickyTime, String title,
-			int type)
+			boolean privateAssetEntrySet, int status, long stickyTime,
+			String title, int type)
 		throws PortalException, SystemException {
 
 		AssetEntrySet assetEntrySet = assetEntrySetPersistence.findByPrimaryKey(
@@ -351,6 +352,7 @@ public class AssetEntrySetLocalServiceImpl
 		assetEntrySet.setStickyTime(stickyTime);
 		assetEntrySet.setTitle(title);
 		assetEntrySet.setType(type);
+		assetEntrySet.setStatus(status);
 
 		assetEntrySetPersistence.update(assetEntrySet);
 

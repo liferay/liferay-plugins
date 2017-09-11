@@ -30,10 +30,10 @@
 		<column name="level" type="int" />
 		<column name="payload" type="String" />
 		<column name="privateAssetEntrySet" type="boolean" />
-		<column name="status" type="int" />
 		<column name="stickyTime" type="long" />
 		<column name="title" type="String" />
 		<column name="type" type="int" />
+		<column name="status" type="int" />
 
 		<!-- Order -->
 

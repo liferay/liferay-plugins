@@ -15,6 +15,8 @@
 		<property name="modifiedTime" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="assetEntryId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="parentAssetEntrySetId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="classNameId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="classPK" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="creatorClassNameId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="creatorClassPK" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="creatorName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
@@ -24,7 +26,9 @@
 		<property name="payload" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="privateAssetEntrySet" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 		<property name="stickyTime" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="title" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="type" type="com.liferay.portal.dao.orm.hibernate.IntegerType" column="type_" />
+		<property name="status" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 	</class>
 	<class name="com.liferay.asset.entry.set.model.impl.AssetEntrySetLikeImpl" table="AssetEntrySetLike">
 		<cache usage="read-write" />

@@ -16,6 +16,7 @@ package com.liferay.asset.entry.set.model;
 
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.model.AttachedModel;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.service.ServiceContext;
@@ -37,7 +38,8 @@ import java.io.Serializable;
  * @see com.liferay.asset.entry.set.model.impl.AssetEntrySetModelImpl
  * @generated
  */
-public interface AssetEntrySetModel extends BaseModel<AssetEntrySet> {
+public interface AssetEntrySetModel extends AttachedModel,
+	BaseModel<AssetEntrySet> {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -170,6 +172,48 @@ public interface AssetEntrySetModel extends BaseModel<AssetEntrySet> {
 	 * @param parentAssetEntrySetId the parent asset entry set ID of this asset entry set
 	 */
 	public void setParentAssetEntrySetId(long parentAssetEntrySetId);
+
+	/**
+	 * Returns the fully qualified class name of this asset entry set.
+	 *
+	 * @return the fully qualified class name of this asset entry set
+	 */
+	@Override
+	public String getClassName();
+
+	public void setClassName(String className);
+
+	/**
+	 * Returns the class name ID of this asset entry set.
+	 *
+	 * @return the class name ID of this asset entry set
+	 */
+	@Override
+	public long getClassNameId();
+
+	/**
+	 * Sets the class name ID of this asset entry set.
+	 *
+	 * @param classNameId the class name ID of this asset entry set
+	 */
+	@Override
+	public void setClassNameId(long classNameId);
+
+	/**
+	 * Returns the class p k of this asset entry set.
+	 *
+	 * @return the class p k of this asset entry set
+	 */
+	@Override
+	public long getClassPK();
+
+	/**
+	 * Sets the class p k of this asset entry set.
+	 *
+	 * @param classPK the class p k of this asset entry set
+	 */
+	@Override
+	public void setClassPK(long classPK);
 
 	/**
 	 * Returns the creator class name ID of this asset entry set.
@@ -307,6 +351,21 @@ public interface AssetEntrySetModel extends BaseModel<AssetEntrySet> {
 	public void setStickyTime(long stickyTime);
 
 	/**
+	 * Returns the title of this asset entry set.
+	 *
+	 * @return the title of this asset entry set
+	 */
+	@AutoEscape
+	public String getTitle();
+
+	/**
+	 * Sets the title of this asset entry set.
+	 *
+	 * @param title the title of this asset entry set
+	 */
+	public void setTitle(String title);
+
+	/**
 	 * Returns the type of this asset entry set.
 	 *
 	 * @return the type of this asset entry set
@@ -319,6 +378,20 @@ public interface AssetEntrySetModel extends BaseModel<AssetEntrySet> {
 	 * @param type the type of this asset entry set
 	 */
 	public void setType(int type);
+
+	/**
+	 * Returns the status of this asset entry set.
+	 *
+	 * @return the status of this asset entry set
+	 */
+	public int getStatus();
+
+	/**
+	 * Sets the status of this asset entry set.
+	 *
+	 * @param status the status of this asset entry set
+	 */
+	public void setStatus(int status);
 
 	@Override
 	public boolean isNew();

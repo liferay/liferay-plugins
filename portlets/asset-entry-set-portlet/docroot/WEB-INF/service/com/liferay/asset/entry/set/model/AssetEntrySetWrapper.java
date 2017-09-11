@@ -56,6 +56,8 @@ public class AssetEntrySetWrapper implements AssetEntrySet,
 		attributes.put("modifiedTime", getModifiedTime());
 		attributes.put("assetEntryId", getAssetEntryId());
 		attributes.put("parentAssetEntrySetId", getParentAssetEntrySetId());
+		attributes.put("classNameId", getClassNameId());
+		attributes.put("classPK", getClassPK());
 		attributes.put("creatorClassNameId", getCreatorClassNameId());
 		attributes.put("creatorClassPK", getCreatorClassPK());
 		attributes.put("creatorName", getCreatorName());
@@ -65,7 +67,9 @@ public class AssetEntrySetWrapper implements AssetEntrySet,
 		attributes.put("payload", getPayload());
 		attributes.put("privateAssetEntrySet", getPrivateAssetEntrySet());
 		attributes.put("stickyTime", getStickyTime());
+		attributes.put("title", getTitle());
 		attributes.put("type", getType());
+		attributes.put("status", getStatus());
 
 		return attributes;
 	}
@@ -113,6 +117,18 @@ public class AssetEntrySetWrapper implements AssetEntrySet,
 
 		if (parentAssetEntrySetId != null) {
 			setParentAssetEntrySetId(parentAssetEntrySetId);
+		}
+
+		Long classNameId = (Long)attributes.get("classNameId");
+
+		if (classNameId != null) {
+			setClassNameId(classNameId);
+		}
+
+		Long classPK = (Long)attributes.get("classPK");
+
+		if (classPK != null) {
+			setClassPK(classPK);
 		}
 
 		Long creatorClassNameId = (Long)attributes.get("creatorClassNameId");
@@ -172,10 +188,22 @@ public class AssetEntrySetWrapper implements AssetEntrySet,
 			setStickyTime(stickyTime);
 		}
 
+		String title = (String)attributes.get("title");
+
+		if (title != null) {
+			setTitle(title);
+		}
+
 		Integer type = (Integer)attributes.get("type");
 
 		if (type != null) {
 			setType(type);
+		}
+
+		Integer status = (Integer)attributes.get("status");
+
+		if (status != null) {
+			setStatus(status);
 		}
 	}
 
@@ -359,6 +387,61 @@ public class AssetEntrySetWrapper implements AssetEntrySet,
 	@Override
 	public void setParentAssetEntrySetId(long parentAssetEntrySetId) {
 		_assetEntrySet.setParentAssetEntrySetId(parentAssetEntrySetId);
+	}
+
+	/**
+	* Returns the fully qualified class name of this asset entry set.
+	*
+	* @return the fully qualified class name of this asset entry set
+	*/
+	@Override
+	public java.lang.String getClassName() {
+		return _assetEntrySet.getClassName();
+	}
+
+	@Override
+	public void setClassName(java.lang.String className) {
+		_assetEntrySet.setClassName(className);
+	}
+
+	/**
+	* Returns the class name ID of this asset entry set.
+	*
+	* @return the class name ID of this asset entry set
+	*/
+	@Override
+	public long getClassNameId() {
+		return _assetEntrySet.getClassNameId();
+	}
+
+	/**
+	* Sets the class name ID of this asset entry set.
+	*
+	* @param classNameId the class name ID of this asset entry set
+	*/
+	@Override
+	public void setClassNameId(long classNameId) {
+		_assetEntrySet.setClassNameId(classNameId);
+	}
+
+	/**
+	* Returns the class p k of this asset entry set.
+	*
+	* @return the class p k of this asset entry set
+	*/
+	@Override
+	public long getClassPK() {
+		return _assetEntrySet.getClassPK();
+	}
+
+	/**
+	* Sets the class p k of this asset entry set.
+	*
+	* @param classPK the class p k of this asset entry set
+	*/
+	@Override
+	public void setClassPK(long classPK) {
+		_assetEntrySet.setClassPK(classPK);
 	}
 
 	/**
@@ -552,6 +635,26 @@ public class AssetEntrySetWrapper implements AssetEntrySet,
 	}
 
 	/**
+	* Returns the title of this asset entry set.
+	*
+	* @return the title of this asset entry set
+	*/
+	@Override
+	public java.lang.String getTitle() {
+		return _assetEntrySet.getTitle();
+	}
+
+	/**
+	* Sets the title of this asset entry set.
+	*
+	* @param title the title of this asset entry set
+	*/
+	@Override
+	public void setTitle(java.lang.String title) {
+		_assetEntrySet.setTitle(title);
+	}
+
+	/**
 	* Returns the type of this asset entry set.
 	*
 	* @return the type of this asset entry set
@@ -569,6 +672,26 @@ public class AssetEntrySetWrapper implements AssetEntrySet,
 	@Override
 	public void setType(int type) {
 		_assetEntrySet.setType(type);
+	}
+
+	/**
+	* Returns the status of this asset entry set.
+	*
+	* @return the status of this asset entry set
+	*/
+	@Override
+	public int getStatus() {
+		return _assetEntrySet.getStatus();
+	}
+
+	/**
+	* Sets the status of this asset entry set.
+	*
+	* @param status the status of this asset entry set
+	*/
+	@Override
+	public void setStatus(int status) {
+		_assetEntrySet.setStatus(status);
 	}
 
 	@Override
