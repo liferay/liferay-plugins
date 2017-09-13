@@ -15,9 +15,14 @@
 package com.liferay.wsrp.util;
 
 import com.liferay.portal.kernel.util.Base64;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.Company;
 import com.liferay.portal.service.CompanyLocalServiceUtil;
-import com.liferay.util.Encryptor;
+
+import java.security.Key;
+
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
 
 /**
  * @author Tomas Polesovsky
@@ -29,11 +34,29 @@ public class WSRPURLUtil {
 
 		Company company = CompanyLocalServiceUtil.getCompany(companyId);
 
-		wsrpAuth = String.valueOf(wsrpAuth.hashCode());
-		wsrpAuth = Encryptor.encrypt(company.getKeyObj(), wsrpAuth);
+		Key key = company.getKeyObj();
+
+		byte[] signature = getHmacSha(
+			key.getEncoded(), wsrpAuth.getBytes(StringPool.UTF8));
+
+		wsrpAuth = Base64.encode(signature);
+
 		wsrpAuth = Base64.toURLSafe(wsrpAuth);
 
 		return wsrpAuth;
 	}
+
+	protected static byte[] getHmacSha(byte[] key, byte[] data)
+		throws Exception {
+
+		SecretKeySpec signingKey = new SecretKeySpec(key, _HMAC_SHA1);
+		Mac mac = Mac.getInstance(_HMAC_SHA1);
+
+		mac.init(signingKey);
+
+		return mac.doFinal(data);
+	}
+
+	private static final String _HMAC_SHA1 = "HmacSHA1";
 
 }
