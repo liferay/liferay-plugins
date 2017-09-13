@@ -14,26 +14,26 @@
 
 package com.liferay.wsrp.util;
 
+import com.liferay.portal.kernel.util.Base64;
+import com.liferay.portal.model.Company;
+import com.liferay.portal.service.CompanyLocalServiceUtil;
+import com.liferay.util.Encryptor;
+
 /**
- * @author Brian Wing Shun Chan
+ * @author Tomas Polesovsky
  */
-public class WebKeys implements com.liferay.portal.kernel.util.WebKeys {
+public class WSRPURLUtil {
 
-	public static final String COOKIE = "COOKIE";
+	public static String encodeWSRPAuth(long companyId, String wsrpAuth)
+		throws Exception {
 
-	public static final String COOKIES = "COOKIES";
+		Company company = CompanyLocalServiceUtil.getCompany(companyId);
 
-	public static final String MARKUP_CONTEXT = "MARKUP_CONTEXT";
+		wsrpAuth = String.valueOf(wsrpAuth.hashCode());
+		wsrpAuth = Encryptor.encrypt(company.getKeyObj(), wsrpAuth);
+		wsrpAuth = Base64.toURLSafe(wsrpAuth);
 
-	public static final String MARKUP_SERVICE = "MARKUP_SERVICE";
-
-	public static final String PORTLET_CONTEXT = "PORTLET_CONTEXT";
-
-	public static final String SESSION_CONTEXT = "SESSION_CONTEXT";
-
-	public static final String WSRP_AUTH = "wsrp-auth";
-
-	public static final String WSRP_CONSUMER_MANAGERS =
-		"WSRP_CONSUMER_MANAGERS";
+		return wsrpAuth;
+	}
 
 }
