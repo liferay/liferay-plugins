@@ -19,12 +19,13 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.servlet.HttpHeaders;
 import com.liferay.portal.kernel.servlet.ServletResponseUtil;
 import com.liferay.portal.kernel.util.CharPool;
-import com.liferay.portal.kernel.util.HttpUtil;
+import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.wsrp.util.PortletPropsValues;
+import com.liferay.wsrp.util.WSRPURLUtil;
 import com.liferay.wsrp.util.WebKeys;
 
 import java.io.IOException;
@@ -54,10 +55,10 @@ public class ProxyServlet extends HttpServlet {
 		throws IOException {
 
 		try {
-			String url = ParamUtil.getString(request, "url");
+			URL url = getAllowedURL(request);
 
-			if (isAllowedURL(url)) {
-				proxyURL(request, response, new URL(url));
+			if (url != null) {
+				proxyURL(request, response, url);
 			}
 		}
 		catch (Exception e) {
@@ -68,14 +69,34 @@ public class ProxyServlet extends HttpServlet {
 		}
 	}
 
-	protected boolean isAllowedURL(String url) throws Exception {
+	protected URL getAllowedURL(HttpServletRequest request) throws Exception {
+		long companyId = PortalUtil.getCompanyId(request);
+		String urlString = ParamUtil.getString(request, "url");
+
+		String expectedWsrpAuth = WSRPURLUtil.encodeWSRPAuth(
+			companyId, urlString);
+
+		String actualWsrpAuth = ParamUtil.getString(request, WebKeys.WSRP_AUTH);
+
+		if (!expectedWsrpAuth.equals(actualWsrpAuth)) {
+			return null;
+		}
+
+		URL url = new URL(urlString);
+
+		String protocol = url.getProtocol();
+
+		if (!protocol.equals(Http.HTTP) && !protocol.equals(Http.HTTPS)) {
+			return null;
+		}
+
 		String[] allowedIps = PortletPropsValues.PROXY_URL_IPS_ALLOWED;
 
 		if (allowedIps.length == 0) {
-			return true;
+			return url;
 		}
 
-		String domain = HttpUtil.getDomain(url);
+		String domain = url.getHost();
 
 		int pos = domain.indexOf(CharPool.COLON);
 
@@ -95,11 +116,11 @@ public class ProxyServlet extends HttpServlet {
 			if ((serverIpIsHostAddress && ip.equals("SERVER_IP")) ||
 				ip.equals(hostAddress)) {
 
-				return true;
+				return url;
 			}
 		}
 
-		return false;
+		return null;
 	}
 
 	protected void proxyURL(

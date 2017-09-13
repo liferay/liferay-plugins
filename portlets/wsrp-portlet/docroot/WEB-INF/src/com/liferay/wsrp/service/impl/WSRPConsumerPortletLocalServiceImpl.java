@@ -26,10 +26,11 @@ import com.liferay.portal.kernel.systemevent.SystemEvent;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
 import com.liferay.portal.kernel.util.ArrayUtil;
-import com.liferay.portal.kernel.util.HttpUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Tuple;
+import com.liferay.portal.kernel.util.URLCodec;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
 import com.liferay.portal.kernel.xml.Namespace;
@@ -56,6 +57,8 @@ import com.liferay.wsrp.util.ExtensionHelperUtil;
 import com.liferay.wsrp.util.LocalizedStringUtil;
 import com.liferay.wsrp.util.WSRPConsumerManager;
 import com.liferay.wsrp.util.WSRPConsumerManagerFactory;
+import com.liferay.wsrp.util.WSRPURLUtil;
+import com.liferay.wsrp.util.WebKeys;
 
 import java.util.Date;
 import java.util.HashSet;
@@ -387,8 +390,9 @@ public class WSRPConsumerPortletLocalServiceImpl
 	}
 
 	protected void addPortletExtraInfo(
-		Portlet portlet, PortletApp portletApp,
-		PortletDescription portletDescription, String title) {
+			Portlet portlet, PortletApp portletApp,
+			PortletDescription portletDescription, String title)
+		throws SystemException {
 
 		MarkupType[] markupTypes = portletDescription.getMarkupTypes();
 
@@ -599,8 +603,28 @@ public class WSRPConsumerPortletLocalServiceImpl
 		return portletId;
 	}
 
-	protected String getProxyURL(String url) {
-		return "/proxy?url=" + HttpUtil.encodeURL(url);
+	protected String getProxyURL(long companyId, String url)
+		throws SystemException {
+
+		String wsrpAuth = null;
+
+		try {
+			wsrpAuth = WSRPURLUtil.encodeWSRPAuth(companyId, url);
+		}
+		catch (Exception e) {
+			throw new SystemException("Unable to encode url " + url, e);
+		}
+
+		StringBundler sb = new StringBundler(6);
+
+		sb.append("/proxy/?url=");
+		sb.append(URLCodec.encodeURL(url));
+		sb.append("&");
+		sb.append(WebKeys.WSRP_AUTH);
+		sb.append("=");
+		sb.append(URLCodec.encodeURL(wsrpAuth));
+
+		return sb.toString();
 	}
 
 	protected com.liferay.portal.kernel.xml.QName getQName(QName qName) {
@@ -614,8 +638,8 @@ public class WSRPConsumerPortletLocalServiceImpl
 		return SAXReaderUtil.createQName(localPart, namespace);
 	}
 
-	protected void setExtension(
-		Portlet portlet, MessageElement messageElement) {
+	protected void setExtension(Portlet portlet, MessageElement messageElement)
+		throws SystemException {
 
 		String name = ExtensionHelperUtil.getNameAttribute(messageElement);
 		String value = messageElement.getValue();
@@ -634,28 +658,36 @@ public class WSRPConsumerPortletLocalServiceImpl
 			portlet.setCssClassWrapper(value);
 		}
 		else if (name.equals("footer-portal-css")) {
-			portlet.getFooterPortalCss().add(getProxyURL(value));
+			portlet.getFooterPortalCss().add(
+				getProxyURL(portlet.getCompanyId(), value));
 		}
 		else if (name.equals("footer-portal-javascript")) {
-			portlet.getFooterPortalJavaScript().add(getProxyURL(value));
+			portlet.getFooterPortalJavaScript().add(
+				getProxyURL(portlet.getCompanyId(), value));
 		}
 		else if (name.equals("footer-portlet-css")) {
-			portlet.getFooterPortletCss().add(getProxyURL(value));
+			portlet.getFooterPortletCss().add(
+				getProxyURL(portlet.getCompanyId(), value));
 		}
 		else if (name.equals("footer-portlet-javascript")) {
-			portlet.getFooterPortletJavaScript().add(getProxyURL(value));
+			portlet.getFooterPortletJavaScript().add(
+				getProxyURL(portlet.getCompanyId(), value));
 		}
 		else if (name.equals("header-portal-css")) {
-			portlet.getHeaderPortalCss().add(getProxyURL(value));
+			portlet.getHeaderPortalCss().add(
+				getProxyURL(portlet.getCompanyId(), value));
 		}
 		else if (name.equals("header-portal-javascript")) {
-			portlet.getHeaderPortalJavaScript().add(getProxyURL(value));
+			portlet.getHeaderPortalJavaScript().add(
+				getProxyURL(portlet.getCompanyId(), value));
 		}
 		else if (name.equals("header-portlet-css")) {
-			portlet.getHeaderPortletCss().add(getProxyURL(value));
+			portlet.getHeaderPortletCss().add(
+				getProxyURL(portlet.getCompanyId(), value));
 		}
 		else if (name.equals("header-portlet-javascript")) {
-			portlet.getHeaderPortletJavaScript().add(getProxyURL(value));
+			portlet.getHeaderPortletJavaScript().add(
+				getProxyURL(portlet.getCompanyId(), value));
 		}
 	}
 
