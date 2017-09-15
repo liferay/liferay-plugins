@@ -4,6 +4,7 @@
 <look-and-feel>
 	<compatibility>
 		<version>7.0.0+</version>
+		<version>7.1.0+</version>
 	</compatibility>
 	<theme id="zoe-tech" name="Zoe Tech">
 		<template-extension>vm</template-extension>
