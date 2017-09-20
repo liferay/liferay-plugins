@@ -15,11 +15,11 @@
 package com.liferay.wsrp.service.impl;
 
 import com.liferay.compat.portal.kernel.util.StringUtil;
+import com.liferay.compat.portal.kernel.util.Validator;
 import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.GroupConstants;
 import com.liferay.portal.model.LayoutConstants;

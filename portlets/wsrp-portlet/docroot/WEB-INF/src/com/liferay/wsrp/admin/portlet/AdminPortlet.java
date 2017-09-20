@@ -14,13 +14,13 @@
 
 package com.liferay.wsrp.admin.portlet;
 
+import com.liferay.compat.portal.kernel.util.Validator;
 import com.liferay.compat.portal.util.PortalUtil;
 import com.liferay.compat.util.bridges.mvc.MVCPortlet;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.UnicodeProperties;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.service.ServiceContext;

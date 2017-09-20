@@ -14,10 +14,10 @@
 
 package com.liferay.wsrp.proxy;
 
+import com.liferay.compat.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.wsrp.axis.WSRPHTTPSender;
 import com.liferay.wsrp.client.PasswordCallback;
 import com.liferay.wsrp.util.PortletPropsValues;

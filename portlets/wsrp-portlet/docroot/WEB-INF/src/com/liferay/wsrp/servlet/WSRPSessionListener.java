@@ -14,10 +14,10 @@
 
 package com.liferay.wsrp.servlet;
 
+import com.liferay.compat.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.TransientValue;
-import com.liferay.portal.kernel.util.Validator;
 
 import java.util.Enumeration;
 
