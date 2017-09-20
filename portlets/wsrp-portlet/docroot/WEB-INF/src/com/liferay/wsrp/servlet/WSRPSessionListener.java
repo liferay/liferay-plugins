@@ -88,7 +88,9 @@ public class WSRPSessionListener implements HttpSessionListener {
 			markupService.releaseSessions(releaseSessions);
 		}
 		catch (Exception e) {
-			_log.warn(e.getMessage());
+			if (_log.isWarnEnabled()) {
+				_log.warn(e.getMessage());
+			}
 		}
 	}
 

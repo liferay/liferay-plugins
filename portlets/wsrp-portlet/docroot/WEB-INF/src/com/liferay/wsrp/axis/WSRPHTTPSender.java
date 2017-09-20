@@ -163,7 +163,9 @@ public class WSRPHTTPSender extends HTTPSender {
 				messageContext.getStrProp(HTTPConstants.HEADER_COOKIE));
 		}
 		catch (Throwable t) {
-			_log.warn(t, t);
+			if (_log.isWarnEnabled()) {
+				_log.warn(t, t);
+			}
 		}
 
 		_currentCookie.set(cookie);
