@@ -272,20 +272,19 @@ public class ConsumerPortlet extends GenericPortlet {
 		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		long companyId = themeDisplay.getCompanyId();
+		String expectedWSRPAuth = WSRPURLUtil.encodeWSRPAuth(
+			themeDisplay.getCompanyId(), sb.toString());
 
-		String expectedWsrpAuth = WSRPURLUtil.encodeWSRPAuth(
-			companyId, sb.toString());
-
-		if (wsrpAuth.equals(expectedWsrpAuth)) {
+		if (wsrpAuth.equals(expectedWSRPAuth)) {
 			return true;
 		}
 
 		sb.append(AuthTokenUtil.getToken(request));
 
-		expectedWsrpAuth = WSRPURLUtil.encodeWSRPAuth(companyId, sb.toString());
+		expectedWSRPAuth = WSRPURLUtil.encodeWSRPAuth(
+			themeDisplay.getCompanyId(), sb.toString());
 
-		if (wsrpAuth.equals(expectedWsrpAuth)) {
+		if (wsrpAuth.equals(expectedWSRPAuth)) {
 			return true;
 		}
 
