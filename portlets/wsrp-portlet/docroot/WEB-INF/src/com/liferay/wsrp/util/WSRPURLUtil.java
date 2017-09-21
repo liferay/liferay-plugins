@@ -36,27 +36,28 @@ public class WSRPURLUtil {
 
 		Key key = company.getKeyObj();
 
-		byte[] signature = getHmacSha(
+		byte[] hmacSHA = getHMACSha(
 			key.getEncoded(), wsrpAuth.getBytes(StringPool.UTF8));
 
-		wsrpAuth = Base64.encode(signature);
+		wsrpAuth = Base64.encode(hmacSHA);
 
 		wsrpAuth = Base64.toURLSafe(wsrpAuth);
 
 		return wsrpAuth;
 	}
 
-	protected static byte[] getHmacSha(byte[] key, byte[] data)
+	protected static byte[] getHMACSha(byte[] key, byte[] data)
 		throws Exception {
 
-		SecretKeySpec signingKey = new SecretKeySpec(key, _HMAC_SHA1);
-		Mac mac = Mac.getInstance(_HMAC_SHA1);
+		Mac mac = Mac.getInstance(_ALGORITHM);
 
-		mac.init(signingKey);
+		SecretKeySpec secretKeySpec = new SecretKeySpec(key, _ALGORITHM);
+
+		mac.init(secretKeySpec);
 
 		return mac.doFinal(data);
 	}
 
-	private static final String _HMAC_SHA1 = "HmacSHA1";
+	private static final String _ALGORITHM = "HmacSHA1";
 
 }
