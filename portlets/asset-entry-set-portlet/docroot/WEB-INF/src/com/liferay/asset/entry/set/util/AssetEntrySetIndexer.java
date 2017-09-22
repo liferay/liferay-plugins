@@ -144,6 +144,14 @@ public class AssetEntrySetIndexer extends BaseIndexer {
 		}
 	}
 
+	protected void addCreatorQuery(
+		BooleanQuery filterQuery, SearchContext searchContext) {
+
+		filterQuery.addRequiredTerm(
+			"creator",
+			GetterUtil.getString(searchContext.getAttribute("creator")));
+	}
+
 	protected void addEntryClassPKQuery(
 		BooleanQuery filterQuery, SearchContext searchContext) {
 
@@ -189,6 +197,7 @@ public class AssetEntrySetIndexer extends BaseIndexer {
 
 		addClassNameIdQuery(filterQuery, searchContext);
 		addClassPKQuery(filterQuery, searchContext);
+		addCreatorQuery(filterQuery, searchContext);
 		addEntryClassPKQuery(filterQuery, searchContext);
 		addExcludeTermsQuery(
 			filterQuery, searchContext,"excludeAssetEntrySetIds",
