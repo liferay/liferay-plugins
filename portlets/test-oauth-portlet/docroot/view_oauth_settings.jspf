@@ -1,0 +1,41 @@
+<%--
+/**
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+--%>
+
+<liferay-ui:header title="set-oauth-consumer-credentials" />
+
+<liferay-ui:icon iconCssClass="icon-check" message="checked" />
+
+<p>
+	<liferay-ui:message key="host-name" />: <strong><%= hostName %></strong><br />
+	<liferay-ui:message key="host-port" />: <strong><%= hostPort %></strong><br />
+	<liferay-ui:message key="access-uri" />: <strong><%= accessURI %></strong><br />
+	<liferay-ui:message key="authorize-uri" />: <strong><%= authorizeURI %></strong><br />
+	<liferay-ui:message key="request-uri" />: <strong><%= requestURI %></strong><br />
+	<liferay-ui:message key="use-server-provided-callback-url" />: <strong><%= String.valueOf(useServerProvidedCallbackUrl) %></strong><br />
+	<liferay-ui:message key="consumer-key" />: <strong><%= key %></strong><br />
+	<liferay-ui:message key="consumer-secret" />: <strong><%= secret %></strong>
+</p>
+
+<c:if test="<%= Validator.isNotNull(accessToken) %>">
+	<liferay-ui:header title="obtain-oauth-accessor-credentials" />
+
+	<liferay-ui:icon iconCssClass="icon-check" message="checked" />
+
+	<p>
+		<liferay-ui:message key="access-token" />: <strong><%= accessToken %></strong><br />
+		<liferay-ui:message key="access-secret" />: <strong><%= accessSecret %></strong>
+	</p>
+</c:if>

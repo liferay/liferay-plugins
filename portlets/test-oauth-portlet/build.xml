@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<!DOCTYPE project>
+
+<project basedir="." default="deploy" name="test-oauth-portlet">
+	<import file="../build-common-portlet.xml" />
+</project>
