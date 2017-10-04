@@ -311,11 +311,6 @@ public class AssetEntrySetLocalServiceUtil {
 		return getService().getAssetEntrySets(classNameId, classPK);
 	}
 
-	public static long getAssetEntrySetsCount(long classNameId, long classPK,
-		int type) throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().getAssetEntrySetsCount(classNameId, classPK, type);
-	}
-
 	public static java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getChildAssetEntrySets(
 		long parentAssetEntrySetId)
 		throws com.liferay.portal.kernel.exception.SystemException {

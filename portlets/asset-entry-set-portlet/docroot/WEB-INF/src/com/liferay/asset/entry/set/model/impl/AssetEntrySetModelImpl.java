@@ -111,7 +111,6 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 	public static long CREATORCLASSPK_COLUMN_BITMASK = 16L;
 	public static long PARENTASSETENTRYSETID_COLUMN_BITMASK = 32L;
 	public static long TITLE_COLUMN_BITMASK = 64L;
-	public static long TYPE_COLUMN_BITMASK = 128L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.
@@ -718,19 +717,7 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 
 	@Override
 	public void setType(int type) {
-		_columnBitmask |= TYPE_COLUMN_BITMASK;
-
-		if (!_setOriginalType) {
-			_setOriginalType = true;
-
-			_originalType = _type;
-		}
-
 		_type = type;
-	}
-
-	public int getOriginalType() {
-		return _originalType;
 	}
 
 	@JSON
@@ -881,10 +868,6 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 		assetEntrySetModelImpl._setOriginalCreatorClassPK = false;
 
 		assetEntrySetModelImpl._originalTitle = assetEntrySetModelImpl._title;
-
-		assetEntrySetModelImpl._originalType = assetEntrySetModelImpl._type;
-
-		assetEntrySetModelImpl._setOriginalType = false;
 
 		assetEntrySetModelImpl._columnBitmask = 0;
 	}
@@ -1143,8 +1126,6 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 	private String _title;
 	private String _originalTitle;
 	private int _type;
-	private int _originalType;
-	private boolean _setOriginalType;
 	private int _status;
 	private long _columnBitmask;
 	private AssetEntrySet _escapedModel;

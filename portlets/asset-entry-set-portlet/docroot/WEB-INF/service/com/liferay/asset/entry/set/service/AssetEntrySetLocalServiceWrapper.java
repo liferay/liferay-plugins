@@ -329,13 +329,6 @@ public class AssetEntrySetLocalServiceWrapper
 	}
 
 	@Override
-	public long getAssetEntrySetsCount(long classNameId, long classPK, int type)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return _assetEntrySetLocalService.getAssetEntrySetsCount(classNameId,
-			classPK, type);
-	}
-
-	@Override
 	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getChildAssetEntrySets(
 		long parentAssetEntrySetId)
 		throws com.liferay.portal.kernel.exception.SystemException {
