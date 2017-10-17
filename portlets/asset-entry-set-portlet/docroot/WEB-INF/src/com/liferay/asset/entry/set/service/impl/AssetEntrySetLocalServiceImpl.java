@@ -469,10 +469,12 @@ public class AssetEntrySetLocalServiceImpl
 		for (int i = 0; i < sharedToJSONArray.length(); i++) {
 			JSONObject sharedToJSONObject = sharedToJSONArray.getJSONObject(i);
 
-			long classNameId = sharedToJSONObject.getLong("classNameId");
-			long classPK = sharedToJSONObject.getLong("classPK");
+			long entityClassNameId = sharedToJSONObject.getLong(
+				"entityClassNameId");
+			long entityClassPK = sharedToJSONObject.getLong("entityClassPK");
 
-			setSharedToClassPKsMap(sharedToClassPKsMap, classNameId, classPK);
+			setSharedToClassPKsMap(
+				sharedToClassPKsMap, entityClassNameId, entityClassPK);
 		}
 
 		setSharedToClassPKsMap(
