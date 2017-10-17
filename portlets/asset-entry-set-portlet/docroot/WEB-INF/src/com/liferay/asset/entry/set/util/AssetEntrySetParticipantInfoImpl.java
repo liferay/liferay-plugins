@@ -58,8 +58,8 @@ public class AssetEntrySetParticipantInfoImpl
 
 			JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-			jsonObject.put("classNameId", _ASSET_TAG_CLASS_NAME_ID);
-			jsonObject.put("classPK", assetTag.getTagId());
+			jsonObject.put("entityClassNameId", _ASSET_TAG_CLASS_NAME_ID);
+			jsonObject.put("entityClassPK", assetTag.getTagId());
 			jsonObject.put("name", assetTagName);
 
 			jsonArray.put(jsonObject);

@@ -132,30 +132,33 @@ public class BaseAssetEntrySetHandler implements AssetEntrySetHandler {
 	}
 
 	protected JSONArray dedupeSharedToJSONArray(JSONArray sharedToJSONArray) {
-		Map<Long, List<Long>> classNameIds = new HashMap<Long, List<Long>>();
+		Map<Long, List<Long>> entityClassNameIds =
+			new HashMap<Long, List<Long>>();
 
 		JSONArray newSharedToJSONArray = JSONFactoryUtil.createJSONArray();
 
 		for (int i = 0; i < sharedToJSONArray.length(); i++) {
 			JSONObject sharedToJSONObject = sharedToJSONArray.getJSONObject(i);
 
-			long classNameId = sharedToJSONObject.getLong("classNameId");
+			long entityClassNameId = sharedToJSONObject.getLong(
+				"entityClassNameId");
 
-			List<Long> classPKs = classNameIds.get(classNameId);
+			List<Long> entityClassPKs = entityClassNameIds.get(
+				entityClassNameId);
 
-			if (classPKs == null) {
-				classPKs = new ArrayList<Long>();
+			if (entityClassPKs == null) {
+				entityClassPKs = new ArrayList<Long>();
 			}
 
-			long classPK = sharedToJSONObject.getLong("classPK");
+			long entityClassPK = sharedToJSONObject.getLong("entityClassPK");
 
-			if (classPKs.contains(classPK)) {
+			if (entityClassPKs.contains(entityClassPK)) {
 				continue;
 			}
 
-			classPKs.add(classPK);
+			entityClassPKs.add(entityClassPK);
 
-			classNameIds.put(classNameId, classPKs);
+			entityClassNameIds.put(entityClassNameId, entityClassPKs);
 
 			newSharedToJSONArray.put(sharedToJSONObject);
 		}

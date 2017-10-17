@@ -19,7 +19,8 @@ import com.liferay.asset.entry.set.service.AssetEntrySetLocalServiceUtil;
 import com.liferay.asset.entry.set.service.persistence.AssetEntrySetActionableDynamicQuery;
 import com.liferay.asset.sharing.model.AssetSharingEntry;
 import com.liferay.asset.sharing.service.AssetSharingEntryLocalServiceUtil;
-import com.liferay.compat.portal.kernel.util.ListUtil;
+import com.liferay.compat.portal.kernel.util.ArrayUtil;
+import com.liferay.compat.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -42,8 +43,8 @@ import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.search.Summary;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.search.elasticsearch.util.ElasticsearchConstants;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -143,63 +144,30 @@ public class AssetEntrySetIndexer extends BaseIndexer {
 		}
 	}
 
-	protected void addCreatorQuery(
-			BooleanQuery booleanQuery, SearchContext searchContext)
-		throws Exception {
+	protected void addEntryClassPKQuery(
+		BooleanQuery filterQuery, SearchContext searchContext) {
 
-		List<String> creators = (ArrayList<String>)searchContext.getAttribute(
-			"creators");
+		long entryClassPK = GetterUtil.getLong(
+			searchContext.getAttribute(Field.ENTRY_CLASS_PK));
 
-		if (ListUtil.isEmpty(creators)) {
-			return;
-		}
-
-		for (String creator : creators) {
-			booleanQuery.addTerm("creator", creator);
+		if (entryClassPK > 0) {
+			filterQuery.addRequiredTerm(Field.ENTRY_CLASS_PK, entryClassPK);
 		}
 	}
 
-	protected void addExcludeAssetEntrySetIdsQuery(
-			BooleanQuery filterQuery, SearchContext searchContext)
+	protected void addExcludeTermsQuery(
+			BooleanQuery filterQuery, SearchContext searchContext,
+			String attributeName, String fieldName)
 		throws Exception {
 
 		BooleanQuery booleanQuery = BooleanQueryFactoryUtil.create(
 			searchContext);
 
-		List<Long> excludeAssetEntrySetIds =
-			(ArrayList<Long>)searchContext.getAttribute(
-				"excludeAssetEntrySetIds");
+		addTermsQuery(booleanQuery, searchContext, attributeName, fieldName);
 
-		if (ListUtil.isEmpty(excludeAssetEntrySetIds)) {
-			return;
+		if (booleanQuery.hasClauses()) {
+			filterQuery.add(booleanQuery, BooleanClauseOccur.MUST_NOT);
 		}
-
-		for (long excludeAssetEntrySetId : excludeAssetEntrySetIds) {
-			booleanQuery.addTerm("assetEntrySetId", excludeAssetEntrySetId);
-		}
-
-		filterQuery.add(booleanQuery, BooleanClauseOccur.MUST_NOT);
-	}
-
-	protected void addExcludeTypesQuery(
-			BooleanQuery filterQuery, SearchContext searchContext)
-		throws Exception {
-
-		BooleanQuery booleanQuery = BooleanQueryFactoryUtil.create(
-			searchContext);
-
-		List<Integer> excludeTypes = (List<Integer>)searchContext.getAttribute(
-			"excludeTypes");
-
-		if (ListUtil.isEmpty(excludeTypes)) {
-			return;
-		}
-
-		for (int excludeType : excludeTypes) {
-			booleanQuery.addTerm("type", excludeType);
-		}
-
-		filterQuery.add(booleanQuery, BooleanClauseOccur.MUST_NOT);
 	}
 
 	protected void addFilterQuery(
@@ -209,9 +177,11 @@ public class AssetEntrySetIndexer extends BaseIndexer {
 		BooleanQuery booleanQuery = BooleanQueryFactoryUtil.create(
 			searchContext);
 
-		addCreatorQuery(booleanQuery, searchContext);
-		addIncludeAssetEntrySetIdsQuery(booleanQuery, searchContext);
-		addSharedToQuery(booleanQuery, searchContext);
+		addTermsQuery(booleanQuery, searchContext, "creators", "creator");
+		addTermsQuery(
+			booleanQuery, searchContext, "includeAssetEntrySetIds",
+			"assetEntrySetId");
+		addTermsQuery(booleanQuery, searchContext, "sharedTo", "sharedTo");
 
 		if (booleanQuery.hasClauses()) {
 			filterQuery.add(booleanQuery, BooleanClauseOccur.MUST);
@@ -219,8 +189,12 @@ public class AssetEntrySetIndexer extends BaseIndexer {
 
 		addClassNameIdQuery(filterQuery, searchContext);
 		addClassPKQuery(filterQuery, searchContext);
-		addExcludeAssetEntrySetIdsQuery(filterQuery, searchContext);
-		addExcludeTypesQuery(filterQuery, searchContext);
+		addEntryClassPKQuery(filterQuery, searchContext);
+		addExcludeTermsQuery(
+			filterQuery, searchContext,"excludeAssetEntrySetIds",
+			"assetEntrySetId");
+		addExcludeTermsQuery(
+			filterQuery, searchContext, "excludeTypes", "type");
 		addMembershipQuery(filterQuery, searchContext);
 		addParentAssetEntrySetQuery(filterQuery);
 		addPrivateAssetEntrySetQuery(filterQuery, searchContext);
@@ -228,23 +202,6 @@ public class AssetEntrySetIndexer extends BaseIndexer {
 		addTimeQuery(filterQuery, searchContext, "createTime_sortable");
 		addTimeQuery(filterQuery, searchContext, "modifiedTime_sortable");
 		addTimeQuery(filterQuery, searchContext, "stickyTime_sortable");
-	}
-
-	protected void addIncludeAssetEntrySetIdsQuery(
-			BooleanQuery booleanQuery, SearchContext searchContext)
-		throws Exception {
-
-		List<Long> includeAssetEntrySetIds =
-			(ArrayList<Long>)searchContext.getAttribute(
-				"includeAssetEntrySetIds");
-
-		if (ListUtil.isEmpty(includeAssetEntrySetIds)) {
-			return;
-		}
-
-		for (long includeAssetEntrySetId : includeAssetEntrySetIds) {
-			booleanQuery.addTerm("assetEntrySetId", includeAssetEntrySetId);
-		}
 	}
 
 	protected void addMembershipQuery(
@@ -258,9 +215,7 @@ public class AssetEntrySetIndexer extends BaseIndexer {
 			AssetEntrySetParticipantInfoUtil.getMembershipSearchTerms(
 				searchContext.getUserId());
 
-		for (String membershipSearchTerm : membershipSearchTerms) {
-			booleanQuery.addTerm("sharedTo", membershipSearchTerm);
-		}
+		addTermsQuery(booleanQuery, membershipSearchTerms, "sharedTo");
 
 		booleanQuery.addTerm("privateAssetEntrySet", StringPool.FALSE);
 
@@ -286,20 +241,27 @@ public class AssetEntrySetIndexer extends BaseIndexer {
 		}
 	}
 
-	protected void addSharedToQuery(
-			BooleanQuery booleanQuery, SearchContext searchContext)
+	protected void addTermsQuery(
+			BooleanQuery booleanQuery, SearchContext searchContext,
+			String attributeName, String fieldName)
 		throws Exception {
 
-		List<String> sharedToEntities =
-			(ArrayList<String>)searchContext.getAttribute("sharedTo");
+		String[] values = (String[])searchContext.getAttribute(attributeName);
 
-		if (ListUtil.isEmpty(sharedToEntities)) {
+		addTermsQuery(booleanQuery, values, fieldName);
+	}
+
+	protected void addTermsQuery(
+			BooleanQuery booleanQuery, String[] values, String fieldName)
+		throws Exception {
+
+		if (ArrayUtil.isEmpty(values)) {
 			return;
 		}
 
-		for (String sharedToEntity : sharedToEntities) {
-			booleanQuery.addTerm("sharedTo", sharedToEntity);
-		}
+		booleanQuery.addTerm(
+			fieldName,
+			StringUtil.merge(values, ElasticsearchConstants.TERMS_DELIMITER));
 	}
 
 	protected void addTimeQuery(
@@ -380,6 +342,8 @@ public class AssetEntrySetIndexer extends BaseIndexer {
 			"assetEntrySetId", assetEntrySet.getAssetEntrySetId());
 		document.addNumber("createTime", assetEntrySet.getCreateTime());
 		document.addText("creatorName", assetEntrySet.getCreatorName());
+		document.addKeyword(
+			"creatorName_sortable", assetEntrySet.getCreatorName());
 		document.addKeyword(
 			"creator",
 			AssetEntrySetParticipantInfoUtil.getSearchTerm(
