@@ -67,10 +67,15 @@
 			<finder-column name="creatorClassNameId" />
 			<finder-column name="creatorClassPK" />
 		</finder>
-		<finder name="CNI_CPK_T" return-type="AssetEntrySet">
+		<finder name="CNI_CPK_Title" return-type="AssetEntrySet">
 			<finder-column name="classNameId" />
 			<finder-column name="classPK" />
 			<finder-column name="title" />
+		</finder>
+		<finder name="CNI_CPK_Type" return-type="Collection">
+			<finder-column name="classNameId" />
+			<finder-column name="classPK" />
+			<finder-column name="type" />
 		</finder>
 
 		<!-- References -->

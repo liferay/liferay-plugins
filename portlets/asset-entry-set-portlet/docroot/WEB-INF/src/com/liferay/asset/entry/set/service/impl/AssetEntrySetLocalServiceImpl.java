@@ -221,7 +221,7 @@ public class AssetEntrySetLocalServiceImpl
 			long classNameId, long classPK, String title)
 		throws SystemException {
 
-		return assetEntrySetPersistence.fetchByCNI_CPK_T(
+		return assetEntrySetPersistence.fetchByCNI_CPK_Title(
 			classNameId, classPK, title);
 	}
 
@@ -230,6 +230,14 @@ public class AssetEntrySetLocalServiceImpl
 		throws SystemException {
 
 		return assetEntrySetPersistence.findByCNI_CPK(classNameId, classPK);
+	}
+
+	@Override
+	public long getAssetEntrySetsCount(long classNameId, long classPK, int type)
+		throws SystemException {
+
+		return assetEntrySetPersistence.countByCNI_CPK_Type(
+			classNameId, classPK, type);
 	}
 
 	@Override

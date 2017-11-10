@@ -1241,7 +1241,7 @@ public interface AssetEntrySetPersistence extends BasePersistence<AssetEntrySet>
 	* @throws com.liferay.asset.entry.set.NoSuchAssetEntrySetException if a matching asset entry set could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.liferay.asset.entry.set.model.AssetEntrySet findByCNI_CPK_T(
+	public com.liferay.asset.entry.set.model.AssetEntrySet findByCNI_CPK_Title(
 		long classNameId, long classPK, java.lang.String title)
 		throws com.liferay.asset.entry.set.NoSuchAssetEntrySetException,
 			com.liferay.portal.kernel.exception.SystemException;
@@ -1255,7 +1255,7 @@ public interface AssetEntrySetPersistence extends BasePersistence<AssetEntrySet>
 	* @return the matching asset entry set, or <code>null</code> if a matching asset entry set could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.liferay.asset.entry.set.model.AssetEntrySet fetchByCNI_CPK_T(
+	public com.liferay.asset.entry.set.model.AssetEntrySet fetchByCNI_CPK_Title(
 		long classNameId, long classPK, java.lang.String title)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
@@ -1269,7 +1269,7 @@ public interface AssetEntrySetPersistence extends BasePersistence<AssetEntrySet>
 	* @return the matching asset entry set, or <code>null</code> if a matching asset entry set could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.liferay.asset.entry.set.model.AssetEntrySet fetchByCNI_CPK_T(
+	public com.liferay.asset.entry.set.model.AssetEntrySet fetchByCNI_CPK_Title(
 		long classNameId, long classPK, java.lang.String title,
 		boolean retrieveFromCache)
 		throws com.liferay.portal.kernel.exception.SystemException;
@@ -1283,7 +1283,7 @@ public interface AssetEntrySetPersistence extends BasePersistence<AssetEntrySet>
 	* @return the asset entry set that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.liferay.asset.entry.set.model.AssetEntrySet removeByCNI_CPK_T(
+	public com.liferay.asset.entry.set.model.AssetEntrySet removeByCNI_CPK_Title(
 		long classNameId, long classPK, java.lang.String title)
 		throws com.liferay.asset.entry.set.NoSuchAssetEntrySetException,
 			com.liferay.portal.kernel.exception.SystemException;
@@ -1297,9 +1297,250 @@ public interface AssetEntrySetPersistence extends BasePersistence<AssetEntrySet>
 	* @return the number of matching asset entry sets
 	* @throws SystemException if a system exception occurred
 	*/
-	public int countByCNI_CPK_T(long classNameId, long classPK,
+	public int countByCNI_CPK_Title(long classNameId, long classPK,
 		java.lang.String title)
 		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns all the asset entry sets where classNameId = &#63; and classPK = &#63; and type = &#63;.
+	*
+	* @param classNameId the class name ID
+	* @param classPK the class p k
+	* @param type the type
+	* @return the matching asset entry sets
+	* @throws SystemException if a system exception occurred
+	*/
+	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> findByCNI_CPK_Type(
+		long classNameId, long classPK, int type)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns a range of all the asset entry sets where classNameId = &#63; and classPK = &#63; and type = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.asset.entry.set.model.impl.AssetEntrySetModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param classNameId the class name ID
+	* @param classPK the class p k
+	* @param type the type
+	* @param start the lower bound of the range of asset entry sets
+	* @param end the upper bound of the range of asset entry sets (not inclusive)
+	* @return the range of matching asset entry sets
+	* @throws SystemException if a system exception occurred
+	*/
+	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> findByCNI_CPK_Type(
+		long classNameId, long classPK, int type, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns an ordered range of all the asset entry sets where classNameId = &#63; and classPK = &#63; and type = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.asset.entry.set.model.impl.AssetEntrySetModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param classNameId the class name ID
+	* @param classPK the class p k
+	* @param type the type
+	* @param start the lower bound of the range of asset entry sets
+	* @param end the upper bound of the range of asset entry sets (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching asset entry sets
+	* @throws SystemException if a system exception occurred
+	*/
+	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> findByCNI_CPK_Type(
+		long classNameId, long classPK, int type, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the first asset entry set in the ordered set where classNameId = &#63; and classPK = &#63; and type = &#63;.
+	*
+	* @param classNameId the class name ID
+	* @param classPK the class p k
+	* @param type the type
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching asset entry set
+	* @throws com.liferay.asset.entry.set.NoSuchAssetEntrySetException if a matching asset entry set could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.asset.entry.set.model.AssetEntrySet findByCNI_CPK_Type_First(
+		long classNameId, long classPK, int type,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.asset.entry.set.NoSuchAssetEntrySetException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the first asset entry set in the ordered set where classNameId = &#63; and classPK = &#63; and type = &#63;.
+	*
+	* @param classNameId the class name ID
+	* @param classPK the class p k
+	* @param type the type
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching asset entry set, or <code>null</code> if a matching asset entry set could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.asset.entry.set.model.AssetEntrySet fetchByCNI_CPK_Type_First(
+		long classNameId, long classPK, int type,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the last asset entry set in the ordered set where classNameId = &#63; and classPK = &#63; and type = &#63;.
+	*
+	* @param classNameId the class name ID
+	* @param classPK the class p k
+	* @param type the type
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching asset entry set
+	* @throws com.liferay.asset.entry.set.NoSuchAssetEntrySetException if a matching asset entry set could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.asset.entry.set.model.AssetEntrySet findByCNI_CPK_Type_Last(
+		long classNameId, long classPK, int type,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.asset.entry.set.NoSuchAssetEntrySetException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the last asset entry set in the ordered set where classNameId = &#63; and classPK = &#63; and type = &#63;.
+	*
+	* @param classNameId the class name ID
+	* @param classPK the class p k
+	* @param type the type
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching asset entry set, or <code>null</code> if a matching asset entry set could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.asset.entry.set.model.AssetEntrySet fetchByCNI_CPK_Type_Last(
+		long classNameId, long classPK, int type,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the asset entry sets before and after the current asset entry set in the ordered set where classNameId = &#63; and classPK = &#63; and type = &#63;.
+	*
+	* @param assetEntrySetId the primary key of the current asset entry set
+	* @param classNameId the class name ID
+	* @param classPK the class p k
+	* @param type the type
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the previous, current, and next asset entry set
+	* @throws com.liferay.asset.entry.set.NoSuchAssetEntrySetException if a asset entry set with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.asset.entry.set.model.AssetEntrySet[] findByCNI_CPK_Type_PrevAndNext(
+		long assetEntrySetId, long classNameId, long classPK, int type,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.asset.entry.set.NoSuchAssetEntrySetException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns all the asset entry sets that the user has permission to view where classNameId = &#63; and classPK = &#63; and type = &#63;.
+	*
+	* @param classNameId the class name ID
+	* @param classPK the class p k
+	* @param type the type
+	* @return the matching asset entry sets that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> filterFindByCNI_CPK_Type(
+		long classNameId, long classPK, int type)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns a range of all the asset entry sets that the user has permission to view where classNameId = &#63; and classPK = &#63; and type = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.asset.entry.set.model.impl.AssetEntrySetModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param classNameId the class name ID
+	* @param classPK the class p k
+	* @param type the type
+	* @param start the lower bound of the range of asset entry sets
+	* @param end the upper bound of the range of asset entry sets (not inclusive)
+	* @return the range of matching asset entry sets that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> filterFindByCNI_CPK_Type(
+		long classNameId, long classPK, int type, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns an ordered range of all the asset entry sets that the user has permissions to view where classNameId = &#63; and classPK = &#63; and type = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.asset.entry.set.model.impl.AssetEntrySetModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param classNameId the class name ID
+	* @param classPK the class p k
+	* @param type the type
+	* @param start the lower bound of the range of asset entry sets
+	* @param end the upper bound of the range of asset entry sets (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching asset entry sets that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> filterFindByCNI_CPK_Type(
+		long classNameId, long classPK, int type, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the asset entry sets before and after the current asset entry set in the ordered set of asset entry sets that the user has permission to view where classNameId = &#63; and classPK = &#63; and type = &#63;.
+	*
+	* @param assetEntrySetId the primary key of the current asset entry set
+	* @param classNameId the class name ID
+	* @param classPK the class p k
+	* @param type the type
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the previous, current, and next asset entry set
+	* @throws com.liferay.asset.entry.set.NoSuchAssetEntrySetException if a asset entry set with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.asset.entry.set.model.AssetEntrySet[] filterFindByCNI_CPK_Type_PrevAndNext(
+		long assetEntrySetId, long classNameId, long classPK, int type,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.asset.entry.set.NoSuchAssetEntrySetException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Removes all the asset entry sets where classNameId = &#63; and classPK = &#63; and type = &#63; from the database.
+	*
+	* @param classNameId the class name ID
+	* @param classPK the class p k
+	* @param type the type
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByCNI_CPK_Type(long classNameId, long classPK, int type)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of asset entry sets where classNameId = &#63; and classPK = &#63; and type = &#63;.
+	*
+	* @param classNameId the class name ID
+	* @param classPK the class p k
+	* @param type the type
+	* @return the number of matching asset entry sets
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByCNI_CPK_Type(long classNameId, long classPK, int type)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of asset entry sets that the user has permission to view where classNameId = &#63; and classPK = &#63; and type = &#63;.
+	*
+	* @param classNameId the class name ID
+	* @param classPK the class p k
+	* @param type the type
+	* @return the number of matching asset entry sets that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public int filterCountByCNI_CPK_Type(long classNameId, long classPK,
+		int type) throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
 	* Caches the asset entry set in the entity cache if it is enabled.

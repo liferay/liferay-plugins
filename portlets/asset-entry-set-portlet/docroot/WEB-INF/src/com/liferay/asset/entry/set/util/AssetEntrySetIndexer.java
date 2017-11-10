@@ -144,14 +144,6 @@ public class AssetEntrySetIndexer extends BaseIndexer {
 		}
 	}
 
-	protected void addCreatorQuery(
-		BooleanQuery filterQuery, SearchContext searchContext) {
-
-		filterQuery.addRequiredTerm(
-			"creator",
-			GetterUtil.getString(searchContext.getAttribute("creator")));
-	}
-
 	protected void addEntryClassPKQuery(
 		BooleanQuery filterQuery, SearchContext searchContext) {
 
@@ -197,7 +189,6 @@ public class AssetEntrySetIndexer extends BaseIndexer {
 
 		addClassNameIdQuery(filterQuery, searchContext);
 		addClassPKQuery(filterQuery, searchContext);
-		addCreatorQuery(filterQuery, searchContext);
 		addEntryClassPKQuery(filterQuery, searchContext);
 		addExcludeTermsQuery(
 			filterQuery, searchContext,"excludeAssetEntrySetIds",
@@ -207,7 +198,6 @@ public class AssetEntrySetIndexer extends BaseIndexer {
 		addMembershipQuery(filterQuery, searchContext);
 		addParentAssetEntrySetQuery(filterQuery);
 		addPrivateAssetEntrySetQuery(filterQuery, searchContext);
-		addStatusQuery(filterQuery, searchContext);
 		addTypeQuery(filterQuery, searchContext);
 		addTimeQuery(filterQuery, searchContext, "createTime_sortable");
 		addTimeQuery(filterQuery, searchContext, "modifiedTime_sortable");
@@ -248,16 +238,6 @@ public class AssetEntrySetIndexer extends BaseIndexer {
 		if (privateAssetEntrySet) {
 			filterQuery.addRequiredTerm(
 				"privateAssetEntrySet", privateAssetEntrySet);
-		}
-	}
-
-	protected void addStatusQuery(
-		BooleanQuery filterQuery, SearchContext searchContext) {
-
-		Integer status = (Integer)searchContext.getAttribute("status");
-
-		if (status != null) {
-			filterQuery.addRequiredTerm("status", status.intValue());
 		}
 	}
 
@@ -381,7 +361,6 @@ public class AssetEntrySetIndexer extends BaseIndexer {
 			"privateAssetEntrySet", assetEntrySet.getPrivateAssetEntrySet());
 		document.addKeyword(
 			"sharedTo", getSharedTo(assetEntrySet.getAssetEntrySetId()));
-		document.addKeyword("status", assetEntrySet.getStatus());
 		document.addNumber("stickyTime", assetEntrySet.getStickyTime());
 
 		return document;
