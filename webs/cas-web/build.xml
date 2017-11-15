@@ -12,7 +12,7 @@
 			module.dir="${basedir}"
 		/>
 
-		<copy file="${plugin.file}" todir="${app.server.deploy.dir}" />
+		<copy file="${plugin.file}" tofile="${app.server.deploy.dir}/cas-web.war" />
 	</target>
 
 	<target name="merge">
