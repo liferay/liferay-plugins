@@ -250,6 +250,14 @@ public class AssetEntrySetLocalServiceImpl
 	}
 
 	@Override
+	public long getChildAssetEntrySetsCount(long parentAssetEntrySetId)
+		throws SystemException {
+
+		return assetEntrySetPersistence.countByParentAssetEntrySetId(
+			parentAssetEntrySetId);
+	}
+
+	@Override
 	public List<AssetEntrySet> getNewChildAssetEntrySets(
 			long createTime, long parentAssetEntrySetId, int start, int end,
 			OrderByComparator orderByComparator)

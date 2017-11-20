@@ -322,6 +322,11 @@ public class AssetEntrySetLocalServiceUtil {
 		return getService().getChildAssetEntrySets(parentAssetEntrySetId);
 	}
 
+	public static long getChildAssetEntrySetsCount(long parentAssetEntrySetId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getChildAssetEntrySetsCount(parentAssetEntrySetId);
+	}
+
 	public static java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getNewChildAssetEntrySets(
 		long createTime, long parentAssetEntrySetId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)

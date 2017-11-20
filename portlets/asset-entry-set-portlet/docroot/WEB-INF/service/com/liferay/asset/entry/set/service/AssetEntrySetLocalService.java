@@ -290,6 +290,10 @@ public interface AssetEntrySetLocalService extends BaseLocalService,
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public long getChildAssetEntrySetsCount(long parentAssetEntrySetId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getNewChildAssetEntrySets(
 		long createTime, long parentAssetEntrySetId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
