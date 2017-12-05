@@ -26,8 +26,8 @@
 		<dependency name="antelopetasks" org="org.tigris.antelope" rev="3.2.10" />
 		<dependency name="bcpg-jdk16" org="org.bouncycastle" rev="1.46" />
 		<dependency name="bcprov-jdk16" org="org.bouncycastle" rev="1.46" />
-		<dependency name="bsh" org="org.beanshell" rev="2.0b4" />
 		<dependency name="bsf" org="bsf" rev="2.4.0" />
+		<dependency name="bsh" org="org.beanshell" rev="2.0b4" />
 		<dependency name="ccpp" org="javax.ccpp" rev="1.0" />
 		<dependency name="commons-logging" org="commons-logging" rev="1.1.1" />
 		<dependency name="error_prone_ant" org="com.google.errorprone" rev="1.0.8" />

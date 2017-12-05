@@ -150,7 +150,8 @@ else {
 		}
 		else {
 			var getSiteActionHtml = function(actionClassNames, actionLinkClassName, actionTitle, actionURL) {
-				var siteActionTemplate = '<span class="{actionClassNames}" title="{actionTitle}">' +
+				var siteActionTemplate =
+					'<span class="{actionClassNames}" title="{actionTitle}">' +
 						'<a class="{actionLinkClassName}" href="{actionURL}">' +
 						'</a>' +
 					'</span>';
@@ -166,7 +167,8 @@ else {
 				);
 			};
 
-			var siteTemplate = '<li class="{classNames}">' +
+			var siteTemplate =
+				'<li class="{classNames}">' +
 					'{favoriteHTML}' +
 					'{joinHTML}' +
 					'{leaveHTML}' +

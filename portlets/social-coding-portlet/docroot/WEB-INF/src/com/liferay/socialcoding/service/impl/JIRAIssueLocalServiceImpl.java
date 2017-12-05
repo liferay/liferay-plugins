@@ -244,29 +244,31 @@ public class JIRAIssueLocalServiceImpl extends JIRAIssueLocalServiceBaseImpl {
 			extraData.put(
 				"jiraChangeGroupId", jiraChangeGroup.getJiraChangeGroupId());
 
-			JSONArray jiraChangeItemsJSON = JSONFactoryUtil.createJSONArray();
+			JSONArray jiraChangeItemsJSONArray =
+				JSONFactoryUtil.createJSONArray();
 
-			extraData.put("jiraChangeItems", jiraChangeItemsJSON);
+			extraData.put("jiraChangeItems", jiraChangeItemsJSONArray);
 
 			List<JIRAChangeItem> jiraChangeItems =
 				jiraChangeItemPersistence.findByJiraChangeGroupId(
 					jiraChangeGroup.getJiraChangeGroupId());
 
 			for (JIRAChangeItem jiraChangeItem : jiraChangeItems) {
-				JSONObject jiraChangeItemJSON =
+				JSONObject jiraChangeItemJSONObject =
 					JSONFactoryUtil.createJSONObject();
 
-				jiraChangeItemJSON.put("field", jiraChangeItem.getField());
-				jiraChangeItemJSON.put(
+				jiraChangeItemJSONObject.put(
+					"field", jiraChangeItem.getField());
+				jiraChangeItemJSONObject.put(
 					"newString", jiraChangeItem.getNewString());
-				jiraChangeItemJSON.put(
+				jiraChangeItemJSONObject.put(
 					"newValue", jiraChangeItem.getNewValue());
-				jiraChangeItemJSON.put(
+				jiraChangeItemJSONObject.put(
 					"oldString", jiraChangeItem.getOldString());
-				jiraChangeItemJSON.put(
+				jiraChangeItemJSONObject.put(
 					"oldValue", jiraChangeItem.getOldValue());
 
-				jiraChangeItemsJSON.put(jiraChangeItemJSON);
+				jiraChangeItemsJSONArray.put(jiraChangeItemJSONObject);
 			}
 
 			SocialActivityLocalServiceUtil.addUniqueActivity(

@@ -315,7 +315,7 @@ public class GoogleDirectoryUtil {
 		directoryRequest.setFields(StringPool.BLANK);
 
 		for (int i = 1; i <= PortletPropsValues.GOOGLE_API_RETRY_ATTEMPTS;
-				i++) {
+			 i++) {
 
 			try {
 				directoryRequest.execute();

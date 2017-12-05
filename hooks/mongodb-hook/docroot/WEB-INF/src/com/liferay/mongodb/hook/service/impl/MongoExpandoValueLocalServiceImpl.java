@@ -739,8 +739,8 @@ public class MongoExpandoValueLocalServiceImpl
 				ArrayUtil.toArray(list.toArray(new Long[list.size()])));
 		}
 		else if (type == ExpandoColumnConstants.SHORT) {
-			expandoValue.setShort((Short)expandoValueDBObject.get(
-				expandoColumn.getName()));
+			expandoValue.setShort(
+				(Short)expandoValueDBObject.get(expandoColumn.getName()));
 		}
 		else if (type == ExpandoColumnConstants.SHORT_ARRAY) {
 			List<Short> list = (List<Short>)value;

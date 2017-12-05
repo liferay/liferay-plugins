@@ -144,8 +144,7 @@ public class MicroblogsUtil {
 				return MicroblogsEntryConstants.
 					NOTIFICATION_TYPE_REPLY_TO_REPLIED;
 			}
-			else if (MicroblogsUtil.isTaggedUser(
-						rootMicroblogsEntryId, true, userId) &&
+			else if (isTaggedUser(rootMicroblogsEntryId, true, userId) &&
 					 UserNotificationManagerUtil.isDeliver(
 						 userId, PortletKeys.MICROBLOGS, 0,
 						 MicroblogsEntryConstants.

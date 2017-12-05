@@ -75,7 +75,7 @@ public class GoogleGroupssettingsUtil {
 			update.setFields(StringPool.BLANK);
 
 			for (int i = 1; i <= PortletPropsValues.GOOGLE_API_RETRY_ATTEMPTS;
-					i++) {
+				 i++) {
 
 				try {
 					update.execute();

@@ -222,7 +222,8 @@ if (comment) {
 
 	var REGEX_USER_NAME = /@(.*[^\s]+)$/;
 
-	var TPL_SEARCH_RESULTS = '<div class="microblogs-autocomplete">' +
+	var TPL_SEARCH_RESULTS =
+		'<div class="microblogs-autocomplete">' +
 			'<div class="thumbnail">' +
 				'<img alt="{fullName}" src="{portraitURL}" />' +
 			'</div>' +
