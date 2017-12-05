@@ -53,7 +53,7 @@ public class UpgradeLayoutSetPrototype extends UpgradeProcess {
 		}
 	}
 
-	private static final String[] _LAYOUT_SET_PROTOTYPE_KEYS = new String[] {
+	private static final String[] _LAYOUT_SET_PROTOTYPE_KEYS = {
 		SocialOfficeConstants.LAYOUT_SET_PROTOTYPE_KEY_SITE,
 		SocialOfficeConstants.LAYOUT_SET_PROTOTYPE_KEY_USER_PRIVATE,
 		SocialOfficeConstants.LAYOUT_SET_PROTOTYPE_KEY_USER_PUBLIC

@@ -258,13 +258,13 @@ public class JIRAIssueLocalServiceImpl extends JIRAIssueLocalServiceBaseImpl {
 
 				jiraChangeItemJSON.put("field", jiraChangeItem.getField());
 				jiraChangeItemJSON.put(
-					"oldValue", jiraChangeItem.getOldValue());
-				jiraChangeItemJSON.put(
-					"oldString", jiraChangeItem.getOldString());
+					"newString", jiraChangeItem.getNewString());
 				jiraChangeItemJSON.put(
 					"newValue", jiraChangeItem.getNewValue());
 				jiraChangeItemJSON.put(
-					"newString", jiraChangeItem.getNewString());
+					"oldString", jiraChangeItem.getOldString());
+				jiraChangeItemJSON.put(
+					"oldValue", jiraChangeItem.getOldValue());
 
 				jiraChangeItemsJSON.put(jiraChangeItemJSON);
 			}

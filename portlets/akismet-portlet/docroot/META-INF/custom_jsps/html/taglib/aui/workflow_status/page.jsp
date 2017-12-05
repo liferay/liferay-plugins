@@ -16,8 +16,8 @@
 
 <%@ include file="/html/taglib/init.jsp" %>
 
-<%@ page import="com.liferay.message.boards.kernel.model.MBMessage" %>
-<%@ page import="com.liferay.portlet.wiki.model.WikiPage" %>
+<%@ page import="com.liferay.message.boards.kernel.model.MBMessage" %><%@
+page import="com.liferay.portlet.wiki.model.WikiPage" %>
 
 <%
 Object bean = request.getAttribute("aui:workflow-status:bean");

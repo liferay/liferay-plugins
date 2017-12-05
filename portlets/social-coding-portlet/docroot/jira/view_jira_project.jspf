@@ -29,7 +29,7 @@ int reporterIssuesClosedCount = JIRAIssueLocalServiceUtil.getReporterJIRAIssuesC
 int reporterIssuesLastWeekCount = JIRAIssueLocalServiceUtil.getReporterJIRAIssuesCount(lastWeek, projectId, jiraUserId);
 int reporterIssuesOpenCount = reporterIssuesTotalCount - reporterIssuesClosedCount;
 
-Object[][] jiraProjectRowsArray = new Object[][] {
+Object[][] jiraProjectRowsArray = {
 	new Object[] {
 		"assigned-issues",
 		jiraURL + "&assigneeSelect=specificuser&assignee=" + jiraUserId
@@ -97,19 +97,19 @@ Object[][] jiraProjectRowsArray = new Object[][] {
 			</tr>
 
 		<%
+		}
+		else {
+			String message = (String)jiraProjectRows[0];
+			String icon = (String)jiraProjectRows[1];
+			String url = "javascript:location.href = '" + (String)jiraProjectRows[2] + "';";
+			int curCount = ((Integer)jiraProjectRows[3]).intValue();
+			int totalCount = ((Integer)jiraProjectRows[4]).intValue();
+
+			double ratio = (double)curCount / (double)totalCount;
+
+			if (totalCount == 0) {
+				ratio = 0;
 			}
-			else {
-				String message = (String)jiraProjectRows[0];
-				String icon = (String)jiraProjectRows[1];
-				String url = "javascript:location.href = '" + (String)jiraProjectRows[2] + "';";
-				int curCount = ((Integer)jiraProjectRows[3]).intValue();
-				int totalCount = ((Integer)jiraProjectRows[4]).intValue();
-
-				double ratio = (double)curCount / (double)totalCount;
-
-				if (totalCount == 0) {
-					ratio = 0;
-				}
 		%>
 
 			<tr>

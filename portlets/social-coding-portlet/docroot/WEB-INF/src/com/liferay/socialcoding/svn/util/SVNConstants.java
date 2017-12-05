@@ -34,7 +34,7 @@ public interface SVNConstants {
 		"svn://svn.liferay.com/repos/public/portal/trunk";
 
 	public static final String[] SVN_URLS =
-		new String[] {SVN_PORTAL_TRUNK_URL, SVN_PLUGINS_TRUNK_URL};
+		{SVN_PORTAL_TRUNK_URL, SVN_PLUGINS_TRUNK_URL};
 
 	public static final String WEB_REVISION_NUMBER_URL =
 		"http://svn.liferay.com/changelog/{0}/?cs={1}";

@@ -208,7 +208,7 @@ Test only in
 			};
 		}
 
-		String[][] tests = new String[][] {
+		String[][] tests = {
 			new String[] {"Override a portal language entry from a hook.", "first-name"},
 			new String[] {"Override a portal language entry from a portlet.", "welcome"},
 			new String[] {"Add a new portlet language entry from a hook.", "playing-basketball-is-fun"},

@@ -18,28 +18,28 @@
 
 <%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
 
-<%@ taglib uri="http://liferay.com/tld/aui" prefix="aui" %>
-<%@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %>
-<%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
+<%@ taglib uri="http://liferay.com/tld/aui" prefix="aui" %><%@
+taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %><%@
+taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
-<%@ page import="com.liferay.portal.kernel.exception.CookieNotSupportedException" %>
-<%@ page import="com.liferay.portal.kernel.exception.NoSuchUserException" %>
-<%@ page import="com.liferay.portal.kernel.exception.PasswordExpiredException" %>
-<%@ page import="com.liferay.portal.kernel.exception.UserEmailAddressException" %>
-<%@ page import="com.liferay.portal.kernel.exception.UserLockoutException" %>
-<%@ page import="com.liferay.portal.kernel.exception.UserPasswordException" %>
-<%@ page import="com.liferay.portal.kernel.exception.UserScreenNameException" %>
-<%@ page import="com.liferay.portal.kernel.language.LanguageUtil" %>
-<%@ page import="com.liferay.portal.kernel.model.Company" %>
-<%@ page import="com.liferay.portal.kernel.security.auth.AuthException" %>
-<%@ page import="com.liferay.portal.kernel.util.ClassResolverUtil" %>
-<%@ page import="com.liferay.portal.kernel.util.Constants" %>
-<%@ page import="com.liferay.portal.kernel.util.GetterUtil" %>
-<%@ page import="com.liferay.portal.kernel.util.HtmlUtil" %>
-<%@ page import="com.liferay.portal.kernel.util.MethodKey" %>
-<%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
-<%@ page import="com.liferay.portal.kernel.util.PortalClassInvoker" %>
-<%@ page import="com.liferay.portal.kernel.util.PropsUtil" %>
+<%@ page import="com.liferay.portal.kernel.exception.CookieNotSupportedException" %><%@
+page import="com.liferay.portal.kernel.exception.NoSuchUserException" %><%@
+page import="com.liferay.portal.kernel.exception.PasswordExpiredException" %><%@
+page import="com.liferay.portal.kernel.exception.UserEmailAddressException" %><%@
+page import="com.liferay.portal.kernel.exception.UserLockoutException" %><%@
+page import="com.liferay.portal.kernel.exception.UserPasswordException" %><%@
+page import="com.liferay.portal.kernel.exception.UserScreenNameException" %><%@
+page import="com.liferay.portal.kernel.language.LanguageUtil" %><%@
+page import="com.liferay.portal.kernel.model.Company" %><%@
+page import="com.liferay.portal.kernel.security.auth.AuthException" %><%@
+page import="com.liferay.portal.kernel.util.ClassResolverUtil" %><%@
+page import="com.liferay.portal.kernel.util.Constants" %><%@
+page import="com.liferay.portal.kernel.util.GetterUtil" %><%@
+page import="com.liferay.portal.kernel.util.HtmlUtil" %><%@
+page import="com.liferay.portal.kernel.util.MethodKey" %><%@
+page import="com.liferay.portal.kernel.util.ParamUtil" %><%@
+page import="com.liferay.portal.kernel.util.PortalClassInvoker" %><%@
+page import="com.liferay.portal.kernel.util.PropsUtil" %>
 
 <%@ page import="javax.portlet.WindowState" %>
 

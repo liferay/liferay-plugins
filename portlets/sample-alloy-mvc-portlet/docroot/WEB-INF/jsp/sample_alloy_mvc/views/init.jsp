@@ -29,8 +29,6 @@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %><%@
 taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %><%@
 taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 
-<%@ taglib prefix="liferay-frontend" uri="http://liferay.com/tld/theme" %>
-
 <%@ page import="javax.portlet.PortletMode" %>
 
 <liferay-frontend:defineObjects />

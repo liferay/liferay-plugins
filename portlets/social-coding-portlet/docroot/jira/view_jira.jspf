@@ -24,7 +24,7 @@ String jiraUserId = ExpandoValueLocalServiceUtil.getData(company.getCompanyId(),
 			<c:when test="<%= Validator.isNotNull(jiraUserId) %>">
 
 				<%
-				Object[][] jiraProjects = new Object[][] {
+				Object[][] jiraProjects = {
 					new Object[] {JIRAConstants.PROJECT_LPS, "LPS", "Liferay Portal Standard Edition"},
 					new Object[] {JIRAConstants.PROJECT_LPE, "LPE", "Liferay Portal Enterprise Edition"}
 				};

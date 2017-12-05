@@ -14,7 +14,8 @@
 		language="java"
 		message="Do not call Assert#fail improperly."
 		name="AssertFailJUnitRule"
-		since="0.1">
+		since="0.1"
+	>
 		<description>
 			Detect when Assert#fail is called improperly.
 		</description>
@@ -151,7 +152,8 @@ public class Foo {
 		externalInfoUrl="http://pmd.sourceforge.net/snapshot/pmd-java/rules/java/unnecessary.html#UselessOperationOnImmutable"
 		message="An operation on an Immutable object (String, BigDecimal or BigInteger) won't change the object itself"
 		name="UselessOperationOnImmutable"
-		since="3.5">
+		since="3.5"
+	>
 		<description>
 			[Origin rule set file rulesets/java/unnecessary.xml] An operation on an Immutable object (String, BigDecimal or BigInteger) won't change the object itself since the result of the operation is a new object. Therefore, ignoring the operation result is an error.
 		</description>
@@ -177,7 +179,8 @@ bigDecimal = bigDecimal.add(new BigDecimal(5));
 		language="java"
 		message="Avoid unused local variables such as ''{0}''."
 		name="UnusedLocalVariable"
-		since="0.1">
+		since="0.1"
+	>
 		<description>
 			[Origin rule set file rulesets/java/unusedcode.xml] Detects when a local variable is declared and/or assigned, but not used.
 		</description>

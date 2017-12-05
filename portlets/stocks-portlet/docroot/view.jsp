@@ -139,6 +139,7 @@
 						<tr>
 							<td align="center">
 								<liferay-ui:message key="last-trade" /><br />
+
 								<strong><%= decimalFormat.format(stocks.getLastTrade()) %></strong>
 							</td>
 							<td align="center">
@@ -168,22 +169,27 @@
 							</td>
 							<td align="center">
 								<liferay-ui:message key="day-high" /><br />
+
 								<strong><%= stocks.isDayHighAvailable() ? decimalFormat.format(stocks.getDayHigh()) : LanguageUtil.get(request, "not-available") %></strong>
 							</td>
 							<td align="center">
 								<liferay-ui:message key="day-low" /><br />
+
 								<strong><%= stocks.isDayLowAvailable() ? decimalFormat.format(stocks.getDayLow()) : LanguageUtil.get(request, "not-available") %></strong>
 							</td>
 							<td align="center">
 								<liferay-ui:message key="open" /><br />
+
 								<strong><%= stocks.isOpenAvailable() ? decimalFormat.format(stocks.getOpen()) : LanguageUtil.get(request, "not-available") %></strong>
 							</td>
 							<td align="center">
 								<liferay-ui:message key="previous-close" /><br />
+
 								<strong><%= stocks.isPreviousCloseAvailable() ? decimalFormat.format(stocks.getPreviousClose()) : LanguageUtil.get(request, "not-available") %></strong>
 							</td>
 							<td align="center">
 								<liferay-ui:message key="volume" /><br />
+
 								<strong><%= stocks.isVolumeAvailable() ? numberFormat.format(stocks.getVolume()) : LanguageUtil.get(request, "not-available") %></strong>
 							</td>
 						</tr>

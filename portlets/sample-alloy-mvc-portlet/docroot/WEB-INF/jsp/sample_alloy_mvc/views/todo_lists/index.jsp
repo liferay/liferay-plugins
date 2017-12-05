@@ -29,6 +29,7 @@
 	<liferay-ui:search-container-results
 		results="${samTodoLists}"
 	/>
+
 	<liferay-ui:search-container-row
 		className="com.liferay.samplealloymvc.model.SAMTodoList"
 		escapedModel="${true}"

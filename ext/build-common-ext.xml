@@ -146,13 +146,13 @@ then "app.server.dir" should point to
 		<if>
 			<available file="docroot/WEB-INF/ext-web/docroot/WEB-INF/lib" />
 			<then>
-						<fail>
+				<fail>
 .
 
 "docroot\WEB-INF\ext-web\docroot\WEB-INF\lib" must not exist. Put JAR files in
 "docroot\WEB-INF\ext-lib\portal" that need to be accessible to the portal class
 loader.
-						</fail>
+				</fail>
 			</then>
 		</if>
 	</target>
@@ -198,11 +198,11 @@ loader.
 		/>
 	</target>
 
-    <target depends="war" name="deploy">
-        <copy file="${plugin.file}" todir="${auto.deploy.dir}" />
-    </target>
+	<target depends="war" name="deploy">
+		<copy file="${plugin.file}" todir="${auto.deploy.dir}" />
+	</target>
 
-    <target name="deploy-properties">
+	<target name="deploy-properties">
 		<copy overwrite="true" todir="${app.server.classes.portal.dir}">
 			<fileset dir="docroot/WEB-INF/ext-impl/src" includes="portal-*.properties,system-*.properties" />
 		</copy>
@@ -221,8 +221,8 @@ loader.
 
 				<copy
 					file="docroot/WEB-INF/ext-kernel/ext-kernel.jar"
-					tofile="${app.server.dir}/lib/ext/global/ext-${plugin.name}-kernel.jar"
 					overwrite="true"
+					tofile="${app.server.dir}/lib/ext/global/ext-${plugin.name}-kernel.jar"
 				/>
 
 				<copy overwrite="true" todir="${app.server.dir}/lib/ext/portal">
@@ -231,26 +231,26 @@ loader.
 
 				<copy
 					file="docroot/WEB-INF/ext-impl/ext-impl.jar"
-					tofile="${app.server.dir}/lib/ext/portal/ext-${plugin.name}-impl.jar"
 					overwrite="true"
+					tofile="${app.server.dir}/lib/ext/portal/ext-${plugin.name}-impl.jar"
 				/>
 
 				<copy
 					file="docroot/WEB-INF/ext-util-bridges/ext-util-bridges.jar"
-					tofile="${app.server.dir}/lib/ext/portal/ext-${plugin.name}-util-bridges.jar"
 					overwrite="true"
+					tofile="${app.server.dir}/lib/ext/portal/ext-${plugin.name}-util-bridges.jar"
 				/>
 
 				<copy
 					file="docroot/WEB-INF/ext-util-java/ext-util-java.jar"
-					tofile="${app.server.dir}/lib/ext/portal/ext-${plugin.name}-util-java.jar"
 					overwrite="true"
+					tofile="${app.server.dir}/lib/ext/portal/ext-${plugin.name}-util-java.jar"
 				/>
 
 				<copy
 					file="docroot/WEB-INF/ext-util-taglib/ext-util-taglib.jar"
-					tofile="${app.server.dir}/lib/ext/portal/ext-${plugin.name}-util-taglib.jar"
 					overwrite="true"
+					tofile="${app.server.dir}/lib/ext/portal/ext-${plugin.name}-util-taglib.jar"
 				/>
 			</then>
 			<else>
@@ -260,8 +260,8 @@ loader.
 
 				<copy
 					file="docroot/WEB-INF/ext-kernel/ext-kernel.jar"
-					tofile="${app.server.lib.global.dir}/ext-${plugin.name}-kernel.jar"
 					overwrite="true"
+					tofile="${app.server.lib.global.dir}/ext-${plugin.name}-kernel.jar"
 				/>
 
 				<copy overwrite="true" todir="${app.server.lib.portal.dir}">
@@ -270,26 +270,26 @@ loader.
 
 				<copy
 					file="docroot/WEB-INF/ext-impl/ext-impl.jar"
-					tofile="${app.server.lib.portal.dir}/ext-${plugin.name}-impl.jar"
 					overwrite="true"
+					tofile="${app.server.lib.portal.dir}/ext-${plugin.name}-impl.jar"
 				/>
 
 				<copy
 					file="docroot/WEB-INF/ext-util-bridges/ext-util-bridges.jar"
-					tofile="${app.server.lib.portal.dir}/ext-${plugin.name}-util-bridges.jar"
 					overwrite="true"
+					tofile="${app.server.lib.portal.dir}/ext-${plugin.name}-util-bridges.jar"
 				/>
 
 				<copy
 					file="docroot/WEB-INF/ext-util-java/ext-util-java.jar"
-					tofile="${app.server.lib.portal.dir}/ext-${plugin.name}-util-java.jar"
 					overwrite="true"
+					tofile="${app.server.lib.portal.dir}/ext-${plugin.name}-util-java.jar"
 				/>
 
 				<copy
 					file="docroot/WEB-INF/ext-util-taglib/ext-util-taglib.jar"
-					tofile="${app.server.lib.portal.dir}/ext-${plugin.name}-util-taglib.jar"
 					overwrite="true"
+					tofile="${app.server.lib.portal.dir}/ext-${plugin.name}-util-taglib.jar"
 				/>
 			</else>
 		</if>

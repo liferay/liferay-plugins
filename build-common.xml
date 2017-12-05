@@ -436,8 +436,8 @@ Error-Prone was automatically installed. Please rerun your task.
 										<try>
 											<mirrors-get
 												dest="${plugin.file}"
-												trylocalnetwork="false"
 												src="${module.snapshot.url}"
+												trylocalnetwork="false"
 											/>
 										</try>
 										<catch>
@@ -964,8 +964,8 @@ Error-Prone was automatically installed. Please rerun your task.
 								<then>
 									<copy
 										file="${sdk.dir}/hooks/@{plugin.required.context}/docroot/WEB-INF/lib/@{plugin.required.context}-service.jar"
-										todir="@{module.dir}/docroot/WEB-INF/lib"
 										overwrite="true"
+										todir="@{module.dir}/docroot/WEB-INF/lib"
 									/>
 								</then>
 								<elseif>
@@ -973,8 +973,8 @@ Error-Prone was automatically installed. Please rerun your task.
 									<then>
 										<copy
 											file="${sdk.dir}/portlets/@{plugin.required.context}/docroot/WEB-INF/lib/@{plugin.required.context}-service.jar"
-											todir="@{module.dir}/docroot/WEB-INF/lib"
 											overwrite="true"
+											todir="@{module.dir}/docroot/WEB-INF/lib"
 										/>
 									</then>
 								</elseif>
@@ -983,8 +983,8 @@ Error-Prone was automatically installed. Please rerun your task.
 									<then>
 										<copy
 											file="${sdk.dir}/webs/@{plugin.required.context}/docroot/WEB-INF/lib/@{plugin.required.context}-service.jar"
-											todir="@{module.dir}/docroot/WEB-INF/lib"
 											overwrite="true"
+											todir="@{module.dir}/docroot/WEB-INF/lib"
 										/>
 									</then>
 								</elseif>
@@ -993,8 +993,8 @@ Error-Prone was automatically installed. Please rerun your task.
 									<then>
 										<copy
 											file="@{module.dir}/../@{plugin.required.context}/docroot/WEB-INF/lib/@{plugin.required.context}-service.jar"
-											todir="@{module.dir}/docroot/WEB-INF/lib"
 											overwrite="true"
+											todir="@{module.dir}/docroot/WEB-INF/lib"
 										/>
 									</then>
 								</elseif>

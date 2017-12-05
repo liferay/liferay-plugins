@@ -985,6 +985,7 @@
 
 			cipher.doFinal(text.getBytes());
 		}
+
 	};
 	%>
 
@@ -1006,6 +1007,7 @@
 
 			mac.doFinal(text.getBytes());
 		}
+
 	};
 	%>
 
@@ -3029,7 +3031,6 @@ private class SQLSecurityExceptionTest extends SecurityExceptionTest {
 		finally {
 			DataAccess.cleanUp(connection, statement);
 		}
-
 	}
 
 	protected void testDB(String sql) throws Exception {

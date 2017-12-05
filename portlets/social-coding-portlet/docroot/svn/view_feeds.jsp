@@ -125,5 +125,5 @@
 </c:if>
 
 <%!
-private static Log _log = LogFactoryUtil.getLog("svn.view_feeds_jsp");
+private static Log _log = LogFactoryUtil.getLog("com_liferay_social_coding_portlet.svn.view_feeds_jsp");
 %>
