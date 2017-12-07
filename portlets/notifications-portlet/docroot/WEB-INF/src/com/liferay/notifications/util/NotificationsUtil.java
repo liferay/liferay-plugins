@@ -20,6 +20,8 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.messaging.DestinationNames;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.notifications.NotificationEvent;
@@ -272,23 +274,53 @@ public class NotificationsUtil {
 						continue;
 					}
 
-					User user = UserLocalServiceUtil.fetchUserById(
-							subscription.getUserId());
+					User subscriberUser = UserLocalServiceUtil.fetchUserById(
+						subscriberUserId);
+
+					if (subscriberUser == null) {
+						if (_log.isInfoEnabled()) {
+							_log.info(
+								"Subscription " +
+									subscription.getSubscriptionId() +
+										" is stale and will be deleted");
+						}
+
+						SubscriptionLocalServiceUtil.deleteSubscription(
+							subscription.getSubscriptionId());
+
+						continue;
+					}
+
+					if (!subscriberUser.isActive()) {
+						if (_log.isInfoEnabled()) {
+							_log.info(
+								"Skip inactive user " +
+									subscriberUser.getUserId());
+						}
+
+						continue;
+					}
+
+					PermissionChecker permissionChecker = null;
 
 					try {
-						PermissionChecker permissionChecker =
-							PermissionCheckerFactoryUtil.create(user);
-
-						if (!SubscriptionPermissionUtil.contains(
-								permissionChecker, subscription.getClassName(),
-							subscription.getClassPK(),
-							notificationEventJSONObject.getString("className"),
-							notificationEventJSONObject.getLong("classPK"))) {
-
-							continue;
-						}
+						permissionChecker = PermissionCheckerFactoryUtil.create(
+							subscriberUser);
 					}
 					catch (Exception e) {
+						if (_log.isErrorEnabled()) {
+							_log.error(e);
+						}
+
+						continue;
+					}
+
+					if (!SubscriptionPermissionUtil.contains(
+							permissionChecker, subscription.getClassName(),
+						subscription.getClassPK(),
+						notificationEventJSONObject.getString("className"),
+						notificationEventJSONObject.getLong("classPK"))) {
+
 						continue;
 					}
 
@@ -314,6 +346,9 @@ public class NotificationsUtil {
 		}
 
 		private static final long serialVersionUID = 1L;
+
+		private static Log _log = LogFactoryUtil.getLog(
+			NotificationsUtil.class);
 
 		private long _companyId;
 		private JSONObject _notificationEventJSONObject;
