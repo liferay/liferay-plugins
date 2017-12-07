@@ -251,9 +251,10 @@ public class NotificationsUtil {
 			int notificationType = notificationEventJSONObject.getInt(
 				"notificationType");
 
-			long userId = notificationEventJSONObject.getLong("userId");
+			long notificationUserId = notificationEventJSONObject.getLong(
+				"userId");
 
-			Set<Long> subscriberUserIds = new HashSet<Long>();
+			Set<Long> notifiedUserIds = new HashSet<Long>();
 
 			for (ObjectValuePair<String, Long> ovp : subscribersOVPs) {
 				String className = ovp.getKey();
@@ -264,70 +265,22 @@ public class NotificationsUtil {
 						companyId, className, classPK);
 
 				for (Subscription subscription : subscriptions) {
-					long subscriberUserId = subscription.getUserId();
+					long subscriptionUserId = subscription.getUserId();
 
-					if (subscriberUserId == userId) {
-						continue;
-					}
-
-					if (subscriberUserIds.contains(subscriberUserId)) {
-						continue;
-					}
-
-					User subscriberUser = UserLocalServiceUtil.fetchUserById(
-						subscriberUserId);
-
-					if (subscriberUser == null) {
-						if (_log.isInfoEnabled()) {
-							_log.info(
-								"Subscription " +
-									subscription.getSubscriptionId() +
-										" is stale and will be deleted");
-						}
-
-						SubscriptionLocalServiceUtil.deleteSubscription(
-							subscription.getSubscriptionId());
-
-						continue;
-					}
-
-					if (!subscriberUser.isActive()) {
-						if (_log.isInfoEnabled()) {
-							_log.info(
-								"Skip inactive user " +
-									subscriberUser.getUserId());
-						}
-
-						continue;
-					}
-
-					PermissionChecker permissionChecker = null;
-
-					try {
-						permissionChecker = PermissionCheckerFactoryUtil.create(
-							subscriberUser);
-					}
-					catch (Exception e) {
-						if (_log.isErrorEnabled()) {
-							_log.error(e);
-						}
-
-						continue;
-					}
-
-					if (!SubscriptionPermissionUtil.contains(
-							permissionChecker, subscription.getClassName(),
-						subscription.getClassPK(),
+					if (!_isNotificable(
+							subscriptionUserId, notificationUserId,
+						subscription, notifiedUserIds,
 						notificationEventJSONObject.getString("className"),
-						notificationEventJSONObject.getLong("classPK"))) {
+						notificationEventJSONObject.getLong("classPK")
+					)) {
 
 						continue;
 					}
 
-					subscriberUserIds.add(subscriberUserId);
+					notifiedUserIds.add(subscriptionUserId);
 
 					if (UserNotificationManagerUtil.isDeliver(
-							subscriberUserId, portletKey, 0, notificationType,
+							subscriptionUserId, portletKey, 0, notificationType,
 							UserNotificationDeliveryConstants.TYPE_WEBSITE)) {
 
 						NotificationEvent notificationEvent =
@@ -339,10 +292,76 @@ public class NotificationsUtil {
 						com.liferay.portal.service.
 							UserNotificationEventLocalServiceUtil.
 								addUserNotificationEvent(
-									subscriberUserId, notificationEvent);
+									subscriptionUserId, notificationEvent);
 					}
 				}
 			}
+		}
+
+		private boolean _isNotificable(
+				long subscriberUserId, long notificationUserId,
+				Subscription subscription, Set<Long> notifiedUserIds,
+				String notificationEventJSONObjectClassName,
+				long notificationEventJSONObjectClassPK)
+			throws SystemException, PortalException {
+
+			if (subscriberUserId == notificationUserId) {
+				return false;
+			}
+
+			if (notifiedUserIds.contains(subscriberUserId)) {
+				return false;
+			}
+
+			User subscriberUser = UserLocalServiceUtil.fetchUserById(
+				subscriberUserId);
+
+			if (subscriberUser == null) {
+				if (_log.isInfoEnabled()) {
+					_log.info(
+						"Subscription " + subscription.getSubscriptionId() +
+							" is stale and will be deleted");
+				}
+
+				SubscriptionLocalServiceUtil.deleteSubscription(
+					subscription.getSubscriptionId());
+
+				return false;
+			}
+
+			if (!subscriberUser.isActive()) {
+				if (_log.isInfoEnabled()) {
+					_log.info(
+						"Skip inactive user " + subscriberUser.getUserId());
+				}
+
+				return false;
+			}
+
+			PermissionChecker permissionChecker = null;
+
+			try {
+				permissionChecker = PermissionCheckerFactoryUtil.create(
+					subscriberUser);
+			}
+			catch (Exception e) {
+				if (_log.isErrorEnabled()) {
+					_log.error(e);
+				}
+
+				return false;
+			}
+
+			if (!SubscriptionPermissionUtil.contains(
+					permissionChecker, subscription.getClassName(),
+					subscription.getClassPK(),
+					notificationEventJSONObjectClassName,
+					notificationEventJSONObjectClassPK)) {
+
+				return false;
+			}
+
+			return true;
 		}
 
 		private static final long serialVersionUID = 1L;
