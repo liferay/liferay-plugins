@@ -32,9 +32,14 @@ import com.liferay.portal.kernel.util.ObjectValuePair;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.Subscription;
+import com.liferay.portal.model.User;
 import com.liferay.portal.model.UserNotificationDeliveryConstants;
+import com.liferay.portal.security.permission.PermissionChecker;
+import com.liferay.portal.security.permission.PermissionCheckerFactoryUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.SubscriptionLocalServiceUtil;
+import com.liferay.portal.service.UserLocalServiceUtil;
+import com.liferay.portal.service.permission.SubscriptionPermissionUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.asset.model.AssetRenderer;
@@ -264,6 +269,26 @@ public class NotificationsUtil {
 					}
 
 					if (subscriberUserIds.contains(subscriberUserId)) {
+						continue;
+					}
+
+					User user = UserLocalServiceUtil.fetchUserById(
+							subscription.getUserId());
+
+					try {
+						PermissionChecker permissionChecker =
+							PermissionCheckerFactoryUtil.create(user);
+
+						if (!SubscriptionPermissionUtil.contains(
+								permissionChecker, subscription.getClassName(),
+							subscription.getClassPK(),
+							notificationEventJSONObject.getString("className"),
+							notificationEventJSONObject.getLong("classPK"))) {
+
+							continue;
+						}
+					}
+					catch (Exception e) {
 						continue;
 					}
 
