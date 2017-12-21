@@ -64,7 +64,7 @@ public class BookmarksEntryLocalServiceImpl
 		if (Validator.isNotNull(entryURL)) {
 			NotificationsUtil.sendNotificationEvent(
 				bookmarksEntry.getCompanyId(), PortletKeys.BOOKMARKS,
-				_BOOKMARKS_FOLDER_CLASS_NAME, bookmarksEntry.getFolderId(),
+				_BOOKMARKS_ENTRY_CLASS_NAME, bookmarksEntry.getEntryId(),
 				assetRenderer.getTitle(serviceContext.getLocale()), entryURL,
 				UserNotificationDefinition.NOTIFICATION_TYPE_ADD_ENTRY,
 				getSubscribersOVPs(

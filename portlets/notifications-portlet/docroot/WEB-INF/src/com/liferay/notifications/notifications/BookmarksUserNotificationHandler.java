@@ -26,7 +26,9 @@ import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.util.PortletKeys;
 import com.liferay.portlet.asset.model.AssetRenderer;
+import com.liferay.portlet.bookmarks.model.BookmarksEntry;
 import com.liferay.portlet.bookmarks.model.BookmarksFolder;
+import com.liferay.portlet.bookmarks.service.BookmarksEntryLocalServiceUtil;
 import com.liferay.portlet.bookmarks.service.BookmarksFolderLocalServiceUtil;
 
 /**
@@ -57,7 +59,12 @@ public class BookmarksUserNotificationHandler
 
 			message = "x-added-a-new-bookmarks-in-folder-x";
 
-			long folderId = jsonObject.getLong("classPK");
+			long entryId = jsonObject.getLong("classPK");
+
+			BookmarksEntry bookmarksEntry =
+				BookmarksEntryLocalServiceUtil.getEntry(entryId);
+
+			long folderId = bookmarksEntry.getFolderId();
 
 			BookmarksFolder bookmarksFolder =
 				BookmarksFolderLocalServiceUtil.getBookmarksFolder(folderId);
