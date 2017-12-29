@@ -59,15 +59,16 @@ public class BookmarksUserNotificationHandler
 
 			message = "x-added-a-new-bookmarks-in-folder-x";
 
-			long entryId = jsonObject.getLong("classPK");
+			long bookmarksEntryId = jsonObject.getLong("classPK");
 
 			BookmarksEntry bookmarksEntry =
-				BookmarksEntryLocalServiceUtil.getEntry(entryId);
+				BookmarksEntryLocalServiceUtil.getEntry(bookmarksEntryId);
 
-			long folderId = bookmarksEntry.getFolderId();
+			long bookmarksFolderId = bookmarksEntry.getFolderId();
 
 			BookmarksFolder bookmarksFolder =
-				BookmarksFolderLocalServiceUtil.getBookmarksFolder(folderId);
+				BookmarksFolderLocalServiceUtil.getBookmarksFolder(
+					bookmarksFolderId);
 
 			typeName = bookmarksFolder.getName();
 		}
