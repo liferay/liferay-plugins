@@ -303,7 +303,7 @@ public class NotificationsUtil {
 				Subscription subscription, Set<Long> notifiedUserIds,
 				String notificationEventJSONObjectClassName,
 				long notificationEventJSONObjectClassPK)
-			throws SystemException, PortalException {
+			throws PortalException, SystemException {
 
 			if (subscriberUserId == notificationUserId) {
 				return false;
