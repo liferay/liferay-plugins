@@ -38,23 +38,7 @@ configure(subprojects.findAll {!it.childProjects}) {
 
 	poshiRunner {
 		baseDir = "test/functional"
-
-		String[] testPropertiesFileNames = [
-			"test.properties",
-			"test.${System.env.HOSTNAME}.properties",
-			"test.${System.env.HOST}.properties",
-			"test.${System.env.COMPUTERNAME}.properties",
-			"test.${System.env.USER}.properties"
-		]
-
-		for (String testPropertiesFileName in testPropertiesFileNames) {
-			File testPropertiesFile = file("test/functional/${testPropertiesFileName}")
-
-			if (testPropertiesFile.exists()) {
-				poshiProperties << GUtil.loadProperties(testPropertiesFile)
-			}
-		}
-
+		poshiProperties << _getTestProperties(project)
 		poshiPropertiesFile = rootProject.file("${baseDir}/test.properties")
 		openCVVersion = "2.4.10-0.10"
 		version = "1.0.78"
@@ -65,4 +49,92 @@ configure(subprojects.findAll {!it.childProjects}) {
 			url repositoryUrl
 		}
 	}
+}
+
+private static Properties _expandProperties(Properties properties) {
+	boolean propertyExpanded = true
+
+	while (propertyExpanded) {
+		propertyExpanded = false
+
+		Set<String> propertyNames = properties.stringPropertyNames()
+
+		for (String propertyName : propertyNames) {
+			String propertyValue = properties.getProperty(propertyName)
+
+			Map<String, String> replacements = new HashMap<>()
+
+			propertyValue.eachMatch("\\\$\\{.+?\\}") { group ->
+				String name = group.replace("\${", "").replace("}", "")
+
+				if (propertyNames.contains(name) && group != properties.getProperty(name)) {
+					replacements.put(group, properties.getProperty(name))
+
+					propertyExpanded = true
+				}
+			}
+
+			for (String group : replacements.keySet()) {
+				propertyValue = propertyValue.replace(group, replacements.get(group))
+			}
+
+			properties.setProperty(propertyName, propertyValue)
+		}
+	}
+
+	properties
+}
+
+private static Properties _getCustomProperties(String prefix, File dir) {
+	Properties properties = new Properties()
+
+	for (File propertiesFile in _getCustomPropertiesFiles(prefix, dir)) {
+		properties << GUtil.loadProperties(propertiesFile)
+	}
+
+	properties
+}
+
+private static List<File> _getCustomPropertiesFiles(String prefix, File dir) {
+	List<String> propertiesFileNames = ["${prefix}.properties"]
+
+	if (System.env.HOSTNAME) {
+		propertiesFileNames << "${prefix}.${System.env.HOSTNAME}.properties"
+	}
+
+	if (System.env.HOST) {
+		propertiesFileNames << "${prefix}.${System.env.HOST}.properties"
+	}
+
+	if (System.env.COMPUTERNAME) {
+		propertiesFileNames << "${prefix}.${System.env.COMPUTERNAME}.properties"
+	}
+
+	if (System.env.USER) {
+		propertiesFileNames << "${prefix}.${System.env.USER}.properties"
+	}
+
+	List<File> propertiesFiles = new ArrayList<>()
+
+	for (String propertiesFileName in propertiesFileNames) {
+		File propertiesFile = new File(dir, propertiesFileName)
+
+		if (propertiesFile.exists()) {
+			propertiesFiles.add(propertiesFile)
+		}
+	}
+
+	propertiesFiles
+}
+
+private static Properties _getTestProperties(Project project) {
+	Properties properties = new Properties()
+
+	properties << _getCustomProperties("test", project.rootProject.projectDir)
+
+	if (project != project.rootProject) {
+		properties << _getCustomProperties("test", new File(project.projectDir, "test/functional"))
+	}
+
+	_expandProperties(properties)
 }
