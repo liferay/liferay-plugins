@@ -64,11 +64,15 @@ private static Properties _expandProperties(Properties properties) {
 
 			Map<String, String> replacements = new HashMap<>()
 
-			propertyValue.eachMatch("\\\$\\{.+?\\}") { group ->
-				String name = group.replace("\${", "").replace("}", "")
+			propertyValue.eachMatch(/\$\{.+?\}/) {
+				String group ->
 
-				if (propertyNames.contains(name) && group != properties.getProperty(name)) {
-					replacements.put(group, properties.getProperty(name))
+				String name = group.replace('${', '')
+
+				name = name.replace('}', '')
+
+				if (propertyNames.contains(name) && (group != properties.getProperty(name))) {
+					replacements.put group, properties.getProperty(name)
 
 					propertyExpanded = true
 				}
@@ -78,7 +82,7 @@ private static Properties _expandProperties(Properties properties) {
 				propertyValue = propertyValue.replace(group, replacements.get(group))
 			}
 
-			properties.setProperty(propertyName, propertyValue)
+			properties.setProperty propertyName, propertyValue
 		}
 	}
 
@@ -136,5 +140,5 @@ private static Properties _getTestProperties(Project project) {
 		properties << _getCustomProperties("test", new File(project.projectDir, "test/functional"))
 	}
 
-	_expandProperties(properties)
+	_expandProperties properties
 }
