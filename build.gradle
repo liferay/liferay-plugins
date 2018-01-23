@@ -38,9 +38,9 @@ configure(subprojects.findAll {!it.childProjects}) {
 
 	poshiRunner {
 		baseDir = "test/functional"
+		openCVVersion = "2.4.10-0.10"
 		poshiProperties << _getTestProperties(project)
 		poshiPropertiesFile = rootProject.file("${baseDir}/test.properties")
-		openCVVersion = "2.4.10-0.10"
 		version = "1.0.78"
 	}
 
