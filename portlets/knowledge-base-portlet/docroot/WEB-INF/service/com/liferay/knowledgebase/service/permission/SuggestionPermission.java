@@ -21,7 +21,6 @@ import com.liferay.knowledgebase.util.ActionKeys;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
-import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.security.permission.PermissionChecker;
 
 /**
@@ -32,7 +31,7 @@ public class SuggestionPermission {
 	public static boolean contains(
 			PermissionChecker permissionChecker, long groupId,
 			KBArticle kbArticle, String actionId)
-		throws PrincipalException {
+		throws PortalException, SystemException {
 
 		if (!actionId.equals(ActionKeys.VIEW_SUGGESTIONS)) {
 			throw new IllegalArgumentException(
