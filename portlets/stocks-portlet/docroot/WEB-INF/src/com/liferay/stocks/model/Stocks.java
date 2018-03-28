@@ -18,24 +18,25 @@ import java.io.Serializable;
 
 /**
  * @author Brian Wing Shun Chan
+ * @author Hugo Huijser
  */
 public class Stocks implements Serializable {
 
-	public Stocks(
-		String symbol, double lastTrade, double change, double open,
-		double dayHigh, double dayLow, long volume) {
-
+	public Stocks(String symbol) {
 		_symbol = symbol;
-		_lastTrade = lastTrade;
-		_change = change;
-		_open = open;
-		_dayHigh = dayHigh;
-		_dayLow = dayLow;
-		_volume = volume;
+	}
+
+	/**
+	 * @deprecated As of 7.0.0, replaced by {@link #Stocks(String)}
+	 */
+	@Deprecated
+	public Stocks(
+		String symbol, double lastTrade, double previousClose, double open,
+		double dayHigh, double dayLow, long volume) {
 	}
 
 	public double getChange() {
-		return _change;
+		return _lastTrade - _previousClose;
 	}
 
 	public double getDayHigh() {
@@ -55,7 +56,7 @@ public class Stocks implements Serializable {
 	}
 
 	public double getPreviousClose() {
-		return _lastTrade - _change;
+		return _previousClose;
 	}
 
 	public String getSymbol() {
@@ -66,38 +67,57 @@ public class Stocks implements Serializable {
 		return _volume;
 	}
 
+	/**
+	 * @deprecated As of 7.0.0, with no direct replacement
+	 */
+	@Deprecated
 	public boolean isChangeAvailable() {
-		return _changeAvailable;
+		return true;
 	}
 
+	/**
+	 * @deprecated As of 7.0.0, with no direct replacement
+	 */
+	@Deprecated
 	public boolean isDayHighAvailable() {
-		return _dayHighAvailable;
+		return true;
 	}
 
+	/**
+	 * @deprecated As of 7.0.0, with no direct replacement
+	 */
+	@Deprecated
 	public boolean isDayLowAvailable() {
-		return _dayLowAvailable;
+		return true;
 	}
 
+	/**
+	 * @deprecated As of 7.0.0, with no direct replacement
+	 */
+	@Deprecated
 	public boolean isLastTradeAvailable() {
-		return _lastTradeAvailable;
+		return true;
 	}
 
+	/**
+	 * @deprecated As of 7.0.0, with no direct replacement
+	 */
+	@Deprecated
 	public boolean isOpenAvailable() {
-		return _openAvailable;
+		return true;
 	}
 
+	/**
+	 * @deprecated As of 7.0.0, with no direct replacement
+	 */
+	@Deprecated
 	public boolean isPreviousCloseAvailable() {
-		if (isLastTradeAvailable() && isChangeAvailable()) {
-			return true;
-		}
-		else {
-			return false;
-		}
+		return true;
 	}
 
 	public boolean isValid() {
-		if ((_change == 0) && (_open == 0) && (_dayHigh == 0) &&
-			(_dayLow == 0) && (_volume == 0)) {
+		if ((_dayHigh == 0) && (_dayLow == 0) && (_open == 0) &&
+			(_previousClose == 0) && (_volume == 0)) {
 
 			return false;
 		}
@@ -106,70 +126,100 @@ public class Stocks implements Serializable {
 		}
 	}
 
+	/**
+	 * @deprecated As of 7.0.0, with no direct replacement
+	 */
+	@Deprecated
 	public boolean isVolumeAvailable() {
-		return _volumeAvailable;
+		return true;
 	}
 
+	/**
+	 * @deprecated As of 7.0.0, with no direct replacement
+	 */
+	@Deprecated
 	public void setChange(double change) {
-		_change = change;
 	}
 
+	/**
+	 * @deprecated As of 7.0.0, with no direct replacement
+	 */
+	@Deprecated
 	public void setChangeAvailable(boolean changeAvailable) {
-		_changeAvailable = changeAvailable;
 	}
 
 	public void setDayHigh(double dayHigh) {
 		_dayHigh = dayHigh;
 	}
 
+	/**
+	 * @deprecated As of 7.0.0, with no direct replacement
+	 */
+	@Deprecated
 	public void setDayHighAvailable(boolean dayHighAvailable) {
-		_dayHighAvailable = dayHighAvailable;
 	}
 
 	public void setDayLow(double dayLow) {
 		_dayLow = dayLow;
 	}
 
+	/**
+	 * @deprecated As of 7.0.0, with no direct replacement
+	 */
+	@Deprecated
 	public void setDayLowAvailable(boolean dayLowAvailable) {
-		_dayLowAvailable = dayLowAvailable;
 	}
 
 	public void setLastTrade(double lastTrade) {
 		_lastTrade = lastTrade;
 	}
 
+	/**
+	 * @deprecated As of 7.0.0, with no direct replacement
+	 */
+	@Deprecated
 	public void setLastTradeAvailable(boolean lastTradeAvailable) {
-		_lastTradeAvailable = lastTradeAvailable;
 	}
 
 	public void setOpen(double open) {
 		_open = open;
 	}
 
+	/**
+	 * @deprecated As of 7.0.0, with no direct replacement
+	 */
+	@Deprecated
 	public void setOpenAvailable(boolean openAvailable) {
-		_openAvailable = openAvailable;
+	}
+
+	public void setPreviousClose(double previousClose) {
+		_previousClose = previousClose;
+	}
+
+	/**
+	 * @deprecated As of 7.0.0, with no direct replacement
+	 */
+	@Deprecated
+	public void setPreviousCloseAvailable(boolean previousCloseAvailable) {
 	}
 
 	public void setVolume(long volume) {
 		_volume = volume;
 	}
 
+	/**
+	 * @deprecated As of 7.0.0, with no direct replacement
+	 */
+	@Deprecated
 	public void setVolumeAvailable(boolean volumeAvailable) {
-		_volumeAvailable = volumeAvailable;
 	}
 
-	private double _change;
-	private boolean _changeAvailable = true;
 	private double _dayHigh;
-	private boolean _dayHighAvailable = true;
 	private double _dayLow;
-	private boolean _dayLowAvailable = true;
 	private double _lastTrade;
-	private boolean _lastTradeAvailable = true;
 	private double _open;
-	private boolean _openAvailable = true;
+	private double _previousClose;
 	private String _symbol;
 	private long _volume;
-	private boolean _volumeAvailable = true;
 
 }

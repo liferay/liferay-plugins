@@ -16,16 +16,15 @@ package com.liferay.stocks.util;
 
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
-import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.kernel.webcache.WebCacheException;
 import com.liferay.portal.kernel.webcache.WebCacheItem;
 import com.liferay.stocks.model.Stocks;
 
-import java.util.StringTokenizer;
-
 /**
  * @author Brian Wing Shun Chan
+ * @author Hugo Huijser
  */
 public class StocksWebCacheItem implements WebCacheItem {
 
@@ -36,108 +35,59 @@ public class StocksWebCacheItem implements WebCacheItem {
 	@Override
 	public Object convert(String key) throws WebCacheException {
 		String symbol = _symbol;
-		double lastTrade = 0.0;
-		double change = 0.0;
-		double open = 0.0;
-		double dayHigh = 0.0;
-		double dayLow = 0.0;
-		long volume = 0;
 
-		Stocks stocks = new Stocks(
-			symbol, lastTrade, change, open, dayHigh, dayLow, volume);
+		Stocks stocks = new Stocks(symbol);
 
 		try {
 			String text = HttpUtil.URLtoString(
-				"http://finance.yahoo.com/d/quotes.csv?s=" + symbol +
-					"&f=sl1d1t1c1ohgv&e=.csv");
+				"http://www.google.com/finance/getprices?i=60&p=2d&" +
+					"f=d,o,h,l,c,v&df=cpct&q=" + symbol);
 
-			StringTokenizer st = new StringTokenizer(text, StringPool.COMMA);
+			double dayHigh = 0.0;
+			double dayLow = 0.0;
+			long volume = 0;
 
-			// Skip symbol
+			String[] lines = StringUtil.splitLines(text);
 
-			st.nextToken();
+			for (int i = lines.length - 1;; i--) {
+				String[] parts = StringUtil.split(lines[i]);
 
-			try {
-				String token = st.nextToken();
+				if (i == (lines.length - 1)) {
+					stocks.setLastTrade(GetterUtil.getDouble(parts[1]));
+				}
 
-				token = token.replace('"', ' ');
+				double high = GetterUtil.getDouble(parts[2]);
 
-				lastTrade = GetterUtil.getDouble(token.trim());
+				if (high > dayHigh) {
+					dayHigh = high;
+				}
 
-				stocks.setLastTrade(lastTrade);
-			}
-			catch (NumberFormatException nfe) {
-				stocks.setLastTradeAvailable(false);
-			}
+				double low = GetterUtil.getDouble(parts[3]);
 
-			// Skip date and time
+				if ((dayLow == 0.0) || (low < dayLow)) {
+					dayLow = low;
+				}
 
-			st.nextToken();
-			st.nextToken();
+				volume += GetterUtil.getLong(parts[5]);
 
-			try {
-				String token = st.nextToken();
+				String date = parts[0];
 
-				token = token.replace('"', ' ');
-
-				change = GetterUtil.getDouble(token.trim());
-
-				stocks.setChange(change);
-			}
-			catch (NumberFormatException nfe) {
-				stocks.setChangeAvailable(false);
-			}
-
-			try {
-				String token = st.nextToken();
-
-				token = token.replace('"', ' ');
-
-				open = GetterUtil.getDouble(token.trim());
-
-				stocks.setOpen(open);
-			}
-			catch (NumberFormatException nfe) {
-				stocks.setOpenAvailable(false);
-			}
-
-			try {
-				String token = st.nextToken();
-
-				token = token.replace('"', ' ');
-
-				dayHigh = GetterUtil.getDouble(token.trim());
+				if (!date.startsWith("a")) {
+					continue;
+				}
 
 				stocks.setDayHigh(dayHigh);
-			}
-			catch (NumberFormatException nfe) {
-				stocks.setDayHighAvailable(false);
-			}
-
-			try {
-				String token = st.nextToken();
-
-				token = token.replace('"', ' ');
-
-				dayLow = GetterUtil.getDouble(token.trim());
-
 				stocks.setDayLow(dayLow);
-			}
-			catch (NumberFormatException nfe) {
-				stocks.setDayLowAvailable(false);
-			}
-
-			try {
-				String token = st.nextToken();
-
-				token = token.replace('"', ' ');
-
-				volume = GetterUtil.getLong(token.trim());
-
 				stocks.setVolume(volume);
-			}
-			catch (NumberFormatException nfe) {
-				stocks.setVolumeAvailable(false);
+
+				stocks.setOpen(GetterUtil.getDouble(parts[4]));
+
+				String[] previousDayParts = StringUtil.split(lines[i - 1]);
+
+				stocks.setPreviousClose(
+					GetterUtil.getDouble(previousDayParts[1]));
+
+				break;
 			}
 
 			if (!stocks.isValid()) {
