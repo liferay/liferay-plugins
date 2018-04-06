@@ -1,0 +1,438 @@
+<?xml version="1.0"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:com="http://www.webex.com/schemas/2002/06/common" targetNamespace="http://www.webex.com/schemas/2002/06/common" elementFormDefault="qualified">
+	<xsd:annotation>
+		<xsd:documentation xml:lang="en">Schema used for representing base types for WebEx.</xsd:documentation>
+	</xsd:annotation>
+	<xsd:simpleType name="meetingTypeType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="INITIAL"/>
+			<xsd:enumeration value="FRE"/>
+			<xsd:enumeration value="STD"/>
+			<xsd:enumeration value="PRO"/>
+			<xsd:enumeration value="STANDARD_SUB"/>
+			<xsd:enumeration value="PRO_SUB"/>
+			<xsd:enumeration value="PPU"/>
+			<xsd:enumeration value="ONCALL"/>
+			<xsd:enumeration value="ONTOUR"/>
+			<xsd:enumeration value="ONSTAGE"/>
+			<xsd:enumeration value="ACCESS_ANYWHERE"/>
+			<xsd:enumeration value="COB"/>
+			<xsd:enumeration value="OCS"/>
+			<xsd:enumeration value="ONS"/>
+			<xsd:enumeration value="RAS"/>
+			<xsd:enumeration value="SC3"/>
+			<xsd:enumeration value="SOP"/>
+			<xsd:enumeration value="SOS"/>
+			<xsd:enumeration value="TRS"/>
+			<xsd:enumeration value="CUSTOM"/>
+			<xsd:enumeration value="SMT"/>
+			<xsd:enumeration value="SAC"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="timeZoneType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="GMT-12:00, Dateline (Eniwetok)"/>
+			<xsd:enumeration value="GMT-11:00, Samoa (Samoa)"/>
+			<xsd:enumeration value="GMT-10:00, Hawaii (Honolulu)"/>
+			<xsd:enumeration value="GMT-09:00, Alaska (Ancorage)"/>
+			<xsd:enumeration value="GMT-08:00, Pacific (San Jose)"/>
+			<xsd:enumeration value="GMT-07:00, Mountain (Arizona)"/>
+			<xsd:enumeration value="GMT-07:00, Mountain (Denver)"/>
+			<xsd:enumeration value="GMT-06:00, Central (Chicago)"/>
+			<xsd:enumeration value="GMT-06:00, Mexico (Mexico City,Tegucigalpa)"/>
+			<xsd:enumeration value="GMT-06:00, Central (Regina)"/>
+			<xsd:enumeration value="GMT-05:00, S. America Pacific (Bogota)"/>
+			<xsd:enumeration value="GMT-05:00, Eastern (New York)"/>
+			<xsd:enumeration value="GMT-05:00, Eastern (Indiana)"/>
+			<xsd:enumeration value="GMT-04:00, Atlantic (Halifax)"/>
+			<xsd:enumeration value="GMT-04:00, S. America Western (Caracas)"/>
+			<xsd:enumeration value="GMT-03:30, Newfoundland (Newfoundland)"/>
+			<xsd:enumeration value="GMT-03:00, S. America Eastern (Brasilia)"/>
+			<xsd:enumeration value="GMT-03:00, S. America Eastern (Buenos Aires)"/>
+			<xsd:enumeration value="GMT-02:00, Mid-Atlantic (Mid-Atlantic)"/>
+			<xsd:enumeration value="GMT-01:00, Azores (Azores)"/>
+			<xsd:enumeration value="GMT+00:00, Greenwich (Casablanca)"/>
+			<xsd:enumeration value="GMT+00:00, GMT (London)"/>
+			<xsd:enumeration value="GMT+01:00, Europe (Amsterdam)"/>
+			<xsd:enumeration value="GMT+01:00, Europe (Paris)"/>
+			<xsd:enumeration value="GMT+01:00, Europe (Prague)"/>
+			<xsd:enumeration value="GMT+01:00, Europe (Berlin)"/>
+			<xsd:enumeration value="GMT+02:00, Greece (Athens)"/>
+			<xsd:enumeration value="GMT+02:00, Eastern Europe (Bucharest)"/>
+			<xsd:enumeration value="GMT+02:00, Egypt (Cairo)"/>
+			<xsd:enumeration value="GMT+02:00, South Africa (Pretoria)"/>
+			<xsd:enumeration value="GMT+02:00, Northern Europe (Helsinki)"/>
+			<xsd:enumeration value="GMT+02:00, Israel (Tel Aviv)"/>
+			<xsd:enumeration value="GMT+03:00, Saudi Arabia (Baghdad)"/>
+			<xsd:enumeration value="GMT+03:00, Russian (Moscow)"/>
+			<xsd:enumeration value="GMT+03:00, Nairobi (Nairobi)"/>
+			<xsd:enumeration value="GMT+03:00, Iran (Tehran)"/>
+			<xsd:enumeration value="GMT+04:00, Arabian (Abu Dhabi, Muscat)"/>
+			<xsd:enumeration value="GMT+04:00, Baku (Baku)"/>
+			<xsd:enumeration value="GMT+04:00, Afghanistan (Kabul)"/>
+			<xsd:enumeration value="GMT+05:00, West Asia (Ekaterinburg)"/>
+			<xsd:enumeration value="GMT+05:00, West Asia (Islamabad)"/>
+			<xsd:enumeration value="GMT+05:30, India (Bombay)"/>
+			<xsd:enumeration value="GMT+06:00, Columbo (Columbo)"/>
+			<xsd:enumeration value="GMT+06:00, Central Asia (Almaty)"/>
+			<xsd:enumeration value="GMT+07:00, Bangkok (Bangkok)"/>
+			<xsd:enumeration value="GMT+08:00, China (Beijing)"/>
+			<xsd:enumeration value="GMT+08:00, Australia Western (Perth)"/>
+			<xsd:enumeration value="GMT+08:00, Singapore (Singapore)"/>
+			<xsd:enumeration value="GMT+08:00, Taipei (Hong Kong)"/>
+			<xsd:enumeration value="GMT+09:00, Tokyo (Tokyo)"/>
+			<xsd:enumeration value="GMT+09:00, Korea (Seoul)"/>
+			<xsd:enumeration value="GMT+09:30, Yakutsk (Yakutsk)"/>
+			<xsd:enumeration value="GMT+09:30, Australia Central (Adelaide)"/>
+			<xsd:enumeration value="GMT+09:30, Australia Central (Darwin)"/>
+			<xsd:enumeration value="GMT+10:00, Australia Eastern (Brisbane)"/>
+			<xsd:enumeration value="GMT+10:00, Australia Eastern (Sydney)"/>
+			<xsd:enumeration value="GMT+10:00, West Pacific (Guam)"/>
+			<xsd:enumeration value="GMT+10:00, Tasmania (Hobart)"/>
+			<xsd:enumeration value="GMT+10:00, Vladivostok (Vladivostok)"/>
+			<xsd:enumeration value="GMT+11:00, Central Pacific (Solomon Is)"/>
+			<xsd:enumeration value="GMT+12:00, New Zealand (Wellington)"/>
+			<xsd:enumeration value="GMT+12:00, Fiji (Fiji)"/>
+			<xsd:enumeration value="GMT-09:00, Alaska (Anchorage)"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="dayOfWeekType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="SUNDAY"/>
+			<xsd:enumeration value="MONDAY"/>
+			<xsd:enumeration value="TUESDAY"/>
+			<xsd:enumeration value="WEDNESDAY"/>
+			<xsd:enumeration value="THURSDAY"/>
+			<xsd:enumeration value="FRIDAY"/>
+			<xsd:enumeration value="SATURDAY"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="emailType">
+		<xsd:restriction base="xsd:string"/>
+	</xsd:simpleType>
+	<xsd:complexType name="addressType">
+		<xsd:sequence>
+			<xsd:element name="addressType" type="com:addressTypeType" default="PERSONAL" minOccurs="0"/>
+			<xsd:element name="address1" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="address2" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="city" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="state" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="zipCode" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="country" type="xsd:string" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="addressTypeType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="PERSONAL"/>
+			<xsd:enumeration value="GLOBAL"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="phonesType">
+		<xsd:sequence>
+			<xsd:element name="phone" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="mobilePhone" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="fax" type="xsd:string" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="personType">
+		<xsd:sequence>
+			<xsd:element name="name" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="firstName" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string"/>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="lastName" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string"/>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="title" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="company" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="webExId" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="address" type="com:addressType" minOccurs="0"/>
+			<xsd:element name="phones" type="com:phonesType" minOccurs="0"/>
+			<xsd:element name="email" type="xsd:string"/>
+			<xsd:element name="notes" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="url" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="type" type="com:personTypeType" default="VISITOR" minOccurs="0"/>
+			<xsd:element name="sendReminder" type="xsd:boolean" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="personTypeType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="VISITOR"/>
+			<xsd:enumeration value="MEMBER"/>
+			<xsd:enumeration value="PANELIST"/>
+			<xsd:enumeration value="SME"/>
+			<xsd:enumeration value="SALESTEAM"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="trackingType">
+		<xsd:sequence>
+			<xsd:element name="trackingCode1" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="128"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="trackingCode2" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="128"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="trackingCode3" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="128"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="trackingCode4" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="128"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="trackingCode5" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="128"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="trackingCode6" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="128"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="trackingCode7" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="128"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="trackingCode8" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="128"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="trackingCode9" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="128"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="trackingCode10" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="128"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="securityType">
+		<xsd:sequence>
+			<xsd:element name="webExID" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="password" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="siteID" type="xsd:long" minOccurs="0"/>
+			<xsd:element name="siteName" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="partnerID" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="email" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="sessionTicket" type="xsd:string" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="languageType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="ENGLISH"/>
+			<xsd:enumeration value="INTERNATIONAL ENGLISH"/>
+			<xsd:enumeration value="SIMPLIFIED CHINESE"/>
+			<xsd:enumeration value="TRADITIONAL CHINESE"/>
+			<xsd:enumeration value="JAPANESE"/>
+			<xsd:enumeration value="KOREAN"/>
+			<xsd:enumeration value="FRENCH"/>
+			<xsd:enumeration value="CANADIAN FRENCH"/>
+			<xsd:enumeration value="GERMAN"/>
+			<xsd:enumeration value="ITALIAN"/>
+			<xsd:enumeration value="CASTILIAN SPANISH"/>
+			<xsd:enumeration value="LATIN AMERICAN SPANISH"/>
+			<xsd:enumeration value="SWEDISH"/>
+			<xsd:enumeration value="DUTCH"/>
+			<xsd:enumeration value="BRAZILIAN PORTUGUESE"/>
+			<xsd:enumeration value="PORTUGUESE"/>
+			<xsd:enumeration value="SPANISH"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="checkBoxTagType">
+		<xsd:sequence>
+			<xsd:element name="fieldID" type="xsd:long" minOccurs="0"/>
+			<xsd:element name="lable" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="isRequired" type="xsd:boolean"/>
+			<xsd:element name="isDisplay" type="xsd:boolean"/>
+			<xsd:element name="items" type="com:checkBoxItemTagType" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="checkBoxItemTagType">
+		<xsd:sequence>
+			<xsd:element name="itemName" type="xsd:string"/>
+			<xsd:element name="isSelected" type="xsd:boolean"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="dropdownListTagType">
+		<xsd:sequence>
+			<xsd:element name="fieldID" type="xsd:long" minOccurs="0"/>
+			<xsd:element name="lable" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="defaultValue" type="xsd:integer" minOccurs="0"/>
+			<xsd:element name="value" type="xsd:integer" minOccurs="0"/>
+			<xsd:element name="isRequired" type="xsd:boolean"/>
+			<xsd:element name="isDisplay" type="xsd:boolean"/>
+			<xsd:element name="items" type="xsd:string" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="optionButtonTagType">
+		<xsd:sequence>
+			<xsd:element name="fieldID" type="xsd:long" minOccurs="0"/>
+			<xsd:element name="lable" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="defaultValue" type="xsd:integer" minOccurs="0"/>
+			<xsd:element name="value" type="xsd:integer" minOccurs="0"/>
+			<xsd:element name="isRequired" type="xsd:boolean"/>
+			<xsd:element name="isDisplay" type="xsd:boolean"/>
+			<xsd:element name="items" type="xsd:string" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="textBoxTagType">
+		<xsd:sequence>
+			<xsd:element name="fieldID" type="xsd:long" minOccurs="0"/>
+			<xsd:element name="lable" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="isMultiLines" type="xsd:boolean"/>
+			<xsd:element name="width" type="xsd:integer" minOccurs="0"/>
+			<xsd:element name="height" type="xsd:integer" minOccurs="0"/>
+			<xsd:element name="value" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="isRequired" type="xsd:boolean"/>
+			<xsd:element name="isDisplay" type="xsd:boolean"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="osType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="WIN2K"/>
+			<xsd:enumeration value="WINNT"/>
+			<xsd:enumeration value="WIN9X"/>
+			<xsd:enumeration value="LINUX"/>
+			<xsd:enumeration value="HPUX"/>
+			<xsd:enumeration value="AIX"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="browserType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="IE5X"/>
+			<xsd:enumeration value="NAX6X"/>
+			<xsd:enumeration value="NAX4X"/>
+			<xsd:enumeration value="IE4X"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="entryExitToneType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="NOTONE"/>
+			<xsd:enumeration value="BEEP"/>
+			<xsd:enumeration value="ANNOUNCENAME"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="attendeeListViewType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="ALL"/>
+			<xsd:enumeration value="HOST,PRESENTER,PANELISTS"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="listingType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="PUBLIC"/>
+			<xsd:enumeration value="PRIVATE"/>
+			<xsd:enumeration value="UNLISTED"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="meetingStatusType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="NOT_STARTED"/>
+			<xsd:enumeration value="IN_PROGRESS"/>
+			<xsd:enumeration value="ENDED"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="labStatusType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="AVAILABLE"/>
+			<xsd:enumeration value="UNAVAILABLE"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="serviceTypeType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="MeetingCenter"/>
+			<xsd:enumeration value="EventCenter"/>
+			<xsd:enumeration value="TrainingCenter"/>
+			<xsd:enumeration value="SupportCenter"/>
+			<xsd:enumeration value="SalesCenter"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="sessionTemplateType">
+		<xsd:sequence>
+			<xsd:element name="use" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="default" type="xsd:boolean" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="psoFieldsType">
+		<xsd:sequence>
+			<xsd:element name="psoField1" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="128"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="joinStatusType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="REGISTER"/>
+			<xsd:enumeration value="INVITE"/>
+			<xsd:enumeration value="REJECT"/>
+			<xsd:enumeration value="ACCEPT"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="phoneLabelNumType">
+		<xsd:sequence>
+			<xsd:element name="label" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="phoneNumber" type="xsd:string" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="sharingViewType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="FS_SCALE"/>
+			<xsd:enumeration value="FS"/>
+			<xsd:enumeration value="WIN_SCALE"/>
+			<xsd:enumeration value="WIN"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="sharingColorType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="256"/>
+			<xsd:enumeration value="16BIT"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="recordingType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="NBR"/>
+			<xsd:enumeration value="LOCAL"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+</xsd:schema>

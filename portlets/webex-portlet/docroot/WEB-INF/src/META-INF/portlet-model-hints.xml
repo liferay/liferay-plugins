@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+
+<model-hints>
+	<model name="com.liferay.meeting.webex.model.WebExAccount">
+		<field name="uuid" type="String" />
+		<field name="webExAccountId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="webExSiteId" type="long" />
+		<field name="login" type="String">
+			<hint name="max-length">300</hint>
+			<validator name="required" />
+		</field>
+		<field name="password" type="String">
+			<hint name="secret">true</hint>
+			<validator name="required" />
+		</field>
+	</model>
+	<model name="com.liferay.meeting.webex.model.WebExSite">
+		<field name="uuid" type="String" />
+		<field name="webExSiteId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="name" type="String">
+			<validator name="required" />
+		</field>
+		<field name="apiURL" type="String">
+			<hint name="max-length">300</hint>
+			<validator name="required" />
+		</field>
+		<field name="login" type="String">
+			<hint name="max-length">300</hint>
+		</field>
+		<field name="password" type="String">
+			<hint name="secret">true</hint>
+		</field>
+		<field name="partnerKey" type="String">
+			<hint name="max-length">300</hint>
+		</field>
+		<field name="siteKey" type="long" />
+	</model>
+</model-hints>

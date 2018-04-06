@@ -1,0 +1,485 @@
+<?xml version="1.0"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:qti="http://www.webex.com/schemas/2002/06/service/trainingsessionqti" targetNamespace="http://www.webex.com/schemas/2002/06/service/trainingsessionqti" elementFormDefault="qualified" version="IMS QTI RES 1.2">
+	<xsd:element name="qti_result_report" type="qti:qti_result_reportType"/>
+	<xsd:element name="asi_description" type="qti:asi_descriptionType"/>
+	<xsd:element name="assessment_result" type="qti:assessment_resultType"/>
+	<xsd:element name="context" type="qti:contextType"/>
+	<xsd:element name="control" type="qti:controlType"/>
+	<xsd:element name="correct_response" type="xsd:string"/>
+	<xsd:element name="date" type="qti:dateType"/>
+	<xsd:element name="datetime" type="xsd:string"/>
+	<xsd:element name="durationType" type="xsd:string"/>
+	<xsd:element name="extension_assessment_result" type="qti:extension_assessment_resultType"/>
+	<xsd:element name="extension_context" type="qti:extension_contextType"/>
+	<xsd:element name="extension_grade" type="qti:extension_gradeType"/>
+	<xsd:element name="extension_item_result" type="qti:extension_item_resultType"/>
+	<xsd:element name="extension_response" type="qti:extension_responseType"/>
+	<xsd:element name="extension_responseform" type="qti:extension_responseformType"/>
+	<xsd:element name="extension_result" type="qti:extension_resultType"/>
+	<xsd:element name="extension_score" type="qti:gradeType"/>
+	<xsd:element name="extension_section_result" type="qti:extension_section_resultType"/>
+	<xsd:element name="extension_summary_result" type="qti:extension_summary_resultType"/>
+	<xsd:element name="feedback_displayed" type="qti:feedback_displayedType"/>
+	<xsd:element name="field_name" type="xsd:string"/>
+	<xsd:element name="field_value" type="xsd:string"/>
+	<xsd:element name="generic_identifier" type="qti:generic_identifierType"/>
+	<xsd:element name="identifier_string" type="xsd:string"/>
+	<xsd:element name="item_result" type="qti:item_resultType"/>
+	<xsd:element name="name" type="xsd:string"/>
+	<xsd:element name="num_attempts" type="xsd:string"/>
+	<xsd:element name="num_items" type="xsd:string"/>
+	<xsd:element name="num_items_attempted" type="xsd:string"/>
+	<xsd:element name="num_items_presented" type="xsd:string"/>
+	<xsd:element name="num_sections" type="xsd:string"/>
+	<xsd:element name="num_sections_presented" type="xsd:string"/>
+	<xsd:element name="objective" type="qti:objectiveType"/>
+	<xsd:element name="qti_comment" type="qti:qti_commentType"/>
+	<xsd:element name="response" type="qti:responseType"/>
+	<xsd:element name="response_form" type="qti:response_formType"/>
+	<xsd:element name="response_value" type="qti:response_valueType"/>
+	<xsd:element name="result" type="qti:resultType"/>
+	<xsd:element name="score_average" type="xsd:string"/>
+	<xsd:element name="score_cut" type="xsd:string"/>
+	<xsd:element name="score_interpretation" type="qti:score_interpretationType"/>
+	<xsd:element name="score_max" type="xsd:integer"/>
+	<xsd:element name="score_min" type="xsd:string"/>
+	<xsd:element name="score_normalized" type="xsd:string"/>
+	<xsd:element name="score_reliability" type="xsd:string"/>
+	<xsd:element name="score_std_error" type="xsd:string"/>
+	<xsd:element name="score_value" type="xsd:string"/>
+	<xsd:element name="section_result" type="qti:section_resultType"/>
+	<xsd:element name="status" type="qti:statusType"/>
+	<xsd:element name="status_value" type="xsd:string"/>
+	<xsd:element name="type_label" type="qti:type_labelType"/>
+	<xsd:element name="vocabulary" type="qti:vocabularyType"/>
+	<xsd:complexType name="resultType">
+		<xsd:sequence>
+			<xsd:element name="context" type="qti:contextType"/>
+			<xsd:element name="assessment_result" type="qti:assessment_resultType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="assessment_resultType">
+		<xsd:sequence>
+			<xsd:element name="asi_metadata" type="qti:asi_metadata_assessment_resultType" minOccurs="0"/>
+			<xsd:element name="asi_description" type="qti:asi_descriptionType" minOccurs="0"/>
+			<xsd:element name="date" type="qti:dateType"/>
+			<xsd:element name="duration" type="xsd:string"/>
+			<xsd:element name="outcomes" type="qti:outcomes_assessment_resultType"/>
+			<xsd:element ref="qti:num_sections"/>
+			<xsd:element name="section_result" type="qti:section_resultType"/>
+		</xsd:sequence>
+		<xsd:attribute name="asi_title" type="xsd:string"/>
+		<xsd:attribute name="ident_ref" type="xsd:integer"/>
+	</xsd:complexType>
+	<xsd:complexType name="section_resultType">
+		<xsd:sequence>
+			<xsd:element name="item_result" type="qti:item_resultType" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="item_resultType">
+		<xsd:sequence>
+			<xsd:element name="asi_metadata" type="qti:asi_metadata_item_resultType" minOccurs="0"/>
+			<xsd:element name="response" type="qti:responseType" maxOccurs="unbounded"/>
+			<xsd:element name="outcomes" type="qti:outcomes_item_resultType"/>
+			<xsd:element name="feedback_displayed" type="qti:feedback_displayedType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="asi_descriptionType">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string"/>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="asi_metadata_assessment_resultType">
+		<xsd:sequence>
+			<xsd:element name="asi_metadatafield" type="qti:asi_metadatafield_assessment_resultType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="asi_metadata_item_resultType">
+		<xsd:sequence>
+			<xsd:element name="asi_metadatafield" type="qti:asi_metadatafield_item_resultType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="asi_metadatafield_assessment_resultType">
+		<xsd:sequence>
+			<xsd:element name="field_name" default="overall_comments">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:minLength value="1"/>
+						<xsd:maxLength value="256"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="field_value">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:minLength value="1"/>
+						<xsd:maxLength value="256"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="asi_metadatafield_item_resultType">
+		<xsd:sequence>
+			<xsd:element name="field_name" default="question_comments">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:minLength value="1"/>
+						<xsd:maxLength value="256"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="field_value">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:minLength value="1"/>
+						<xsd:maxLength value="256"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="contextType">
+		<xsd:sequence>
+			<xsd:element name="name">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:minLength value="1"/>
+						<xsd:maxLength value="256"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="generic_identifier" type="qti:generic_identifierType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="controlType">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute name="hint_switch" default="No">
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:NMTOKEN">
+							<xsd:enumeration value="Yes"/>
+							<xsd:enumeration value="No"/>
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:attribute>
+				<xsd:attribute name="solution_switch" default="No">
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:NMTOKEN">
+							<xsd:enumeration value="Yes"/>
+							<xsd:enumeration value="No"/>
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:attribute>
+				<xsd:attribute name="feedback_switch" default="No">
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:NMTOKEN">
+							<xsd:enumeration value="Yes"/>
+							<xsd:enumeration value="No"/>
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:attribute>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="dateType">
+		<xsd:sequence>
+			<xsd:element name="type_label">
+				<xsd:complexType>
+					<xsd:simpleContent>
+						<xsd:extension base="qti:type_labelType"/>
+					</xsd:simpleContent>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element ref="qti:datetime"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="feedback_displayedType">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute name="ident" type="xsd:string"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="generic_identifierType">
+		<xsd:sequence>
+			<xsd:element name="type_label" type="qti:type_labelType"/>
+			<xsd:element ref="qti:identifier_string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="gradeType">
+		<xsd:sequence>
+			<xsd:element name="grade_value">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:minLength value="1"/>
+						<xsd:maxLength value="64"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:attribute name="varname" default="GRADE">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="256"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+		<xsd:attribute name="members">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="2048"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+	</xsd:complexType>
+	<xsd:complexType name="objectiveType">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute name="view" default="All">
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:NMTOKEN">
+							<xsd:enumeration value="All"/>
+							<xsd:enumeration value="Administrator"/>
+							<xsd:enumeration value="AdminAuthority"/>
+							<xsd:enumeration value="Assessor"/>
+							<xsd:enumeration value="Author"/>
+							<xsd:enumeration value="Candidate"/>
+							<xsd:enumeration value="InvigilatorProctor"/>
+							<xsd:enumeration value="Psychometrician"/>
+							<xsd:enumeration value="Scorer"/>
+							<xsd:enumeration value="Tutor"/>
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:attribute>
+				<xsd:attribute name="uri" type="xsd:string"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="outcomes_assessment_resultType">
+		<xsd:sequence>
+			<xsd:element name="score" type="qti:score_assessment_result_outcomesType"/>
+			<xsd:element name="grade" type="qti:gradeType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="outcomes_item_resultType">
+		<xsd:sequence>
+			<xsd:element name="score" type="qti:score_item_result_outcomesType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="qti_commentType">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string"/>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="qti_result_reportType">
+		<xsd:sequence>
+			<xsd:element name="result" type="qti:resultType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="responseType">
+		<xsd:sequence>
+			<xsd:element name="response_form" type="qti:response_formType"/>
+			<xsd:element name="response_value" type="qti:response_valueType" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:attribute name="ident_ref" type="xsd:string"/>
+	</xsd:complexType>
+	<xsd:complexType name="response_formType">
+		<xsd:sequence>
+			<xsd:element name="correct_response" type="qti:correct_responseType" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:attribute name="cardinality" default="single">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:NMTOKEN">
+					<xsd:enumeration value="single"/>
+					<xsd:enumeration value="multiple"/>
+					<xsd:enumeration value="ordered"/>
+					<xsd:enumeration value="extension"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+		<xsd:attribute name="response_type" default="lid">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:NMTOKEN">
+					<xsd:enumeration value="lid"/>
+					<xsd:enumeration value="xy"/>
+					<xsd:enumeration value="str"/>
+					<xsd:enumeration value="num"/>
+					<xsd:enumeration value="grp"/>
+					<xsd:enumeration value="extension"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+		<xsd:attribute name="render_type" default="choice">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:NMTOKEN">
+					<xsd:enumeration value="choice"/>
+					<xsd:enumeration value="hotspot"/>
+					<xsd:enumeration value="slider"/>
+					<xsd:enumeration value="fib"/>
+					<xsd:enumeration value="extension"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+	</xsd:complexType>
+	<xsd:complexType name="response_valueType">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute name="response_status" default="Valid">
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:NMTOKEN">
+							<xsd:enumeration value="Null"/>
+							<xsd:enumeration value="Valid"/>
+							<xsd:enumeration value="NA"/>
+							<xsd:enumeration value="Invalid"/>
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:attribute>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="correct_responseType">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string"/>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="num_sectionsType">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:int"/>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="score_assessment_result_outcomesType">
+		<xsd:sequence>
+			<xsd:element name="score_value" type="xsd:integer" default="0"/>
+			<xsd:element name="score_min" type="xsd:integer" default="0"/>
+			<xsd:element name="score_max" type="xsd:integer" default="0"/>
+		</xsd:sequence>
+		<xsd:attribute name="varname" type="xsd:string" default="SCORE"/>
+		<xsd:attribute name="vartype" default="Integer">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:NMTOKEN">
+					<xsd:enumeration value="Integer"/>
+					<xsd:enumeration value="Decimal"/>
+					<xsd:enumeration value="String"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+	</xsd:complexType>
+	<xsd:complexType name="score_item_result_outcomesType">
+		<xsd:sequence>
+			<xsd:element name="score_value" type="xsd:integer" default="0"/>
+			<xsd:element name="score_interpretation">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="2048"/>
+						<xsd:minLength value="0"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="score_min" type="xsd:integer" default="0"/>
+			<xsd:element name="score_max" type="xsd:integer" default="0"/>
+		</xsd:sequence>
+		<xsd:attribute name="varname" type="xsd:string" default="SCORE"/>
+		<xsd:attribute name="vartype" default="Integer">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:NMTOKEN">
+					<xsd:enumeration value="Integer"/>
+					<xsd:enumeration value="Decimal"/>
+					<xsd:enumeration value="String"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+	</xsd:complexType>
+	<xsd:complexType name="score_interpretationType">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string"/>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="statusType">
+		<xsd:sequence>
+			<xsd:element name="type_label" minOccurs="0">
+				<xsd:complexType>
+					<xsd:simpleContent>
+						<xsd:extension base="qti:type_labelType"/>
+					</xsd:simpleContent>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element ref="qti:datetime" minOccurs="0"/>
+			<xsd:element ref="qti:status_value"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="type_labelType">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string"/>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="vocabularyType">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute name="uri" type="xsd:string"/>
+				<xsd:attribute name="vocab_type" type="xsd:string"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="extension_assessment_resultType" mixed="true">
+		<xsd:sequence>
+			<xsd:any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:anyAttribute processContents="lax"/>
+	</xsd:complexType>
+	<xsd:complexType name="extension_contextType" mixed="true">
+		<xsd:sequence>
+			<xsd:any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:anyAttribute processContents="lax"/>
+	</xsd:complexType>
+	<xsd:complexType name="extension_gradeType" mixed="true">
+		<xsd:sequence>
+			<xsd:any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:anyAttribute processContents="lax"/>
+	</xsd:complexType>
+	<xsd:complexType name="extension_item_resultType" mixed="true">
+		<xsd:sequence>
+			<xsd:any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:anyAttribute processContents="lax"/>
+	</xsd:complexType>
+	<xsd:complexType name="extension_responseType" mixed="true">
+		<xsd:sequence>
+			<xsd:any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:anyAttribute processContents="lax"/>
+	</xsd:complexType>
+	<xsd:complexType name="extension_responseformType" mixed="true">
+		<xsd:sequence>
+			<xsd:any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:anyAttribute processContents="lax"/>
+	</xsd:complexType>
+	<xsd:complexType name="extension_resultType" mixed="true">
+		<xsd:sequence>
+			<xsd:any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:anyAttribute processContents="lax"/>
+	</xsd:complexType>
+	<xsd:complexType name="extension_scoreType" mixed="true">
+		<xsd:sequence>
+			<xsd:any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:anyAttribute processContents="lax"/>
+	</xsd:complexType>
+	<xsd:complexType name="extension_section_resultType" mixed="true">
+		<xsd:sequence>
+			<xsd:any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:anyAttribute processContents="lax"/>
+	</xsd:complexType>
+	<xsd:complexType name="extension_summary_resultType" mixed="true">
+		<xsd:sequence>
+			<xsd:any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:anyAttribute processContents="lax"/>
+	</xsd:complexType>
+</xsd:schema>

@@ -1,0 +1,255 @@
+<?xml version="1.0"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:auo="http://www.webex.com/schemas/2002/06/service/meeting/auo" xmlns:com="http://www.webex.com/schemas/2002/06/common" xmlns:serv="http://www.webex.com/schemas/2002/06/service" targetNamespace="http://www.webex.com/schemas/2002/06/service/meeting/auo" elementFormDefault="qualified">
+	<xsd:import namespace="http://www.webex.com/schemas/2002/06/common" schemaLocation="../../common/common.xsd"/>
+	<xsd:import namespace="http://www.webex.com/schemas/2002/06/service" schemaLocation="../service.xsd"/>
+	<xsd:annotation>
+		<xsd:documentation xml:lang="en">Schema used for representing create, read, update and delete operations on a teleconference only session.</xsd:documentation>
+	</xsd:annotation>
+	<xsd:complexType name="audioOnlyType">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="accessControl" type="auo:accessControlType" minOccurs="0"/>
+					<xsd:element name="metaData" type="auo:metaDataType" minOccurs="0"/>
+					<xsd:element name="schedule" type="auo:scheduleType" minOccurs="0"/>
+					<xsd:element name="teleconference" type="auo:teleconfType" minOccurs="0"/>
+					<xsd:element name="tracking" type="com:trackingType" minOccurs="0"/>
+					<xsd:element name="repeat" type="auo:repeatType" minOccurs="0"/>
+					<xsd:element name="remind" type="auo:remindType" minOccurs="0"/>
+					<xsd:element name="fullAccessAttendees" minOccurs="0">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="attendee" type="auo:attendeeType" minOccurs="0" maxOccurs="unbounded"/>
+							</xsd:sequence>
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="limitedAccessAttendees" minOccurs="0">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="attendee" type="auo:attendeeType" minOccurs="0" maxOccurs="unbounded"/>
+							</xsd:sequence>
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="attendeeOptions" type="auo:attendeeOptionsType" minOccurs="0"/>
+					<xsd:element name="validateFormat" type="xsd:boolean" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="audioOnlyInstanceType">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="accessControl" type="auo:accessControlType" minOccurs="0"/>
+					<xsd:element name="metaData" type="auo:metaDataType" minOccurs="0"/>
+					<xsd:element name="schedule" type="auo:scheduleType" minOccurs="0"/>
+					<xsd:element name="teleconference" type="auo:teleconfInstanceType" minOccurs="0"/>
+					<xsd:element name="tracking" type="com:trackingType" minOccurs="0"/>
+					<xsd:element name="repeat" type="auo:repeatType" minOccurs="0"/>
+					<xsd:element name="remind" type="auo:remindType" minOccurs="0"/>
+					<xsd:element name="fullAccessAttendees" minOccurs="0">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="attendee" type="auo:attendeeType" minOccurs="0" maxOccurs="unbounded"/>
+							</xsd:sequence>
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="limitedAccessAttendees" minOccurs="0">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="attendee" type="auo:attendeeType" minOccurs="0" maxOccurs="unbounded"/>
+							</xsd:sequence>
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="attendeeOptions" type="auo:attendeeOptionsType" minOccurs="0"/>
+					<xsd:element name="telephony" type="auo:telephonyType" minOccurs="0"/>
+					<xsd:element name="hostType" type="xsd:string" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:annotation>
+		<xsd:documentation>Types used for representing create, get and list auo sessions</xsd:documentation>
+	</xsd:annotation>
+	<xsd:complexType name="createTeleconferenceSession">
+		<xsd:complexContent>
+			<xsd:extension base="auo:audioOnlyType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="createTeleconferenceSessionResponse">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="sessionKey" type="xsd:long" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="setTeleconferenceSession">
+		<xsd:complexContent>
+			<xsd:extension base="auo:audioOnlyType">
+				<xsd:sequence>
+					<xsd:element name="sessionKey" type="xsd:long"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="setTeleconferenceSessionResponse">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="getTeleconferenceSession">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="sessionKey" type="xsd:long"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="getTeleconferenceSessionResponse">
+		<xsd:complexContent>
+			<xsd:extension base="auo:audioOnlyInstanceType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:annotation>
+		<xsd:documentation>Helper types used for composing base auo session types</xsd:documentation>
+	</xsd:annotation>
+	<xsd:complexType name="accessControlType">
+		<xsd:sequence>
+			<xsd:element name="listing" type="auo:listingType" minOccurs="0"/>
+			<xsd:element name="sessionPassword" type="xsd:string" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="listingType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="PUBLIC"/>
+			<xsd:enumeration value="PRIVATE"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="metaDataType">
+		<xsd:sequence>
+			<xsd:element name="confName" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="512"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="sessionType" type="xsd:integer" default="-1" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="scheduleType">
+		<xsd:sequence>
+			<xsd:element name="startDate" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="timeZoneID" type="xsd:integer" default="-1" minOccurs="0"/>
+			<xsd:element name="timeZone" type="com:timeZoneType" minOccurs="0"/>
+			<xsd:element name="duration" type="xsd:integer" minOccurs="0"/>
+			<xsd:element name="entryExitTone" type="auo:entryExitToneType" minOccurs="0"/>
+			<xsd:element name="hostWebExID" type="xsd:string" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="teleconfType">
+		<xsd:sequence>
+			<xsd:element name="requestConferenceNumber" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="accountIndex" type="xsd:integer" minOccurs="0"/>
+			<xsd:element name="extTelephonyDescription" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="intlLocalCallIn" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="teleconfLocation" type="xsd:string" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="teleconfInstanceType">
+		<xsd:sequence>
+			<xsd:element name="personalConferenceNumber" type="xsd:boolean"/>
+			<xsd:element name="accountIndex" type="xsd:integer" minOccurs="0"/>
+			<xsd:element name="tollFreeCallInNumber" type="xsd:string"/>
+			<xsd:element name="tollCallInNumber" type="xsd:string"/>
+			<xsd:element name="intlLocalCallInNumber" type="xsd:string"/>
+			<xsd:element name="subscriberAccessCode" type="xsd:string"/>
+			<xsd:element name="participantFullAccessCode" type="xsd:string"/>
+			<xsd:element name="participantLimitedAccessCode" type="xsd:string"/>
+			<xsd:element name="scheduleConfID" type="xsd:integer"/>
+			<xsd:element name="extTelephonyDescription" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="intlLocalCallIn" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="teleconfLocation" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="globalNum" type="serv:globalCallInNumType" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="repeatType">
+		<xsd:sequence>
+			<xsd:element name="repeatType" type="auo:recurrenceType" minOccurs="0"/>
+			<xsd:element name="expirationDate" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="dayInWeek" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="day" type="com:dayOfWeekType" minOccurs="0" maxOccurs="7"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="dayInMonth" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:maxInclusive value="31"/>
+						<xsd:minInclusive value="1"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="interval" type="xsd:integer" minOccurs="0"/>
+			<xsd:element name="weekInMonth" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:minInclusive value="1"/>
+						<xsd:maxInclusive value="6"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="recurrenceType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="WEEKLY"/>
+			<xsd:enumeration value="DAILY"/>
+			<xsd:enumeration value="NO_REPEAT"/>
+			<xsd:enumeration value="MONTHLY"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="remindType">
+		<xsd:sequence>
+			<xsd:element name="enableReminder" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="daysAhead" type="xsd:integer" minOccurs="0"/>
+			<xsd:element name="hoursAhead" type="xsd:integer" minOccurs="0"/>
+			<xsd:element name="minutesAhead" type="xsd:integer" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="attendeeType">
+		<xsd:sequence>
+			<xsd:element name="name" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="firstName" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="lastName" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="email" type="com:emailType"/>
+			<xsd:element name="phones" type="com:phonesType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="attendeeOptionsType">
+		<xsd:sequence>
+			<xsd:element name="requireUcfDiagnosis" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="excludePassword" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="requireAccount" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="emailInvitations" type="xsd:boolean" default="false" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="telephonyType">
+		<xsd:sequence>
+			<xsd:element name="extTelephonyDescription" type="xsd:string" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="entryExitToneType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="BEEP"/>
+			<xsd:enumeration value="ANNOUNCENAME"/>
+			<xsd:enumeration value="NOTONE"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+</xsd:schema>

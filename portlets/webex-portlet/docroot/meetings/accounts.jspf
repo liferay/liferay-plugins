@@ -1,0 +1,55 @@
+<%--
+/**
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+--%>
+
+<liferay-portlet:renderURL varImpl="iteratorURL">
+	<portlet:param name="mvcPath" value="/meetings/view_site.jsp" />
+	<portlet:param name="redirect" value="<%= backURL %>" />
+	<portlet:param name="webExSiteId" value="<%= String.valueOf(webExSiteId) %>" />
+</liferay-portlet:renderURL>
+
+<liferay-ui:search-container
+	emptyResultsMessage="there-are-no-accounts"
+	iteratorURL="<%= iteratorURL %>"
+	total="<%= WebExAccountServiceUtil.getWebExSiteWebExAccountsCount(themeDisplay.getScopeGroupId(), webExSiteId) %>"
+>
+	<liferay-ui:search-container-results
+		results="<%= WebExAccountServiceUtil.getWebExSiteWebExAccounts(themeDisplay.getScopeGroupId(), webExSiteId, searchContainer.getStart(), searchContainer.getEnd(), null) %>"
+	/>
+
+	<liferay-ui:search-container-row
+		className="com.liferay.meeting.webex.model.WebExAccount"
+		keyProperty="webExAccountId"
+		modelVar="webExAccount"
+	>
+		<portlet:renderURL var="rowURL">
+			<portlet:param name="mvcPath" value="/meetings/view_account.jsp" />
+			<portlet:param name="redirect" value="<%= currentURL %>" />
+			<portlet:param name="webExAccountId" value="<%= String.valueOf(webExAccount.getWebExAccountId()) %>" />
+		</portlet:renderURL>
+
+		<liferay-ui:search-container-column-text
+			href="<%= rowURL %>"
+			property="login"
+		/>
+
+		<liferay-ui:search-container-column-jsp
+			align="right"
+			path="/meetings/account_action.jsp"
+		/>
+	</liferay-ui:search-container-row>
+
+	<liferay-ui:search-iterator />
+</liferay-ui:search-container>

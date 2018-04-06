@@ -1,0 +1,1518 @@
+<?xml version="1.0"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:qtiasi="http://www.webex.com/schemas/2002/06/service/trainingsessionqtiasi" targetNamespace="http://www.webex.com/schemas/2002/06/service/trainingsessionqtiasi" elementFormDefault="qualified" version="IMS QTI ASI 1.2">
+	<xsd:element name="questestinterop" type="qtiasi:questestinteropType"/>
+	<xsd:element name="altmaterial" type="qtiasi:altmaterialType"/>
+	<xsd:element name="and" type="qtiasi:andType"/>
+	<xsd:element name="and_objects" type="qtiasi:and_objectsType"/>
+	<xsd:element name="and_selection" type="qtiasi:and_selectionType"/>
+	<xsd:element name="and_test" type="qtiasi:and_testType"/>
+	<xsd:element name="assessfeedback" type="qtiasi:assessfeedbackType"/>
+	<xsd:element name="assessment" type="qtiasi:assessmentType"/>
+	<xsd:element name="assessmentcontrol" type="qtiasi:assessmentcontrolType"/>
+	<xsd:element name="assessproc_extension" type="qtiasi:assessproc_extensionType"/>
+	<xsd:element name="conditionvar" type="qtiasi:conditionvarType"/>
+	<xsd:element name="decvar" type="qtiasi:decvarType"/>
+	<xsd:element name="displayfeedback" type="qtiasi:displayfeedbackType"/>
+	<xsd:element name="duration" type="xsd:string"/>
+	<xsd:element name="durequal" type="qtiasi:durequalType"/>
+	<xsd:element name="durgt" type="qtiasi:durgtType"/>
+	<xsd:element name="durgte" type="qtiasi:durgteType"/>
+	<xsd:element name="durlt" type="qtiasi:durltType"/>
+	<xsd:element name="durlte" type="qtiasi:durlteType"/>
+	<xsd:element name="fieldentry" type="xsd:string"/>
+	<xsd:element name="fieldlabel" type="xsd:string"/>
+	<xsd:element name="flow" type="qtiasi:flowType"/>
+	<xsd:element name="flow_label" type="qtiasi:flow_labelType"/>
+	<xsd:element name="flow_mat" type="qtiasi:flow_matType"/>
+	<xsd:element name="hint" type="qtiasi:hintType"/>
+	<xsd:element name="hintmaterial" type="qtiasi:hintmaterialType"/>
+	<xsd:element name="interpretvar" type="qtiasi:interpretvarType"/>
+	<xsd:element name="item" type="qtiasi:itemType"/>
+	<xsd:element name="itemcontrol" type="qtiasi:itemcontrolType"/>
+	<xsd:element name="itemfeedback" type="qtiasi:itemfeedbackType"/>
+	<xsd:element name="itemmetadata" type="qtiasi:itemmetadataType"/>
+	<xsd:element name="itempostcondition" type="xsd:string"/>
+	<xsd:element name="itemprecondition" type="xsd:string"/>
+	<xsd:element name="itemproc_extension" type="qtiasi:itemproc_extensionType"/>
+	<xsd:element name="itemref" type="qtiasi:itemrefType"/>
+	<xsd:element name="itemrubric" type="qtiasi:itemrubricType"/>
+	<xsd:element name="map_input" type="qtiasi:map_inputType"/>
+	<xsd:element name="map_output" type="qtiasi:map_outputType"/>
+	<xsd:element name="mat_extension" type="qtiasi:mat_extensionType"/>
+	<xsd:element name="matapplet" type="qtiasi:matappletType"/>
+	<xsd:element name="matapplication" type="qtiasi:matapplicationType"/>
+	<xsd:element name="mataudio" type="qtiasi:mataudioType"/>
+	<xsd:element name="matbreak" type="qtiasi:matbreakType"/>
+	<xsd:element name="matemtext" type="qtiasi:matemtextType"/>
+	<xsd:element name="material" type="qtiasi:materialType"/>
+	<xsd:element name="material_ref" type="qtiasi:material_refType"/>
+	<xsd:element name="matimage" type="qtiasi:matimageType"/>
+	<xsd:element name="matref" type="qtiasi:matrefType"/>
+	<xsd:element name="mattext" type="qtiasi:mattextType"/>
+	<xsd:element name="matvideo" type="qtiasi:matvideoType"/>
+	<xsd:element name="not" type="qtiasi:notType"/>
+	<xsd:element name="not_objects" type="qtiasi:not_objectsType"/>
+	<xsd:element name="not_selection" type="qtiasi:not_selectionType"/>
+	<xsd:element name="not_test" type="qtiasi:not_testType"/>
+	<xsd:element name="objectbank" type="qtiasi:objectbankType"/>
+	<xsd:element name="objectives" type="qtiasi:objectivesType"/>
+	<xsd:element name="objects_condition" type="qtiasi:objects_conditionType"/>
+	<xsd:element name="objects_parameter" type="qtiasi:objects_parameterType"/>
+	<xsd:element name="objectscond_extension" type="xsd:string"/>
+	<xsd:element name="or" type="qtiasi:orType"/>
+	<xsd:element name="or_objects" type="qtiasi:or_objectsType"/>
+	<xsd:element name="or_selection" type="qtiasi:or_selectionType"/>
+	<xsd:element name="or_test" type="qtiasi:or_testType"/>
+	<xsd:element name="order" type="qtiasi:orderType"/>
+	<xsd:element name="order_extension" type="qtiasi:order_extensionType"/>
+	<xsd:element name="other" type="xsd:string"/>
+	<xsd:element name="outcomes" type="qtiasi:outcomesType"/>
+	<xsd:element name="outcomes_feedback_test" type="qtiasi:outcomes_feedback_testType"/>
+	<xsd:element name="outcomes_metadata" type="qtiasi:outcomes_metadataType"/>
+	<xsd:element name="outcomes_processing" type="qtiasi:outcomes_processingType"/>
+	<xsd:element name="presentation" type="qtiasi:presentationType"/>
+	<xsd:element name="presentation_material" type="qtiasi:presentation_materialType"/>
+	<xsd:element name="processing_parameter" type="qtiasi:processing_parameterType"/>
+	<xsd:element name="qmd_computerscored" type="xsd:string"/>
+	<xsd:element name="qmd_feedbackpermitted" type="xsd:string"/>
+	<xsd:element name="qmd_hintspermitted" type="xsd:string"/>
+	<xsd:element name="qmd_itemtype" type="xsd:string"/>
+	<xsd:element name="qmd_levelofdifficulty" type="xsd:string"/>
+	<xsd:element name="qmd_material" type="xsd:string"/>
+	<xsd:element name="qmd_maximumscore" type="xsd:string"/>
+	<xsd:element name="qmd_renderingtype" type="xsd:string"/>
+	<xsd:element name="qmd_responsetype" type="xsd:string"/>
+	<xsd:element name="qmd_scoringpermitted" type="xsd:string"/>
+	<xsd:element name="qmd_solutionspermitted" type="xsd:string"/>
+	<xsd:element name="qmd_status" type="xsd:string"/>
+	<xsd:element name="qmd_timedependence" type="xsd:string"/>
+	<xsd:element name="qmd_timelimit" type="xsd:string"/>
+	<xsd:element name="qmd_toolvendor" type="xsd:string"/>
+	<xsd:element name="qmd_topic" type="xsd:string"/>
+	<xsd:element name="qmd_typeofsolution" type="xsd:string"/>
+	<xsd:element name="qmd_weighting" type="xsd:string"/>
+	<xsd:element name="qticomment" type="qtiasi:qticommentType"/>
+	<xsd:element name="qtimetadata" type="qtiasi:qtimetadataType"/>
+	<xsd:element name="qtimetadatafield" type="qtiasi:qtimetadatafieldType"/>
+	<xsd:element name="reference" type="qtiasi:referenceType"/>
+	<xsd:element name="render_choice" type="qtiasi:render_choiceType"/>
+	<xsd:element name="render_fib" type="qtiasi:render_fibType"/>
+	<xsd:element name="render_hotspot" type="qtiasi:render_hotspotType"/>
+	<xsd:element name="render_slider" type="qtiasi:render_sliderType"/>
+	<xsd:element name="respcond_extension" type="qtiasi:respcond_extensionType"/>
+	<xsd:element name="respcondition" type="qtiasi:respconditionType"/>
+	<xsd:element name="render_extension" type="qtiasi:render_extensionType"/>
+	<xsd:element name="response_extension" type="qtiasi:response_extensionType"/>
+	<xsd:element name="response_grp" type="qtiasi:response_grpType"/>
+	<xsd:element name="response_labelType" type="qtiasi:response_labelType"/>
+	<xsd:element name="response_lid" type="qtiasi:response_lidType"/>
+	<xsd:element name="response_na" type="qtiasi:response_naType"/>
+	<xsd:element name="response_num" type="qtiasi:response_numType"/>
+	<xsd:element name="response_str" type="qtiasi:response_strType"/>
+	<xsd:element name="response_xy" type="qtiasi:response_xyType"/>
+	<xsd:element name="resprocessing" type="qtiasi:resprocessingType"/>
+	<xsd:element name="rubric" type="qtiasi:rubricType"/>
+	<xsd:element name="section" type="qtiasi:sectionType"/>
+	<xsd:element name="sectioncontrol" type="qtiasi:sectioncontrolType"/>
+	<xsd:element name="sectionfeedback" type="qtiasi:sectionfeedbackType"/>
+	<xsd:element name="sectionproc_extension" type="qtiasi:sectionproc_extensionType"/>
+	<xsd:element name="sectionpostcondition" type="xsd:string"/>
+	<xsd:element name="sectionprecondition" type="xsd:string"/>
+	<xsd:element name="sectionref" type="qtiasi:sectionrefType"/>
+	<xsd:element name="selection" type="qtiasi:selectionType"/>
+	<xsd:element name="selection_extension" type="qtiasi:selection_extensionType"/>
+	<xsd:element name="selection_metadata" type="qtiasi:selection_metadataType"/>
+	<xsd:element name="selection_number" type="xsd:string"/>
+	<xsd:element name="selection_ordering" type="qtiasi:selection_orderingType"/>
+	<xsd:element name="sequence_parameter" type="qtiasi:sequence_parameterType"/>
+	<xsd:element name="setvar" type="qtiasi:setvarType"/>
+	<xsd:element name="solution" type="qtiasi:solutionType"/>
+	<xsd:element name="solutionmaterial" type="qtiasi:solutionmaterialType"/>
+	<xsd:element name="sourcebank_ref" type="xsd:string"/>
+	<xsd:element name="test_variable" type="qtiasi:test_variableType"/>
+	<xsd:element name="unanswered" type="qtiasi:unansweredType"/>
+	<xsd:element name="var_extension" type="qtiasi:var_extensionType"/>
+	<xsd:element name="varequal" type="qtiasi:varequalType"/>
+	<xsd:element name="vargt" type="qtiasi:vargtType"/>
+	<xsd:element name="vargte" type="qtiasi:vargteType"/>
+	<xsd:element name="variable_test" type="qtiasi:variable_testType"/>
+	<xsd:element name="varinside" type="qtiasi:varinsideType"/>
+	<xsd:element name="varlt" type="qtiasi:varltType"/>
+	<xsd:element name="varlte" type="qtiasi:varlteType"/>
+	<xsd:element name="varsubset" type="qtiasi:varsubsetType"/>
+	<xsd:element name="varsubstring" type="qtiasi:varsubstringType"/>
+	<xsd:element name="vocabulary" type="qtiasi:vocabularyType"/>
+	<xsd:complexType name="altmaterialType">
+		<xsd:sequence>
+			<xsd:element name="qticomment" type="qtiasi:qticommentType" minOccurs="0"/>
+			<xsd:choice maxOccurs="unbounded">
+				<xsd:element name="mattext" type="qtiasi:mattextType"/>
+				<xsd:element name="matemtext" type="qtiasi:matemtextType"/>
+				<xsd:element name="matimage" type="qtiasi:matimageType"/>
+				<xsd:element name="mataudio" type="qtiasi:mataudioType"/>
+				<xsd:element name="matvideo" type="qtiasi:matvideoType"/>
+				<xsd:element name="matapplet" type="qtiasi:matappletType"/>
+				<xsd:element name="matapplication" type="qtiasi:matapplicationType"/>
+				<xsd:element name="matref" type="qtiasi:matrefType"/>
+				<xsd:element name="matbreak" type="qtiasi:matbreakType"/>
+				<xsd:element name="mat_extension" type="qtiasi:mat_extensionType"/>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="andType">
+		<xsd:choice maxOccurs="unbounded">
+			<xsd:element name="not" type="qtiasi:notType"/>
+			<xsd:element name="and" type="qtiasi:andType"/>
+			<xsd:element name="or" type="qtiasi:orType"/>
+			<xsd:element name="varequal" type="qtiasi:varequalType"/>
+		</xsd:choice>
+	</xsd:complexType>
+	<xsd:complexType name="and_objectsType">
+		<xsd:choice maxOccurs="unbounded">
+			<xsd:element name="outcomes_metadata" type="qtiasi:outcomes_metadataType"/>
+			<xsd:element name="and_objects" type="qtiasi:and_objectsType"/>
+			<xsd:element name="or_objects" type="qtiasi:or_objectsType"/>
+			<xsd:element name="not_objects" type="qtiasi:not_objectsType"/>
+		</xsd:choice>
+	</xsd:complexType>
+	<xsd:complexType name="and_selectionType">
+		<xsd:choice maxOccurs="unbounded">
+			<xsd:element name="selection_metadata" type="qtiasi:selection_metadataType"/>
+			<xsd:element name="and_selection" type="qtiasi:and_selectionType"/>
+			<xsd:element name="or_selection" type="qtiasi:or_selectionType"/>
+			<xsd:element name="not_selection" type="qtiasi:not_selectionType"/>
+		</xsd:choice>
+	</xsd:complexType>
+	<xsd:complexType name="and_testType">
+		<xsd:choice maxOccurs="unbounded">
+			<xsd:element name="variable_test" type="qtiasi:variable_testType"/>
+			<xsd:element name="and_test" type="qtiasi:and_testType"/>
+			<xsd:element name="or_test" type="qtiasi:or_testType"/>
+			<xsd:element name="not_test" type="qtiasi:not_testType"/>
+		</xsd:choice>
+	</xsd:complexType>
+	<xsd:complexType name="assessfeedbackType">
+		<xsd:sequence>
+			<xsd:element name="qticomment" type="qtiasi:qticommentType" minOccurs="0"/>
+			<xsd:choice>
+				<xsd:element name="material" type="qtiasi:materialType" maxOccurs="unbounded"/>
+				<xsd:element name="flow_mat" type="qtiasi:flow_matType" maxOccurs="unbounded"/>
+			</xsd:choice>
+		</xsd:sequence>
+		<xsd:attribute name="view" default="All">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:NMTOKEN">
+					<xsd:enumeration value="All"/>
+					<xsd:enumeration value="Administrator"/>
+					<xsd:enumeration value="AdminAuthority"/>
+					<xsd:enumeration value="Assessor"/>
+					<xsd:enumeration value="Author"/>
+					<xsd:enumeration value="Candidate"/>
+					<xsd:enumeration value="InvigilatorProctor"/>
+					<xsd:enumeration value="Psychometrician"/>
+					<xsd:enumeration value="Scorer"/>
+					<xsd:enumeration value="Tutor"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+		<xsd:attribute name="ident" type="xsd:string" use="required"/>
+		<xsd:attribute name="title" type="xsd:string"/>
+	</xsd:complexType>
+	<xsd:complexType name="assessmentType">
+		<xsd:sequence>
+			<xsd:element name="qticomment" type="qtiasi:qticommentType" minOccurs="0"/>
+			<xsd:element ref="qtiasi:duration" minOccurs="0"/>
+			<xsd:element name="section" type="qtiasi:sectionType"/>
+		</xsd:sequence>
+		<xsd:attribute name="ident" type="xsd:integer" default="0"/>
+		<xsd:attribute name="title" type="xsd:string"/>
+	</xsd:complexType>
+	<xsd:complexType name="assessmentcontrolType">
+		<xsd:sequence>
+			<xsd:element name="qticomment" type="qtiasi:qticommentType" minOccurs="0"/>
+		</xsd:sequence>
+		<xsd:attribute name="hintswitch" default="Yes">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:NMTOKEN">
+					<xsd:enumeration value="Yes"/>
+					<xsd:enumeration value="No"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+		<xsd:attribute name="solutionswitch" default="Yes">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:NMTOKEN">
+					<xsd:enumeration value="Yes"/>
+					<xsd:enumeration value="No"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+		<xsd:attribute name="view" default="All">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:NMTOKEN">
+					<xsd:enumeration value="All"/>
+					<xsd:enumeration value="Administrator"/>
+					<xsd:enumeration value="AdminAuthority"/>
+					<xsd:enumeration value="Assessor"/>
+					<xsd:enumeration value="Author"/>
+					<xsd:enumeration value="Candidate"/>
+					<xsd:enumeration value="InvigilatorProctor"/>
+					<xsd:enumeration value="Psychometrician"/>
+					<xsd:enumeration value="Scorer"/>
+					<xsd:enumeration value="Tutor"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+		<xsd:attribute name="feedbackswitch" default="Yes">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:NMTOKEN">
+					<xsd:enumeration value="Yes"/>
+					<xsd:enumeration value="No"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+	</xsd:complexType>
+	<xsd:complexType name="assessproc_extensionType" mixed="true">
+		<xsd:sequence>
+			<xsd:any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:anyAttribute processContents="lax"/>
+	</xsd:complexType>
+	<xsd:complexType name="conditionvarType">
+		<xsd:choice maxOccurs="unbounded">
+			<xsd:element name="not" type="qtiasi:notType"/>
+			<xsd:element name="varequal" type="qtiasi:varequalType"/>
+		</xsd:choice>
+	</xsd:complexType>
+	<xsd:complexType name="decvarType">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute name="vartype" default="Integer">
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:NMTOKEN">
+							<xsd:enumeration value="Integer"/>
+							<xsd:enumeration value="String"/>
+							<xsd:enumeration value="Decimal"/>
+							<xsd:enumeration value="Boolean"/>
+							<xsd:enumeration value="Enumerated"/>
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:attribute>
+				<xsd:attribute name="minvalue" type="xsd:integer"/>
+				<xsd:attribute name="maxvalue" type="xsd:integer"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="displayfeedbackType">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute name="feedbacktype" default="Response">
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:NMTOKEN">
+							<xsd:enumeration value="Response"/>
+							<xsd:enumeration value="Solution"/>
+							<xsd:enumeration value="Hint"/>
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:attribute>
+				<xsd:attribute name="linkrefid" type="xsd:string" use="required"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="durequalType">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute name="index" type="xsd:string"/>
+				<xsd:attribute name="respident" type="xsd:string" use="required"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="durgtType">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute name="index" type="xsd:string"/>
+				<xsd:attribute name="respident" type="xsd:string" use="required"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="durgteType">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute name="index" type="xsd:string"/>
+				<xsd:attribute name="respident" type="xsd:string" use="required"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="durltType">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute name="index" type="xsd:string"/>
+				<xsd:attribute name="respident" type="xsd:string" use="required"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="durlteType">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute name="index" type="xsd:string"/>
+				<xsd:attribute name="respident" type="xsd:string" use="required"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="flowType">
+		<xsd:sequence>
+			<xsd:element name="material" type="qtiasi:materialType" maxOccurs="unbounded"/>
+			<xsd:element name="response_lid" type="qtiasi:response_lidType" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="response_str" type="qtiasi:response_strType" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="flow_labelType">
+		<xsd:choice maxOccurs="unbounded">
+			<xsd:element name="flow_label" type="qtiasi:flow_labelType"/>
+			<xsd:element name="response_label" type="qtiasi:response_labelType"/>
+		</xsd:choice>
+		<xsd:attribute name="class" type="xsd:string" default="Block"/>
+	</xsd:complexType>
+	<xsd:complexType name="flow_matType">
+		<xsd:sequence>
+			<xsd:element name="material" type="qtiasi:materialType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="hintType">
+		<xsd:sequence>
+			<xsd:element name="qticomment" type="qtiasi:qticommentType" minOccurs="0"/>
+			<xsd:element name="hintmaterial" type="qtiasi:hintmaterialType" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:attribute name="feedbackstyle" default="Complete">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:NMTOKEN">
+					<xsd:enumeration value="Complete"/>
+					<xsd:enumeration value="Incremental"/>
+					<xsd:enumeration value="Multilevel"/>
+					<xsd:enumeration value="Proprietary"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+	</xsd:complexType>
+	<xsd:complexType name="hintmaterialType">
+		<xsd:choice>
+			<xsd:element name="material" type="qtiasi:materialType" maxOccurs="unbounded"/>
+			<xsd:element name="flow_mat" type="qtiasi:flow_matType" maxOccurs="unbounded"/>
+		</xsd:choice>
+	</xsd:complexType>
+	<xsd:complexType name="interpretvarType">
+		<xsd:sequence>
+			<xsd:element name="material" type="qtiasi:materialType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="itemType">
+		<xsd:sequence>
+			<xsd:element name="presentation" type="qtiasi:presentationType"/>
+			<xsd:element name="resprocessing" type="qtiasi:resprocessingType" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="itemfeedback" type="qtiasi:itemfeedbackType" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="qticomment" type="qtiasi:qticommentType" minOccurs="0"/>
+		</xsd:sequence>
+		<xsd:attribute name="ident" type="xsd:string" use="required"/>
+	</xsd:complexType>
+	<xsd:complexType name="itemcontrolType">
+		<xsd:sequence>
+			<xsd:element name="qticomment" type="qtiasi:qticommentType" minOccurs="0"/>
+		</xsd:sequence>
+		<xsd:attribute name="feedbackswitch" default="Yes">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:NMTOKEN">
+					<xsd:enumeration value="Yes"/>
+					<xsd:enumeration value="No"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+		<xsd:attribute name="hintswitch" default="Yes">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:NMTOKEN">
+					<xsd:enumeration value="Yes"/>
+					<xsd:enumeration value="No"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+		<xsd:attribute name="solutionswitch" default="Yes">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:NMTOKEN">
+					<xsd:enumeration value="Yes"/>
+					<xsd:enumeration value="No"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+		<xsd:attribute name="view" default="All">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:NMTOKEN">
+					<xsd:enumeration value="All"/>
+					<xsd:enumeration value="Administrator"/>
+					<xsd:enumeration value="AdminAuthority"/>
+					<xsd:enumeration value="Assessor"/>
+					<xsd:enumeration value="Author"/>
+					<xsd:enumeration value="Candidate"/>
+					<xsd:enumeration value="InvigilatorProctor"/>
+					<xsd:enumeration value="Psychometrician"/>
+					<xsd:enumeration value="Scorer"/>
+					<xsd:enumeration value="Tutor"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+	</xsd:complexType>
+	<xsd:complexType name="itemfeedbackType">
+		<xsd:sequence>
+			<xsd:element name="flow_mat" type="qtiasi:flow_matType"/>
+		</xsd:sequence>
+		<xsd:attribute name="ident" type="xsd:string" use="required"/>
+		<xsd:attribute name="view" default="All">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:NMTOKEN">
+					<xsd:enumeration value="All"/>
+					<xsd:enumeration value="Administrator"/>
+					<xsd:enumeration value="AdminAuthority"/>
+					<xsd:enumeration value="Assessor"/>
+					<xsd:enumeration value="Author"/>
+					<xsd:enumeration value="Candidate"/>
+					<xsd:enumeration value="InvigilatorProctor"/>
+					<xsd:enumeration value="Psychometrician"/>
+					<xsd:enumeration value="Scorer"/>
+					<xsd:enumeration value="Tutor"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+	</xsd:complexType>
+	<xsd:complexType name="itemmetadataType">
+		<xsd:sequence>
+			<xsd:element name="qtimetadata" type="qtiasi:qtimetadataType" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element ref="qtiasi:qmd_computerscored" minOccurs="0"/>
+			<xsd:element ref="qtiasi:qmd_feedbackpermitted" minOccurs="0"/>
+			<xsd:element ref="qtiasi:qmd_hintspermitted" minOccurs="0"/>
+			<xsd:element ref="qtiasi:qmd_itemtype" minOccurs="0"/>
+			<xsd:element ref="qtiasi:qmd_levelofdifficulty" minOccurs="0"/>
+			<xsd:element ref="qtiasi:qmd_maximumscore" minOccurs="0"/>
+			<xsd:element ref="qtiasi:qmd_renderingtype" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element ref="qtiasi:qmd_responsetype" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element ref="qtiasi:qmd_scoringpermitted" minOccurs="0"/>
+			<xsd:element ref="qtiasi:qmd_solutionspermitted" minOccurs="0"/>
+			<xsd:element ref="qtiasi:qmd_status" minOccurs="0"/>
+			<xsd:element ref="qtiasi:qmd_timedependence" minOccurs="0"/>
+			<xsd:element ref="qtiasi:qmd_timelimit" minOccurs="0"/>
+			<xsd:element ref="qtiasi:qmd_toolvendor" minOccurs="0"/>
+			<xsd:element ref="qtiasi:qmd_topic" minOccurs="0"/>
+			<xsd:element ref="qtiasi:qmd_weighting" minOccurs="0"/>
+			<xsd:element ref="qtiasi:qmd_material" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element ref="qtiasi:qmd_typeofsolution" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="itemproc_extensionType" mixed="true">
+		<xsd:sequence>
+			<xsd:any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:anyAttribute processContents="lax"/>
+	</xsd:complexType>
+	<xsd:complexType name="itemrefType">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute name="linkrefid" type="xsd:string" use="required"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="itemrubricType">
+		<xsd:sequence>
+			<xsd:element name="material" type="qtiasi:materialType"/>
+		</xsd:sequence>
+		<xsd:attribute name="view" default="All">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:NMTOKEN">
+					<xsd:enumeration value="All"/>
+					<xsd:enumeration value="Administrator"/>
+					<xsd:enumeration value="AdminAuthority"/>
+					<xsd:enumeration value="Assessor"/>
+					<xsd:enumeration value="Author"/>
+					<xsd:enumeration value="Candidate"/>
+					<xsd:enumeration value="InvigilatorProctor"/>
+					<xsd:enumeration value="Psychometrician"/>
+					<xsd:enumeration value="Scorer"/>
+					<xsd:enumeration value="Tutor"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+	</xsd:complexType>
+	<xsd:complexType name="map_inputType">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute name="varname" type="xsd:string" default="SCORE"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="map_outputType">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute name="varname" type="xsd:string" default="SCORE"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="mat_extensionType" mixed="true">
+		<xsd:sequence>
+			<xsd:any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:anyAttribute processContents="lax"/>
+	</xsd:complexType>
+	<xsd:complexType name="matappletType">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute name="label" type="xsd:string"/>
+				<xsd:attribute name="uri" type="xsd:string"/>
+				<xsd:attribute name="y0" type="xsd:string"/>
+				<xsd:attribute name="height" type="xsd:string"/>
+				<xsd:attribute name="width" type="xsd:string"/>
+				<xsd:attribute name="x0" type="xsd:string"/>
+				<xsd:attribute name="embedded" type="xsd:string" default="base64"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="matapplicationType">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute name="apptype" type="xsd:string"/>
+				<xsd:attribute name="label" type="xsd:string"/>
+				<xsd:attribute name="uri" type="xsd:string"/>
+				<xsd:attribute name="embedded" type="xsd:string" default="base64"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="mataudioType">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute name="audiotype" type="xsd:string" default="audio/base"/>
+				<xsd:attribute name="label" type="xsd:string"/>
+				<xsd:attribute name="uri" type="xsd:string"/>
+				<xsd:attribute name="embedded" type="xsd:string" default="base64"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="matbreakType"/>
+	<xsd:complexType name="matemtextType">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute name="texttype" type="xsd:string" default="text/plain"/>
+				<xsd:attribute name="label" type="xsd:string"/>
+				<xsd:attribute name="charset" type="xsd:string" default="ascii-us"/>
+				<xsd:attribute name="uri" type="xsd:string"/>
+				<xsd:attribute name="width" type="xsd:string"/>
+				<xsd:attribute name="height" type="xsd:string"/>
+				<xsd:attribute name="y0" type="xsd:string"/>
+				<xsd:attribute name="x0" type="xsd:string"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="materialType">
+		<xsd:sequence>
+			<xsd:element name="mattext" type="qtiasi:mattextType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="material_refType">
+		<xsd:attribute name="linkrefid" type="xsd:string" use="required"/>
+	</xsd:complexType>
+	<xsd:complexType name="matimageType">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute name="imagtype" type="xsd:string" default="image/jpeg"/>
+				<xsd:attribute name="label" type="xsd:string"/>
+				<xsd:attribute name="height" type="xsd:string"/>
+				<xsd:attribute name="uri" type="xsd:string"/>
+				<xsd:attribute name="embedded" type="xsd:string" default="base64"/>
+				<xsd:attribute name="width" type="xsd:string"/>
+				<xsd:attribute name="y0" type="xsd:string"/>
+				<xsd:attribute name="x0" type="xsd:string"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="matrefType">
+		<xsd:attribute name="linkrefid" type="xsd:string" use="required"/>
+	</xsd:complexType>
+	<xsd:complexType name="mattextType">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string"/>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="matvideoType">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute name="videotype" type="xsd:string" default="video/avi"/>
+				<xsd:attribute name="label" type="xsd:string"/>
+				<xsd:attribute name="uri" type="xsd:string"/>
+				<xsd:attribute name="width" type="xsd:string"/>
+				<xsd:attribute name="height" type="xsd:string"/>
+				<xsd:attribute name="y0" type="xsd:string"/>
+				<xsd:attribute name="x0" type="xsd:string"/>
+				<xsd:attribute name="embedded" type="xsd:string" default="base64"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="notType">
+		<xsd:choice>
+			<xsd:element name="varequal" type="qtiasi:varequalType"/>
+			<xsd:element ref="qtiasi:and"/>
+		</xsd:choice>
+	</xsd:complexType>
+	<xsd:complexType name="not_objectsType">
+		<xsd:choice>
+			<xsd:element name="outcomes_metadata" type="qtiasi:outcomes_metadataType"/>
+			<xsd:element name="and_objects" type="qtiasi:and_objectsType"/>
+			<xsd:element name="or_objects" type="qtiasi:or_objectsType"/>
+			<xsd:element name="not_objects" type="qtiasi:not_objectsType"/>
+		</xsd:choice>
+	</xsd:complexType>
+	<xsd:complexType name="not_selectionType">
+		<xsd:choice>
+			<xsd:element name="selection_metadata" type="qtiasi:selection_metadataType"/>
+			<xsd:element name="and_selection" type="qtiasi:and_selectionType"/>
+			<xsd:element name="or_selection" type="qtiasi:or_selectionType"/>
+			<xsd:element name="not_selection" type="qtiasi:not_selectionType"/>
+		</xsd:choice>
+	</xsd:complexType>
+	<xsd:complexType name="not_testType">
+		<xsd:choice>
+			<xsd:element name="variable_test" type="qtiasi:variable_testType"/>
+			<xsd:element name="and_test" type="qtiasi:and_testType"/>
+			<xsd:element name="or_test" type="qtiasi:or_testType"/>
+			<xsd:element name="not_test" type="qtiasi:not_testType"/>
+		</xsd:choice>
+	</xsd:complexType>
+	<xsd:complexType name="objectbankType">
+		<xsd:sequence>
+			<xsd:element name="qticomment" type="qtiasi:qticommentType" minOccurs="0"/>
+			<xsd:element name="qtimetadata" type="qtiasi:qtimetadataType" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:choice maxOccurs="unbounded">
+				<xsd:element name="section" type="qtiasi:sectionType"/>
+				<xsd:element name="item" type="qtiasi:itemType"/>
+			</xsd:choice>
+		</xsd:sequence>
+		<xsd:attribute name="ident" type="xsd:string" use="required"/>
+	</xsd:complexType>
+	<xsd:complexType name="objectivesType">
+		<xsd:sequence>
+			<xsd:element name="qticomment" type="qtiasi:qticommentType" minOccurs="0"/>
+			<xsd:choice>
+				<xsd:element name="material" type="qtiasi:materialType" maxOccurs="unbounded"/>
+				<xsd:element name="flow_mat" type="qtiasi:flow_matType" maxOccurs="unbounded"/>
+			</xsd:choice>
+		</xsd:sequence>
+		<xsd:attribute name="view" default="All">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:NMTOKEN">
+					<xsd:enumeration value="All"/>
+					<xsd:enumeration value="Administrator"/>
+					<xsd:enumeration value="AdminAuthority"/>
+					<xsd:enumeration value="Assessor"/>
+					<xsd:enumeration value="Author"/>
+					<xsd:enumeration value="Candidate"/>
+					<xsd:enumeration value="InvigilatorProctor"/>
+					<xsd:enumeration value="Psychometrician"/>
+					<xsd:enumeration value="Scorer"/>
+					<xsd:enumeration value="Tutor"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+	</xsd:complexType>
+	<xsd:complexType name="objects_conditionType">
+		<xsd:sequence>
+			<xsd:element name="qticomment" type="qtiasi:qticommentType" minOccurs="0"/>
+			<xsd:choice minOccurs="0">
+				<xsd:element name="outcomes_metadata" type="qtiasi:outcomes_metadataType"/>
+				<xsd:element name="and_objects" type="qtiasi:and_objectsType"/>
+				<xsd:element name="or_objects" type="qtiasi:or_objectsType"/>
+				<xsd:element name="not_objects" type="qtiasi:not_objectsType"/>
+			</xsd:choice>
+			<xsd:element name="objects_parameter" type="qtiasi:objects_parameterType" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="map_input" type="qtiasi:map_inputType" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element ref="qtiasi:objectscond_extension" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="objects_parameterType">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute name="pname" type="xsd:string" use="required"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="orType">
+		<xsd:choice maxOccurs="unbounded">
+			<xsd:element name="not" type="qtiasi:notType"/>
+			<xsd:element name="and" type="qtiasi:andType"/>
+			<xsd:element name="or" type="qtiasi:orType"/>
+			<xsd:element name="varequal" type="qtiasi:varequalType"/>
+		</xsd:choice>
+	</xsd:complexType>
+	<xsd:complexType name="or_objectsType">
+		<xsd:choice maxOccurs="unbounded">
+			<xsd:element name="outcomes_metadata" type="qtiasi:outcomes_metadataType"/>
+			<xsd:element name="and_objects" type="qtiasi:and_objectsType"/>
+			<xsd:element name="or_objects" type="qtiasi:or_objectsType"/>
+			<xsd:element name="not_objects" type="qtiasi:not_objectsType"/>
+		</xsd:choice>
+	</xsd:complexType>
+	<xsd:complexType name="or_selectionType">
+		<xsd:choice maxOccurs="unbounded">
+			<xsd:element name="selection_metadata" type="qtiasi:selection_metadataType"/>
+			<xsd:element name="and_selection" type="qtiasi:and_selectionType"/>
+			<xsd:element name="or_selection" type="qtiasi:or_selectionType"/>
+			<xsd:element name="not_selection" type="qtiasi:not_selectionType"/>
+		</xsd:choice>
+	</xsd:complexType>
+	<xsd:complexType name="or_testType">
+		<xsd:choice maxOccurs="unbounded">
+			<xsd:element name="variable_test" type="qtiasi:variable_testType"/>
+			<xsd:element name="and_test" type="qtiasi:and_testType"/>
+			<xsd:element name="or_test" type="qtiasi:or_testType"/>
+			<xsd:element name="not_test" type="qtiasi:not_testType"/>
+		</xsd:choice>
+	</xsd:complexType>
+	<xsd:complexType name="orderType">
+		<xsd:sequence>
+			<xsd:element name="order_extension" type="qtiasi:order_extensionType" minOccurs="0"/>
+		</xsd:sequence>
+		<xsd:attribute name="order_type" type="xsd:string" use="required"/>
+	</xsd:complexType>
+	<xsd:complexType name="order_extensionType" mixed="true">
+		<xsd:sequence>
+			<xsd:any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:anyAttribute processContents="lax"/>
+	</xsd:complexType>
+	<xsd:complexType name="outcomesType">
+		<xsd:sequence>
+			<xsd:element name="decvar" type="qtiasi:decvarType"/>
+			<xsd:element name="interpretvar" type="qtiasi:interpretvarType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="outcomes_feedback_testType">
+		<xsd:sequence>
+			<xsd:element name="test_variable" type="qtiasi:test_variableType"/>
+			<xsd:element name="displayfeedback" type="qtiasi:displayfeedbackType" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:attribute name="title" type="xsd:string"/>
+	</xsd:complexType>
+	<xsd:complexType name="outcomes_metadataType">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute name="mdname" type="xsd:string" use="required"/>
+				<xsd:attribute name="mdoperator" use="required">
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:NMTOKEN">
+							<xsd:enumeration value="EQ"/>
+							<xsd:enumeration value="NEQ"/>
+							<xsd:enumeration value="LT"/>
+							<xsd:enumeration value="LTE"/>
+							<xsd:enumeration value="GT"/>
+							<xsd:enumeration value="GTE"/>
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:attribute>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="outcomes_processingType">
+		<xsd:sequence>
+			<xsd:element name="qticomment" type="qtiasi:qticommentType" minOccurs="0"/>
+			<xsd:element name="outcomes" type="qtiasi:outcomesType"/>
+			<xsd:element name="objects_condition" type="qtiasi:objects_conditionType" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="processing_parameter" type="qtiasi:processing_parameterType" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="map_output" type="qtiasi:map_outputType" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="outcomes_feedback_test" type="qtiasi:outcomes_feedback_testType" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:attribute name="scoremodel" type="xsd:string"/>
+	</xsd:complexType>
+	<xsd:complexType name="presentationType">
+		<xsd:sequence>
+			<xsd:element name="flow" type="qtiasi:flowType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="presentation_materialType">
+		<xsd:sequence>
+			<xsd:element name="qticomment" type="qtiasi:qticommentType" minOccurs="0"/>
+			<xsd:element name="flow_mat" type="qtiasi:flow_matType" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="processing_parameterType">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute name="pname" type="xsd:string" use="required"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="qticommentType">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string"/>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="qtimetadataType">
+		<xsd:sequence>
+			<xsd:element name="vocabulary" type="qtiasi:vocabularyType" minOccurs="0"/>
+			<xsd:element name="qtimetadatafield" type="qtiasi:qtimetadatafieldType" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="qtimetadatafieldType">
+		<xsd:sequence>
+			<xsd:element ref="qtiasi:fieldlabel"/>
+			<xsd:element ref="qtiasi:fieldentry"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="questestinteropType">
+		<xsd:sequence>
+			<xsd:element name="assessment" type="qtiasi:assessmentType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="referenceType">
+		<xsd:choice maxOccurs="unbounded">
+			<xsd:element name="qticomment" type="qtiasi:qticommentType"/>
+			<xsd:element name="material" type="qtiasi:materialType"/>
+			<xsd:element name="mattext" type="qtiasi:mattextType"/>
+			<xsd:element name="matemtext" type="qtiasi:matemtextType"/>
+			<xsd:element name="matimage" type="qtiasi:matimageType"/>
+			<xsd:element name="mataudio" type="qtiasi:mataudioType"/>
+			<xsd:element name="matvideo" type="qtiasi:matvideoType"/>
+			<xsd:element name="matapplet" type="qtiasi:matappletType"/>
+			<xsd:element name="matapplication" type="qtiasi:matapplicationType"/>
+			<xsd:element name="matbreak" type="qtiasi:matbreakType"/>
+			<xsd:element name="mat_extension" type="qtiasi:mat_extensionType"/>
+		</xsd:choice>
+	</xsd:complexType>
+	<xsd:complexType name="render_choiceType">
+		<xsd:sequence>
+			<xsd:element name="response_label" type="qtiasi:response_labelType" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:attribute name="minnumber" use="optional">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:integer">
+					<xsd:minInclusive value="0"/>
+					<xsd:maxInclusive value="99"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+		<xsd:attribute name="maxnumber" use="optional">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:integer">
+					<xsd:minInclusive value="1"/>
+					<xsd:maxInclusive value="99"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+	</xsd:complexType>
+	<xsd:complexType name="render_extensionType" mixed="true">
+		<xsd:sequence>
+			<xsd:any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:anyAttribute processContents="lax"/>
+	</xsd:complexType>
+	<xsd:complexType name="render_fibType">
+		<xsd:sequence>
+			<xsd:element name="response_label" type="qtiasi:response_labelType"/>
+		</xsd:sequence>
+		<xsd:attribute name="fibtype" default="String">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:NMTOKEN">
+					<xsd:enumeration value="String"/>
+					<xsd:enumeration value="Integer"/>
+					<xsd:enumeration value="Decimal"/>
+					<xsd:enumeration value="Scientific"/>
+					<xsd:enumeration value="Boolean"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+		<xsd:attribute name="prompt" default="Box">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:NMTOKEN">
+					<xsd:enumeration value="Box"/>
+					<xsd:enumeration value="Dashline"/>
+					<xsd:enumeration value="Asterisk"/>
+					<xsd:enumeration value="Underline"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+		<xsd:attribute name="maxchars" type="xsd:integer"/>
+	</xsd:complexType>
+	<xsd:complexType name="render_hotspotType">
+		<xsd:sequence>
+			<xsd:choice minOccurs="0" maxOccurs="unbounded">
+				<xsd:element name="material" type="qtiasi:materialType"/>
+				<xsd:element name="material_ref" type="qtiasi:material_refType"/>
+				<xsd:element name="response_label" type="qtiasi:response_labelType"/>
+				<xsd:element name="flow_label" type="qtiasi:flow_labelType"/>
+			</xsd:choice>
+			<xsd:element name="response_na" type="qtiasi:response_naType" minOccurs="0"/>
+		</xsd:sequence>
+		<xsd:attribute name="maxnumber" type="xsd:string"/>
+		<xsd:attribute name="minnumber" type="xsd:string"/>
+		<xsd:attribute name="showdraw" default="No">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:NMTOKEN">
+					<xsd:enumeration value="Yes"/>
+					<xsd:enumeration value="No"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+	</xsd:complexType>
+	<xsd:complexType name="render_sliderType">
+		<xsd:sequence>
+			<xsd:choice minOccurs="0" maxOccurs="unbounded">
+				<xsd:element name="material" type="qtiasi:materialType"/>
+				<xsd:element name="material_ref" type="qtiasi:material_refType"/>
+				<xsd:element name="response_label" type="qtiasi:response_labelType"/>
+				<xsd:element name="flow_label" type="qtiasi:flow_labelType"/>
+			</xsd:choice>
+			<xsd:element name="response_na" type="qtiasi:response_naType" minOccurs="0"/>
+		</xsd:sequence>
+		<xsd:attribute name="orientation" default="Horizontal">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:NMTOKEN">
+					<xsd:enumeration value="Horizontal"/>
+					<xsd:enumeration value="Vertical"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+		<xsd:attribute name="lowerbound" type="xsd:string" use="required"/>
+		<xsd:attribute name="upperbound" type="xsd:string" use="required"/>
+		<xsd:attribute name="step" type="xsd:string"/>
+		<xsd:attribute name="startval" type="xsd:string"/>
+		<xsd:attribute name="steplabel" default="No">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:NMTOKEN">
+					<xsd:enumeration value="Yes"/>
+					<xsd:enumeration value="No"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+		<xsd:attribute name="maxnumber" type="xsd:string"/>
+		<xsd:attribute name="minnumber" type="xsd:string"/>
+	</xsd:complexType>
+	<xsd:complexType name="respcond_extensionType" mixed="true">
+		<xsd:sequence>
+			<xsd:any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:anyAttribute processContents="lax"/>
+	</xsd:complexType>
+	<xsd:complexType name="respconditionType">
+		<xsd:sequence>
+			<xsd:element name="conditionvar" type="qtiasi:conditionvarType"/>
+			<xsd:element name="setvar" type="qtiasi:setvarType"/>
+			<xsd:element name="displayfeedback" type="qtiasi:displayfeedbackType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="response_extensionType" mixed="true">
+		<xsd:sequence>
+			<xsd:any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:anyAttribute processContents="lax"/>
+	</xsd:complexType>
+	<xsd:complexType name="response_grpType">
+		<xsd:sequence>
+			<xsd:choice minOccurs="0">
+				<xsd:element name="material" type="qtiasi:materialType"/>
+				<xsd:element name="material_ref" type="qtiasi:material_refType"/>
+			</xsd:choice>
+			<xsd:choice>
+				<xsd:element name="render_choice" type="qtiasi:render_choiceType"/>
+				<xsd:element name="render_hotspot" type="qtiasi:render_hotspotType"/>
+				<xsd:element name="render_slider" type="qtiasi:render_sliderType"/>
+				<xsd:element name="render_fib" type="qtiasi:render_fibType"/>
+				<xsd:element name="render_extension" type="qtiasi:render_extensionType"/>
+			</xsd:choice>
+			<xsd:choice minOccurs="0">
+				<xsd:element name="material" type="qtiasi:materialType"/>
+				<xsd:element name="material_ref" type="qtiasi:material_refType"/>
+			</xsd:choice>
+		</xsd:sequence>
+		<xsd:attribute name="rcardinality" default="Single">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:NMTOKEN">
+					<xsd:enumeration value="Single"/>
+					<xsd:enumeration value="Multiple"/>
+					<xsd:enumeration value="Ordered"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+		<xsd:attribute name="ident" type="xsd:string" use="required"/>
+		<xsd:attribute name="rtiming" default="No">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:NMTOKEN">
+					<xsd:enumeration value="Yes"/>
+					<xsd:enumeration value="No"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+	</xsd:complexType>
+	<xsd:complexType name="response_labelType" mixed="true">
+		<xsd:sequence>
+			<xsd:element name="flow_mat" type="qtiasi:flow_matType" minOccurs="0"/>
+		</xsd:sequence>
+		<xsd:attribute name="ident" type="xsd:string" use="required"/>
+	</xsd:complexType>
+	<xsd:complexType name="response_lidType">
+		<xsd:sequence>
+			<xsd:element name="render_choice" type="qtiasi:render_choiceType"/>
+		</xsd:sequence>
+		<xsd:attribute name="ident" type="xsd:string" use="required"/>
+		<xsd:attribute name="rcardinality" default="Single">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:NMTOKEN">
+					<xsd:enumeration value="Single"/>
+					<xsd:enumeration value="Multiple"/>
+					<xsd:enumeration value="Ordered"/>
+					<xsd:enumeration value="Extension"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+	</xsd:complexType>
+	<xsd:complexType name="response_naType"/>
+	<xsd:complexType name="response_numType">
+		<xsd:sequence>
+			<xsd:choice minOccurs="0">
+				<xsd:element name="material" type="qtiasi:materialType"/>
+				<xsd:element name="material_ref" type="qtiasi:material_refType"/>
+			</xsd:choice>
+			<xsd:choice>
+				<xsd:element name="render_choice" type="qtiasi:render_choiceType"/>
+				<xsd:element name="render_hotspot" type="qtiasi:render_hotspotType"/>
+				<xsd:element name="render_slider" type="qtiasi:render_sliderType"/>
+				<xsd:element name="render_fib" type="qtiasi:render_fibType"/>
+				<xsd:element name="render_extension" type="qtiasi:render_extensionType"/>
+			</xsd:choice>
+			<xsd:choice minOccurs="0">
+				<xsd:element name="material" type="qtiasi:materialType"/>
+				<xsd:element name="material_ref" type="qtiasi:material_refType"/>
+			</xsd:choice>
+		</xsd:sequence>
+		<xsd:attribute name="numtype" default="Integer">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:NMTOKEN">
+					<xsd:enumeration value="Integer"/>
+					<xsd:enumeration value="Decimal"/>
+					<xsd:enumeration value="Scientific"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+		<xsd:attribute name="rcardinality" default="Single">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:NMTOKEN">
+					<xsd:enumeration value="Single"/>
+					<xsd:enumeration value="Multiple"/>
+					<xsd:enumeration value="Ordered"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+		<xsd:attribute name="ident" type="xsd:string" use="required"/>
+		<xsd:attribute name="rtiming" default="No">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:NMTOKEN">
+					<xsd:enumeration value="Yes"/>
+					<xsd:enumeration value="No"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+	</xsd:complexType>
+	<xsd:complexType name="response_strType">
+		<xsd:sequence>
+			<xsd:element name="render_fib" type="qtiasi:render_fibType"/>
+		</xsd:sequence>
+		<xsd:attribute name="ident" type="xsd:string" use="required"/>
+		<xsd:attribute name="rcardinality" default="Single">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:NMTOKEN">
+					<xsd:enumeration value="Single"/>
+					<xsd:enumeration value="Multiple"/>
+					<xsd:enumeration value="Ordered"/>
+					<xsd:enumeration value="Extension"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+	</xsd:complexType>
+	<xsd:complexType name="response_xyType">
+		<xsd:sequence>
+			<xsd:choice minOccurs="0">
+				<xsd:element name="material" type="qtiasi:materialType"/>
+				<xsd:element name="material_ref" type="qtiasi:material_refType"/>
+			</xsd:choice>
+			<xsd:choice>
+				<xsd:element name="render_choice" type="qtiasi:render_choiceType"/>
+				<xsd:element name="render_hotspot" type="qtiasi:render_hotspotType"/>
+				<xsd:element name="render_slider" type="qtiasi:render_sliderType"/>
+				<xsd:element name="render_fib" type="qtiasi:render_fibType"/>
+				<xsd:element ref="qtiasi:render_extension"/>
+			</xsd:choice>
+			<xsd:choice minOccurs="0">
+				<xsd:element name="material" type="qtiasi:materialType"/>
+				<xsd:element name="material_ref" type="qtiasi:material_refType"/>
+			</xsd:choice>
+		</xsd:sequence>
+		<xsd:attribute name="rcardinality" default="Single">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:NMTOKEN">
+					<xsd:enumeration value="Single"/>
+					<xsd:enumeration value="Multiple"/>
+					<xsd:enumeration value="Ordered"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+		<xsd:attribute name="rtiming" default="No">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:NMTOKEN">
+					<xsd:enumeration value="Yes"/>
+					<xsd:enumeration value="No"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+		<xsd:attribute name="ident" type="xsd:string" use="required"/>
+	</xsd:complexType>
+	<xsd:complexType name="resprocessingType">
+		<xsd:sequence>
+			<xsd:element name="outcomes" type="qtiasi:outcomesType"/>
+			<xsd:element name="respcondition" type="qtiasi:respconditionType" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:attribute name="scoremodel" type="xsd:string"/>
+	</xsd:complexType>
+	<xsd:complexType name="rubricType">
+		<xsd:sequence>
+			<xsd:element name="qticomment" type="qtiasi:qticommentType" minOccurs="0"/>
+			<xsd:choice>
+				<xsd:element name="material" type="qtiasi:materialType" maxOccurs="unbounded"/>
+				<xsd:element name="flow_mat" type="qtiasi:flow_matType" maxOccurs="unbounded"/>
+			</xsd:choice>
+		</xsd:sequence>
+		<xsd:attribute name="view" default="All">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:NMTOKEN">
+					<xsd:enumeration value="All"/>
+					<xsd:enumeration value="Administrator"/>
+					<xsd:enumeration value="AdminAuthority"/>
+					<xsd:enumeration value="Assessor"/>
+					<xsd:enumeration value="Author"/>
+					<xsd:enumeration value="Candidate"/>
+					<xsd:enumeration value="InvigilatorProctor"/>
+					<xsd:enumeration value="Psychometrician"/>
+					<xsd:enumeration value="Scorer"/>
+					<xsd:enumeration value="Tutor"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+	</xsd:complexType>
+	<xsd:complexType name="sectionType">
+		<xsd:sequence>
+			<xsd:element name="item" type="qtiasi:itemType" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:attribute name="ident" type="xsd:string" use="required"/>
+	</xsd:complexType>
+	<xsd:complexType name="sectioncontrolType">
+		<xsd:sequence>
+			<xsd:element name="qticomment" type="qtiasi:qticommentType" minOccurs="0"/>
+		</xsd:sequence>
+		<xsd:attribute name="feedbackswitch" default="Yes">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:NMTOKEN">
+					<xsd:enumeration value="Yes"/>
+					<xsd:enumeration value="No"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+		<xsd:attribute name="hintswitch" default="Yes">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:NMTOKEN">
+					<xsd:enumeration value="Yes"/>
+					<xsd:enumeration value="No"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+		<xsd:attribute name="solutionswitch" default="Yes">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:NMTOKEN">
+					<xsd:enumeration value="Yes"/>
+					<xsd:enumeration value="No"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+		<xsd:attribute name="view" default="All">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:NMTOKEN">
+					<xsd:enumeration value="All"/>
+					<xsd:enumeration value="Administrator"/>
+					<xsd:enumeration value="AdminAuthority"/>
+					<xsd:enumeration value="Assessor"/>
+					<xsd:enumeration value="Author"/>
+					<xsd:enumeration value="Candidate"/>
+					<xsd:enumeration value="InvigilatorProctor"/>
+					<xsd:enumeration value="Psychometrician"/>
+					<xsd:enumeration value="Scorer"/>
+					<xsd:enumeration value="Tutor"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+	</xsd:complexType>
+	<xsd:complexType name="sectionfeedbackType">
+		<xsd:sequence>
+			<xsd:element name="qticomment" type="qtiasi:qticommentType" minOccurs="0"/>
+			<xsd:choice>
+				<xsd:element name="material" type="qtiasi:materialType" maxOccurs="unbounded"/>
+				<xsd:element name="flow_mat" type="qtiasi:flow_matType" maxOccurs="unbounded"/>
+			</xsd:choice>
+		</xsd:sequence>
+		<xsd:attribute name="view" default="All">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:NMTOKEN">
+					<xsd:enumeration value="All"/>
+					<xsd:enumeration value="Administrator"/>
+					<xsd:enumeration value="AdminAuthority"/>
+					<xsd:enumeration value="Assessor"/>
+					<xsd:enumeration value="Author"/>
+					<xsd:enumeration value="Candidate"/>
+					<xsd:enumeration value="InvigilatorProctor"/>
+					<xsd:enumeration value="Psychometrician"/>
+					<xsd:enumeration value="Scorer"/>
+					<xsd:enumeration value="Tutor"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+		<xsd:attribute name="ident" type="xsd:string" use="required"/>
+		<xsd:attribute name="title" type="xsd:string"/>
+	</xsd:complexType>
+	<xsd:complexType name="sectionproc_extensionType" mixed="true">
+		<xsd:sequence>
+			<xsd:any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:anyAttribute processContents="lax"/>
+	</xsd:complexType>
+	<xsd:complexType name="sectionrefType">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute name="linkrefid" type="xsd:string" use="required"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="selectionType">
+		<xsd:sequence>
+			<xsd:element ref="qtiasi:sourcebank_ref" minOccurs="0"/>
+			<xsd:element ref="qtiasi:selection_number" minOccurs="0"/>
+			<xsd:element name="selection_metadata" type="qtiasi:selection_metadataType" minOccurs="0"/>
+			<xsd:choice minOccurs="0">
+				<xsd:element name="and_selection" type="qtiasi:and_selectionType"/>
+				<xsd:element name="or_selection" type="qtiasi:or_selectionType"/>
+				<xsd:element name="not_selection" type="qtiasi:not_selectionType"/>
+				<xsd:element name="selection_extension" type="qtiasi:sectionproc_extensionType"/>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="selection_extensionType" mixed="true">
+		<xsd:sequence>
+			<xsd:any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:anyAttribute processContents="lax"/>
+	</xsd:complexType>
+	<xsd:complexType name="selection_metadataType">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute name="mdname" type="xsd:string" use="required"/>
+				<xsd:attribute name="mdoperator" use="required">
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:NMTOKEN">
+							<xsd:enumeration value="EQ"/>
+							<xsd:enumeration value="NEQ"/>
+							<xsd:enumeration value="LT"/>
+							<xsd:enumeration value="LTE"/>
+							<xsd:enumeration value="GT"/>
+							<xsd:enumeration value="GTE"/>
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:attribute>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="selection_orderingType">
+		<xsd:sequence>
+			<xsd:element name="qticomment" type="qtiasi:qticommentType" minOccurs="0"/>
+			<xsd:element name="sequence_parameter" type="qtiasi:sequence_parameterType" minOccurs="0"/>
+			<xsd:element name="selection" type="qtiasi:selectionType" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="order" type="qtiasi:orderType" minOccurs="0"/>
+		</xsd:sequence>
+		<xsd:attribute name="sequence_type" type="xsd:string"/>
+	</xsd:complexType>
+	<xsd:complexType name="sequence_parameterType">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute name="pname" type="xsd:string" use="required"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="setvarType">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute name="action" default="Set">
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:NMTOKEN">
+							<xsd:enumeration value="Set"/>
+							<xsd:enumeration value="Add"/>
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:attribute>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="solutionType">
+		<xsd:sequence>
+			<xsd:element name="qticomment" type="qtiasi:qticommentType" minOccurs="0"/>
+			<xsd:element name="solutionmaterial" type="qtiasi:solutionmaterialType" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:attribute name="feedbackstyle" default="Complete">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:NMTOKEN">
+					<xsd:enumeration value="Complete"/>
+					<xsd:enumeration value="Incremental"/>
+					<xsd:enumeration value="Multilevel"/>
+					<xsd:enumeration value="Proprietary"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+	</xsd:complexType>
+	<xsd:complexType name="solutionmaterialType">
+		<xsd:choice>
+			<xsd:element name="material" type="qtiasi:materialType" maxOccurs="unbounded"/>
+			<xsd:element name="flow_mat" type="qtiasi:flow_matType" maxOccurs="unbounded"/>
+		</xsd:choice>
+	</xsd:complexType>
+	<xsd:complexType name="test_variableType">
+		<xsd:choice>
+			<xsd:element name="variable_test" type="qtiasi:variable_testType"/>
+			<xsd:element name="and_test" type="qtiasi:and_testType"/>
+			<xsd:element name="or_test" type="qtiasi:or_testType"/>
+			<xsd:element name="not_test" type="qtiasi:not_testType"/>
+		</xsd:choice>
+	</xsd:complexType>
+	<xsd:complexType name="unansweredType">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute name="respident" type="xsd:string" use="required"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="var_extensionType" mixed="true">
+		<xsd:sequence>
+			<xsd:any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:anyAttribute processContents="lax"/>
+	</xsd:complexType>
+	<xsd:complexType name="varequalType">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute name="respident" type="xsd:string" use="required"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="vargtType">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute name="respident" type="xsd:string" use="required"/>
+				<xsd:attribute name="index" type="xsd:string"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="vargteType">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute name="respident" type="xsd:string" use="required"/>
+				<xsd:attribute name="index" type="xsd:string"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="variable_testType">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute name="varname" type="xsd:string" default="SCORE"/>
+				<xsd:attribute name="testoperator" use="required">
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:NMTOKEN">
+							<xsd:enumeration value="EQ"/>
+							<xsd:enumeration value="NEQ"/>
+							<xsd:enumeration value="LT"/>
+							<xsd:enumeration value="LTE"/>
+							<xsd:enumeration value="GT"/>
+							<xsd:enumeration value="GTE"/>
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:attribute>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="varinsideType">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute name="areatype" use="required">
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:NMTOKEN">
+							<xsd:enumeration value="Ellipse"/>
+							<xsd:enumeration value="Rectangle"/>
+							<xsd:enumeration value="Bounded"/>
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:attribute>
+				<xsd:attribute name="respident" type="xsd:string" use="required"/>
+				<xsd:attribute name="index" type="xsd:string"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="varltType">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute name="respident" type="xsd:string" use="required"/>
+				<xsd:attribute name="index" type="xsd:string"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="varlteType">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute name="respident" type="xsd:string" use="required"/>
+				<xsd:attribute name="index" type="xsd:string"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="varsubsetType">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute name="respident" type="xsd:string" use="required"/>
+				<xsd:attribute name="setmatch" default="Exact">
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:NMTOKEN">
+							<xsd:enumeration value="Exact"/>
+							<xsd:enumeration value="Partial"/>
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:attribute>
+				<xsd:attribute name="index" type="xsd:string"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="varsubstringType">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute name="index" type="xsd:string"/>
+				<xsd:attribute name="respident" type="xsd:string" use="required"/>
+				<xsd:attribute name="case" default="No">
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:NMTOKEN">
+							<xsd:enumeration value="Yes"/>
+							<xsd:enumeration value="No"/>
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:attribute>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="vocabularyType">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute name="uri" type="xsd:string"/>
+				<xsd:attribute name="vocab_type" type="xsd:string"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+</xsd:schema>

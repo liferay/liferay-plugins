@@ -1,0 +1,232 @@
+<?xml version="1.0"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:att="http://www.webex.com/schemas/2002/06/service/attendee" xmlns:sess="http://www.webex.com/schemas/2002/06/service/session" xmlns:serv="http://www.webex.com/schemas/2002/06/service" xmlns:com="http://www.webex.com/schemas/2002/06/common" targetNamespace="http://www.webex.com/schemas/2002/06/service/session" elementFormDefault="qualified">
+	<xsd:import namespace="http://www.webex.com/schemas/2002/06/common" schemaLocation="../../common/common.xsd"/>
+	<xsd:import namespace="http://www.webex.com/schemas/2002/06/service" schemaLocation="../service.xsd"/>
+	<xsd:import namespace="http://www.webex.com/schemas/2002/06/service/attendee" schemaLocation="../attendee/attendee.xsd"/>
+	<xsd:annotation>
+		<xsd:documentation xml:lang="en">Types defined for trainingsession.xsd.</xsd:documentation>
+	</xsd:annotation>
+	<xsd:complexType name="sessionType">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="accessControl" type="sess:accessControlType" minOccurs="0"/>
+					<xsd:element name="schedule" type="sess:scheduleType" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="accessControlType">
+		<xsd:sequence>
+			<xsd:element name="listing" type="sess:listingType" minOccurs="0"/>
+			<xsd:element name="sessionPassword" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="16"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="enforcePassword" type="xsd:boolean" default="true" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="metaDataType">
+		<xsd:sequence>
+			<xsd:element name="confName" type="xsd:string" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="participantsType">
+		<xsd:sequence>
+			<xsd:element name="maxUserNumber" type="xsd:integer" minOccurs="0"/>
+			<xsd:element name="participants" nillable="true" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="participant" type="sess:participantType" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="enableOptionsType">
+		<xsd:sequence>
+			<xsd:element name="attendeeList" type="xsd:boolean" default="false" minOccurs="0"/>
+			<xsd:element name="javaClient" type="xsd:boolean" default="false" minOccurs="0"/>
+			<xsd:element name="nativeClient" type="xsd:boolean" default="true" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="scheduleType">
+		<xsd:sequence>
+			<xsd:element name="startDate" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="timeZone" type="com:timeZoneType" minOccurs="0"/>
+			<xsd:element name="duration" type="xsd:long" minOccurs="0"/>
+			<xsd:element name="timeZoneID" type="xsd:long" default="-1" minOccurs="0"/>
+			<xsd:element name="hostWebExID" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="openTime" type="xsd:integer" minOccurs="0"/>
+			<xsd:element name="extURL" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="512"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="extNotifyTime" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:minInclusive value="0"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="joinNotifyURL" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="512"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="joinTeleconfBeforeHost" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="entryExitTone" type="com:entryExitToneType" minOccurs="0"/>
+			<xsd:element name="destinationURL" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="128"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="telephonyType">
+		<xsd:sequence>
+			<xsd:element name="telephonySupport" type="sess:telephonySupportType" default="NONE" minOccurs="0"/>
+			<xsd:element name="numPhoneLines" type="xsd:integer" default="4" minOccurs="0"/>
+			<xsd:element name="extTelephonyURL" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="extTelephonyDescription" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="enableTSP" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="tspAccountIndex" type="xsd:integer" minOccurs="0"/>
+			<xsd:element name="personalAccountIndex" type="xsd:integer" minOccurs="0"/>
+			<xsd:element name="intlLocalCallIn" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="teleconfLocation" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="callInNum" type="serv:callInNumType" minOccurs="0"/>
+			<xsd:element name="tspConference" type="serv:tspAccountType" minOccurs="0"/>
+			<xsd:element name="tspAccessCodeOrder" type="serv:tspAccessCodeOrderType" minOccurs="0"/>
+			<xsd:element name="tollFree" type="xsd:boolean" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="telephonySupportType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="NONE"/>
+			<xsd:enumeration value="CALLIN"/>
+			<xsd:enumeration value="CALLBACK"/>
+			<xsd:enumeration value="OTHER"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="remindType">
+		<xsd:sequence>
+			<xsd:element name="enableReminder" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="emails" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="email" type="com:emailType" minOccurs="0" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="sendEmail" type="xsd:boolean" default="false" minOccurs="0"/>
+			<xsd:element name="mobile" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="sendMobile" type="xsd:boolean" default="false" minOccurs="0"/>
+			<xsd:element name="daysAhead" type="xsd:integer" minOccurs="0"/>
+			<xsd:element name="hoursAhead" type="xsd:integer" minOccurs="0"/>
+			<xsd:element name="minutesAhead" type="xsd:integer" minOccurs="0"/>
+			<xsd:element name="attendees" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="send" type="xsd:boolean" minOccurs="0"/>
+						<xsd:element name="firstReminder" type="sess:reminderDatetimeType" minOccurs="0"/>
+						<xsd:element name="secondReminder" type="sess:reminderDatetimeType" minOccurs="0"/>
+						<xsd:element name="thirdReminder" type="sess:reminderDatetimeType" minOccurs="0"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="presenters" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="firstReminder" type="sess:reminderDatetimeType" minOccurs="0"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="dateScopeType">
+		<xsd:sequence>
+			<xsd:element name="startDateStart" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="startDateEnd" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="endDateStart" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="endDateEnd" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="timeZoneID" type="xsd:long" default="-1" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="orderByTrackingType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="HOSTWEBEXID"/>
+			<xsd:enumeration value="CONFNAME"/>
+			<xsd:enumeration value="STARTTIME"/>
+			<xsd:enumeration value="TRACKINGCODE1"/>
+			<xsd:enumeration value="TRACKINGCODE2"/>
+			<xsd:enumeration value="TRACKINGCODE3"/>
+			<xsd:enumeration value="TRACKINGCODE4"/>
+			<xsd:enumeration value="TRACKINGCODE5"/>
+			<xsd:enumeration value="TRACKINGCODE6"/>
+			<xsd:enumeration value="TRACKINGCODE7"/>
+			<xsd:enumeration value="TRACKINGCODE8"/>
+			<xsd:enumeration value="TRACKINGCODE9"/>
+			<xsd:enumeration value="TRACKINGCODE10"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="statusType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="NOT_INPROGRESS"/>
+			<xsd:enumeration value="INPROGRESS"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="listingType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="PUBLIC"/>
+			<xsd:enumeration value="PRIVATE"/>
+			<xsd:enumeration value="UNLISTED"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="participantType">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="person" type="com:personType"/>
+					<xsd:element name="contactID" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="joinStatus" type="sess:joinStatusType" minOccurs="0"/>
+					<xsd:element name="role" type="att:roleType" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:simpleType name="joinStatusType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="REGISTER"/>
+			<xsd:enumeration value="INVITE"/>
+			<xsd:enumeration value="REJECT"/>
+			<xsd:enumeration value="ACCEPT"/>
+			<xsd:enumeration value="REJECTREGISTER"/>
+			<xsd:enumeration value="ACCEPTREGISTER"/>
+			<xsd:enumeration value="REJECTINVITE"/>
+			<xsd:enumeration value="ACCEPTINVITE"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="reminderDatetimeType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="15MIN"/>
+			<xsd:enumeration value="30MIN"/>
+			<xsd:enumeration value="1HR"/>
+			<xsd:enumeration value="2HR"/>
+			<xsd:enumeration value="24HR"/>
+			<xsd:enumeration value="2DAY"/>
+			<xsd:enumeration value="7DAY"/>
+			<xsd:enumeration value="14DAY"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+</xsd:schema>

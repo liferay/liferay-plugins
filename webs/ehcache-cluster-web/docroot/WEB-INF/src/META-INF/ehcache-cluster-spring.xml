@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+
+<beans
+	default-destroy-method="destroy"
+	default-init-method="afterPropertiesSet"
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd"
+>
+	<bean class="com.liferay.portal.cache.cluster.clusterlink.ClusterLinkPortalCacheClusterChannelFactory" id="com.liferay.portal.cache.cluster.clusterlink.ClusterLinkPortalCacheClusterChannelFactory">
+		<property name="destinationName" value="liferay/ehcache_cluster" />
+		<property name="priorities">
+			<list>
+				<util:constant static-field="com.liferay.portal.kernel.cluster.Priority.LEVEL1" />
+				<util:constant static-field="com.liferay.portal.kernel.cluster.Priority.LEVEL2" />
+			</list>
+		</property>
+	</bean>
+	<bean class="com.liferay.portal.kernel.cache.cluster.PortalCacheClusterLink" destroy-method="destroy" id="com.liferay.portal.kernel.cache.cluster.PortalCacheClusterLink">
+		<property name="channelNumber" value="2" />
+		<property name="portalCacheClusterChannelFactory" ref="com.liferay.portal.cache.cluster.clusterlink.ClusterLinkPortalCacheClusterChannelFactory" />
+	</bean>
+	<bean class="com.liferay.portal.kernel.cache.cluster.PortalCacheClusterLinkUtil" id="com.liferay.portal.kernel.cache.cluster.PortalCacheClusterLinkUtil">
+		<property name="portalCacheClusterLink" ref="com.liferay.portal.kernel.cache.cluster.PortalCacheClusterLink" />
+	</bean>
+</beans>

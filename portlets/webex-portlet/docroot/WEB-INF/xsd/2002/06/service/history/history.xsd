@@ -1,0 +1,813 @@
+<?xml version="1.0"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:com="http://www.webex.com/schemas/2002/06/common" xmlns:serv="http://www.webex.com/schemas/2002/06/service" xmlns:history="http://www.webex.com/schemas/2002/06/service/history" targetNamespace="http://www.webex.com/schemas/2002/06/service/history" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xsd:import namespace="http://www.webex.com/schemas/2002/06/common" schemaLocation="../../common/common.xsd"/>
+	<xsd:import namespace="http://www.webex.com/schemas/2002/06/service" schemaLocation="../service.xsd"/>
+	<xsd:complexType name="recordAccessHistoryInstanceType">
+		<xsd:sequence>
+			<xsd:element name="recordID" type="xsd:long" minOccurs="0"/>
+			<xsd:element name="recordName" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="creationTime" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="registered" type="xsd:long" minOccurs="0"/>
+			<xsd:element name="downloaded" type="xsd:long" minOccurs="0"/>
+			<xsd:element name="viewed" type="xsd:long" minOccurs="0"/>
+			<xsd:element name="timeZoneID" type="xsd:int" default="-1" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="lstrecordaccessHistory">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="creationTimeScope" type="history:creationTimeScopeType" minOccurs="0"/>
+					<xsd:element name="viewTimeScope" type="history:viewTimeScopeType" minOccurs="0"/>
+					<xsd:element name="order" type="history:orderRecAccHisType" minOccurs="0"/>
+					<xsd:element name="listControl" type="serv:lstControlType" minOccurs="0"/>
+					<xsd:element name="timeZoneID" type="xsd:int" default="-1" minOccurs="0"/>
+					<xsd:element name="recordName" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="hostWebExID" type="xsd:string" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="lstrecordaccessHistoryResponse">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="recordAccessHistory" type="history:recordAccessHistoryInstanceType" minOccurs="0" maxOccurs="unbounded"/>
+					<xsd:element name="matchingRecords" type="serv:matchingRecordsType" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="lstrecordaccessDetailHistory">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="recordID" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="listControl" type="serv:lstControlType" minOccurs="0"/>
+					<xsd:element name="timeZoneID" type="xsd:int" default="-1" minOccurs="0"/>
+					<xsd:element name="returnRegFields" type="xsd:boolean" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="lstrecordaccessDetailHistoryResponse">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="recordDetail" type="history:recordAccessDetailHistoryType" minOccurs="0" maxOccurs="unbounded"/>
+					<xsd:element name="matchingRecords" type="serv:matchingRecordsType" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="creationTimeScopeType">
+		<xsd:sequence>
+			<xsd:element name="creationTimeStart" type="xsd:string"/>
+			<xsd:element name="creationTimeEnd" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="viewTimeScopeType">
+		<xsd:sequence>
+			<xsd:element name="viewTimeStart" type="xsd:string"/>
+			<xsd:element name="viewTimeEnd" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="orderRecAccHisType">
+		<xsd:sequence>
+			<xsd:element name="orderBy" type="history:orderRecAccHisByType" minOccurs="0" maxOccurs="3"/>
+			<xsd:element name="orderAD" type="serv:lstOrderADType" minOccurs="0" maxOccurs="3"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="orderRecAccHisByType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="RECORDID"/>
+			<xsd:enumeration value="UPLOADTIME"/>
+			<xsd:enumeration value="RECORDNAME"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="startTimeRangeType">
+		<xsd:sequence>
+			<xsd:element name="startTimeStart" type="xsd:string"/>
+			<xsd:element name="startTimeEnd" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="trainSessionHistoryInstanceType">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="sessionKey" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="confName" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="sessionStartTime" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="sessionEndTime" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="duration" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="totalAttendee" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="totalRegistered" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="totalInvited" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="timezone" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="trackingCode" type="com:trackingType" minOccurs="0"/>
+					<xsd:element name="userID" type="xsd:int" minOccurs="0"/>
+					<xsd:element name="hostWebExID" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="hostEmail" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="totalPeopleMinutes" type="xsd:int" minOccurs="0"/>
+					<xsd:element name="totalCallInMinutes" type="xsd:int" minOccurs="0"/>
+					<xsd:element name="totalCallInTolllfreeMinutes" type="xsd:int" minOccurs="0"/>
+					<xsd:element name="totalCallOutDomestic" type="xsd:int" minOccurs="0"/>
+					<xsd:element name="totalCallOutInternational" type="xsd:int" minOccurs="0"/>
+					<xsd:element name="totalVoipMinutes" type="xsd:int" minOccurs="0"/>
+					<xsd:element name="totalParticipants" type="xsd:int" minOccurs="0"/>
+					<xsd:element name="totalParticipantsVoip" type="xsd:integer" minOccurs="0"/>
+					<xsd:element name="totalParticipantsCallIn" type="xsd:integer" minOccurs="0"/>
+					<xsd:element name="totalParticipantsCallOut" type="xsd:integer" minOccurs="0"/>
+					<xsd:element name="confID" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="peakAttendee" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="psoFields" type="com:psoFieldsType" minOccurs="0"/>
+					<xsd:element name="assistService" type="serv:meetingAssistType" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="lsttrainingsessionHistory">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="sessionKey" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="confName" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="startTimeScope" type="history:startTimeScopeType" minOccurs="0"/>
+					<xsd:element name="listControl" type="serv:lstControlType" minOccurs="0"/>
+					<xsd:element name="order" type="history:orderTCHisType" minOccurs="0"/>
+					<xsd:element name="hostWebExID" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="endTimeScope" type="history:endTimeScopeType" minOccurs="0"/>
+					<xsd:element name="confID" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="timeZoneID" type="xsd:int" minOccurs="0"/>
+					<xsd:element name="returnPSOFields" type="xsd:boolean" minOccurs="0"/>
+					<xsd:element name="psoFields" type="com:psoFieldsType" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="lsttrainingsessionHistoryResponse">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="trainingSessionHistory" type="history:trainSessionHistoryInstanceType" minOccurs="0" maxOccurs="unbounded"/>
+					<xsd:element name="matchingRecords" type="serv:matchingRecordsType" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:simpleType name="orderTCHisByType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="CONFNAME"/>
+			<xsd:enumeration value="STARTTIME"/>
+			<xsd:enumeration value="TOTALINVITED"/>
+			<xsd:enumeration value="TOTALREGISTERED"/>
+			<xsd:enumeration value="TOTALATTENDEE"/>
+			<xsd:enumeration value="ASSISTREQUEST"/>
+			<xsd:enumeration value="ASSISTCONFIRM"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="orderTCHisType">
+		<xsd:sequence>
+			<xsd:element name="orderBy" type="history:orderTCHisByType" minOccurs="0" maxOccurs="3"/>
+			<xsd:element name="orderAD" type="serv:lstOrderADType" minOccurs="0" maxOccurs="3"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="trainingAttendeeHistoryInstanceType">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="sessionKey" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="confName" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="attendeeName" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="attendeeEmail" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="startTime" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="endTime" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="duration" type="xsd:int" minOccurs="0"/>
+					<xsd:element name="registered" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="invited" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="company" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="title" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="phone" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="address1" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="address2" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="city" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="state" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="country" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="zip" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="ipAddress" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="participantType" type="history:participantTypeType" minOccurs="0"/>
+					<xsd:element name="voipDuration" type="xsd:int" minOccurs="0"/>
+					<xsd:element name="clientAgent" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="confID" type="xsd:long" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="lsttrainingattendeeHistory">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="sessionKey" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="order" type="history:orderTCAttenHisType" minOccurs="0"/>
+					<xsd:element name="startTimeScope" type="history:startTimeScopeType" minOccurs="0"/>
+					<xsd:element name="confName" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="listControl" type="serv:lstControlType" minOccurs="0"/>
+					<xsd:element name="confID" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="endTimeScope" type="history:endTimeScopeType" minOccurs="0"/>
+					<xsd:element name="timeZoneID" type="xsd:int" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="lsttrainingattendeeHistoryResponse">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="trainingAttendeeHistory" type="history:trainingAttendeeHistoryInstanceType" minOccurs="0" maxOccurs="unbounded"/>
+					<xsd:element name="matchingRecords" type="serv:matchingRecordsType" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:simpleType name="orderTCAttenHisByType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="NAME"/>
+			<xsd:enumeration value="STARTTIME"/>
+			<xsd:enumeration value="COMPANY"/>
+			<xsd:enumeration value="COUNTRY"/>
+			<xsd:enumeration value="STATE"/>
+			<xsd:enumeration value="CITY"/>
+			<xsd:enumeration value="CONFID"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="orderTCAttenHisType">
+		<xsd:sequence>
+			<xsd:element name="orderBy" type="history:orderTCAttenHisByType" minOccurs="0" maxOccurs="3"/>
+			<xsd:element name="orderAD" type="serv:lstOrderADType" minOccurs="0" maxOccurs="3"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="meetingUsageHistoryInstanceType">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="sessionKey" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="confName" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="meetingStartTime" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="meetingEndTime" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="duration" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="timezone" type="com:timeZoneType" minOccurs="0"/>
+					<xsd:element name="trackingCode" type="com:trackingType" minOccurs="0"/>
+					<xsd:element name="meetingType" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="hostWebExID" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="hostName" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="hostEmail" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="totalCallInMinutes" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="totalPeopleMinutes" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="totalCallInTollfreeMinutes" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="totalCallOutDomestic" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="totalCallOutInternational" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="totalVoipMinutes" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="userID" type="xsd:integer" minOccurs="0"/>
+					<xsd:element name="totalParticipants" type="xsd:integer" minOccurs="0"/>
+					<xsd:element name="totalParticipantsVoip" type="xsd:int" minOccurs="0"/>
+					<xsd:element name="totalParticipantsCallIn" type="xsd:integer" minOccurs="0"/>
+					<xsd:element name="totalParticipantsCallOut" type="xsd:integer" minOccurs="0"/>
+					<xsd:element name="confID" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="peakAttendee" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="assistService" type="serv:meetingAssistType" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="lstmeetingusageHistory">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="listControl" type="serv:lstControlType" minOccurs="0"/>
+					<xsd:element name="order" type="history:orderMCHisType" minOccurs="0"/>
+					<xsd:element name="confName" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="meetingKey" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="startTimeScope" type="history:startTimeScopeType" minOccurs="0"/>
+					<xsd:element name="hostWebExID" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="endTimeScope" type="history:endTimeScopeType" minOccurs="0"/>
+					<xsd:element name="confID" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="inclAudioOnly" type="xsd:boolean" minOccurs="0"/>
+					<xsd:element name="timeZoneID" type="xsd:int" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="lstmeetingusageHistoryResponse">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="meetingUsageHistory" type="history:meetingUsageHistoryInstanceType" minOccurs="0" maxOccurs="unbounded"/>
+					<xsd:element name="matchingRecords" type="serv:matchingRecordsType" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:simpleType name="orderMCHisByType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="CONFNAME"/>
+			<xsd:enumeration value="STARTTIME"/>
+			<xsd:enumeration value="TOTALATTENDEE"/>
+			<xsd:enumeration value="HOSTNAME"/>
+			<xsd:enumeration value="ASSISTREQUEST"/>
+			<xsd:enumeration value="ASSISTCONFIRM"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="orderMCHisType">
+		<xsd:sequence>
+			<xsd:element name="orderBy" type="history:orderMCHisByType" minOccurs="0" maxOccurs="3"/>
+			<xsd:element name="orderAD" type="serv:lstOrderADType" minOccurs="0" maxOccurs="3"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="startTimeValueType">
+		<xsd:sequence>
+			<xsd:element name="sessionStartTimeStart" type="xsd:string"/>
+			<xsd:element name="sessionStartTimeEnd" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="meetingAttendeeHistoryInstanceType">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="meetingKey" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="confName" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="ipAddress" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="clientAgent" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="company" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="title" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="phoneNumber" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="address1" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="address2" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="city" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="state" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="country" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="zipCode" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="name" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="email" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="joinTime" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="leaveTime" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="duration" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="participantType" type="history:participantTypeType" minOccurs="0"/>
+					<xsd:element name="voipDuration" type="xsd:integer" minOccurs="0"/>
+					<xsd:element name="confID" type="xsd:long" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="lstmeetingattendeeHistory">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="meetingKey" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="order" type="history:orderMCAttenHisType" minOccurs="0"/>
+					<xsd:element name="startTimeScope" type="history:startTimeValueType" minOccurs="0"/>
+					<xsd:element name="confName" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="listControl" type="serv:lstControlType" minOccurs="0"/>
+					<xsd:element name="confID" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="endTimeScope" type="history:endTimeScopeType" minOccurs="0"/>
+					<xsd:element name="inclAudioOnly" type="xsd:boolean" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="lstmeetingattendeeHistoryResponse">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="meetingAttendeeHistory" type="history:meetingAttendeeHistoryInstanceType" minOccurs="0" maxOccurs="unbounded"/>
+					<xsd:element name="matchingRecords" type="serv:matchingRecordsType" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:simpleType name="orderMCAttenHisByType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="CONFID"/>
+			<xsd:enumeration value="STARTTIME"/>
+			<xsd:enumeration value="COMPANY"/>
+			<xsd:enumeration value="COUNTRY"/>
+			<xsd:enumeration value="STATE"/>
+			<xsd:enumeration value="CITY"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="orderMCAttenHisType">
+		<xsd:sequence>
+			<xsd:element name="orderBy" type="history:orderMCAttenHisByType" minOccurs="0" maxOccurs="3"/>
+			<xsd:element name="orderAD" type="serv:lstOrderADType" minOccurs="0" maxOccurs="3"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="participantTypeType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="HOST"/>
+			<xsd:enumeration value="ATTENDEE"/>
+			<xsd:enumeration value="OTHER"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="sourceType">
+		<xsd:sequence>
+			<xsd:element name="leadSourceID" type="xsd:string"/>
+			<xsd:element name="count" type="xsd:long"/>
+			<xsd:element name="avgLeadScore" type="xsd:float"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="eventSessionHistoryInstanceType">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="confID" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="sessionKey" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="confName" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="sessionStartTime" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="sessionEndTime" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="duration" type="xsd:int" minOccurs="0"/>
+					<xsd:element name="timezone" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="trackingCode" type="com:trackingType" minOccurs="0"/>
+					<xsd:element name="meetingType" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="userID" type="xsd:int" minOccurs="0"/>
+					<xsd:element name="hostWebExID" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="hostName" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="hostEmail" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="totalPeopleMinutes" type="xsd:int" minOccurs="0"/>
+					<xsd:element name="totalCallInMinutes" type="xsd:int" minOccurs="0"/>
+					<xsd:element name="totalCallInTollfreeMinutes" type="xsd:int" minOccurs="0"/>
+					<xsd:element name="totalCallOutDomestic" type="xsd:int" minOccurs="0"/>
+					<xsd:element name="totalCallOutInternational" type="xsd:int" minOccurs="0"/>
+					<xsd:element name="totalVoipMinutes" type="xsd:int" minOccurs="0"/>
+					<xsd:element name="totalParticipants" type="xsd:int" minOccurs="0"/>
+					<xsd:element name="totalParticipantsVoip" type="xsd:int" minOccurs="0"/>
+					<xsd:element name="totalParticipantsCallIn" type="xsd:integer" minOccurs="0"/>
+					<xsd:element name="totalParticipantsCallOut" type="xsd:integer" minOccurs="0"/>
+					<xsd:element name="source" type="history:sourceType" minOccurs="0"/>
+					<xsd:element name="peakAttendee" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="assistService" type="serv:meetingAssistType" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="lsteventsessionHistory">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="hostWebExID" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="confName" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="startTimeScope" type="history:startTimeValueType" minOccurs="0"/>
+					<xsd:element name="listControl" type="serv:lstControlType" minOccurs="0"/>
+					<xsd:element name="order" type="history:orderEcHisType" minOccurs="0"/>
+					<xsd:element name="endTimeScope" type="history:endTimeScopeType" minOccurs="0"/>
+					<xsd:element name="sessionKey" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="confID" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="timeZoneID" type="xsd:int" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="lsteventsessionHistoryResponse">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="eventSessionHistory" type="history:eventSessionHistoryInstanceType" minOccurs="0" maxOccurs="unbounded"/>
+					<xsd:element name="matchingRecords" type="serv:matchingRecordsType" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:simpleType name="orderEcHisByType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="CONFID"/>
+			<xsd:enumeration value="STARTTIME"/>
+			<xsd:enumeration value="CONFNAME"/>
+			<xsd:enumeration value="ASSISTREQUEST"/>
+			<xsd:enumeration value="ASSISTCONFIRM"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="orderEcHisType">
+		<xsd:sequence>
+			<xsd:element name="orderBy" type="history:orderEcHisByType" minOccurs="0" maxOccurs="3"/>
+			<xsd:element name="orderAD" type="serv:lstOrderADType" minOccurs="0" maxOccurs="3"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="regQandAType">
+		<xsd:sequence>
+			<xsd:element name="regQ" type="xsd:string"/>
+			<xsd:element name="regA" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="eventAttendeeHistoryInstanceType">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="sessionKey" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="attendeeName" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="attendeeEmail" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="startTime" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="endTime" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="duration" type="xsd:int" minOccurs="0"/>
+					<xsd:element name="registered" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="invited" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="company" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="title" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="phone" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="address1" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="address2" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="city" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="state" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="country" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="zip" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="ipAddress" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="participantType" type="history:participantTypeType" minOccurs="0"/>
+					<xsd:element name="voipDuration" type="xsd:int" minOccurs="0"/>
+					<xsd:element name="clientAgent" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="confID" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="leadSourceID" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="leadScore" type="xsd:float" minOccurs="0"/>
+					<xsd:element name="regQandA" type="history:regQandAType" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="lsteventattendeeHistory">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="listControl" type="serv:lstControlType" minOccurs="0"/>
+					<xsd:element name="order" type="history:orderEcAttenHisType" minOccurs="0"/>
+					<xsd:element name="startTimeScope" type="history:startTimeScopeType" minOccurs="0"/>
+					<xsd:element name="endTimeScope" type="history:endTimeScopeType" minOccurs="0"/>
+					<xsd:element name="sessionKey" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="confName" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="confID" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="attendeeStats" type="xsd:boolean" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="lsteventattendeeHistoryResponse">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="eventAttendeeHistory" type="history:eventAttendeeHistoryInstanceType" minOccurs="0" maxOccurs="unbounded"/>
+					<xsd:element name="matchingRecords" type="serv:matchingRecordsType" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:simpleType name="orderEcAttenHisByType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="STARTTIME"/>
+			<xsd:enumeration value="ATTENDEENAME"/>
+			<xsd:enumeration value="SESSIONKEY"/>
+			<xsd:enumeration value="CONFID"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="orderEcAttenHisType">
+		<xsd:sequence>
+			<xsd:element name="orderBy" type="history:orderEcAttenHisByType" minOccurs="0" maxOccurs="3"/>
+			<xsd:element name="orderAD" type="serv:lstOrderADType" minOccurs="0" maxOccurs="3"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="supportSessionHistoryInstanceType">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="sessionKey" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="confName" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="sessionStartTime" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="sessionEndTime" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="duration" type="xsd:int" minOccurs="0"/>
+					<xsd:element name="timezone" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="meetingType" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="hostWebExID" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="hostName" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="hostEmail" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="totalPeopleMinutes" type="xsd:int" minOccurs="0"/>
+					<xsd:element name="confID" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="peakAttendee" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="trackingCode" type="com:trackingType" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="lstsupportsessionHistory">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="sessionKey" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="hostWebExID" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="startTimeScope" type="history:startTimeValueType" minOccurs="0"/>
+					<xsd:element name="listControl" type="serv:lstControlType" minOccurs="0"/>
+					<xsd:element name="order" type="history:orderScHisType" minOccurs="0"/>
+					<xsd:element name="endTimeScope" type="history:endTimeScopeType" minOccurs="0"/>
+					<xsd:element name="confID" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="timeZoneID" type="xsd:int" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="lstsupportsessionHistoryResponse">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="supportSessionHistory" type="history:supportSessionHistoryInstanceType" minOccurs="0" maxOccurs="unbounded"/>
+					<xsd:element name="matchingRecords" type="serv:matchingRecordsType" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:simpleType name="orderScHisByType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="CONFID"/>
+			<xsd:enumeration value="SESSIONSTARTTIME"/>
+			<xsd:enumeration value="CONFNAME"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="orderScHisType">
+		<xsd:sequence>
+			<xsd:element name="orderBy" type="history:orderScHisByType" minOccurs="0" maxOccurs="3"/>
+			<xsd:element name="orderAD" type="serv:lstOrderADType" minOccurs="0" maxOccurs="3"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="supportAttendeeHistoryInstanceType">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="sessionKey" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="attendeeName" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="attendeeEmail" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="startTime" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="endTime" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="duration" type="xsd:int" minOccurs="0"/>
+					<xsd:element name="company" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="phone" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="ipAddress" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="participantType" type="history:participantTypeType" minOccurs="0"/>
+					<xsd:element name="clientAgent" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="confID" type="xsd:long" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="lstsupportattendeeHistory">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="sessionKey" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="listControl" type="serv:lstControlType" minOccurs="0"/>
+					<xsd:element name="order" type="history:orderScAttenHisType" minOccurs="0"/>
+					<xsd:element name="startTimeScope" type="history:startTimeScopeType" minOccurs="0"/>
+					<xsd:element name="endTimeScope" type="history:endTimeScopeType" minOccurs="0"/>
+					<xsd:element name="confID" type="xsd:long" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="lstsupportattendeeHistoryResponse">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="supportAttendeeHistory" type="history:supportAttendeeHistoryInstanceType" minOccurs="0" maxOccurs="unbounded"/>
+					<xsd:element name="matchingRecords" type="serv:matchingRecordsType" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:simpleType name="orderScAttenHisByType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="ATTENDEENAME"/>
+			<xsd:enumeration value="STARTTIME"/>
+			<xsd:enumeration value="SESSIONKEY"/>
+			<xsd:enumeration value="CONFID"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="orderScAttenHisType">
+		<xsd:sequence>
+			<xsd:element name="orderBy" type="history:orderScAttenHisByType" minOccurs="0" maxOccurs="3"/>
+			<xsd:element name="orderAD" type="serv:lstOrderADType" minOccurs="0" maxOccurs="3"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:annotation>
+		<xsd:documentation>Sales Center usage history</xsd:documentation>
+	</xsd:annotation>
+	<xsd:complexType name="salesSessionHistoryInstanceType">
+		<xsd:complexContent>
+			<xsd:extension base="history:meetingUsageHistoryInstanceType">
+				<xsd:sequence>
+					<xsd:element name="account" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="opportunity" type="xsd:string" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="lstsalesSessionHistory">
+		<xsd:complexContent>
+			<xsd:extension base="history:lstmeetingusageHistory">
+				<xsd:sequence>
+					<xsd:element name="account" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="opportunity" type="xsd:string" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="lstsalesSessionHistoryResponse">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="matchingRecords" type="serv:matchingRecordsType" minOccurs="0"/>
+					<xsd:element name="salesSessionHistory" type="history:salesSessionHistoryInstanceType" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:annotation>
+		<xsd:documentation>Sales Center attendee history</xsd:documentation>
+	</xsd:annotation>
+	<xsd:complexType name="salesAttendeeHistoryInstanceType">
+		<xsd:complexContent>
+			<xsd:extension base="history:meetingAttendeeHistoryInstanceType">
+				<xsd:sequence>
+					<xsd:element name="account" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="opportunity" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="attendeeType" type="history:attendeeTypeType" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="lstsalesAttendeeHistory">
+		<xsd:complexContent>
+			<xsd:extension base="history:lstmeetingattendeeHistory">
+				<xsd:sequence>
+					<xsd:element name="timeZoneID" type="xsd:integer" default="-1" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="lstsalesAttendeeHistoryResponse">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="matchingRecords" type="serv:matchingRecordsType" minOccurs="0"/>
+					<xsd:element name="salesAttendeeHistory" type="history:salesAttendeeHistoryInstanceType" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="endTimeScopeType">
+		<xsd:sequence>
+			<xsd:element name="sessionEndTimeStart" type="xsd:string"/>
+			<xsd:element name="sessionEndTimeEnd" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="startTimeScopeType">
+		<xsd:sequence>
+			<xsd:element name="sessionStartTimeStart" type="xsd:string"/>
+			<xsd:element name="sessionStartTimeEnd" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="attendeeTypeType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="PROSPECT"/>
+			<xsd:enumeration value="SALESTEAM"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="recordAccessDetailHistoryType">
+		<xsd:sequence>
+			<xsd:element name="viewID" type="xsd:long" minOccurs="0"/>
+			<xsd:element name="participantName" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="participantEmail" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="accessTime" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="registered" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="registerDate" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="downloaded" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="viewed" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="timeZoneID" type="xsd:int" default="-1" minOccurs="0"/>
+			<xsd:element name="regFields" type="history:regFieldsType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="regFieldsType">
+		<xsd:sequence>
+			<xsd:element name="firstName" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="lastName" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="title" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="company" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="address1" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="address2" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="city" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="state" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="postalCode" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="country" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="phone" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="fax" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="customFields" type="history:customFieldsType" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="customFieldsType">
+		<xsd:sequence>
+			<xsd:element name="label" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="value" type="xsd:string" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

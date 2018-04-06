@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.2.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_2_0.dtd">
+
+<service-builder package-path="com.liferay.meeting.webex">
+	<author>Anant Singh</author>
+	<namespace>WebEx</namespace>
+	<entity local-service="true" name="WebExAccount" remote-service="true" uuid="true">
+
+		<!-- PK fields -->
+
+		<column name="webExAccountId" primary="true" type="long" />
+
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="webExSiteId" type="long" />
+		<column name="login" type="String" />
+		<column name="password" type="String" />
+
+		<!-- Finder methods -->
+
+		<finder name="G_W" return-type="Collection">
+			<finder-column name="groupId" />
+			<finder-column name="webExSiteId" />
+		</finder>
+
+		<!-- References -->
+
+		<reference entity="ExpandoValue" package-path="com.liferay.portlet.expando" />
+	</entity>
+	<entity local-service="true" name="WebExSite" remote-service="true" uuid="true">
+
+		<!-- PK fields -->
+
+		<column name="webExSiteId" primary="true" type="long" />
+
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="name" type="String" />
+		<column name="apiURL" type="String" />
+		<column name="login" type="String" />
+		<column name="password" type="String" />
+		<column name="partnerKey" type="String" />
+		<column name="siteKey" type="long" />
+
+		<!-- Finder methods -->
+
+		<finder name="GroupId" return-type="Collection">
+			<finder-column name="groupId" />
+		</finder>
+		<finder name="SiteKey" return-type="WebExSite">
+			<finder-column name="siteKey" />
+		</finder>
+
+		<!-- References -->
+
+		<reference entity="ExpandoValue" package-path="com.liferay.portlet.expando" />
+	</entity>
+	<exceptions>
+		<exception>WebExAccountLogin</exception>
+		<exception>WebExAccountPassword</exception>
+		<exception>WebExSiteAPIURL</exception>
+		<exception>WebExSiteKey</exception>
+		<exception>WebExSiteLogin</exception>
+		<exception>WebExSiteName</exception>
+		<exception>WebExSitePassword</exception>
+	</exceptions>
+</service-builder>

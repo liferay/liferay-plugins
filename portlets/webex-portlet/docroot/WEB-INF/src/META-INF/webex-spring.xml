@@ -1,0 +1,778 @@
+<?xml version="1.0"?>
+
+<beans
+	default-destroy-method="destroy"
+	default-init-method="afterPropertiesSet"
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"
+>
+	<bean class="com.liferay.meeting.webex.MeetingServiceImpl" id="com.liferay.meeting.MeetingService">
+		<property name="transport">
+			<bean class="com.liferay.meeting.webex.transport.HttpPostTransport" />
+		</property>
+	</bean>
+	<bean class="com.liferay.meeting.webex.MeetingServiceUtil" id="com.liferay.meeting.webex.MeetingServiceUtil">
+		<property name="meetingService" ref="com.liferay.meeting.MeetingService" />
+	</bean>
+	<bean class="com.liferay.meeting.webex.request.MeetingRequestTranslatorRegistry" id="com.liferay.meeting.webex.request.MeetingRequestTranslatorRegistry">
+		<property name="meetingRequestTranslators">
+			<map>
+				<entry>
+					<key>
+						<bean class="com.liferay.meeting.webex.request.WebExMeetingRequestType" factory-method="valueOf">
+							<constructor-arg value="CREATE_MEETING" />
+						</bean>
+					</key>
+					<bean class="com.liferay.meeting.webex.request.CreateMeetingMeetingRequestTranslator" />
+				</entry>
+				<entry>
+					<key>
+						<bean class="com.liferay.meeting.webex.request.WebExMeetingRequestType" factory-method="valueOf">
+							<constructor-arg value="DELETE_MEETING" />
+						</bean>
+					</key>
+					<bean class="com.liferay.meeting.webex.request.DeleteMeetingMeetingRequestTranslator" />
+				</entry>
+				<entry>
+					<key>
+						<bean class="com.liferay.meeting.webex.request.WebExMeetingRequestType" factory-method="valueOf">
+							<constructor-arg value="GET_HOST_URL" />
+						</bean>
+					</key>
+					<bean class="com.liferay.meeting.webex.request.GetHostURLMeetingRequestTranslator" />
+				</entry>
+				<entry>
+					<key>
+						<bean class="com.liferay.meeting.webex.request.WebExMeetingRequestType" factory-method="valueOf">
+							<constructor-arg value="GET_JOIN_URL" />
+						</bean>
+					</key>
+					<bean class="com.liferay.meeting.webex.request.GetJoinURLMeetingRequestTranslator" />
+				</entry>
+				<entry>
+					<key>
+						<bean class="com.liferay.meeting.webex.request.WebExMeetingRequestType" factory-method="valueOf">
+							<constructor-arg value="GET_MEETING" />
+						</bean>
+					</key>
+					<bean class="com.liferay.meeting.webex.request.GetMeetingMeetingRequestTranslator" />
+				</entry>
+				<entry>
+					<key>
+						<bean class="com.liferay.meeting.webex.request.WebExMeetingRequestType" factory-method="valueOf">
+							<constructor-arg value="GET_MEETING_SUMMARIES" />
+						</bean>
+					</key>
+					<bean class="com.liferay.meeting.webex.request.GetMeetingSummariesMeetingRequestTranslator" />
+				</entry>
+				<entry>
+					<key>
+						<bean class="com.liferay.meeting.webex.request.WebExMeetingRequestType" factory-method="valueOf">
+							<constructor-arg value="UPDATE_MEETING" />
+						</bean>
+					</key>
+					<bean class="com.liferay.meeting.webex.request.UpdateMeetingMeetingRequestTranslator" />
+				</entry>
+			</map>
+		</property>
+	</bean>
+	<bean class="com.liferay.meeting.webex.response.MeetingResponseProcessorRegistry" id="com.liferay.meeting.webex.request.MeetingResponseProcessorRegistry">
+		<property name="meetingResponseProcessors">
+			<map>
+				<entry>
+					<key>
+						<bean class="com.liferay.meeting.webex.request.WebExMeetingRequestType" factory-method="valueOf">
+							<constructor-arg value="CREATE_MEETING" />
+						</bean>
+					</key>
+					<bean class="com.liferay.meeting.webex.response.CreateMeetingMeetingResponseProcessor" />
+				</entry>
+				<entry>
+					<key>
+						<bean class="com.liferay.meeting.webex.request.WebExMeetingRequestType" factory-method="valueOf">
+							<constructor-arg value="DELETE_MEETING" />
+						</bean>
+					</key>
+					<bean class="com.liferay.meeting.webex.response.NullMeetingResponseProcessor" />
+				</entry>
+				<entry>
+					<key>
+						<bean class="com.liferay.meeting.webex.request.WebExMeetingRequestType" factory-method="valueOf">
+							<constructor-arg value="GET_HOST_URL" />
+						</bean>
+					</key>
+					<bean class="com.liferay.meeting.webex.response.GetHostURLMeetingResponseProcessor" />
+				</entry>
+				<entry>
+					<key>
+						<bean class="com.liferay.meeting.webex.request.WebExMeetingRequestType" factory-method="valueOf">
+							<constructor-arg value="GET_JOIN_URL" />
+						</bean>
+					</key>
+					<bean class="com.liferay.meeting.webex.response.GetJoinURLMeetingResponseProcessor" />
+				</entry>
+				<entry>
+					<key>
+						<bean class="com.liferay.meeting.webex.request.WebExMeetingRequestType" factory-method="valueOf">
+							<constructor-arg value="GET_MEETING" />
+						</bean>
+					</key>
+					<bean class="com.liferay.meeting.webex.response.GetMeetingMeetingResponseProcessor" />
+				</entry>
+				<entry>
+					<key>
+						<bean class="com.liferay.meeting.webex.request.WebExMeetingRequestType" factory-method="valueOf">
+							<constructor-arg value="GET_MEETING_SUMMARIES" />
+						</bean>
+					</key>
+					<bean class="com.liferay.meeting.webex.response.GetMeetingSummariesMeetingResponseProcessor" />
+				</entry>
+				<entry>
+					<key>
+						<bean class="com.liferay.meeting.webex.request.WebExMeetingRequestType" factory-method="valueOf">
+							<constructor-arg value="UPDATE_MEETING" />
+						</bean>
+					</key>
+					<bean class="com.liferay.meeting.webex.response.NullMeetingResponseProcessor" />
+				</entry>
+			</map>
+		</property>
+	</bean>
+	<bean class="com.liferay.meeting.webex.util.TimeZoneUtil" id="com.liferay.meeting.webex.util.TimeZoneUtil">
+		<property name="timeZones">
+			<map>
+				<entry>
+					<key>
+						<bean class="java.util.TimeZone" factory-method="getTimeZone">
+							<constructor-arg value="Etc/GMT-12" />
+						</bean>
+					</key>
+					<bean class="com.webex.schemas.x2002.x06.common.TimeZoneType.Enum" factory-method="forString">
+						<constructor-arg value="GMT-12:00, Dateline (Eniwetok)" />
+					</bean>
+				</entry>
+				<entry>
+					<key>
+						<bean class="java.util.TimeZone" factory-method="getTimeZone">
+							<constructor-arg value="US/Samoa" />
+						</bean>
+					</key>
+					<bean class="com.webex.schemas.x2002.x06.common.TimeZoneType.Enum" factory-method="forString">
+						<constructor-arg value="GMT-11:00, Samoa (Samoa)" />
+					</bean>
+				</entry>
+				<entry>
+					<key>
+						<bean class="java.util.TimeZone" factory-method="getTimeZone">
+							<constructor-arg value="US/Hawaii" />
+						</bean>
+					</key>
+					<bean class="com.webex.schemas.x2002.x06.common.TimeZoneType.Enum" factory-method="forString">
+						<constructor-arg value="GMT-10:00, Hawaii (Honolulu)" />
+					</bean>
+				</entry>
+				<entry>
+					<key>
+						<bean class="java.util.TimeZone" factory-method="getTimeZone">
+							<constructor-arg value="US/Alaska" />
+						</bean>
+					</key>
+					<bean class="com.webex.schemas.x2002.x06.common.TimeZoneType.Enum" factory-method="forString">
+						<constructor-arg value="GMT-09:00, Alaska (Ancorage)" />
+					</bean>
+				</entry>
+				<entry>
+					<key>
+						<bean class="java.util.TimeZone" factory-method="getTimeZone">
+							<constructor-arg value="US/Pacific" />
+						</bean>
+					</key>
+					<bean class="com.webex.schemas.x2002.x06.common.TimeZoneType.Enum" factory-method="forString">
+						<constructor-arg value="GMT-08:00, Pacific (San Jose)" />
+					</bean>
+				</entry>
+				<entry>
+					<key>
+						<bean class="java.util.TimeZone" factory-method="getTimeZone">
+							<constructor-arg value="US/Arizona" />
+						</bean>
+					</key>
+					<bean class="com.webex.schemas.x2002.x06.common.TimeZoneType.Enum" factory-method="forString">
+						<constructor-arg value="GMT-07:00, Mountain (Arizona)" />
+					</bean>
+				</entry>
+				<entry>
+					<key>
+						<bean class="java.util.TimeZone" factory-method="getTimeZone">
+							<constructor-arg value="America/Denver" />
+						</bean>
+					</key>
+					<bean class="com.webex.schemas.x2002.x06.common.TimeZoneType.Enum" factory-method="forString">
+						<constructor-arg value="GMT-07:00, Mountain (Denver)" />
+					</bean>
+				</entry>
+				<entry>
+					<key>
+						<bean class="java.util.TimeZone" factory-method="getTimeZone">
+							<constructor-arg value="America/Chicago" />
+						</bean>
+					</key>
+					<bean class="com.webex.schemas.x2002.x06.common.TimeZoneType.Enum" factory-method="forString">
+						<constructor-arg value="GMT-06:00, Central (Chicago)" />
+					</bean>
+				</entry>
+				<entry>
+					<key>
+						<bean class="java.util.TimeZone" factory-method="getTimeZone">
+							<constructor-arg value="Mexico/General" />
+						</bean>
+					</key>
+					<bean class="com.webex.schemas.x2002.x06.common.TimeZoneType.Enum" factory-method="forString">
+						<constructor-arg value="GMT-06:00, Mexico (Mexico City,Tegucigalpa)" />
+					</bean>
+				</entry>
+				<entry>
+					<key>
+						<bean class="java.util.TimeZone" factory-method="getTimeZone">
+							<constructor-arg value="America/Regina" />
+						</bean>
+					</key>
+					<bean class="com.webex.schemas.x2002.x06.common.TimeZoneType.Enum" factory-method="forString">
+						<constructor-arg value="GMT-06:00, Central (Regina)" />
+					</bean>
+				</entry>
+				<entry>
+					<key>
+						<bean class="java.util.TimeZone" factory-method="getTimeZone">
+							<constructor-arg value="America/Bogota" />
+						</bean>
+					</key>
+					<bean class="com.webex.schemas.x2002.x06.common.TimeZoneType.Enum" factory-method="forString">
+						<constructor-arg value="GMT-05:00, S. America Pacific (Bogota)" />
+					</bean>
+				</entry>
+				<entry>
+					<key>
+						<bean class="java.util.TimeZone" factory-method="getTimeZone">
+							<constructor-arg value="America/New_York" />
+						</bean>
+					</key>
+					<bean class="com.webex.schemas.x2002.x06.common.TimeZoneType.Enum" factory-method="forString">
+						<constructor-arg value="GMT-05:00, Eastern (New York)" />
+					</bean>
+				</entry>
+				<entry>
+					<key>
+						<bean class="java.util.TimeZone" factory-method="getTimeZone">
+							<constructor-arg value="US/East-Indiana" />
+						</bean>
+					</key>
+					<bean class="com.webex.schemas.x2002.x06.common.TimeZoneType.Enum" factory-method="forString">
+						<constructor-arg value="GMT-05:00, Eastern (Indiana)" />
+					</bean>
+				</entry>
+				<entry>
+					<key>
+						<bean class="java.util.TimeZone" factory-method="getTimeZone">
+							<constructor-arg value="America/Halifax" />
+						</bean>
+					</key>
+					<bean class="com.webex.schemas.x2002.x06.common.TimeZoneType.Enum" factory-method="forString">
+						<constructor-arg value="GMT-04:00, Atlantic (Halifax)" />
+					</bean>
+				</entry>
+				<entry>
+					<key>
+						<bean class="java.util.TimeZone" factory-method="getTimeZone">
+							<constructor-arg value="America/Caracas" />
+						</bean>
+					</key>
+					<bean class="com.webex.schemas.x2002.x06.common.TimeZoneType.Enum" factory-method="forString">
+						<constructor-arg value="GMT-04:00, S. America Western (Caracas)" />
+					</bean>
+				</entry>
+				<entry>
+					<key>
+						<bean class="java.util.TimeZone" factory-method="getTimeZone">
+							<constructor-arg value="Canada/Newfoundland" />
+						</bean>
+					</key>
+					<bean class="com.webex.schemas.x2002.x06.common.TimeZoneType.Enum" factory-method="forString">
+						<constructor-arg value="GMT-03:30, Newfoundland (Newfoundland)" />
+					</bean>
+				</entry>
+				<entry>
+					<key>
+						<bean class="java.util.TimeZone" factory-method="getTimeZone">
+							<constructor-arg value="Brazil/East" />
+						</bean>
+					</key>
+					<bean class="com.webex.schemas.x2002.x06.common.TimeZoneType.Enum" factory-method="forString">
+						<constructor-arg value="GMT-03:00, S. America Eastern (Brasilia)" />
+					</bean>
+				</entry>
+				<entry>
+					<key>
+						<bean class="java.util.TimeZone" factory-method="getTimeZone">
+							<constructor-arg value="America/Buenos_Aires" />
+						</bean>
+					</key>
+					<bean class="com.webex.schemas.x2002.x06.common.TimeZoneType.Enum" factory-method="forString">
+						<constructor-arg value="GMT-03:00, S. America Eastern (Buenos Aires)" />
+					</bean>
+				</entry>
+				<entry>
+					<key>
+						<bean class="java.util.TimeZone" factory-method="getTimeZone">
+							<constructor-arg value="Etc/GMT+2" />
+						</bean>
+					</key>
+					<bean class="com.webex.schemas.x2002.x06.common.TimeZoneType.Enum" factory-method="forString">
+						<constructor-arg value="GMT-02:00, Mid-Atlantic (Mid-Atlantic)" />
+					</bean>
+				</entry>
+				<entry>
+					<key>
+						<bean class="java.util.TimeZone" factory-method="getTimeZone">
+							<constructor-arg value="Atlantic/Azores" />
+						</bean>
+					</key>
+					<bean class="com.webex.schemas.x2002.x06.common.TimeZoneType.Enum" factory-method="forString">
+						<constructor-arg value="GMT-01:00, Azores (Azores)" />
+					</bean>
+				</entry>
+				<entry>
+					<key>
+						<bean class="java.util.TimeZone" factory-method="getTimeZone">
+							<constructor-arg value="Africa/Casablanca" />
+						</bean>
+					</key>
+					<bean class="com.webex.schemas.x2002.x06.common.TimeZoneType.Enum" factory-method="forString">
+						<constructor-arg value="GMT+00:00, Greenwich (Casablanca)" />
+					</bean>
+				</entry>
+				<entry>
+					<key>
+						<bean class="java.util.TimeZone" factory-method="getTimeZone">
+							<constructor-arg value="Europe/London" />
+						</bean>
+					</key>
+					<bean class="com.webex.schemas.x2002.x06.common.TimeZoneType.Enum" factory-method="forString">
+						<constructor-arg value="GMT+00:00, GMT (London)" />
+					</bean>
+				</entry>
+				<entry>
+					<key>
+						<bean class="java.util.TimeZone" factory-method="getTimeZone">
+							<constructor-arg value="UTC" />
+						</bean>
+					</key>
+					<bean class="com.webex.schemas.x2002.x06.common.TimeZoneType.Enum" factory-method="forString">
+						<constructor-arg value="GMT+00:00, GMT (London)" />
+					</bean>
+				</entry>
+				<entry>
+					<key>
+						<bean class="java.util.TimeZone" factory-method="getTimeZone">
+							<constructor-arg value="Europe/Amsterdam" />
+						</bean>
+					</key>
+					<bean class="com.webex.schemas.x2002.x06.common.TimeZoneType.Enum" factory-method="forString">
+						<constructor-arg value="GMT+01:00, Europe (Amsterdam)" />
+					</bean>
+				</entry>
+				<entry>
+					<key>
+						<bean class="java.util.TimeZone" factory-method="getTimeZone">
+							<constructor-arg value="Europe/Paris" />
+						</bean>
+					</key>
+					<bean class="com.webex.schemas.x2002.x06.common.TimeZoneType.Enum" factory-method="forString">
+						<constructor-arg value="GMT+01:00, Europe (Paris)" />
+					</bean>
+				</entry>
+				<entry>
+					<key>
+						<bean class="java.util.TimeZone" factory-method="getTimeZone">
+							<constructor-arg value="Europe/Prague" />
+						</bean>
+					</key>
+					<bean class="com.webex.schemas.x2002.x06.common.TimeZoneType.Enum" factory-method="forString">
+						<constructor-arg value="GMT+01:00, Europe (Prague)" />
+					</bean>
+				</entry>
+				<entry>
+					<key>
+						<bean class="java.util.TimeZone" factory-method="getTimeZone">
+							<constructor-arg value="Europe/Berlin" />
+						</bean>
+					</key>
+					<bean class="com.webex.schemas.x2002.x06.common.TimeZoneType.Enum" factory-method="forString">
+						<constructor-arg value="GMT+01:00, Europe (Berlin)" />
+					</bean>
+				</entry>
+				<entry>
+					<key>
+						<bean class="java.util.TimeZone" factory-method="getTimeZone">
+							<constructor-arg value="Europe/Athens" />
+						</bean>
+					</key>
+					<bean class="com.webex.schemas.x2002.x06.common.TimeZoneType.Enum" factory-method="forString">
+						<constructor-arg value="GMT+02:00, Greece (Athens)" />
+					</bean>
+				</entry>
+				<entry>
+					<key>
+						<bean class="java.util.TimeZone" factory-method="getTimeZone">
+							<constructor-arg value="Europe/Bucharest" />
+						</bean>
+					</key>
+					<bean class="com.webex.schemas.x2002.x06.common.TimeZoneType.Enum" factory-method="forString">
+						<constructor-arg value="GMT+02:00, Eastern Europe (Bucharest)" />
+					</bean>
+				</entry>
+				<entry>
+					<key>
+						<bean class="java.util.TimeZone" factory-method="getTimeZone">
+							<constructor-arg value="Africa/Cairo" />
+						</bean>
+					</key>
+					<bean class="com.webex.schemas.x2002.x06.common.TimeZoneType.Enum" factory-method="forString">
+						<constructor-arg value="GMT+02:00, Egypt (Cairo)" />
+					</bean>
+				</entry>
+				<entry>
+					<key>
+						<bean class="java.util.TimeZone" factory-method="getTimeZone">
+							<constructor-arg value="Africa/Johannesburg" />
+						</bean>
+					</key>
+					<bean class="com.webex.schemas.x2002.x06.common.TimeZoneType.Enum" factory-method="forString">
+						<constructor-arg value="GMT+02:00, South Africa (Pretoria)" />
+					</bean>
+				</entry>
+				<entry>
+					<key>
+						<bean class="java.util.TimeZone" factory-method="getTimeZone">
+							<constructor-arg value="Europe/Helsinki" />
+						</bean>
+					</key>
+					<bean class="com.webex.schemas.x2002.x06.common.TimeZoneType.Enum" factory-method="forString">
+						<constructor-arg value="GMT+02:00, Northern Europe (Helsinki)" />
+					</bean>
+				</entry>
+				<entry>
+					<key>
+						<bean class="java.util.TimeZone" factory-method="getTimeZone">
+							<constructor-arg value="Asia/Tel_Aviv" />
+						</bean>
+					</key>
+					<bean class="com.webex.schemas.x2002.x06.common.TimeZoneType.Enum" factory-method="forString">
+						<constructor-arg value="GMT+02:00, Israel (Tel Aviv)" />
+					</bean>
+				</entry>
+				<entry>
+					<key>
+						<bean class="java.util.TimeZone" factory-method="getTimeZone">
+							<constructor-arg value="Asia/Baghdad" />
+						</bean>
+					</key>
+					<bean class="com.webex.schemas.x2002.x06.common.TimeZoneType.Enum" factory-method="forString">
+						<constructor-arg value="GMT+03:00, Saudi Arabia (Baghdad)" />
+					</bean>
+				</entry>
+				<entry>
+					<key>
+						<bean class="java.util.TimeZone" factory-method="getTimeZone">
+							<constructor-arg value="Europe/Moscow" />
+						</bean>
+					</key>
+					<bean class="com.webex.schemas.x2002.x06.common.TimeZoneType.Enum" factory-method="forString">
+						<constructor-arg value="GMT+03:00, Russian (Moscow)" />
+					</bean>
+				</entry>
+				<entry>
+					<key>
+						<bean class="java.util.TimeZone" factory-method="getTimeZone">
+							<constructor-arg value="Africa/Nairobi" />
+						</bean>
+					</key>
+					<bean class="com.webex.schemas.x2002.x06.common.TimeZoneType.Enum" factory-method="forString">
+						<constructor-arg value="GMT+03:00, Nairobi (Nairobi)" />
+					</bean>
+				</entry>
+				<entry>
+					<key>
+						<bean class="java.util.TimeZone" factory-method="getTimeZone">
+							<constructor-arg value="Asia/Tehran" />
+						</bean>
+					</key>
+					<bean class="com.webex.schemas.x2002.x06.common.TimeZoneType.Enum" factory-method="forString">
+						<constructor-arg value="GMT+03:00, Iran (Tehran)" />
+					</bean>
+				</entry>
+				<entry>
+					<key>
+						<bean class="java.util.TimeZone" factory-method="getTimeZone">
+							<constructor-arg value="Asia/Muscat" />
+						</bean>
+					</key>
+					<bean class="com.webex.schemas.x2002.x06.common.TimeZoneType.Enum" factory-method="forString">
+						<constructor-arg value="GMT+04:00, Arabian (Abu Dhabi, Muscat)" />
+					</bean>
+				</entry>
+				<entry>
+					<key>
+						<bean class="java.util.TimeZone" factory-method="getTimeZone">
+							<constructor-arg value="Asia/Baku" />
+						</bean>
+					</key>
+					<bean class="com.webex.schemas.x2002.x06.common.TimeZoneType.Enum" factory-method="forString">
+						<constructor-arg value="GMT+04:00, Baku (Baku)" />
+					</bean>
+				</entry>
+				<entry>
+					<key>
+						<bean class="java.util.TimeZone" factory-method="getTimeZone">
+							<constructor-arg value="Asia/Kabul" />
+						</bean>
+					</key>
+					<bean class="com.webex.schemas.x2002.x06.common.TimeZoneType.Enum" factory-method="forString">
+						<constructor-arg value="GMT+04:00, Afghanistan (Kabul)" />
+					</bean>
+				</entry>
+				<entry>
+					<key>
+						<bean class="java.util.TimeZone" factory-method="getTimeZone">
+							<constructor-arg value="Asia/Yekaterinburg" />
+						</bean>
+					</key>
+					<bean class="com.webex.schemas.x2002.x06.common.TimeZoneType.Enum" factory-method="forString">
+						<constructor-arg value="GMT+05:00, West Asia (Ekaterinburg)" />
+					</bean>
+				</entry>
+				<entry>
+					<key>
+						<bean class="java.util.TimeZone" factory-method="getTimeZone">
+							<constructor-arg value="Asia/Karachi" />
+						</bean>
+					</key>
+					<bean class="com.webex.schemas.x2002.x06.common.TimeZoneType.Enum" factory-method="forString">
+						<constructor-arg value="GMT+05:00, West Asia (Islamabad)" />
+					</bean>
+				</entry>
+				<entry>
+					<key>
+						<bean class="java.util.TimeZone" factory-method="getTimeZone">
+							<constructor-arg value="Asia/Kolkata" />
+						</bean>
+					</key>
+					<bean class="com.webex.schemas.x2002.x06.common.TimeZoneType.Enum" factory-method="forString">
+						<constructor-arg value="GMT+05:30, India (Bombay)" />
+					</bean>
+				</entry>
+				<entry>
+					<key>
+						<bean class="java.util.TimeZone" factory-method="getTimeZone">
+							<constructor-arg value="Asia/Colombo" />
+						</bean>
+					</key>
+					<bean class="com.webex.schemas.x2002.x06.common.TimeZoneType.Enum" factory-method="forString">
+						<constructor-arg value="GMT+06:00, Columbo (Columbo)" />
+					</bean>
+				</entry>
+				<entry>
+					<key>
+						<bean class="java.util.TimeZone" factory-method="getTimeZone">
+							<constructor-arg value="Asia/Almaty" />
+						</bean>
+					</key>
+					<bean class="com.webex.schemas.x2002.x06.common.TimeZoneType.Enum" factory-method="forString">
+						<constructor-arg value="GMT+06:00, Central Asia (Almaty)" />
+					</bean>
+				</entry>
+				<entry>
+					<key>
+						<bean class="java.util.TimeZone" factory-method="getTimeZone">
+							<constructor-arg value="Asia/Bangkok" />
+						</bean>
+					</key>
+					<bean class="com.webex.schemas.x2002.x06.common.TimeZoneType.Enum" factory-method="forString">
+						<constructor-arg value="GMT+07:00, Bangkok (Bangkok)" />
+					</bean>
+				</entry>
+				<entry>
+					<key>
+						<bean class="java.util.TimeZone" factory-method="getTimeZone">
+							<constructor-arg value="Asia/Shanghai" />
+						</bean>
+					</key>
+					<bean class="com.webex.schemas.x2002.x06.common.TimeZoneType.Enum" factory-method="forString">
+						<constructor-arg value="GMT+08:00, China (Beijing)" />
+					</bean>
+				</entry>
+				<entry>
+					<key>
+						<bean class="java.util.TimeZone" factory-method="getTimeZone">
+							<constructor-arg value="Australia/Perth" />
+						</bean>
+					</key>
+					<bean class="com.webex.schemas.x2002.x06.common.TimeZoneType.Enum" factory-method="forString">
+						<constructor-arg value="GMT+08:00, Australia Western (Perth)" />
+					</bean>
+				</entry>
+				<entry>
+					<key>
+						<bean class="java.util.TimeZone" factory-method="getTimeZone">
+							<constructor-arg value="Asia/Singapore" />
+						</bean>
+					</key>
+					<bean class="com.webex.schemas.x2002.x06.common.TimeZoneType.Enum" factory-method="forString">
+						<constructor-arg value="GMT+08:00, Singapore (Singapore)" />
+					</bean>
+				</entry>
+				<entry>
+					<key>
+						<bean class="java.util.TimeZone" factory-method="getTimeZone">
+							<constructor-arg value="Asia/Hong_Kong" />
+						</bean>
+					</key>
+					<bean class="com.webex.schemas.x2002.x06.common.TimeZoneType.Enum" factory-method="forString">
+						<constructor-arg value="GMT+08:00, Taipei (Hong Kong)" />
+					</bean>
+				</entry>
+				<entry>
+					<key>
+						<bean class="java.util.TimeZone" factory-method="getTimeZone">
+							<constructor-arg value="Asia/Tokyo" />
+						</bean>
+					</key>
+					<bean class="com.webex.schemas.x2002.x06.common.TimeZoneType.Enum" factory-method="forString">
+						<constructor-arg value="GMT+09:00, Tokyo (Tokyo)" />
+					</bean>
+				</entry>
+				<entry>
+					<key>
+						<bean class="java.util.TimeZone" factory-method="getTimeZone">
+							<constructor-arg value="Asia/Seoul" />
+						</bean>
+					</key>
+					<bean class="com.webex.schemas.x2002.x06.common.TimeZoneType.Enum" factory-method="forString">
+						<constructor-arg value="GMT+09:00, Korea (Seoul)" />
+					</bean>
+				</entry>
+				<entry>
+					<key>
+						<bean class="java.util.TimeZone" factory-method="getTimeZone">
+							<constructor-arg value="Asia/Yakutsk" />
+						</bean>
+					</key>
+					<bean class="com.webex.schemas.x2002.x06.common.TimeZoneType.Enum" factory-method="forString">
+						<constructor-arg value="GMT+09:30, Yakutsk (Yakutsk)" />
+					</bean>
+				</entry>
+				<entry>
+					<key>
+						<bean class="java.util.TimeZone" factory-method="getTimeZone">
+							<constructor-arg value="Australia/Adelaide" />
+						</bean>
+					</key>
+					<bean class="com.webex.schemas.x2002.x06.common.TimeZoneType.Enum" factory-method="forString">
+						<constructor-arg value="GMT+09:30, Australia Central (Adelaide)" />
+					</bean>
+				</entry>
+				<entry>
+					<key>
+						<bean class="java.util.TimeZone" factory-method="getTimeZone">
+							<constructor-arg value="Australia/Darwin" />
+						</bean>
+					</key>
+					<bean class="com.webex.schemas.x2002.x06.common.TimeZoneType.Enum" factory-method="forString">
+						<constructor-arg value="GMT+09:30, Australia Central (Darwin)" />
+					</bean>
+				</entry>
+				<entry>
+					<key>
+						<bean class="java.util.TimeZone" factory-method="getTimeZone">
+							<constructor-arg value="Australia/Brisbane" />
+						</bean>
+					</key>
+					<bean class="com.webex.schemas.x2002.x06.common.TimeZoneType.Enum" factory-method="forString">
+						<constructor-arg value="GMT+10:00, Australia Eastern (Brisbane)" />
+					</bean>
+				</entry>
+				<entry>
+					<key>
+						<bean class="java.util.TimeZone" factory-method="getTimeZone">
+							<constructor-arg value="Australia/Sydney" />
+						</bean>
+					</key>
+					<bean class="com.webex.schemas.x2002.x06.common.TimeZoneType.Enum" factory-method="forString">
+						<constructor-arg value="GMT+10:00, Australia Eastern (Sydney)" />
+					</bean>
+				</entry>
+				<entry>
+					<key>
+						<bean class="java.util.TimeZone" factory-method="getTimeZone">
+							<constructor-arg value="Pacific/Guam" />
+						</bean>
+					</key>
+					<bean class="com.webex.schemas.x2002.x06.common.TimeZoneType.Enum" factory-method="forString">
+						<constructor-arg value="GMT+10:00, West Pacific (Guam)" />
+					</bean>
+				</entry>
+				<entry>
+					<key>
+						<bean class="java.util.TimeZone" factory-method="getTimeZone">
+							<constructor-arg value="Australia/Hobart" />
+						</bean>
+					</key>
+					<bean class="com.webex.schemas.x2002.x06.common.TimeZoneType.Enum" factory-method="forString">
+						<constructor-arg value="GMT+10:00, Tasmania (Hobart)" />
+					</bean>
+				</entry>
+				<entry>
+					<key>
+						<bean class="java.util.TimeZone" factory-method="getTimeZone">
+							<constructor-arg value="Asia/Vladivostok" />
+						</bean>
+					</key>
+					<bean class="com.webex.schemas.x2002.x06.common.TimeZoneType.Enum" factory-method="forString">
+						<constructor-arg value="GMT+10:00, Vladivostok (Vladivostok)" />
+					</bean>
+				</entry>
+				<entry>
+					<key>
+						<bean class="java.util.TimeZone" factory-method="getTimeZone">
+							<constructor-arg value="SST" />
+						</bean>
+					</key>
+					<bean class="com.webex.schemas.x2002.x06.common.TimeZoneType.Enum" factory-method="forString">
+						<constructor-arg value="GMT+11:00, Central Pacific (Solomon Is)" />
+					</bean>
+				</entry>
+				<entry>
+					<key>
+						<bean class="java.util.TimeZone" factory-method="getTimeZone">
+							<constructor-arg value="NZ" />
+						</bean>
+					</key>
+					<bean class="com.webex.schemas.x2002.x06.common.TimeZoneType.Enum" factory-method="forString">
+						<constructor-arg value="GMT+12:00, New Zealand (Wellington)" />
+					</bean>
+				</entry>
+				<entry>
+					<key>
+						<bean class="java.util.TimeZone" factory-method="getTimeZone">
+							<constructor-arg value="Pacific/Fiji" />
+						</bean>
+					</key>
+					<bean class="com.webex.schemas.x2002.x06.common.TimeZoneType.Enum" factory-method="forString">
+						<constructor-arg value="GMT+12:00, Fiji (Fiji)" />
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
+</beans>

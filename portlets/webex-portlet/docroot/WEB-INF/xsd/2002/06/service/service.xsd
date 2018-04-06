@@ -1,0 +1,262 @@
+<?xml version="1.0"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:com="http://www.webex.com/schemas/2002/06/common" xmlns:serv="http://www.webex.com/schemas/2002/06/service" targetNamespace="http://www.webex.com/schemas/2002/06/service" elementFormDefault="qualified">
+	<xsd:import namespace="http://www.webex.com/schemas/2002/06/common" schemaLocation="../common/common.xsd"/>
+	<xsd:annotation>
+		<xsd:documentation xml:lang="en">Schema used for representing common types for used in Web services.</xsd:documentation>
+	</xsd:annotation>
+	<xsd:element name="message" type="serv:messageType"/>
+	<xsd:complexType name="messageType">
+		<xsd:sequence>
+			<xsd:element name="header">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="securityContext" type="serv:securityContextType" minOccurs="0"/>
+						<xsd:element name="response" type="serv:responseType" minOccurs="0" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="body">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="bodyContent" type="serv:bodyContentType" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="resultTypeType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="SUCCESS"/>
+			<xsd:enumeration value="FAILURE"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="responseType">
+		<xsd:sequence>
+			<xsd:element name="result" type="serv:resultTypeType"/>
+			<xsd:element name="reason" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="gsbStatus" type="serv:gsbStatusType" minOccurs="0"/>
+			<xsd:element name="exceptionID" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="subErrors" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="subError" type="serv:subErrorType" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="value" type="xsd:string" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="securityContextType">
+		<xsd:complexContent>
+			<xsd:extension base="com:securityType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="bodyContentType"/>
+	<xsd:complexType name="lstControlType">
+		<xsd:sequence>
+			<xsd:element name="startFrom" type="xsd:integer" minOccurs="0"/>
+			<xsd:element name="maximumNum" type="xsd:integer" minOccurs="0"/>
+			<xsd:element name="listMethod" type="serv:lstMethodType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="lstOrderADType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="ASC"/>
+			<xsd:enumeration value="DESC"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="lstMethodType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="AND"/>
+			<xsd:enumeration value="OR"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="gsbStatusType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="PRIMARY"/>
+			<xsd:enumeration value="BACKUP"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="matchingRecordsType">
+		<xsd:sequence>
+			<xsd:element name="total" type="xsd:integer"/>
+			<xsd:element name="returned" type="xsd:integer"/>
+			<xsd:element name="startFrom" type="xsd:integer"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="callInNumType">
+		<xsd:sequence>
+			<xsd:element name="tollNum" type="xsd:string"/>
+			<xsd:element name="tollFreeNum" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="intlLocalNum" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="globalNum" type="serv:globalCallInNumType" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="personalTeleServerType">
+		<xsd:complexContent>
+			<xsd:extension base="serv:callInNumType">
+				<xsd:sequence>
+					<xsd:element name="enableServer" type="xsd:boolean" minOccurs="0"/>
+					<xsd:element name="tollLabel" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="tollFreeLabel" type="xsd:string" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="tspAccountType">
+		<xsd:sequence>
+			<xsd:element name="tollFreeCallInNumber">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="512"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="tollCallInNumber">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="512"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="subscriberAccessCode" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="512"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="participantAccessCode" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="512"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="tspAccountLabelType">
+		<xsd:sequence>
+			<xsd:element name="tollFreeCallInNumberLabel">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="512"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="tollCallInNumberLabel">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="512"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="subscriberAccessCodeLabel" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="512"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="participantAccessCodeLabel" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="512"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="tspAccessCodeOrderType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="SUBSCRIBER_1ST"/>
+			<xsd:enumeration value="PARTICIPANT_1ST"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="subErrorType">
+		<xsd:sequence>
+			<xsd:element name="exceptionID" type="xsd:string"/>
+			<xsd:element name="reason" type="xsd:string"/>
+			<xsd:element name="value" type="xsd:string" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="iCalendarURLType">
+		<xsd:sequence>
+			<xsd:element name="host" type="xsd:string"/>
+			<xsd:element name="attendee" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="globalCallInNumType">
+		<xsd:sequence>
+			<xsd:element name="countryAlias" type="xsd:string"/>
+			<xsd:element name="phoneNumber" type="xsd:string"/>
+			<xsd:element name="tollFree" type="xsd:boolean"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="meetingAssistType">
+		<xsd:sequence>
+			<xsd:element name="assistRequest" type="serv:assistRequestType" minOccurs="0"/>
+			<xsd:element name="assistConfirm" type="serv:assistConfirmedType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="assistRequestType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="None"/>
+			<xsd:enumeration value="Dry Run"/>
+			<xsd:enumeration value="Consult"/>
+			<xsd:enumeration value="Live Event Support"/>
+			<xsd:enumeration value="Audio Streaming"/>
+			<xsd:enumeration value="Video"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="assistConfirmedType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Pending"/>
+			<xsd:enumeration value="Confirmed"/>
+			<xsd:enumeration value="Cancelled"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="webACDRoleType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="AGENT"/>
+			<xsd:enumeration value="MANAGER"/>
+			<xsd:enumeration value="ALL"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="webACDActionType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="ASSIGN"/>
+			<xsd:enumeration value="UNASSIGN"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="listControlType">
+		<xsd:sequence>
+			<xsd:element name="startFrom" type="xsd:integer" minOccurs="0"/>
+			<xsd:element name="maximumNum" type="xsd:integer" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="dateScopeType">
+		<xsd:sequence>
+			<xsd:element name="startDateStart" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="startDateEnd" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="timeZoneID" type="xsd:integer" default="-1" minOccurs="0"/>
+			<xsd:element name="returnSpecifiedTimeZone" type="xsd:boolean" default="false" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="orderType">
+		<xsd:sequence>
+			<xsd:element name="orderBy" type="serv:orderByType" minOccurs="0"/>
+			<xsd:element name="orderAD" type="serv:lstOrderADType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="orderByType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="STARTTIME"/>
+			<xsd:enumeration value="FIRSTNAME"/>
+			<xsd:enumeration value="LASTNAME"/>
+			<xsd:enumeration value="CONFNAME"/>
+			<xsd:enumeration value="DURATION"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+</xsd:schema>

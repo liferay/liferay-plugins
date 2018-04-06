@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<!DOCTYPE project>
+
+<project basedir="." default="deploy" name="ehcache-cluster-web">
+	<import file="../build-common-web.xml" />
+</project>

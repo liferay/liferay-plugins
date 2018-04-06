@@ -1,0 +1,153 @@
+<?xml version="1.0"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:com="http://www.webex.com/schemas/2002/06/common" xmlns:serv="http://www.webex.com/schemas/2002/06/service" xmlns:mtgtype="http://www.webex.com/schemas/2002/06/service/meetingtype" targetNamespace="http://www.webex.com/schemas/2002/06/service/meetingtype" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xsd:import namespace="http://www.webex.com/schemas/2002/06/common" schemaLocation="../../common/common.xsd"/>
+	<xsd:import namespace="http://www.webex.com/schemas/2002/06/service" schemaLocation="../service.xsd"/>
+	<xsd:complexType name="meetingTypeTypeExt">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="productCodePrefix" type="xsd:string"/>
+					<xsd:element name="active" type="mtgtype:activeType"/>
+					<xsd:element name="name" type="xsd:string"/>
+					<xsd:element name="displayName" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="limits" type="mtgtype:limitsType" minOccurs="0"/>
+					<xsd:element name="options" type="mtgtype:optionsType"/>
+					<xsd:element name="phoneNumbers" type="mtgtype:phoneNumbersType"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="meetingTypeInstanceType">
+		<xsd:complexContent>
+			<xsd:extension base="mtgtype:meetingTypeTypeExt">
+				<xsd:sequence>
+					<xsd:element name="meetingTypeID" type="xsd:integer"/>
+					<xsd:element name="serviceTypes">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="serviceType" type="com:serviceTypeType" minOccurs="0" maxOccurs="unbounded"/>
+							</xsd:sequence>
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="lstMeetingType">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="meetingTypeID" type="xsd:integer" minOccurs="0" maxOccurs="unbounded"/>
+					<xsd:element name="listControl" type="serv:lstControlType" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="lstMeetingTypeResponse">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="matchingRecords" type="serv:matchingRecordsType" minOccurs="0"/>
+					<xsd:element name="meetingType" type="mtgtype:meetingTypeInstanceType" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="getMeetingType">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="meetingTypeID" type="xsd:integer"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="getMeetingTypeResponse">
+		<xsd:complexContent>
+			<xsd:extension base="mtgtype:meetingTypeInstanceType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:simpleType name="activeType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="ACTIVATED"/>
+			<xsd:enumeration value="DEACTIVATED"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="optionsType">
+		<xsd:sequence>
+			<xsd:element name="supportAppShare" type="xsd:boolean" default="true" minOccurs="0"/>
+			<xsd:element name="supportAppShareRemote" type="xsd:boolean" default="true" minOccurs="0"/>
+			<xsd:element name="supportAttendeeRegistration" type="xsd:boolean" default="true" minOccurs="0"/>
+			<xsd:element name="supportRemoteWebTour" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="supportWebTour" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="supportFileShare" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="supportChat" type="xsd:boolean" default="true" minOccurs="0"/>
+			<xsd:element name="supportCobrowseSite" type="xsd:boolean" default="true" minOccurs="0"/>
+			<xsd:element name="supportCorporateOfficesSite" type="xsd:boolean" default="true" minOccurs="0"/>
+			<xsd:element name="supportDesktopShare" type="xsd:boolean" default="true" minOccurs="0"/>
+			<xsd:element name="supportDesktopShareRemote" type="xsd:boolean" default="true" minOccurs="0"/>
+			<xsd:element name="supportFileTransfer" type="xsd:boolean" default="true" minOccurs="0"/>
+			<xsd:element name="supportInternationalCallOut" type="xsd:boolean" default="true" minOccurs="0"/>
+			<xsd:element name="supportJavaClient" type="xsd:boolean" default="true" minOccurs="0"/>
+			<xsd:element name="supportMacClient" type="xsd:boolean" default="true" minOccurs="0"/>
+			<xsd:element name="supportMeetingCenterSite" type="xsd:boolean" default="true" minOccurs="0"/>
+			<xsd:element name="supportMeetingRecord" type="xsd:boolean" default="true" minOccurs="0"/>
+			<xsd:element name="supportMultipleMeeting" type="xsd:boolean" default="false" minOccurs="0"/>
+			<xsd:element name="supportOnCallSite" type="xsd:boolean" default="true" minOccurs="0"/>
+			<xsd:element name="supportOnStageSite" type="xsd:boolean" default="true" minOccurs="0"/>
+			<xsd:element name="supportPartnerOfficesSite" type="xsd:boolean" default="true" minOccurs="0"/>
+			<xsd:element name="supportPoll" type="xsd:boolean" default="true" minOccurs="0"/>
+			<xsd:element name="supportPresentation" type="xsd:boolean" default="true" minOccurs="0"/>
+			<xsd:element name="supportSolarisClient" type="xsd:boolean" default="true" minOccurs="0"/>
+			<xsd:element name="supportSSL" type="xsd:boolean" default="true" minOccurs="0"/>
+			<xsd:element name="supportE2E" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="supportPKI" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="supportTeleconfCallIn" type="xsd:boolean" default="true" minOccurs="0"/>
+			<xsd:element name="supportTeleconfCallOut" type="xsd:boolean" default="true" minOccurs="0"/>
+			<xsd:element name="supportTollFreeCallIn" type="xsd:boolean" default="true" minOccurs="0"/>
+			<xsd:element name="supportVideo" type="xsd:boolean" default="true" minOccurs="0"/>
+			<xsd:element name="supportVoIP" type="xsd:boolean" default="true" minOccurs="0"/>
+			<xsd:element name="supportWebExComSite" type="xsd:boolean" default="true" minOccurs="0"/>
+			<xsd:element name="supportWindowsClient" type="xsd:boolean" default="true" minOccurs="0"/>
+			<xsd:element name="supportQuickStartAttendees" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="supportQuickStartHost" type="xsd:boolean" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="limitsType">
+		<xsd:sequence>
+			<xsd:element name="maxAppShareDuration" type="xsd:long" default="999999" minOccurs="0"/>
+			<xsd:element name="maxAppShareUser" type="xsd:long" default="999999" minOccurs="0"/>
+			<xsd:element name="maxDesktopShareDuration" type="xsd:long" default="999999" minOccurs="0"/>
+			<xsd:element name="maxDesktopShareUser" type="xsd:long" default="999999" minOccurs="0"/>
+			<xsd:element name="maxFileTransferUser" type="xsd:long" default="999999" minOccurs="0"/>
+			<xsd:element name="maxMeetingDuration" type="xsd:long" default="999999" minOccurs="0"/>
+			<xsd:element name="maxMeetingUser" type="xsd:long" default="999999" minOccurs="0"/>
+			<xsd:element name="maxRecordUser" type="xsd:long" default="999999" minOccurs="0"/>
+			<xsd:element name="maxVideoDuration" type="xsd:long" default="999999" minOccurs="0"/>
+			<xsd:element name="maxVideoUser" type="xsd:long" default="999999" minOccurs="0"/>
+			<xsd:element name="maxWebTourDuration" type="xsd:long" default="999999" minOccurs="0"/>
+			<xsd:element name="maxWebTourUser" type="xsd:long" default="999999" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="phoneNumbersType">
+		<xsd:sequence>
+			<xsd:element name="primaryTollCallInNumber" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="primaryTollFreeCallInNumber" type="xsd:string" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="orderByType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="MEETINGTYPEID"/>
+			<xsd:enumeration value="PRODUCTCODEPREFIX"/>
+			<xsd:enumeration value="MEETINGTYPENAME"/>
+			<xsd:enumeration value="MEETINGTYPEDISPLAYNAME"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="orderType">
+		<xsd:sequence>
+			<xsd:element name="orderBy" type="mtgtype:orderByType" minOccurs="0" maxOccurs="3"/>
+			<xsd:element name="orderAD" type="serv:lstOrderADType" minOccurs="0" maxOccurs="3"/>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

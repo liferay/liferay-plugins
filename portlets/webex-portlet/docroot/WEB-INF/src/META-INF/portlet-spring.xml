@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-destroy-method="destroy" default-init-method="afterPropertiesSet" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<bean class="com.liferay.meeting.webex.service.impl.WebExAccountLocalServiceImpl" id="com.liferay.meeting.webex.service.WebExAccountLocalService" />
+	<bean class="com.liferay.meeting.webex.service.impl.WebExAccountServiceImpl" id="com.liferay.meeting.webex.service.WebExAccountService" />
+	<bean class="com.liferay.meeting.webex.service.persistence.impl.WebExAccountPersistenceImpl" id="com.liferay.meeting.webex.service.persistence.WebExAccountPersistence" parent="basePersistence" />
+	<bean class="com.liferay.meeting.webex.service.impl.WebExSiteLocalServiceImpl" id="com.liferay.meeting.webex.service.WebExSiteLocalService" />
+	<bean class="com.liferay.meeting.webex.service.impl.WebExSiteServiceImpl" id="com.liferay.meeting.webex.service.WebExSiteService" />
+	<bean class="com.liferay.meeting.webex.service.persistence.impl.WebExSitePersistenceImpl" id="com.liferay.meeting.webex.service.persistence.WebExSitePersistence" parent="basePersistence" />
+</beans>

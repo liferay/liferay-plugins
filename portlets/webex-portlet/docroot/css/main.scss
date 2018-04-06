@@ -1,0 +1,45 @@
+.webex-portlet {
+	.detail-column-last {
+		background-color: #D7F1FF;
+		overflow: visible;
+
+		.detail-column-content {
+			border: 1px solid #88C5D9;
+			padding: 0.7em;
+		}
+	}
+
+	.event-duration-hour {
+		float: left;
+	}
+
+	.folder-icon {
+		margin-bottom: 2em;
+		overflow: hidden;
+		text-align: center;
+	}
+
+	.property-list {
+		margin-left: 0;
+		margin-top: 0;
+		overflow: hidden;
+		padding: 0;
+
+		dd {
+			float: left;
+			line-height: 1.5;
+			margin: 0;
+			padding-left: 5px;
+
+			img {
+				vertical-align: middle;
+			}
+		}
+
+		dt {
+			clear: left;
+			font-weight: bold;
+			min-width: 5em;
+		}
+	}
+}

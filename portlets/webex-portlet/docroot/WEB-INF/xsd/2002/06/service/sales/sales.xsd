@@ -1,0 +1,807 @@
+<?xml version="1.0"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:serv="http://www.webex.com/schemas/2002/06/service" xmlns:com="http://www.webex.com/schemas/2002/06/common" xmlns:sales="http://www.webex.com/schemas/2002/06/service/sales" targetNamespace="http://www.webex.com/schemas/2002/06/service/sales" elementFormDefault="qualified">
+	<xsd:import namespace="http://www.webex.com/schemas/2002/06/common" schemaLocation="../../common/common.xsd"/>
+	<xsd:import namespace="http://www.webex.com/schemas/2002/06/service" schemaLocation="../service.xsd"/>
+	<xsd:annotation>
+		<xsd:documentation xml:lang="en">Schema used for representing create, read, update and delete operations on a sales session.</xsd:documentation>
+	</xsd:annotation>
+	<xsd:annotation>
+		<xsd:documentation>Complext types used to add, update and list products of sales session</xsd:documentation>
+	</xsd:annotation>
+	<xsd:complexType name="productType">
+		<xsd:sequence>
+			<xsd:element name="name" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="128"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="description" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="256"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="productInstanceType">
+		<xsd:complexContent>
+			<xsd:extension base="sales:productType">
+				<xsd:sequence>
+					<xsd:element name="prodID" type="xsd:integer"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:simpleType name="productOrderByType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="PRODID"/>
+			<xsd:enumeration value="NAME"/>
+			<xsd:enumeration value="DESCRIPTION"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="productOrderType">
+		<xsd:sequence>
+			<xsd:element name="orderBy" type="sales:productOrderByType" minOccurs="0" maxOccurs="3"/>
+			<xsd:element name="orderAD" type="serv:lstOrderADType" minOccurs="0" maxOccurs="3"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="lstProducts">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="listControl" type="serv:lstControlType" minOccurs="0"/>
+					<xsd:element name="order" type="sales:productOrderType" minOccurs="0"/>
+					<xsd:element name="name" minOccurs="0">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="128"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="prodID" type="xsd:integer" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="lstProductsResponse">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="matchingRecords" type="serv:matchingRecordsType" minOccurs="0"/>
+					<xsd:element name="product" type="sales:productInstanceType" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="addProducts">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="product" type="sales:productType" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="addProductsResponse">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="prodID" type="xsd:integer" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="setProducts">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="product" type="sales:productInstanceType" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="setProductsResponse">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="prodID" type="xsd:integer" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:annotation>
+		<xsd:documentation>Base sales session types</xsd:documentation>
+	</xsd:annotation>
+	<xsd:complexType name="salesSessionType">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="accessControl" type="sales:accessControlType" minOccurs="0"/>
+					<xsd:element name="metaData" type="sales:metaDataType" minOccurs="0"/>
+					<xsd:element name="schedule" type="sales:scheduleType" minOccurs="0"/>
+					<xsd:element name="enableOptions" type="sales:enableOptionsType" minOccurs="0"/>
+					<xsd:element name="telephony" type="sales:telephonyType" minOccurs="0"/>
+					<xsd:element name="tracking" type="com:trackingType" minOccurs="0"/>
+					<xsd:element name="repeat" type="sales:repeatType" minOccurs="0"/>
+					<xsd:element name="remind" type="sales:remindType" minOccurs="0"/>
+					<xsd:element name="prospects" minOccurs="0">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="prospect" type="sales:prospectType" minOccurs="0" maxOccurs="unbounded"/>
+							</xsd:sequence>
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="salesTeam" minOccurs="0">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="webExID" minOccurs="0" maxOccurs="unbounded">
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:string">
+											<xsd:maxLength value="128"/>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="email" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+								<xsd:element name="altHosts" type="sales:alternateHostType" minOccurs="0"/>
+							</xsd:sequence>
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="attendeeOptions" type="sales:attendeeOptionsType" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="salesSessionSummaryInstanceType">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="meetingKey" type="xsd:long"/>
+					<xsd:element name="confName" type="xsd:string"/>
+					<xsd:element name="meetingType" type="xsd:integer"/>
+					<xsd:element name="hostWebExID" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="timeZoneID" type="xsd:integer" minOccurs="0"/>
+					<xsd:element name="timeZone" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="status" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="startDate" type="xsd:string"/>
+					<xsd:element name="duration" type="xsd:integer"/>
+					<xsd:element name="listStatus" type="sales:listingType" minOccurs="0"/>
+					<xsd:element name="account" minOccurs="0">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="128"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="opportunity" minOccurs="0">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="128"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="salesSessionInstanceType">
+		<xsd:complexContent>
+			<xsd:extension base="sales:salesSessionType">
+				<xsd:sequence>
+					<xsd:element name="meetingKey" type="xsd:long"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:annotation>
+		<xsd:documentation>Types used for representing create, get and list sales sessions</xsd:documentation>
+	</xsd:annotation>
+	<xsd:complexType name="createSalesSession">
+		<xsd:complexContent>
+			<xsd:extension base="sales:salesSessionType">
+				<xsd:sequence>
+					<xsd:element name="validateFormat" type="xsd:boolean" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="createSalesSessionResponse">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="meetingKey" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="iCalendarURL" type="sales:iCalendarURL" minOccurs="0"/>
+					<xsd:element name="guestToken" type="xsd:string" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="getSalesSession">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="meetingKey" type="xsd:long"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="getSalesSessionResponse">
+		<xsd:complexContent>
+			<xsd:extension base="sales:salesSessionInstanceType">
+				<xsd:sequence>
+					<xsd:element name="status" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="hostKey" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="eventID" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="guestToken" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="hostType" type="xsd:string" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="lstsummarySalesSession">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="listControl" type="serv:lstControlType" minOccurs="0"/>
+					<xsd:element name="order" type="sales:orderType" minOccurs="0"/>
+					<xsd:element name="dateScope" type="sales:dateScopeType" minOccurs="0"/>
+					<xsd:element name="meetingKey" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="hostWebExID" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="account" minOccurs="0">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="128"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="opportunity" minOccurs="0">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="128"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="lstsummarySalesSessionResponse">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="matchingRecords" type="serv:matchingRecordsType" minOccurs="0"/>
+					<xsd:element name="salesSession" type="sales:salesSessionSummaryInstanceType" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="delSalesSession">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="meetingKey" type="xsd:long"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="delSalesSessionResponse">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="iCalendarURL" type="sales:iCalendarURL" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="setSalesSession">
+		<xsd:complexContent>
+			<xsd:extension base="sales:salesSessionInstanceType">
+				<xsd:sequence>
+					<xsd:element name="validateFormat" type="xsd:boolean" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="setSalesSessionResponse">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="iCalendarURL" type="sales:iCalendarURL" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:annotation>
+		<xsd:documentation>Helper types used for composing base sales session types</xsd:documentation>
+	</xsd:annotation>
+	<xsd:complexType name="accessControlType">
+		<xsd:sequence>
+			<xsd:element name="listing" type="sales:listingType" minOccurs="0"/>
+			<xsd:element name="meetingPassword" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="16"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="enforcePassword" type="xsd:boolean" default="true" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="listingType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="PUBLIC"/>
+			<xsd:enumeration value="PRIVATE"/>
+			<xsd:enumeration value="UNLISTED"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="metaDataType">
+		<xsd:sequence>
+			<xsd:element name="confName" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="512"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="agenda" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="2500"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="account" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="128"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="opportunity" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="128"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="sessionType" type="xsd:integer" default="-1" minOccurs="0"/>
+			<xsd:element name="defaultHighestMT" type="xsd:boolean" default="true" minOccurs="0"/>
+			<xsd:element name="intAccountID" type="xsd:integer" minOccurs="0"/>
+			<xsd:element name="intOpptyID" type="xsd:integer" minOccurs="0"/>
+			<xsd:element name="extSystemID" type="xsd:integer" minOccurs="0"/>
+			<xsd:element name="sessionTemplate" type="com:sessionTemplateType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="enableOptionsType">
+		<xsd:sequence>
+			<xsd:element name="autoDeleteAfterMeetingEnd" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="sendEmailByClient" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="displayQuickStartHost" type="xsd:boolean" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="scheduleType">
+		<xsd:sequence>
+			<xsd:element name="startDate" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="timeZoneID" type="xsd:integer" default="-1" minOccurs="0"/>
+			<xsd:element name="timeZone" type="com:timeZoneType" minOccurs="0"/>
+			<xsd:element name="duration" type="xsd:integer" minOccurs="0"/>
+			<xsd:element name="openTimeEnabled" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="openTime" type="xsd:integer" minOccurs="0"/>
+			<xsd:element name="templateFilePath" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="showFilePath" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="showFileStartMode" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="showFileContPlayFlag" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="showFileInterVal" type="xsd:long" minOccurs="0"/>
+			<xsd:element name="sendScheduleEmail" type="xsd:boolean" default="false" minOccurs="0"/>
+			<xsd:element name="extURL" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="512"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="extNotifyTime" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:minInclusive value="0"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="joinNotifyURL" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="512"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="joinTeleconfBeforeHost" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="hostWebExID" type="xsd:string" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="telephonyType">
+		<xsd:sequence>
+			<xsd:element name="telephonySupport" type="sales:telephonySupportType" default="NONE" minOccurs="0"/>
+			<xsd:element name="numPhoneLines" type="xsd:integer" default="4" minOccurs="0"/>
+			<xsd:element name="extTelephonyURL" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="extTelephonyDescription" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="enableTSP" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="tspAccountIndex" type="xsd:integer" minOccurs="0"/>
+			<xsd:element name="personalAccountIndex" type="xsd:integer" minOccurs="0"/>
+			<xsd:element name="intlLocalCallIn" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="teleconfLocation" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="callInNum" type="serv:callInNumType" minOccurs="0"/>
+			<xsd:element name="tspConference" type="serv:tspAccountType" minOccurs="0"/>
+			<xsd:element name="tspAccessCodeOrder" type="serv:tspAccessCodeOrderType" minOccurs="0"/>
+			<xsd:element name="tollFree" type="xsd:boolean" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="telephonySupportType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="NONE"/>
+			<xsd:enumeration value="CALLIN"/>
+			<xsd:enumeration value="CALLBACK"/>
+			<xsd:enumeration value="OTHER"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="repeatType">
+		<xsd:sequence>
+			<xsd:element name="repeatType" type="sales:recurrenceType" minOccurs="0"/>
+			<xsd:element name="endAfter" type="xsd:integer" minOccurs="0"/>
+			<xsd:element name="expirationDate" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="interval" type="xsd:integer" minOccurs="0"/>
+			<xsd:element name="dayInWeek" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="day" type="com:dayOfWeekType" minOccurs="0" maxOccurs="7"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="dayInMonth" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:maxInclusive value="31"/>
+						<xsd:minInclusive value="1"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="weekInMonth" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:minInclusive value="1"/>
+						<xsd:maxInclusive value="6"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="monthInYear" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:minInclusive value="1"/>
+						<xsd:maxInclusive value="12"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="recurrenceType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="WEEKLY"/>
+			<xsd:enumeration value="DAILY"/>
+			<xsd:enumeration value="NO_REPEAT"/>
+			<xsd:enumeration value="MONTHLY"/>
+			<xsd:enumeration value="YEARLY"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="remindType">
+		<xsd:sequence>
+			<xsd:element name="enableReminder" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="daysAhead" type="xsd:integer" minOccurs="0"/>
+			<xsd:element name="hoursAhead" type="xsd:integer" minOccurs="0"/>
+			<xsd:element name="minutesAhead" type="xsd:integer" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="orderType">
+		<xsd:sequence>
+			<xsd:element name="orderBy" type="sales:orderByType" minOccurs="0" maxOccurs="3"/>
+			<xsd:element name="orderAD" type="serv:lstOrderADType" minOccurs="0" maxOccurs="3"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="orderByType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="HOSTWEBEXID"/>
+			<xsd:enumeration value="CONFNAME"/>
+			<xsd:enumeration value="STARTTIME"/>
+			<xsd:enumeration value="TRACKINGCODE1"/>
+			<xsd:enumeration value="TRACKINGCODE2"/>
+			<xsd:enumeration value="TRACKINGCODE3"/>
+			<xsd:enumeration value="TRACKINGCODE4"/>
+			<xsd:enumeration value="TRACKINGCODE5"/>
+			<xsd:enumeration value="TRACKINGCODE6"/>
+			<xsd:enumeration value="TRACKINGCODE7"/>
+			<xsd:enumeration value="TRACKINGCODE8"/>
+			<xsd:enumeration value="TRACKINGCODE9"/>
+			<xsd:enumeration value="TRACKINGCODE10"/>
+			<xsd:enumeration value="ACCOUNT"/>
+			<xsd:enumeration value="OPPORTUNITY"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="dateScopeType">
+		<xsd:sequence>
+			<xsd:element name="startDateStart" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="startDateEnd" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="endDateStart" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="endDateEnd" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="timeZoneID" type="xsd:integer" default="-1" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="prospectType">
+		<xsd:sequence>
+			<xsd:element name="name" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="firstName" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="lastName" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="email">
+				<xsd:simpleType>
+					<xsd:restriction base="com:emailType">
+						<xsd:maxLength value="64"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="phones" type="com:phonesType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="attendeeOptionsType">
+		<xsd:sequence>
+			<xsd:element name="requireUcfDiagnosis" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="excludePassword" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="emailInvitations" type="xsd:boolean" default="false" minOccurs="0"/>
+			<xsd:element name="participantLimit" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:minInclusive value="0"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="accountType">
+		<xsd:sequence>
+			<xsd:element name="name" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="128"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="extAccountID" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="512"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="extSystemID" type="xsd:integer" minOccurs="0"/>
+			<xsd:element name="parentIntID" type="xsd:integer" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="accountInstanceType">
+		<xsd:complexContent>
+			<xsd:extension base="sales:accountType">
+				<xsd:sequence>
+					<xsd:element name="intAccountID" type="xsd:integer" minOccurs="0"/>
+					<xsd:element name="opportunity" type="sales:opptySummaryType" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="opptyType">
+		<xsd:sequence>
+			<xsd:element name="name" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="128"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="intAccountID" type="xsd:integer" minOccurs="0"/>
+			<xsd:element name="extOpptyID" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="512"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="extSystemID" type="xsd:integer" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="opptySummaryType">
+		<xsd:sequence>
+			<xsd:element name="name">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="128"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="intOpptyID" type="xsd:integer"/>
+			<xsd:element name="extOpptyID" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="512"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="opptyInstanceType">
+		<xsd:complexContent>
+			<xsd:extension base="sales:opptyType">
+				<xsd:sequence>
+					<xsd:element name="intOpptyID" type="xsd:integer"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="createAccount">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="webExID" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="account" type="sales:accountType"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="createAccountResponse">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="intAccountID" type="xsd:integer"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="setAccount">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="webExID" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="account">
+						<xsd:complexType>
+							<xsd:complexContent>
+								<xsd:extension base="sales:accountType">
+									<xsd:sequence>
+										<xsd:element name="intAccountID" type="xsd:integer"/>
+									</xsd:sequence>
+								</xsd:extension>
+							</xsd:complexContent>
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="setAccountResponse">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="intAccountID" type="xsd:integer"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="lstAccounts">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="webExID" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="intAccountID" type="xsd:integer" minOccurs="0"/>
+					<xsd:element name="extAccountID" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="extSystemID" type="xsd:integer" minOccurs="0"/>
+					<xsd:element name="returnOppty" type="xsd:boolean" default="false" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="lstAccountsResponse">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="account" type="sales:accountInstanceType" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="createOpportunity">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="webExID" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="opportunity" type="sales:opptyType"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="createOpportunityResponse">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="intOpptyID" type="xsd:integer"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="setOpportunity">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="webExID" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="opportunity" type="sales:opptyInstanceType"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="setOpportunityResponse">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="intOpptyID" type="xsd:integer"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="lstOpportunities">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="webExID" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="intAccountID" type="xsd:integer" minOccurs="0"/>
+					<xsd:element name="extAccountID" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="intOpptyID" type="xsd:integer" minOccurs="0"/>
+					<xsd:element name="extOpptyID" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="extSystemID" type="xsd:integer" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="lstOpportunitiesResponse">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="opportunity" minOccurs="0" maxOccurs="unbounded">
+						<xsd:complexType>
+							<xsd:complexContent>
+								<xsd:extension base="sales:opptyInstanceType">
+									<xsd:sequence>
+										<xsd:element name="extAccountID" minOccurs="0">
+											<xsd:simpleType>
+												<xsd:restriction base="xsd:string">
+													<xsd:maxLength value="512"/>
+												</xsd:restriction>
+											</xsd:simpleType>
+										</xsd:element>
+									</xsd:sequence>
+								</xsd:extension>
+							</xsd:complexContent>
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="iCalendarURL">
+		<xsd:complexContent>
+			<xsd:extension base="serv:iCalendarURLType">
+				<xsd:sequence>
+					<xsd:element name="sme" type="xsd:string"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="alternateHostType">
+		<xsd:sequence minOccurs="0">
+			<xsd:element name="webExID" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

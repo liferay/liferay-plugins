@@ -1,0 +1,85 @@
+<%--
+/**
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+--%>
+
+<liferay-portlet:renderURL varImpl="iteratorURL">
+	<portlet:param name="mvcPath" value="/meetings/view_account.jsp" />
+	<portlet:param name="redirect" value="<%= backURL %>" />
+	<portlet:param name="webExAccountId" value="<%= String.valueOf(webExAccountId) %>" />
+</liferay-portlet:renderURL>
+
+<liferay-ui:search-container
+	emptyResultsMessage="there-are-no-meetings"
+	iteratorURL="<%= iteratorURL %>"
+>
+	<liferay-ui:search-container-results>
+
+		<%
+		List<Meeting> meetings = new ArrayList<Meeting>();
+
+		try {
+			for (MeetingSummary meetingSummary : MeetingServiceUtil.getMeetingSummaries(user.getTimeZone(), QueryUtil.ALL_POS, QueryUtil.ALL_POS, webExAccount.getMeetingContext())) {
+				meetings.add(MeetingServiceUtil.getMeeting(meetingSummary.getMeetingKey(), webExAccount.getMeetingContext()));
+			}
+		}
+		catch (MeetingException me) {
+		}
+
+		pageContext.setAttribute("results", (List<Meeting>)meetings);
+		pageContext.setAttribute("total", meetings.size());
+		%>
+
+	</liferay-ui:search-container-results>
+
+	<liferay-ui:search-container-row
+		className="com.liferay.meeting.Meeting"
+		modelVar="meeting"
+	>
+		<portlet:renderURL var="rowURL">
+			<portlet:param name="mvcPath" value="/meetings/view_meeting.jsp" />
+			<portlet:param name="redirect" value="<%= currentURL %>" />
+			<portlet:param name="meetingKey" value="<%= String.valueOf(meeting.getMeetingKey()) %>" />
+			<portlet:param name="webExAccountId" value="<%= String.valueOf(webExAccountId) %>" />
+		</portlet:renderURL>
+
+		<%
+		Calendar startCalendar = meeting.getStartCalendar();
+
+		Date date = startCalendar.getTime();
+		%>
+
+		<liferay-ui:search-container-column-text
+			href="<%= rowURL %>"
+			name="date"
+			value="<%= dateFormatDate.format(date) %>"
+		/>
+
+		<liferay-ui:search-container-column-text
+			href="<%= rowURL %>"
+			name="time"
+			value="<%= dateFormatTime.format(date) %>"
+		/>
+
+		<liferay-ui:search-container-column-text
+			href="<%= rowURL %>"
+			name="topic"
+			property="name"
+		/>
+
+		<liferay-ui:search-container-column-jsp path="/meetings/meeting_action.jsp" />
+	</liferay-ui:search-container-row>
+
+	<liferay-ui:search-iterator />
+</liferay-ui:search-container>

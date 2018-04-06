@@ -1,0 +1,512 @@
+<?xml version="1.0"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:att="http://www.webex.com/schemas/2002/06/service/attendee" xmlns:meet="http://www.webex.com/schemas/2002/06/service/meeting" xmlns:serv="http://www.webex.com/schemas/2002/06/service" xmlns:com="http://www.webex.com/schemas/2002/06/common" targetNamespace="http://www.webex.com/schemas/2002/06/service/meeting" elementFormDefault="qualified">
+	<xsd:import namespace="http://www.webex.com/schemas/2002/06/common" schemaLocation="../../common/common.xsd"/>
+	<xsd:import namespace="http://www.webex.com/schemas/2002/06/service" schemaLocation="../service.xsd"/>
+	<xsd:import namespace="http://www.webex.com/schemas/2002/06/service/attendee" schemaLocation="../attendee/attendee.xsd"/>
+	<xsd:annotation>
+		<xsd:documentation xml:lang="en">Schema used for representing create, read, update and delete operations on a meeting.</xsd:documentation>
+	</xsd:annotation>
+	<xsd:complexType name="meetingType">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="accessControl" type="meet:accessControlType" minOccurs="0"/>
+					<xsd:element name="metaData" type="meet:metaDataType" minOccurs="0"/>
+					<xsd:element name="participants" type="meet:participantsType" minOccurs="0"/>
+					<xsd:element name="enableOptions" type="meet:enableOptionsType" minOccurs="0"/>
+					<xsd:element name="schedule" type="meet:scheduleType" minOccurs="0"/>
+					<xsd:element name="telephony" type="meet:telephonyType" minOccurs="0"/>
+					<xsd:element name="tracking" type="com:trackingType" minOccurs="0"/>
+					<xsd:element name="repeat" type="meet:repeatType" minOccurs="0"/>
+					<xsd:element name="remind" type="meet:remindType" minOccurs="0"/>
+					<xsd:element name="attendeeOptions" type="meet:attendeeOptionsType" minOccurs="0"/>
+					<xsd:element name="assistService" type="serv:meetingAssistType" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="meetingSummaryInstanceType">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="meetingKey" type="xsd:long"/>
+					<xsd:element name="confName" type="xsd:string"/>
+					<xsd:element name="meetingType" type="xsd:long"/>
+					<xsd:element name="hostWebExID" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="otherHostWebExID" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="timeZoneID" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="timeZone" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="status" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="startDate" type="xsd:string"/>
+					<xsd:element name="duration" type="xsd:integer"/>
+					<xsd:element name="listStatus" type="com:listingType" minOccurs="0"/>
+					<xsd:element name="hostJoined" type="xsd:boolean" minOccurs="0"/>
+					<xsd:element name="participantsJoined" type="xsd:boolean" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="meetingInstanceType">
+		<xsd:complexContent>
+			<xsd:extension base="meet:meetingType">
+				<xsd:sequence>
+					<xsd:element name="meetingkey" type="xsd:long"/>
+					<xsd:element name="status" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="hostJoined" type="xsd:boolean" minOccurs="0"/>
+					<xsd:element name="participantsJoined" type="xsd:boolean" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="createMeeting">
+		<xsd:complexContent>
+			<xsd:extension base="meet:meetingType">
+				<xsd:sequence>
+					<xsd:element name="validateFormat" type="xsd:boolean" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="createMeetingResponse">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="meetingkey" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="iCalendarURL" type="serv:iCalendarURLType" minOccurs="0"/>
+					<xsd:element name="guestToken" type="xsd:string" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="lstMeeting">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="listControl" type="serv:lstControlType" minOccurs="0"/>
+					<xsd:element name="order" type="meet:orderType" minOccurs="0"/>
+					<xsd:element name="dateScope" type="meet:dateScopeType" minOccurs="0"/>
+					<xsd:element name="meetingKey" type="xsd:long" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="lstMeetingResponse">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="meeting" type="meet:meetingInstanceType" minOccurs="0" maxOccurs="unbounded"/>
+					<xsd:element name="matchingRecords" type="serv:matchingRecordsType" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="lstsummaryMeeting">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="listControl" type="serv:lstControlType" minOccurs="0"/>
+					<xsd:element name="order" type="meet:orderType" minOccurs="0"/>
+					<xsd:element name="dateScope" type="meet:dateScopeType" minOccurs="0"/>
+					<xsd:element name="meetingKey" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="hostWebExID" type="xsd:string" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="lstsummaryMeetingResponse">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="meeting" type="meet:meetingSummaryInstanceType" minOccurs="0" maxOccurs="unbounded"/>
+					<xsd:element name="matchingRecords" type="serv:matchingRecordsType" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="delMeeting">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="meetingKey" type="xsd:long"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="delMeetingResponse">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="iCalendarURL" type="serv:iCalendarURLType" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="getMeeting">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="meetingKey" type="xsd:long"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="getMeetingResponse">
+		<xsd:complexContent>
+			<xsd:extension base="meet:meetingInstanceType">
+				<xsd:sequence>
+					<xsd:element name="hostKey" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="eventID" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="guestToken" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="hostType" type="xsd:string" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="setMeeting">
+		<xsd:complexContent>
+			<xsd:extension base="meet:meetingInstanceType">
+				<xsd:sequence>
+					<xsd:element name="validateFormat" type="xsd:boolean" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="setMeetingResponse">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="iCalendarURL" type="serv:iCalendarURLType" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="gethosturlMeeting">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="meetingKey" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="sessionKey" type="xsd:long" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="gethosturlMeetingResponse">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="hostMeetingURL" type="xsd:string" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="getjoinurlMeeting">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="meetingKey" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="sessionKey" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="attendeeName" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="attendeeEmail" type="com:emailType" minOccurs="0"/>
+					<xsd:element name="meetingPW" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="RegID" type="xsd:string" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="getjoinurlMeetingResponse">
+		<xsd:complexContent>
+			<xsd:extension base="serv:bodyContentType">
+				<xsd:sequence>
+					<xsd:element name="joinMeetingURL" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="inviteMeetingURL" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="registerMeetingURL" type="xsd:string" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="accessControlType">
+		<xsd:sequence>
+			<xsd:element name="listToPublic" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="isPublic" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="meetingPassword" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="16"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="enforcePassword" type="xsd:boolean" default="true" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="metaDataType">
+		<xsd:sequence>
+			<xsd:element name="confName" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="meetingType" type="xsd:long" default="-1" minOccurs="0"/>
+			<xsd:element name="agenda" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="2500"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="greeting" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="location" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="invitation" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="setNonMTOptions" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="sessionTemplate" type="com:sessionTemplateType" minOccurs="0"/>
+			<xsd:element name="isInternal" type="xsd:boolean" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="participantsType">
+		<xsd:sequence>
+			<xsd:element name="maxUserNumber" type="xsd:long" minOccurs="0"/>
+			<xsd:element name="attendees" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="attendee" type="att:attendeeType" minOccurs="0" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="enableOptionsType">
+		<xsd:sequence>
+			<xsd:element name="chat" type="xsd:boolean" default="false" minOccurs="0"/>
+			<xsd:element name="poll" type="xsd:boolean" default="false" minOccurs="0"/>
+			<xsd:element name="audioVideo" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="attendeeList" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="fileShare" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="presentation" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="applicationShare" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="desktopShare" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="webTour" type="xsd:boolean" default="false" minOccurs="0"/>
+			<xsd:element name="meetingRecord" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="annotation" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="importDocument" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="saveDocument" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="printDocument" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="pointer" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="switchPage" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="fullScreen" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="thumbnail" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="zoom" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="copyPage" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="rcAppShare" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="rcDesktopShare" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="rcWebTour" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="javaClient" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="nativeClient" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="attendeeRecordMeeting" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="voip" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="faxIntoMeeting" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="enableReg" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="supportQandA" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="supportFeedback" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="supportBreakoutSessions" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="supportPanelists" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="supportRemoteComputer" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="supportShareWebContent" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="supportUCFWebPages" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="supportUCFRichMedia" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="autoDeleteAfterMeetingEnd" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="viewAnyDoc" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="viewAnyPage" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="allowContactPrivate" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="chatHost" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="chatPresenter" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="chatAllAttendees" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="multiVideo" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="notes" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="closedCaptions" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="singleNote" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="sendFeedback" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="displayQuickStartHost" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="displayQuickStartAttendees" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="supportE2E" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="supportPKI" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="HQvideo" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="HDvideo" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="viewVideoThumbs" type="xsd:boolean" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="scheduleType">
+		<xsd:sequence>
+			<xsd:element name="startDate" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="timeZoneID" type="xsd:long" default="-1" minOccurs="0"/>
+			<xsd:element name="timeZone" type="com:timeZoneType" minOccurs="0"/>
+			<xsd:element name="duration" type="xsd:long" minOccurs="0"/>
+			<xsd:element name="openTime" type="xsd:long" minOccurs="0"/>
+			<xsd:element name="hostWebExID" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="templateFilePath" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="showFilePath" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="showFileStartMode" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="showFileContPlayFlag" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="showFileInterVal" type="xsd:long" minOccurs="0"/>
+			<xsd:element name="entryExitTone" type="xsd:long" minOccurs="0"/>
+			<xsd:element name="extURL" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="512"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="extNotifyTime" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:minInclusive value="0"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="joinNotifyURL" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="512"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="joinTeleconfBeforeHost" type="xsd:boolean" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="telephonyType">
+		<xsd:sequence>
+			<xsd:element name="telephonySupport" type="meet:telephonySupportType" default="NONE" minOccurs="0"/>
+			<xsd:element name="numPhoneLines" type="xsd:integer" default="4" minOccurs="0"/>
+			<xsd:element name="extTelephonyURL" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="extTelephonyDescription" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="enableTSP" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="tspAccountIndex" type="xsd:integer" minOccurs="0"/>
+			<xsd:element name="personalAccountIndex" type="xsd:integer" minOccurs="0"/>
+			<xsd:element name="intlLocalCallIn" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="teleconfLocation" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="callInNum" type="serv:callInNumType" minOccurs="0"/>
+			<xsd:element name="tspConference" type="serv:tspAccountType" minOccurs="0"/>
+			<xsd:element name="tspAccessCodeOrder" type="serv:tspAccessCodeOrderType" minOccurs="0"/>
+			<xsd:element name="tollFree" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="isMPAudio" type="xsd:boolean" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="telephonySupportType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="NONE"/>
+			<xsd:enumeration value="CALLIN"/>
+			<xsd:enumeration value="CALLBACK"/>
+			<xsd:enumeration value="OTHER"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="repeatType">
+		<xsd:sequence>
+			<xsd:element name="repeatType" type="meet:repeatTypeType" minOccurs="0"/>
+			<xsd:element name="interval" type="xsd:integer" minOccurs="0"/>
+			<xsd:element name="afterMeetingNumber" type="xsd:integer" minOccurs="0"/>
+			<xsd:element name="dayInWeek" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="day" type="com:dayOfWeekType" minOccurs="0" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="expirationDate" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="dayInMonth" type="xsd:long" minOccurs="0"/>
+			<xsd:element name="weekInMonth" type="xsd:long" minOccurs="0"/>
+			<xsd:element name="monthInYear" type="xsd:long" minOccurs="0"/>
+			<xsd:element name="dayInYear" type="xsd:long" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="repeatTypeType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="WEEKLY"/>
+			<xsd:enumeration value="DAILY"/>
+			<xsd:enumeration value="NO_REPEAT"/>
+			<xsd:enumeration value="CONSTANT"/>
+			<xsd:enumeration value="MONTHLY"/>
+			<xsd:enumeration value="YEARLY"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="remindType">
+		<xsd:sequence>
+			<xsd:element name="enableReminder" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="emails" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="email" type="com:emailType" minOccurs="0" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="sendEmail" type="xsd:boolean" default="false" minOccurs="0"/>
+			<xsd:element name="mobile" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="sendMobile" type="xsd:boolean" default="false" minOccurs="0"/>
+			<xsd:element name="daysAhead" type="xsd:integer" minOccurs="0"/>
+			<xsd:element name="hoursAhead" type="xsd:integer" minOccurs="0"/>
+			<xsd:element name="minutesAhead" type="xsd:integer" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="dateScopeType">
+		<xsd:sequence>
+			<xsd:element name="startDateStart" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="startDateEnd" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="timeZoneID" type="xsd:long" default="-1" minOccurs="0"/>
+			<xsd:element name="endDateStart" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="endDateEnd" type="xsd:string" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="orderByType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="HOSTWEBEXID"/>
+			<xsd:enumeration value="CONFNAME"/>
+			<xsd:enumeration value="STARTTIME"/>
+			<xsd:enumeration value="TRACKINGCODE1"/>
+			<xsd:enumeration value="TRACKINGCODE2"/>
+			<xsd:enumeration value="TRACKINGCODE3"/>
+			<xsd:enumeration value="TRACKINGCODE4"/>
+			<xsd:enumeration value="TRACKINGCODE5"/>
+			<xsd:enumeration value="TRACKINGCODE6"/>
+			<xsd:enumeration value="TRACKINGCODE7"/>
+			<xsd:enumeration value="TRACKINGCODE8"/>
+			<xsd:enumeration value="TRACKINGCODE9"/>
+			<xsd:enumeration value="TRACKINGCODE10"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="orderType">
+		<xsd:sequence>
+			<xsd:element name="orderBy" type="meet:orderByType" minOccurs="0" maxOccurs="3"/>
+			<xsd:element name="orderAD" type="serv:lstOrderADType" minOccurs="0" maxOccurs="3"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="attendeeOptionsType">
+		<xsd:sequence>
+			<xsd:element name="request" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="registration" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="auto" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="emailInvitations" type="xsd:boolean" default="false" minOccurs="0"/>
+			<xsd:element name="participantLimit" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:minInclusive value="0"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="excludePassword" type="xsd:boolean" default="false" minOccurs="0"/>
+			<xsd:element name="joinRequiresAccount" type="xsd:boolean" default="false" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="standardFieldsType">
+		<xsd:sequence>
+			<xsd:element name="phone" type="meet:registrationFieldType" minOccurs="0"/>
+			<xsd:element name="title" type="meet:registrationFieldType" minOccurs="0"/>
+			<xsd:element name="company" type="meet:registrationFieldType" minOccurs="0"/>
+			<xsd:element name="address1" type="meet:registrationFieldType" minOccurs="0"/>
+			<xsd:element name="address2" type="meet:registrationFieldType" minOccurs="0"/>
+			<xsd:element name="city" type="meet:registrationFieldType" minOccurs="0"/>
+			<xsd:element name="state" type="meet:registrationFieldType" minOccurs="0"/>
+			<xsd:element name="postalCode" type="meet:registrationFieldType" minOccurs="0"/>
+			<xsd:element name="country" type="meet:registrationFieldType" minOccurs="0"/>
+			<xsd:element name="fax" type="meet:registrationFieldType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="registrationFieldType">
+		<xsd:sequence>
+			<xsd:element name="req" type="xsd:boolean" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+
+<beans
+	default-destroy-method="destroy"
+	default-init-method="afterPropertiesSet"
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"
+>
+
+	<!-- Destinations -->
+
+	<bean class="com.liferay.portal.kernel.messaging.ParallelDestination" id="destination.ehcache_cluster">
+		<property name="name" value="liferay/ehcache_cluster" />
+	</bean>
+
+	<!-- Listeners -->
+
+	<bean class="com.liferay.portal.cache.cluster.clusterlink.messaging.ClusterLinkPortalCacheClusterListener" id="messageListener.ehcache_cluster" />
+
+	<!-- Configurator -->
+
+	<bean class="com.liferay.portal.kernel.messaging.config.PluginMessagingConfigurator" id="messagingConfigurator">
+		<property name="destinations">
+			<list>
+				<ref bean="destination.ehcache_cluster" />
+			</list>
+		</property>
+		<property name="messageListeners">
+			<map key-type="java.lang.String" value-type="java.util.List">
+				<entry key="liferay/ehcache_cluster">
+					<list value-type="com.liferay.portal.kernel.messaging.MessageListener">
+						<ref bean="messageListener.ehcache_cluster" />
+					</list>
+				</entry>
+			</map>
+		</property>
+	</bean>
+</beans>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<classpath>
+	<classpathentry excluding="**/.svn/**|.svn/" kind="src" path="docroot/WEB-INF/src" />
+	<classpathentry kind="src" path="/portal-6.2.x" />
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER" />
+	<classpathentry kind="lib" path="/portal-6.2.x/lib/development/activation.jar" />
+	<classpathentry kind="lib" path="/portal-6.2.x/lib/development/annotations.jar" />
+	<classpathentry kind="lib" path="/portal-6.2.x/lib/development/jsp-api.jar" />
+	<classpathentry kind="lib" path="/portal-6.2.x/lib/development/mail.jar" />
+	<classpathentry kind="lib" path="/portal-6.2.x/lib/development/servlet-api.jar" />
+	<classpathentry kind="lib" path="/portal-6.2.x/lib/global/portlet.jar" />
+	<classpathentry kind="lib" path="/portal-6.2.x/lib/portal/commons-logging.jar" />
+	<classpathentry kind="lib" path="/portal-6.2.x/lib/portal/log4j.jar" />
+	<classpathentry kind="lib" path="/portal-6.2.x/portal-service/portal-service.jar" />
+	<classpathentry kind="lib" path="/portal-6.2.x/util-bridges/util-bridges.jar" />
+	<classpathentry kind="lib" path="/portal-6.2.x/util-java/util-java.jar" />
+	<classpathentry kind="lib" path="/portal-6.2.x/util-taglib/util-taglib.jar" />
+	<classpathentry kind="output" path="bin" />
+</classpath>
