@@ -73,47 +73,27 @@
 			<arg line="rev-parse --abbrev-ref HEAD" />
 		</exec>
 
-		<if>
-			<or>
-				<equals arg1="${git.branch}" arg2="master" />
-				<matches pattern="ee-.*x$" string="${git.branch}" />
-			</or>
-			<then>
-				<delete>
-					<fileset dir="." includes="**/liferay-releng.changelog" />
-					<fileset dir="." includes="**/liferay-releng.changelog.md5" />
-				</delete>
+		<java
+			classname="com.liferay.portal.tools.PluginsSummaryBuilder"
+			classpathref="portal.classpath"
+			fork="true"
+			newenvironment="true"
+		>
+			<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
+			<jvmarg value="-Dplugins.dir=${sdk.dir}" />
+		</java>
 
-				<copy overwrite="true" todir="${sdk.dir}">
-					<fileset dir="${release.plugins.dir}">
-						<include name="**/liferay-plugin-package.properties" />
-					</fileset>
-				</copy>
-			</then>
-			<else>
-				<java
-					classname="com.liferay.portal.tools.PluginsSummaryBuilder"
-					classpathref="portal.classpath"
-					fork="true"
-					newenvironment="true"
-				>
-					<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
-					<jvmarg value="-Dplugins.dir=${sdk.dir}" />
-				</java>
-
-				<java
-					classname="com.liferay.portal.tools.XSLTBuilder"
-					classpathref="portal.classpath"
-					fork="true"
-					newenvironment="true"
-				>
-					<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
-					<arg value="${sdk.dir}/summary.xml" />
-					<arg value="${sdk.dir}/summary.xsl" />
-					<arg value="${sdk.dir}/summary.html" />
-				</java>
-			</else>
-		</if>
+		<java
+			classname="com.liferay.portal.tools.XSLTBuilder"
+			classpathref="portal.classpath"
+			fork="true"
+			newenvironment="true"
+		>
+			<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
+			<arg value="${sdk.dir}/summary.xml" />
+			<arg value="${sdk.dir}/summary.xsl" />
+			<arg value="${sdk.dir}/summary.html" />
+		</java>
 	</target>
 
 	<target name="format-javadoc">
