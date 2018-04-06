@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Module>
+	<ModulePrefs
+		author="Ivica Cardic, Igor Beslic"
+		author_email="igor.beslic@liferay.com, ivica.cardic@liferay.com"
+		description="A simple example of an OpenSocial Liferay Gadget using OAuth."
+		title="Test OpenSocial OAuth Consumer Gadget"
+	>
+		<Require feature="dynamic-height" />
+		<Require feature="oauthpopup" />
+		<Require feature="opensocial-0.8" />
+
+		<OAuth>
+			<Service name="liferay">
+				<Access method="GET" param_location="uri-query" url="[$ACCESS_URL$]" />
+				<Authorization url="[$AUTHORIZATION_URL$]" />
+				<Request method="GET" param_location="uri-query" url="[$REQUEST_URL$]" />
+			</Service>
+		</OAuth>
+	</ModulePrefs>
+
+	<UserPref datatype="number" default_value="[$FOLDER_ID$]" display_name="Folder ID" name="folderId" />
+	<UserPref datatype="number" default_value="[$REPOSITORY_ID$]" display_name="Repository ID" name="repositoryId" />
+
+	<Content type="html">
+		<![CDATA[
+			<script src="http://opensocialdeju.googlecode.com/svn/common/popup.js"></script>
+
+			<style>
+				#error {
+					color: red;
+				}
+
+				#main {
+					font-size: small;
+					margin: 0;
+					padding: 5px;
+				}
+			</style>
+
+			<div id="main" style="display: none">
+				<b>List of documents:</b><br>
+
+				<div id="documentsDiv"></div>
+			</div>
+
+			<div id="approval" style="display: none">
+				<img src="http://opensocialdeju.googlecode.com/svn/images/new.gif" />
+
+				<a href="#" id="personalize">Personalize this gadget</a>
+			</div>
+
+			<div id="waiting" style="display: none">
+				Please click <a href="#" id="approvalcomplete">I've approved access</a> once you've approved access to your data.
+			</div>
+
+			<div id="error" style="display: none"></div>
+
+			<script type="text/javascript">
+				function fetchData() {
+					var url = "[$PORTAL_URL$]/api/jsonws/dlapp/get-file-entries/repository-id/" + repositoryId + "/folder-id/" + folderId;
+
+					var callback = function(response) {
+						if (response.oauthApprovalUrl) {
+							var popup = shindig.oauth.popup(
+								{
+									destination: response.oauthApprovalUrl,
+									onClose: function() {
+										fetchData();
+									},
+									onOpen: function() {
+										showOneSection('waiting');
+									},
+									windowOptions: null
+								}
+							);
+
+							document.getElementById('approvalcomplete').onclick = popup.createApprovedOnClick();
+							document.getElementById('personalize').onclick = popup.createOpenerOnClick();
+
+							showOneSection('approval');
+						}
+						else if (response.data) {
+							showDocuments(response.data);
+						}
+						else {
+							showError(response);
+						}
+					};
+
+					var params = {};
+
+					params[gadgets.io.RequestParameters.AUTHORIZATION] = gadgets.io.AuthorizationType.OAUTH;
+					params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.JSON;
+					params[gadgets.io.RequestParameters.METHOD] = gadgets.io.MethodType.GET;
+					params[gadgets.io.RequestParameters.OAUTH_SERVICE_NAME] = "liferay";
+
+					gadgets.io.makeRequest(url, callback, params);
+				}
+
+				function showError(response) {
+					var errorDiv = document.getElementById('error');
+					var errorTextNode = document.createTextNode(getErrorText(response));
+
+					errorDiv.appendChild(errorTextNode);
+
+					showOneSection('error');
+
+					gadgets.window.adjustHeight();
+				}
+
+				function getErrorText(response) {
+					var oAuthError = "";
+
+					if (response.oauthError) {
+						oAuthError = ", OAuth error: " + response.oauthError;
+					}
+
+					return 'Error: ' + response.errors[0] + oAuthError + ", " + response.oauthErrorText;
+				}
+
+				function showOneSection(requestedSection) {
+					var sections = ['approval', 'error', 'main', 'waiting'];
+
+					for ( var i = 0; i < sections.length; ++i) {
+						var section = sections[i];
+
+						var element = document.getElementById(section);
+
+						if (section === requestedSection) {
+							element.style.display = "block";
+						}
+						else {
+							element.style.display = "none";
+						}
+					}
+				}
+
+				function showDocuments(data) {
+					var newDocumentsDiv = document.createElement('div');
+
+					newDocumentsDiv.setAttribute("id", "documentsDiv");
+
+					var ul = document.createElement('ul');
+
+					for (var i = 0; i < data.length; i++) {
+						var entry = data[i];
+
+						var docName = entry.name;
+						var screenName = entry.userName;
+						var title = entry.title;
+
+						var li = document.createElement('li');
+
+						if (typeof entry != 'undefined') {
+							var strongNode = document.createElement("strong");
+
+							strongNode.appendChild(document.createTextNode(title));
+
+							li.appendChild(document.createTextNode("("));
+							li.appendChild(strongNode);
+							li.appendChild(document.createTextNode(") by " + screenName + " at " + new Date(entry.createDate)));
+						}
+
+						ul.appendChild(li);
+					}
+
+					newDocumentsDiv.appendChild(ul);
+
+					var mainDiv = document.getElementById("main");
+
+					mainDiv.replaceChild(newDocumentsDiv, document.getElementById("documentsDiv"));
+
+					showOneSection('main');
+
+					gadgets.window.adjustHeight();
+				}
+
+				var userPrefs = new _IG_Prefs();
+
+				var auth = userPrefs.getString("auth");
+				var folderId = userPrefs.getString("folderId");
+				var repositoryId = userPrefs.getString("repositoryId");
+
+				gadgets.util.registerOnLoadHandler(fetchData);
+			</script>
+		]]>
+	</Content>
+</Module>
