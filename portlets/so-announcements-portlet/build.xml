@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<!DOCTYPE project>
-
-<project basedir="." default="deploy" name="so-announcements-portlet">
-	<property name="import.shared" value="so-announcements-shared" />
-
-	<import file="../build-common-portlet.xml" />
-</project>

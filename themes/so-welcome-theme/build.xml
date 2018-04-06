@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<!DOCTYPE project>
-
-<project basedir="." default="deploy" name="so-welcome-theme">
-	<property name="theme.parent" value="_styled" />
-	<property name="theme.type" value="vm" />
-
-	<import file="../build-common-theme.xml" />
-</project>
