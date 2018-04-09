@@ -90,7 +90,7 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 		stopWatch.start();
 
 		try {
-			int total = (int)searchCount(searchContext, query);
+			int total = (int)searchCount(searchContext, query, true);
 
 			if (total > INDEX_SEARCH_LIMIT) {
 				total = INDEX_SEARCH_LIMIT;
@@ -113,7 +113,7 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 			end = startAndEnd[1];
 
 			QueryResponse queryResponse = search(
-				searchContext, query, start, end, false);
+				searchContext, query, start, end, false, false);
 
 			Hits hits = processQueryResponse(
 				queryResponse, searchContext, query);
@@ -149,7 +149,8 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 		return search(searchContext, query);
 	}
 
-	public long searchCount(SearchContext searchContext, Query query)
+	public long searchCount(
+			SearchContext searchContext, Query query, boolean translate)
 		throws SearchException {
 
 		StopWatch stopWatch = new StopWatch();
@@ -159,7 +160,7 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 		try {
 			QueryResponse queryResponse = search(
 				searchContext, query, searchContext.getStart(),
-				searchContext.getEnd(), true);
+				searchContext.getEnd(), true, translate);
 
 			SolrDocumentList solrDocumentList = queryResponse.getResults();
 
@@ -465,7 +466,7 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 
 	protected QueryResponse search(
 			SearchContext searchContext, Query query, int start, int end,
-			boolean count)
+			boolean count, boolean translate)
 		throws Exception {
 
 		SolrQuery solrQuery = new SolrQuery();
@@ -485,16 +486,19 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 			solrQuery.setIncludeScore(queryConfig.isScoreEnabled());
 		}
 
-		translateQuery(solrQuery, searchContext, query);
+		translateQuery(solrQuery, searchContext, query, translate);
 
 		return _solrServer.query(solrQuery, METHOD.POST);
 	}
 
 	protected void translateQuery(
-			SolrQuery solrQuery, SearchContext searchContext, Query query)
+			SolrQuery solrQuery, SearchContext searchContext, Query query,
+			boolean translate)
 		throws Exception {
 
-		QueryTranslatorUtil.translateForSolr(query);
+		if (translate) {
+			QueryTranslatorUtil.translateForSolr(query);
+		}
 
 		String queryString = query.toString();
 
