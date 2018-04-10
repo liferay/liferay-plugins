@@ -90,35 +90,45 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 		stopWatch.start();
 
 		try {
-			int total = (int)searchCount(searchContext, query, true);
-
-			if (total > INDEX_SEARCH_LIMIT) {
-				total = INDEX_SEARCH_LIMIT;
-			}
-
 			int start = searchContext.getStart();
 			int end = searchContext.getEnd();
 
-			if ((searchContext.getStart() == QueryUtil.ALL_POS) &&
-				(searchContext.getEnd() == QueryUtil.ALL_POS)) {
-
+			if (start == QueryUtil.ALL_POS) {
 				start = 0;
-				end = total;
+			}
+			else if (start < 0) {
+				throw new IllegalArgumentException("Invalid start " + start);
 			}
 
-			int[] startAndEnd = SearchPaginationUtil.calculateStartAndEnd(
-				start, end, total);
+			if (end == QueryUtil.ALL_POS) {
+				end = INDEX_SEARCH_LIMIT;
+			}
+			else if (end < 0) {
+				throw new IllegalArgumentException("Invalid end " + end);
+			}
 
-			start = startAndEnd[0];
-			end = startAndEnd[1];
+			QueryResponse queryResponse = null;
+			Hits hits = null;
 
-			QueryResponse queryResponse = search(
-				searchContext, query, start, end, false, false);
+			while (true) {
+				queryResponse = search(searchContext, query, start, end, false);
 
-			Hits hits = processQueryResponse(
-				queryResponse, searchContext, query);
+				hits = processQueryResponse(
+					queryResponse, searchContext, query);
 
-			hits.setLength(total);
+				Document[] documents = hits.getDocs();
+
+				if ((documents.length != 0) || (start == 0)) {
+					break;
+				}
+
+				int[] startAndEnd = SearchPaginationUtil.calculateStartAndEnd(
+					start, end, hits.getLength());
+
+				start = startAndEnd[0];
+				end = startAndEnd[1];
+			}
+
 			hits.setStart(stopWatch.getStartTime());
 
 			return hits;
@@ -149,8 +159,7 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 		return search(searchContext, query);
 	}
 
-	public long searchCount(
-			SearchContext searchContext, Query query, boolean translate)
+	public long searchCount(SearchContext searchContext, Query query)
 		throws SearchException {
 
 		StopWatch stopWatch = new StopWatch();
@@ -160,7 +169,7 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 		try {
 			QueryResponse queryResponse = search(
 				searchContext, query, searchContext.getStart(),
-				searchContext.getEnd(), true, translate);
+				searchContext.getEnd(), true);
 
 			SolrDocumentList solrDocumentList = queryResponse.getResults();
 
@@ -466,7 +475,7 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 
 	protected QueryResponse search(
 			SearchContext searchContext, Query query, int start, int end,
-			boolean count, boolean translate)
+			boolean count)
 		throws Exception {
 
 		SolrQuery solrQuery = new SolrQuery();
@@ -486,19 +495,16 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 			solrQuery.setIncludeScore(queryConfig.isScoreEnabled());
 		}
 
-		translateQuery(solrQuery, searchContext, query, translate);
+		translateQuery(solrQuery, searchContext, query);
 
 		return _solrServer.query(solrQuery, METHOD.POST);
 	}
 
 	protected void translateQuery(
-			SolrQuery solrQuery, SearchContext searchContext, Query query,
-			boolean translate)
+			SolrQuery solrQuery, SearchContext searchContext, Query query)
 		throws Exception {
 
-		if (translate) {
-			QueryTranslatorUtil.translateForSolr(query);
-		}
+		QueryTranslatorUtil.translateForSolr(query);
 
 		String queryString = query.toString();
 
