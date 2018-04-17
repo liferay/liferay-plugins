@@ -27,15 +27,6 @@ buildscript {
 configure(subprojects.findAll {!it.childProjects}) {
 	apply plugin: "com.liferay.poshi.runner"
 
-	configurations {
-		poshiRunner {
-			resolutionStrategy {
-				force group: "com.google.guava", name: "guava", version: "16.0.1"
-				force group: "commons-codec", name: "commons-codec", version: "1.10"
-			}
-		}
-	}
-
 	poshiRunner {
 		baseDir = "test/functional"
 		openCVVersion = "2.4.10-0.10"
