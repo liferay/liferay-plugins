@@ -140,7 +140,7 @@ public abstract class BaseModelUserNotificationHandler
 		return LanguageUtil.format(
 			serviceContext.getLocale(), message,
 			new String[] {
-				HtmlUtil.escape(assetRenderer.getUserName()),
+				HtmlUtil.escape(userName),
 				StringUtil.toLowerCase(HtmlUtil.escape(typeName))
 			},
 			false);
