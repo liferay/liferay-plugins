@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+
+<ivy-module
+	version="2.0"
+	xmlns:m2="http://ant.apache.org/ivy/maven"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd"
+>
+	<info module="sample-personal-data-web" organisation="com.liferay">
+		<extends extendType="configurations,description,info" location="${sdk.dir}/ivy.xml" module="com.liferay.sdk" organisation="com.liferay" revision="latest.integration" />
+	</info>
+
+	<dependencies defaultconf="default">
+		<dependency name="jackson-annotations" org="com.fasterxml.jackson.core" rev="2.9.4" />
+		<dependency name="jackson-core" org="com.fasterxml.jackson.core" rev="2.9.4" />
+		<dependency name="jackson-databind" org="com.fasterxml.jackson.core" rev="2.9.4" />
+	</dependencies>
+</ivy-module>
