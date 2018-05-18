@@ -144,32 +144,32 @@ public class KBArticleStagedModelDataHandler
 		Map<Long, Long> kbArticleResourcePrimKeys =
 			(Map<Long, Long>)portletDataContext.getNewPrimaryKeysMap(
 				KBArticle.class);
+		Map<Long, Long> kbFolderResourcePrimKeys =
+			(Map<Long, Long>)portletDataContext.getNewPrimaryKeysMap(
+				KBFolder.class);
 
 		long resourcePrimaryKey = MapUtil.getLong(
 			kbArticleResourcePrimKeys, kbArticle.getResourcePrimKey(),
 			kbArticle.getResourcePrimKey());
-		long parentResourcePrimKey = MapUtil.getLong(
-			kbArticleResourcePrimKeys, kbArticle.getParentResourcePrimKey(),
-			kbArticle.getParentResourcePrimKey());
 
-		long kbFolderClassNameId = PortalUtil.getClassNameId(
-			KBFolderConstants.getClassName());
+		long parentResourcePrimKey = 0;
 
-		if ((kbArticle.getParentResourceClassNameId() !=
-				kbArticle.getClassNameId()) &&
-			(kbArticle.getParentResourceClassNameId() != kbFolderClassNameId)) {
+		if (kbArticle.getParentResourcePrimKey() == kbArticle.getKbFolderId()) {
+			long kbFolderClassNameId = PortalUtil.getClassNameId(
+				KBFolderConstants.getClassName());
 
-			KBArticle parentKBArticle =
-				KBArticleLocalServiceUtil.fetchLatestKBArticle(
-					parentResourcePrimKey, WorkflowConstants.STATUS_APPROVED);
+			kbArticle.setParentResourceClassNameId(kbFolderClassNameId);
 
-			if (parentKBArticle != null) {
-				kbArticle.setParentResourceClassNameId(
-					kbArticle.getClassNameId());
-			}
-			else {
-				kbArticle.setParentResourceClassNameId(kbFolderClassNameId);
-			}
+			parentResourcePrimKey = MapUtil.getLong(
+				kbFolderResourcePrimKeys, kbArticle.getParentResourcePrimKey(),
+				kbArticle.getParentResourcePrimKey());
+		}
+		else {
+			kbArticle.setParentResourceClassNameId(kbArticle.getClassNameId());
+
+			parentResourcePrimKey = MapUtil.getLong(
+				kbArticleResourcePrimKeys, kbArticle.getParentResourcePrimKey(),
+				kbArticle.getParentResourcePrimKey());
 		}
 
 		if (kbArticle.getParentResourcePrimKey() !=
@@ -178,14 +178,20 @@ public class KBArticleStagedModelDataHandler
 			if (kbArticle.getClassNameId() ==
 					kbArticle.getParentResourceClassNameId()) {
 
-				StagedModelDataHandlerUtil.importReferenceStagedModels(
-					portletDataContext, kbArticle, KBArticle.class);
+				StagedModelDataHandlerUtil.importReferenceStagedModel(
+					portletDataContext, kbArticle, KBArticle.class,
+					parentResourcePrimKey);
+
+				parentResourcePrimKey = MapUtil.getLong(
+					kbArticleResourcePrimKeys, parentResourcePrimKey,
+					parentResourcePrimKey);
 			}
 			else {
-				StagedModelDataHandlerUtil.importReferenceStagedModels(
-					portletDataContext, kbArticle, KBFolder.class);
+				StagedModelDataHandlerUtil.importReferenceStagedModel(
+					portletDataContext, kbArticle, KBFolder.class,
+					parentResourcePrimKey);
 
-				Map<Long, Long> kbFolderResourcePrimKeys =
+				kbFolderResourcePrimKeys =
 					(Map<Long, Long>)portletDataContext.getNewPrimaryKeysMap(
 						KBFolder.class);
 
@@ -197,10 +203,6 @@ public class KBArticleStagedModelDataHandler
 
 		if (parentResourcePrimKey ==
 				KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
-
-			Map<Long, Long> kbFolderResourcePrimKeys =
-				(Map<Long, Long>)portletDataContext.getNewPrimaryKeysMap(
-					KBFolder.class);
 
 			parentResourcePrimKey = MapUtil.getLong(
 				kbFolderResourcePrimKeys, kbArticle.getParentResourcePrimKey(),
