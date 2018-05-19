@@ -93,6 +93,7 @@ public class SPDServiceImpl extends SPDServiceBaseImpl {
 
 				BlogsEntryLocalServiceUtil.updateBlogsEntry(blogsEntry);
 			}
+
 		};
 
 		actionableDynamicQuery.performActions();
@@ -118,6 +119,7 @@ public class SPDServiceImpl extends SPDServiceBaseImpl {
 
 				BlogsEntryLocalServiceUtil.deleteEntry((BlogsEntry)object);
 			}
+
 		};
 
 		actionableDynamicQuery.performActions();
@@ -164,7 +166,9 @@ public class SPDServiceImpl extends SPDServiceBaseImpl {
 			path.toFile(), JsonEncoding.UTF8);
 
 		jsonGenerator.writeStartObject();
+
 		jsonGenerator.writeFieldName(BlogsEntry.class.getName());
+
 		jsonGenerator.writeStartArray();
 
 		ActionableDynamicQuery actionableDynamicQuery =
@@ -190,11 +194,13 @@ public class SPDServiceImpl extends SPDServiceBaseImpl {
 					_log.error(ioe.getMessage(), ioe);
 				}
 			}
+
 		};
 
 		actionableDynamicQuery.performActions();
 
 		jsonGenerator.writeEndArray();
+
 		jsonGenerator.writeEndObject();
 
 		jsonGenerator.close();
