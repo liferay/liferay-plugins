@@ -8,7 +8,7 @@ buildscript {
 	}
 	else {
 		ext {
-			repositoryUrl = "https://repository.liferay.com/nexus/content/groups/public"
+			repositoryUrl = "https://cdn.lfrs.sl/repository.liferay.com/nexus/content/groups/public"
 		}
 	}
 
