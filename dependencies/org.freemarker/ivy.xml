@@ -11,6 +11,6 @@
 	</info>
 
 	<dependencies defaultconf="default">
-		<dependency name="org.freemarker" org="com.liferay" rev="2.3.17.LIFERAY-PATCHED-1" />
+		<dependency name="org.freemarker" org="com.liferay" rev="2.3.23.LIFERAY-PATCHED-4" />
 	</dependencies>
 </ivy-module>

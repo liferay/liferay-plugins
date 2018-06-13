@@ -11,6 +11,6 @@
 	</info>
 
 	<dependencies defaultconf="default">
-		<dependency name="com.liferay.portal.tools.upgrade.table.builder" org="com.liferay" rev="1.0.2" />
+		<dependency name="com.liferay.portal.tools.upgrade.table.builder" org="com.liferay" rev="1.0.9" />
 	</dependencies>
 </ivy-module>

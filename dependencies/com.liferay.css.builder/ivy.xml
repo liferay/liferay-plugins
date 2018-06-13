@@ -11,11 +11,11 @@
 	</info>
 
 	<dependencies defaultconf="default">
-		<dependency name="com.liferay.css.builder" org="com.liferay" rev="1.0.20" />
-		<dependency name="com.liferay.frontend.css.common" org="com.liferay" rev="2.0.1" />
+		<dependency name="com.liferay.css.builder" org="com.liferay" rev="2.1.0" />
+		<dependency name="com.liferay.frontend.css.common" org="com.liferay" rev="2.0.4" />
 		<dependency name="com.liferay.frontend.theme.admin.web" org="com.liferay" rev="1.0.3" />
 		<dependency name="com.liferay.frontend.theme.classic.web" org="com.liferay" rev="2.0.2" />
-		<dependency name="com.liferay.frontend.theme.styled" org="com.liferay" rev="2.0.9" />
-		<dependency name="com.liferay.frontend.theme.unstyled" org="com.liferay" rev="2.0.9" />
+		<dependency name="com.liferay.frontend.theme.styled" org="com.liferay" rev="2.1.7" />
+		<dependency name="com.liferay.frontend.theme.unstyled" org="com.liferay" rev="2.2.12" />
 	</dependencies>
 </ivy-module>
