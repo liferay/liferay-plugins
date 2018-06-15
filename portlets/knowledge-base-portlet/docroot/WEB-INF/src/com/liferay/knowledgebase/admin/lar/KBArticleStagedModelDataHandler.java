@@ -178,9 +178,8 @@ public class KBArticleStagedModelDataHandler
 			if (kbArticle.getClassNameId() ==
 					kbArticle.getParentResourceClassNameId()) {
 
-				StagedModelDataHandlerUtil.importReferenceStagedModel(
-					portletDataContext, kbArticle, KBArticle.class,
-					parentResourcePrimKey);
+				StagedModelDataHandlerUtil.importReferenceStagedModels(
+					portletDataContext, kbArticle, KBArticle.class);
 
 				parentResourcePrimKey = MapUtil.getLong(
 					kbArticleResourcePrimKeys, parentResourcePrimKey,
