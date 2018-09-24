@@ -1,3 +1,4 @@
+**/.gradle
 **/.sonar
 **/pmd-reports
 *-ext.properties
