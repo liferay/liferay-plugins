@@ -1,0 +1,541 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+
+
+
+
+
+<!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.2//EN" "http://java.sun.com/dtd/web-jsptaglibrary_1_2.dtd">
+<taglib>
+    <tlib-version>1.3</tlib-version>
+    <jsp-version>1.2</jsp-version>
+    <short-name>bean</short-name>
+    <uri>http://struts.apache.org/tags-bean-el</uri>
+    <description>
+        <![CDATA[
+   This tag library contains tags useful in accessing beans and their
+  properties, as well as defining new beans (based on these accesses)
+  that are accessible to the remainder of the page via scripting variables
+  and page scope attributes.  Convenient mechanisms to create new beans
+  based on the value of request cookies, headers, and parameters are also
+  provided.Many of the tags in this tag library will throw a
+  JspException at runtime when they are utilized incorrectly
+  (such as when you specify an invalid combination of tag attributes).  JSP
+  allows you to declare an "error page" in the <code>&lt;%@ page %&gt;</code>
+  directive.  If you wish to process the actual exception that caused the
+  problem, it is passed to the error page as a request attribute under key
+  org.apache.struts.action.EXCEPTION.If you are viewing this page from within 
+  the Struts Documentation Application (or online at 
+  http://struts.apache.org), you can learn more about using
+  these tags in the  Bean Tags Developer's Guide.
+  ]]>
+    </description>
+    <tag>
+        <name>include</name>
+        <tag-class>org.apache.strutsel.taglib.bean.ELIncludeTag</tag-class>
+        <tei-class>org.apache.struts.taglib.bean.IncludeTei</tei-class>
+        <body-content>empty</body-content>
+        <description>
+            <![CDATA[
+      <p><strong>Load the response from a dynamic application request 
+      and make it available as a bean.</strong></p>
+      
+      <p>Perform an internal dispatch to the specified application component (or
+      external URL) and make the response data from that request available as a
+      scoped variable of type <code>String</code>. This tag has a function
+      similar to that of the standard <code>&lt;jsp:include&gt;</code> tag,
+      except that the response data is stored in a page scope attribute instead
+      of being written to the output stream. If the current request is part of a
+      session, the generated request for the include will also include the
+      session identifier (and thus be part of the same session).</p> <p>The URL
+      used to access the specified application component is calculated based on
+      which of the following attributes you specify (you must specify exactly
+      one of them):</p>
+    
+      <ul>
+        <li>
+          <em>forward</em> - Use the value of this attribute as the name
+          of a global <code>ActionForward</code> to be looked up, and
+          use the module-relative or context-relative URI found there.</li>
+        <li>
+          <em>href</em> - Use the value of this attribute unchanged (since
+          this might link to a resource external to the application, the
+          session identifier is <strong>not</strong> included.</li>
+        <li>
+          <em>page</em> - Use the value of this attribute as an
+          module-relative URI to the desired resource.</li>
+      </ul>
+      ]]>
+        </description>
+        <attribute>
+            <name>anchor</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <description>
+                <![CDATA[
+            <p>Optional anchor tag ("#xxx") to be added to the generated
+            hyperlink.  Specify this value <strong>without</strong> any
+            "#" character.</p>
+         ]]>
+            </description>
+        </attribute>
+        <attribute>
+            <name>forward</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <description>
+                <![CDATA[
+            <p>Logical name of a global <code>ActionForward</code> that contains
+            the actual content-relative URI of the resource to be included.</p>
+         ]]>
+            </description>
+        </attribute>
+        <attribute>
+            <name>href</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <description>
+                <![CDATA[
+         <p>Absolute URL (including the appropriate protocol prefix such as
+         "http:") of the resource to be included.  Because this URL could be
+         external to the current web application, the session identifier will
+         <strong>not</strong> be included in the request.</p>
+         ]]>
+            </description>
+        </attribute>
+        <attribute>
+            <name>id</name>
+            <required>true</required>
+            <rtexprvalue>false</rtexprvalue>
+            <description>
+                <![CDATA[
+         <p>Specifies the name of the scripting variable (and associated page
+         scope attribute) that will be made available with the value of the
+         specified web application resource.</p>
+         ]]>
+            </description>
+        </attribute>
+        <attribute>
+            <name>page</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <description>
+                <![CDATA[
+         <p>Module-relative URI (starting with a '/') of the web application
+         resource to be included.</p>
+         ]]>
+            </description>
+        </attribute>
+        <attribute>
+            <name>transaction</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <description>
+                <![CDATA[
+         <p>Set to <code>true</code> if you want the current
+         transaction control token included in the generated
+         URL for this include.</p>
+         ]]>
+            </description>
+        </attribute>
+    </tag>
+    <tag>
+        <name>message</name>
+        <tag-class>org.apache.strutsel.taglib.bean.ELMessageTag</tag-class>
+        <body-content>empty</body-content>
+        <description>
+            <![CDATA[
+      <p><strong>Render an internationalized message string to the response.
+      </strong></p>
+      <p>Retrieves an internationalized message for the specified locale,
+      using the specified message key, and write it to the output stream.
+      Up to five parametric replacements (such as "{0}") may be specified.</p>
+      <p>The message key may be specified directly, using the <code>key</code>
+      attribute, or indirectly, using the <code>name</code> and
+      <code>property</code> attributes to obtain it from a bean.</p>
+      <p><strong>JSTL</strong>:  The equivalent JSTL tag is 
+      <code>&lt;fmt:message&gt;</code>.  For example,
+      <br/>
+      <code>
+    	&lt;fmt:message key="my.msg.key">
+    	  &lt;fmt:param value="replacement text"/>
+    	&lt;/fmt:message>
+      </code>
+      </p>
+      ]]>
+        </description>
+        <attribute>
+            <name>arg0</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <description>
+                <![CDATA[
+            <p>First parametric replacement value, if any.</p>
+         ]]>
+            </description>
+        </attribute>
+        <attribute>
+            <name>arg1</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <description>
+                <![CDATA[
+            <p>Second parametric replacement value, if any.</p>
+         ]]>
+            </description>
+        </attribute>
+        <attribute>
+            <name>arg2</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <description>
+                <![CDATA[
+            <p>Third parametric replacement value, if any.</p>
+         ]]>
+            </description>
+        </attribute>
+        <attribute>
+            <name>arg3</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <description>
+                <![CDATA[
+            <p>Fourth parametric replacement value, if any.</p>
+         ]]>
+            </description>
+        </attribute>
+        <attribute>
+            <name>arg4</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <description>
+                <![CDATA[
+            <p>Fifth parametric replacement value, if any.</p>
+         ]]>
+            </description>
+        </attribute>
+        <attribute>
+            <name>bundle</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <description>
+                <![CDATA[
+         <p>The name of the application scope bean under which the
+         <code>MessageResources</code> object containing our messages
+         is stored.</p>
+         ]]>
+            </description>
+        </attribute>
+        <attribute>
+            <name>key</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <description>
+                <![CDATA[
+         <p>The message key of the requested message, which must have
+         a corresponding value in the message resources. If not specified,
+         the key is obtained from the <code>name</code> and
+         <code>property</code> attributes.</p>
+         ]]>
+            </description>
+        </attribute>
+        <attribute>
+            <name>locale</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <description>
+                <![CDATA[
+         <p>The name of the session scope bean under which our currently
+         selected <code>Locale</code> object is stored.</p>
+         ]]>
+            </description>
+        </attribute>
+        <attribute>
+            <name>name</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <description>
+                <![CDATA[
+         <p>Specifies the attribute name of the bean whose property is accessed
+         to retrieve the value specified by <code>property</code> (if
+         specified).  If <code>property</code> is not specified, the value of
+         this bean itself will be used as the message resource key.</p>
+         ]]>
+            </description>
+        </attribute>
+        <attribute>
+            <name>property</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <description>
+                <![CDATA[
+         <p>Specifies the name of the property to be accessed on the bean
+         specified by <code>name</code>.  This value may be a simple, indexed,
+         or nested property reference expression.  If not specified, the value
+         of the bean identified by <code>name</code> will itself be used as the
+         message resource key.</p>
+         ]]>
+            </description>
+        </attribute>
+        <attribute>
+            <name>scope</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <description>
+                <![CDATA[
+         <p>Specifies the variable scope searched to retrieve the bean specified
+         by <code>name</code>.  If not specified, the default rules applied by
+         <code>PageContext.findAttribute()</code> are applied.</p>
+         ]]>
+            </description>
+        </attribute>
+    </tag>
+    <tag>
+        <name>page</name>
+        <tag-class>org.apache.strutsel.taglib.bean.ELPageTag</tag-class>
+        <body-content>empty</body-content>
+        <description>
+            <![CDATA[
+      <p><strong>Expose a specified item from the page context as a bean.
+      </strong></p>
+      <p>Retrieve the value of the specified item from the page context
+      for this page, and define it as a scripting variable, and a page scope
+      attribute accessible to the remainder of the current page.</p>
+      <p>If a problem occurs while retrieving the specified configuration
+      object, a request time exception will be thrown.</p>
+      ]]>
+        </description>
+        <attribute>
+            <name>id</name>
+            <required>true</required>
+            <rtexprvalue>false</rtexprvalue>
+            <description>
+                <![CDATA[
+         <p>Specifies the name of the scripting variable (and associated
+         page scope attribute) that will be made available with the value of
+         the specified page context property.</p>
+         ]]>
+            </description>
+        </attribute>
+        <attribute>
+            <name>property</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+            <description>
+                <![CDATA[
+         <p>Name of the property from our page context to be retrieved and
+         exposed.  Must be one of <code>application</code>, <code>config</code>,
+         <code>request</code>, <code>response</code>, or <code>session</code>.
+         </p>
+         ]]>
+            </description>
+        </attribute>
+    </tag>
+    <tag>
+        <name>resource</name>
+        <tag-class>org.apache.strutsel.taglib.bean.ELResourceTag</tag-class>
+        <tei-class>org.apache.struts.taglib.bean.ResourceTei</tei-class>
+        <body-content>empty</body-content>
+        <description>
+            <![CDATA[
+      <p><strong>Load a web application resource and make it available as a 
+      bean.</strong></p>
+      <p>Retrieve the value of the specified web application resource, and make
+      it available as either a <code>InputStream</code> or a 
+      <code>String</code>, depending on the value of the <code>input</code> 
+      attribute.</p>
+      <p>If a problem occurs while retrieving the specified resource, a
+      request time exception will be thrown.</p>
+      ]]>
+        </description>
+        <attribute>
+            <name>id</name>
+            <required>true</required>
+            <rtexprvalue>false</rtexprvalue>
+            <description>
+                <![CDATA[
+         <p>Specifies the name of the scripting variable (and associated page
+         scope attribute) that will be made available with the value of the
+         specified web application resource.</p>
+         ]]>
+            </description>
+        </attribute>
+        <attribute>
+            <name>input</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <description>
+                <![CDATA[
+         <p>If any arbitrary value for this attribute is specified, the resource
+         will be made available as an <code>InputStream</code>.  If this
+         attribute is not specified, the resource will be made available
+         as a <code>String</code>.</p>
+         ]]>
+            </description>
+        </attribute>
+        <attribute>
+            <name>name</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+            <description>
+                <![CDATA[
+         <p>Module-relative name (starting with a '/') of the web application
+         resource to be loaded and made available.</p>
+         ]]>
+            </description>
+        </attribute>
+    </tag>
+    <tag>
+        <name>size</name>
+        <tag-class>org.apache.strutsel.taglib.bean.ELSizeTag</tag-class>
+        <tei-class>org.apache.struts.taglib.bean.SizeTei</tei-class>
+        <body-content>empty</body-content>
+        <description>
+            <![CDATA[
+      <p><strong>Define a bean containing the number of elements in a 
+      Collection or Map.</strong></p>
+      <p>Given a reference to an array, Collection or Map, creates a new bean,
+      of type <code>java.lang.Integer</code>, whose value is the number of 
+      elements in that collection.  You can specify the collection to be 
+      counted in any one of the following ways:</p>
+         <ul>
+            <li>As a runtime expression specified as the value of the
+            <code>collection</code> attribute.</li>
+            <li>As a JSP bean specified by the <code>name</code> attribute.</li>
+            <li>As the property, specified by the <code>property</code> attribute,
+            of the JSP bean specified by the <code>name</code> attribute.</li>
+         </ul>
+      ]]>
+        </description>
+        <attribute>
+            <name>collection</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <description>
+                <![CDATA[
+         <p>A runtime expression that evaluates to an array, a Collection, or
+         a Map.</p>
+         ]]>
+            </description>
+        </attribute>
+        <attribute>
+            <name>id</name>
+            <required>true</required>
+            <rtexprvalue>false</rtexprvalue>
+            <description>
+                <![CDATA[
+         <p>The name of a page scope JSP bean, of type
+         <code>java.lang.Integer</code>, that will be created to contain the
+         size of the underlying collection being counted.</p>
+         ]]>
+            </description>
+        </attribute>
+        <attribute>
+            <name>name</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <description>
+                <![CDATA[
+         <p>The name of the JSP bean (optionally constrained to the scope
+         specified by the <code>scope</code> attribute) that contains the
+         collection to be counted (if <code>property</code> is not specified),
+         or whose property getter is called to return the collection to be
+         counted (if <code>property</code> is specified.</p>
+         ]]>
+            </description>
+        </attribute>
+        <attribute>
+            <name>property</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <description>
+                <![CDATA[
+         <p>The name of the property, of the bean specified by the
+         <code>name</code> attribute, whose getter method will return the
+         collection to be counted.</p>
+         ]]>
+            </description>
+        </attribute>
+        <attribute>
+            <name>scope</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <description>
+                <![CDATA[
+         <p>The bean scope within which to search for the JSP bean specified
+         by the <code>name</code> attribute.  If not specified, the available
+         scopes are searched in ascending sequence.</p>
+         ]]>
+            </description>
+        </attribute>
+    </tag>
+    <tag>
+        <name>struts</name>
+        <tag-class>org.apache.strutsel.taglib.bean.ELStrutsTag</tag-class>
+        <tei-class>org.apache.struts.taglib.bean.StrutsTei</tei-class>
+        <body-content>empty</body-content>
+        <description>
+            <![CDATA[
+      <p><strong>Expose a named Struts internal configuration object as a bean.
+      </strong></p>
+      <p>Retrieve the value of the specified Struts internal configuration
+      object, and define it as a scripting variable and as a page scope
+      attribute accessible to the remainder of the current page.  You must
+      specify exactly one of the <code>formBean</code>, <code>forward</code>,
+      and <code>mapping</code> attributes to select the configuration object
+      to be exposed.</p>
+      <p>If a problem occurs while retrieving the specified configuration
+      object, a request time exception will be thrown.</p>
+      ]]>
+        </description>
+        <attribute>
+            <name>id</name>
+            <required>true</required>
+            <rtexprvalue>false</rtexprvalue>
+            <description>
+                <![CDATA[
+         <p>Specifies the name of the scripting variable (and associated
+         page scope attribute) that will be made available with the value of
+         the specified Struts internal configuration object.</p>
+         ]]>
+            </description>
+        </attribute>
+        <attribute>
+            <name>formBean</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <description>
+                <![CDATA[
+         <p>Specifies the name of the Struts <code>ActionFormBean</code>
+         definition object to be exposed.</p>
+         ]]>
+            </description>
+        </attribute>
+        <attribute>
+            <name>forward</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <description>
+                <![CDATA[
+         <p>Specifies the name of the global Struts <code>ActionForward</code>
+         definition object to be exposed.</p>
+         ]]>
+            </description>
+        </attribute>
+        <attribute>
+            <name>mapping</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <description>
+                <![CDATA[
+         <p>Specifies the matching path of the Struts <code>ActionMapping</code>
+         definition object to be exposed.</p>
+         ]]>
+            </description>
+        </attribute>
+    </tag>
+</taglib>
+
+
+
