@@ -49,7 +49,7 @@ public void test() {
 	</rule>
 	<rule
 		class="net.sourceforge.pmd.lang.java.rule.basic.BooleanInstantiationRule"
-		externalInfoUrl="http://pmd.sourceforge.net/snapshot/pmd-java/rules/java/basic.html#BooleanInstantiation"
+		externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_performance.html#booleaninstantiation"
 		message="Avoid instantiating Boolean objects; reference Boolean.TRUE or Boolean.FALSE or call Boolean.valueOf() instead."
 		name="BooleanInstantiation"
 		since="1.2"
@@ -73,7 +73,7 @@ Boolean.valueOf(false);
 	</rule>
 	<rule
 		class="com.liferay.pmd.rules.java.OverrideBothEqualsAndHashcodeRule"
-		externalInfoUrl="http://pmd.sourceforge.net/snapshot/pmd-java/rules/java/basic.html#OverrideBothEqualsAndHashcode"
+		externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_errorprone.html#overridebothequalsandhashcode"
 		language="java"
 		message="Ensure you override both equals() and hashCode()"
 		name="OverrideBothEqualsAndHashcode"
@@ -124,7 +124,7 @@ public class Foo {
 	</rule>
 	<rule
 		class="net.sourceforge.pmd.lang.java.rule.unnecessary.UnnecessaryReturnRule"
-		externalInfoUrl="http://pmd.sourceforge.net/snapshot/pmd-java/rules/java/unnecessary.html#UnnecessaryReturn"
+		externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_codestyle.html#unnecessaryreturn"
 		message="Avoid unnecessary return statements"
 		name="UnnecessaryReturn"
 		since="1.3"
@@ -149,7 +149,7 @@ public class Foo {
 	</rule>
 	<rule
 		class="net.sourceforge.pmd.lang.java.rule.unnecessary.UselessOperationOnImmutableRule"
-		externalInfoUrl="http://pmd.sourceforge.net/snapshot/pmd-java/rules/java/unnecessary.html#UselessOperationOnImmutable"
+		externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_errorprone.html#uselessoperationonimmutable"
 		message="An operation on an Immutable object (String, BigDecimal or BigInteger) won't change the object itself"
 		name="UselessOperationOnImmutable"
 		since="3.5"
@@ -175,7 +175,7 @@ bigDecimal = bigDecimal.add(new BigDecimal(5));
 	</rule>
 	<rule
 		class="net.sourceforge.pmd.lang.java.rule.unusedcode.UnusedLocalVariableRule"
-		externalInfoUrl="http://pmd.sourceforge.net/pmd-5.2.3/pmd-java/rules/java/unusedcode.html#UnusedLocalVariable"
+		externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_bestpractices.html#unusedlocalvariable"
 		language="java"
 		message="Avoid unused local variables such as ''{0}''."
 		name="UnusedLocalVariable"
