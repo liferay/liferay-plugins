@@ -105,7 +105,6 @@
 				<arg value="service.sql.sequences.file=sequences.sql" />
 				<arg value="service.target.entity.name=${service.target.entity.name}" />
 				<arg value="service.test.dir=@{service.test.dir}" />
-				<arg value="spring.configurator.enabled=${spring.configurator.enabled}" />
 			</java>
 
 			<if>
