@@ -21,6 +21,11 @@ import com.liferay.portal.kernel.service.persistence.BasePersistence;
 import com.liferay.testtransaction.exception.NoSuchBarException;
 import com.liferay.testtransaction.model.Bar;
 
+import java.io.Serializable;
+
+import java.util.Map;
+import java.util.Set;
+
 /**
  * The persistence interface for the bar service.
  *
@@ -40,6 +45,9 @@ public interface BarPersistence extends BasePersistence<Bar> {
 	 *
 	 * Never modify or reference this interface directly. Always use {@link BarUtil} to access the bar persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
 	 */
+	@Override
+	public Map<Serializable, Bar> fetchByPrimaryKeys(
+		Set<Serializable> primaryKeys);
 
 	/**
 	* Returns all the bars where text = &#63;.
@@ -47,7 +55,7 @@ public interface BarPersistence extends BasePersistence<Bar> {
 	* @param text the text
 	* @return the matching bars
 	*/
-	public java.util.List<Bar> findByText(java.lang.String text);
+	public java.util.List<Bar> findByText(String text);
 
 	/**
 	* Returns a range of all the bars where text = &#63;.
@@ -61,8 +69,7 @@ public interface BarPersistence extends BasePersistence<Bar> {
 	* @param end the upper bound of the range of bars (not inclusive)
 	* @return the range of matching bars
 	*/
-	public java.util.List<Bar> findByText(java.lang.String text, int start,
-		int end);
+	public java.util.List<Bar> findByText(String text, int start, int end);
 
 	/**
 	* Returns an ordered range of all the bars where text = &#63;.
@@ -77,8 +84,7 @@ public interface BarPersistence extends BasePersistence<Bar> {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching bars
 	*/
-	public java.util.List<Bar> findByText(java.lang.String text, int start,
-		int end,
+	public java.util.List<Bar> findByText(String text, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<Bar> orderByComparator);
 
 	/**
@@ -95,8 +101,7 @@ public interface BarPersistence extends BasePersistence<Bar> {
 	* @param retrieveFromCache whether to retrieve from the finder cache
 	* @return the ordered range of matching bars
 	*/
-	public java.util.List<Bar> findByText(java.lang.String text, int start,
-		int end,
+	public java.util.List<Bar> findByText(String text, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<Bar> orderByComparator,
 		boolean retrieveFromCache);
 
@@ -108,7 +113,7 @@ public interface BarPersistence extends BasePersistence<Bar> {
 	* @return the first matching bar
 	* @throws NoSuchBarException if a matching bar could not be found
 	*/
-	public Bar findByText_First(java.lang.String text,
+	public Bar findByText_First(String text,
 		com.liferay.portal.kernel.util.OrderByComparator<Bar> orderByComparator)
 		throws NoSuchBarException;
 
@@ -119,7 +124,7 @@ public interface BarPersistence extends BasePersistence<Bar> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching bar, or <code>null</code> if a matching bar could not be found
 	*/
-	public Bar fetchByText_First(java.lang.String text,
+	public Bar fetchByText_First(String text,
 		com.liferay.portal.kernel.util.OrderByComparator<Bar> orderByComparator);
 
 	/**
@@ -130,7 +135,7 @@ public interface BarPersistence extends BasePersistence<Bar> {
 	* @return the last matching bar
 	* @throws NoSuchBarException if a matching bar could not be found
 	*/
-	public Bar findByText_Last(java.lang.String text,
+	public Bar findByText_Last(String text,
 		com.liferay.portal.kernel.util.OrderByComparator<Bar> orderByComparator)
 		throws NoSuchBarException;
 
@@ -141,7 +146,7 @@ public interface BarPersistence extends BasePersistence<Bar> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching bar, or <code>null</code> if a matching bar could not be found
 	*/
-	public Bar fetchByText_Last(java.lang.String text,
+	public Bar fetchByText_Last(String text,
 		com.liferay.portal.kernel.util.OrderByComparator<Bar> orderByComparator);
 
 	/**
@@ -153,7 +158,7 @@ public interface BarPersistence extends BasePersistence<Bar> {
 	* @return the previous, current, and next bar
 	* @throws NoSuchBarException if a bar with the primary key could not be found
 	*/
-	public Bar[] findByText_PrevAndNext(long barId, java.lang.String text,
+	public Bar[] findByText_PrevAndNext(long barId, String text,
 		com.liferay.portal.kernel.util.OrderByComparator<Bar> orderByComparator)
 		throws NoSuchBarException;
 
@@ -162,7 +167,7 @@ public interface BarPersistence extends BasePersistence<Bar> {
 	*
 	* @param text the text
 	*/
-	public void removeByText(java.lang.String text);
+	public void removeByText(String text);
 
 	/**
 	* Returns the number of bars where text = &#63;.
@@ -170,7 +175,7 @@ public interface BarPersistence extends BasePersistence<Bar> {
 	* @param text the text
 	* @return the number of matching bars
 	*/
-	public int countByText(java.lang.String text);
+	public int countByText(String text);
 
 	/**
 	* Caches the bar in the entity cache if it is enabled.
@@ -221,10 +226,6 @@ public interface BarPersistence extends BasePersistence<Bar> {
 	* @return the bar, or <code>null</code> if a bar with the primary key could not be found
 	*/
 	public Bar fetchByPrimaryKey(long barId);
-
-	@Override
-	public java.util.Map<java.io.Serializable, Bar> fetchByPrimaryKeys(
-		java.util.Set<java.io.Serializable> primaryKeys);
 
 	/**
 	* Returns all the bars.
@@ -291,5 +292,5 @@ public interface BarPersistence extends BasePersistence<Bar> {
 	public int countAll();
 
 	@Override
-	public java.util.Set<java.lang.String> getBadColumnNames();
+	public Set<String> getBadColumnNames();
 }

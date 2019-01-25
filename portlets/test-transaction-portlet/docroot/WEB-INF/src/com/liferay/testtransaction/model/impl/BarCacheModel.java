@@ -19,7 +19,6 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.util.HashUtil;
 import com.liferay.portal.kernel.util.StringBundler;
-import com.liferay.portal.kernel.util.StringPool;
 
 import com.liferay.testtransaction.model.Bar;
 
@@ -81,7 +80,7 @@ public class BarCacheModel implements CacheModel<Bar>, Externalizable {
 		barImpl.setBarId(barId);
 
 		if (text == null) {
-			barImpl.setText(StringPool.BLANK);
+			barImpl.setText("");
 		}
 		else {
 			barImpl.setText(text);
@@ -104,7 +103,7 @@ public class BarCacheModel implements CacheModel<Bar>, Externalizable {
 		objectOutput.writeLong(barId);
 
 		if (text == null) {
-			objectOutput.writeUTF(StringPool.BLANK);
+			objectOutput.writeUTF("");
 		}
 		else {
 			objectOutput.writeUTF(text);

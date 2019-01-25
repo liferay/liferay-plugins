@@ -16,9 +16,7 @@ package com.liferay.testtransaction.service.persistence.impl;
 
 import aQute.bnd.annotation.ProviderType;
 
-import com.liferay.portal.kernel.dao.orm.EntityCache;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
-import com.liferay.portal.kernel.dao.orm.FinderCache;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
 import com.liferay.portal.kernel.dao.orm.Query;
@@ -27,13 +25,11 @@ import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StringBundler;
-import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.kernel.util.Validator;
 
 import com.liferay.testtransaction.exception.NoSuchBarException;
 import com.liferay.testtransaction.model.Bar;
@@ -43,12 +39,16 @@ import com.liferay.testtransaction.service.persistence.BarPersistence;
 
 import java.io.Serializable;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationHandler;
+
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -76,16 +76,16 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 		".List1";
 	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION = FINDER_CLASS_NAME_ENTITY +
 		".List2";
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_ALL = new FinderPath(BarModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithPaginationFindAll = new FinderPath(BarModelImpl.ENTITY_CACHE_ENABLED,
 			BarModelImpl.FINDER_CACHE_ENABLED, BarImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_ALL = new FinderPath(BarModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithoutPaginationFindAll = new FinderPath(BarModelImpl.ENTITY_CACHE_ENABLED,
 			BarModelImpl.FINDER_CACHE_ENABLED, BarImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll", new String[0]);
-	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(BarModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathCountAll = new FinderPath(BarModelImpl.ENTITY_CACHE_ENABLED,
 			BarModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll", new String[0]);
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_TEXT = new FinderPath(BarModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithPaginationFindByText = new FinderPath(BarModelImpl.ENTITY_CACHE_ENABLED,
 			BarModelImpl.FINDER_CACHE_ENABLED, BarImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByText",
 			new String[] {
@@ -94,12 +94,12 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 			Integer.class.getName(), Integer.class.getName(),
 				OrderByComparator.class.getName()
 			});
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_TEXT = new FinderPath(BarModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithoutPaginationFindByText = new FinderPath(BarModelImpl.ENTITY_CACHE_ENABLED,
 			BarModelImpl.FINDER_CACHE_ENABLED, BarImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByText",
 			new String[] { String.class.getName() },
 			BarModelImpl.TEXT_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_TEXT = new FinderPath(BarModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathCountByText = new FinderPath(BarModelImpl.ENTITY_CACHE_ENABLED,
 			BarModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByText",
 			new String[] { String.class.getName() });
@@ -168,6 +168,8 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 	@Override
 	public List<Bar> findByText(String text, int start, int end,
 		OrderByComparator<Bar> orderByComparator, boolean retrieveFromCache) {
+		text = Objects.toString(text, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -175,22 +177,23 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 				(orderByComparator == null)) {
 			pagination = false;
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_TEXT;
+			finderPath = _finderPathWithoutPaginationFindByText;
 			finderArgs = new Object[] { text };
 		}
 		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_TEXT;
+			finderPath = _finderPathWithPaginationFindByText;
 			finderArgs = new Object[] { text, start, end, orderByComparator };
 		}
 
 		List<Bar> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<Bar>)finderCache.getResult(finderPath, finderArgs, this);
+			list = (List<Bar>)FinderCacheUtil.getResult(finderPath, finderArgs,
+					this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (Bar bar : list) {
-					if (!Validator.equals(text, bar.getText())) {
+					if (!text.equals(bar.getText())) {
 						list = null;
 
 						break;
@@ -214,10 +217,7 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 
 			boolean bindText = false;
 
-			if (text == null) {
-				query.append(_FINDER_COLUMN_TEXT_TEXT_1);
-			}
-			else if (text.equals(StringPool.BLANK)) {
+			if (text.isEmpty()) {
 				query.append(_FINDER_COLUMN_TEXT_TEXT_3);
 			}
 			else {
@@ -264,10 +264,10 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -303,7 +303,7 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 		msg.append("text=");
 		msg.append(text);
 
-		msg.append(StringPool.CLOSE_CURLY_BRACE);
+		msg.append("}");
 
 		throw new NoSuchBarException(msg.toString());
 	}
@@ -351,7 +351,7 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 		msg.append("text=");
 		msg.append(text);
 
-		msg.append(StringPool.CLOSE_CURLY_BRACE);
+		msg.append("}");
 
 		throw new NoSuchBarException(msg.toString());
 	}
@@ -393,6 +393,8 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 	@Override
 	public Bar[] findByText_PrevAndNext(long barId, String text,
 		OrderByComparator<Bar> orderByComparator) throws NoSuchBarException {
+		text = Objects.toString(text, "");
+
 		Bar bar = findByPrimaryKey(barId);
 
 		Session session = null;
@@ -437,10 +439,7 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 
 		boolean bindText = false;
 
-		if (text == null) {
-			query.append(_FINDER_COLUMN_TEXT_TEXT_1);
-		}
-		else if (text.equals(StringPool.BLANK)) {
+		if (text.isEmpty()) {
 			query.append(_FINDER_COLUMN_TEXT_TEXT_3);
 		}
 		else {
@@ -522,10 +521,9 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 		}
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(bar);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					bar)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -560,11 +558,14 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 	 */
 	@Override
 	public int countByText(String text) {
-		FinderPath finderPath = FINDER_PATH_COUNT_BY_TEXT;
+		text = Objects.toString(text, "");
+
+		FinderPath finderPath = _finderPathCountByText;
 
 		Object[] finderArgs = new Object[] { text };
 
-		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
+		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
+				this);
 
 		if (count == null) {
 			StringBundler query = new StringBundler(2);
@@ -573,10 +574,7 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 
 			boolean bindText = false;
 
-			if (text == null) {
-				query.append(_FINDER_COLUMN_TEXT_TEXT_1);
-			}
-			else if (text.equals(StringPool.BLANK)) {
+			if (text.isEmpty()) {
 				query.append(_FINDER_COLUMN_TEXT_TEXT_3);
 			}
 			else {
@@ -602,10 +600,10 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 
 				count = (Long)q.uniqueResult();
 
-				finderCache.putResult(finderPath, finderArgs, count);
+				FinderCacheUtil.putResult(finderPath, finderArgs, count);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -617,12 +615,29 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_TEXT_TEXT_1 = "bar.text IS NULL";
 	private static final String _FINDER_COLUMN_TEXT_TEXT_2 = "bar.text = ?";
 	private static final String _FINDER_COLUMN_TEXT_TEXT_3 = "(bar.text IS NULL OR bar.text = '')";
 
 	public BarPersistenceImpl() {
 		setModelClass(Bar.class);
+
+		try {
+			Field field = BasePersistenceImpl.class.getDeclaredField(
+					"_dbColumnNames");
+
+			field.setAccessible(true);
+
+			Map<String, String> dbColumnNames = new HashMap<String, String>();
+
+			dbColumnNames.put("text", "text_");
+
+			field.set(this, dbColumnNames);
+		}
+		catch (Exception e) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(e, e);
+			}
+		}
 	}
 
 	/**
@@ -632,8 +647,8 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 	 */
 	@Override
 	public void cacheResult(Bar bar) {
-		entityCache.putResult(BarModelImpl.ENTITY_CACHE_ENABLED, BarImpl.class,
-			bar.getPrimaryKey(), bar);
+		EntityCacheUtil.putResult(BarModelImpl.ENTITY_CACHE_ENABLED,
+			BarImpl.class, bar.getPrimaryKey(), bar);
 
 		bar.resetOriginalValues();
 	}
@@ -646,7 +661,7 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 	@Override
 	public void cacheResult(List<Bar> bars) {
 		for (Bar bar : bars) {
-			if (entityCache.getResult(BarModelImpl.ENTITY_CACHE_ENABLED,
+			if (EntityCacheUtil.getResult(BarModelImpl.ENTITY_CACHE_ENABLED,
 						BarImpl.class, bar.getPrimaryKey()) == null) {
 				cacheResult(bar);
 			}
@@ -660,41 +675,41 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 	 * Clears the cache for all bars.
 	 *
 	 * <p>
-	 * The {@link EntityCache} and {@link FinderCache} are both cleared by this method.
+	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
 	@Override
 	public void clearCache() {
-		entityCache.clearCache(BarImpl.class);
+		EntityCacheUtil.clearCache(BarImpl.class);
 
-		finderCache.clearCache(FINDER_CLASS_NAME_ENTITY);
-		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
 	/**
 	 * Clears the cache for the bar.
 	 *
 	 * <p>
-	 * The {@link EntityCache} and {@link FinderCache} are both cleared by this method.
+	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
 	@Override
 	public void clearCache(Bar bar) {
-		entityCache.removeResult(BarModelImpl.ENTITY_CACHE_ENABLED,
+		EntityCacheUtil.removeResult(BarModelImpl.ENTITY_CACHE_ENABLED,
 			BarImpl.class, bar.getPrimaryKey());
 
-		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
 	@Override
 	public void clearCache(List<Bar> bars) {
-		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
 		for (Bar bar : bars) {
-			entityCache.removeResult(BarModelImpl.ENTITY_CACHE_ENABLED,
+			EntityCacheUtil.removeResult(BarModelImpl.ENTITY_CACHE_ENABLED,
 				BarImpl.class, bar.getPrimaryKey());
 		}
 	}
@@ -767,8 +782,6 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 
 	@Override
 	protected Bar removeImpl(Bar bar) {
-		bar = toUnwrappedModel(bar);
-
 		Session session = null;
 
 		try {
@@ -798,9 +811,23 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 
 	@Override
 	public Bar updateImpl(Bar bar) {
-		bar = toUnwrappedModel(bar);
-
 		boolean isNew = bar.isNew();
+
+		if (!(bar instanceof BarModelImpl)) {
+			InvocationHandler invocationHandler = null;
+
+			if (ProxyUtil.isProxyClass(bar.getClass())) {
+				invocationHandler = ProxyUtil.getInvocationHandler(bar);
+
+				throw new IllegalArgumentException(
+					"Implement ModelWrapper in bar proxy " +
+					invocationHandler.getClass());
+			}
+
+			throw new IllegalArgumentException(
+				"Implement ModelWrapper in custom Bar implementation " +
+				bar.getClass());
+		}
 
 		BarModelImpl barModelImpl = (BarModelImpl)bar;
 
@@ -825,51 +852,47 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 			closeSession(session);
 		}
 
-		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 
-		if (isNew || !BarModelImpl.COLUMN_BITMASK_ENABLED) {
-			finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		if (!BarModelImpl.COLUMN_BITMASK_ENABLED) {
+			FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		}
+		else
+		 if (isNew) {
+			Object[] args = new Object[] { barModelImpl.getText() };
+
+			FinderCacheUtil.removeResult(_finderPathCountByText, args);
+			FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByText,
+				args);
+
+			FinderCacheUtil.removeResult(_finderPathCountAll, FINDER_ARGS_EMPTY);
+			FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindAll,
+				FINDER_ARGS_EMPTY);
 		}
 
 		else {
 			if ((barModelImpl.getColumnBitmask() &
-					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_TEXT.getColumnBitmask()) != 0) {
+					_finderPathWithoutPaginationFindByText.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] { barModelImpl.getOriginalText() };
 
-				finderCache.removeResult(FINDER_PATH_COUNT_BY_TEXT, args);
-				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_TEXT,
+				FinderCacheUtil.removeResult(_finderPathCountByText, args);
+				FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByText,
 					args);
 
 				args = new Object[] { barModelImpl.getText() };
 
-				finderCache.removeResult(FINDER_PATH_COUNT_BY_TEXT, args);
-				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_TEXT,
+				FinderCacheUtil.removeResult(_finderPathCountByText, args);
+				FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByText,
 					args);
 			}
 		}
 
-		entityCache.putResult(BarModelImpl.ENTITY_CACHE_ENABLED, BarImpl.class,
-			bar.getPrimaryKey(), bar, false);
+		EntityCacheUtil.putResult(BarModelImpl.ENTITY_CACHE_ENABLED,
+			BarImpl.class, bar.getPrimaryKey(), bar, false);
 
 		bar.resetOriginalValues();
 
 		return bar;
-	}
-
-	protected Bar toUnwrappedModel(Bar bar) {
-		if (bar instanceof BarImpl) {
-			return bar;
-		}
-
-		BarImpl barImpl = new BarImpl();
-
-		barImpl.setNew(bar.isNew());
-		barImpl.setPrimaryKey(bar.getPrimaryKey());
-
-		barImpl.setBarId(bar.getBarId());
-		barImpl.setText(bar.getText());
-
-		return barImpl;
 	}
 
 	/**
@@ -916,12 +939,14 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 	 */
 	@Override
 	public Bar fetchByPrimaryKey(Serializable primaryKey) {
-		Bar bar = (Bar)entityCache.getResult(BarModelImpl.ENTITY_CACHE_ENABLED,
+		Serializable serializable = EntityCacheUtil.getResult(BarModelImpl.ENTITY_CACHE_ENABLED,
 				BarImpl.class, primaryKey);
 
-		if (bar == _nullBar) {
+		if (serializable == nullModel) {
 			return null;
 		}
+
+		Bar bar = (Bar)serializable;
 
 		if (bar == null) {
 			Session session = null;
@@ -935,12 +960,12 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 					cacheResult(bar);
 				}
 				else {
-					entityCache.putResult(BarModelImpl.ENTITY_CACHE_ENABLED,
-						BarImpl.class, primaryKey, _nullBar);
+					EntityCacheUtil.putResult(BarModelImpl.ENTITY_CACHE_ENABLED,
+						BarImpl.class, primaryKey, nullModel);
 				}
 			}
 			catch (Exception e) {
-				entityCache.removeResult(BarModelImpl.ENTITY_CACHE_ENABLED,
+				EntityCacheUtil.removeResult(BarModelImpl.ENTITY_CACHE_ENABLED,
 					BarImpl.class, primaryKey);
 
 				throw processException(e);
@@ -990,18 +1015,20 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 		Set<Serializable> uncachedPrimaryKeys = null;
 
 		for (Serializable primaryKey : primaryKeys) {
-			Bar bar = (Bar)entityCache.getResult(BarModelImpl.ENTITY_CACHE_ENABLED,
+			Serializable serializable = EntityCacheUtil.getResult(BarModelImpl.ENTITY_CACHE_ENABLED,
 					BarImpl.class, primaryKey);
 
-			if (bar == null) {
-				if (uncachedPrimaryKeys == null) {
-					uncachedPrimaryKeys = new HashSet<Serializable>();
-				}
+			if (serializable != nullModel) {
+				if (serializable == null) {
+					if (uncachedPrimaryKeys == null) {
+						uncachedPrimaryKeys = new HashSet<Serializable>();
+					}
 
-				uncachedPrimaryKeys.add(primaryKey);
-			}
-			else {
-				map.put(primaryKey, bar);
+					uncachedPrimaryKeys.add(primaryKey);
+				}
+				else {
+					map.put(primaryKey, (Bar)serializable);
+				}
 			}
 		}
 
@@ -1015,14 +1042,14 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 		query.append(_SQL_SELECT_BAR_WHERE_PKS_IN);
 
 		for (Serializable primaryKey : uncachedPrimaryKeys) {
-			query.append(String.valueOf(primaryKey));
+			query.append((long)primaryKey);
 
-			query.append(StringPool.COMMA);
+			query.append(",");
 		}
 
 		query.setIndex(query.index() - 1);
 
-		query.append(StringPool.CLOSE_PARENTHESIS);
+		query.append(")");
 
 		String sql = query.toString();
 
@@ -1042,8 +1069,8 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 			}
 
 			for (Serializable primaryKey : uncachedPrimaryKeys) {
-				entityCache.putResult(BarModelImpl.ENTITY_CACHE_ENABLED,
-					BarImpl.class, primaryKey, _nullBar);
+				EntityCacheUtil.putResult(BarModelImpl.ENTITY_CACHE_ENABLED,
+					BarImpl.class, primaryKey, nullModel);
 			}
 		}
 		catch (Exception e) {
@@ -1123,18 +1150,19 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 				(orderByComparator == null)) {
 			pagination = false;
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_ALL;
+			finderPath = _finderPathWithoutPaginationFindAll;
 			finderArgs = FINDER_ARGS_EMPTY;
 		}
 		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_ALL;
+			finderPath = _finderPathWithPaginationFindAll;
 			finderArgs = new Object[] { start, end, orderByComparator };
 		}
 
 		List<Bar> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<Bar>)finderCache.getResult(finderPath, finderArgs, this);
+			list = (List<Bar>)FinderCacheUtil.getResult(finderPath, finderArgs,
+					this);
 		}
 
 		if (list == null) {
@@ -1181,10 +1209,10 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -1214,7 +1242,7 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 	 */
 	@Override
 	public int countAll() {
-		Long count = (Long)finderCache.getResult(FINDER_PATH_COUNT_ALL,
+		Long count = (Long)FinderCacheUtil.getResult(_finderPathCountAll,
 				FINDER_ARGS_EMPTY, this);
 
 		if (count == null) {
@@ -1227,11 +1255,11 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 
 				count = (Long)q.uniqueResult();
 
-				finderCache.putResult(FINDER_PATH_COUNT_ALL, FINDER_ARGS_EMPTY,
-					count);
+				FinderCacheUtil.putResult(_finderPathCountAll,
+					FINDER_ARGS_EMPTY, count);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(FINDER_PATH_COUNT_ALL,
+				FinderCacheUtil.removeResult(_finderPathCountAll,
 					FINDER_ARGS_EMPTY);
 
 				throw processException(e);
@@ -1261,14 +1289,12 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 	}
 
 	public void destroy() {
-		entityCache.removeCache(BarImpl.class.getName());
-		finderCache.removeCache(FINDER_CLASS_NAME_ENTITY);
-		finderCache.removeCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		finderCache.removeCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		EntityCacheUtil.removeCache(BarImpl.class.getName());
+		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_ENTITY);
+		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
-	protected EntityCache entityCache = EntityCacheUtil.getEntityCache();
-	protected FinderCache finderCache = FinderCacheUtil.getFinderCache();
 	private static final String _SQL_SELECT_BAR = "SELECT bar FROM Bar bar";
 	private static final String _SQL_SELECT_BAR_WHERE_PKS_IN = "SELECT bar FROM Bar bar WHERE barId IN (";
 	private static final String _SQL_SELECT_BAR_WHERE = "SELECT bar FROM Bar bar WHERE ";
@@ -1281,22 +1307,4 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 	private static final Set<String> _badColumnNames = SetUtil.fromArray(new String[] {
 				"text"
 			});
-	private static final Bar _nullBar = new BarImpl() {
-			@Override
-			public Object clone() {
-				return this;
-			}
-
-			@Override
-			public CacheModel<Bar> toCacheModel() {
-				return _nullBarCacheModel;
-			}
-		};
-
-	private static final CacheModel<Bar> _nullBarCacheModel = new CacheModel<Bar>() {
-			@Override
-			public Bar toEntityModel() {
-				return _nullBar;
-			}
-		};
 }

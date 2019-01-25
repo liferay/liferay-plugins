@@ -21,12 +21,12 @@ import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.model.CacheModel;
+import com.liferay.portal.kernel.model.ModelWrapper;
 import com.liferay.portal.kernel.model.impl.BaseModelImpl;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
-import com.liferay.portal.kernel.util.StringPool;
 
 import com.liferay.testtransaction.model.Bar;
 import com.liferay.testtransaction.model.BarModel;
@@ -164,7 +164,7 @@ public class BarModelImpl extends BaseModelImpl<Bar> implements BarModel {
 	@Override
 	public String getText() {
 		if (_text == null) {
-			return StringPool.BLANK;
+			return "";
 		}
 		else {
 			return _text;
@@ -338,7 +338,7 @@ public class BarModelImpl extends BaseModelImpl<Bar> implements BarModel {
 
 	private static final ClassLoader _classLoader = Bar.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			Bar.class
+			Bar.class, ModelWrapper.class
 		};
 	private long _barId;
 	private String _text;

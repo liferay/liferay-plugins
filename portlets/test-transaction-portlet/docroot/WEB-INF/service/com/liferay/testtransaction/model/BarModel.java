@@ -126,19 +126,19 @@ public interface BarModel extends BaseModel<Bar> {
 	public Object clone();
 
 	@Override
-	public int compareTo(com.liferay.testtransaction.model.Bar bar);
+	public int compareTo(Bar bar);
 
 	@Override
 	public int hashCode();
 
 	@Override
-	public CacheModel<com.liferay.testtransaction.model.Bar> toCacheModel();
+	public CacheModel<Bar> toCacheModel();
 
 	@Override
-	public com.liferay.testtransaction.model.Bar toEscapedModel();
+	public Bar toEscapedModel();
 
 	@Override
-	public com.liferay.testtransaction.model.Bar toUnescapedModel();
+	public Bar toUnescapedModel();
 
 	@Override
 	public String toString();
