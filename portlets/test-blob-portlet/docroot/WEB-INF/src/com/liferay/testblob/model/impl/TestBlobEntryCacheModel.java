@@ -19,7 +19,6 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.util.HashUtil;
 import com.liferay.portal.kernel.util.StringBundler;
-import com.liferay.portal.kernel.util.StringPool;
 
 import com.liferay.testblob.model.TestBlobEntry;
 
@@ -79,7 +78,7 @@ public class TestBlobEntryCacheModel implements CacheModel<TestBlobEntry>,
 		TestBlobEntryImpl testBlobEntryImpl = new TestBlobEntryImpl();
 
 		if (uuid == null) {
-			testBlobEntryImpl.setUuid(StringPool.BLANK);
+			testBlobEntryImpl.setUuid("");
 		}
 		else {
 			testBlobEntryImpl.setUuid(uuid);
@@ -103,7 +102,7 @@ public class TestBlobEntryCacheModel implements CacheModel<TestBlobEntry>,
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		if (uuid == null) {
-			objectOutput.writeUTF(StringPool.BLANK);
+			objectOutput.writeUTF("");
 		}
 		else {
 			objectOutput.writeUTF(uuid);

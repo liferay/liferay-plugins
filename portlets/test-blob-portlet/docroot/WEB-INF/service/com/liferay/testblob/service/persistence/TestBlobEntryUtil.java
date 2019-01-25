@@ -24,7 +24,11 @@ import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 import com.liferay.testblob.model.TestBlobEntry;
 
+import java.io.Serializable;
+
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * The persistence utility for the test blob entry service. This utility wraps {@link com.liferay.testblob.service.persistence.impl.TestBlobEntryPersistenceImpl} and provides direct access to the database for CRUD operations. This utility should only be used by the service layer, as it must operate within a transaction. Never access this utility in a JSP, controller, model, or other front-end class.
@@ -65,6 +69,14 @@ public class TestBlobEntryUtil {
 	 */
 	public static long countWithDynamicQuery(DynamicQuery dynamicQuery) {
 		return getPersistence().countWithDynamicQuery(dynamicQuery);
+	}
+
+	/**
+	 * @see com.liferay.portal.kernel.service.persistence.BasePersistence#fetchByPrimaryKeys(Set)
+	 */
+	public static Map<Serializable, TestBlobEntry> fetchByPrimaryKeys(
+		Set<Serializable> primaryKeys) {
+		return getPersistence().fetchByPrimaryKeys(primaryKeys);
 	}
 
 	/**
@@ -115,7 +127,7 @@ public class TestBlobEntryUtil {
 	* @param uuid the uuid
 	* @return the matching test blob entries
 	*/
-	public static List<TestBlobEntry> findByUuid(java.lang.String uuid) {
+	public static List<TestBlobEntry> findByUuid(String uuid) {
 		return getPersistence().findByUuid(uuid);
 	}
 
@@ -131,8 +143,7 @@ public class TestBlobEntryUtil {
 	* @param end the upper bound of the range of test blob entries (not inclusive)
 	* @return the range of matching test blob entries
 	*/
-	public static List<TestBlobEntry> findByUuid(java.lang.String uuid,
-		int start, int end) {
+	public static List<TestBlobEntry> findByUuid(String uuid, int start, int end) {
 		return getPersistence().findByUuid(uuid, start, end);
 	}
 
@@ -149,8 +160,8 @@ public class TestBlobEntryUtil {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching test blob entries
 	*/
-	public static List<TestBlobEntry> findByUuid(java.lang.String uuid,
-		int start, int end, OrderByComparator<TestBlobEntry> orderByComparator) {
+	public static List<TestBlobEntry> findByUuid(String uuid, int start,
+		int end, OrderByComparator<TestBlobEntry> orderByComparator) {
 		return getPersistence().findByUuid(uuid, start, end, orderByComparator);
 	}
 
@@ -168,8 +179,8 @@ public class TestBlobEntryUtil {
 	* @param retrieveFromCache whether to retrieve from the finder cache
 	* @return the ordered range of matching test blob entries
 	*/
-	public static List<TestBlobEntry> findByUuid(java.lang.String uuid,
-		int start, int end, OrderByComparator<TestBlobEntry> orderByComparator,
+	public static List<TestBlobEntry> findByUuid(String uuid, int start,
+		int end, OrderByComparator<TestBlobEntry> orderByComparator,
 		boolean retrieveFromCache) {
 		return getPersistence()
 				   .findByUuid(uuid, start, end, orderByComparator,
@@ -184,7 +195,7 @@ public class TestBlobEntryUtil {
 	* @return the first matching test blob entry
 	* @throws NoSuchEntryException if a matching test blob entry could not be found
 	*/
-	public static TestBlobEntry findByUuid_First(java.lang.String uuid,
+	public static TestBlobEntry findByUuid_First(String uuid,
 		OrderByComparator<TestBlobEntry> orderByComparator)
 		throws com.liferay.testblob.exception.NoSuchEntryException {
 		return getPersistence().findByUuid_First(uuid, orderByComparator);
@@ -197,7 +208,7 @@ public class TestBlobEntryUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching test blob entry, or <code>null</code> if a matching test blob entry could not be found
 	*/
-	public static TestBlobEntry fetchByUuid_First(java.lang.String uuid,
+	public static TestBlobEntry fetchByUuid_First(String uuid,
 		OrderByComparator<TestBlobEntry> orderByComparator) {
 		return getPersistence().fetchByUuid_First(uuid, orderByComparator);
 	}
@@ -210,7 +221,7 @@ public class TestBlobEntryUtil {
 	* @return the last matching test blob entry
 	* @throws NoSuchEntryException if a matching test blob entry could not be found
 	*/
-	public static TestBlobEntry findByUuid_Last(java.lang.String uuid,
+	public static TestBlobEntry findByUuid_Last(String uuid,
 		OrderByComparator<TestBlobEntry> orderByComparator)
 		throws com.liferay.testblob.exception.NoSuchEntryException {
 		return getPersistence().findByUuid_Last(uuid, orderByComparator);
@@ -223,7 +234,7 @@ public class TestBlobEntryUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching test blob entry, or <code>null</code> if a matching test blob entry could not be found
 	*/
-	public static TestBlobEntry fetchByUuid_Last(java.lang.String uuid,
+	public static TestBlobEntry fetchByUuid_Last(String uuid,
 		OrderByComparator<TestBlobEntry> orderByComparator) {
 		return getPersistence().fetchByUuid_Last(uuid, orderByComparator);
 	}
@@ -238,8 +249,7 @@ public class TestBlobEntryUtil {
 	* @throws NoSuchEntryException if a test blob entry with the primary key could not be found
 	*/
 	public static TestBlobEntry[] findByUuid_PrevAndNext(long testBlobEntryId,
-		java.lang.String uuid,
-		OrderByComparator<TestBlobEntry> orderByComparator)
+		String uuid, OrderByComparator<TestBlobEntry> orderByComparator)
 		throws com.liferay.testblob.exception.NoSuchEntryException {
 		return getPersistence()
 				   .findByUuid_PrevAndNext(testBlobEntryId, uuid,
@@ -251,7 +261,7 @@ public class TestBlobEntryUtil {
 	*
 	* @param uuid the uuid
 	*/
-	public static void removeByUuid(java.lang.String uuid) {
+	public static void removeByUuid(String uuid) {
 		getPersistence().removeByUuid(uuid);
 	}
 
@@ -261,7 +271,7 @@ public class TestBlobEntryUtil {
 	* @param uuid the uuid
 	* @return the number of matching test blob entries
 	*/
-	public static int countByUuid(java.lang.String uuid) {
+	public static int countByUuid(String uuid) {
 		return getPersistence().countByUuid(uuid);
 	}
 
@@ -329,11 +339,6 @@ public class TestBlobEntryUtil {
 	*/
 	public static TestBlobEntry fetchByPrimaryKey(long testBlobEntryId) {
 		return getPersistence().fetchByPrimaryKey(testBlobEntryId);
-	}
-
-	public static java.util.Map<java.io.Serializable, TestBlobEntry> fetchByPrimaryKeys(
-		java.util.Set<java.io.Serializable> primaryKeys) {
-		return getPersistence().fetchByPrimaryKeys(primaryKeys);
 	}
 
 	/**
@@ -413,13 +418,13 @@ public class TestBlobEntryUtil {
 		return getPersistence().countAll();
 	}
 
-	public static java.util.Set<java.lang.String> getBadColumnNames() {
+	public static Set<String> getBadColumnNames() {
 		return getPersistence().getBadColumnNames();
 	}
 
 	public static TestBlobEntryPersistence getPersistence() {
 		if (_persistence == null) {
-			_persistence = (TestBlobEntryPersistence)PortletBeanLocatorUtil.locate(com.liferay.testblob.service.ClpSerializer.getServletContextName(),
+			_persistence = (TestBlobEntryPersistence)PortletBeanLocatorUtil.locate(com.liferay.testblob.service.ServletContextUtil.getServletContextName(),
 					TestBlobEntryPersistence.class.getName());
 
 			ReferenceRegistry.registerReference(TestBlobEntryUtil.class,

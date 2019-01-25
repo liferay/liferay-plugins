@@ -142,19 +142,19 @@ public interface TestBlobEntryModel extends BaseModel<TestBlobEntry> {
 	public Object clone();
 
 	@Override
-	public int compareTo(com.liferay.testblob.model.TestBlobEntry testBlobEntry);
+	public int compareTo(TestBlobEntry testBlobEntry);
 
 	@Override
 	public int hashCode();
 
 	@Override
-	public CacheModel<com.liferay.testblob.model.TestBlobEntry> toCacheModel();
+	public CacheModel<TestBlobEntry> toCacheModel();
 
 	@Override
-	public com.liferay.testblob.model.TestBlobEntry toEscapedModel();
+	public TestBlobEntry toEscapedModel();
 
 	@Override
-	public com.liferay.testblob.model.TestBlobEntry toUnescapedModel();
+	public TestBlobEntry toUnescapedModel();
 
 	@Override
 	public String toString();

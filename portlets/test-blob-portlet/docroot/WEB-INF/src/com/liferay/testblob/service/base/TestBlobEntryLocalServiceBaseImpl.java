@@ -38,6 +38,7 @@ import com.liferay.portal.kernel.service.BaseLocalServiceImpl;
 import com.liferay.portal.kernel.service.PersistedModelLocalServiceRegistryUtil;
 import com.liferay.portal.kernel.service.persistence.ClassNamePersistence;
 import com.liferay.portal.kernel.service.persistence.UserPersistence;
+import com.liferay.portal.kernel.transaction.Transactional;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.PortalUtil;
 
@@ -95,6 +96,7 @@ public abstract class TestBlobEntryLocalServiceBaseImpl
 	 * @return the new test blob entry
 	 */
 	@Override
+	@Transactional(enabled = false)
 	public TestBlobEntry createTestBlobEntry(long testBlobEntryId) {
 		return testBlobEntryPersistence.create(testBlobEntryId);
 	}
@@ -486,10 +488,6 @@ public abstract class TestBlobEntryLocalServiceBaseImpl
 	}
 
 	public void afterPropertiesSet() {
-		Class<?> clazz = getClass();
-
-		_classLoader = clazz.getClassLoader();
-
 		PersistedModelLocalServiceRegistryUtil.register("com.liferay.testblob.model.TestBlobEntry",
 			testBlobEntryLocalService);
 	}
@@ -507,27 +505,6 @@ public abstract class TestBlobEntryLocalServiceBaseImpl
 	@Override
 	public String getOSGiServiceIdentifier() {
 		return TestBlobEntryLocalService.class.getName();
-	}
-
-	@Override
-	public Object invokeMethod(String name, String[] parameterTypes,
-		Object[] arguments) throws Throwable {
-		Thread currentThread = Thread.currentThread();
-
-		ClassLoader contextClassLoader = currentThread.getContextClassLoader();
-
-		if (contextClassLoader != _classLoader) {
-			currentThread.setContextClassLoader(_classLoader);
-		}
-
-		try {
-			return _clpInvoker.invokeMethod(name, parameterTypes, arguments);
-		}
-		finally {
-			if (contextClassLoader != _classLoader) {
-				currentThread.setContextClassLoader(contextClassLoader);
-			}
-		}
 	}
 
 	protected Class<?> getModelClass() {
@@ -562,7 +539,7 @@ public abstract class TestBlobEntryLocalServiceBaseImpl
 		}
 	}
 
-	@BeanReference(type = com.liferay.testblob.service.TestBlobEntryLocalService.class)
+	@BeanReference(type = TestBlobEntryLocalService.class)
 	protected TestBlobEntryLocalService testBlobEntryLocalService;
 	@BeanReference(type = TestBlobEntryPersistence.class)
 	protected TestBlobEntryPersistence testBlobEntryPersistence;
@@ -578,6 +555,4 @@ public abstract class TestBlobEntryLocalServiceBaseImpl
 	protected com.liferay.portal.kernel.service.UserLocalService userLocalService;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
-	private ClassLoader _classLoader;
-	private TestBlobEntryLocalServiceClpInvoker _clpInvoker = new TestBlobEntryLocalServiceClpInvoker();
 }

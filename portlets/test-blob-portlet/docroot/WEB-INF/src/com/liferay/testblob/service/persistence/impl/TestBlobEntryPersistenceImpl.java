@@ -16,9 +16,7 @@ package com.liferay.testblob.service.persistence.impl;
 
 import aQute.bnd.annotation.ProviderType;
 
-import com.liferay.portal.kernel.dao.orm.EntityCache;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
-import com.liferay.portal.kernel.dao.orm.FinderCache;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
 import com.liferay.portal.kernel.dao.orm.Query;
@@ -27,12 +25,11 @@ import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StringBundler;
-import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
 
@@ -44,12 +41,16 @@ import com.liferay.testblob.service.persistence.TestBlobEntryPersistence;
 
 import java.io.Serializable;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationHandler;
+
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -77,18 +78,18 @@ public class TestBlobEntryPersistenceImpl extends BasePersistenceImpl<TestBlobEn
 		".List1";
 	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION = FINDER_CLASS_NAME_ENTITY +
 		".List2";
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_ALL = new FinderPath(TestBlobEntryModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithPaginationFindAll = new FinderPath(TestBlobEntryModelImpl.ENTITY_CACHE_ENABLED,
 			TestBlobEntryModelImpl.FINDER_CACHE_ENABLED,
 			TestBlobEntryImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
 			"findAll", new String[0]);
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_ALL = new FinderPath(TestBlobEntryModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithoutPaginationFindAll = new FinderPath(TestBlobEntryModelImpl.ENTITY_CACHE_ENABLED,
 			TestBlobEntryModelImpl.FINDER_CACHE_ENABLED,
 			TestBlobEntryImpl.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
 			"findAll", new String[0]);
-	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(TestBlobEntryModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathCountAll = new FinderPath(TestBlobEntryModelImpl.ENTITY_CACHE_ENABLED,
 			TestBlobEntryModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll", new String[0]);
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_UUID = new FinderPath(TestBlobEntryModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithPaginationFindByUuid = new FinderPath(TestBlobEntryModelImpl.ENTITY_CACHE_ENABLED,
 			TestBlobEntryModelImpl.FINDER_CACHE_ENABLED,
 			TestBlobEntryImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
 			"findByUuid",
@@ -98,12 +99,12 @@ public class TestBlobEntryPersistenceImpl extends BasePersistenceImpl<TestBlobEn
 			Integer.class.getName(), Integer.class.getName(),
 				OrderByComparator.class.getName()
 			});
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID = new FinderPath(TestBlobEntryModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithoutPaginationFindByUuid = new FinderPath(TestBlobEntryModelImpl.ENTITY_CACHE_ENABLED,
 			TestBlobEntryModelImpl.FINDER_CACHE_ENABLED,
 			TestBlobEntryImpl.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
 			"findByUuid", new String[] { String.class.getName() },
 			TestBlobEntryModelImpl.UUID_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_UUID = new FinderPath(TestBlobEntryModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathCountByUuid = new FinderPath(TestBlobEntryModelImpl.ENTITY_CACHE_ENABLED,
 			TestBlobEntryModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUuid",
 			new String[] { String.class.getName() });
@@ -173,6 +174,8 @@ public class TestBlobEntryPersistenceImpl extends BasePersistenceImpl<TestBlobEn
 	public List<TestBlobEntry> findByUuid(String uuid, int start, int end,
 		OrderByComparator<TestBlobEntry> orderByComparator,
 		boolean retrieveFromCache) {
+		uuid = Objects.toString(uuid, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -180,23 +183,23 @@ public class TestBlobEntryPersistenceImpl extends BasePersistenceImpl<TestBlobEn
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 				(orderByComparator == null)) {
 			pagination = false;
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID;
+			finderPath = _finderPathWithoutPaginationFindByUuid;
 			finderArgs = new Object[] { uuid };
 		}
 		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_UUID;
+			finderPath = _finderPathWithPaginationFindByUuid;
 			finderArgs = new Object[] { uuid, start, end, orderByComparator };
 		}
 
 		List<TestBlobEntry> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<TestBlobEntry>)finderCache.getResult(finderPath,
+			list = (List<TestBlobEntry>)FinderCacheUtil.getResult(finderPath,
 					finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (TestBlobEntry testBlobEntry : list) {
-					if (!Validator.equals(uuid, testBlobEntry.getUuid())) {
+					if (!uuid.equals(testBlobEntry.getUuid())) {
 						list = null;
 
 						break;
@@ -220,10 +223,7 @@ public class TestBlobEntryPersistenceImpl extends BasePersistenceImpl<TestBlobEn
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_UUID_1);
-			}
-			else if (uuid.equals(StringPool.BLANK)) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_UUID_3);
 			}
 			else {
@@ -271,10 +271,10 @@ public class TestBlobEntryPersistenceImpl extends BasePersistenceImpl<TestBlobEn
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -311,7 +311,7 @@ public class TestBlobEntryPersistenceImpl extends BasePersistenceImpl<TestBlobEn
 		msg.append("uuid=");
 		msg.append(uuid);
 
-		msg.append(StringPool.CLOSE_CURLY_BRACE);
+		msg.append("}");
 
 		throw new NoSuchEntryException(msg.toString());
 	}
@@ -360,7 +360,7 @@ public class TestBlobEntryPersistenceImpl extends BasePersistenceImpl<TestBlobEn
 		msg.append("uuid=");
 		msg.append(uuid);
 
-		msg.append(StringPool.CLOSE_CURLY_BRACE);
+		msg.append("}");
 
 		throw new NoSuchEntryException(msg.toString());
 	}
@@ -404,6 +404,8 @@ public class TestBlobEntryPersistenceImpl extends BasePersistenceImpl<TestBlobEn
 	public TestBlobEntry[] findByUuid_PrevAndNext(long testBlobEntryId,
 		String uuid, OrderByComparator<TestBlobEntry> orderByComparator)
 		throws NoSuchEntryException {
+		uuid = Objects.toString(uuid, "");
+
 		TestBlobEntry testBlobEntry = findByPrimaryKey(testBlobEntryId);
 
 		Session session = null;
@@ -449,10 +451,7 @@ public class TestBlobEntryPersistenceImpl extends BasePersistenceImpl<TestBlobEn
 
 		boolean bindUuid = false;
 
-		if (uuid == null) {
-			query.append(_FINDER_COLUMN_UUID_UUID_1);
-		}
-		else if (uuid.equals(StringPool.BLANK)) {
+		if (uuid.isEmpty()) {
 			query.append(_FINDER_COLUMN_UUID_UUID_3);
 		}
 		else {
@@ -534,10 +533,9 @@ public class TestBlobEntryPersistenceImpl extends BasePersistenceImpl<TestBlobEn
 		}
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(testBlobEntry);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					testBlobEntry)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -572,11 +570,14 @@ public class TestBlobEntryPersistenceImpl extends BasePersistenceImpl<TestBlobEn
 	 */
 	@Override
 	public int countByUuid(String uuid) {
-		FinderPath finderPath = FINDER_PATH_COUNT_BY_UUID;
+		uuid = Objects.toString(uuid, "");
+
+		FinderPath finderPath = _finderPathCountByUuid;
 
 		Object[] finderArgs = new Object[] { uuid };
 
-		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
+		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
+				this);
 
 		if (count == null) {
 			StringBundler query = new StringBundler(2);
@@ -585,10 +586,7 @@ public class TestBlobEntryPersistenceImpl extends BasePersistenceImpl<TestBlobEn
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_UUID_1);
-			}
-			else if (uuid.equals(StringPool.BLANK)) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_UUID_3);
 			}
 			else {
@@ -614,10 +612,10 @@ public class TestBlobEntryPersistenceImpl extends BasePersistenceImpl<TestBlobEn
 
 				count = (Long)q.uniqueResult();
 
-				finderCache.putResult(finderPath, finderArgs, count);
+				FinderCacheUtil.putResult(finderPath, finderArgs, count);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -629,12 +627,29 @@ public class TestBlobEntryPersistenceImpl extends BasePersistenceImpl<TestBlobEn
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_UUID_UUID_1 = "testBlobEntry.uuid IS NULL";
 	private static final String _FINDER_COLUMN_UUID_UUID_2 = "testBlobEntry.uuid = ?";
 	private static final String _FINDER_COLUMN_UUID_UUID_3 = "(testBlobEntry.uuid IS NULL OR testBlobEntry.uuid = '')";
 
 	public TestBlobEntryPersistenceImpl() {
 		setModelClass(TestBlobEntry.class);
+
+		try {
+			Field field = BasePersistenceImpl.class.getDeclaredField(
+					"_dbColumnNames");
+
+			field.setAccessible(true);
+
+			Map<String, String> dbColumnNames = new HashMap<String, String>();
+
+			dbColumnNames.put("uuid", "uuid_");
+
+			field.set(this, dbColumnNames);
+		}
+		catch (Exception e) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(e, e);
+			}
+		}
 	}
 
 	/**
@@ -644,7 +659,7 @@ public class TestBlobEntryPersistenceImpl extends BasePersistenceImpl<TestBlobEn
 	 */
 	@Override
 	public void cacheResult(TestBlobEntry testBlobEntry) {
-		entityCache.putResult(TestBlobEntryModelImpl.ENTITY_CACHE_ENABLED,
+		EntityCacheUtil.putResult(TestBlobEntryModelImpl.ENTITY_CACHE_ENABLED,
 			TestBlobEntryImpl.class, testBlobEntry.getPrimaryKey(),
 			testBlobEntry);
 
@@ -659,7 +674,7 @@ public class TestBlobEntryPersistenceImpl extends BasePersistenceImpl<TestBlobEn
 	@Override
 	public void cacheResult(List<TestBlobEntry> testBlobEntries) {
 		for (TestBlobEntry testBlobEntry : testBlobEntries) {
-			if (entityCache.getResult(
+			if (EntityCacheUtil.getResult(
 						TestBlobEntryModelImpl.ENTITY_CACHE_ENABLED,
 						TestBlobEntryImpl.class, testBlobEntry.getPrimaryKey()) == null) {
 				cacheResult(testBlobEntry);
@@ -674,41 +689,41 @@ public class TestBlobEntryPersistenceImpl extends BasePersistenceImpl<TestBlobEn
 	 * Clears the cache for all test blob entries.
 	 *
 	 * <p>
-	 * The {@link EntityCache} and {@link FinderCache} are both cleared by this method.
+	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
 	@Override
 	public void clearCache() {
-		entityCache.clearCache(TestBlobEntryImpl.class);
+		EntityCacheUtil.clearCache(TestBlobEntryImpl.class);
 
-		finderCache.clearCache(FINDER_CLASS_NAME_ENTITY);
-		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
 	/**
 	 * Clears the cache for the test blob entry.
 	 *
 	 * <p>
-	 * The {@link EntityCache} and {@link FinderCache} are both cleared by this method.
+	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
 	@Override
 	public void clearCache(TestBlobEntry testBlobEntry) {
-		entityCache.removeResult(TestBlobEntryModelImpl.ENTITY_CACHE_ENABLED,
+		EntityCacheUtil.removeResult(TestBlobEntryModelImpl.ENTITY_CACHE_ENABLED,
 			TestBlobEntryImpl.class, testBlobEntry.getPrimaryKey());
 
-		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
 	@Override
 	public void clearCache(List<TestBlobEntry> testBlobEntries) {
-		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
 		for (TestBlobEntry testBlobEntry : testBlobEntries) {
-			entityCache.removeResult(TestBlobEntryModelImpl.ENTITY_CACHE_ENABLED,
+			EntityCacheUtil.removeResult(TestBlobEntryModelImpl.ENTITY_CACHE_ENABLED,
 				TestBlobEntryImpl.class, testBlobEntry.getPrimaryKey());
 		}
 	}
@@ -788,8 +803,6 @@ public class TestBlobEntryPersistenceImpl extends BasePersistenceImpl<TestBlobEn
 
 	@Override
 	protected TestBlobEntry removeImpl(TestBlobEntry testBlobEntry) {
-		testBlobEntry = toUnwrappedModel(testBlobEntry);
-
 		Session session = null;
 
 		try {
@@ -820,9 +833,23 @@ public class TestBlobEntryPersistenceImpl extends BasePersistenceImpl<TestBlobEn
 
 	@Override
 	public TestBlobEntry updateImpl(TestBlobEntry testBlobEntry) {
-		testBlobEntry = toUnwrappedModel(testBlobEntry);
-
 		boolean isNew = testBlobEntry.isNew();
+
+		if (!(testBlobEntry instanceof TestBlobEntryModelImpl)) {
+			InvocationHandler invocationHandler = null;
+
+			if (ProxyUtil.isProxyClass(testBlobEntry.getClass())) {
+				invocationHandler = ProxyUtil.getInvocationHandler(testBlobEntry);
+
+				throw new IllegalArgumentException(
+					"Implement ModelWrapper in testBlobEntry proxy " +
+					invocationHandler.getClass());
+			}
+
+			throw new IllegalArgumentException(
+				"Implement ModelWrapper in custom TestBlobEntry implementation " +
+				testBlobEntry.getClass());
+		}
 
 		TestBlobEntryModelImpl testBlobEntryModelImpl = (TestBlobEntryModelImpl)testBlobEntry;
 
@@ -857,55 +884,50 @@ public class TestBlobEntryPersistenceImpl extends BasePersistenceImpl<TestBlobEn
 			closeSession(session);
 		}
 
-		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 
-		if (isNew || !TestBlobEntryModelImpl.COLUMN_BITMASK_ENABLED) {
-			finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		if (!TestBlobEntryModelImpl.COLUMN_BITMASK_ENABLED) {
+			FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		}
+		else
+		 if (isNew) {
+			Object[] args = new Object[] { testBlobEntryModelImpl.getUuid() };
+
+			FinderCacheUtil.removeResult(_finderPathCountByUuid, args);
+			FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByUuid,
+				args);
+
+			FinderCacheUtil.removeResult(_finderPathCountAll, FINDER_ARGS_EMPTY);
+			FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindAll,
+				FINDER_ARGS_EMPTY);
 		}
 
 		else {
 			if ((testBlobEntryModelImpl.getColumnBitmask() &
-					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID.getColumnBitmask()) != 0) {
+					_finderPathWithoutPaginationFindByUuid.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						testBlobEntryModelImpl.getOriginalUuid()
 					};
 
-				finderCache.removeResult(FINDER_PATH_COUNT_BY_UUID, args);
-				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID,
+				FinderCacheUtil.removeResult(_finderPathCountByUuid, args);
+				FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByUuid,
 					args);
 
 				args = new Object[] { testBlobEntryModelImpl.getUuid() };
 
-				finderCache.removeResult(FINDER_PATH_COUNT_BY_UUID, args);
-				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID,
+				FinderCacheUtil.removeResult(_finderPathCountByUuid, args);
+				FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByUuid,
 					args);
 			}
 		}
 
-		entityCache.putResult(TestBlobEntryModelImpl.ENTITY_CACHE_ENABLED,
+		EntityCacheUtil.putResult(TestBlobEntryModelImpl.ENTITY_CACHE_ENABLED,
 			TestBlobEntryImpl.class, testBlobEntry.getPrimaryKey(),
 			testBlobEntry, false);
 
 		testBlobEntry.resetOriginalValues();
 
 		return testBlobEntry;
-	}
-
-	protected TestBlobEntry toUnwrappedModel(TestBlobEntry testBlobEntry) {
-		if (testBlobEntry instanceof TestBlobEntryImpl) {
-			return testBlobEntry;
-		}
-
-		TestBlobEntryImpl testBlobEntryImpl = new TestBlobEntryImpl();
-
-		testBlobEntryImpl.setNew(testBlobEntry.isNew());
-		testBlobEntryImpl.setPrimaryKey(testBlobEntry.getPrimaryKey());
-
-		testBlobEntryImpl.setUuid(testBlobEntry.getUuid());
-		testBlobEntryImpl.setTestBlobEntryId(testBlobEntry.getTestBlobEntryId());
-		testBlobEntryImpl.setBlobField(testBlobEntry.getBlobField());
-
-		return testBlobEntryImpl;
 	}
 
 	/**
@@ -953,12 +975,14 @@ public class TestBlobEntryPersistenceImpl extends BasePersistenceImpl<TestBlobEn
 	 */
 	@Override
 	public TestBlobEntry fetchByPrimaryKey(Serializable primaryKey) {
-		TestBlobEntry testBlobEntry = (TestBlobEntry)entityCache.getResult(TestBlobEntryModelImpl.ENTITY_CACHE_ENABLED,
+		Serializable serializable = EntityCacheUtil.getResult(TestBlobEntryModelImpl.ENTITY_CACHE_ENABLED,
 				TestBlobEntryImpl.class, primaryKey);
 
-		if (testBlobEntry == _nullTestBlobEntry) {
+		if (serializable == nullModel) {
 			return null;
 		}
+
+		TestBlobEntry testBlobEntry = (TestBlobEntry)serializable;
 
 		if (testBlobEntry == null) {
 			Session session = null;
@@ -973,12 +997,12 @@ public class TestBlobEntryPersistenceImpl extends BasePersistenceImpl<TestBlobEn
 					cacheResult(testBlobEntry);
 				}
 				else {
-					entityCache.putResult(TestBlobEntryModelImpl.ENTITY_CACHE_ENABLED,
-						TestBlobEntryImpl.class, primaryKey, _nullTestBlobEntry);
+					EntityCacheUtil.putResult(TestBlobEntryModelImpl.ENTITY_CACHE_ENABLED,
+						TestBlobEntryImpl.class, primaryKey, nullModel);
 				}
 			}
 			catch (Exception e) {
-				entityCache.removeResult(TestBlobEntryModelImpl.ENTITY_CACHE_ENABLED,
+				EntityCacheUtil.removeResult(TestBlobEntryModelImpl.ENTITY_CACHE_ENABLED,
 					TestBlobEntryImpl.class, primaryKey);
 
 				throw processException(e);
@@ -1028,18 +1052,20 @@ public class TestBlobEntryPersistenceImpl extends BasePersistenceImpl<TestBlobEn
 		Set<Serializable> uncachedPrimaryKeys = null;
 
 		for (Serializable primaryKey : primaryKeys) {
-			TestBlobEntry testBlobEntry = (TestBlobEntry)entityCache.getResult(TestBlobEntryModelImpl.ENTITY_CACHE_ENABLED,
+			Serializable serializable = EntityCacheUtil.getResult(TestBlobEntryModelImpl.ENTITY_CACHE_ENABLED,
 					TestBlobEntryImpl.class, primaryKey);
 
-			if (testBlobEntry == null) {
-				if (uncachedPrimaryKeys == null) {
-					uncachedPrimaryKeys = new HashSet<Serializable>();
-				}
+			if (serializable != nullModel) {
+				if (serializable == null) {
+					if (uncachedPrimaryKeys == null) {
+						uncachedPrimaryKeys = new HashSet<Serializable>();
+					}
 
-				uncachedPrimaryKeys.add(primaryKey);
-			}
-			else {
-				map.put(primaryKey, testBlobEntry);
+					uncachedPrimaryKeys.add(primaryKey);
+				}
+				else {
+					map.put(primaryKey, (TestBlobEntry)serializable);
+				}
 			}
 		}
 
@@ -1053,14 +1079,14 @@ public class TestBlobEntryPersistenceImpl extends BasePersistenceImpl<TestBlobEn
 		query.append(_SQL_SELECT_TESTBLOBENTRY_WHERE_PKS_IN);
 
 		for (Serializable primaryKey : uncachedPrimaryKeys) {
-			query.append(String.valueOf(primaryKey));
+			query.append((long)primaryKey);
 
-			query.append(StringPool.COMMA);
+			query.append(",");
 		}
 
 		query.setIndex(query.index() - 1);
 
-		query.append(StringPool.CLOSE_PARENTHESIS);
+		query.append(")");
 
 		String sql = query.toString();
 
@@ -1080,8 +1106,8 @@ public class TestBlobEntryPersistenceImpl extends BasePersistenceImpl<TestBlobEn
 			}
 
 			for (Serializable primaryKey : uncachedPrimaryKeys) {
-				entityCache.putResult(TestBlobEntryModelImpl.ENTITY_CACHE_ENABLED,
-					TestBlobEntryImpl.class, primaryKey, _nullTestBlobEntry);
+				EntityCacheUtil.putResult(TestBlobEntryModelImpl.ENTITY_CACHE_ENABLED,
+					TestBlobEntryImpl.class, primaryKey, nullModel);
 			}
 		}
 		catch (Exception e) {
@@ -1162,18 +1188,18 @@ public class TestBlobEntryPersistenceImpl extends BasePersistenceImpl<TestBlobEn
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 				(orderByComparator == null)) {
 			pagination = false;
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_ALL;
+			finderPath = _finderPathWithoutPaginationFindAll;
 			finderArgs = FINDER_ARGS_EMPTY;
 		}
 		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_ALL;
+			finderPath = _finderPathWithPaginationFindAll;
 			finderArgs = new Object[] { start, end, orderByComparator };
 		}
 
 		List<TestBlobEntry> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<TestBlobEntry>)finderCache.getResult(finderPath,
+			list = (List<TestBlobEntry>)FinderCacheUtil.getResult(finderPath,
 					finderArgs, this);
 		}
 
@@ -1222,10 +1248,10 @@ public class TestBlobEntryPersistenceImpl extends BasePersistenceImpl<TestBlobEn
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -1255,7 +1281,7 @@ public class TestBlobEntryPersistenceImpl extends BasePersistenceImpl<TestBlobEn
 	 */
 	@Override
 	public int countAll() {
-		Long count = (Long)finderCache.getResult(FINDER_PATH_COUNT_ALL,
+		Long count = (Long)FinderCacheUtil.getResult(_finderPathCountAll,
 				FINDER_ARGS_EMPTY, this);
 
 		if (count == null) {
@@ -1268,11 +1294,11 @@ public class TestBlobEntryPersistenceImpl extends BasePersistenceImpl<TestBlobEn
 
 				count = (Long)q.uniqueResult();
 
-				finderCache.putResult(FINDER_PATH_COUNT_ALL, FINDER_ARGS_EMPTY,
-					count);
+				FinderCacheUtil.putResult(_finderPathCountAll,
+					FINDER_ARGS_EMPTY, count);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(FINDER_PATH_COUNT_ALL,
+				FinderCacheUtil.removeResult(_finderPathCountAll,
 					FINDER_ARGS_EMPTY);
 
 				throw processException(e);
@@ -1302,14 +1328,12 @@ public class TestBlobEntryPersistenceImpl extends BasePersistenceImpl<TestBlobEn
 	}
 
 	public void destroy() {
-		entityCache.removeCache(TestBlobEntryImpl.class.getName());
-		finderCache.removeCache(FINDER_CLASS_NAME_ENTITY);
-		finderCache.removeCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		finderCache.removeCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		EntityCacheUtil.removeCache(TestBlobEntryImpl.class.getName());
+		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_ENTITY);
+		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
-	protected EntityCache entityCache = EntityCacheUtil.getEntityCache();
-	protected FinderCache finderCache = FinderCacheUtil.getFinderCache();
 	private static final String _SQL_SELECT_TESTBLOBENTRY = "SELECT testBlobEntry FROM TestBlobEntry testBlobEntry";
 	private static final String _SQL_SELECT_TESTBLOBENTRY_WHERE_PKS_IN = "SELECT testBlobEntry FROM TestBlobEntry testBlobEntry WHERE testBlobEntryId IN (";
 	private static final String _SQL_SELECT_TESTBLOBENTRY_WHERE = "SELECT testBlobEntry FROM TestBlobEntry testBlobEntry WHERE ";
@@ -1322,22 +1346,4 @@ public class TestBlobEntryPersistenceImpl extends BasePersistenceImpl<TestBlobEn
 	private static final Set<String> _badColumnNames = SetUtil.fromArray(new String[] {
 				"uuid"
 			});
-	private static final TestBlobEntry _nullTestBlobEntry = new TestBlobEntryImpl() {
-			@Override
-			public Object clone() {
-				return this;
-			}
-
-			@Override
-			public CacheModel<TestBlobEntry> toCacheModel() {
-				return _nullTestBlobEntryCacheModel;
-			}
-		};
-
-	private static final CacheModel<TestBlobEntry> _nullTestBlobEntryCacheModel = new CacheModel<TestBlobEntry>() {
-			@Override
-			public TestBlobEntry toEntityModel() {
-				return _nullTestBlobEntry;
-			}
-		};
 }

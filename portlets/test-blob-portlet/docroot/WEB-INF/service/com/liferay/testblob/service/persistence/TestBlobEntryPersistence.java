@@ -21,6 +21,11 @@ import com.liferay.portal.kernel.service.persistence.BasePersistence;
 import com.liferay.testblob.exception.NoSuchEntryException;
 import com.liferay.testblob.model.TestBlobEntry;
 
+import java.io.Serializable;
+
+import java.util.Map;
+import java.util.Set;
+
 /**
  * The persistence interface for the test blob entry service.
  *
@@ -40,6 +45,9 @@ public interface TestBlobEntryPersistence extends BasePersistence<TestBlobEntry>
 	 *
 	 * Never modify or reference this interface directly. Always use {@link TestBlobEntryUtil} to access the test blob entry persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
 	 */
+	@Override
+	public Map<Serializable, TestBlobEntry> fetchByPrimaryKeys(
+		Set<Serializable> primaryKeys);
 
 	/**
 	* Returns all the test blob entries where uuid = &#63;.
@@ -47,7 +55,7 @@ public interface TestBlobEntryPersistence extends BasePersistence<TestBlobEntry>
 	* @param uuid the uuid
 	* @return the matching test blob entries
 	*/
-	public java.util.List<TestBlobEntry> findByUuid(java.lang.String uuid);
+	public java.util.List<TestBlobEntry> findByUuid(String uuid);
 
 	/**
 	* Returns a range of all the test blob entries where uuid = &#63;.
@@ -61,8 +69,8 @@ public interface TestBlobEntryPersistence extends BasePersistence<TestBlobEntry>
 	* @param end the upper bound of the range of test blob entries (not inclusive)
 	* @return the range of matching test blob entries
 	*/
-	public java.util.List<TestBlobEntry> findByUuid(java.lang.String uuid,
-		int start, int end);
+	public java.util.List<TestBlobEntry> findByUuid(String uuid, int start,
+		int end);
 
 	/**
 	* Returns an ordered range of all the test blob entries where uuid = &#63;.
@@ -77,8 +85,8 @@ public interface TestBlobEntryPersistence extends BasePersistence<TestBlobEntry>
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching test blob entries
 	*/
-	public java.util.List<TestBlobEntry> findByUuid(java.lang.String uuid,
-		int start, int end,
+	public java.util.List<TestBlobEntry> findByUuid(String uuid, int start,
+		int end,
 		com.liferay.portal.kernel.util.OrderByComparator<TestBlobEntry> orderByComparator);
 
 	/**
@@ -95,8 +103,8 @@ public interface TestBlobEntryPersistence extends BasePersistence<TestBlobEntry>
 	* @param retrieveFromCache whether to retrieve from the finder cache
 	* @return the ordered range of matching test blob entries
 	*/
-	public java.util.List<TestBlobEntry> findByUuid(java.lang.String uuid,
-		int start, int end,
+	public java.util.List<TestBlobEntry> findByUuid(String uuid, int start,
+		int end,
 		com.liferay.portal.kernel.util.OrderByComparator<TestBlobEntry> orderByComparator,
 		boolean retrieveFromCache);
 
@@ -108,7 +116,7 @@ public interface TestBlobEntryPersistence extends BasePersistence<TestBlobEntry>
 	* @return the first matching test blob entry
 	* @throws NoSuchEntryException if a matching test blob entry could not be found
 	*/
-	public TestBlobEntry findByUuid_First(java.lang.String uuid,
+	public TestBlobEntry findByUuid_First(String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator<TestBlobEntry> orderByComparator)
 		throws NoSuchEntryException;
 
@@ -119,7 +127,7 @@ public interface TestBlobEntryPersistence extends BasePersistence<TestBlobEntry>
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching test blob entry, or <code>null</code> if a matching test blob entry could not be found
 	*/
-	public TestBlobEntry fetchByUuid_First(java.lang.String uuid,
+	public TestBlobEntry fetchByUuid_First(String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator<TestBlobEntry> orderByComparator);
 
 	/**
@@ -130,7 +138,7 @@ public interface TestBlobEntryPersistence extends BasePersistence<TestBlobEntry>
 	* @return the last matching test blob entry
 	* @throws NoSuchEntryException if a matching test blob entry could not be found
 	*/
-	public TestBlobEntry findByUuid_Last(java.lang.String uuid,
+	public TestBlobEntry findByUuid_Last(String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator<TestBlobEntry> orderByComparator)
 		throws NoSuchEntryException;
 
@@ -141,7 +149,7 @@ public interface TestBlobEntryPersistence extends BasePersistence<TestBlobEntry>
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching test blob entry, or <code>null</code> if a matching test blob entry could not be found
 	*/
-	public TestBlobEntry fetchByUuid_Last(java.lang.String uuid,
+	public TestBlobEntry fetchByUuid_Last(String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator<TestBlobEntry> orderByComparator);
 
 	/**
@@ -154,7 +162,7 @@ public interface TestBlobEntryPersistence extends BasePersistence<TestBlobEntry>
 	* @throws NoSuchEntryException if a test blob entry with the primary key could not be found
 	*/
 	public TestBlobEntry[] findByUuid_PrevAndNext(long testBlobEntryId,
-		java.lang.String uuid,
+		String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator<TestBlobEntry> orderByComparator)
 		throws NoSuchEntryException;
 
@@ -163,7 +171,7 @@ public interface TestBlobEntryPersistence extends BasePersistence<TestBlobEntry>
 	*
 	* @param uuid the uuid
 	*/
-	public void removeByUuid(java.lang.String uuid);
+	public void removeByUuid(String uuid);
 
 	/**
 	* Returns the number of test blob entries where uuid = &#63;.
@@ -171,7 +179,7 @@ public interface TestBlobEntryPersistence extends BasePersistence<TestBlobEntry>
 	* @param uuid the uuid
 	* @return the number of matching test blob entries
 	*/
-	public int countByUuid(java.lang.String uuid);
+	public int countByUuid(String uuid);
 
 	/**
 	* Caches the test blob entry in the entity cache if it is enabled.
@@ -224,10 +232,6 @@ public interface TestBlobEntryPersistence extends BasePersistence<TestBlobEntry>
 	* @return the test blob entry, or <code>null</code> if a test blob entry with the primary key could not be found
 	*/
 	public TestBlobEntry fetchByPrimaryKey(long testBlobEntryId);
-
-	@Override
-	public java.util.Map<java.io.Serializable, TestBlobEntry> fetchByPrimaryKeys(
-		java.util.Set<java.io.Serializable> primaryKeys);
 
 	/**
 	* Returns all the test blob entries.
@@ -294,5 +298,5 @@ public interface TestBlobEntryPersistence extends BasePersistence<TestBlobEntry>
 	public int countAll();
 
 	@Override
-	public java.util.Set<java.lang.String> getBadColumnNames();
+	public Set<String> getBadColumnNames();
 }

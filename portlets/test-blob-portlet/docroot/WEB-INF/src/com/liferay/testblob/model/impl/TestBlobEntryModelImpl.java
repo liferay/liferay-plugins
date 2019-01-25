@@ -21,12 +21,12 @@ import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.model.CacheModel;
+import com.liferay.portal.kernel.model.ModelWrapper;
 import com.liferay.portal.kernel.model.impl.BaseModelImpl;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
-import com.liferay.portal.kernel.util.StringPool;
 
 import com.liferay.testblob.model.TestBlobEntry;
 import com.liferay.testblob.model.TestBlobEntryBlobFieldBlobModel;
@@ -168,7 +168,7 @@ public class TestBlobEntryModelImpl extends BaseModelImpl<TestBlobEntry>
 	@Override
 	public String getUuid() {
 		if (_uuid == null) {
-			return StringPool.BLANK;
+			return "";
 		}
 		else {
 			return _uuid;
@@ -177,6 +177,8 @@ public class TestBlobEntryModelImpl extends BaseModelImpl<TestBlobEntry>
 
 	@Override
 	public void setUuid(String uuid) {
+		_columnBitmask |= UUID_COLUMN_BITMASK;
+
 		if (_originalUuid == null) {
 			_originalUuid = _uuid;
 		}
@@ -383,7 +385,7 @@ public class TestBlobEntryModelImpl extends BaseModelImpl<TestBlobEntry>
 
 	private static final ClassLoader _classLoader = TestBlobEntry.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			TestBlobEntry.class
+			TestBlobEntry.class, ModelWrapper.class
 		};
 	private String _uuid;
 	private String _originalUuid;
