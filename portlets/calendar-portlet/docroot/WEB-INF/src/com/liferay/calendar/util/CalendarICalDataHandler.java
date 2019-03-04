@@ -23,9 +23,11 @@ import com.liferay.calendar.recurrence.Recurrence;
 import com.liferay.calendar.service.CalendarBookingLocalServiceUtil;
 import com.liferay.calendar.service.CalendarBookingServiceUtil;
 import com.liferay.calendar.service.CalendarLocalServiceUtil;
+import com.liferay.calendar.service.permission.CalendarPermission;
 import com.liferay.calendar.workflow.CalendarBookingWorkflowConstants;
 import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
 import com.liferay.portal.kernel.io.unsync.UnsyncStringWriter;
+import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.ReleaseInfo;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -35,11 +37,11 @@ import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.ModelHintsUtil;
 import com.liferay.portal.model.User;
+import com.liferay.portal.security.permission.PermissionThreadLocal;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
 
 import java.net.URI;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -91,20 +93,30 @@ import net.fortuna.ical4j.model.property.XProperty;
  */
 public class CalendarICalDataHandler implements CalendarDataHandler {
 
+	private boolean viewBookingDetails;
+
 	@Override
-	public String exportCalendar(long calendarId) throws Exception {
-		int[] statuses = {
-			CalendarBookingWorkflowConstants.STATUS_APPROVED,
-			CalendarBookingWorkflowConstants.STATUS_MAYBE,
-			CalendarBookingWorkflowConstants.STATUS_PENDING
-		};
+	public String exportCalendar(long calendarId)
+		throws Exception {
+
+		viewBookingDetails =
+			CalendarPermission.contains(
+				PermissionThreadLocal.getPermissionChecker(), calendarId,
+				ActionKeys.VIEW_BOOKING_DETAILS);
+
+		int[] statuses =
+			{
+				CalendarBookingWorkflowConstants.STATUS_APPROVED,
+				CalendarBookingWorkflowConstants.STATUS_MAYBE,
+				CalendarBookingWorkflowConstants.STATUS_PENDING
+			};
 
 		List<CalendarBooking> calendarBookings =
 			CalendarBookingServiceUtil.getCalendarBookings(
 				calendarId, statuses);
 
-		net.fortuna.ical4j.model.Calendar iCalCalendar = toICalCalendar(
-			calendarBookings);
+		net.fortuna.ical4j.model.Calendar iCalCalendar =
+			toICalCalendar(calendarBookings);
 
 		return toString(iCalCalendar);
 	}
@@ -117,25 +129,26 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 			new ArrayList<CalendarBooking>();
 
 		CalendarBooking calendarBooking =
-			CalendarBookingLocalServiceUtil.getCalendarBooking(
-				calendarBookingId);
+			CalendarBookingLocalServiceUtil.getCalendarBooking(calendarBookingId);
 
 		calendarBookings.add(calendarBooking);
 
-		net.fortuna.ical4j.model.Calendar iCalCalendar = toICalCalendar(
-			calendarBookings);
+		net.fortuna.ical4j.model.Calendar iCalCalendar =
+			toICalCalendar(calendarBookings);
 
 		return toString(iCalCalendar);
 	}
 
 	@Override
-	public void importCalendar(long calendarId, String data) throws Exception {
+	public void importCalendar(long calendarId, String data)
+		throws Exception {
+
 		CalendarBuilder calendarBuilder = new CalendarBuilder();
 
 		UnsyncStringReader unsyncStringReader = new UnsyncStringReader(data);
 
-		net.fortuna.ical4j.model.Calendar iCalCalendar = calendarBuilder.build(
-			unsyncStringReader);
+		net.fortuna.ical4j.model.Calendar iCalCalendar =
+			calendarBuilder.build(unsyncStringReader);
 
 		List<VEvent> vEvents = iCalCalendar.getComponents(Component.VEVENT);
 
@@ -158,8 +171,10 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 		Summary summary = vEvent.getSummary();
 
 		if (summary != null) {
-			String title = ModelHintsUtil.trimString(
-				CalendarBooking.class.getName(), "title", summary.getValue());
+			String title =
+				ModelHintsUtil.trimString(
+					CalendarBooking.class.getName(), "title",
+					summary.getValue());
 
 			titleMap.put(user.getLocale(), title);
 		}
@@ -208,7 +223,7 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 
 		// Recurrence
 
-		RRule rrule = (RRule)vEvent.getProperty(Property.RRULE);
+		RRule rrule = (RRule) vEvent.getProperty(Property.RRULE);
 
 		String recurrence = StringPool.BLANK;
 
@@ -238,15 +253,14 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 						int year = jCalendar.get(java.util.Calendar.YEAR);
 						int month = jCalendar.get(java.util.Calendar.MONTH) + 1;
 						int day = jCalendar.get(java.util.Calendar.DATE);
-						int hour = jCalendar.get(
-							java.util.Calendar.HOUR_OF_DAY);
+						int hour =
+							jCalendar.get(java.util.Calendar.HOUR_OF_DAY);
 						int minute = jCalendar.get(java.util.Calendar.MINUTE);
 						int second = jCalendar.get(java.util.Calendar.SECOND);
 
-						sb.append(
-							String.format(
-								_EXDATE_FORMAT, year, month, day, hour, minute,
-								second));
+						sb.append(String.format(
+							_EXDATE_FORMAT, year, month, day, hour, minute,
+							second));
 
 						if (listIterator.hasNext()) {
 							sb.append(StringPool.COMMA);
@@ -258,8 +272,9 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 					}
 				}
 
-				recurrence = recurrence.concat(
-					StringPool.NEW_LINE).concat(_EXDATE).concat(sb.toString());
+				recurrence =
+					recurrence.concat(StringPool.NEW_LINE).concat(_EXDATE).concat(
+						sb.toString());
 			}
 		}
 
@@ -272,8 +287,7 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 
 		int i = 0;
 
-		for (Iterator<VAlarm> iterator = componentList.iterator();
-				iterator.hasNext();) {
+		for (Iterator<VAlarm> iterator = componentList.iterator(); iterator.hasNext();) {
 
 			VAlarm vAlarm = iterator.next();
 
@@ -344,8 +358,7 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 
 		List<Long> childCalendarIds = new ArrayList<Long>();
 
-		for (Iterator<Attendee> iterator = propertyList.iterator();
-				iterator.hasNext();) {
+		for (Iterator<Attendee> iterator = propertyList.iterator(); iterator.hasNext();) {
 
 			Attendee attendee = iterator.next();
 
@@ -355,8 +368,9 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 				continue;
 			}
 
-			User attendeeUser = UserLocalServiceUtil.fetchUserByEmailAddress(
-				calendar.getCompanyId(), uri.getSchemeSpecificPart());
+			User attendeeUser =
+				UserLocalServiceUtil.fetchUserByEmailAddress(
+					calendar.getCompanyId(), uri.getSchemeSpecificPart());
 
 			if ((attendeeUser == null) ||
 				(calendar.getUserId() == attendeeUser.getUserId())) {
@@ -380,8 +394,8 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 			childCalendarIds.add(calendarResource.getDefaultCalendarId());
 		}
 
-		long[] childCalendarIdsArray = ArrayUtil.toArray(
-			childCalendarIds.toArray(new Long[childCalendarIds.size()]));
+		long[] childCalendarIdsArray =
+			ArrayUtil.toArray(childCalendarIds.toArray(new Long[childCalendarIds.size()]));
 
 		// Merge calendar booking
 
@@ -419,15 +433,15 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 		else {
 			CalendarBookingServiceUtil.updateCalendarBooking(
 				calendarBooking.getCalendarBookingId(), calendarId,
-				childCalendarIdsArray, titleMap, descriptionMap, locationString,
-				startDate.getTime(), endDate.getTime(), allDay, recurrence,
-				firstReminder, firstReminderType, secondReminder,
-				secondReminderType, calendarBooking.getStatus(),
-				serviceContext);
+				childCalendarIdsArray, titleMap, descriptionMap,
+				locationString, startDate.getTime(), endDate.getTime(), allDay,
+				recurrence, firstReminder, firstReminderType, secondReminder,
+				secondReminderType, calendarBooking.getStatus(), serviceContext);
 		}
 	}
 
 	protected boolean isActionSupported(String value) {
+
 		try {
 			NotificationType.parse(value);
 		}
@@ -439,6 +453,7 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 	}
 
 	protected boolean isICalDateOnly(DateProperty dateProperty) {
+
 		Parameter valueParameter = dateProperty.getParameter(Parameter.VALUE);
 
 		if (valueParameter == null) {
@@ -511,7 +526,7 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 	}
 
 	protected net.fortuna.ical4j.model.Calendar toICalCalendar(
-			List<CalendarBooking> calendarBookings)
+		List<CalendarBooking> calendarBookings)
 		throws Exception {
 
 		net.fortuna.ical4j.model.Calendar iCalCalendar =
@@ -519,9 +534,9 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 
 		PropertyList propertiesList = iCalCalendar.getProperties();
 
-		ProdId prodId = new ProdId(
-			"-//Liferay Inc//Liferay Portal " + ReleaseInfo.getVersion() +
-			"//EN");
+		ProdId prodId =
+			new ProdId("-//Liferay Inc//Liferay Portal " +
+				ReleaseInfo.getVersion() + "//EN");
 
 		propertiesList.add(prodId);
 
@@ -539,6 +554,7 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 	}
 
 	protected DateTime toICalDateTime(long time) {
+
 		DateTime dateTime = new DateTime();
 
 		dateTime.setTime(time);
@@ -548,31 +564,32 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 	}
 
 	protected Dur toICalDur(long reminder) {
-		int weeks = (int)(reminder / Time.WEEK);
+
+		int weeks = (int) (reminder / Time.WEEK);
 
 		if (weeks > 0) {
 			return new Dur(weeks);
 		}
 
-		int days = (int)(reminder / Time.DAY);
+		int days = (int) (reminder / Time.DAY);
 
 		if (days > 0) {
 			return new Dur(days, 0, 0, 0);
 		}
 
-		int hours = (int)(reminder / Time.HOUR);
+		int hours = (int) (reminder / Time.HOUR);
 
 		if (hours > 0) {
 			return new Dur(0, hours, 0, 0);
 		}
 
-		int minutes = (int)(reminder / Time.MINUTE);
+		int minutes = (int) (reminder / Time.MINUTE);
 
 		if (minutes > 0) {
 			return new Dur(0, 0, minutes, 0);
 		}
 
-		int seconds = (int)(reminder / Time.SECOND);
+		int seconds = (int) (reminder / Time.SECOND);
 
 		if (seconds > 0) {
 			return new Dur(0, 0, 0, seconds);
@@ -597,13 +614,13 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 		// Dates
 
 		if (calendarBooking.isAllDay()) {
-			DtStart dtStart = new DtStart(
-				new Date(calendarBooking.getStartTime()));
+			DtStart dtStart =
+				new DtStart(new Date(calendarBooking.getStartTime()));
 
 			propertyList.add(dtStart);
 
-			java.util.Calendar endJCalendar = JCalendarUtil.getJCalendar(
-				calendarBooking.getEndTime());
+			java.util.Calendar endJCalendar =
+				JCalendarUtil.getJCalendar(calendarBooking.getEndTime());
 
 			endJCalendar.add(java.util.Calendar.DAY_OF_MONTH, 1);
 
@@ -612,13 +629,13 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 			propertyList.add(dtEnd);
 		}
 		else {
-			DtStart dtStart = new DtStart(
-				toICalDateTime(calendarBooking.getStartTime()));
+			DtStart dtStart =
+				new DtStart(toICalDateTime(calendarBooking.getStartTime()));
 
 			propertyList.add(dtStart);
 
-			DtEnd dtEnd = new DtEnd(
-				toICalDateTime(calendarBooking.getEndTime()));
+			DtEnd dtEnd =
+				new DtEnd(toICalDateTime(calendarBooking.getEndTime()));
 
 			propertyList.add(dtEnd);
 		}
@@ -627,20 +644,41 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 
 		User user = UserLocalServiceUtil.getUser(calendarBooking.getUserId());
 
-		Summary summary = new Summary(
-			calendarBooking.getTitle(user.getLocale()));
+		Summary summary;
+		if (viewBookingDetails) {
+			summary = new Summary(
 
+			calendarBooking.getTitle(user.getLocale()));
+		}
+		else {
+			summary = new Summary(LanguageUtil.get(user.getLocale(), "busy"));
+		}
 		propertyList.add(summary);
 
 		// Description
 
-		Description description = new Description(
-			calendarBooking.getDescription(user.getLocale()));
+		Description description;
+		if (viewBookingDetails) {
+			description =
+				new Description(
+					calendarBooking.getDescription(user.getLocale()));
+		}
+		else {
+			description = new Description();
+		}
 
 		propertyList.add(description);
 
-		XProperty xProperty = new XProperty(
-			"X-ALT-DESC", calendarBooking.getDescription(user.getLocale()));
+		XProperty xProperty;
+		if (viewBookingDetails) {
+			xProperty =
+				new XProperty(
+					"X-ALT-DESC",
+					calendarBooking.getDescription(user.getLocale()));
+		}
+		else {
+			xProperty = new XProperty("X-ALT-DESC", "");
+		}
 
 		ParameterList parameters = xProperty.getParameters();
 
@@ -649,9 +687,13 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 		propertyList.add(xProperty);
 
 		// Location
-
-		Location location = new Location(calendarBooking.getLocation());
-
+		Location location;
+		if (viewBookingDetails) {
+			location = new Location(calendarBooking.getLocation());
+		}
+		else {
+			location = new Location();
+		}
 		propertyList.add(location);
 
 		// Recurrence
@@ -665,8 +707,8 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 				recurrence = recurrence.substring(0, index);
 			}
 
-			String value = StringUtil.replace(
-				recurrence, _RRULE, StringPool.BLANK);
+			String value =
+				StringUtil.replace(recurrence, _RRULE, StringPool.BLANK);
 
 			RRule rRule = new RRule(value);
 
@@ -680,60 +722,63 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 		}
 
 		// Reminders
+		if (viewBookingDetails) {
+			ComponentList componentList = vEvent.getAlarms();
 
-		ComponentList componentList = vEvent.getAlarms();
+			long firstReminder = calendarBooking.getFirstReminder();
 
-		long firstReminder = calendarBooking.getFirstReminder();
+			if (firstReminder > 0) {
+				VAlarm vAlarm =
+					toICalAlarm(
+						calendarBooking.getFirstReminderNotificationType(),
+						firstReminder, user.getEmailAddress());
 
-		if (firstReminder > 0) {
-			VAlarm vAlarm = toICalAlarm(
-				calendarBooking.getFirstReminderNotificationType(),
-				firstReminder, user.getEmailAddress());
-
-			componentList.add(vAlarm);
-		}
-
-		long secondReminder = calendarBooking.getSecondReminder();
-
-		if (secondReminder > 0) {
-			VAlarm alarm = toICalAlarm(
-				calendarBooking.getSecondReminderNotificationType(),
-				secondReminder, user.getEmailAddress());
-
-			componentList.add(alarm);
-		}
-
-		// Attendees
-
-		List<CalendarBooking> childCalendarBookings =
-			calendarBooking.getChildCalendarBookings();
-
-		for (CalendarBooking childCalendarBooking : childCalendarBookings) {
-			CalendarResource calResource =
-				childCalendarBooking.getCalendarResource();
-
-			if (!calResource.isUser() ||
-				(calendarBooking.getCalendarBookingId() ==
-					childCalendarBooking.getCalendarBookingId())) {
-
-				continue;
+				componentList.add(vAlarm);
 			}
 
-			User calResourceUser = UserLocalServiceUtil.getUser(
-				calResource.getClassPK());
+			long secondReminder = calendarBooking.getSecondReminder();
 
-			Attendee attendee = toICalAttendee(
-				calResourceUser.getFullName(),
-				calResourceUser.getEmailAddress(),
-				childCalendarBooking.getStatus());
+			if (secondReminder > 0) {
+				VAlarm alarm =
+					toICalAlarm(
+						calendarBooking.getSecondReminderNotificationType(),
+						secondReminder, user.getEmailAddress());
 
-			propertyList.add(attendee);
+				componentList.add(alarm);
+			}
 		}
+		// Attendees
+		if (viewBookingDetails) {
+			List<CalendarBooking> childCalendarBookings =
+				calendarBooking.getChildCalendarBookings();
 
+			for (CalendarBooking childCalendarBooking : childCalendarBookings) {
+				CalendarResource calResource =
+					childCalendarBooking.getCalendarResource();
+
+				if (!calResource.isUser() ||
+					(calendarBooking.getCalendarBookingId() == childCalendarBooking.getCalendarBookingId())) {
+
+					continue;
+				}
+
+				User calResourceUser =
+					UserLocalServiceUtil.getUser(calResource.getClassPK());
+
+				Attendee attendee =
+					toICalAttendee(
+						calResourceUser.getFullName(),
+						calResourceUser.getEmailAddress(),
+						childCalendarBooking.getStatus());
+
+				propertyList.add(attendee);
+			}
+		}
 		return vEvent;
 	}
 
 	protected ExDate toICalExDate(Recurrence recurrence) {
+
 		List<java.util.Calendar> exceptionJCalendars =
 			recurrence.getExceptionJCalendars();
 
@@ -746,8 +791,8 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 		dateList.setUtc(true);
 
 		for (java.util.Calendar exceptionJCalendar : exceptionJCalendars) {
-			DateTime dateTime = toICalDateTime(
-				exceptionJCalendar.getTimeInMillis());
+			DateTime dateTime =
+				toICalDateTime(exceptionJCalendar.getTimeInMillis());
 
 			dateList.add(dateTime);
 		}
