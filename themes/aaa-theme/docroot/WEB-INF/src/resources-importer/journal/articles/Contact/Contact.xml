@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element name="header" type="text" index-type="">
+		<dynamic-content><![CDATA[Contact]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="name" type="text_area" index-type="">
+		<dynamic-content><![CDATA[Name]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="email" type="text_area" index-type="">
+		<dynamic-content><![CDATA[Email]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="subject" type="text_area" index-type="">
+		<dynamic-content><![CDATA[Subject]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="message" type="text_area" index-type="">
+		<dynamic-content><![CDATA[Message]]></dynamic-content>
+	</dynamic-element>
+</root>

@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element name="header" type="text" index-type="">
+		<dynamic-content><![CDATA[Typography]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="image" type="document_library" index-type="">
+		<dynamic-content><![CDATA[[$FILE=typography1.png$]]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="content1" type="text_area" index-type="">
+		<dynamic-content><![CDATA[Excepteur sint occaecat cupidatat non proident. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non.]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="blockquote" type="text_area" index-type="">
+		<dynamic-content><![CDATA["Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco..."]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="header2" type="text" index-type="">
+		<dynamic-content><![CDATA[Header 2]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="content2" type="text_area" index-type="">
+		<dynamic-content><![CDATA[Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="header3" type="text" index-type="">
+		<dynamic-content><![CDATA[Header 3]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="content3" type="text_area" index-type="">
+		<dynamic-content><![CDATA[Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="header4" type="text" index-type="">
+		<dynamic-content><![CDATA[Header 4]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="content4" type="text_area" index-type="">
+		<dynamic-content><![CDATA[Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.]]></dynamic-content>
+	</dynamic-element>
+</root>

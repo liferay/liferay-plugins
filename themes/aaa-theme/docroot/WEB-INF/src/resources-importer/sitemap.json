@@ -1,0 +1,177 @@
+{
+	"layoutTemplateId": "columns_1_1",
+	"privatePages": [
+		{
+			"columns": [
+				[
+					"Home Carousel.xml"
+				],
+				[
+					"Preface.xml"
+				],
+				[
+					{
+						"portletId": "58"
+					}
+				],
+				[
+					"Sidebar.xml"
+				],
+			],
+			"friendlyURL": "/home",
+			"layoutTemplateId": "columns_1_2_1_4",
+			"name": "Home",
+			"title": "Home"
+		},
+		{
+			"columns": [
+				[
+					{
+						"portletId": "73"
+					},
+
+					"About.xml"
+				],
+				[
+					"Sidebar.xml"
+				],
+			],
+			"friendlyURL": "/about",
+			"layouts": [
+				{
+					"columns": [
+						[
+							{
+								"portletId": "73"
+							},
+
+							"About Subpage 1.xml"
+						],
+						[
+							"Sidebar.xml"
+						],
+					],
+					"friendlyURL": "/subpage1",
+					"name": "Subpage 1",
+					"title": "Subpage 1"
+				},
+				{
+					"columns": [
+						[
+							{
+								"portletId": "73"
+							},
+
+							"About Subpage 2.xml"
+						],
+						[
+							"Sidebar.xml"
+						],
+					],
+					"friendlyURL": "/subpage2",
+					"name": "Subpage 2",
+					"title": "Subpage 2"
+				},
+				{
+					"columns": [
+						[
+							{
+								"portletId": "73"
+							},
+
+							"About Subpage 3.xml"
+						],
+						[
+							"Sidebar.xml"
+						],
+					],
+					"friendlyURL": "/subpage3",
+					"name": "Subpage 3",
+					"title": "Subpage 3"
+				},
+			],
+			"name": "About",
+			"title": "About",
+		},
+		{
+			"columns": [
+				[
+					{
+						"portletId": "73"
+					},
+
+					"Typography.xml"
+				],
+				[
+					"Sidebar.xml"
+				],
+			],
+
+			"friendlyURL": "/typography",
+			"name": "Typography",
+			"title": "Typography",
+		},
+		{
+			"columns": [
+				[
+					"Preface.xml"
+				],
+				[
+					"Block Region Header.xml"
+				],
+				[
+					{
+						"portletId": "73"
+					},
+
+					"Block Regions.xml"
+				],
+				[
+					"Sidebar.xml"
+				],
+			],
+
+			"friendlyURL": "/blockregions",
+			"layoutTemplateId": "columns_1_2_1_4b",
+			"name": "Block Regions",
+			"title": "Block Regions",
+		},
+		{
+			"columns": [
+				[
+					{
+						"portletId": "73"
+					},
+					{
+						"portletId": "33"
+					},
+				],
+				[
+					"Sidebar.xml"
+				],
+			],
+
+			"friendlyURL": "/blogs",
+			"name": "Blogs",
+			"title": "Blogs",
+		},
+		{
+			"columns": [
+				[
+					{
+						"portletId": "73"
+					},
+
+					"Contact.xml"
+				],
+				[
+					"Sidebar.xml"
+				],
+			],
+			
+			"friendlyURL": "/contact",
+			"name": "Contact",
+			"title": "Contact",
+		},
+	]
+}

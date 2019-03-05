@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+
+#parse ($init)
+
+<html class="$root_css_class" dir="#language ("lang.dir")" lang="$w3c_language_id">
+
+<head>
+	<title>$the_title - $company_name</title>
+
+	<link href='http://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
+	
+	<meta content="initial-scale=1.0, width=device-width" name="viewport" />
+
+	$theme.include($top_head_include)
+</head>
+
+<body class="$css_class">
+
+<a href="#main-content" id="skip-to-content">#language ("skip-to-content")</a>
+
+
+
+$theme.include($body_top_include)
+
+#if ($is_signed_in)
+	#dockbar()
+#end
+
+
+<div class="container-fluid" id="wrapper">
+	<header id="banner" role="banner">
+		<div class="container">
+			<div class="banner-row">
+				<h1 class="site-title">
+					<a class="$logo_css_class" href="$site_default_url" title="#language_format ("go-to-x", [$site_name])">
+						<img alt="$logo_description" height="$site_logo_height" src="$site_logo" width="$site_logo_width" />
+					</a>
+
+					#if ($show_site_name)
+						<span class="site-name" title="#language_format ("go-to-x", [$site_name])">
+							$site_name
+						</span>
+					#end
+				</h1>
+				<h2 class="page-title">
+					<span>$the_title</span>
+				</h2>
+
+
+		#if (!$is_signed_in)
+			<a data-redirect="$is_login_redirect_required" href="$sign_in_url" id="sign-in" rel="nofollow">$sign_in_text</a>
+		#end
+
+		#if ($has_navigation || $is_signed_in)
+			#parse ("$full_templates_path/navigation.vm")
+		#end
+			</div>
+		</div>
+	</header>
+
+
+	<div id="content">
+		<div class="bodyrow">
+			<nav id="breadcrumbs">#breadcrumbs()</nav>
+
+			#if ($selectable)
+				$theme.include($content_include)
+
+			#else
+				$portletDisplay.recycle()
+
+				$portletDisplay.setTitle($the_title)
+
+				$theme.wrapPortlet("portlet.vm", $content_include)
+			#end
+
+		</div>
+	</div>
+
+	<div id="footerBlock">
+		<div id="footerAd">
+			<p>
+				ADVERTISEMENT
+			</P>
+		</div>
+	</div>
+	<div id="bottom">
+		<div class="container">
+			<div class="bottom-row">
+				<div class="bottom-block">
+					<div class="bottom-region">
+						<div class="block-block">
+							<h2>First Header</h2>
+							<div class="bottom-content">
+								<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="bottom-block">
+					<div class="bottom-region">
+						<div class="block-block">
+							<h2>Second Header</h2>
+							<div class="bottom-content">
+								<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="bottom-block" id="adBlock">
+					<div class="bottom-region">
+						<div class="block-block">
+							<h2>Third Header </h2>
+							<div class="bottom-content">
+								<p> ADVERTISEMENT </p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="bottom-block">
+					<div class="bottom-region">
+						<div class="block-block">
+							<h2>Fourth Header </h2>
+							<div class="bottom-content">
+								<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<footer id="footer" role="contentinfo">
+		<div class="container" id="footer-2">	
+			<p class="powered-by" id="powered">
+				#language ("powered-by") <a href="http://www.liferay.com" rel="external">Liferay</a>. Theme by bavvb.
+			</p>
+		</div>
+	</footer>
+</div>
+
+
+
+
+
+$theme.include($body_bottom_include)
+
+$theme.include($bottom_include)
+
+</body>
+
+</html>

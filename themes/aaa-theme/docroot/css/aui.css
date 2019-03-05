@@ -1,0 +1,30 @@
+$FontAwesomePath: "aui/alloy-font-awesome/font" !default;
+
+@import "aui/alloy-font-awesome/scss/variables";
+@import "aui/alloy-font-awesome/scss/mixins-alloy";
+@import "aui/alloy-font-awesome/scss/path-alloy";
+
+.aui {
+	@import "aui_variables";
+
+	$iconSpritePath: '../images/aui/glyphicons-halflings.png' !default;
+	$iconWhiteSpritePath: '../images/aui/glyphicons-halflings-white.png' !default;
+
+	@import "aui/bootstrap";
+	@import "aui_custom";
+	@import "aui/responsive";
+	@import "liferay_custom";
+
+	@import "aui/alloy-font-awesome/scss/core";
+	@import "aui/alloy-font-awesome/scss/bootstrap";
+	@import "aui/alloy-font-awesome/scss/extras";
+	@import "aui/alloy-font-awesome/scss/icons-alloy";
+	@import "aui/alloy-font-awesome/scss/icons-alloy-extra";
+
+	background-color: $bodyBackground;
+	color: $textColor;
+	font-family: $baseFontFamily;
+	font-size: $baseFontSize;
+	line-height: $baseLineHeight;
+	margin: 0;
+}

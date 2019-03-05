@@ -1,0 +1,41 @@
+<div class="typography">
+    #if ($header.data !="")
+        <h1> $header.data </h1>
+    #end
+    
+    #if ($image.data !="")
+        <img src="$image.data">
+    #end
+    
+    #if ($content1.data !="")
+        <p> $content1.data </p>
+    #end
+    
+    #if ($blockquote.data !="")
+        <blockquote> <p> $blockquote.data </p> </blockquote>
+    #end
+    
+    #if ($header2.data !="")
+        <h2> $header2.data </h2>
+    #end
+    
+    #if ($content2.data !="")
+        <p> $content2.data </p>
+    #end
+    
+    #if ($header3.data !="")
+        <h3> $header3.data </h3>
+    #end
+    
+    #if ($content3.data !="")
+        <p> $content3.data </p>
+    #end
+    
+    #if ($header4.data !="")
+        <h4> $header4.data </h4>
+    #end
+    
+    #if ($content4.data !="")
+        <p> $content4.data </p>
+    #end
+</div>

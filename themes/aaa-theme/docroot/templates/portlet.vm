@@ -1,0 +1,25 @@
+#set ($portlet_display = $portletDisplay)
+
+#set ($portlet_id = $htmlUtil.escapeAttribute($portlet_display.getId()))
+#set ($portlet_title = $portlet_display.getTitle())
+#set ($portlet_back_url = $htmlUtil.escapeAttribute($portlet_display.getURLBack()))
+
+<section class="portlet" id="portlet_$portlet_id">
+	<header class="portlet-topper">
+		<h1 class="portlet-title">
+			$theme.portletIconPortlet() <span class="portlet-title-text">$portlet_title</span>
+		</h1>
+
+		<menu class="portlet-topper-toolbar" id="portlet-topper-toolbar_$portlet_id" type="toolbar">
+			#if ($portlet_display.isShowBackIcon())
+				<a class="portlet-icon-back" href="$portlet_back_url">#language ("return-to-full-page")</a>
+			#else
+				$theme.portletIconOptions()
+			#end
+		</menu>
+	</header>
+
+	<div class="portlet-content">
+		$portlet_display.writeContent($writer)
+	</div>
+</section>

@@ -1,0 +1,47 @@
+<div class="contact-form">
+    #if ($header.data !="")
+        <div class="form-header">
+        $header.data 
+        </div>
+    #end
+    
+    <form action="contact.php" method="post">
+        <div class="form-item">
+            #if ($name.data !="")        
+                $name.data <span class="required"> * </span>
+            #end
+            <br>      
+            <input type="text" name="cf_name">
+        </div>
+
+        <div class="form-item">
+            #if ($email.data !="")
+                $email.data <span class="required"> * </span>
+            #end 
+            <br>
+            <input type="text" name="cf_email">
+         </div>
+        
+        <div class="form-item">
+            #if ($subject.data !="")
+                $subject.data <span class="required"> * </span>
+            #end 
+            <br>
+            <input type="text" name="cf_subject">
+        </div>
+        
+        <div class="form-item">
+            #if ($message.data !="")
+                $message.data <span class="required"> * </span>
+            #end 
+            <br>
+            <textarea name="cf_message"></textarea>
+            <div class="grippie"></div>
+        </div>
+
+    <div class="form-item">
+        <input type="submit" value="Send">
+    </div>
+
+    </form>
+</div>

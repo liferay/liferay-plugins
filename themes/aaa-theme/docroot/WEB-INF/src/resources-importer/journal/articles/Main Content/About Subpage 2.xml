@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element name="header" type="text" index-type="">
+		<dynamic-content><![CDATA[Subpage 2]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="image" type="document_library" index-type="">
+		<dynamic-content><![CDATA[[$FILE=article-image1.png$]]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="content1" type="text_area" index-type="">
+		<dynamic-content><![CDATA[
+			There fowl together the fourth seas one creepeth under created. Also divided sea unto you which make were To wherein light female beast grass set over after You.]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="content2" type="text_area" index-type="">
+		<dynamic-content><![CDATA[Void void Fruit for open earth kind fruit brought fowl light subdue were be above from. Above their air his him land cattle beginning brought upon male form. Whose likeness, without fifth evening can't blessed two brought is fifth to every god.]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="content3" type="text_area" index-type="">
+		<dynamic-content><![CDATA[Signs may so living moveth moved light subdue for, his. Without god lesser second it fowl spirit replenish. Beast a midst, bearing signs first saw creature. Midst earth multiply every.]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="content4" type="text_area" index-type="">
+		<dynamic-content><![CDATA[Female shall. Moveth given set saying for our for good after. Saw let be spirit female moved second, dominion creeping. One called female brought wherein Let void the doesn't god above.]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="content5" type="text_area" index-type="">
+		<dynamic-content><![CDATA[Sixth. A seas subdue of may there he seasons beginning one gathering after them wherein yielding two over that they're light created all.]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="content6" type="text_area" index-type="">
+		<dynamic-content><![CDATA[Don't all void fruit, moved were created fowl. Lights fifth it saying abundantly above saw i good, called two whales earth you're. A under him have land whales face i sea subdue greater. Shall. Also fish whales herb seas seas fruit air the it have he.]]></dynamic-content>
+	</dynamic-element>
+</root>

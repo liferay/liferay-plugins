@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element name="header1" type="text" index-type="">
+		<dynamic-content><![CDATA[Preface First]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="content1" type="text_area" index-type="">
+		<dynamic-content><![CDATA[
+			Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="header2" type="text" index-type="">
+		<dynamic-content><![CDATA[Preface Middle]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="content2" type="text_area" index-type="">
+		<dynamic-content><![CDATA[
+			Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="header3" type="text" index-type="">
+		<dynamic-content><![CDATA[Preface Last]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="content3" type="text_area" index-type="">
+		<dynamic-content><![CDATA[
+			Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.]]></dynamic-content>
+	</dynamic-element>
+</root>

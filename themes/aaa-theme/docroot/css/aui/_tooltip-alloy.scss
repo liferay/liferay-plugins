@@ -1,0 +1,23 @@
+//
+// Help tooltip
+// --------------------------------------------------
+
+// Base class
+.tooltip-help {
+  font-size: $helpTooltipFontSize;
+
+  // Wrapper for the tooltip content
+  .tooltip-inner {
+    color: $helpTooltipColor;
+    background-color: $helpTooltipBackground;
+    border: 1px solid $helpTooltipBorderColor;
+    max-width: 400px;
+    text-align: left;
+  }
+
+  // Arrows
+  &.top .tooltip-arrow    { border-top-color:    $helpTooltipArrowColor; }
+  &.right .tooltip-arrow  { border-right-color:  $helpTooltipArrowColor; }
+  &.left .tooltip-arrow   { border-left-color:   $helpTooltipArrowColor; }
+  &.bottom .tooltip-arrow { border-bottom-color: $helpTooltipArrowColor; }
+}
