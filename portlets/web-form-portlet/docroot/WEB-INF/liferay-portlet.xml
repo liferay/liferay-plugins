@@ -6,6 +6,9 @@
 		<portlet-name>1</portlet-name>
 		<icon>/icon.png</icon>
 		<configuration-action-class>com.liferay.webform.action.ConfigurationActionImpl</configuration-action-class>
+		<friendly-url-mapper-class>com.liferay.portal.kernel.portlet.DefaultFriendlyURLMapper</friendly-url-mapper-class>
+		<friendly-url-mapping>webform</friendly-url-mapping>
+		<friendly-url-routes>/com/liferay/webform/portlet/webform-friendly-url-routes.xml</friendly-url-routes>
 		<instanceable>true</instanceable>
 		<header-portlet-css>/css/main.css</header-portlet-css>
 		<css-class-wrapper>web-form-portlet</css-class-wrapper>
