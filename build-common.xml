@@ -162,9 +162,9 @@ Error-Prone was automatically installed. Please rerun your task.
 				outputproperty="build-css.output"
 			>
 				<jvmarg value="-Dliferay.lib.portal.dir=${app.server.lib.portal.dir}" />
+				<arg value="--base-dir=@{sass.docroot.dir}" />
 				<arg value="--compiler=${sass.compiler.class.name}" />
 				<arg value="--dir-names=/" />
-				<arg value="--base-dir=@{sass.docroot.dir}" />
 				<arg value="--import-paths=${sdk.dir}/dependencies/com.liferay.css.builder/lib/com.liferay.frontend.css.common.jar" />
 			</java>
 
