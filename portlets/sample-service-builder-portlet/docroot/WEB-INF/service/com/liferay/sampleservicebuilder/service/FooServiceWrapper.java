@@ -26,43 +26,42 @@ import com.liferay.portal.kernel.service.ServiceWrapper;
  * @generated
  */
 @ProviderType
-public class FooServiceWrapper implements FooService,
-	ServiceWrapper<FooService> {
+public class FooServiceWrapper
+	implements FooService, ServiceWrapper<FooService> {
+
 	public FooServiceWrapper(FooService fooService) {
 		_fooService = fooService;
 	}
 
 	@Override
-	public com.liferay.portal.kernel.model.User getUser(long userId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _fooService.getUser(userId);
-	}
+	public java.util.List<com.liferay.sampleservicebuilder.model.Foo>
+		getFoos() {
 
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return _fooService.invokeMethod(name, parameterTypes, arguments);
+		return _fooService.getFoos();
 	}
 
 	/**
-	* Returns the OSGi service identifier.
-	*
-	* @return the OSGi service identifier
-	*/
+	 * Returns the OSGi service identifier.
+	 *
+	 * @return the OSGi service identifier
+	 */
 	@Override
-	public java.lang.String getOSGiServiceIdentifier() {
+	public String getOSGiServiceIdentifier() {
 		return _fooService.getOSGiServiceIdentifier();
 	}
 
 	@Override
-	public java.util.List<com.liferay.sampleservicebuilder.model.Foo> getFoos() {
-		return _fooService.getFoos();
+	public com.liferay.portal.kernel.model.User getUser(long userId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return _fooService.getUser(userId);
 	}
 
 	@Override
-	public java.util.List<com.liferay.portal.kernel.model.Group> getUserSitesGroups()
+	public java.util.List<com.liferay.portal.kernel.model.Group>
+			getUserSitesGroups()
 		throws com.liferay.portal.kernel.exception.PortalException {
+
 		return _fooService.getUserSitesGroups();
 	}
 
@@ -77,4 +76,5 @@ public class FooServiceWrapper implements FooService,
 	}
 
 	private FooService _fooService;
+
 }

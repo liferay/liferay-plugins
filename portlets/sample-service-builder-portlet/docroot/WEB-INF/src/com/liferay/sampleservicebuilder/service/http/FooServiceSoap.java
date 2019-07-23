@@ -18,26 +18,26 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-
 import com.liferay.sampleservicebuilder.service.FooServiceUtil;
 
 import java.rmi.RemoteException;
 
 /**
  * Provides the SOAP utility for the
- * {@link FooServiceUtil} service utility. The
- * static methods of this class calls the same methods of the service utility.
- * However, the signatures are different because it is difficult for SOAP to
- * support certain types.
+ * <code>FooServiceUtil</code> service
+ * utility. The static methods of this class call the same methods of the
+ * service utility. However, the signatures are different because it is
+ * difficult for SOAP to support certain types.
  *
  * <p>
  * ServiceBuilder follows certain rules in translating the methods. For example,
- * if the method in the service utility returns a {@link java.util.List}, that
- * is translated to an array of {@link com.liferay.sampleservicebuilder.model.FooSoap}.
- * If the method in the service utility returns a
- * {@link com.liferay.sampleservicebuilder.model.Foo}, that is translated to a
- * {@link com.liferay.sampleservicebuilder.model.FooSoap}. Methods that SOAP cannot
- * safely wire are skipped.
+ * if the method in the service utility returns a <code>java.util.List</code>,
+ * that is translated to an array of
+ * <code>com.liferay.sampleservicebuilder.model.FooSoap</code>. If the method in the
+ * service utility returns a
+ * <code>com.liferay.sampleservicebuilder.model.Foo</code>, that is translated to a
+ * <code>com.liferay.sampleservicebuilder.model.FooSoap</code>. Methods that SOAP
+ * cannot safely wire are skipped.
  * </p>
  *
  * <p>
@@ -59,19 +59,20 @@ import java.rmi.RemoteException;
  *
  * @author Brian Wing Shun Chan
  * @see FooServiceHttp
- * @see com.liferay.sampleservicebuilder.model.FooSoap
- * @see FooServiceUtil
  * @generated
  */
 @ProviderType
 public class FooServiceSoap {
+
 	public static com.liferay.sampleservicebuilder.model.FooSoap[] getFoos()
 		throws RemoteException {
-		try {
-			java.util.List<com.liferay.sampleservicebuilder.model.Foo> returnValue =
-				FooServiceUtil.getFoos();
 
-			return com.liferay.sampleservicebuilder.model.FooSoap.toSoapModels(returnValue);
+		try {
+			java.util.List<com.liferay.sampleservicebuilder.model.Foo>
+				returnValue = FooServiceUtil.getFoos();
+
+			return com.liferay.sampleservicebuilder.model.FooSoap.toSoapModels(
+				returnValue);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -82,8 +83,10 @@ public class FooServiceSoap {
 
 	public static com.liferay.portal.kernel.model.User getUser(long userId)
 		throws RemoteException {
+
 		try {
-			com.liferay.portal.kernel.model.User returnValue = FooServiceUtil.getUser(userId);
+			com.liferay.portal.kernel.model.User returnValue =
+				FooServiceUtil.getUser(userId);
 
 			return returnValue;
 		}
@@ -94,12 +97,16 @@ public class FooServiceSoap {
 		}
 	}
 
-	public static com.liferay.portal.kernel.model.GroupSoap[] getUserSitesGroups()
+	public static com.liferay.portal.kernel.model.GroupSoap[]
+			getUserSitesGroups()
 		throws RemoteException {
-		try {
-			java.util.List<com.liferay.portal.kernel.model.Group> returnValue = FooServiceUtil.getUserSitesGroups();
 
-			return com.liferay.portal.kernel.model.GroupSoap.toSoapModels(returnValue);
+		try {
+			java.util.List<com.liferay.portal.kernel.model.Group> returnValue =
+				FooServiceUtil.getUserSitesGroups();
+
+			return com.liferay.portal.kernel.model.GroupSoap.toSoapModels(
+				returnValue);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -109,4 +116,5 @@ public class FooServiceSoap {
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(FooServiceSoap.class);
+
 }

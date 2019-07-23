@@ -26,15 +26,89 @@ import com.liferay.portal.kernel.service.ServiceWrapper;
  * @generated
  */
 @ProviderType
-public class FooLocalServiceWrapper implements FooLocalService,
-	ServiceWrapper<FooLocalService> {
+public class FooLocalServiceWrapper
+	implements FooLocalService, ServiceWrapper<FooLocalService> {
+
 	public FooLocalServiceWrapper(FooLocalService fooLocalService) {
 		_fooLocalService = fooLocalService;
 	}
 
+	/**
+	 * Adds the foo to the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param foo the foo
+	 * @return the foo that was added
+	 */
 	@Override
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
-		return _fooLocalService.getActionableDynamicQuery();
+	public com.liferay.sampleservicebuilder.model.Foo addFoo(
+		com.liferay.sampleservicebuilder.model.Foo foo) {
+
+		return _fooLocalService.addFoo(foo);
+	}
+
+	@Override
+	public void addFoo(
+			String field1, boolean field2, int field3, java.util.Date field4,
+			String field5,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		_fooLocalService.addFoo(
+			field1, field2, field3, field4, field5, serviceContext);
+	}
+
+	/**
+	 * Creates a new foo with the primary key. Does not add the foo to the database.
+	 *
+	 * @param fooId the primary key for the new foo
+	 * @return the new foo
+	 */
+	@Override
+	public com.liferay.sampleservicebuilder.model.Foo createFoo(long fooId) {
+		return _fooLocalService.createFoo(fooId);
+	}
+
+	/**
+	 * Deletes the foo from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param foo the foo
+	 * @return the foo that was removed
+	 */
+	@Override
+	public com.liferay.sampleservicebuilder.model.Foo deleteFoo(
+		com.liferay.sampleservicebuilder.model.Foo foo) {
+
+		return _fooLocalService.deleteFoo(foo);
+	}
+
+	/**
+	 * Deletes the foo with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param fooId the primary key of the foo
+	 * @return the foo that was removed
+	 * @throws PortalException if a foo with the primary key could not be found
+	 */
+	@Override
+	public com.liferay.sampleservicebuilder.model.Foo deleteFoo(long fooId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return _fooLocalService.deleteFoo(fooId);
+	}
+
+	@Override
+	public void deleteFoos() {
+		_fooLocalService.deleteFoos();
+	}
+
+	/**
+	 * @throws PortalException
+	 */
+	@Override
+	public com.liferay.portal.kernel.model.PersistedModel deletePersistedModel(
+			com.liferay.portal.kernel.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return _fooLocalService.deletePersistedModel(persistedModel);
 	}
 
 	@Override
@@ -42,80 +116,88 @@ public class FooLocalServiceWrapper implements FooLocalService,
 		return _fooLocalService.dynamicQuery();
 	}
 
+	/**
+	 * Performs a dynamic query on the database and returns the matching rows.
+	 *
+	 * @param dynamicQuery the dynamic query
+	 * @return the matching rows
+	 */
 	@Override
-	public com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery getExportActionableDynamicQuery(
-		com.liferay.exportimport.kernel.lar.PortletDataContext portletDataContext) {
-		return _fooLocalService.getExportActionableDynamicQuery(portletDataContext);
-	}
+	public <T> java.util.List<T> dynamicQuery(
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 
-	@Override
-	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
-		return _fooLocalService.getIndexableActionableDynamicQuery();
+		return _fooLocalService.dynamicQuery(dynamicQuery);
 	}
 
 	/**
-	* @throws PortalException
-	*/
+	 * Performs a dynamic query on the database and returns a range of the matching rows.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>com.liferay.sampleservicebuilder.model.impl.FooModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param dynamicQuery the dynamic query
+	 * @param start the lower bound of the range of model instances
+	 * @param end the upper bound of the range of model instances (not inclusive)
+	 * @return the range of matching rows
+	 */
 	@Override
-	public com.liferay.portal.kernel.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.kernel.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _fooLocalService.deletePersistedModel(persistedModel);
-	}
+	public <T> java.util.List<T> dynamicQuery(
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
+		int end) {
 
-	@Override
-	public com.liferay.portal.kernel.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _fooLocalService.getPersistedModel(primaryKeyObj);
-	}
-
-	/**
-	* Adds the foo to the database. Also notifies the appropriate model listeners.
-	*
-	* @param foo the foo
-	* @return the foo that was added
-	*/
-	@Override
-	public com.liferay.sampleservicebuilder.model.Foo addFoo(
-		com.liferay.sampleservicebuilder.model.Foo foo) {
-		return _fooLocalService.addFoo(foo);
+		return _fooLocalService.dynamicQuery(dynamicQuery, start, end);
 	}
 
 	/**
-	* Creates a new foo with the primary key. Does not add the foo to the database.
-	*
-	* @param fooId the primary key for the new foo
-	* @return the new foo
-	*/
+	 * Performs a dynamic query on the database and returns an ordered range of the matching rows.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>com.liferay.sampleservicebuilder.model.impl.FooModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param dynamicQuery the dynamic query
+	 * @param start the lower bound of the range of model instances
+	 * @param end the upper bound of the range of model instances (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching rows
+	 */
 	@Override
-	public com.liferay.sampleservicebuilder.model.Foo createFoo(long fooId) {
-		return _fooLocalService.createFoo(fooId);
+	public <T> java.util.List<T> dynamicQuery(
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
+		int end,
+		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator) {
+
+		return _fooLocalService.dynamicQuery(
+			dynamicQuery, start, end, orderByComparator);
 	}
 
 	/**
-	* Deletes the foo from the database. Also notifies the appropriate model listeners.
-	*
-	* @param foo the foo
-	* @return the foo that was removed
-	*/
+	 * Returns the number of rows matching the dynamic query.
+	 *
+	 * @param dynamicQuery the dynamic query
+	 * @return the number of rows matching the dynamic query
+	 */
 	@Override
-	public com.liferay.sampleservicebuilder.model.Foo deleteFoo(
-		com.liferay.sampleservicebuilder.model.Foo foo) {
-		return _fooLocalService.deleteFoo(foo);
+	public long dynamicQueryCount(
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
+
+		return _fooLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
 	/**
-	* Deletes the foo with the primary key from the database. Also notifies the appropriate model listeners.
-	*
-	* @param fooId the primary key of the foo
-	* @return the foo that was removed
-	* @throws PortalException if a foo with the primary key could not be found
-	*/
+	 * Returns the number of rows matching the dynamic query.
+	 *
+	 * @param dynamicQuery the dynamic query
+	 * @param projection the projection to apply to the query
+	 * @return the number of rows matching the dynamic query
+	 */
 	@Override
-	public com.liferay.sampleservicebuilder.model.Foo deleteFoo(long fooId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _fooLocalService.deleteFoo(fooId);
+	public long dynamicQueryCount(
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
+		com.liferay.portal.kernel.dao.orm.Projection projection) {
+
+		return _fooLocalService.dynamicQueryCount(dynamicQuery, projection);
 	}
 
 	@Override
@@ -124,277 +206,231 @@ public class FooLocalServiceWrapper implements FooLocalService,
 	}
 
 	/**
-	* Returns the foo matching the UUID and group.
-	*
-	* @param uuid the foo's UUID
-	* @param groupId the primary key of the group
-	* @return the matching foo, or <code>null</code> if a matching foo could not be found
-	*/
+	 * Returns the foo matching the UUID and group.
+	 *
+	 * @param uuid the foo's UUID
+	 * @param groupId the primary key of the group
+	 * @return the matching foo, or <code>null</code> if a matching foo could not be found
+	 */
 	@Override
 	public com.liferay.sampleservicebuilder.model.Foo fetchFooByUuidAndGroupId(
-		java.lang.String uuid, long groupId) {
+		String uuid, long groupId) {
+
 		return _fooLocalService.fetchFooByUuidAndGroupId(uuid, groupId);
 	}
 
-	/**
-	* Returns the foo with the primary key.
-	*
-	* @param fooId the primary key of the foo
-	* @return the foo
-	* @throws PortalException if a foo with the primary key could not be found
-	*/
 	@Override
-	public com.liferay.sampleservicebuilder.model.Foo getFoo(long fooId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _fooLocalService.getFoo(fooId);
-	}
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery
+		getActionableDynamicQuery() {
 
-	/**
-	* Returns the foo matching the UUID and group.
-	*
-	* @param uuid the foo's UUID
-	* @param groupId the primary key of the group
-	* @return the matching foo
-	* @throws PortalException if a matching foo could not be found
-	*/
-	@Override
-	public com.liferay.sampleservicebuilder.model.Foo getFooByUuidAndGroupId(
-		java.lang.String uuid, long groupId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _fooLocalService.getFooByUuidAndGroupId(uuid, groupId);
-	}
-
-	/**
-	* Updates the foo in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param foo the foo
-	* @return the foo that was updated
-	*/
-	@Override
-	public com.liferay.sampleservicebuilder.model.Foo updateFoo(
-		com.liferay.sampleservicebuilder.model.Foo foo) {
-		return _fooLocalService.updateFoo(foo);
+		return _fooLocalService.getActionableDynamicQuery();
 	}
 
 	@Override
-	public int getField1FoosCount(java.lang.String[] field1s) {
-		return _fooLocalService.getField1FoosCount(field1s);
-	}
+	public com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery
+		getExportActionableDynamicQuery(
+			com.liferay.exportimport.kernel.lar.PortletDataContext
+				portletDataContext) {
 
-	/**
-	* Returns the number of foos.
-	*
-	* @return the number of foos
-	*/
-	@Override
-	public int getFoosCount() {
-		return _fooLocalService.getFoosCount();
+		return _fooLocalService.getExportActionableDynamicQuery(
+			portletDataContext);
 	}
 
 	@Override
-	public java.lang.Object getLocalObject() throws java.lang.Exception {
-		return _fooLocalService.getLocalObject();
-	}
+	public java.util.List<com.liferay.sampleservicebuilder.model.Foo>
+		getField1Foos(
+			String[] field1s, int start, int end,
+			com.liferay.portal.kernel.util.OrderByComparator
+				<com.liferay.sampleservicebuilder.model.Foo> obc) {
 
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return _fooLocalService.invokeMethod(name, parameterTypes, arguments);
-	}
-
-	/**
-	* Returns the OSGi service identifier.
-	*
-	* @return the OSGi service identifier
-	*/
-	@Override
-	public java.lang.String getOSGiServiceIdentifier() {
-		return _fooLocalService.getOSGiServiceIdentifier();
-	}
-
-	/**
-	* Performs a dynamic query on the database and returns the matching rows.
-	*
-	* @param dynamicQuery the dynamic query
-	* @return the matching rows
-	*/
-	@Override
-	public <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
-		return _fooLocalService.dynamicQuery(dynamicQuery);
-	}
-
-	/**
-	* Performs a dynamic query on the database and returns a range of the matching rows.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.sampleservicebuilder.model.impl.FooModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	* </p>
-	*
-	* @param dynamicQuery the dynamic query
-	* @param start the lower bound of the range of model instances
-	* @param end the upper bound of the range of model instances (not inclusive)
-	* @return the range of matching rows
-	*/
-	@Override
-	public <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) {
-		return _fooLocalService.dynamicQuery(dynamicQuery, start, end);
-	}
-
-	/**
-	* Performs a dynamic query on the database and returns an ordered range of the matching rows.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.sampleservicebuilder.model.impl.FooModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	* </p>
-	*
-	* @param dynamicQuery the dynamic query
-	* @param start the lower bound of the range of model instances
-	* @param end the upper bound of the range of model instances (not inclusive)
-	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	* @return the ordered range of matching rows
-	*/
-	@Override
-	public <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end,
-		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator) {
-		return _fooLocalService.dynamicQuery(dynamicQuery, start, end,
-			orderByComparator);
-	}
-
-	@Override
-	public java.util.List<com.liferay.sampleservicebuilder.model.Foo> getField1Foos(
-		java.lang.String[] field1s, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sampleservicebuilder.model.Foo> obc) {
 		return _fooLocalService.getField1Foos(field1s, start, end, obc);
 	}
 
 	@Override
-	public java.util.List<com.liferay.sampleservicebuilder.model.Foo> getFoos() {
-		return _fooLocalService.getFoos();
-	}
-
-	@Override
-	public java.util.List<com.liferay.sampleservicebuilder.model.Foo> getFoos(
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sampleservicebuilder.model.Foo> obc) {
-		return _fooLocalService.getFoos(obc);
+	public int getField1FoosCount(String[] field1s) {
+		return _fooLocalService.getField1FoosCount(field1s);
 	}
 
 	/**
-	* Returns a range of all the foos.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.sampleservicebuilder.model.impl.FooModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	* </p>
-	*
-	* @param start the lower bound of the range of foos
-	* @param end the upper bound of the range of foos (not inclusive)
-	* @return the range of foos
-	*/
+	 * Returns the foo with the primary key.
+	 *
+	 * @param fooId the primary key of the foo
+	 * @return the foo
+	 * @throws PortalException if a foo with the primary key could not be found
+	 */
+	@Override
+	public com.liferay.sampleservicebuilder.model.Foo getFoo(long fooId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return _fooLocalService.getFoo(fooId);
+	}
+
+	/**
+	 * Returns the foo matching the UUID and group.
+	 *
+	 * @param uuid the foo's UUID
+	 * @param groupId the primary key of the group
+	 * @return the matching foo
+	 * @throws PortalException if a matching foo could not be found
+	 */
+	@Override
+	public com.liferay.sampleservicebuilder.model.Foo getFooByUuidAndGroupId(
+			String uuid, long groupId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return _fooLocalService.getFooByUuidAndGroupId(uuid, groupId);
+	}
+
+	@Override
+	public java.util.List<com.liferay.sampleservicebuilder.model.Foo>
+		getFoos() {
+
+		return _fooLocalService.getFoos();
+	}
+
+	/**
+	 * Returns a range of all the foos.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>com.liferay.sampleservicebuilder.model.impl.FooModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param start the lower bound of the range of foos
+	 * @param end the upper bound of the range of foos (not inclusive)
+	 * @return the range of foos
+	 */
 	@Override
 	public java.util.List<com.liferay.sampleservicebuilder.model.Foo> getFoos(
 		int start, int end) {
+
 		return _fooLocalService.getFoos(start, end);
 	}
 
 	@Override
 	public java.util.List<com.liferay.sampleservicebuilder.model.Foo> getFoos(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sampleservicebuilder.model.Foo> obc) {
+		com.liferay.portal.kernel.util.OrderByComparator
+			<com.liferay.sampleservicebuilder.model.Foo> obc) {
+
 		return _fooLocalService.getFoos(start, end, obc);
 	}
 
-	/**
-	* Returns all the foos matching the UUID and company.
-	*
-	* @param uuid the UUID of the foos
-	* @param companyId the primary key of the company
-	* @return the matching foos, or an empty list if no matches were found
-	*/
 	@Override
-	public java.util.List<com.liferay.sampleservicebuilder.model.Foo> getFoosByUuidAndCompanyId(
-		java.lang.String uuid, long companyId) {
+	public java.util.List<com.liferay.sampleservicebuilder.model.Foo> getFoos(
+		com.liferay.portal.kernel.util.OrderByComparator
+			<com.liferay.sampleservicebuilder.model.Foo> obc) {
+
+		return _fooLocalService.getFoos(obc);
+	}
+
+	/**
+	 * Returns all the foos matching the UUID and company.
+	 *
+	 * @param uuid the UUID of the foos
+	 * @param companyId the primary key of the company
+	 * @return the matching foos, or an empty list if no matches were found
+	 */
+	@Override
+	public java.util.List<com.liferay.sampleservicebuilder.model.Foo>
+		getFoosByUuidAndCompanyId(String uuid, long companyId) {
+
 		return _fooLocalService.getFoosByUuidAndCompanyId(uuid, companyId);
 	}
 
 	/**
-	* Returns a range of foos matching the UUID and company.
-	*
-	* @param uuid the UUID of the foos
-	* @param companyId the primary key of the company
-	* @param start the lower bound of the range of foos
-	* @param end the upper bound of the range of foos (not inclusive)
-	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	* @return the range of matching foos, or an empty list if no matches were found
-	*/
+	 * Returns a range of foos matching the UUID and company.
+	 *
+	 * @param uuid the UUID of the foos
+	 * @param companyId the primary key of the company
+	 * @param start the lower bound of the range of foos
+	 * @param end the upper bound of the range of foos (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the range of matching foos, or an empty list if no matches were found
+	 */
 	@Override
-	public java.util.List<com.liferay.sampleservicebuilder.model.Foo> getFoosByUuidAndCompanyId(
-		java.lang.String uuid, long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sampleservicebuilder.model.Foo> orderByComparator) {
-		return _fooLocalService.getFoosByUuidAndCompanyId(uuid, companyId,
-			start, end, orderByComparator);
+	public java.util.List<com.liferay.sampleservicebuilder.model.Foo>
+		getFoosByUuidAndCompanyId(
+			String uuid, long companyId, int start, int end,
+			com.liferay.portal.kernel.util.OrderByComparator
+				<com.liferay.sampleservicebuilder.model.Foo>
+					orderByComparator) {
+
+		return _fooLocalService.getFoosByUuidAndCompanyId(
+			uuid, companyId, start, end, orderByComparator);
 	}
 
 	/**
-	* Returns the number of rows matching the dynamic query.
-	*
-	* @param dynamicQuery the dynamic query
-	* @return the number of rows matching the dynamic query
-	*/
+	 * Returns the number of foos.
+	 *
+	 * @return the number of foos
+	 */
 	@Override
-	public long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
-		return _fooLocalService.dynamicQueryCount(dynamicQuery);
+	public int getFoosCount() {
+		return _fooLocalService.getFoosCount();
+	}
+
+	@Override
+	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery
+		getIndexableActionableDynamicQuery() {
+
+		return _fooLocalService.getIndexableActionableDynamicQuery();
+	}
+
+	@Override
+	public Object getLocalObject() throws Exception {
+		return _fooLocalService.getLocalObject();
 	}
 
 	/**
-	* Returns the number of rows matching the dynamic query.
-	*
-	* @param dynamicQuery the dynamic query
-	* @param projection the projection to apply to the query
-	* @return the number of rows matching the dynamic query
-	*/
+	 * Returns the OSGi service identifier.
+	 *
+	 * @return the OSGi service identifier
+	 */
 	@Override
-	public long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
-		com.liferay.portal.kernel.dao.orm.Projection projection) {
-		return _fooLocalService.dynamicQueryCount(dynamicQuery, projection);
+	public String getOSGiServiceIdentifier() {
+		return _fooLocalService.getOSGiServiceIdentifier();
 	}
 
 	@Override
-	public void addFoo(java.lang.String field1, boolean field2, int field3,
-		java.util.Date field4, java.lang.String field5,
-		com.liferay.portal.kernel.service.ServiceContext serviceContext)
+	public com.liferay.portal.kernel.model.PersistedModel getPersistedModel(
+			java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		_fooLocalService.addFoo(field1, field2, field3, field4, field5,
-			serviceContext);
+
+		return _fooLocalService.getPersistedModel(primaryKeyObj);
 	}
 
 	@Override
-	public void deleteFoos() {
-		_fooLocalService.deleteFoos();
-	}
-
-	@Override
-	public void updateAsset(long userId,
-		com.liferay.sampleservicebuilder.model.Foo foo,
-		long[] assetCategoryIds, java.lang.String[] assetTagNames)
+	public void updateAsset(
+			long userId, com.liferay.sampleservicebuilder.model.Foo foo,
+			long[] assetCategoryIds, String[] assetTagNames)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		_fooLocalService.updateAsset(userId, foo, assetCategoryIds,
-			assetTagNames);
+
+		_fooLocalService.updateAsset(
+			userId, foo, assetCategoryIds, assetTagNames);
+	}
+
+	/**
+	 * Updates the foo in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	 *
+	 * @param foo the foo
+	 * @return the foo that was updated
+	 */
+	@Override
+	public com.liferay.sampleservicebuilder.model.Foo updateFoo(
+		com.liferay.sampleservicebuilder.model.Foo foo) {
+
+		return _fooLocalService.updateFoo(foo);
 	}
 
 	@Override
-	public void updateFoo(long fooId, java.lang.String field1, boolean field2,
-		int field3, java.util.Date field4, java.lang.String field5,
-		com.liferay.portal.kernel.service.ServiceContext serviceContext)
+	public void updateFoo(
+			long fooId, String field1, boolean field2, int field3,
+			java.util.Date field4, String field5,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		_fooLocalService.updateFoo(fooId, field1, field2, field3, field4,
-			field5, serviceContext);
+
+		_fooLocalService.updateFoo(
+			fooId, field1, field2, field3, field4, field5, serviceContext);
 	}
 
 	@Override
@@ -408,4 +444,5 @@ public class FooLocalServiceWrapper implements FooLocalService,
 	}
 
 	private FooLocalService _fooLocalService;
+
 }

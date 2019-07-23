@@ -26,11 +26,11 @@ import java.util.List;
  * This class is used by SOAP remote services, specifically {@link com.liferay.sampleservicebuilder.service.http.FooServiceSoap}.
  *
  * @author Brian Wing Shun Chan
- * @see com.liferay.sampleservicebuilder.service.http.FooServiceSoap
  * @generated
  */
 @ProviderType
 public class FooSoap implements Serializable {
+
 	public static FooSoap toSoapModel(Foo model) {
 		FooSoap soapModel = new FooSoap();
 
@@ -43,7 +43,7 @@ public class FooSoap implements Serializable {
 		soapModel.setCreateDate(model.getCreateDate());
 		soapModel.setModifiedDate(model.getModifiedDate());
 		soapModel.setField1(model.getField1());
-		soapModel.setField2(model.getField2());
+		soapModel.setField2(model.isField2());
 		soapModel.setField3(model.getField3());
 		soapModel.setField4(model.getField4());
 		soapModel.setField5(model.getField5());
@@ -220,4 +220,5 @@ public class FooSoap implements Serializable {
 	private int _field3;
 	private Date _field4;
 	private String _field5;
+
 }

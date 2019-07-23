@@ -33,10 +33,11 @@ import com.liferay.sampleservicebuilder.service.FooLocalServiceUtil;
  */
 @ProviderType
 public abstract class FooBaseImpl extends FooModelImpl implements Foo {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify or reference this class directly. All methods that expect a foo model instance should use the {@link Foo} interface instead.
+	 * Never modify or reference this class directly. All methods that expect a foo model instance should use the <code>Foo</code> interface instead.
 	 */
 	@Override
 	public void persist() {
@@ -47,4 +48,5 @@ public abstract class FooBaseImpl extends FooModelImpl implements Foo {
 			FooLocalServiceUtil.updateFoo(this);
 		}
 	}
+
 }
