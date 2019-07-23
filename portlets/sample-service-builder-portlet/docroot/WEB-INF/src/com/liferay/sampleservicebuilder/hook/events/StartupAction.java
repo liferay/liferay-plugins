@@ -16,8 +16,6 @@ package com.liferay.sampleservicebuilder.hook.events;
 
 import com.liferay.portal.kernel.events.ActionException;
 import com.liferay.portal.kernel.events.SimpleAction;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.service.CompanyLocalServiceUtil;
@@ -68,7 +66,5 @@ public class StartupAction extends SimpleAction {
 				StringUtil.randomString(), serviceContext);
 		}
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(StartupAction.class);
 
 }
