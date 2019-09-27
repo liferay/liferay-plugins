@@ -626,59 +626,6 @@
 		/>
 	</target>
 
-	<target name="format-wsdl">
-		<path id="xml.formatter.classpath">
-			<fileset dir="${sdk.dir}/dependencies/com.liferay.xml.formatter/lib" includes="*.jar" />
-		</path>
-
-		<for param="wsdl.full.path">
-			<path>
-				<fileset
-					dir="."
-					includes="docroot/WEB-INF/wsdl/*.wsdl,docroot/WEB-INF/wsdl/**/*.wsdl"
-				/>
-			</path>
-			<sequential>
-				<java
-					classname="com.liferay.xml.formatter.XMLFormatter"
-					classpathref="xml.formatter.classpath"
-					fork="true"
-					newenvironment="true"
-				>
-					<jvmarg value="-Dxml.formatter.file=@{wsdl.full.path}" />
-					<jvmarg value="-Dxml.formatter.strip.comments=true" />
-				</java>
-			</sequential>
-		</for>
-	</target>
-
-	<target name="format-xsd">
-		<path id="xml.formatter.classpath">
-			<fileset dir="${sdk.dir}/dependencies/com.liferay.xml.formatter/lib" includes="*.jar" />
-		</path>
-
-		<for param="xsd.full.path">
-			<path>
-				<fileset
-					dir="."
-					includes="docroot/WEB-INF/xsd/*.xsd,docroot/WEB-INF/xsd/**/*.xsd"
-				/>
-			</path>
-			<sequential>
-				<java
-					classname="com.liferay.xml.formatter.XMLFormatter"
-					classpathref="xml.formatter.classpath"
-					fork="true"
-					newenvironment="true"
-				>
-					<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
-					<jvmarg value="-Dxml.formatter.file=@{xsd.full.path}" />
-					<jvmarg value="-Dxml.formatter.strip.comments=true" />
-				</java>
-			</sequential>
-		</for>
-	</target>
-
 	<target depends="publish-local-m2-release" name="install" />
 
 	<target depends="javadoc" name="jar-javadoc">
