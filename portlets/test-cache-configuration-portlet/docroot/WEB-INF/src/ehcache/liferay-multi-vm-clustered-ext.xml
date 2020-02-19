@@ -18,7 +18,6 @@
 			properties="replicatePuts=false,replicateUpdatesViaCopy=false"
 			propertySeparator=","
 		/>
-		<bootstrapCacheLoaderFactory class="com.liferay.portal.cache.ehcache.LiferayBootstrapCacheLoaderFactory" />
 	</cache>
 	<cache
 		eternal="false"
