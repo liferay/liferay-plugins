@@ -17,7 +17,8 @@
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
 <%@ page import="com.liferay.registry.Registry" %><%@
-page import="com.liferay.registry.RegistryUtil" %>
+page import="com.liferay.registry.RegistryUtil" %><%@
+page import="com.liferay.registry.ServiceReference" %>
 
 <%@ page import="java.util.Objects" %>
 

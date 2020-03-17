@@ -35,7 +35,9 @@
 private static String _testAttributeList(String cacheManagerName, String name, Object... values) throws Exception {
 	Registry registry = RegistryUtil.getRegistry();
 
-	MBeanServer mBeanServer = registry.getService(MBeanServer.class);
+	ServiceReference<MBeanServer> serviceReference = registry.getServiceReference(MBeanServer.class);
+
+	MBeanServer mBeanServer = registry.getService(serviceReference);
 
 	ObjectName objectName = new ObjectName("net.sf.ehcache:type=CacheConfiguration,CacheManager=" + cacheManagerName + ",name=" + name);
 
