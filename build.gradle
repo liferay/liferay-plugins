@@ -32,7 +32,7 @@ configure(subprojects.findAll {!it.childProjects}) {
 		openCVVersion = "2.4.10-0.10"
 		poshiProperties << _getTestProperties(project)
 		poshiPropertiesFile = rootProject.file("${baseDir}/test.properties")
-		version = "1.0.82"
+		version = "1.0.258"
 	}
 
 	repositories {
