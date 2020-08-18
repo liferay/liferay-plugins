@@ -37,22 +37,27 @@ private static String _testAttributeList(String cacheManagerName, String name, O
 
 	ServiceReference<MBeanServer> serviceReference = registry.getServiceReference(MBeanServer.class);
 
-	MBeanServer mBeanServer = registry.getService(serviceReference);
+	try {
+		MBeanServer mBeanServer = registry.getService(serviceReference);
 
-	ObjectName objectName = new ObjectName("net.sf.ehcache:type=CacheConfiguration,CacheManager=" + cacheManagerName + ",name=" + name);
+		ObjectName objectName = new ObjectName("net.sf.ehcache:type=CacheConfiguration,CacheManager=" + cacheManagerName + ",name=" + name);
 
-	AttributeList attributeList = mBeanServer.getAttributes(objectName, new String[] {"Eternal", "MaxElementsInMemory", "TimeToIdleSeconds"});
+		AttributeList attributeList = mBeanServer.getAttributes(objectName, new String[] {"Eternal", "MaxElementsInMemory", "TimeToIdleSeconds"});
 
-	for (int i = 0; i < values.length; i++) {
-		Attribute attribute = (Attribute)attributeList.get(i);
+		for (int i = 0; i < values.length; i++) {
+			Attribute attribute = (Attribute)attributeList.get(i);
 
-		String value = String.valueOf(attribute.getValue());
+			String value = String.valueOf(attribute.getValue());
 
-		if (!Objects.equals(value, String.valueOf(values[i]))) {
-			return name + "=FAILED<br />";
+			if (!Objects.equals(value, String.valueOf(values[i]))) {
+				return name + "=FAILED<br />";
+			}
 		}
-	}
 
-	return name + "=PASSED<br />";
+		return name + "=PASSED<br />";
+	}
+	finally {
+		registry.ungetService(serviceReference);
+	}
 }
 %>
