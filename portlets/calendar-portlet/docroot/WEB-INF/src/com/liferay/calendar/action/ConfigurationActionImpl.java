@@ -65,6 +65,13 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 			actionRequest, "usePortalTimeZone");
 		int weekStartsOn = ParamUtil.getInteger(actionRequest, "weekStartsOn");
 
+		boolean isFileUpload = false;
+
+		if("file".equals(fieldType)) {
+			isFileUpload = true;
+		}
+		preferences.setValue("isFileUpload" + i, String.valueOf(isFileUpload));
+
 		preferences.setValue(
 			"defaultDuration", String.valueOf(defaultDuration));
 		preferences.setValue("defaultView", defaultView);

@@ -77,6 +77,7 @@ boolean ignoreRequestValue = (index != formFieldsIndex);
 				<aui:option selected='<%= fieldType.equals("radio") %>' value="radio"><liferay-ui:message key="radio-buttons" /></aui:option>
 				<aui:option selected='<%= fieldType.equals("paragraph") %>' value="paragraph"><liferay-ui:message key="paragraph" /></aui:option>
 				<aui:option selected='<%= fieldType.equals("checkbox") %>' value="checkbox"><liferay-ui:message key="check-box" /></aui:option>
+				<aui:option selected='<%= fieldType.equals("file") %>' value="file"><liferay-ui:message key="file" /></aui:option>
 			</aui:select>
 		</c:when>
 		<c:otherwise>

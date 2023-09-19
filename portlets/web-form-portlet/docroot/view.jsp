@@ -124,6 +124,18 @@ String successURL = preferences.getValue("successURL", StringPool.BLANK);
 
 					</aui:select>
 				</c:when>
+				<c:when test='<%= fieldType.equals("file") %>'>
+					<tr>
+						<td class="order-table-label">
+							<label><%= HtmlUtil.escape(fieldLabel) %></label>
+						</td>
+						<td>
+							<aui:input cssClass='<%= fieldOptional ? "optional" : StringPool.BLANK
+							%>' label="" name="<%= fieldName %>" type="file" value="
+							<%=HtmlUtil.escape(fieldValue) %>"/>
+						</td>
+					</tr>
+				</c:when>
 			</c:choose>
 
 		<%

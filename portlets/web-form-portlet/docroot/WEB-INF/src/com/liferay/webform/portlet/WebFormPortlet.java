@@ -35,6 +35,7 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
+import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.service.permission.PortletPermissionUtil;
 import com.liferay.portal.theme.ThemeDisplay;
@@ -243,6 +244,21 @@ public class WebFormPortlet extends MVCPortlet {
 	protected void exportData(
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws Exception {
+
+		UploadPortletRequest uploadRequest =
+				Portalutil.getUploadPortletRequest(actionRequest);
+
+		File uploadedFile = uploadRequest.getFile("file");
+
+		String sourcefileName = uploadRequest.getFileName(uploadedFile.getName());
+		(Throws NULL pointer exception on this line)
+
+		File folder = new File("\tmp\uploadedfile");
+
+		File filepath = new File(folder.getAbsolutePath() + File.seperator +
+				sourcefileName);
+
+		FileUtils.copyFile(uploadedFile ,filepath);
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
